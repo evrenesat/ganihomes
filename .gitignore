@@ -1,0 +1,7 @@
+*.pyc
+log/error_log
+log/access_log
+*.log
+*_log
+yuklemeler
+settings.py
