@@ -44,6 +44,23 @@ class Place(models.Model):
     def __unicode__(self):
         return '%s' % (self.title,)
 
+class Photo(models.Model):
+    '''Photos'''
+    place = models.ForeignKey(Place,verbose_name=_('Place'))
+    name = models.CharField(_('Image name'), max_length=60)
+    image = models.ImageField(_('Image File'), upload_to='place_photos')
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s' % (self.name,)
+
+
 class ReservedDates(models.Model):
     '''unavailable dates'''
 
