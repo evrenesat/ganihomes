@@ -10,6 +10,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/models.py" afterPath="$PROJECT_DIR$/places/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/options.py" afterPath="$PROJECT_DIR$/places/options.py" />
     </list>
     <ignored path="cagani.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,55 +37,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="14" selection-start="5163" selection-end="5163" vertical-scroll-proportion="0.31928346">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/places/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="99" selection-start="1474" selection-end="1474" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="context_processors.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/context_processors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="icerik.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/models/icerik.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="266" column="0" selection-start="11902" selection-end="11902" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dil.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/models/dil.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="32" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="28" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0">
+            <state line="85" column="48" selection-start="3619" selection-end="3619" vertical-scroll-proportion="0.60590094">
               <folding />
             </state>
           </provider>
@@ -93,7 +49,7 @@
       <file leaf-file-name="options.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/places/options.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="24" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0">
+            <state line="47" column="24" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,13 +69,13 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/places/options.py" />
         <option value="$PROJECT_DIR$/context_processors.py" />
         <option value="$PROJECT_DIR$/website/models/dil.py" />
         <option value="$PROJECT_DIR$/website/models/icerik.py" />
         <option value="$PROJECT_DIR$/website/views.py" />
-        <option value="$PROJECT_DIR$/places/models.py" />
         <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/places/options.py" />
+        <option value="$PROJECT_DIR$/places/models.py" />
       </list>
     </option>
   </component>
@@ -255,7 +211,7 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="options.lastSelected" value="editing.templates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../elmas" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -481,11 +437,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/places/options.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="24" selection-start="513" selection-end="513" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../elmas/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="160" column="0" selection-start="5475" selection-end="5475" vertical-scroll-proportion="0.4805058">
@@ -493,37 +444,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/places/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="99" selection-start="1474" selection-end="1474" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="28" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/context_processors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+        <state line="21" column="28" selection-start="842" selection-end="842" vertical-scroll-proportion="0.37618545">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/website/models/icerik.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="266" column="0" selection-start="11902" selection-end="11902" vertical-scroll-proportion="0.0">
+        <state line="266" column="0" selection-start="11902" selection-end="11902" vertical-scroll-proportion="0.39093783">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/website/models/dil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="32" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.0">
+        <state line="60" column="32" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.100105375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/context_processors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.035827186">
           <folding />
         </state>
       </provider>
@@ -531,6 +475,20 @@
     <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="148" column="14" selection-start="5163" selection-end="5163" vertical-scroll-proportion="0.31928346">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/places/options.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="24" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/places/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="48" selection-start="3619" selection-end="3619" vertical-scroll-proportion="0.60590094">
           <folding />
         </state>
       </provider>

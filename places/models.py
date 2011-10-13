@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from options import *
 
 
-class Places(models.Model):
+class Place(models.Model):
     '''Places'''
 
     title = models.CharField(_('Place title'), max_length=100)
@@ -32,7 +33,7 @@ class Places(models.Model):
     # = models.CharField(_(''))
     # = models.IntegerField(_(''))
     # = models.SmallIntegerField(_(''))
-    timestamp = models.DateTimeField(_('timestamp'))
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
         ordering = ['timestamp']
@@ -42,3 +43,59 @@ class Places(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.title,)
+
+class ReservedDates(models.Model):
+    '''unavailable dates'''
+
+    start = models.DateField(_('Reservation Start'))
+    end = models.DateField(_('Reservation End'))
+    # = models.ForeignKey(, verbose_name=_(''))
+    # = models.CharField(_(''))
+    # = models.IntegerField(_(''))
+    # = models.SmallIntegerField(_(''))
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s - %s' % (self.start,self.end)
+
+
+
+class Booking(models.Model):
+    '''Booking'''
+
+    host = models.ForeignKey(User,verbose_name=_('Host'), related_name='host')
+    guest = models.ForeignKey(User,verbose_name=_('Host'), related_name='guest')
+    place = models.ForeignKey(Place,verbose_name=_('Place'))
+    reservation = models.ForeignKey(ReservedDates,verbose_name=_('Reservation Dates'))
+
+
+    start = models.DateField(_('Booking start'))
+    end = models.DateField(_('Booking end'))
+    summary = models.CharField(_('Summary'), max_length=100 , null=True, blank=True)
+    valid = models.BooleanField(_('Valid'))
+    status = models.SmallIntegerField(_('Status'), choices=BOOKING_STATUS)
+    payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES)
+
+    guest_payment = models.DecimalField(_('Total payment for guest'), decimal_places=2, max_digits=6)
+    host_earning = models.DecimalField(_('Host\'s earning'), decimal_places=2, max_digits=6)
+
+    # = models.ForeignKey(, verbose_name=_(''))
+    # = models.CharField(_(''))
+    # = models.IntegerField(_(''))
+    # = models.SmallIntegerField(_(''))
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s' % (self.summary,)

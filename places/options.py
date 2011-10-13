@@ -42,4 +42,18 @@ CANCELATION_RULES = (
     (2, _('Semi-flexible')),
     (3, _('Strict')),
 )
+PAYMENT_TYPES = (
+    (1, _('Credit Card')),
+    (2, _('PayPal')),
+    (3, _('Bank Transfer')),
+)
 
+
+BOOKING_STATUS = (
+    (1, _('Requested')),
+    (2, _('Confirmed')),
+    (3, _('Payed')),
+    (41, _('Canceled (by host)')),
+    (42, _('Canceled (by guest)')),
+    (43, _('Canceled (by staff)')),
+)
