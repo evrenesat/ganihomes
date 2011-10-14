@@ -1,7 +1,8 @@
 __author__ = 'Evren Esat Ozkan'
 from django.utils.translation import ugettext_lazy as _
 
-n_tuple = lambda n: tuple([(i,i) for i in range(1, n)])
+def n_tuple (n, first=[], last=[]):
+    return tuple(first + [(i,i) for i in range(1, n)] + last)
 
 PLACE_TYPES = (
     (1, _('Apartment')),
@@ -21,7 +22,7 @@ SPACE_TYPES = (
 
 NO_OF_ROOMS = n_tuple(10)
 MIN_STAY = n_tuple(7)
-MAX_STAY = n_tuple(7)
+MAX_STAY = n_tuple(7, first=[(0,'Unlimited')])
 NO_OF_BEDS = n_tuple(20)
 
 BED_TYPES = (
