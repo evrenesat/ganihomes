@@ -24,7 +24,21 @@ NO_OF_ROOMS = n_tuple(10)
 MIN_STAY = n_tuple(7)
 MAX_STAY = n_tuple(7, first=[(0,'Unlimited')])
 NO_OF_BEDS = n_tuple(20)
+PLACE_RATING = n_tuple(10, first=[(0, 'Not rated')])
 
+TRANSACTION_TYPES = (
+    (1, _('PayPal > System Account')),
+    (2, _('Credit Card > System Account')),
+    (3, _('Bank Transfer > System Account')),
+    (20, _('Guest Account > Host Account')),
+    (30, _('Host > PayPal')),
+    (40, _('Host > PayPal')),
+    (0, _('')),
+    (0, _('')),
+    (0, _('')),
+    (0, _('')),
+    (0, _('')),
+)
 BED_TYPES = (
     (1, _('Real bed')),
     (2, _('Bunk beds')),
@@ -54,9 +68,26 @@ BOOKING_STATUS = (
     (1, _('Requested')),
     (2, _('Confirmed')),
     (3, _('Payed')),
-    (41, _('Canceled (by host)')),
-    (42, _('Canceled (by guest)')),
-    (43, _('Canceled (by staff)')),
+    (4, _('Canceled by host')),
+    (5, _('Canceled by guest')),
+    (6, _('Canceled by staff')),
+)
+
+
+REVIEW_STATUS = (
+    (1, _('Waiting for confirmation')),
+    (2, _('Confirmed, active')),
+    (3, _('Deactived by staff')),
+    (4, _('Deleted by reviewer')),
+    (5, _('Archived')),
+)
+
+MESSAGE_STATUS = (
+    (1, _('Waiting for confirmation')),
+    (2, _('Confirmed')),
+    (3, _('Deactived by staff')),
+    (4, _('Deleted')),
+    (5, _('Archived')),
 )
 
 LOCALES = (
@@ -90,3 +121,4 @@ LOCALES = (
 ('zh_CN', 'Chinese (China)'),
 ('zh_TW', 'Chinese (Taiwan)'),
 )
+

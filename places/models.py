@@ -3,10 +3,71 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from options import *
 from countries import *
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
+
+class Transaction(models.Model):
+    '''money transactions'''
+
+    amount = models.DecimalField(_('Amount'), decimal_places=2, max_digits=8)
+    type = models.SmallIntegerField(_('Type'), choices=TRANSACTION_TYPES)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    details = models.TextField(_('Transection details (json serialized dict)'), null=True, blank=True)#readonly
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s' % (self.amount,)
+
+
+class TagCategory(models.Model):
+    '''Tag category'''
+
+    name = models.CharField(_('Name'), max_length=30)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s' % (self.name,)
+
+
+class Tag(models.Model):
+    '''Place tags'''
+
+    category = models.ForeignKey(TagCategory)
+    name = models.CharField(_('Name'), max_length=30)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s' % (self.name,)
+
 
 class Place(models.Model):
     '''Places'''
 
+
+    owner = models.ForeignKey(User, verbose_name=_('Host'))
+    tags = models.ManyToManyField(Tag,verbose_name=_('Tags'))
     title = models.CharField(_('Place title'), max_length=100)
     country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
     street = models.CharField(_('Street'), max_length=60)
@@ -200,3 +261,65 @@ class Description(models.Model):
 
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.place_id, self.lang)
+
+
+
+class Message(models.Model):
+    '''user messaging system'''
+
+    sender = models.ForeignKey(User,verbose_name=_('Sender'), related_name='sender')
+    receiver = models.ForeignKey(User,verbose_name=_('Receiver'), related_name='receiver')
+    text = models.TextField(_('Message'))
+    read = models.BooleanField(_('Message was read'), default=False)
+    status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return 'Message from user #%s' % (self.sender_id,)
+
+
+class UserReview(models.Model):
+    '''user reviews'''
+
+    writer = models.ForeignKey(User,verbose_name=_('Reviewer'), related_name='writer')
+    person = models.ForeignKey(User,verbose_name=_('Person'), related_name='person')
+    text = models.TextField(_('Review'))
+    active = models.BooleanField(_('Review visible on the site'), default=False)
+    status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return 'Message from user #%s' % (self.sender_id,)
+
+
+class PlaceReview(models.Model):
+    '''user reviews'''
+
+    writer = models.ForeignKey(User,verbose_name=_('Reviewer'))
+    place = models.ForeignKey(Place,verbose_name=_('Place'))
+    text = models.TextField(_('Review'))
+    rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    active = models.BooleanField(_('Review visible on the site'), default=False)
+    status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return 'Message from user #%s' % (self.sender_id,)

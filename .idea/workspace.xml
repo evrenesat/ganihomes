@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95db4e05-3742-4abb-9778-e07f4c7c1502" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/models.py" afterPath="$PROJECT_DIR$/places/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/options.py" afterPath="$PROJECT_DIR$/places/options.py" />
     </list>
@@ -30,19 +31,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/places/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="145" column="101" selection-start="6532" selection-end="6532" vertical-scroll-proportion="0.7064364">
+            <state line="17" column="111" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="options.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="options.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/places/options.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="20" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0">
+            <state line="33" column="29" selection-start="860" selection-end="860" vertical-scroll-proportion="0.28345627">
               <folding />
             </state>
           </provider>
@@ -67,8 +68,8 @@
         <option value="$PROJECT_DIR$/website/models/icerik.py" />
         <option value="$PROJECT_DIR$/website/views.py" />
         <option value="$PROJECT_DIR$/settings.py" />
-        <option value="$PROJECT_DIR$/places/options.py" />
         <option value="$PROJECT_DIR$/places/models.py" />
+        <option value="$PROJECT_DIR$/places/options.py" />
       </list>
     </option>
   </component>
@@ -313,13 +314,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="33" width="1372" height="738" extended-state="6" />
+    <frame x="-3" y="33" width="1926" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32831" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16614583" sideWeight="0.67551625" order="5" side_tool="true" content_ui="tabs" x="1311" y="87" width="310" height="306" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16614583" sideWeight="0.67551625" order="5" side_tool="true" content_ui="tabs" x="1311" y="87" width="310" height="306" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24158126" sideWeight="0.67551625" order="0" side_tool="false" content_ui="tabs" x="669" y="60" width="341" height="929" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -450,16 +451,16 @@
         <state line="3" column="0" selection-start="107" selection-end="107" vertical-scroll-proportion="0.08006279" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/places/options.py">
+    <entry file="file://$PROJECT_DIR$/places/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="20" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0">
+        <state line="17" column="111" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/places/models.py">
+    <entry file="file://$PROJECT_DIR$/places/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="101" selection-start="6532" selection-end="6532" vertical-scroll-proportion="0.7064364">
+        <state line="33" column="29" selection-start="860" selection-end="860" vertical-scroll-proportion="0.28345627">
           <folding />
         </state>
       </provider>
