@@ -2,12 +2,22 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from options import *
-
+from countries import *
 
 class Place(models.Model):
     '''Places'''
 
     title = models.CharField(_('Place title'), max_length=100)
+    country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
+    street = models.CharField(_('Street'), max_length=60)
+    postcode = models.CharField(_('Postcode'), max_length=15)
+    city = models.CharField(_('City'), max_length=40)
+    district = models.CharField(_('District'), max_length=40)
+    state = models.CharField(_('State/Region'), max_length=40)
+    emergency_phone = models.CharField(_('Emergency phone'), max_length=20)
+    phone = models.CharField(_('Phone'), max_length=20)
+
+
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES)
     space = models.SmallIntegerField(_('Space offered'), choices=SPACE_TYPES)
     bedroom = models.SmallIntegerField(_('Number of bedrooms'), choices=NO_OF_ROOMS)
@@ -24,15 +34,14 @@ class Place(models.Model):
 
     price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
 
-    beds = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS)
+    capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS)
     extra_limit = models.SmallIntegerField(_('Extra charge for more guests than'), choices=NO_OF_BEDS)
     extra_price = models.DecimalField(_('Extra charge per person'), decimal_places=2, max_digits=6,
                                       help_text=_('Each extra person exceeding the number you specified, must pay this extra charge.'))
+    cleaning_fee = models.DecimalField(_('Cleaning fee'), decimal_places=2, max_digits=8)
+    street_view = models.BooleanField(_('Street view'), default=False)
 
-    # = models.ForeignKey(, verbose_name=_(''))
-    # = models.CharField(_(''))
-    # = models.IntegerField(_(''))
-    # = models.SmallIntegerField(_(''))
+
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
@@ -43,6 +52,40 @@ class Place(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.title,)
+
+class Profile(models.Model):
+    '''User profile'''
+
+    usr = models.OneToOneField(User, verbose_name=_('User'))
+    favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'))
+    friends = models.ManyToManyField(User, through='Friendship', related_name='friend_profiles')
+    city = models.CharField(_('City'), max_length=30)
+    phone = models.CharField(_('Phone'), max_length=20)
+    cell = models.CharField(_('Cellular Phone'), max_length=20)
+    occupation = models.CharField(_('Occupation'), max_length=30)
+    twitter = models.CharField(_('Twitter'), max_length=60)
+    facebook = models.CharField(_('Facebook'), max_length=60)
+    brithdate = models.DateField(_('Brithdate'))
+    lastlogin = models.DateTimeField(_('Last login time'))
+    lang = models.CharField(_('Default Language'), max_length=5, choices=LOCALES)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return 'User #%s' % (self.user_id,)
+
+class Friendship(models.Model):
+    '''Friendship'''
+
+    profile = models.ForeignKey(Profile)
+    user = models.ForeignKey(User)
+    confirmed = models.BooleanField(_('Confirmed'), default=False)
+
 
 class Photo(models.Model):
     '''Photos'''
@@ -99,8 +142,8 @@ class Booking(models.Model):
     status = models.SmallIntegerField(_('Status'), choices=BOOKING_STATUS)
     payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES)
 
-    guest_payment = models.DecimalField(_('Total payment for guest'), decimal_places=2, max_digits=6)
-    host_earning = models.DecimalField(_('Host\'s earning'), decimal_places=2, max_digits=6)
+    guest_payment = models.DecimalField(_('Total payment for guest'), decimal_places=2, max_digits=8)
+    host_earning = models.DecimalField(_('Host\'s earning'), decimal_places=2, max_digits=8)
 
     # = models.ForeignKey(, verbose_name=_(''))
     # = models.CharField(_(''))
@@ -116,3 +159,44 @@ class Booking(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.summary,)
+
+
+class SessionalPrice(models.Model):
+    '''Sessional pricing'''
+
+    price = models.DecimalField(_('Price'), decimal_places=2, max_digits=8)
+    weekend_price = models.DecimalField(_('Weekly price'), decimal_places=2, max_digits=8, null=True, blank=True)
+    name = models.CharField(_('Name'), max_length=30, null=True, blank=True)
+    start = models.DateField(_('Session start'))
+    end = models.DateField(_('Session end'))
+    week_discount = models.(_(''))
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return '%s' % (self.name,)
+
+
+
+class Description(models.Model):
+    '''Place description'''
+
+    place = models.ForeignKey(Place,verbose_name=_('Place'))
+    lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
+    text = models.TextField(_('Description'))
+    auto = models.BooleanField(_('Auto translation'))
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        #verbose_name = _('')
+        #verbose_name_plural = _('')
+
+    def __unicode__(self):
+        return 'Place #%s Lang:%s' % (self.place_id, self.lang)

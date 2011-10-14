@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95db4e05-3742-4abb-9778-e07f4c7c1502" name="Default" comment="" />
+    <list default="true" id="95db4e05-3742-4abb-9778-e07f4c7c1502" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/models.py" afterPath="$PROJECT_DIR$/places/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/options.py" afterPath="$PROJECT_DIR$/places/options.py" />
+    </list>
     <ignored path="cagani.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,7 +34,7 @@
       <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/places/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="0" selection-start="2626" selection-end="2626" vertical-scroll-proportion="0.866562">
+            <state line="192" column="51" selection-start="7627" selection-end="7627" vertical-scroll-proportion="0.62637365">
               <folding />
             </state>
           </provider>
@@ -39,7 +43,7 @@
       <file leaf-file-name="options.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/places/options.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="24" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
+            <state line="60" column="0" selection-start="1115" selection-end="1122" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -377,11 +381,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../elmas/context_processors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="44" selection-start="0" selection-end="565" vertical-scroll-proportion="0.12539515" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../elmas/website/models/icerik.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="20" selection-start="622" selection-end="622" vertical-scroll-proportion="0.34035826" />
@@ -469,16 +468,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/places/countries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="107" selection-end="107" vertical-scroll-proportion="0.08006279">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/places/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="24" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
+        <state line="60" column="0" selection-start="1115" selection-end="1122" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/places/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="2626" selection-end="2626" vertical-scroll-proportion="0.866562">
+        <state line="192" column="51" selection-start="7627" selection-end="7627" vertical-scroll-proportion="0.62637365">
           <folding />
         </state>
       </provider>
