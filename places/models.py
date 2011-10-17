@@ -9,8 +9,11 @@ from django.contrib.contenttypes import generic
 class Transaction(models.Model):
     '''money transactions'''
 
+    user = models.ForeignKey(User,verbose_name=_('Sender'))
     amount = models.DecimalField(_('Amount'), decimal_places=2, max_digits=8)
     type = models.SmallIntegerField(_('Type'), choices=TRANSACTION_TYPES)
+    reciver_type = models.SmallIntegerField(_('Receiver type'), choices=MONEY_NODES)
+    sender_type = models.SmallIntegerField(_('Sender type'), choices=MONEY_NODES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()

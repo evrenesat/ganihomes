@@ -27,18 +27,24 @@ NO_OF_BEDS = n_tuple(20)
 PLACE_RATING = n_tuple(10, first=[(0, 'Not rated')])
 
 TRANSACTION_TYPES = (
-    (1, _('PayPal > System Account')),
-    (2, _('Credit Card > System Account')),
-    (3, _('Bank Transfer > System Account')),
+    (1, _('PayPal > System')),
+    (2, _('Credit Card > System')),
+    (3, _('Bank Transfer > System')),
     (20, _('Guest Account > Host Account')),
-    (30, _('Host > PayPal')),
-    (40, _('Host > PayPal')),
-    (0, _('')),
-    (0, _('')),
-    (0, _('')),
-    (0, _('')),
-    (0, _('')),
+    (30, _('System > PayPal')),
+    (40, _('System > Credit Card')),
+    (50, _('System > Bank Account')),
 )
+
+MONEY_NODES = (
+    (1, _('PayPal')),
+    (2, _('Credit Card')),
+    (3, _('Bank')),
+    (20, _('Guest')),
+    (30, _('Host')),
+    (40, _('System Account')),
+)
+
 BED_TYPES = (
     (1, _('Real bed')),
     (2, _('Bunk beds')),
