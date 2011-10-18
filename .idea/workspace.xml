@@ -43,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/places/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="215" column="5" selection-start="9033" selection-end="9033" vertical-scroll-proportion="0.08956797">
+            <state line="215" column="5" selection-start="9033" selection-end="9033" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -90,10 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="0" selection-start="1557" selection-end="1557" vertical-scroll-proportion="-16.56">
+            <state line="14" column="13" selection-start="0" selection-end="6516" vertical-scroll-proportion="0.25757575">
               <folding />
             </state>
           </provider>
@@ -578,13 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="0" selection-start="1557" selection-end="1557" vertical-scroll-proportion="-16.56">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/places/options.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="7" selection-start="2770" selection-end="2775" vertical-scroll-proportion="0.0">
@@ -638,7 +631,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/places/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="5" selection-start="9033" selection-end="9033" vertical-scroll-proportion="0.08956797">
+        <state line="215" column="5" selection-start="9033" selection-end="9033" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="0" selection-end="6516" vertical-scroll-proportion="0.25757575">
           <folding />
         </state>
       </provider>
