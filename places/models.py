@@ -23,8 +23,8 @@ class Transaction(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Transaction')
+        verbose_name_plural = _('Transactions')
 
     def __unicode__(self):
         return '%s' % (self.amount,)
@@ -40,8 +40,8 @@ class TagCategory(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Tag Category')
+        verbose_name_plural = _('Tag Categories')
 
     def __unicode__(self):
         return '%s' % (self.name,)
@@ -58,8 +58,8 @@ class Tag(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
 
     def __unicode__(self):
         return '%s' % (self.name,)
@@ -80,8 +80,8 @@ class Place(models.Model):
     state = models.CharField(_('State/Region'), max_length=40)
     emergency_phone = models.CharField(_('Emergency phone'), max_length=20)
     phone = models.CharField(_('Phone'), max_length=20)
-
-
+    price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
+    capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS)
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES)
     space = models.SmallIntegerField(_('Space offered'), choices=SPACE_TYPES)
     size = models.PositiveIntegerField(_('Size'))
@@ -89,18 +89,17 @@ class Place(models.Model):
     bed_type = models.SmallIntegerField(_('Bed type'), choices=BATHROOM_TYPES)
     bathrooms = models.SmallIntegerField(_('Number of bathrooms'), choices=NO_OF_ROOMS)
     size = models.IntegerField(_('Size'))
-    pets = models.BooleanField(_('Pets'))
-
     cancellation = models.SmallIntegerField(_('Cancellation rules'), choices=CANCELATION_RULES)
     min_stay = models.SmallIntegerField(_('Minimum number of nights'), choices=MIN_STAY, default=1)
     max_stay = models.SmallIntegerField(_('Maximum number of nights'), choices=MAX_STAY, default=0)
     manual = models.TextField(_('House manual'), null=True, blank=True)
     rules = models.TextField(_('House rules'), null=True, blank=True)
+    pets = models.BooleanField(_('Pets'), default=False, help_text=_('Pets allowed'))
 
-    price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
+
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True)
     monthly_discount = models.SmallIntegerField(_('Monthly discount (%)'), null=True, blank=True)
-    capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS)
+
     extra_limit = models.SmallIntegerField(_('Extra charge for more guests than'), choices=NO_OF_BEDS, null=True, blank=True)
     extra_price = models.DecimalField(_('Extra charge per person'), null=True, blank=True, decimal_places=2, max_digits=6,
                                       help_text=_('Each extra person exceeding the number you specified, must pay this extra charge.'))
@@ -114,8 +113,8 @@ class Place(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Place')
+        verbose_name_plural = _('Places')
 
     def __unicode__(self):
         return '%s' % (self.title,)
@@ -140,8 +139,8 @@ class Profile(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Profile')
+        verbose_name_plural = _('Profiles')
 
     def __unicode__(self):
         return 'User #%s' % (self.user_id,)
@@ -164,8 +163,8 @@ class Photo(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Photo')
+        verbose_name_plural = _('Photos')
 
     def __unicode__(self):
         return '%s' % (self.name,)
@@ -185,8 +184,8 @@ class ReservedDates(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('ReservedDate')
+        verbose_name_plural = _('Reserved Dates')
 
     def __unicode__(self):
         return '%s - %s' % (self.start,self.end)
@@ -221,8 +220,8 @@ class Booking(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Booking')
+        verbose_name_plural = _('Bookings')
 
     def __unicode__(self):
         return '%s' % (self.summary,)
@@ -241,8 +240,8 @@ class SessionalPrice(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Sessional Price')
+        verbose_name_plural = _('Sessional Prices')
 
     def __unicode__(self):
         return '%s' % (self.name,)
@@ -261,8 +260,8 @@ class Description(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Description')
+        verbose_name_plural = _('Descriptions')
 
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.place_id, self.lang)
@@ -282,8 +281,8 @@ class Message(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Message')
+        verbose_name_plural = _('Messages')
 
     def __unicode__(self):
         return 'Message from user #%s' % (self.sender_id,)
@@ -302,8 +301,8 @@ class UserReview(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('User Review')
+        verbose_name_plural = _('User Reviews')
 
     def __unicode__(self):
         return 'Message from user #%s' % (self.sender_id,)
@@ -323,8 +322,8 @@ class PlaceReview(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        #verbose_name = _('')
-        #verbose_name_plural = _('')
+        verbose_name = _('Place Review')
+        verbose_name_plural = _('Place Reviews')
 
     def __unicode__(self):
         return 'Message from user #%s' % (self.sender_id,)

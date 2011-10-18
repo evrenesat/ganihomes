@@ -10,6 +10,7 @@ from datetime import datetime
 # Create your models here.
 #from kup.middleware.threadlocals import get_current_user
 #from books.models import lng
+from places.countries import COUNTRIES
 from places.options import INFORM_TYPES
 
 class SubjectCategory(models.Model):
@@ -100,3 +101,37 @@ class Inform(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.title,)
+
+
+class Message(models.Model):
+    first_name = models.CharField(_(u"First Name"), max_length=50)
+    last_name = models.CharField(_(u"Last Name"), max_length=50)
+    country=models.SmallIntegerField(_(u"Country"), default=0, choices=COUNTRIES)
+    email = models.EmailField(_(u"Email"))
+    phone = models.CharField(_(u"Phone"), max_length=30, default="")
+    subject= models.CharField(_(u"Subject"), max_length=200)
+    message = models.TextField(_(u"Message"))
+    submit_time = models.DateTimeField(_(u"Form Submit Time"), auto_now_add=True)
+    called= models.BooleanField(_(u"Called Back?"), default=False)
+    archived= models.BooleanField(_(u"Archived"), default=False)
+    notes = models.TextField(_(u"Notes"), null=True,  blank=True )
+
+    def get_absolute_url(self):
+        '/admin/support/message/%s' % self.id
+
+    def fullname(self):
+        return u'%s %s' % (self.first_name, self.last_name)
+    fullname.short_description = _(u'Name')
+
+    def __unicode__(self):
+        return self.fullname()
+
+
+    class Meta:
+        verbose_name = _(u"Contact Us Record")
+        verbose_name_plural = _(u"Contact Us Records")
+        ordering = ['-submit_time', ]
+        get_latest_by='submit_time'
+        #order_with_respect_to = ''
+        #unique_together = (("", ""),)
+        #permissions = (("can_do_something", "Can do something"),)

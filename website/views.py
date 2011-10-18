@@ -40,46 +40,46 @@ def anasayfa(request):
 #    ci = RequestContext(request)
 #    return render_to_response('banner.xml', context, context_instance=ci)
 
-
-class IletisimForm(ModelForm):
-    class Meta:
-        model = Ileti
-        fields = ('gonderen_ad', 'gonderen_eposta', 'konu', 'yazi')
-
-
-def iletisim(request, urun_id=None):
-    lang = request.LANGUAGE_CODE
-    ilgili_urun_id = request.REQUEST.get('ilgili_urun')
-
-#    urun = Urun.objects.get(pk=urun_id) if urun_id else None
-    urun = None
-    if request.method == 'POST':
-        form = IletisimForm(request.POST)
-        if form.is_valid():
-            i = form.save(commit=False)
-            i.ip = request.META.get('REMOTE_ADDR')
-
-            if urun:
-                tesk_msj='Ürünümüz hakkındaki mesajınız alındı. Teşekkür Ederiz.'
-                i.yazi = '%s adlı ürün hakkında;\n\n%s' % (urun.baslik(), i.yazi)
-            else:
-                tesk_msj='Mesajınız alındı. Teşekkür Ederiz.'
-            i.save()
-            messages.add_message(request, messages.INFO, tesk_msj)
-            return HttpResponseRedirect('/%s/mesaj_goster/'%lang)
-    else:
-        form = IletisimForm()
-        if urun:
-            form.fields['konu'].initial = urun.al_baslik(lang)
-    context = {'form': form,}
-    if urun:
-        context.update({'urun':urun,'icerik':urun.al_icerik(lang),
-                'kategoriler': urun.kategoriler(lang)})
-    elif request.GET.get('sayfa_id'):
-        context.update({'kategoriler':Sayfa.objects.get(pk=int(request.GET.get('sayfa_id'))).kategoriler(lang) })
-
-    ci = RequestContext(request)
-    return render_to_response('iletisim.html', context, context_instance=ci)
+#
+#class IletisimForm(ModelForm):
+#    class Meta:
+#        model = Ileti
+#        fields = ('gonderen_ad', 'gonderen_eposta', 'konu', 'yazi')
+#
+#
+#def iletisim(request, urun_id=None):
+#    lang = request.LANGUAGE_CODE
+#    ilgili_urun_id = request.REQUEST.get('ilgili_urun')
+#
+##    urun = Urun.objects.get(pk=urun_id) if urun_id else None
+#    urun = None
+#    if request.method == 'POST':
+#        form = IletisimForm(request.POST)
+#        if form.is_valid():
+#            i = form.save(commit=False)
+#            i.ip = request.META.get('REMOTE_ADDR')
+#
+#            if urun:
+#                tesk_msj='Ürünümüz hakkındaki mesajınız alındı. Teşekkür Ederiz.'
+#                i.yazi = '%s adlı ürün hakkında;\n\n%s' % (urun.baslik(), i.yazi)
+#            else:
+#                tesk_msj='Mesajınız alındı. Teşekkür Ederiz.'
+#            i.save()
+#            messages.add_message(request, messages.INFO, tesk_msj)
+#            return HttpResponseRedirect('/%s/mesaj_goster/'%lang)
+#    else:
+#        form = IletisimForm()
+#        if urun:
+#            form.fields['konu'].initial = urun.al_baslik(lang)
+#    context = {'form': form,}
+#    if urun:
+#        context.update({'urun':urun,'icerik':urun.al_icerik(lang),
+#                'kategoriler': urun.kategoriler(lang)})
+#    elif request.GET.get('sayfa_id'):
+#        context.update({'kategoriler':Sayfa.objects.get(pk=int(request.GET.get('sayfa_id'))).kategoriler(lang) })
+#
+#    ci = RequestContext(request)
+#    return render_to_response('iletisim.html', context, context_instance=ci)
 
 
 def icerik(request, id, slug):

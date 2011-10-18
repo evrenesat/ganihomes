@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from support.models import *
 from utils.admin import *
@@ -25,6 +26,23 @@ class TicketAdmin(admin.ModelAdmin):
         search_fields = ['subject','body']
         list_per_page=20
 
+
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('fullname', 'subject', 'submit_time','email', 'called',  'archived' )
+    list_filter=('called', 'archived')
+    date_hierarchy = 'submit_time'
+    search_fields = ['first_name','last_name', 'subject', 'message']
+    fieldsets = (
+    (u'Personal Information', {
+        'fields': ('first_name', 'last_name', 'country',  'email', 'phone', )
+    }),
+    (u'Message', {
+        'fields': ('subject', 'message', )
+    }),
+    (u'Team', {
+        'fields': ('called', 'notes', 'archived')
+    }),
+    )
 
 admin_register(admin, namespace=globals())
 
