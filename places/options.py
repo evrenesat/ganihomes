@@ -88,6 +88,12 @@ REVIEW_STATUS = (
     (5, _('Archived')),
 )
 
+INFORM_TYPES = (
+    (1, _('Wrong house details')),
+    (2, _('Wrong price')),
+    (3, _('Malicous activity')),
+)
+
 MESSAGE_STATUS = (
     (1, _('Waiting for confirmation')),
     (2, _('Confirmed')),
@@ -128,3 +134,4 @@ LOCALES = (
 ('zh_TW', 'Chinese (Taiwan)'),
 )
 
+INFORM_TYPES

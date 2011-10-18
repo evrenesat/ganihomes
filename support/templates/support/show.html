@@ -1,0 +1,52 @@
+{% extends "content.html" %}
+{% load i18n %}
+{%block content%}
+<h4 id="transparent" style="padding: 2px;">Konu: {{m.subject}}</h4>
+
+<div style="background: {% cycle '#AFE9E6' '#72D8D5' %}; padding: 2px;">
+<div style="border: 1px solid #60d5d2; background: white; font-size: 10px;">{{m.user.get_profile.musterino}} Numaralı Bayinin {{ m.creatation|date:"d F Y l, H:i"}} Tarihli Mesajı</div>
+{{m.body|linebreaks}}
+</div>
+{%for y in replies%}
+<p>
+<div class="kutu {%if y.user.is_staff%}yonetimmsj{%else%}musterimsj{%endif%}" style="background: {% cycle '#AFE9E6' '#72D8D5' %}; padding: 2px;">
+<div style="border: 1px solid #60d5d2; background: white; font-size: 10px;">Yardım Masasının {{ m.creatation|date:"d F Y l, H:i"}} Tarihli Mesajı</div>
+{{y.body|linebreaks}}
+</div>
+{%endfor%}
+<p>
+{%if open %}
+<form name="form1" method="post" action="">
+{{form.body}}
+<p>
+<input type="submit" name="Submit" value=" : : {% trans "Cevapla" %}: : ">
+</form>
+{%endif%}
+
+{%endblock%}
+
+<!--
+
+<h4 id="transparent" style="padding: 2px;">Konu: {{m.subject}}</h4>
+
+<div style="background: {% cycle '#AFE9E6' '#72D8D5' %}; padding: 2px;">
+<div style="border: 1px solid #60d5d2; background: white; font-size: 10px;">{{user.get_profile.musterino}} Numaralı Bayinin {{ m.creatation|date:"d F Y l, H:i"}} Tarihli Mesajı</div>
+{{m.body|linebreaks}}
+</div>
+{%for y in replies%}
+<p>
+<div class='kutu {%if y.user.is_staff%}yonetimmsj{%else%}musterimsj{%endif%}'>
+<div class=baslik0>Yardım Masası - {{ y.creatation|date:"d F Y l, H:i"}}</div>
+{{y.body|linebreaks}}
+</div>
+{%endfor%}
+<p>
+{%if open %}
+<form name="form1" method="post" action="">
+{{form.body}}
+<p>
+<input type="submit" name="Submit" value=" : : {% trans "Cevapla" %}: : ">
+</form>
+{%endif%}
+
+-->

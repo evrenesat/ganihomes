@@ -1,0 +1,21 @@
+{% extends "content.html" %}
+{% load i18n %}
+{%block content%}
+{%if li%}
+<div id="transparent" style="text-align: center; padding: 5px;">{% trans "Daha önce açmış olduğunuz destek istekleriniz aşağıda listelenmektedir" %}</div>
+<br />
+<div style="text-align: right;"><input type="button" onclick="document.location='{%url support_compose%}'"  value=" : : {% trans "Yeni Destek İsteği" %}: : "></div>
+<p>
+
+<table class="supportlist" width=100%>
+<tr><th width=60% style="text-align: left;">{% trans "Subject" %}</th><th>{% trans "Durum" %}</th><th>{% trans "Son Cevap" %}</th></tr>
+{%for l in li%}
+<tr class='{%cycle c,t%}'><td><a href='{{l.url}}'>{{l.subject}}</a></td><td style="text-align:center;">{{l.status}}</td><td style="text-align:center;">{%if l.last_reply%}{{l.last_reply|date:"d F Y l H:i"}}{%else%}-{%endif%}</td></tr>
+{%endfor%}
+</table>
+{%else%}
+<div id="transparent" style="text-align: center; padding: 5px;">{% trans "Henüz bir destek isteğiniz bulunmamaktadır." %}</div>
+{%endif%}
+<p>
+<div style="text-align: right;"><input type="button" onclick="document.location='{%url support_compose%}'"  value=" : : {% trans "Yeni Destek İsteği" %}: : "></div>
+{%endblock%}

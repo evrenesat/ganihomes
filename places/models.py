@@ -84,6 +84,7 @@ class Place(models.Model):
 
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES)
     space = models.SmallIntegerField(_('Space offered'), choices=SPACE_TYPES)
+    size = models.PositiveIntegerField(_('Size'))
     bedroom = models.SmallIntegerField(_('Number of bedrooms'), choices=NO_OF_ROOMS)
     bed_type = models.SmallIntegerField(_('Bed type'), choices=BATHROOM_TYPES)
     bathrooms = models.SmallIntegerField(_('Number of bathrooms'), choices=NO_OF_ROOMS)
@@ -106,8 +107,9 @@ class Place(models.Model):
     cleaning_fee = models.DecimalField(_('Cleaning fee'), decimal_places=2, max_digits=8, null=True, blank=True)
     street_view = models.BooleanField(_('Street view'), default=False)
 
-
+    active = models.BooleanField(_('Place is online'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    last_modified = models.DateTimeField(_('timestamp'), auto_now=True, editable=False)
 
     class Meta:
         ordering = ['timestamp']

@@ -1,0 +1,34 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+
+{% block content %}
+<div id="content-main">
+
+
+<div class='kutu musterimsj'>
+<div class=baslik0><a style="font-size:15px;" href=/admin/auth/user/{{m.user.id}}>{{m.user.get_full_name}}</a></div>
+{{ m.creatation|date:"d F Y l H:i"}} | {{m.category}} <br>{{m.subject}}<br><br>
+<div class=baslik0>{{m.konu}}</div>
+{{m.body|linebreaks}}
+</div>
+{%for y in replies%}
+<p>
+<div class='kutu {%if y.user.is_staff%}yonetimmsj{%else%}musterimsj{%endif%}'>
+<div class=baslik0><span style="font-size:15px;color:green">{{y.user.get_full_name}}</span> - {{ y.creatation|date:"d F Y l H:i"}}</div>
+<br>
+{{y.body|linebreaks}}
+</div>
+{%endfor%}
+<hr>
+
+<form name="form1" method="post" action="">
+{{form.body}}
+<p>
+<input type="submit" name="Submit" value=" : : {% trans "Cevapla" %} : : ">
+<p><br>
+<p class="float-right"><input type=button value='{% trans "Konuyu Kapat" %}' onclick="if(confirm('{% trans "Konuyu kapatmak istediğinizden emin misiniz?" %}'))document.location='{% url support_admin_close m.id%}'"> &nbsp;&nbsp;&nbsp; <a  href="delete/" class="deletelink">{% trans "Delete Ticket" %}</a></p>
+</form>
+
+
+{%endblock%}

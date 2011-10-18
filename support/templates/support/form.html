@@ -1,0 +1,27 @@
+{% extends "content.html" %}
+{% load i18n %}
+{%block content%}
+<div>
+<ul id="likare">
+<li>Destek sorularınızda, yaşadığınız problem esnasında yaptığınız işlemleri adım adım, anlaşılır bir dille yazınız.</li>
+<li>Yaşadığınız sorun ilgili kategoriyi seçmeyi unutmayınız.</li>
+</ul>
+</div>
+<div style="width: 600px; margin-left: auto; margin-right: auto; padding: 10px;">
+<form name="form1" method="post" action="">
+<table class="left_labeled">
+{{form}}
+<tr>
+    <th colspan=2>
+        <p align="right">
+          <input type="submit" name="Submit" value=":: Gönder :: ">
+        </p>
+    </th>
+    </tr>
+</table>
+</form>
+</div>
+<div style="text-align: center;">
+<a href="/">Ana Sayfa</a> - <a href="/bayi-islemleri">Bayi İşlemleri</a> - <a href="/destek/liste">Destek Sistemi</a>
+</div>
+{%endblock%}
