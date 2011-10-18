@@ -1,10 +1,61 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext
 from options import *
 from countries import *
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+
+from django.db.models.signals import post_save
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(usr=instance)
+
+post_save.connect(create_user_profile, sender=User)
+
+ugettext('Support')
+ugettext('Website')
+ugettext('Auth')
+
+class TagCategory(models.Model):
+    '''Tag category'''
+
+    name = models.CharField(_('Name'), max_length=30)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Tag Category')
+        verbose_name_plural = _('Tag Categories')
+
+    def __unicode__(self):
+        return '%s' % (self.name,)
+
+class Currency(models.Model):
+    '''Currencies '''
+
+    name = models.CharField(_('Currency name'), max_length=20)
+    code = models.CharField(_('Currency code'), max_length=3)
+    factor = models.DecimalField(_('Conversation factor'), decimal_places=2, max_digits=8)
+    main = models.BooleanField(_('Main site currency?'), default=False, help_text=_('Main currency is the \
+    conversation bridge between other currencies.'))
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Currency')
+        verbose_name_plural = _('Currencies')
+
+
+    def __unicode__(self):
+        return '%s' % (self.code,)
+
 
 class Transaction(models.Model):
     '''money transactions'''
@@ -29,23 +80,6 @@ class Transaction(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.amount,)
-
-
-class TagCategory(models.Model):
-    '''Tag category'''
-
-    name = models.CharField(_('Name'), max_length=30)
-    active = models.BooleanField(_('Active'), default=True)
-    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
-
-    class Meta:
-        ordering = ['timestamp']
-        get_latest_by = "timestamp"
-        verbose_name = _('Tag Category')
-        verbose_name_plural = _('Tag Categories')
-
-    def __unicode__(self):
-        return '%s' % (self.name,)
 
 
 class Tag(models.Model):
@@ -115,8 +149,8 @@ class Place(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _(u'Mekan')
-        verbose_name_plural = _(u'Mekanlar')
+        verbose_name = _(u'Place')
+        verbose_name_plural = _(u'Places')
 
     def __unicode__(self):
         return '%s' % (self.title,)
@@ -124,9 +158,11 @@ class Place(models.Model):
 class Profile(models.Model):
     '''User profile'''
 
+
     usr = models.OneToOneField(User, verbose_name=_('User'))
     favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'))
     friends = models.ManyToManyField(User, through='Friendship', related_name='friend_profiles')
+    currency = models.ForeignKey(Currency,verbose_name=_('Currency'))
     city = models.CharField(_('City'), max_length=30)
     phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     cell = models.CharField(_('Cellular Phone'), max_length=20, null=True, blank=True)
@@ -134,8 +170,8 @@ class Profile(models.Model):
     twitter = models.CharField(_('Twitter'), max_length=60, null=True, blank=True)
     facebook = models.CharField(_('Facebook'), max_length=60, null=True, blank=True)
     brithdate = models.DateField(_('Brithdate'), null=True, blank=True)
-    lastlogin = models.DateTimeField(_('Last login time'), auto_created=True)
-    lang = models.CharField(_('Default Language'), max_length=5, choices=LOCALES)
+    lastlogin = models.DateTimeField(_('Last login time'), auto_now=True)
+    lang = models.CharField(_('Default Language'), max_length=5, choices=LOCALES, default='tr_TR')
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
@@ -145,7 +181,7 @@ class Profile(models.Model):
         verbose_name_plural = _('Profiles')
 
     def __unicode__(self):
-        return 'User #%s' % (self.user_id,)
+        return 'User #%s' % (self.usr_id,)
 
 class Friendship(models.Model):
     '''Friendship'''
@@ -177,7 +213,7 @@ class ReservedDates(models.Model):
 
     start = models.DateField(_('Reservation Start'))
     end = models.DateField(_('Reservation End'))
-    # = models.ForeignKey(, verbose_name=_(''))
+    place = models.ForeignKey(Place,verbose_name=_('Place'))
     # = models.CharField(_(''))
     # = models.IntegerField(_(''))
     # = models.SmallIntegerField(_(''))

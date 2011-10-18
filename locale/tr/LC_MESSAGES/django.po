@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 14:18+0300\n"
-"PO-Revision-Date: 2011-10-18 14:59\n"
+"POT-Creation-Date: 2011-10-18 17:12+0300\n"
+"PO-Revision-Date: 2011-10-18 17:12\n"
 "Last-Translator:   <evrenesat@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,66 +25,6 @@ msgstr "İngilizce"
 #: settings.py:45
 msgid "Turkish"
 msgstr "Türkçe"
-
-#: contactus/models.py:8 support/models.py:107
-msgid "First Name"
-msgstr "Ad"
-
-#: contactus/models.py:9 support/models.py:108
-msgid "Last Name"
-msgstr "Soyad"
-
-#: contactus/models.py:10
-msgid "Bulunduğu İl"
-msgstr "Bulunduğu İl"
-
-#: contactus/models.py:11 support/models.py:110
-msgid "Email"
-msgstr "E-posta"
-
-#: contactus/models.py:12 places/models.py:82 places/models.py:129
-#: support/models.py:111
-msgid "Phone"
-msgstr "Telefon"
-
-#: contactus/models.py:13 support/models.py:37 support/models.py:112
-#: support/templates/support/list.html:11
-msgid "Subject"
-msgstr "Konu"
-
-#: contactus/models.py:14 places/models.py:276 places/models.py:284
-#: support/models.py:113
-msgid "Message"
-msgstr "Mesaj"
-
-#: contactus/models.py:15 support/models.py:114
-msgid "Form Submit Time"
-msgstr "Gönderim zamanı"
-
-#: contactus/models.py:16 support/models.py:115
-msgid "Called Back?"
-msgstr "Geri arandı?"
-
-#: contactus/models.py:17
-msgid "Arşivlendi?"
-msgstr "Arşivlendi?"
-
-#: contactus/models.py:18 support/models.py:117
-msgid "Notes"
-msgstr "Notlar"
-
-#: contactus/models.py:25 places/models.py:36 places/models.py:54
-#: places/models.py:235 support/models.py:20 support/models.py:124
-msgid "Name"
-msgstr "Isim"
-
-#: contactus/models.py:32 support/models.py:131
-msgid "Contact Us Record"
-msgstr "İletişim Kaydı"
-
-#: contactus/models.py:33 support/models.py:132
-msgid "Contact Us Records"
-msgstr "İletişim Kayıtları"
 
 #: places/countries.py:5 places/countries.py:256
 msgid "Afghanistan"
@@ -1126,421 +1066,457 @@ msgstr "Bize Virgin Adaları"
 msgid "United Republic of Tanzania"
 msgstr "Tanzanya Birleşik Cumhuriyeti"
 
-#: places/models.py:12 places/models.py:274 support/models.py:88
-msgid "Sender"
-msgstr "Gönderici"
+#: places/models.py:18
+msgid "Support"
+msgstr "Destek"
 
-#: places/models.py:13
-msgid "Amount"
-msgstr "Miktar"
+#: places/models.py:19
+msgid "Website"
+msgstr "Web sitesi"
 
-#: places/models.py:14 support/models.py:89
-msgid "Type"
-msgstr "Tip"
+#: places/models.py:20
+msgid "Auth"
+msgstr "Yetkilendirme"
 
-#: places/models.py:15
-msgid "Receiver type"
-msgstr "Alıcı tipi"
+#: places/models.py:25 places/models.py:68 places/models.py:250
+#: support/models.py:20 support/models.py:124
+msgid "Name"
+msgstr "Isim"
 
-#: places/models.py:16
-msgid "Sender type"
-msgstr "Gönderici tipi"
-
-#: places/models.py:17 places/models.py:38 places/models.py:56
-#: places/models.py:110 places/models.py:111 places/models.py:137
-#: places/models.py:161 places/models.py:182 places/models.py:218
-#: places/models.py:238 places/models.py:258 places/models.py:279
-#: places/models.py:299 places/models.py:320 support/models.py:90
-#: website/models/dil.py:58 website/models/dil.py:82
-msgid "timestamp"
-msgstr "zaman damgası"
-
-#: places/models.py:21
-msgid "Transection details (json serialized dict)"
-msgstr "İşlem detayları (json verisi)"
-
-#: places/models.py:26
-msgid "Transaction"
-msgstr "İşlem"
-
-#: places/models.py:27
-msgid "Transactions"
-msgstr "İşlemler"
-
-#: places/models.py:37 places/models.py:55
+#: places/models.py:26 places/models.py:50 places/models.py:69
 msgid "Active"
 msgstr "Etkin"
 
-#: places/models.py:43
+#: places/models.py:27 places/models.py:47 places/models.py:70
+#: places/models.py:152 places/models.py:176 places/models.py:197
+#: places/models.py:233 places/models.py:253 places/models.py:273
+#: places/models.py:294 places/models.py:314 places/models.py:335
+#: support/models.py:90 website/models/dil.py:58 website/models/dil.py:82
+msgid "timestamp"
+msgstr "zaman damgası"
+
+#: places/models.py:32
 msgid "Tag Category"
 msgstr "Etiket Kategorisi"
 
-#: places/models.py:44
+#: places/models.py:33
 msgid "Tag Categories"
 msgstr "Etiket Kategorileri"
 
-#: places/models.py:61
+#: places/models.py:42 places/models.py:289 support/models.py:88
+msgid "Sender"
+msgstr "Gönderici"
+
+#: places/models.py:43
+msgid "Amount"
+msgstr "Miktar"
+
+#: places/models.py:44 support/models.py:89
+msgid "Type"
+msgstr "Tip"
+
+#: places/models.py:45
+msgid "Receiver type"
+msgstr "Alıcı tipi"
+
+#: places/models.py:46
+msgid "Sender type"
+msgstr "Gönderici tipi"
+
+#: places/models.py:52
+msgid "Transection details (json serialized dict)"
+msgstr "İşlem detayları (json verisi)"
+
+#: places/models.py:57
+msgid "Transaction"
+msgstr "İşlem"
+
+#: places/models.py:58
+msgid "Transactions"
+msgstr "İşlemler"
+
+#: places/models.py:75
 msgid "Tag"
 msgstr "Etiket"
 
-#: places/models.py:62 places/models.py:73
+#: places/models.py:76 places/models.py:87
 msgid "Tags"
 msgstr "Etiketler"
 
-#: places/models.py:72 places/models.py:198 places/models.py:199
+#: places/models.py:86 places/models.py:213 places/models.py:214
 #: places/options.py:44
 msgid "Host"
 msgstr "Ev Sahibi"
 
-#: places/models.py:74
+#: places/models.py:88
 msgid "Place title"
 msgstr "Mekan adı"
 
-#: places/models.py:75 support/models.py:109
+#: places/models.py:89
+msgid "URL Name"
+msgstr "URL başlık"
+
+#: places/models.py:90 support/models.py:109
 msgid "Country"
 msgstr "Ülke"
 
-#: places/models.py:76
+#: places/models.py:91
 msgid "Street"
 msgstr "Sokak"
 
-#: places/models.py:77
+#: places/models.py:92
 msgid "Postcode"
 msgstr "Posta kodu"
 
-#: places/models.py:78 places/models.py:128
+#: places/models.py:93 places/models.py:143
 msgid "City"
 msgstr "Şehir"
 
-#: places/models.py:79
+#: places/models.py:94
 msgid "District"
 msgstr "Ilçe"
 
-#: places/models.py:80
+#: places/models.py:95
 msgid "State/Region"
 msgstr "Devlet / Bölge"
 
-#: places/models.py:81
+#: places/models.py:96
 msgid "Emergency phone"
 msgstr "Acil durum telefonu"
 
-#: places/models.py:83
+#: places/models.py:97 places/models.py:144 support/models.py:111
+msgid "Phone"
+msgstr "Telefon"
+
+#: places/models.py:98
 msgid "Price per night"
 msgstr "Gecelik fiyat"
 
-#: places/models.py:83
+#: places/models.py:98
 msgid "Price for guest"
 msgstr "Konuk için fiyatlar"
 
-#: places/models.py:84
+#: places/models.py:99
 msgid "Accommodates"
 msgstr "Barındırma kapasitesi"
 
-#: places/models.py:85
+#: places/models.py:100
 msgid "Place type"
 msgstr "Mekan tipi"
 
-#: places/models.py:86
+#: places/models.py:101
 msgid "Space offered"
 msgstr "Verilen alan"
 
-#: places/models.py:87 places/models.py:91
+#: places/models.py:102 places/models.py:106
 msgid "Size"
 msgstr "Boyut (m2)"
 
-#: places/models.py:88
+#: places/models.py:103
 msgid "Number of bedrooms"
 msgstr "Yatak odası sayısı"
 
-#: places/models.py:89
+#: places/models.py:104
 msgid "Bed type"
 msgstr "Oda tipi"
 
-#: places/models.py:90
+#: places/models.py:105
 msgid "Number of bathrooms"
 msgstr "Banyo sayısı"
 
-#: places/models.py:92
+#: places/models.py:107
 msgid "Cancellation rules"
 msgstr "İptal kuralları"
 
-#: places/models.py:93
+#: places/models.py:108
 msgid "Minimum number of nights"
 msgstr "Minimum sayıda gece"
 
-#: places/models.py:94
+#: places/models.py:109
 msgid "Maximum number of nights"
 msgstr "Maksimum sayıda gece"
 
-#: places/models.py:95
+#: places/models.py:110
 msgid "House manual"
 msgstr "Mekan kılavuzu"
 
-#: places/models.py:96
+#: places/models.py:111
 msgid "House rules"
 msgstr "Ev kuralları"
 
-#: places/models.py:97
+#: places/models.py:112
 msgid "Pets"
 msgstr "Evcil hayvan"
 
-#: places/models.py:97
+#: places/models.py:112
 msgid "Pets allowed"
 msgstr "Evcil hayvan kabul edilir"
 
-#: places/models.py:100
+#: places/models.py:115
 msgid "Weekly discount (%)"
 msgstr "Haftalık indirim (%)"
 
-#: places/models.py:101
+#: places/models.py:116
 msgid "Monthly discount (%)"
 msgstr "Aylık indirim (%)"
 
-#: places/models.py:103
+#: places/models.py:118
 msgid "Extra charge for more guests than"
 msgstr "Ekstra ücret istenecek misafir sayısı sınırı"
 
-#: places/models.py:104
+#: places/models.py:119
 msgid "Extra charge per person"
 msgstr "Kişi başına ekstra ücret"
 
-#: places/models.py:105
+#: places/models.py:120
 msgid ""
 "Each extra person exceeding the number you specified, must pay this "
 "extra charge."
 msgstr "Belirtilen sayıyı aşan her ekstra kişi, bu ekstra ücreti ödemelidir."
 
-#: places/models.py:106
+#: places/models.py:121
 msgid "Cleaning fee"
 msgstr "Temizlik ücreti"
 
-#: places/models.py:107
+#: places/models.py:122
 msgid "Street view"
 msgstr "Sokak görünümü"
 
-#: places/models.py:109
+#: places/models.py:124
 msgid "Place is online"
 msgstr "Mekan sitede listeleniyor"
 
-#: places/models.py:116 places/models.py:158 places/models.py:200
-#: places/models.py:254 places/models.py:315
+#: places/models.py:125 support/models.py:39 support/models.py:72
+msgid "Creatation"
+msgstr "Oluşturulma"
+
+#: places/models.py:126
+msgid "Last modified"
+msgstr "Son güncelleme"
+
+#: places/models.py:131 places/models.py:173 places/models.py:215
+#: places/models.py:269 places/models.py:330
 msgid "Place"
 msgstr "Mekan"
 
-#: places/models.py:117
+#: places/models.py:132
 msgid "Places"
 msgstr "Mekanlar"
 
-#: places/models.py:125
+#: places/models.py:140
 msgid "User"
 msgstr "Kullanıcı"
 
-#: places/models.py:126
+#: places/models.py:141
 msgid "Favorite places"
 msgstr "Favori mekanlar"
 
-#: places/models.py:130
+#: places/models.py:145
 msgid "Cellular Phone"
 msgstr "Cep telefonu"
 
-#: places/models.py:131
+#: places/models.py:146
 msgid "Occupation"
 msgstr "Meslek"
 
-#: places/models.py:132
+#: places/models.py:147
 msgid "Twitter"
 msgstr "Twitter"
 
-#: places/models.py:133
+#: places/models.py:148
 msgid "Facebook"
 msgstr "Facebook"
 
-#: places/models.py:134
+#: places/models.py:149
 msgid "Brithdate"
 msgstr "Brithdate"
 
-#: places/models.py:135
+#: places/models.py:150
 msgid "Last login time"
 msgstr "Son giriş zamanı"
 
-#: places/models.py:136
+#: places/models.py:151
 msgid "Default Language"
 msgstr "Varsayılan Dil"
 
-#: places/models.py:142
+#: places/models.py:157
 msgid "Profile"
 msgstr "Profil"
 
-#: places/models.py:143
+#: places/models.py:158
 msgid "Profiles"
 msgstr "Profiller"
 
-#: places/models.py:153 places/options.py:75 places/options.py:99
+#: places/models.py:168 places/options.py:75 places/options.py:99
 msgid "Confirmed"
 msgstr "Onaylandı"
 
-#: places/models.py:159
+#: places/models.py:174
 msgid "Image name"
 msgstr "Görüntü adı"
 
-#: places/models.py:160
+#: places/models.py:175
 msgid "Image File"
 msgstr "Görüntü Dosyası"
 
-#: places/models.py:166
+#: places/models.py:181
 msgid "Photo"
 msgstr "Fotoğraf"
 
-#: places/models.py:167
+#: places/models.py:182
 msgid "Photos"
 msgstr "Fotoğraflar"
 
-#: places/models.py:176
+#: places/models.py:191
 msgid "Reservation Start"
 msgstr "Rezervasyon başlangıcı"
 
-#: places/models.py:177
+#: places/models.py:192
 msgid "Reservation End"
 msgstr "Rezervasyon sonu"
 
-#: places/models.py:187
+#: places/models.py:202
 msgid "ReservedDate"
 msgstr "Rezervasyon Tarihi"
 
-#: places/models.py:188
+#: places/models.py:203
 msgid "Reserved Dates"
 msgstr "Rezervasyon Tarihleri"
 
-#: places/models.py:201
+#: places/models.py:216
 msgid "Reservation Dates"
 msgstr "Rezervasyon Tarihleri"
 
-#: places/models.py:204
+#: places/models.py:219
 msgid "Booking start"
 msgstr "Rezervasyon başlangıç"
 
-#: places/models.py:205
+#: places/models.py:220
 msgid "Booking end"
 msgstr "Rezervasyon sonu"
 
-#: places/models.py:206
+#: places/models.py:221
 msgid "Summary"
 msgstr "Özet"
 
-#: places/models.py:207
+#: places/models.py:222
 msgid "Valid"
 msgstr "Geçerli"
 
-#: places/models.py:208 places/models.py:278 places/models.py:298
-#: places/models.py:319 support/models.py:36
+#: places/models.py:223 places/models.py:293 places/models.py:313
+#: places/models.py:334 support/models.py:36
 msgid "Status"
 msgstr "Durum"
 
-#: places/models.py:209
+#: places/models.py:224
 msgid "Payment type"
 msgstr "Ödeme Şekli"
 
-#: places/models.py:211
+#: places/models.py:226
 msgid "Total payment for guest"
 msgstr "Konuk için toplam ödeme"
 
-#: places/models.py:212
+#: places/models.py:227
 msgid "Host's earning"
 msgstr "Ev sahibinin kazancı"
 
-#: places/models.py:223
+#: places/models.py:238
 msgid "Booking"
 msgstr "Rezervasyon sonu"
 
-#: places/models.py:224
+#: places/models.py:239
 msgid "Bookings"
 msgstr "Rezervasyon başlangıç"
 
-#: places/models.py:233
+#: places/models.py:248
 msgid "Price"
 msgstr "Fiyat"
 
-#: places/models.py:234
+#: places/models.py:249
 msgid "Weekly price"
 msgstr "Haftalık fiyat"
 
-#: places/models.py:236
+#: places/models.py:251
 msgid "Session start"
 msgstr "Sezon başı"
 
-#: places/models.py:237
+#: places/models.py:252
 msgid "Session end"
 msgstr "Sezon sonu"
 
-#: places/models.py:243
+#: places/models.py:258
 msgid "Sessional Price"
 msgstr "Sezon sonu"
 
-#: places/models.py:244
+#: places/models.py:259
 msgid "Sessional Prices"
 msgstr "Sezon sonu"
 
-#: places/models.py:255
+#: places/models.py:270
 msgid "Language"
 msgstr "Dil"
 
-#: places/models.py:256 places/models.py:263
+#: places/models.py:271 places/models.py:278
 msgid "Description"
 msgstr "Tanım"
 
-#: places/models.py:257
+#: places/models.py:272
 msgid "Auto translation"
 msgstr "Otomatik çeviri"
 
-#: places/models.py:264
+#: places/models.py:279
 msgid "Descriptions"
 msgstr "Açık"
 
-#: places/models.py:275
+#: places/models.py:290
 msgid "Receiver"
 msgstr "Alıcı"
 
-#: places/models.py:277
+#: places/models.py:291 places/models.py:299 support/models.py:113
+msgid "Message"
+msgstr "Mesaj"
+
+#: places/models.py:292
 msgid "Message was read"
 msgstr "Mesaj okundu"
 
-#: places/models.py:285
+#: places/models.py:300
 msgid "Messages"
 msgstr "Mesaj"
 
-#: places/models.py:294 places/models.py:314
+#: places/models.py:309 places/models.py:329
 msgid "Reviewer"
 msgstr "Değerlendirmeyi"
 
-#: places/models.py:295
+#: places/models.py:310
 msgid "Person"
 msgstr "Kişi"
 
-#: places/models.py:296 places/models.py:316
+#: places/models.py:311 places/models.py:331
 msgid "Review"
 msgstr "Eleştiri"
 
-#: places/models.py:297 places/models.py:318
+#: places/models.py:312 places/models.py:333
 msgid "Review visible on the site"
 msgstr "İnceleme sitede sitede görünür durumda"
 
-#: places/models.py:304
+#: places/models.py:319
 msgid "User Review"
 msgstr "Kullanıcı İncelemesi"
 
-#: places/models.py:305
+#: places/models.py:320
 msgid "User Reviews"
 msgstr "Kullanıcı İncelemeleri"
 
-#: places/models.py:317
+#: places/models.py:332
 msgid "Rating"
 msgstr "Değerlendirme"
 
-#: places/models.py:325
+#: places/models.py:340
 msgid "Place Review"
 msgstr "Mekan incelemesi"
 
-#: places/models.py:326
+#: places/models.py:341
 msgid "Place Reviews"
 msgstr "Mekan incelemeleri"
 
@@ -1760,13 +1736,14 @@ msgstr "Isteği gidiyor."
 msgid "Closed"
 msgstr "Kapalı"
 
+#: support/models.py:37 support/models.py:112
+#: support/templates/support/list.html:11
+msgid "Subject"
+msgstr "Konu"
+
 #: support/models.py:38 support/models.py:71
 msgid "Body"
 msgstr "İleti"
-
-#: support/models.py:39 support/models.py:72
-msgid "Creatation"
-msgstr "Oluşturulma"
 
 #: support/models.py:57
 msgid "Show Ticket"
@@ -1795,6 +1772,38 @@ msgstr "Başlık"
 #: support/models.py:94
 msgid "Details"
 msgstr "Ayrıntılar"
+
+#: support/models.py:107
+msgid "First Name"
+msgstr "Ad"
+
+#: support/models.py:108
+msgid "Last Name"
+msgstr "Soyad"
+
+#: support/models.py:110
+msgid "Email"
+msgstr "E-posta"
+
+#: support/models.py:114
+msgid "Form Submit Time"
+msgstr "Gönderim zamanı"
+
+#: support/models.py:115
+msgid "Called Back?"
+msgstr "Geri arandı?"
+
+#: support/models.py:117
+msgid "Notes"
+msgstr "Notlar"
+
+#: support/models.py:131
+msgid "Contact Us Record"
+msgstr "İletişim Kaydı"
+
+#: support/models.py:132
+msgid "Contact Us Records"
+msgstr "İletişim Kayıtları"
 
 #: support/views.py:41 support/views.py:99
 msgid "Destek Mesajı"
@@ -1870,6 +1879,78 @@ msgstr "Konuyu kapatmak istediğinizden emin misiniz?"
 #: support/templates/support/admin/show.html:30
 msgid "Delete Ticket"
 msgstr "Bileti Sil"
+
+#: templates/admin/base.html:32
+msgid "Welcome,"
+msgstr "Hoşgeldiniz,"
+
+#: templates/admin/base.html:37
+msgid "Documentation"
+msgstr "Belgelendirme"
+
+#: templates/admin/base.html:39
+msgid "Change password"
+msgstr "Şifre değiştir"
+
+#: templates/admin/base.html:40
+msgid "Log out"
+msgstr "Çıkış yap"
+
+#: templates/admin/base.html:49 templates/admin/change_list.html:81
+msgid "Home"
+msgstr "Ev"
+
+#: templates/admin/base_site.html:5
+msgid "GaniHome Yönetimi Bölümü"
+msgstr "GaniHome Yönetimi Bölümü"
+
+#: templates/admin/change_list.html:103
+#, python-format
+msgid "Add %(name)s"
+msgstr "%(name)s"
+
+#: templates/admin/change_list.html:112
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Lütfen aşağıdaki hataları düzeltin."
+msgstr[1] "Lütfen aşağıdaki hatayı düzeltin."
+
+#: templates/admin/change_list.html:123
+msgid "Filter"
+msgstr "Süzgeç"
+
+#: templates/admin/index.html:19
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr "%(name)s başvurusu modeller mevcuttur."
+
+#: templates/admin/index.html:30
+msgid "Add"
+msgstr "Ekle"
+
+#: templates/admin/index.html:36
+msgid "Change"
+msgstr "Değiştir"
+
+#: templates/admin/index.html:47
+msgid "You don't have permission to edit anything."
+msgstr "Bir şey düzenlemek için yetkiniz yok."
+
+#: templates/admin/index.html:55
+msgid "Recent Actions"
+msgstr "Son İşlemler"
+
+#: templates/admin/index.html:56
+msgid "My Actions"
+msgstr "Benim işlemlerim"
+
+#: templates/admin/index.html:60
+msgid "None available"
+msgstr "Yok"
+
+#: templates/admin/index.html:74
+msgid "Unknown content"
+msgstr "Bilinmeyen içerik"
 
 #: website/models/dil.py:54
 msgid "Anahtar Kelime"
@@ -1951,3 +2032,9 @@ msgstr "Dosya Adı"
 #: website/models/medya.py:36
 msgid "Dosya"
 msgstr "Dosya"
+
+#~ msgid "Bulunduğu İl"
+#~ msgstr "Bulunduğu İl"
+
+#~ msgid "Arşivlendi?"
+#~ msgstr "Arşivlendi?"
