@@ -17,6 +17,7 @@ class Transaction(models.Model):
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
+    active = models.BooleanField(_('Active'), default=True)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
     details = models.TextField(_('Transection details (json serialized dict)'), null=True, blank=True)#readonly
 
@@ -72,6 +73,7 @@ class Place(models.Model):
     owner = models.ForeignKey(User, verbose_name=_('Host'))
     tags = models.ManyToManyField(Tag,verbose_name=_('Tags'))
     title = models.CharField(_('Place title'), max_length=100)
+    slug = models.SlugField(_('URL Name'))
     country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
     street = models.CharField(_('Street'), max_length=60)
     postcode = models.CharField(_('Postcode'), max_length=15)
@@ -107,14 +109,14 @@ class Place(models.Model):
     street_view = models.BooleanField(_('Street view'), default=False)
 
     active = models.BooleanField(_('Place is online'), default=True)
-    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
-    last_modified = models.DateTimeField(_('timestamp'), auto_now=True, editable=False)
+    timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
+    last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
 
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _('Place')
-        verbose_name_plural = _('Places')
+        verbose_name = _(u'Mekan')
+        verbose_name_plural = _(u'Mekanlar')
 
     def __unicode__(self):
         return '%s' % (self.title,)

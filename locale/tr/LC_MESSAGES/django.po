@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-10-18 14:18+0300\n"
-"PO-Revision-Date: 2011-10-18 14:18\n"
+"PO-Revision-Date: 2011-10-18 14:59\n"
 "Last-Translator:   <evrenesat@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,19 +23,16 @@ msgid "English"
 msgstr "İngilizce"
 
 #: settings.py:45
-#, fuzzy
 msgid "Turkish"
-msgstr "Türkmenistan"
+msgstr "Türkçe"
 
 #: contactus/models.py:8 support/models.py:107
-#, fuzzy
 msgid "First Name"
-msgstr "Viet Nam"
+msgstr "Ad"
 
 #: contactus/models.py:9 support/models.py:108
-#, fuzzy
 msgid "Last Name"
-msgstr "Isim"
+msgstr "Soyad"
 
 #: contactus/models.py:10
 msgid "Bulunduğu İl"
@@ -1163,33 +1160,28 @@ msgid "Transection details (json serialized dict)"
 msgstr "İşlem detayları (json verisi)"
 
 #: places/models.py:26
-#, fuzzy
 msgid "Transaction"
-msgstr "Otomatik çeviri"
+msgstr "İşlem"
 
 #: places/models.py:27
-#, fuzzy
 msgid "Transactions"
-msgstr "Otomatik çeviri"
+msgstr "İşlemler"
 
 #: places/models.py:37 places/models.py:55
 msgid "Active"
 msgstr "Etkin"
 
 #: places/models.py:43
-#, fuzzy
 msgid "Tag Category"
-msgstr "Konu kategorisi"
+msgstr "Etiket Kategorisi"
 
 #: places/models.py:44
-#, fuzzy
 msgid "Tag Categories"
-msgstr "Konu Kategorileri"
+msgstr "Etiket Kategorileri"
 
 #: places/models.py:61
-#, fuzzy
 msgid "Tag"
-msgstr "Etiketler"
+msgstr "Etiket"
 
 #: places/models.py:62 places/models.py:73
 msgid "Tags"
@@ -1336,9 +1328,8 @@ msgid "Place"
 msgstr "Mekan"
 
 #: places/models.py:117
-#, fuzzy
 msgid "Places"
-msgstr "Mekan"
+msgstr "Mekanlar"
 
 #: places/models.py:125
 msgid "User"
@@ -1413,12 +1404,10 @@ msgid "Reservation End"
 msgstr "Rezervasyon sonu"
 
 #: places/models.py:187
-#, fuzzy
 msgid "ReservedDate"
-msgstr "Rezervasyon Tarihleri"
+msgstr "Rezervasyon Tarihi"
 
 #: places/models.py:188
-#, fuzzy
 msgid "Reserved Dates"
 msgstr "Rezervasyon Tarihleri"
 
@@ -1460,12 +1449,10 @@ msgid "Host's earning"
 msgstr "Ev sahibinin kazancı"
 
 #: places/models.py:223
-#, fuzzy
 msgid "Booking"
 msgstr "Rezervasyon sonu"
 
 #: places/models.py:224
-#, fuzzy
 msgid "Bookings"
 msgstr "Rezervasyon başlangıç"
 
@@ -1486,12 +1473,10 @@ msgid "Session end"
 msgstr "Sezon sonu"
 
 #: places/models.py:243
-#, fuzzy
 msgid "Sessional Price"
 msgstr "Sezon sonu"
 
 #: places/models.py:244
-#, fuzzy
 msgid "Sessional Prices"
 msgstr "Sezon sonu"
 
@@ -1508,9 +1493,8 @@ msgid "Auto translation"
 msgstr "Otomatik çeviri"
 
 #: places/models.py:264
-#, fuzzy
 msgid "Descriptions"
-msgstr "Tanım"
+msgstr "Açık"
 
 #: places/models.py:275
 msgid "Receiver"
@@ -1521,7 +1505,6 @@ msgid "Message was read"
 msgstr "Mesaj okundu"
 
 #: places/models.py:285
-#, fuzzy
 msgid "Messages"
 msgstr "Mesaj"
 
@@ -1542,28 +1525,24 @@ msgid "Review visible on the site"
 msgstr "İnceleme sitede sitede görünür durumda"
 
 #: places/models.py:304
-#, fuzzy
 msgid "User Review"
-msgstr "Eleştiri"
+msgstr "Kullanıcı İncelemesi"
 
 #: places/models.py:305
-#, fuzzy
 msgid "User Reviews"
-msgstr "Eleştiri"
+msgstr "Kullanıcı İncelemeleri"
 
 #: places/models.py:317
 msgid "Rating"
 msgstr "Değerlendirme"
 
 #: places/models.py:325
-#, fuzzy
 msgid "Place Review"
-msgstr "Mekan adı"
+msgstr "Mekan incelemesi"
 
 #: places/models.py:326
-#, fuzzy
 msgid "Place Reviews"
-msgstr "Mekan adı"
+msgstr "Mekan incelemeleri"
 
 #: places/options.py:8
 msgid "Apartment"
