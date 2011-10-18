@@ -11,7 +11,8 @@ from django.db.models.signals import post_save
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(usr=instance)
+        currency = Currency.objects.filter(main=True)[0]
+        Profile.objects.create(usr=instance, currency=currency)
 
 post_save.connect(create_user_profile, sender=User)
 
@@ -20,7 +21,7 @@ ugettext('Website')
 ugettext('Auth')
 
 class TagCategory(models.Model):
-    '''Tag category'''
+    """Tag category"""
 
     name = models.CharField(_('Name'), max_length=30)
     active = models.BooleanField(_('Active'), default=True)
@@ -36,7 +37,7 @@ class TagCategory(models.Model):
         return '%s' % (self.name,)
 
 class Currency(models.Model):
-    '''Currencies '''
+    """Currencies """
 
     name = models.CharField(_('Currency name'), max_length=20)
     code = models.CharField(_('Currency code'), max_length=3)
@@ -58,7 +59,7 @@ class Currency(models.Model):
 
 
 class Transaction(models.Model):
-    '''money transactions'''
+    """money transactions"""
 
     user = models.ForeignKey(User,verbose_name=_('Sender'))
     amount = models.DecimalField(_('Amount'), decimal_places=2, max_digits=8)
@@ -83,7 +84,7 @@ class Transaction(models.Model):
 
 
 class Tag(models.Model):
-    '''Place tags'''
+    """Place tags"""
 
     category = models.ForeignKey(TagCategory)
     name = models.CharField(_('Name'), max_length=30)
@@ -101,7 +102,7 @@ class Tag(models.Model):
 
 
 class Place(models.Model):
-    '''Places'''
+    """Places"""
 
 
     owner = models.ForeignKey(User, verbose_name=_('Host'))
@@ -156,7 +157,7 @@ class Place(models.Model):
         return '%s' % (self.title,)
 
 class Profile(models.Model):
-    '''User profile'''
+    """User profile"""
 
 
     usr = models.OneToOneField(User, verbose_name=_('User'))
@@ -184,7 +185,7 @@ class Profile(models.Model):
         return 'User #%s' % (self.usr_id,)
 
 class Friendship(models.Model):
-    '''Friendship'''
+    """Friendship"""
 
     profile = models.ForeignKey(Profile)
     user = models.ForeignKey(User)
@@ -192,7 +193,7 @@ class Friendship(models.Model):
 
 
 class Photo(models.Model):
-    '''Photos'''
+    """Photos"""
     place = models.ForeignKey(Place,verbose_name=_('Place'))
     name = models.CharField(_('Image name'), max_length=60, null=True, blank=True)
     image = models.ImageField(_('Image File'), upload_to='place_photos')
@@ -209,7 +210,7 @@ class Photo(models.Model):
 
 
 class ReservedDates(models.Model):
-    '''unavailable dates'''
+    """unavailable dates"""
 
     start = models.DateField(_('Reservation Start'))
     end = models.DateField(_('Reservation End'))
@@ -231,7 +232,7 @@ class ReservedDates(models.Model):
 
 
 class Booking(models.Model):
-    '''Booking'''
+    """Booking"""
 
     host = models.ForeignKey(User, verbose_name=_('Host'), related_name='host')
     guest = models.ForeignKey(User, verbose_name=_('Host'), related_name='guest')
@@ -266,7 +267,7 @@ class Booking(models.Model):
 
 
 class SessionalPrice(models.Model):
-    '''Sessional pricing'''
+    """Sessional pricing"""
 
     price = models.DecimalField(_('Price'), decimal_places=2, max_digits=8)
     weekend_price = models.DecimalField(_('Weekly price'), decimal_places=2, max_digits=8, null=True, blank=True)
@@ -287,7 +288,7 @@ class SessionalPrice(models.Model):
 
 
 class Description(models.Model):
-    '''Place description'''
+    """Place description"""
 
     place = models.ForeignKey(Place,verbose_name=_('Place'))
     lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
@@ -307,7 +308,7 @@ class Description(models.Model):
 
 
 class Message(models.Model):
-    '''user messaging system'''
+    """user messaging system"""
 
     sender = models.ForeignKey(User,verbose_name=_('Sender'), related_name='sender')
     receiver = models.ForeignKey(User,verbose_name=_('Receiver'), related_name='receiver')
@@ -327,7 +328,7 @@ class Message(models.Model):
 
 
 class UserReview(models.Model):
-    '''user reviews'''
+    """user reviews"""
 
     writer = models.ForeignKey(User,verbose_name=_('Reviewer'), related_name='writer')
     person = models.ForeignKey(User,verbose_name=_('Person'), related_name='person')
@@ -343,11 +344,11 @@ class UserReview(models.Model):
         verbose_name_plural = _('User Reviews')
 
     def __unicode__(self):
-        return 'Message from user #%s' % (self.sender_id,)
+        return 'Message from user #%s' % (self.writer,)
 
 
 class PlaceReview(models.Model):
-    '''user reviews'''
+    """user reviews"""
 
     writer = models.ForeignKey(User,verbose_name=_('Reviewer'))
     place = models.ForeignKey(Place,verbose_name=_('Place'))
@@ -364,4 +365,4 @@ class PlaceReview(models.Model):
         verbose_name_plural = _('Place Reviews')
 
     def __unicode__(self):
-        return 'Message from user #%s' % (self.sender_id,)
+        return 'Message from user #%s' % (self.writer,)
