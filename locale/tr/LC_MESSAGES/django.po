@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-19 14:34+0300\n"
-"PO-Revision-Date: 2011-10-19 14:46\n"
+"POT-Creation-Date: 2011-10-19 17:01+0300\n"
+"PO-Revision-Date: 2011-10-19 17:08\n"
 "Last-Translator:   <evrenesat@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "English"
 msgstr "İngilizce"
 
-#: settings.local.py:45 settings.py:45
+#: settings.local.py:45 settings.py:45 places/options.py:133
 msgid "Turkish"
 msgstr "Türkçe"
 
@@ -1092,8 +1092,8 @@ msgstr "Etkin"
 #: places/models.py:92 places/models.py:176 places/models.py:200
 #: places/models.py:221 places/models.py:257 places/models.py:278
 #: places/models.py:298 places/models.py:319 places/models.py:339
-#: places/models.py:360 support/models.py:90 website/models/dil.py:58
-#: website/models/dil.py:82
+#: places/models.py:360 support/models.py:90 website/models/dil.py:59
+#: website/models/dil.py:83
 msgid "timestamp"
 msgstr "zaman damgası"
 
@@ -1176,7 +1176,7 @@ msgid "Tags"
 msgstr "Etiketler"
 
 #: places/models.py:108 places/models.py:237 places/models.py:238
-#: places/options.py:44
+#: places/options.py:45
 msgid "Host"
 msgstr "Ev Sahibi"
 
@@ -1380,7 +1380,7 @@ msgstr "Profil"
 msgid "Profiles"
 msgstr "Profiller"
 
-#: places/models.py:192 places/options.py:75 places/options.py:99
+#: places/models.py:192 places/options.py:76 places/options.py:100
 msgid "Confirmed"
 msgstr "Onaylandı"
 
@@ -1589,153 +1589,265 @@ msgstr "Özel Oda"
 msgid "Shared Room"
 msgstr "Paylaşımlı oda"
 
-#: places/options.py:30
+#: places/options.py:31
 msgid "PayPal > System"
 msgstr "PayPal > System"
 
-#: places/options.py:31
+#: places/options.py:32
 msgid "Credit Card > System"
 msgstr "Kredi Kartı > Sistem"
 
-#: places/options.py:32
+#: places/options.py:33
 msgid "Bank Transfer > System"
 msgstr "Banka Havalesi > Sistem"
 
-#: places/options.py:33
+#: places/options.py:34
 msgid "Guest Account > Host Account"
 msgstr "Misafir Hesap > Host Hesabı"
 
-#: places/options.py:34
+#: places/options.py:35
 msgid "System > PayPal"
 msgstr "Sistem > PayPal"
 
-#: places/options.py:35
+#: places/options.py:36
 msgid "System > Credit Card"
 msgstr "Sistem > Kredi Kartı"
 
-#: places/options.py:36
+#: places/options.py:37
 msgid "System > Bank Account"
 msgstr "Sistem > Banka Hesap"
 
-#: places/options.py:40 places/options.py:68
+#: places/options.py:41 places/options.py:69
 msgid "PayPal"
 msgstr "PayPal"
 
-#: places/options.py:41 places/options.py:67
+#: places/options.py:42 places/options.py:68
 msgid "Credit Card"
 msgstr "Kredi kartı"
 
-#: places/options.py:42
+#: places/options.py:43
 msgid "Bank"
 msgstr "Banka"
 
-#: places/options.py:43
+#: places/options.py:44
 msgid "Guest"
 msgstr "Konuk"
 
-#: places/options.py:45
+#: places/options.py:46
 msgid "System Account"
 msgstr "Sistem Hesabı"
 
-#: places/options.py:49
+#: places/options.py:50
 msgid "Real bed"
 msgstr "Gerçek yatak"
 
-#: places/options.py:50
+#: places/options.py:51
 msgid "Bunk beds"
 msgstr "Ranza"
 
-#: places/options.py:51
+#: places/options.py:52
 msgid "Waterbed"
 msgstr "Su yatağı"
 
-#: places/options.py:52
+#: places/options.py:53
 msgid "Hammock"
 msgstr "Hamak"
 
-#: places/options.py:53
+#: places/options.py:54
 msgid "Couch"
 msgstr "Kanepe"
 
-#: places/options.py:57
+#: places/options.py:58
 msgid "Private"
 msgstr "Özel"
 
-#: places/options.py:58
+#: places/options.py:59
 msgid "Shared"
 msgstr "Paylaşılan"
 
-#: places/options.py:62
+#: places/options.py:63
 msgid "Flexible"
 msgstr "Esnek"
 
-#: places/options.py:63
+#: places/options.py:64
 msgid "Semi-flexible"
 msgstr "Yarı esnek"
 
-#: places/options.py:64
+#: places/options.py:65
 msgid "Strict"
 msgstr "Sıkı"
 
-#: places/options.py:69
+#: places/options.py:70
 msgid "Bank Transfer"
 msgstr "Banka Havalesi"
 
-#: places/options.py:74
+#: places/options.py:75
 msgid "Requested"
 msgstr "Talep"
 
-#: places/options.py:76
+#: places/options.py:77
 msgid "Payed"
 msgstr "Ödenir"
 
-#: places/options.py:77
+#: places/options.py:78
 msgid "Canceled by host"
 msgstr "Ev sahibi tarafından iptal edildi"
 
-#: places/options.py:78
+#: places/options.py:79
 msgid "Canceled by guest"
 msgstr "Konuk tarafından iptal edildi"
 
-#: places/options.py:79
+#: places/options.py:80
 msgid "Canceled by staff"
 msgstr "Personel tarafından iptal edildi"
 
-#: places/options.py:84 places/options.py:98
+#: places/options.py:85 places/options.py:99
 msgid "Waiting for confirmation"
 msgstr "Onay için bekliyor"
 
-#: places/options.py:85
+#: places/options.py:86
 msgid "Confirmed, active"
 msgstr "Onaylandı, etkin"
 
-#: places/options.py:86 places/options.py:100
+#: places/options.py:87 places/options.py:101
 msgid "Deactived by staff"
 msgstr "Personel tarafından durduruldu"
 
-#: places/options.py:87
+#: places/options.py:88
 msgid "Deleted by reviewer"
 msgstr "Yazar tarafından silinmiş"
 
-#: places/options.py:88 places/options.py:102 support/models.py:116
+#: places/options.py:89 places/options.py:103 support/models.py:116
 msgid "Archived"
 msgstr "Arşivlenmiş"
 
-#: places/options.py:92
+#: places/options.py:93
 msgid "Wrong house details"
 msgstr "Yanlış ev bilgisi"
 
-#: places/options.py:93
+#: places/options.py:94
 msgid "Wrong price"
 msgstr "Yanlış fiyat"
 
-#: places/options.py:94
+#: places/options.py:95
 msgid "Malicous activity"
 msgstr "Kötü niyetli faaliyet"
 
-#: places/options.py:101
+#: places/options.py:102
 msgid "Deleted"
 msgstr "Silinmiş"
+
+#: places/options.py:107
+msgid "Arabic"
+msgstr "Arapça"
+
+#: places/options.py:108
+msgid "Bulgarian"
+msgstr "Bulgarca"
+
+#: places/options.py:109
+msgid "Czech"
+msgstr "Çekce"
+
+#: places/options.py:110
+msgid "Danish"
+msgstr "Danimarkaca"
+
+#: places/options.py:111
+msgid "German"
+msgstr "Almanca"
+
+#: places/options.py:112
+msgid "Greek"
+msgstr "Yunanca"
+
+#: places/options.py:113
+msgid "English (United Kingdom)"
+msgstr "İngilizce (İngiltere)"
+
+#: places/options.py:114
+msgid "English (United States)"
+msgstr "İngilizce (ABD)"
+
+#: places/options.py:115
+msgid "Spanish"
+msgstr "İspanyolca"
+
+#: places/options.py:116
+msgid "Finnish"
+msgstr "Fince"
+
+#: places/options.py:117
+msgid "French"
+msgstr "Fransızca"
+
+#: places/options.py:118
+msgid "Croatian"
+msgstr "Hırvatca"
+
+#: places/options.py:119
+msgid "Hungarian"
+msgstr "Macarca"
+
+#: places/options.py:120
+msgid "Italian"
+msgstr "İtalyanca"
+
+#: places/options.py:121
+msgid "Hebrew"
+msgstr "İbranice"
+
+#: places/options.py:122
+msgid "Japanese"
+msgstr "Japonca"
+
+#: places/options.py:123
+msgid "Korean"
+msgstr "Korece"
+
+#: places/options.py:124
+msgid "Dutch"
+msgstr "Hollandaca"
+
+#: places/options.py:125
+msgid "Norwegian"
+msgstr "Norveçce"
+
+#: places/options.py:126
+msgid "Polish"
+msgstr "Lehçe"
+
+#: places/options.py:127
+msgid "Portuguese (Brazil)"
+msgstr "Portekizce (Brezilya)"
+
+#: places/options.py:128
+msgid "Portuguese"
+msgstr "Portekizce"
+
+#: places/options.py:129
+msgid "Romanian"
+msgstr "Romanca"
+
+#: places/options.py:130
+msgid "Russian"
+msgstr "Rusça"
+
+#: places/options.py:131
+msgid "Slovak"
+msgstr "Slovakça"
+
+#: places/options.py:132
+msgid "Swedish"
+msgstr "İsveççe"
+
+#: places/options.py:134
+msgid "Chinese (China)"
+msgstr "Çince (Çin)"
+
+#: places/options.py:135
+msgid "Chinese (Taiwan)"
+msgstr "Çince (Tayvan)"
 
 #: support/models.py:21
 msgid "Hidden"
@@ -1871,7 +1983,7 @@ msgstr "Daha önce açmış oldugunuz destek İstekleriniz Aşağıda listelenme
 msgid "Yeni Destek İsteği"
 msgstr "Yeni Destek İsteği"
 
-#: support/templates/support/list.html:11 website/models/dil.py:55
+#: support/templates/support/list.html:11 website/models/dil.py:56
 msgid "Durum"
 msgstr "Durum"
 
@@ -1929,7 +2041,8 @@ msgstr "Şifre değiştir"
 msgid "Log out"
 msgstr "Çıkış yap"
 
-#: templates/admin/base.html:49 templates/admin/change_list.html:81
+#: templates/admin/base.html:49 templates/admin/change_form.html:21
+#: templates/admin/change_list.html:81
 msgid "Home"
 msgstr "Ev"
 
@@ -1937,16 +2050,28 @@ msgstr "Ev"
 msgid "GaniHome Yönetimi Bölümü"
 msgstr "GaniHome Yönetimi Bölümü"
 
-#: templates/admin/change_list.html:103
-#, python-format
-msgid "Add %(name)s"
-msgstr "%(name)s"
+#: templates/admin/change_form.html:24 templates/admin/index.html:30
+msgid "Add"
+msgstr "Ekle"
 
-#: templates/admin/change_list.html:112
+#: templates/admin/change_form.html:34
+msgid "History"
+msgstr "Geçmiş"
+
+#: templates/admin/change_form.html:35
+msgid "View on site"
+msgstr "Sitede göster"
+
+#: templates/admin/change_form.html:46 templates/admin/change_list.html:112
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Lütfen aşağıdaki hataları düzeltin."
 msgstr[1] "Lütfen aşağıdaki hatayı düzeltin."
+
+#: templates/admin/change_list.html:103
+#, python-format
+msgid "Add %(name)s"
+msgstr "%(name)s"
 
 #: templates/admin/change_list.html:123
 msgid "Filter"
@@ -1956,10 +2081,6 @@ msgstr "Süzgeç"
 #, python-format
 msgid "Models available in the %(name)s application."
 msgstr "%(name)s başvurusu modeller mevcuttur."
-
-#: templates/admin/index.html:30
-msgid "Add"
-msgstr "Ekle"
 
 #: templates/admin/index.html:36
 msgid "Change"
@@ -1985,84 +2106,83 @@ msgstr "Yok"
 msgid "Unknown content"
 msgstr "Bilinmeyen içerik"
 
-#: website/models/dil.py:54
+#: website/models/dil.py:55
 msgid "Anahtar Kelime"
 msgstr "Anahtar Kelime"
 
-#: website/models/dil.py:77
+#: website/models/dil.py:78
 msgid "Türkçesi"
 msgstr "Türkçesi"
 
-#: website/models/dil.py:80 website/models/icerik.py:117
-#: website/models/icerik.py:174 website/models/icerik.py:246
+#: website/models/dil.py:80
 msgid "Dil"
 msgstr "Dil"
 
-#: website/models/dil.py:81
+#: website/models/dil.py:82
 msgid "Çevirisi"
 msgstr "Çevirisi"
 
-#: website/models/icerik.py:120
+#: website/models/icerik.py:121
 msgid "İçerik Gövdesi"
 msgstr "İçerik Gövdesi"
 
-#: website/models/icerik.py:121
+#: website/models/icerik.py:122
 msgid "başlık"
 msgstr "Başlık"
 
-#: website/models/icerik.py:122
+#: website/models/icerik.py:123
 msgid "menü başlık"
 msgstr "Menü Başlık"
 
-#: website/models/icerik.py:123
+#: website/models/icerik.py:124
 msgid "Menüde başlığın üzerine yazmak için"
 msgstr "Menüde başlığın üzerine yazmak için"
 
-#: website/models/icerik.py:124
+#: website/models/icerik.py:125
 msgid "slug"
 msgstr "slug"
 
-#: website/models/icerik.py:126
+#: website/models/icerik.py:127
 msgid "URL'ye Yönlen"
 msgstr "URL'ye Yönlen"
 
-#: website/models/icerik.py:128
+#: website/models/icerik.py:129
 msgid "meta tanım"
 msgstr "meta Tanim"
 
-#: website/models/icerik.py:129
+#: website/models/icerik.py:130
 msgid "meta anahtar kelimeler"
 msgstr "Meta Anahtar Kelimeler"
 
-#: website/models/icerik.py:130
+#: website/models/icerik.py:131
 msgid "html başlığı"
 msgstr "html Başlığı"
 
-#: website/models/icerik.py:131
+#: website/models/icerik.py:132
 msgid "tarayıcı  başlığının üzerine yaz"
 msgstr "Tarayici başlığının üzerine yaz"
 
-#: website/models/icerik.py:132
+#: website/models/icerik.py:133
 msgid "Sayfa"
 msgstr "Sayfa"
 
-#: website/models/icerik.py:133
+#: website/models/icerik.py:134
 msgid "oluşturulma zamanı"
 msgstr "oluşturulma zamanı"
 
-#: website/models/icerik.py:244
+#: website/models/icerik.py:245
 msgid "Banner Tipi"
 msgstr "Banner Tipi"
 
-#: website/models/medya.py:30
+#: website/models/medya.py:31
 msgid "Dosya Tipi"
 msgstr "Dosya tipi"
 
-#: website/models/medya.py:31
+#: website/models/medya.py:32
 msgid "Dosya Adı"
 msgstr "Dosya Adı"
 
-#: website/models/medya.py:36
+#: website/models/medya.py:37
 msgid "Dosya"
 msgstr "Dosya"
 

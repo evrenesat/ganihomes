@@ -59,12 +59,12 @@ class SayfaAdmin(admin.ModelAdmin):
 class MedyaAdmin(admin.ModelAdmin):
     readonly_fields = ('tip',)
 
-
-class DilAdmin(admin.ModelAdmin):
-    list_display = ('adi', 'kodu')
-    #    search_fields = ['', ]
-    #    list_filter = ['', ]
-    save_on_top = True
+#
+#class DilAdmin(admin.ModelAdmin):
+#    list_display = ('adi', 'kodu')
+#    #    search_fields = ['', ]
+#    #    list_filter = ['', ]
+#    save_on_top = True
 
 
 class CeviriInline(admin.TabularInline):
@@ -82,9 +82,9 @@ class KelimeAdmin(admin.ModelAdmin):
 
 
 class HaberAdmin(admin.ModelAdmin):
-    list_display = ('baslik', 'pul', 'dil', 'etkin', 'sabit')
+    list_display = ('baslik', 'pul', 'dil_kodu', 'etkin', 'sabit')
     search_fields = ['baslik', 'icerik']
-    list_filter = ['dil', 'etkin', 'etkin']
+    list_filter = ['dil_kodu', 'etkin', 'etkin']
     list_editable = ['etkin', 'sabit']
     prepopulated_fields = {"slug": ("baslik",)}
     save_on_top = True
@@ -94,7 +94,7 @@ class HaberAdmin(admin.ModelAdmin):
 class VitrinAdmin(admin.ModelAdmin):
     list_display = ( 'pul', 'gorsel','banner', 'dil_kodu', 'etkin', 'sira')
     search_fields = ['baslik', 'icerik']
-    list_filter = ['banner','dil', 'etkin', ]
+    list_filter = ['banner','dil_kodu', 'etkin', ]
     list_editable = ['etkin', 'sira']
     save_on_top = True
     save_as = True

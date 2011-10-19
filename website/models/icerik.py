@@ -6,10 +6,11 @@ from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
 from managers import EtkinManager
 from mptt.models import MPTTModel, TreeForeignKey
-from dil import Dil
+#from dil import Dil
 from medya import Medya
 from tinymce import models as tinymce_models
 from south.modelsinspector import add_introspection_rules
+from places.options import LOCALES, ORDER
 from utils.cache import kes
 from website.models.dil import Ceviriler
 from django.conf import settings
@@ -114,8 +115,8 @@ class Sayfa(MPTTModel):
 
 
 class Icerik(models.Model):
-    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
-    dil_kodu = models.CharField(max_length=5, editable=False, db_index=True)
+#    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
+    dil_kodu = models.CharField(max_length=5,  db_index=True, choices=LOCALES)
     #    sablon = models.CharField(max_length=200, null=True, blank=True,choices=[('',u'Seçiniz'),],help_text=u'Bu içeriği standart dışı bir şablonla göstermek istiyorsanız buradan seçebilirsiniz. <br><b>!!! Lütfen emin değilseniz bu ayarı değiştirmeyiniz !!!</b>', editable=False)
     metin = tinymce_models.HTMLField(_("İçerik Gövdesi"), blank=True, null=True)
     baslik = models.CharField(_("başlık"), max_length=255)
@@ -143,7 +144,7 @@ class Icerik(models.Model):
         return self.menu_baslik or self.baslik
 
     class Meta:
-        unique_together = (('dil', 'sayfa'),)
+        unique_together = (('dil_kodu', 'sayfa'),)
         verbose_name = u"Web Sayfası İçeriği"
         verbose_name_plural = u"Web Sayfası İçerikleri"
         app_label = 'website'
@@ -151,10 +152,10 @@ class Icerik(models.Model):
     def __unicode__(self):
         return "%s (%s)" % (self.baslik, self.slug)
 
-
-    def save(self, *args, **kwargs):
-        self.dil_kodu = self.dil.kodu
-        super(Icerik, self).save(*args, **kwargs)
+#
+#    def save(self, *args, **kwargs):
+##        self.dil_kodu = self.dil.kodu
+#        super(Icerik, self).save(*args, **kwargs)
 
 #    @property
 #    def overwrite_url(self):
@@ -171,8 +172,8 @@ class Haber(models.Model):
     """
     belgelendirme eksik !!!!!!!!
     """
-    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
-    dil_kodu = models.CharField(max_length=5, editable=False, db_index=True)
+#    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
+    dil_kodu = models.CharField(max_length=5, db_index=True, choices=LOCALES)
     baslik = models.CharField(u"Başlık", max_length=200, help_text=u"Sayfa Başlığı")
     slug = models.SlugField(u"URL Başlık",
                             help_text=u"Sayfa başlığının adres satırında görenecek hali. Türkçe karakterler haricindeki harfleri, rakamları ve tire işaretini kullanabilirsiniz.")
@@ -230,12 +231,12 @@ class Haber(models.Model):
         #unique_together = (("", ""),)
         #permissions = (("can_do_something", "Can do something"),)
 
-    def save(self, *args, **kwargs):
-        self.dil_kodu = self.dil.kodu
-        super(Haber, self).save(*args, **kwargs)
+#    def save(self, *args, **kwargs):
+#        self.dil_kodu = self.dil.kodu
+#        super(Haber, self).save(*args, **kwargs)
+#
 
 
-SIRA = [(s, s) for s in range(20)]
 class Vitrin(models.Model):
     """
     belgelendirme eksik !!!!!!!!
@@ -243,16 +244,16 @@ class Vitrin(models.Model):
     BANNERLER = ( (1, 'Anasayfa'), (2, 'Altsayfa') )
     banner = models.SmallIntegerField(_('Banner Tipi'), help_text='Bu görsel hangi bannerda gösterilecek.',
                                       choices=BANNERLER)
-    dil = models.ForeignKey(Dil, verbose_name=_('Dil'), null=True, blank=True,
-                            help_text='Boş bırakabilirsiniz. Hiç dil seçimi yapmazsanız tüm dillerde aynı slidelar gösterilir.')
-    dil_kodu = models.CharField(max_length=5, editable=False, db_index=True, null=True, blank=True)
+#    dil = models.ForeignKey(Dil, verbose_name=_('Dil'), null=True, blank=True,
+#                            help_text='Boş bırakabilirsiniz. Hiç dil seçimi yapmazsanız tüm dillerde aynı slidelar gösterilir.')
+    dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
     #    ad = models.CharField(u"Slayt Başlığı", max_length=100, help_text=u"Fare ile slaytın üzerine gelince görülecek açıklama.",null=True,blank=True, editable=False)
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
     #    url = models.CharField(u"URL", max_length=100, help_text=u"Slayta tıklanınca gidilecek url.",null=True,blank=True)
     #    icerik = models.TextField(u'İçerik',help_text=u"Buraya gireceğiniz içerik slaytın üzerinde gösterilir.", null=True, blank=True, editable=False)
     pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
     etkin = models.BooleanField(u"Yayında", default=True)
-    sira = models.SmallIntegerField(u"Sıralama", choices=SIRA, db_index=True)
+    sira = models.SmallIntegerField(u"Sıralama", choices=ORDER, db_index=True)
     objects = models.Manager()
     etkinler = EtkinManager()
 
@@ -287,8 +288,8 @@ class Vitrin(models.Model):
         #order_with_respect_to = ''
         #unique_together = (("", ""),)
         #permissions = (("can_do_something", "Can do something"),)
-
-    def save(self, *args, **kwargs):
-        if self.dil:
-            self.dil_kodu = self.dil.kodu
-        super(Vitrin, self).save(*args, **kwargs)
+#
+#    def save(self, *args, **kwargs):
+#        if self.dil:
+#            self.dil_kodu = self.dil.kodu
+#        super(Vitrin, self).save(*args, **kwargs)

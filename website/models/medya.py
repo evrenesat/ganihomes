@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.db.models.query_utils import Q
+from places.options import LOCALES
 
 __author__ = 'Evren Esat Ozkan'
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import slugify
 import time
-from dil import Dil
+
 
 def upload_to(instance, filename):
     tip_int, uzanti = instance.dosya_tipi_bul(filename)
@@ -29,12 +30,12 @@ class Medya(models.Model):
     TIP_SECENEKLERI = map(lambda x:(x[0],x[1]), TIP)
     tip = models.SmallIntegerField(_('Dosya Tipi'), choices=TIP_SECENEKLERI, db_index=True)
     ad = models.CharField(_(u'Dosya Adı'),max_length=185)
-    dil=models.ForeignKey(Dil , null=True, blank=True)
+#    dil=models.ForeignKey(Dil , null=True, blank=True)
     pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
     sablon = models.CharField(max_length=200, null=True, blank=True,choices=[('',u'Seçiniz'),],help_text=u'Yüklediğiniz dosyanın özel bir biçimde gösterilmesi için farklı bir gösterim şablonu seçebilirsiniz.. <br><b>!!! Emin değilseniz bu ayarı değiştirmeyiniz !!!</b>', editable=False)
     etkin = models.BooleanField(u"Etkin", default=True, help_text=u"İçerik yayınlansın mı?", db_index=True)
     dosya = models.FileField(_('Dosya'), upload_to=upload_to)
-    dil_kodu = models.CharField(max_length=5,editable=False)
+    dil_kodu = models.CharField(max_length=5, choices=LOCALES)
 
     objects = models.Manager() # The default manager.
     gorseller = DosyaManager(1)
@@ -86,8 +87,8 @@ class Medya(models.Model):
 #        self.save()
 
     def save(self, *args, **kwargs):
-        if self.dil:
-            self.dil_kodu = self.dil.kodu
+#        if self.dil:
+#            self.dil_kodu = self.dil.kodu
         if not self.id:
             self.tip_duzelt()
         super(Medya, self).save(*args, **kwargs)

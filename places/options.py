@@ -25,6 +25,7 @@ MIN_STAY = n_tuple(7)
 MAX_STAY = n_tuple(7, first=[(0,'Unlimited')])
 NO_OF_BEDS = n_tuple(20)
 PLACE_RATING = n_tuple(10, first=[(0, 'Not rated')])
+ORDER = n_tuple(20)
 
 TRANSACTION_TYPES = (
     (1, _('PayPal > System')),
@@ -103,35 +104,35 @@ MESSAGE_STATUS = (
 )
 
 LOCALES = (
-('ar_SA', 'Arabic'),
-('bg_BG', 'Bulgarian'),
-('cs_CZ', 'Czech'),
-('da_DK', 'Danish'),
-('de_DE', 'German'),
-('el_GR', 'Greek'),
-('en_GB', 'English (United Kingdom)'),
-('en_US', 'English (United States)'),
-('es_ES', 'Spanish'),
-('fi_FI', 'Finnish'),
-('fr_FR', 'French'),
-('hr_HR', 'Croatian'),
-('hu_HU', 'Hungarian'),
-('it_IT', 'Italian'),
-('iw_IL', 'Hebrew'),
-('ja_JP', 'Japanese'),
-('ko_KR', 'Korean'),
-('nl_NL', 'Dutch'),
-('nn_NO', 'Norwegian'),
-('pl_PL', 'Polish'),
-('pt_BR', 'Portuguese (Brazil)'),
-('pt_PT', 'Portuguese'),
-('ro_RO', 'Romanian'),
-('ru_RU', 'Russian'),
-('sk_SK', 'Slovak'),
-('sv_SE', 'Swedish'),
-('tr_TR', 'Turkish'),
-('zh_CN', 'Chinese (China)'),
-('zh_TW', 'Chinese (Taiwan)'),
+('ar_SA', _('Arabic')),
+('bg_BG', _('Bulgarian')),
+('cs_CZ', _('Czech')),
+('da_DK', _('Danish')),
+('de_DE', _('German')),
+('el_GR', _('Greek')),
+('en_GB', _('English (United Kingdom)')),
+('en_US', _('English (United States)')),
+('es_ES', _('Spanish')),
+('fi_FI', _('Finnish')),
+('fr_FR', _('French')),
+('hr_HR', _('Croatian')),
+('hu_HU', _('Hungarian')),
+('it_IT', _('Italian')),
+('iw_IL', _('Hebrew')),
+('ja_JP', _('Japanese')),
+('ko_KR', _('Korean')),
+('nl_NL', _('Dutch')),
+('nn_NO', _('Norwegian')),
+('pl_PL', _('Polish')),
+('pt_BR', _('Portuguese (Brazil)')),
+('pt_PT', _('Portuguese')),
+('ro_RO', _('Romanian')),
+('ru_RU', _('Russian')),
+('sk_SK', _('Slovak')),
+('sv_SE', _('Swedish')),
+('tr_TR', _('Turkish')),
+('zh_CN', _('Chinese (China)')),
+('zh_TW', _('Chinese (Taiwan)')),
 )
 
 INFORM_TYPES
