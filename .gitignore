@@ -1,7 +1,9 @@
 *.pyc
 log/error_log
 log/access_log
+*.tar.gz
 *.log
 *_log
+*.xcf
 yuklemeler
 settings.py

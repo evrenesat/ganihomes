@@ -4,8 +4,10 @@
     <facet type="django" name="Django">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$" />
+        <option name="templatesFolders" value="" />
         <option name="settingsModule" value="settings.py" />
         <option name="manageScript" value="manage.py" />
+        <option name="djangoInJs" value="false" />
       </configuration>
     </facet>
   </component>

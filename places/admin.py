@@ -8,6 +8,39 @@ from models import *
 class PhotoInline(admin.TabularInline):
     model = Photo
 
+class DescriptionInline(admin.TabularInline):
+    model = Description
+
+
+class DescriptionAdmin(admin.ModelAdmin):
+    list_display = ('lang', 'place')
+    search_fields = ['text', ]
+    list_filter = ['lang', ]
+    save_on_top = True
+
+
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('sender', 'receiver', 'read','timestamp','status')
+    search_fields = ['text', ]
+    list_filter = ['status', ]
+    date_hierarchy = 'timestamp'
+    save_on_top = True
+
+class UserReviewAdmin(admin.ModelAdmin):
+    list_display = ('writer', 'person', 'active','timestamp','status')
+    search_fields = ['text', ]
+    list_filter = ['status', ]
+    date_hierarchy = 'timestamp'
+    save_on_top = True
+
+class PlaceReviewAdmin(admin.ModelAdmin):
+    list_display = ('writer', 'place', 'active','timestamp','status')
+    search_fields = ['text', ]
+    list_filter = ['status', ]
+    date_hierarchy = 'timestamp'
+    save_on_top = True
+
+
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('host', 'guest', 'place', 'valid', 'status')
@@ -17,9 +50,17 @@ class BookingAdmin(admin.ModelAdmin):
 
 
 class ReservedDatesAdmin(admin.ModelAdmin):
-    list_display = ('', '')
-    search_fields = ['', ]
-    list_filter = ['', ]
+    list_display = ('place', 'start','end')
+#    search_fields = ['', ]
+#    list_filter = ['', ]
+    save_on_top = True
+    date_hierarchy = 'start'
+
+
+class SessionalPriceAdmin(admin.ModelAdmin):
+    list_display = ('name','price', 'place','active')
+    search_fields = ['name', ]
+    list_filter = ['active', ]
     save_on_top = True
 
 
@@ -43,7 +84,7 @@ class PlaceAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     inlines = [PhotoInline,BookingInline]
     #list_display_links = ('','')
-    #date_hierarchy = ''
+    date_hierarchy = 'timestamp'
     #list_select_related=False
 
 
@@ -81,6 +122,7 @@ class TransactionAdmin(admin.ModelAdmin):
     list_display = ('amount', 'type','reciver_type','sender_type' ,'active', 'timestamp')
 #    search_fields = ['', ]
     list_filter = ['reciver_type','sender_type','active' ]
+    date_hierarchy = 'timestamp'
     save_on_top = True
 
 

@@ -223,7 +223,7 @@ class ReservedDates(models.Model):
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _('ReservedDate')
+        verbose_name = _('Reserved Date')
         verbose_name_plural = _('Reserved Dates')
 
     def __unicode__(self):
@@ -268,10 +268,11 @@ class Booking(models.Model):
 
 class SessionalPrice(models.Model):
     """Sessional pricing"""
-
+    place = models.ForeignKey(Place,verbose_name=_('Place'))
     price = models.DecimalField(_('Price'), decimal_places=2, max_digits=8)
     weekend_price = models.DecimalField(_('Weekly price'), decimal_places=2, max_digits=8, null=True, blank=True)
     name = models.CharField(_('Name'), max_length=30, null=True, blank=True)
+    active = models.BooleanField(_('Active'), default=True)
     start = models.DateField(_('Session start'))
     end = models.DateField(_('Session end'))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)

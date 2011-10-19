@@ -1,12 +1,12 @@
-
 {% extends "admin/base.html" %}
+{% load admin_static %}
 {% load i18n %}
 
 {% block title %}{{ title }} | {% trans 'GaniHome Yönetimi Bölümü'%}{% endblock %}
 
 {% block branding %}
  <div style="padding:10px;">
-<img style="padding:4px;float:left" src="/static/images/logob-small.png" class="pngfix" height="50" />
+<img style="padding:4px;float:left" src="{%  static "images/logob-small.png"%}" class="pngfix" height="50" />
 <div style="float:left;padding-top:7px;font-size:12px;font-weight:bold;"><br>Yönetim<br> Bölümü</div>
     </div>
 {% endblock %}

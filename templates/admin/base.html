@@ -23,7 +23,7 @@
 
     {% if not is_popup %}
     <!-- Header -->
-    <div id="header" style="background-image: url(/static/images/admin-header-bg.gif) !important; color:#545d6b !important">
+    <div id="header" style="background-image: url({%  static "images/admin-header-bg.gif" %}) !important; color:#545d6b !important">
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
@@ -47,7 +47,7 @@
     {% block breadcrumbs %}
     <div class="breadcrumbs">
     <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-    {% if title %} &rsaquo; {{ title }}{% endif %}
+    {% if title %} &rsaquo; {% trans title %}{% endif %}
     </div>
     {% endblock %}
     {% endif %}
