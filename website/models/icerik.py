@@ -10,6 +10,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from medya import Medya
 from tinymce import models as tinymce_models
 from south.modelsinspector import add_introspection_rules
+from places.models import Photo
 from places.options import LOCALES, ORDER
 from utils.cache import kes
 from website.models.dil import Ceviriler
@@ -248,6 +249,7 @@ class Vitrin(models.Model):
 #                            help_text='Boş bırakabilirsiniz. Hiç dil seçimi yapmazsanız tüm dillerde aynı slidelar gösterilir.')
     dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
     #    ad = models.CharField(u"Slayt Başlığı", max_length=100, help_text=u"Fare ile slaytın üzerine gelince görülecek açıklama.",null=True,blank=True, editable=False)
+    place_photo = models.ForeignKey(Photo,verbose_name=_('Place photo'), help_text=_('You can use a place photo as showcase image'))
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
     #    url = models.CharField(u"URL", max_length=100, help_text=u"Slayta tıklanınca gidilecek url.",null=True,blank=True)
     #    icerik = models.TextField(u'İçerik',help_text=u"Buraya gireceğiniz içerik slaytın üzerinde gösterilir.", null=True, blank=True, editable=False)

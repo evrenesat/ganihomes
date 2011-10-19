@@ -4,6 +4,14 @@ from django.contrib import admin
 from utils.admin import admin_register
 from models import *
 
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ('name', 'place')
+    search_fields = ['name', ]
+#    list_filter = ['', ]
+    raw_id_fields = ['place']
+    save_on_top = True
+
+
 
 class PhotoInline(admin.TabularInline):
     model = Photo
@@ -16,6 +24,7 @@ class DescriptionAdmin(admin.ModelAdmin):
     list_display = ('lang', 'place')
     search_fields = ['text', ]
     list_filter = ['lang', ]
+    raw_id_fields = ['place']
     save_on_top = True
 
 
@@ -24,6 +33,7 @@ class MessageAdmin(admin.ModelAdmin):
     search_fields = ['text', ]
     list_filter = ['status', ]
     date_hierarchy = 'timestamp'
+    raw_id_fields = ['sender','receiver']
     save_on_top = True
 
 class UserReviewAdmin(admin.ModelAdmin):
@@ -37,6 +47,7 @@ class PlaceReviewAdmin(admin.ModelAdmin):
     list_display = ('writer', 'place', 'active','timestamp','status')
     search_fields = ['text', ]
     list_filter = ['status', ]
+    raw_id_fields = ['place','writer']
     date_hierarchy = 'timestamp'
     save_on_top = True
 
@@ -46,11 +57,13 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('host', 'guest', 'place', 'valid', 'status')
     search_fields = ['summary', ]
     list_filter = ['status','valid', ]
+    raw_id_fields = ['host','guest']
     save_on_top = True
 
 
 class ReservedDatesAdmin(admin.ModelAdmin):
     list_display = ('place', 'start','end')
+    raw_id_fields = ['place']
 #    search_fields = ['', ]
 #    list_filter = ['', ]
     save_on_top = True
@@ -61,6 +74,7 @@ class SessionalPriceAdmin(admin.ModelAdmin):
     list_display = ('name','price', 'place','active')
     search_fields = ['name', ]
     list_filter = ['active', ]
+    raw_id_fields = ['place']
     save_on_top = True
 
 
