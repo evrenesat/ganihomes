@@ -12,6 +12,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/places/models.py" afterPath="$PROJECT_DIR$/places/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/base.html" afterPath="$PROJECT_DIR$/templates/admin/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/base_site.html" afterPath="$PROJECT_DIR$/templates/admin/base_site.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/change_list.html" afterPath="$PROJECT_DIR$/templates/admin/change_list.html" />
     </list>
     <ignored path="cagani.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,19 +59,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="change_list.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="change_list.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/admin/change_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="141" selection-start="3770" selection-end="3814" vertical-scroll-proportion="-35.192307">
+            <state line="84" column="75" selection-start="3001" selection-end="3001" vertical-scroll-proportion="0.43878657">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="change_form.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="change_form.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/change_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="48" selection-start="765" selection-end="769" vertical-scroll-proportion="0.36836404">
+            <state line="21" column="137" selection-start="849" selection-end="915" vertical-scroll-proportion="-13.730769">
               <folding />
             </state>
           </provider>
@@ -153,13 +154,13 @@
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$PROJECT_DIR$/templates/admin/index.html" />
         <option value="$PROJECT_DIR$/locale/tr/LC_MESSAGES/django.po" />
-        <option value="$PROJECT_DIR$/templates/admin/change_list.html" />
         <option value="$PROJECT_DIR$/places/admin.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/templates/admin/base_site.html" />
         <option value="$PROJECT_DIR$/places/models.py" />
         <option value="$PROJECT_DIR$/templates/admin/base.html" />
         <option value="$PROJECT_DIR$/templates/admin/change_form.html" />
+        <option value="$PROJECT_DIR$/templates/admin/change_list.html" />
       </list>
     </option>
   </component>
@@ -638,16 +639,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/change_list.html">
+    <entry file="file://$PROJECT_DIR$/templates/admin/change_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="141" selection-start="3770" selection-end="3814" vertical-scroll-proportion="-35.192307">
+        <state line="21" column="137" selection-start="849" selection-end="915" vertical-scroll-proportion="-13.730769">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/change_form.html">
+    <entry file="file://$PROJECT_DIR$/templates/admin/change_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="48" selection-start="765" selection-end="769" vertical-scroll-proportion="0.36836404">
+        <state line="84" column="75" selection-start="3001" selection-end="3001" vertical-scroll-proportion="0.43878657">
           <folding />
         </state>
       </provider>
