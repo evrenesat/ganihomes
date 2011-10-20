@@ -92,10 +92,11 @@ class HaberAdmin(admin.ModelAdmin):
     save_as = True
 
 class VitrinAdmin(admin.ModelAdmin):
-    list_display = ( 'pul', 'gorsel','banner', 'dil_kodu', 'etkin', 'sira')
+    list_display = ( 'pul', 'gorsel', 'dil_kodu', 'etkin', 'sira')
     search_fields = ['baslik', 'icerik']
-    list_filter = ['banner','dil_kodu', 'etkin', ]
+    list_filter = ['dil_kodu', 'etkin', ]
     list_editable = ['etkin', 'sira']
+    raw_id_fields = ['place_photo']
     save_on_top = True
     save_as = True
 

@@ -242,20 +242,25 @@ class Vitrin(models.Model):
     """
     belgelendirme eksik !!!!!!!!
     """
-    BANNERLER = ( (1, 'Anasayfa'), (2, 'Altsayfa') )
-    banner = models.SmallIntegerField(_('Banner Tipi'), help_text='Bu görsel hangi bannerda gösterilecek.',
-                                      choices=BANNERLER)
+#    BANNERLER = ( (1, 'Anasayfa'), (2, 'Altsayfa') )
+#    banner = models.SmallIntegerField(_('Banner Tipi'), help_text='Bu görsel hangi bannerda gösterilecek.',
+#                                      choices=BANNERLER)
 #    dil = models.ForeignKey(Dil, verbose_name=_('Dil'), null=True, blank=True,
 #                            help_text='Boş bırakabilirsiniz. Hiç dil seçimi yapmazsanız tüm dillerde aynı slidelar gösterilir.')
-    dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
+
     #    ad = models.CharField(u"Slayt Başlığı", max_length=100, help_text=u"Fare ile slaytın üzerine gelince görülecek açıklama.",null=True,blank=True, editable=False)
-    place_photo = models.ForeignKey(Photo,verbose_name=_('Place photo'), help_text=_('You can use a place photo as showcase image'))
+    sira = models.SmallIntegerField(u"Sıralama", choices=ORDER, db_index=True)
+    place_photo = models.ForeignKey(Photo,verbose_name=_('Place photo'),
+        help_text=_('Instead of uploading an image, you can select a place photo'), null=True, blank=True)
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
+    etkin = models.BooleanField(u"Yayında", default=True)
     #    url = models.CharField(u"URL", max_length=100, help_text=u"Slayta tıklanınca gidilecek url.",null=True,blank=True)
     #    icerik = models.TextField(u'İçerik',help_text=u"Buraya gireceğiniz içerik slaytın üzerinde gösterilir.", null=True, blank=True, editable=False)
+    dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
+
     pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
-    etkin = models.BooleanField(u"Yayında", default=True)
-    sira = models.SmallIntegerField(u"Sıralama", choices=ORDER, db_index=True)
+
+
     objects = models.Manager()
     etkinler = EtkinManager()
 
