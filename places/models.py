@@ -11,7 +11,11 @@ from django.db.models.signals import post_save
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        currency = Currency.objects.filter(main=True)[0]
+        currency = Currency.objects.filter(main=True)
+        if currency:
+            currency = currency[0]
+        else:
+            currency = Currency.objects.create(main=True, code='TL', name='TL', factor=1)
         Profile.objects.create(usr=instance, currency=currency)
 
 post_save.connect(create_user_profile, sender=User)

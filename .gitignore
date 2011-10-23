@@ -7,3 +7,5 @@ log/access_log
 *.xcf
 yuklemeler
 settings.py
+static/admin
+.idea
