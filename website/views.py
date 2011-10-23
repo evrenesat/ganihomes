@@ -20,15 +20,13 @@ def anasayfa(request):
 #                          for u in Urun.stoklu.all()]
 #    except:
 #        stoklu_urunler = []
-    try:
-        brosurler = [{'ad': u.ad, 'url': u.dosya.url} for u in
-                     Medya.dbelgeler(lang)[:5]]
-    except:
-        raise
-    context = {'sayfa': sayfa, 'icerik': sayfa.al_icerik(lang),
-               'sonhaber': Haber.al_son_haber(lang),
-#               'stoklu_urunler': stoklu_urunler,
-               'brosurler': brosurler,
+
+    context = {
+#        'sayfa': sayfa,
+#               'icerik': sayfa.al_icerik(lang),
+#               'sonhaber': Haber.al_son_haber(lang),
+##               'stoklu_urunler': stoklu_urunler,
+#               'brosurler': brosurler,
                }
     ci = RequestContext(request)
     return render_to_response('index.html', context, context_instance=ci)

@@ -136,6 +136,8 @@ class Place(models.Model):
     manual = models.TextField(_('House manual'), null=True, blank=True)
     rules = models.TextField(_('House rules'), null=True, blank=True)
     pets = models.BooleanField(_('Pets'), default=False, help_text=_('Pets allowed'))
+    rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+
 
 
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True)
