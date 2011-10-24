@@ -4,14 +4,39 @@
 <head>
     <title></title>
 
-    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
     <!--[if lt IE 8]>
-      <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection">
     <![endif]-->
 
 </head>
 <body>
+  <div class="container">
+  	<div class="span-24">
+
+          <div class="supermenu">
+              Login | Sign Up | List Your Home
+          </div>
+
+
+  	</div>
+
+  	<div class="span-24 showcase">
+  		The first column
+  	</div>
+  	<div class="span-16">
+  		The center column
+  	</div>
+  	<div class="span-8 last">
+  		The last column
+  	</div>
+
+  	<div class="span-24">
+  		The footer
+  	</div>
+  </div>
 
 </body>
 </html>
