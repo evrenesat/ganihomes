@@ -1,7 +1,13 @@
 .supermenu {
     float:right;
+    padding-top: 8px;
+    font-size: 14px;
 }
 .showcase{
     height: 450px;
     background-color: #ccc;
+}
+
+.logo{
+    float:left;
 }
