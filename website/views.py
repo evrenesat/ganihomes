@@ -21,13 +21,8 @@ def anasayfa(request):
 #    except:
 #        stoklu_urunler = []
 
-    context = {
-#        'sayfa': sayfa,
-#               'icerik': sayfa.al_icerik(lang),
-#               'sonhaber': Haber.al_son_haber(lang),
-##               'stoklu_urunler': stoklu_urunler,
-#               'brosurler': brosurler,
-               }
+
+    context = {'slides': Vitrin.get_slides(), }
     ci = RequestContext(request)
     return render_to_response('index.html', context, context_instance=ci)
 
@@ -96,7 +91,7 @@ def mesaj_goster(request):
     sayfa = Sayfa.al_anasayfa()
     context = {'sayfa': sayfa,'kategoriler': sayfa.kategoriler(lang)}
     ci = RequestContext(request)
-    return render_to_response('icerik.html', context, context_instance=ci)
+    return render_to_response('content.html', context, context_instance=ci)
 
 
 def haber_goster(request, id, slug):
@@ -106,7 +101,7 @@ def haber_goster(request, id, slug):
                'icerik': {'metin': haber.icerik, 'baslik': haber.baslik},
                'kategoriler': haber.kategoriler(request.LANGUAGE_CODE)}
     ci = RequestContext(request)
-    return render_to_response('icerik.html', context, context_instance=ci)
+    return render_to_response('content.html', context, context_instance=ci)
 
 
 def dilsec(request, kod):

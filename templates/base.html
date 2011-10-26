@@ -1,44 +1,30 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-
+<html><head>
+    <title>{% block title %}GaniHomes {{ title }}{% endblock %}</title>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
     <!--[if lt IE 8]>
       <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection">
     <![endif]-->
-
-</head>
-<body>
+{% block extrahead %} {% endblock %}
+{% block extracss %} {% endblock %}
+{% block extrajs %} {% endblock %}
+</head><body>
   <div class="container">
-  	<div class="span-24">
-          <div class="logo">
-              <a href="/"><img src="{{ STATIC_URL }}images/logo.png"></a>
-          </div>
-          <div class="supermenu">
-              Sign In | Sign Up | List your space
-          </div>
+    {% block header%}
+        <div class="span-24">
+              <div class="logo">
+                  <a href="/"><img src="{{ STATIC_URL }}images/logo.png"></a>
+              </div>
+              <div class="supermenu">
+                  Sign In | Sign Up | List your space
+              </div>
+        </div>
+    {% endblock %}
+    {% block content %}
 
+    {% endblock  %}
 
-  	</div>
-
-  	<div class="span-24 showcase">
-  		The first column
-  	</div>
-  	<div class="span-16">
-  		The center column
-  	</div>
-  	<div class="span-8 last">
-  		The last column
-  	</div>
-
-  	<div class="span-24">
-  		The footer
-  	</div>
-  </div>
-
-</body>
-</html>
+</body></html>

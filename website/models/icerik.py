@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
-from managers import EtkinManager
+from managers import ActiveManager
 from mptt.models import MPTTModel, TreeForeignKey
 #from dil import Dil
 from medya import Medya
@@ -253,7 +253,7 @@ class Vitrin(models.Model):
     place_photo = models.ForeignKey(Photo,verbose_name=_('Place photo'),
         help_text=_('Instead of uploading an image, you can select a place photo'), null=True, blank=True)
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
-    etkin = models.BooleanField(u"Yayında", default=True)
+    active = models.BooleanField(u"Yayında", default=True)
     #    url = models.CharField(u"URL", max_length=100, help_text=u"Slayta tıklanınca gidilecek url.",null=True,blank=True)
     #    icerik = models.TextField(u'İçerik',help_text=u"Buraya gireceğiniz içerik slaytın üzerinde gösterilir.", null=True, blank=True, editable=False)
     dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
@@ -262,14 +262,12 @@ class Vitrin(models.Model):
 
 
     objects = models.Manager()
-    etkinler = EtkinManager()
+    actives = ActiveManager()
 
     @classmethod
-    def al_slide(cls, banner_tip, dilkodu=None):
-        ogeler = cls.etkinler.filter(banner=banner_tip)
-        if dilkodu:
-            dilli_ogeler = ogeler.filter(dil_kodu=dilkodu)
-            return dilli_ogeler if len(dilli_ogeler) else ogeler
+    def get_slides(cls, lang=None):
+        ogeler = cls.actives.all()
+        return ogeler.filter(dil_kodu=lang) if lang else ogeler
 
 #        o = o if dilkodu is None else o.filter(dil_kodu=dilkodu)
 
