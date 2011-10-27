@@ -9,9 +9,9 @@
             <a class="buttons prev" href="#">left</a>
             <div class="viewport">
                 <ul class="overview">
-                    <li><img src="images/picture3.jpg" /></li>
-                    <li><img src="images/picture2.jpg" /></li>
-                    <li><img src="images/picture1.jpg" /></li>
+                    {% for s in slides %}
+                    <li><img src="{{ s.gorsel.url }}" /></li>
+                    {% endfor %}
                 </ul>
             </div>
             <a class="buttons next" href="#">right</a>
