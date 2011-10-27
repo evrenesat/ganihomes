@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block extrajs %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tinycarousel.min.js"></script>
 <script type="text/javascript"> $(document).ready(function(){ $('#slider-code').tinycarousel(); }); </script>
 {% endblock %}
 {% block content %}
