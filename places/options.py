@@ -11,6 +11,16 @@ PLACE_TYPES = (
     (4, _('Bed and Breakfast')),
     (5, _('Villa')),
     (6, _('Caravan')),
+    (50, _('Office')),
+)
+
+PHOTO_TYPES = (
+    (1, _('Inside of the place')),
+    (2, _('View of the place')),
+    (3, _('External appearance of the place')),
+    (4, _('Around the place')),
+    (4, _('Other')),
+
 )
 SPACE_TYPES = (
     (1, _('Entire Place')),

@@ -136,7 +136,11 @@ class Place(models.Model):
     manual = models.TextField(_('House manual'), null=True, blank=True)
     rules = models.TextField(_('House rules'), null=True, blank=True)
     pets = models.BooleanField(_('Pets'), default=False, help_text=_('Pets allowed'))
-    rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    overall_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    clean_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    comfort_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    location_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    value_money_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
 
 
 
@@ -203,6 +207,7 @@ class Photo(models.Model):
     place = models.ForeignKey(Place,verbose_name=_('Place'))
     name = models.CharField(_('Image name'), max_length=60, null=True, blank=True)
     image = models.ImageField(_('Image File'), upload_to='place_photos')
+    type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
@@ -360,7 +365,11 @@ class PlaceReview(models.Model):
     writer = models.ForeignKey(User,verbose_name=_('Reviewer'))
     place = models.ForeignKey(Place,verbose_name=_('Place'))
     text = models.TextField(_('Review'))
-    rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    overall_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    clean_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    comfort_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    location_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    value_money_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
     active = models.BooleanField(_('Review visible on the site'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)

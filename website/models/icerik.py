@@ -11,7 +11,7 @@ from medya import Medya
 from tinymce import models as tinymce_models
 from south.modelsinspector import add_introspection_rules
 from places.models import Photo
-from places.options import LOCALES, ORDER
+from places.options import LOCALES, ORDER, PHOTO_TYPES
 from utils.cache import kes
 from website.models.dil import Ceviriler
 from django.conf import settings
@@ -253,6 +253,7 @@ class Vitrin(models.Model):
     place_photo = models.ForeignKey(Photo,verbose_name=_('Place photo'),
         help_text=_('Instead of uploading an image, you can select a place photo'), null=True, blank=True)
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
+    type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
     active = models.BooleanField(u"Yayında", default=True)
     #    url = models.CharField(u"URL", max_length=100, help_text=u"Slayta tıklanınca gidilecek url.",null=True,blank=True)
     #    icerik = models.TextField(u'İçerik',help_text=u"Buraya gireceğiniz içerik slaytın üzerinde gösterilir.", null=True, blank=True, editable=False)

@@ -3,19 +3,122 @@
     padding-top: 8px;
     font-size: 14px;
 }
-.showcase{
-    height: 450px;
-    background-color: #ccc;
-}
+/*.showcase{*/
+    /*height: 450px;*/
+    /*background-color: #ccc;*/
+/*}*/
 
 .logo{
     float:left;
 }
 
-#slider-code { height: 392px; overflow:hidden; }
-#slider-code .viewport { float: left; width: 588px; height: 392px; overflow: hidden; position: relative; }
-#slider-code .buttons { display: block; margin: 30px 10px 0 0; float: left; }
-#slider-code .next { margin: 30px 0 0 10px;  }
-#slider-code .disable { visibility: hidden; }
-#slider-code .overview { list-style: none; position: absolute; padding: 0; margin: 0; left: 0; top: 0; }
-#slider-code .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 388px; border: 1px solid #dcdcdc; width: 584px;}
+/*#slider-code { height: 392px; overflow:hidden; }*/
+/*#slider-code .viewport { float: left; width: 588px; height: 392px; overflow: hidden; position: relative; }*/
+/*#slider-code .buttons { display: block; margin: 30px 10px 0 0; float: left; }*/
+/*#slider-code .next { margin: 30px 0 0 10px;  }*/
+/*#slider-code .disable { visibility: hidden; }*/
+/*#slider-code .overview { list-style: none; position: absolute; padding: 0; margin: 0; left: 0; top: 0; }*/
+/*#slider-code .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 388px; border: 1px solid #dcdcdc; width: 584px;}*/
+
+
+div.scrollingHotSpotLeft
+{
+	/* The hotspots have a minimum width of 75 pixels
+	   and if there is room the will grow and occupy 10%
+	   of the scrollable area (20% combined).
+	   Adjust it to your own taste. */
+	min-width: 75px;
+	width: 10%;
+	height: 100%;
+	/* There is a big background image and it's used to
+	solve some problems I experienced in Internet Explorer 6. */
+	background-image: url(../images/big_transparent.gif);
+	background-repeat: repeat;
+	background-position: center center;
+	position: absolute;
+	z-index: 200;
+	left: 0;
+	/*  The first cursor url is for Firefox and other
+	    browsers, the second is for Internet Explorer */
+	cursor: url(../images/cursors/cursor_arrow_left.cur), url(../images/cursors/cursor_arrow_left.cur),w-resize;
+}
+
+/* Visible left hotspot */
+div.scrollingHotSpotLeftVisible
+{
+	background-image: url(../images/arrow_left.gif);
+	background-color: #fff;
+	background-repeat: no-repeat;
+	/* Standard CSS3 opacity setting */
+	opacity: 0.35;
+	/* Opacity for really old versions of
+	   Mozilla Firefox (0.9 or older) */
+	-moz-opacity: 0.35;
+	/* Opacity for Internet Explorer. */
+	filter: alpha(opacity = 35);
+	/* Use zoom to Trigger "hasLayout" in
+	   Internet Explorer 6 or older versions */
+	zoom: 1;
+}
+
+/* Invisible right hotspot */
+div.scrollingHotSpotRight
+{
+	min-width: 75px;
+	width: 10%;
+	height: 100%;
+	background-image: url(../images/big_transparent.gif);
+	background-repeat: repeat;
+	background-position: center center;
+	position: absolute;
+	z-index: 200;
+	right: 0;
+	cursor: url(../images/cursors/cursor_arrow_right.cur), url(../images/cursors/cursor_arrow_right.cur),e-resize;
+}
+
+/* Visible right hotspot */
+div.scrollingHotSpotRightVisible
+{
+	background-image: url(../images/arrow_right.gif);
+	background-color: #fff;
+	background-repeat: no-repeat;
+	opacity: 0.35;
+	filter: alpha(opacity = 35);
+	-moz-opacity: 0.35;
+	zoom: 1;
+}
+
+/* The scroll wrapper is always the same width and
+   height as the containing element (div). Overflow
+   is hidden because you don't want to show all of
+   the scrollable area.
+*/
+div.scrollWrapper
+{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+div.scrollableArea
+{
+	position: relative;
+	width: auto;
+	height: 100%;
+}
+
+#makeMeScrollable div.scrollableArea *
+{
+	position: relative;
+	display: block;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+#makeMeScrollable{
+    width:100%;
+ 			height: 400px;
+ 			position: relative;
+}

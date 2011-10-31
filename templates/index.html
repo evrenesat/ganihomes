@@ -1,23 +1,39 @@
 {% extends "base.html" %}
 {% block extrajs %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tinycarousel.min.js"></script>
-<script type="text/javascript"> $(document).ready(function(){ $('#slider-code').tinycarousel(); }); </script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
+<script type="text/javascript"> $(window).ready(function(){
+
+    $("div#makeMeScrollable").smoothDivScroll({
+    			autoScroll: "onstart" ,
+                autoScrollDirection:'endlessloopright',
+    			autoScrollStep: 1,
+    			autoScrollInterval: 15,
+    			visibleHotSpots: "always"
+    		});
+$('div.scrollingHotSpotRight').bind('mouseleave',function(){$("#makeMeScrollable").smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopright')});
+$('div.scrollingHotSpotLeft').bind('mouseleave',function(){$("#makeMeScrollable").smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopleft')});
+    $("#makeMeScrollable").smoothDivScroll({movedToLastElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
+    $("#makeMeScrollable").smoothDivScroll({movedToFirstElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
+//    alert('booo')
+}); </script>
 {% endblock %}
 {% block content %}
     <div class="span-24 showcase">
-
-        <div id="slider-code">
-            <a class="buttons prev" href="#">left</a>
-            <div class="viewport">
-                <ul class="overview">
+        <div id="makeMeScrollable">
+            <div class="scrollingHotSpotLeft"></div>
+            <div class="scrollingHotSpotRight"></div>
+            <div class="scrollWrapper">
+                <div class="scrollableArea">
                     {% for s in slides %}
-                    <li><img src="{{ s.gorsel.url }}" /></li>
+                    <img src="{{ s.gorsel.url }}" />
                     {% endfor %}
-                </ul>
+                </div>
             </div>
-            <a class="buttons next" href="#">right</a>
-          </div>
-
+        </div>
+    <a onclick='$("#makeMeScrollable").smoothDivScroll("startAutoScroll");' href="#"> Start</a>
+    -
+    <a onclick='$("#makeMeScrollable").smoothDivScroll("stopAutoScroll");' href="#">Stop</a>
     </div>
 <div class="span-16">
 	The center column

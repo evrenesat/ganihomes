@@ -5,9 +5,9 @@ from utils.admin import admin_register
 from models import *
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'place')
+    list_display = ('name', 'place', 'type')
     search_fields = ['name', ]
-#    list_filter = ['', ]
+    list_filter = ['type', ]
     raw_id_fields = ['place']
     save_on_top = True
 
