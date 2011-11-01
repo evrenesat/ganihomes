@@ -1,50 +1,41 @@
 {% extends "base.html" %}
 {% block extrajs %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo-min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.serialScroll-1.2.2.js"></script>
-<script type="text/javascript">
-    jQuery(function( $ ){
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
+<script type="text/javascript"> $(window).ready(function(){
 
+    $("div#makeMeScrollable").smoothDivScroll({
+    			autoScroll: "onstart" ,
+                autoScrollDirection:'endlessloopright',
+    			autoScrollStep: 1,
+    			autoScrollInterval: 15,
+    			visibleHotSpots: "always"
+    		});
+$('div.scrollingHotSpotRight').bind('mouseleave',function(){$("#makeMeScrollable").smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopright')});
+$('div.scrollingHotSpotLeft').bind('mouseleave',function(){$("#makeMeScrollable").smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopleft')});
 
-    	$skrol = $('#sshow');//we'll re use it a lot, so better save it to a var.
-    	$skrol.serialScroll({
-    		items:'li',
-            prev:'#buttons a.prev',
-            next:'#buttons a.next',
-    		duration:2000,
-            cycle:true,
-    		force:true,
-    		axis:'x',
-            lock:false,
-    		easing:'linear',
-    		lazy:true,// NOTE: it's set to true, meaning you can add/remove/reorder items and the changes are taken into account.
-    		interval:1, // yeah! I now added auto-scrolling
-    		step:1 // scroll 2 news each time
-    	});
-
-});
-
-</script>
+//    $("#makeMeScrollable").smoothDivScroll({movedToLastElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
+//    $("#makeMeScrollable").smoothDivScroll({autoScrollIntervalStopped: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
+//    $("#makeMeScrollable").smoothDivScroll({movedToFirstElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
+//    alert('booo')
+}); </script>
 {% endblock %}
 {% block content %}
     <div class="span-24 showcase">
-        <div id="skonteynir">
-            <div id="buttons">
-          			<a class="prev" href="#">Previous</a>
-          			<a class="next" href="#">Next</a>
-          			<br class="clear" />
-          		</div>
-
-                <div id="sshow">
-                    <ul>
-                        {% for s in slides %}
-                        <li><img src="{{ s.gorsel.url }}" /></li>
-                        {% endfor %}
-                    </ul>
+        <div id="makeMeScrollable">
+            <div class="scrollingHotSpotLeft"></div>
+            <div class="scrollingHotSpotRight"></div>
+            <div class="scrollWrapper">
+                <div class="scrollableArea">
+                    {% for s in slides %}
+                    <img src="{{ s.gorsel.url }}" />
+                    {% endfor %}
                 </div>
-
+            </div>
         </div>
-
+    <a onclick='$("#makeMeScrollable").smoothDivScroll("startAutoScroll");' href="#"> Start</a>
+    -
+    <a onclick='$("#makeMeScrollable").smoothDivScroll("stopAutoScroll");' href="#">Stop</a>
     </div>
 <div class="span-16">
 	The center column
