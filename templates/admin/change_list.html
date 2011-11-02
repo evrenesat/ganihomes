@@ -1,11 +1,13 @@
 {% extends "admin/base_site.html" %}
-{% load adminmedia admin_list i18n %}
+{% load i18n admin_static admin_list %}
 {% load url from future %}
+{% load admin_urls %}
+
 {% block extrastyle %}
   {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}" />
   {% if cl.formset %}
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
   {% endif %}
   {% if cl.formset or action_form %}
     {% url 'admin:jsi18n' as jsi18nurl %}
@@ -20,74 +22,29 @@
 {% endblock %}
 
 {% block extrahead %}
-    {{ block.super }}
-    {{ media.js }}
-    {% if action_form %}{% if actions_on_top or actions_on_bottom %}
-    <script type="text/javascript">
-    (function($) {
-        $(document).ready(function($) {
-            $("tr input.action-select").actions();
-        });
-    })(django.jQuery);
-    </script>
-    {% endif %}{% endif %}
-
-    {# Adds a collapsible filter interface, adapted from http://djangosnippets.org/snippets/1818/ #}
-    <style type="text/css">
-        #changelist-filter h2 span{
-            padding-right:15px;
-        }
-        #changelist-filter h2 span.slidedown{
-            background: transparent url({% load adminmedia %}{% admin_media_prefix %}img/admin/arrow-up.gif) no-repeat scroll right 0.4em
-        }
-
-        #changelist-filter h2 span.slideup {
-            background: transparent url({% admin_media_prefix %}img/admin/arrow-down.gif) no-repeat scroll right 0.4em
-
-        }
-
-        #changelist-filter h2 {
-            cursor:pointer;
-        }
-
-    </style>
-
-    <script type="text/javascript" charset="utf-8">
-    (function($) {
-        $(document).ready(function($){
-            $("#changelist-filter h2").append('<span class="slidedown">&nbsp;</span>');
-            $("#changelist-filter h2").bind("click",function(){
-                if ($("#changelist-filter ul, #changelist-filter h3").is(":hidden")) {
-                    $("#changelist-filter h2 span").removeClass("slideup");
-                    $("#changelist-filter h2 span").addClass("slidedown");
-                    $("#changelist-filter ul, #changelist-filter h3").show("slow");
-                } else {
-                    $("#changelist-filter h2 span").removeClass("slidedown");
-                    $("#changelist-filter h2 span").addClass("slideup");
-                    $("#changelist-filter ul, #changelist-filter h3").slideUp();
-                }
-            });
-        });
-    })(django.jQuery);
-    </script>
+{{ block.super }}
+{{ media.js }}
+{% if action_form %}{% if actions_on_top or actions_on_bottom %}
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+{% endif %}{% endif %}
 {% endblock %}
 
 {% block bodyclass %}change-list{% endblock %}
 
 {% if not is_popup %}
-  {% block breadcrumbs %}
-    <div class="breadcrumbs">
-      <a href="../../">
-        {% trans "Home" %}
-      </a>
-       &rsaquo;
-       <a href="../">
-         {% with app_label|capfirst as name %}{% trans name %}{% endwith %}
-      </a>
-      &rsaquo;
-      {{ cl.opts.verbose_name_plural|capfirst }}
-    </div>
-  {% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{% with app_label|capfirst as name %}{% trans name %}{% endwith %}</a>
+&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}
 {% endif %}
 
 {% block coltype %}flex{% endblock %}
@@ -99,7 +56,7 @@
         <ul class="object-tools">
           {% block object-tools-items %}
             <li>
-              <a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+              <a href="{% url cl.opts|admin_urlname:'add' %}{% if is_popup %}?_popup=1{% endif %}" class="addlink">
                 {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}
               </a>
             </li>
@@ -128,7 +85,7 @@
 
       <form id="changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
       {% if cl.formset %}
-        {{ cl.formset.management_form }}
+        <div>{{ cl.formset.management_form }}</div>
       {% endif %}
 
       {% block result_list %}

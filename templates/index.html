@@ -3,17 +3,18 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
 <script type="text/javascript"> $(window).ready(function(){
-
-    $("div#makeMeScrollable").smoothDivScroll({
+    $sk =$("div#makeMeScrollable");
+    $sk.smoothDivScroll({
     			autoScroll: "onstart" ,
                 autoScrollDirection:'endlessloopright',
     			autoScrollStep: 1,
-    			autoScrollInterval: 15,
-    			visibleHotSpots: "always"
+    			autoScrollInterval: 5,
+    			visibleHotSpots: "onstart"
     		});
-$('div.scrollingHotSpotRight').bind('mouseleave',function(){$("#makeMeScrollable").smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopright')});
-$('div.scrollingHotSpotLeft').bind('mouseleave',function(){$("#makeMeScrollable").smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopleft')});
-
+$('div.scrollingHotSpotRight').bind('mouseleave',function(){$sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopright')});
+$('div.scrollingHotSpotLeft').bind('mouseleave',function(){$sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopleft')});
+$('.scrollableArea .slidiv').bind('mouseenter',function(){$sk.smoothDivScroll('stopAutoScroll')})
+$('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('startAutoScroll')})
 //    $("#makeMeScrollable").smoothDivScroll({movedToLastElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
 //    $("#makeMeScrollable").smoothDivScroll({autoScrollIntervalStopped: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
 //    $("#makeMeScrollable").smoothDivScroll({movedToFirstElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
@@ -28,7 +29,7 @@ $('div.scrollingHotSpotLeft').bind('mouseleave',function(){$("#makeMeScrollable"
             <div class="scrollWrapper">
                 <div class="scrollableArea">
                     {% for s in slides %}
-                    <img src="{{ s.gorsel.url }}" />
+                    <div class="slidiv" style="background-image: url({{ s.gorsel.url }})"></div>
                     {% endfor %}
                 </div>
             </div>

@@ -3,11 +3,22 @@
     padding-top: 8px;
     font-size: 14px;
 }
-/*.showcase{*/
-    /*height: 450px;*/
-    /*background-color: #ccc;*/
-/*}*/
-
+.showcase{
+    height: 450px;
+    padding:20px;
+    background-color: #ccc;
+}
+#hdr{
+    background-color: #f1f1f1;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+}
+#hdrContainer{
+    width:960px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .logo{
     float:left;
 }
@@ -21,6 +32,11 @@
 /*#slider-code .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 388px; border: 1px solid #dcdcdc; width: 584px;}*/
 
 
+.slidiv{
+    width:588px;
+    height: 392px;
+    background: #000 no-repeat center;
+}
 div.scrollingHotSpotLeft
 {
 	/* The hotspots have a minimum width of 75 pixels

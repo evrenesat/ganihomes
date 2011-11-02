@@ -16,9 +16,8 @@
 {% block extracss %} {% endblock %}
 {% block extrajs %} {% endblock %}
 </head><body>
-  <div class="container">
-    {% block header%}
-        <div class="span-24">
+<div id="hdr">
+    <div id="hdrContainer">
               <div class="logo">
                   <a href="/"><img src="{{ STATIC_URL }}images/logo.png"></a>
               </div>
@@ -26,6 +25,9 @@
                   Sign In | Sign Up | List your space
               </div>
         </div>
+</div>
+  <div class="container">
+    {% block header%}
     {% endblock %}
     {% block content %}
 
