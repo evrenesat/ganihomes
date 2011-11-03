@@ -5,6 +5,7 @@
 <script type="text/javascript"> $(window).ready(function(){
     $sk =$("div#makeMeScrollable");
     $sk.smoothDivScroll({
+                hiddenOnStart:true,
     			autoScroll: "onstart" ,
                 autoScrollDirection:'endlessloopright',
     			autoScrollStep: 1,
@@ -34,9 +35,9 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
                 </div>
             </div>
         </div>
-    <a onclick='$("#makeMeScrollable").smoothDivScroll("startAutoScroll");' href="#"> Start</a>
+    <a onclick='$sk.smoothDivScroll("show").smoothDivScroll("startAutoScroll");' href="#"> Start</a>
     -
-    <a onclick='$("#makeMeScrollable").smoothDivScroll("stopAutoScroll");' href="#">Stop</a>
+    <a onclick='$sk.smoothDivScroll("stopAutoScroll");' href="#">Stop</a>
     </div>
 <div class="span-16">
 	The center column
