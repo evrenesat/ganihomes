@@ -6,7 +6,6 @@
 .showcase{
     height: 450px;
     padding:20px;
-    background-color: #ccc;
 }
 #hdr{
     background-color: #f1f1f1;
@@ -137,4 +136,56 @@ div.scrollableArea
     width:100%;
  			height: 400px;
  			position: relative;
+}
+
+
+#howitworks{
+    float:right !important;
+    background: #feb645;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlYjY0NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iI2YxZTc2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);   background: -moz-linear-gradient(top, #feb645 0%, #f1e767 95%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feb645), color-stop(95%,#f1e767));
+    background: -webkit-linear-gradient(top, #feb645 0%,#f1e767 95%);
+    background: -o-linear-gradient(top, #feb645 0%,#f1e767 95%);
+    background: -ms-linear-gradient(top, #feb645 0%,#f1e767 95%);
+    background: linear-gradient(top, #feb645 0%,#f1e767 95%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb645', endColorstr='#f1e767',GradientType=0 );
+    font-size:18px;
+    height:30px;
+    width:300px;
+    margin-right:0px;
+}
+#howitworks img{
+    float:left;
+    border:0px;
+    margin:-4px -24px -10px -13px;
+}
+#howitworks a{
+    margin:-7px 0 0 0;
+}
+
+.golge{
+    color:#fff !important;
+    font-weight:bold;
+    text-shadow: 1px 1px 0.9px #0a0a0a;
+    filter: dropshadow(color=#0a0a0a, offx=1, offy=1);
+}
+#tabs .ui-tabs-nav{
+    background-color:#fff !important;
+    background:url() !important;
+    border:0px;
+    padding:0;
+}
+
+#tabs{
+    border:1px #ccc !important;
+}
+
+#tabs-1{
+    background-color:#ccc;
+}
+#tabs li{border:0 !important;}
+#tabs .ui-state-active{
+    background-color:#ccc !important;
+    background:url();
+    border:0;
 }

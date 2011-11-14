@@ -10,7 +10,7 @@
     			autoScroll: "onstart" ,
                 autoScrollDirection:'endlessloopright',
     			autoScrollStep: 1,
-    			autoScrollInterval: 5,
+    			autoScrollInterval: 20,
     			visibleHotSpots: "onstart"
     		});
 $('div.scrollingHotSpotRight').bind('mouseleave',function(){$sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopright')});
@@ -27,13 +27,12 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
     <div class="span-24 showcase">
 
 
-
-        <h2 class="demoHeaders">Tabs</h2>
       		<div id="tabs">
       			<ul>
       				<li><a href="#tabs-1">First</a></li>
       				<li><a href="#tabs-2">Second</a></li>
       				<li><a href="#tabs-3">Third</a></li>
+      				<li id="howitworks"><a class="golge" href="#tabs-4"><img src="{{ STATIC_URL }}images/ganihomes-logo-inline.png" > Nasıl Çalışır</a></li>
       			</ul>
       			<div id="tabs-1">        <div id="makeMeScrollable">
       			            <div class="scrollingHotSpotLeft"></div>
@@ -51,6 +50,7 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
       			        </div></div>
       			<div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
       			<div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+                  <div id="tabs-4">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
       		</div>
 
 
