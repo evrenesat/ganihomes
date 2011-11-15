@@ -1,25 +1,29 @@
 .supermenu {
-    float:right;
+    float: right;
     padding-top: 8px;
     font-size: 14px;
 }
-.showcase{
+
+.showcase {
     height: 450px;
-    padding:20px;
+    padding: 20px;
 }
-#hdr{
+
+#hdr {
     background-color: #f1f1f1;
     width: 100%;
     text-align: center;
     height: 100px;
 }
-#hdrContainer{
-    width:960px;
+
+#hdrContainer {
+    width: 960px;
     margin-left: auto;
     margin-right: auto;
 }
-.logo{
-    float:left;
+
+.logo {
+    float: left;
 }
 
 /*#slider-code { height: 392px; overflow:hidden; }*/
@@ -30,77 +34,73 @@
 /*#slider-code .overview { list-style: none; position: absolute; padding: 0; margin: 0; left: 0; top: 0; }*/
 /*#slider-code .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 388px; border: 1px solid #dcdcdc; width: 584px;}*/
 
-
-.slidiv{
-    width:588px;
-    height: 392px;
-    background: #000 no-repeat center;
+.slidiv {
+    width: 568px;
+    height: 400px;
+    background: #4d4d4d no-repeat center;
 }
-div.scrollingHotSpotLeft
-{
-	/* The hotspots have a minimum width of 75 pixels
-	   and if there is room the will grow and occupy 10%
-	   of the scrollable area (20% combined).
-	   Adjust it to your own taste. */
-	min-width: 75px;
-	width: 10%;
-	height: 100%;
-	/* There is a big background image and it's used to
-	solve some problems I experienced in Internet Explorer 6. */
-	background-image: url(../images/big_transparent.gif);
-	background-repeat: repeat;
-	background-position: center center;
-	position: absolute;
-	z-index: 200;
-	left: 0;
-	/*  The first cursor url is for Firefox and other
-	    browsers, the second is for Internet Explorer */
-	cursor: url(../images/cursors/cursor_arrow_left.cur), url(../images/cursors/cursor_arrow_left.cur),w-resize;
+
+div.scrollingHotSpotLeft {
+    /* The hotspots have a minimum width of 75 pixels
+        and if there is room the will grow and occupy 10%
+        of the scrollable area (20% combined).
+        Adjust it to your own taste. */
+    min-width: 75px;
+    width: 10%;
+    height: 100%;
+    /* There is a big background image and it's used to
+     solve some problems I experienced in Internet Explorer 6. */
+    background-image: url(../images/big_transparent.gif);
+    background-repeat: repeat;
+    background-position: center center;
+    position: absolute;
+    z-index: 200;
+    left: 0;
+    /*  The first cursor url is for Firefox and other
+         browsers, the second is for Internet Explorer */
+    cursor: url(../images/cursors/cursor_arrow_left.cur), url(../images/cursors/cursor_arrow_left.cur), w-resize;
 }
 
 /* Visible left hotspot */
-div.scrollingHotSpotLeftVisible
-{
-	background-image: url(../images/arrow_left.gif);
-	background-color: #fff;
-	background-repeat: no-repeat;
-	/* Standard CSS3 opacity setting */
-	opacity: 0.35;
-	/* Opacity for really old versions of
-	   Mozilla Firefox (0.9 or older) */
-	-moz-opacity: 0.35;
-	/* Opacity for Internet Explorer. */
-	filter: alpha(opacity = 35);
-	/* Use zoom to Trigger "hasLayout" in
-	   Internet Explorer 6 or older versions */
-	zoom: 1;
+div.scrollingHotSpotLeftVisible {
+    background-image: url(../images/arrow_left.gif);
+    background-color: #fff;
+    background-repeat: no-repeat;
+    /* Standard CSS3 opacity setting */
+    opacity: 0.35;
+    /* Opacity for really old versions of
+        Mozilla Firefox (0.9 or older) */
+    -moz-opacity: 0.35;
+    /* Opacity for Internet Explorer. */
+    filter: alpha(opacity = 35);
+    /* Use zoom to Trigger "hasLayout" in
+        Internet Explorer 6 or older versions */
+    zoom: 1;
 }
 
 /* Invisible right hotspot */
-div.scrollingHotSpotRight
-{
-	min-width: 75px;
-	width: 10%;
-	height: 100%;
-	background-image: url(../images/big_transparent.gif);
-	background-repeat: repeat;
-	background-position: center center;
-	position: absolute;
-	z-index: 200;
-	right: 0;
-	cursor: url(../images/cursors/cursor_arrow_right.cur), url(../images/cursors/cursor_arrow_right.cur),e-resize;
+div.scrollingHotSpotRight {
+    min-width: 75px;
+    width: 10%;
+    height: 100%;
+    background-image: url(../images/big_transparent.gif);
+    background-repeat: repeat;
+    background-position: center center;
+    position: absolute;
+    z-index: 200;
+    right: 0;
+    cursor: url(../images/cursors/cursor_arrow_right.cur), url(../images/cursors/cursor_arrow_right.cur), e-resize;
 }
 
 /* Visible right hotspot */
-div.scrollingHotSpotRightVisible
-{
-	background-image: url(../images/arrow_right.gif);
-	background-color: #fff;
-	background-repeat: no-repeat;
-	opacity: 0.35;
-	filter: alpha(opacity = 35);
-	-moz-opacity: 0.35;
-	zoom: 1;
+div.scrollingHotSpotRightVisible {
+    background-image: url(../images/arrow_right.gif);
+    background-color: #fff;
+    background-repeat: no-repeat;
+    opacity: 0.35;
+    filter: alpha(opacity = 35);
+    -moz-opacity: 0.35;
+    zoom: 1;
 }
 
 /* The scroll wrapper is always the same width and
@@ -108,84 +108,154 @@ div.scrollingHotSpotRightVisible
    is hidden because you don't want to show all of
    the scrollable area.
 */
-div.scrollWrapper
-{
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
+div.scrollWrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
-div.scrollableArea
-{
-	position: relative;
-	width: auto;
-	height: 100%;
+div.scrollableArea {
+    position: relative;
+    width: auto;
+    height: 100%;
 }
 
-#makeMeScrollable div.scrollableArea *
-{
-	position: relative;
-	display: block;
-	float: left;
-	padding: 0;
-	margin: 0;
+#makeMeScrollable div.scrollableArea * {
+    position: relative;
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0;
 }
 
-#makeMeScrollable{
-    width:100%;
- 			height: 400px;
- 			position: relative;
+#makeMeScrollable {
+    width: 98%;
+    height: 400px;
+    position: relative;
 }
 
-
-#howitworks{
-    float:right !important;
+#howitworks {
+    float: right !important;
+    /*background: #feb645;*/
+    /*background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlYjY0NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iI2YxZTc2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#feb645', endColorstr = '#f1e767', GradientType = 0);*/
     background: #feb645;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlYjY0NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iI2YxZTc2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);   background: -moz-linear-gradient(top, #feb645 0%, #f1e767 95%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feb645), color-stop(95%,#f1e767));
-    background: -webkit-linear-gradient(top, #feb645 0%,#f1e767 95%);
-    background: -o-linear-gradient(top, #feb645 0%,#f1e767 95%);
-    background: -ms-linear-gradient(top, #feb645 0%,#f1e767 95%);
-    background: linear-gradient(top, #feb645 0%,#f1e767 95%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb645', endColorstr='#f1e767',GradientType=0 );
-    font-size:18px;
-    height:30px;
-    width:300px;
-    margin-right:0px;
-}
-#howitworks img{
-    float:left;
-    border:0px;
-    margin:-4px -24px -10px -13px;
-}
-#howitworks a{
-    margin:-7px 0 0 0;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#feb645), to(#FDFF5C));
+    background: -webkit-linear-gradient(#feb645, #FDFF5C);
+    background: -moz-linear-gradient(#feb645, #FDFF5C);
+    background: -ms-linear-gradient(#feb645, #FDFF5C);
+    background: -o-linear-gradient(#feb645, #FDFF5C);
+    background: linear-gradient(#feb645, #FDFF5C);
+    -pie-background: linear-gradient(#feb645, #FDFF5C);
+
+    height: 30px;
+    width: 300px;
+    top:0.9px;
+
+
 }
 
-.golge{
-    color:#fff !important;
-    font-weight:bold;
+#ghlogo{
+    background: url(/images/ganihomes-logo-inline.png) no-repeat;
+    width:225px;
+    height: 40px;
+    position: relative;
+    z-index: 1111;
+}
+/*.pngi img{*/
+ /*behavior: url(/css/iepngfix.htc);*/
+/*}*/
+.thetest {
+    border-radius: 14px;
+    width: 300px;
+    height: 200px;
+    border: 2px #ccc solid;
+}
+
+
+#howitworks a {
+    margin: -7px 0 0 0;
+}
+
+#howitworks a {
+    color: #ffffff !important;
+    font-weight: bold;
     text-shadow: 1px 1px 0.9px #0a0a0a;
-    filter: dropshadow(color=#0a0a0a, offx=1, offy=1);
-}
-#tabs .ui-tabs-nav{
-    background-color:#fff !important;
-    background:url() !important;
-    border:0px;
-    padding:0;
+    /*filter: dropshadow(color = #cccccc, offx = 2, offy = 2);*/
+    font-size: 20px;
+    margin-right: 0px;
+
 }
 
-#tabs{
-    border:1px #ccc !important;
+#tabs .ui-tabs-nav {
+    background-color: #fff !important;
+    background: url() !important;
+    border: 0px;
+    padding: 0;
+
 }
 
-#tabs-1{
-    background-color:#ccc;
+#tabs {
+    border: 1px #ccc !important;
+
 }
-#tabs li{border:0 !important;}
-#tabs .ui-state-active{
-    background-color:#ccc !important;
-    background:url();
-    border:0;
+.tabcontent{
+    border-radius: 0 4px 4px 4px !important;
+    background-color: #ccc !important;
+    border: 10px solid #b3b3b3;
 }
+.tabborder{
+    border: 10px solid #4d4d4d;
+}
+/*#tabs-1 {*/
+    /**/
+
+/*}*/
+
+#tabs li {
+    border: 0 !important;
+    border-radius: 12px 12px 0 0;
+    padding-left:10px;
+    padding-right:10px;
+    margin-bottom: 0.8px !important;
+}
+
+#tabs .ui-state-active {
+    background-color: #ccc !important;
+    background: url();
+    border: 0;
+}
+#tabli1 a{
+    margin-bottom:-10px;
+}
+.g{
+    font-family: "Pinyon Script", Sans;
+    color:black;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 1px 0.5px orange;
+
+}
+.h{
+    font-family: "Nothing You Could Do", Sans;
+    color:black;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px 0.5px white;
+}
+
+
+#arabar{
+    background-color:#fff;
+    margin-left:auto;
+    margin-right:auto;
+    width:700px;
+    height:41px;
+}
+
+#arakutu{
+    background-color:#b3b3b3;
+    border-radius: 0 4px 4px 4px;
+}
+

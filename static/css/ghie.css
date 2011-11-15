@@ -1,0 +1,5 @@
+.golge {
+    filter: glow(color=black,strength=2), alpha(opacity=90);
+}
+
+.pie_first-child{margin-left:1px !important;}

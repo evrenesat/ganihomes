@@ -21,20 +21,30 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
 //    $("#makeMeScrollable").smoothDivScroll({autoScrollIntervalStopped: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
 //    $("#makeMeScrollable").smoothDivScroll({movedToFirstElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
 //    alert('booo')
+
+//    if (window.PIE) {
+//           $('#tabs li, .tabcontent').each(function() {
+//               PIE.attach(this);
+//           });
+//       }
+
 }); </script>
 {% endblock %}
 {% block content %}
+    <div class="span-24 arabar">
+    <div id="arakutu"><input type=input id=araf /></div>
+    </div>
     <div class="span-24 showcase">
 
 
       		<div id="tabs">
       			<ul>
-      				<li><a href="#tabs-1">First</a></li>
-      				<li><a href="#tabs-2">Second</a></li>
-      				<li><a href="#tabs-3">Third</a></li>
-      				<li id="howitworks"><a class="golge" href="#tabs-4"><img src="{{ STATIC_URL }}images/ganihomes-logo-inline.png" > Nasıl Çalışır</a></li>
+      				<li id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span class="h">VİTRİN</span></a></li>
+      				<li><a href="#tabs-2">İç Mekanlar</a></li>
+      				<li><a href="#tabs-3">Manzaralar</a></li>
+      				<li id="howitworks"><a href="#tabs-4"><span class="g">gani</span><span class="h">HOMES</span> Nasıl Çalışır?</a></li>
       			</ul>
-      			<div id="tabs-1">        <div id="makeMeScrollable">
+      			<div class="tabcontent" id="tabs-1">        <div class="tabborder" id="makeMeScrollable">
       			            <div class="scrollingHotSpotLeft"></div>
       			            <div class="scrollingHotSpotRight"></div>
       			            <div class="scrollWrapper">
@@ -44,13 +54,13 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
       			                    {% endfor %}
       			                </div>
       			            </div>
-      			            <a onclick='$sk.smoothDivScroll("show").smoothDivScroll("startAutoScroll");' href="#"> Start</a>
-      			            -
-      			            <a onclick='$sk.smoothDivScroll("stopAutoScroll");' href="#">Stop</a>
+{#      			            <a onclick='$sk.smoothDivScroll("show").smoothDivScroll("startAutoScroll");' href="#"> Start</a>#}
+{#      			            -#}
+{#      			            <a onclick='$sk.smoothDivScroll("stopAutoScroll");' href="#">Stop</a>#}
       			        </div></div>
-      			<div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-      			<div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
-                  <div id="tabs-4">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+      			<div class="tabcontent" id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
+      			<div class="tabcontent" id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+                  <div class="tabcontent" id="tabs-4">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
       		</div>
 
 
@@ -58,8 +68,8 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
 
 
     </div>
-<div class="span-16">
-	The center column
+<div class="span-16 thetest" style="background-color: yellow">
+    <img class="pngi" src="{{ STATIC_URL }}images/ganihomes-logo-inline.png" >
 </div>
 <div class="span-8 last">
 	The last column

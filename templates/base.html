@@ -1,27 +1,30 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html><head>
-    <title>{% block title %}GaniHomes {{ title }}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
-    <link type="text/css" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Zeyada|Pinyon+Script|Montez' rel='stylesheet' type='text/css'>
-    <!--[if lt IE 8]>
-      <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection">
-    <![endif]-->
-
+<title>{% block title %}GaniHomes {{ title }}{% endblock %}</title>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
+<link type="text/css" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Zeyada|Pinyon+Script|Montez' rel='stylesheet' type='text/css'>
+<!--[if lt IE 10]>
+{#<script type="text/javascript" src="{{ STATIC_URL }}js/PIE.js"></script>#}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/ghie.css" type="text/css" media="screen, projection">
+<![endif]-->
+<!--[if lt IE 8]>
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection">
+<![endif]-->
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 {% block extrahead %} {% endblock %}
 {% block extracss %} {% endblock %}
 {% block extrajs %} {% endblock %}
+{#<script type="text/javascript">$(document).ready(function(){ $(document).pngFix(); });</script>#}
 </head><body>
 <div id="hdr">
     <div id="hdrContainer">
               <div class="logo">
-                  <a href="/"><img src="{{ STATIC_URL }}images/logo.png"></a>
+                  <a href="/"><img src="{{ STATIC_URL }}images/logob.png"></a>
               </div>
               <div class="supermenu">
                   Sign In | Sign Up | List your space
