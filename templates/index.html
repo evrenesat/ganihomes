@@ -4,10 +4,11 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
 <script type="text/javascript"> $(window).ready(function(){
     $('#tabs').tabs();
+    rePlacer('#araf','#mhtabela', 740, -70, 1);
     $sk =$("div#makeMeScrollable");
     $sk.smoothDivScroll({
 //                hiddenOnStart:true,
-    			autoScroll: "onstart" ,
+    			autoScroll: "",//"onstart" ,
                 autoScrollDirection:'endlessloopright',
     			autoScrollStep: 1,
     			autoScrollInterval: 20,
@@ -21,19 +22,25 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
 //    $("#makeMeScrollable").smoothDivScroll({autoScrollIntervalStopped: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
 //    $("#makeMeScrollable").smoothDivScroll({movedToFirstElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
 //    alert('booo')
-
-//    if (window.PIE) {
-//           $('#tabs li, .tabcontent').each(function() {
-//               PIE.attach(this);
-//           });
-//       }
+    if (window.PIE) {
+           $('.piee').each(function() {
+               PIE.attach(this);
+           });
+       }
 
 }); </script>
 {% endblock %}
-{% block content %}
-    <div class="span-24 arabar">
-    <div id="arakutu"><input type=input id=araf /></div>
+{% block header %}
+    <div id="arabar">
+    <div id="arakutu">
+        <div id="aramsj"> Türkiye'den ve dünyadan yüzlerce  kiralık mekandan size uygun olanını bulmak için buradan başlayın;</div>
+        <div id="araf"><input type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz" onfocus="this.select()" />
+        </div>
     </div>
+    </div>
+{% endblock %}
+{% block content %}
+
     <div class="span-24 showcase">
 
 
@@ -79,4 +86,11 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
 	The footer
 </div>
 </div>
+<div class="piee" id="mhtabela">
+<b>Müşteri Hizmetleri</b><br>
+Pazaretesi - Cumartesi 08:00 - 19:00<br>
+232 422 42 64<br>
+info@ganihomes.com
+</div>
+
 {% endblock %}
