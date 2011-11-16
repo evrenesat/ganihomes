@@ -7,7 +7,7 @@
     $sk =$("div#makeMeScrollable");
     $sk.smoothDivScroll({
 //                hiddenOnStart:true,
-    			autoScroll: "onstart" ,
+    			autoScroll: "",//"onstart" ,
                 autoScrollDirection:'endlessloopright',
     			autoScrollStep: 1,
     			autoScrollInterval: 20,
@@ -30,10 +30,15 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
 
 }); </script>
 {% endblock %}
-{% block content %}
-    <div class="span-24 arabar">
-    <div id="arakutu"><input type=input id=araf /></div>
+{% block header %}
+    <div id="arabar">
+    <div id="arakutu">
+        <input type=input id=araf />
     </div>
+    </div>
+{% endblock %}
+{% block content %}
+
     <div class="span-24 showcase">
 
 
