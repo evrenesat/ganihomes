@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block extrajs %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>
+{#<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>#}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
 <script type="text/javascript"> $(window).ready(function(){
     $('#tabs').tabs();
-    rePlacer('#araf','#mhtabela', 740, -70, 1);
+    doRePlacements()
+    $(window).resize(doRePlacements);
+//    $('#araf input').bind('focus',function(){gh.araKutuGosterGizle()});
+//    $('#araf input').bind('blur',function(){gh.araKutuGosterGizle()});
+//    $('#araf input').bind('focus',function(){$('#arabg').animate({"height": "toggle", "opacity": "toggle"}, { duration: "slow" })  })
+
+
+
     $sk =$("div#makeMeScrollable");
     $sk.smoothDivScroll({
 //                hiddenOnStart:true,
@@ -41,7 +48,7 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
 {% endblock %}
 {% block content %}
 
-    <div class="span-24 showcase">
+    <div id="vitrin" class="span-24 showcase">
 
 
       		<div id="tabs">
@@ -92,5 +99,9 @@ Pazaretesi - Cumartesi 08:00 - 19:00<br>
 232 422 42 64<br>
 info@ganihomes.com
 </div>
-
+    <div id="arabg_cont">
+<div id="arabg" onclick="$(this).draggable();">
+<h2>aaaa<br>bbbb<br>ccc</h2>
+</div>
+    </div>
 {% endblock %}
