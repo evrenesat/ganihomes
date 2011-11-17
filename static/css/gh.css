@@ -369,3 +369,19 @@ div.scrollableArea {
     color:#fff;
     font-weight: bold;
 }
+#arabg_cont{
+    width: 970px;
+    height: 477px;
+    position: absolute;
+    overflow: hidden;
+    display: none;
+}
+#arabg{
+    background: url(/images/arabg.png);
+    width: 970px;
+    height: 477px;
+    position: relative;
+    left:0;
+    top:-478px;
+    /*display: none;*/
+}
