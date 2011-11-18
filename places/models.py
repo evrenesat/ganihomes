@@ -136,11 +136,11 @@ class Place(models.Model):
     manual = models.TextField(_('House manual'), null=True, blank=True)
     rules = models.TextField(_('House rules'), null=True, blank=True)
     pets = models.BooleanField(_('Pets'), default=False, help_text=_('Pets allowed'))
-    overall_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
-    clean_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
-    comfort_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
-    location_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
-    value_money_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
+    overall_rating = models.SmallIntegerField(_('Overall rating'), choices=PLACE_RATING, default=0)
+    clean_rating = models.SmallIntegerField(_('Cleaness'), choices=PLACE_RATING, default=0)
+    comfort_rating = models.SmallIntegerField(_('Comfort'), choices=PLACE_RATING, default=0)
+    location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
+    value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
 
 
 

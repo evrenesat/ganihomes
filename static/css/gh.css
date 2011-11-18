@@ -60,21 +60,44 @@
      }
 
 
-/*#slider-code { height: 392px; overflow:hidden; }*/
-/*#slider-code .viewport { float: left; width: 588px; height: 392px; overflow: hidden; position: relative; }*/
-/*#slider-code .buttons { display: block; margin: 30px 10px 0 0; float: left; }*/
-/*#slider-code .next { margin: 30px 0 0 10px;  }*/
-/*#slider-code .disable { visibility: hidden; }*/
-/*#slider-code .overview { list-style: none; position: absolute; padding: 0; margin: 0; left: 0; top: 0; }*/
-/*#slider-code .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 388px; border: 1px solid #dcdcdc; width: 584px;}*/
-
 .slidiv {
     width: 568px;
     height: 400px;
-    margin-left:15px;
     background: #4d4d4d no-repeat center;
+    position: relative;
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0 5px 0 0;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
+.sbaner{
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    height: 40px;
+    overflow: hidden;
+}
+
+
+.alpha60 {
+background: rgb(0, 0, 0) transparent;
+background: rgba(0, 0, 0, 0.6);
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+
+.sbaner h3{
+    margin: 10px;
+    font-size:18px;
+    font-weight: bold;
+    color:#525160;
+    font-family: arial, sans;
+}
 div.scrollingHotSpotLeft {
     /* The hotspots have a minimum width of 75 pixels
         and if there is room the will grow and occupy 10%
@@ -148,22 +171,26 @@ div.scrollWrapper {
     overflow: hidden;
     width: 100%;
     height: 100%;
+    background-color: rgb(77, 77, 77);
 }
 
 div.scrollableArea {
     position: relative;
     width: auto;
     height: 100%;
+    background-color: #4d4d4d;
 }
 
-#GVS1 div.scrollableArea * {
-    position: relative;
-    display: block;
-    float: left;
-    padding: 0;
-    margin: 0;
+/*#GVS1 div.scrollableArea  {*/
+    /*position: relative;*/
+    /*display: block;*/
+    /*float: left;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
+.slidiv{
+    margin-left:14px !important;
 }
-
 #GVS1 {
     width: 98%;
     height: 400px;
@@ -198,14 +225,13 @@ div.scrollableArea {
     position: relative;
     z-index: 1111;
 }
-/*.pngi img{*/
- /*behavior: url(/css/iepngfix.htc);*/
-/*}*/
+
 .thetest {
     border-radius: 14px;
     width: 300px;
     height: 200px;
     border: 2px #ccc solid;
+    margin-top:20px;
 }
 
 
@@ -368,5 +394,6 @@ div.scrollableArea {
     left:0;
     top:-478px;
     z-index: 4;
+    padding-top:20px;
     /*display: none;*/
 }

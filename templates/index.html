@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load  thumbnail%}
 {% block extrajs %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
 <script type="text/javascript">$(window).ready(function () {gh.index_init()}) </script>
@@ -28,10 +29,13 @@
       			            <div class="scrollingHotSpotLeft"></div>
       			            <div class="scrollingHotSpotRight"></div>
       			            <div class="scrollWrapper">
+
       			                <div class="scrollableArea">
+{#                                      {% cache 10 slides1 %}#}
       			                    {% for s in slides %}
-      			                    <div class="slidiv" style="background-image: url({{ s.gorsel.url }})"></div>
+      			                    <div class="slidiv" style="background-image: url({% thumbnail s.image 568x400 upscale crop=scale %})"><div class="sbaner alpha60"><h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div></div>
       			                    {% endfor %}
+{#                                  {% endcache %}#}
       			                </div>
       			            </div>
 {#      			            <a onclick='$sk.smoothDivScroll("show").smoothDivScroll("startAutoScroll");' href="#"> Start</a>#}
@@ -48,7 +52,7 @@
 
 
     </div>
-<div class="span-16 thetest" style="background-color: yellow">
+<div class="span-16 thetest" >
     <img class="pngi" src="{{ STATIC_URL }}images/ganihomes-logo-inline.png" >
 </div>
 <div class="span-8 last">

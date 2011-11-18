@@ -10,7 +10,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from medya import Medya
 from tinymce import models as tinymce_models
 from south.modelsinspector import add_introspection_rules
-from places.models import Photo
+from places.models import Photo, Place
 from places.options import LOCALES, ORDER, PHOTO_TYPES
 from utils.cache import kes
 from website.models.dil import Ceviriler
@@ -252,23 +252,37 @@ class Vitrin(models.Model):
     sira = models.SmallIntegerField(u"Sıralama", choices=ORDER, db_index=True)
     place_photo = models.ForeignKey(Photo,verbose_name=_('Place photo'),
         help_text=_('Instead of uploading an image, you can select a place photo'), null=True, blank=True)
+    place = models.ForeignKey(Place,verbose_name=_('Place of the photo'),
+        help_text=_('If you are uploading an image (instead of selecting an existing place photo) you should manualy select a place for linking. Can be left blank if you choose a place photo.'), null=True, blank=True)
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
     type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
     active = models.BooleanField(u"Yayında", default=True)
-    #    url = models.CharField(u"URL", max_length=100, help_text=u"Slayta tıklanınca gidilecek url.",null=True,blank=True)
-    #    icerik = models.TextField(u'İçerik',help_text=u"Buraya gireceğiniz içerik slaytın üzerinde gösterilir.", null=True, blank=True, editable=False)
+    tops = models.BooleanField(u"Favori", default=False, help_text=_(u'Sadece favori olarak seçilen ögeler ana vitrinde gösterilir.'))
+    url = models.CharField(u"URL", max_length=100, help_text=u"İsteğe Bağlı. Tıklanınca gidilecek url. ",null=True,blank=True)
+#    icerik = models.TextField(u'İçerik',help_text=u"İsteğe Bağlı. Buraya gireceğiniz HTML içerik slaytın üzerinde gösterilir.", null=True, blank=True,)
     dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
-
     pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
 
 
     objects = models.Manager()
     actives = ActiveManager()
 
+    def placeName(self):
+        return self.place.title if self.place else ''
+
+    def image(self):
+        return self.gorsel or self.place_photo.image
+
     @classmethod
-    def get_slides(cls, lang=None):
-        ogeler = cls.actives.all()
-        return ogeler.filter(dil_kodu=lang) if lang else ogeler
+    def get_slides(cls, lang=None, type=None):
+        ogeler = cls.actives.select_related()
+        if lang:
+            ogeler = ogeler.filter(dil_kodu=lang)
+        if type is None:
+            ogeler = ogeler.filter(tops=True)
+        elif type in PHOTO_TYPES:
+            ogeler = ogeler.filter(type=type)
+        return ogeler
 
 #        o = o if dilkodu is None else o.filter(dil_kodu=dilkodu)
 
@@ -295,7 +309,7 @@ class Vitrin(models.Model):
         #unique_together = (("", ""),)
         #permissions = (("can_do_something", "Can do something"),)
 #
-#    def save(self, *args, **kwargs):
-#        if self.dil:
-#            self.dil_kodu = self.dil.kodu
-#        super(Vitrin, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.place and self.place_photo:
+            self.place = self.place_photo.place
+        super(Vitrin, self).save(*args, **kwargs)
