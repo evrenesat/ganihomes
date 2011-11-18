@@ -1,56 +1,16 @@
 {% extends "base.html" %}
 {% block extrajs %}
-{#<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.widget.js"></script>#}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
-<script type="text/javascript"> $(window).ready(function(){
-    $('#tabs').tabs();
-    doRePlacements()
-    $(window).resize(doRePlacements);
-//    $('#araf input').bind('focus',function(){gh.araKutuGosterGizle()});
-//    $('#araf input').bind('blur',function(){gh.araKutuGosterGizle()});
-//    $('#araf input').bind('focus',function(){$('#arabg').animate({"height": "toggle", "opacity": "toggle"}, { duration: "slow" })  })
-
-
-
-    $sk =$("div#makeMeScrollable");
-    $sk.smoothDivScroll({
-//                hiddenOnStart:true,
-    			autoScroll: "",//"onstart" ,
-                autoScrollDirection:'endlessloopright',
-    			autoScrollStep: 1,
-    			autoScrollInterval: 20,
-    			visibleHotSpots: "onstart"
-    		});
-$('div.scrollingHotSpotRight').bind('mouseleave',function(){$sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopright')});
-$('div.scrollingHotSpotLeft').bind('mouseleave',function(){$sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option","autoScrollDirection",'endlessloopleft')});
-$('.scrollableArea .slidiv').bind('mouseenter',function(){$sk.smoothDivScroll('stopAutoScroll')})
-$('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('startAutoScroll')})
-//    $("#makeMeScrollable").smoothDivScroll({movedToLastElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
-//    $("#makeMeScrollable").smoothDivScroll({autoScrollIntervalStopped: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
-//    $("#makeMeScrollable").smoothDivScroll({movedToFirstElement: function() {$("#makeMeScrollable").smoothDivScroll("startAutoScroll")}});
-//    alert('booo')
-    if (window.PIE) {
-           $('.piee').each(function() {
-               PIE.attach(this);
-           });
-       }
-
-}); </script>
+<script type="text/javascript">$(window).ready(function () {gh.index_init()}) </script>
 {% endblock %}
 {% block header %}
     <div id="arabar">
     <div id="arakutu">
-<<<<<<< HEAD
-        <input type=input id=araf />
-    </div>
-    </div>
-=======
         <div id="aramsj"> Türkiye'den ve dünyadan yüzlerce  kiralık mekandan size uygun olanını bulmak için buradan başlayın;</div>
         <div id="araf"><input type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz" onfocus="this.select()" />
         </div>
     </div>
     </div>
->>>>>>> 9e1c88a1537755c4f1f5cdbd10c789da7a086a29
 {% endblock %}
 {% block content %}
 
@@ -64,7 +24,7 @@ $('.scrollableArea .slidiv').bind('mouseleave',function(){$sk.smoothDivScroll('s
       				<li><a href="#tabs-3">Manzaralar</a></li>
       				<li id="howitworks"><a href="#tabs-4"><span class="g">gani</span><span class="h">HOMES</span> Nasıl Çalışır?</a></li>
       			</ul>
-      			<div class="tabcontent" id="tabs-1">        <div class="tabborder" id="makeMeScrollable">
+      			<div class="tabcontent" id="tabs-1">        <div class="tabborder" id="GVS1">
       			            <div class="scrollingHotSpotLeft"></div>
       			            <div class="scrollingHotSpotRight"></div>
       			            <div class="scrollWrapper">
@@ -106,7 +66,7 @@ Pazaretesi - Cumartesi 08:00 - 19:00<br>
 info@ganihomes.com
 </div>
     <div id="arabg_cont">
-<div id="arabg" onclick="$(this).draggable();">
+<div id="arabg">
 <h2>aaaa<br>bbbb<br>ccc</h2>
 </div>
     </div>

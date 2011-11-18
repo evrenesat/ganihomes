@@ -71,6 +71,7 @@
 .slidiv {
     width: 568px;
     height: 400px;
+    margin-left:15px;
     background: #4d4d4d no-repeat center;
 }
 
@@ -155,7 +156,7 @@ div.scrollableArea {
     height: 100%;
 }
 
-#makeMeScrollable div.scrollableArea * {
+#GVS1 div.scrollableArea * {
     position: relative;
     display: block;
     float: left;
@@ -163,7 +164,7 @@ div.scrollableArea {
     margin: 0;
 }
 
-#makeMeScrollable {
+#GVS1 {
     width: 98%;
     height: 400px;
     position: relative;
@@ -281,32 +282,6 @@ div.scrollableArea {
 
 
 #arabar{
-<<<<<<< HEAD
-    padding-top:15px;
-    padding-bottom:15px;
-    width:100%;
-    background-color:#b3b3b3;
-}
-
-#arakutu{
-    margin-left:auto;
-    margin-right:auto;
-    width:900px;
-
-
-}
-#araf{
-    width:95%;
-    background-color:#fff;
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border:1px solid #ccc;
-    width:700px;
-    height:41px;
-    font-size: 24px;
-    color:#787878;
-=======
 
     background-color:#b3b3b3;
     padding-top:15px;
@@ -333,6 +308,8 @@ div.scrollableArea {
     width:700px;
     padding-left:10px;
     padding-right:10px;
+    position: relative;
+    z-index: 10;
 }
 #araf input{
     font-size: 22px;
@@ -361,7 +338,6 @@ div.scrollableArea {
     -webkit-box-shadow: #666 0px 2px 3px;
     -moz-box-shadow: #666 0px 2px 3px;
     box-shadow: #666 0px 2px 3px;
->>>>>>> 9e1c88a1537755c4f1f5cdbd10c789da7a086a29
 }
 
 #aramsj{
@@ -377,11 +353,20 @@ div.scrollableArea {
     display: none;
 }
 #arabg{
-    background: url(/images/arabg.png);
-    width: 970px;
-    height: 477px;
+    padding: 10px;
+    border:1px solid #ccc;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #fff;
+    -webkit-box-shadow: #666 0px 3px 3px;
+    -moz-box-shadow: #666 0px 3px 3px;
+    box-shadow: #666 0px 3px 3px;
+    width: 710px;
+    height: 220px;
     position: relative;
     left:0;
     top:-478px;
+    z-index: 4;
     /*display: none;*/
 }
