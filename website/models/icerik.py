@@ -15,7 +15,8 @@ from places.options import LOCALES, ORDER, PHOTO_TYPES
 from utils.cache import kes
 from website.models.dil import Ceviriler
 from django.conf import settings
-
+import logging
+log = logging.getLogger('genel')
 add_introspection_rules([], ["^tinymce.models.HTMLField"])
 
 from glob import iglob
@@ -237,7 +238,7 @@ class Haber(models.Model):
 #        super(Haber, self).save(*args, **kwargs)
 #
 
-
+dPHOTO_TYPES = dict(PHOTO_TYPES)
 class Vitrin(models.Model):
     """
     belgelendirme eksik !!!!!!!!
@@ -280,8 +281,10 @@ class Vitrin(models.Model):
             ogeler = ogeler.filter(dil_kodu=lang)
         if type is None:
             ogeler = ogeler.filter(tops=True)
-        elif type in PHOTO_TYPES:
+        elif type in dPHOTO_TYPES:
+            log.error('testt')
             ogeler = ogeler.filter(type=type)
+        log.info('testt', type)
         return ogeler
 
 #        o = o if dilkodu is None else o.filter(dil_kodu=dilkodu)
@@ -296,7 +299,7 @@ class Vitrin(models.Model):
 
 
     def __unicode__(self):
-        return  '%s (%s)' % (self.sira, self.gorsel.name)
+        return  '%s %s (%s)' % (self.id, self.sira, self.gorsel.name)
 
 
     class Meta:
@@ -312,4 +315,6 @@ class Vitrin(models.Model):
     def save(self, *args, **kwargs):
         if not self.place and self.place_photo:
             self.place = self.place_photo.place
+            self.type = self.place_photo.type
+            #FIXME: self.url = self.place.get_absolute_url()
         super(Vitrin, self).save(*args, **kwargs)

@@ -2,42 +2,60 @@ gh = {
     bas : function(m){
         $('#arabg').prepend(m + '<br>')
     },
+    init: function(){
+        var usableHeight = $(window).height();
+        if (usableHeight>610){
+            $('#hdr').css({height:'90px'})
+            $('.logo div').css({marginTop:'-6px'})
+        }
+    },
     index_init:function () {
         var self = this;
         self.akGorunur = 0
+        self.sks = {}
         $('#arabg').fadeTo('fast',.5)
         self.doRePlacements();
         $(window).resize(function () { self.doRePlacements() });
         $('#araf input').focus(function () { self.akToggle(0) });
         $('html').click(function () { self.akToggle(1) });
         $('#araf, #arabg_cont').click(function(event){event.stopPropagation();})
-        $('.slidiv').mouseenter(function(){$(this).find('.sbaner').animate({height:'110px'})}).
-            mouseleave(function(){$(this).find('.sbaner').animate({height:'40px'})})
-        self.makeScroller('#GVS1')
+        $('#howitworks a').click(function(){$('#howitworks').removeClass('ui-state-active');})
+        $('.slidiv').mouseenter(function(){
+            sld=$(this)
+//            console.log(sld.index()+1)
+//            sld.parents('.tabborder').smoothDivScroll("moveToElement", "number", sld.index()+1);
+            sld.find('.sbaner').animate({height:'110px'});
+        }).mouseleave(function(){
+                $(this).find('.sbaner').animate({height:'40px'})
+            });
+        self.makeScroller('GVS1')
+        self.makeScroller('GVS2')
+        self.makeScroller('GVS3')
     },
     makeScroller:function (container_id, hidden) {
         if (typeof(hidden) == 'undefined') hidden = false;
-        $sk = $(container_id);
-        $sk.smoothDivScroll({
+        var sk = $('#'+container_id);
+        this.sks[container_id]=sk
+        sk.smoothDivScroll({
             hiddenOnStart:hidden,
             autoScroll:"", //"onstart" ,
             autoScrollDirection:'endlessloopright',
-            autoScrollStep:1,
-            autoScrollInterval:20,
+            autoScrollStep:2,
+            autoScrollInterval:50,
             visibleHotSpots:"onstart"
         });
-        $sk.find('div.scrollingHotSpotRight').bind('mouseleave', function () {
-            $sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
+        sk.find('div.scrollingHotSpotRight').bind('mouseleave', function () {
+            sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
         })
 
-        $sk.find('div.scrollingHotSpotLeft').bind('mouseleave', function () {
-            $sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+        sk.find('div.scrollingHotSpotLeft').bind('mouseleave', function () {
+            sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
         });
-        $sk.find('.scrollableArea .slidiv').bind('mouseenter', function () {
-            $sk.smoothDivScroll('stopAutoScroll')
+        sk.find('.scrollableArea .slidiv').mouseenter(function () {
+            sk.smoothDivScroll('stopAutoScroll')
         })
-        $sk.find('.scrollableArea .slidiv').bind('mouseleave', function () {
-            $sk.smoothDivScroll('startAutoScroll')
+        sk.find('.scrollableArea .slidiv').mouseleave(function () {
+            sk.smoothDivScroll('startAutoScroll')
         })
     },
     akToggle:function (gorunurluk) {
@@ -59,7 +77,7 @@ gh = {
     },
     doRePlacements:function () {
         var self = this
-        self.rePlace('#araf', '#mhtabela', 740, -80, 1);
+        self.rePlace('#araf', '#mhtabela', 720, -65, 1);
         self.rePlace('#araf', '#arabg_cont', -7, 20);
     },
     rePlace:function (src_id, trg_id, off_left, off_top, show) {
@@ -73,6 +91,7 @@ gh = {
 };
 
 $(window).ready(function () {
+    gh.init()
     $('#tabs').tabs();
     if (window.PIE) {
         $('.piee').each(function () {

@@ -14,6 +14,12 @@ PLACE_TYPES = (
     (50, _('Office')),
 )
 
+PROMOTION_TYPES = (
+    (1, _('Amount (positive balance)')),
+    (2, _('Percentage of bookings which cheaper then ....')),
+
+    )
+
 PHOTO_TYPES = (
     (1, _('Inside of the place')),
     (2, _('View of the place')),

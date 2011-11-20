@@ -61,6 +61,30 @@ class Currency(models.Model):
     def __unicode__(self):
         return '%s' % (self.code,)
 
+class PromotionCode(models.Model):
+    """Promotion codes """
+
+    code = models.CharField(_('Promotion code'), max_length=10, unique=True)
+    type = models.SmallIntegerField(_('Type'), choices=PROMOTION_TYPES)
+    puser= models.ForeignKey(User, verbose_name=_('Who used this code'), related_name='used_promotions')
+    sender = models.ForeignKey(User, verbose_name=_('Sender/Inviter'), related_name='related_promotions')
+    percentage = models.DecimalField(_('Percentage'), decimal_places=2, max_digits=8)
+    price = models.DecimalField(_('Promotion Amount'), help_text=_('Discount amount'), decimal_places=2, max_digits=6)
+    used = models.BooleanField(_('Used'), default=False)
+    active = models.BooleanField(_('Active/Valid'), default=True)
+    expiry_date = models.DateField(_('Expiry date'),  null=True, blank=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Promotion Code')
+        verbose_name_plural = _('Promotion Codes')
+
+
+    def __unicode__(self):
+        return '%s' % (self.code,)
+
 
 class Transaction(models.Model):
     """money transactions"""
@@ -121,6 +145,7 @@ class Place(models.Model):
     state = models.CharField(_('State/Region'), max_length=40)
     emergency_phone = models.CharField(_('Emergency phone'), max_length=20)
     phone = models.CharField(_('Phone'), max_length=20)
+    currency = models.ForeignKey(Currency,verbose_name=_('Currency'))
     price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
     capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS)
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES)

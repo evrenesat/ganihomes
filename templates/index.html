@@ -20,31 +20,66 @@
 
       		<div id="tabs">
       			<ul>
-      				<li id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span class="h">VİTRİN</span></a></li>
-      				<li><a href="#tabs-2">İç Mekanlar</a></li>
-      				<li><a href="#tabs-3">Manzaralar</a></li>
+      				<li class="gritab" id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span class="h">VİTRİN</span></a></li>
+      				<li class="gritab"><a href="#tabs-2">İç Mekanlar</a></li>
+      				<li class="gritab"><a href="#tabs-3">Manzaralar</a></li>
       				<li id="howitworks"><a href="#tabs-4"><span class="g">gani</span><span class="h">HOMES</span> Nasıl Çalışır?</a></li>
       			</ul>
-      			<div class="tabcontent" id="tabs-1">        <div class="tabborder" id="GVS1">
-      			            <div class="scrollingHotSpotLeft"></div>
-      			            <div class="scrollingHotSpotRight"></div>
+      			<div class="tabcontent" id="tabs-1">
+                      <div class="tabborder" id="GVS1">
+      			            <div class="scrollingHotSpotLeft"></div><div class="scrollingHotSpotRight"></div>
       			            <div class="scrollWrapper">
-
       			                <div class="scrollableArea">
-{#                                      {% cache 10 slides1 %}#}
       			                    {% for s in slides %}
-      			                    <div class="slidiv" style="background-image: url({% thumbnail s.image 568x400 upscale crop=scale %})"><div class="sbaner alpha60"><h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div></div>
+      			                    <div class="slidiv" onmousedown="document.location='{{ s.url }}'" style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                          <div class="sbaner alpha60">
+                                          <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div>
+                                      </div>
       			                    {% endfor %}
-{#                                  {% endcache %}#}
       			                </div>
       			            </div>
-{#      			            <a onclick='$sk.smoothDivScroll("show").smoothDivScroll("startAutoScroll");' href="#"> Start</a>#}
-{#      			            -#}
-{#      			            <a onclick='$sk.smoothDivScroll("stopAutoScroll");' href="#">Stop</a>#}
-      			        </div></div>
-      			<div class="tabcontent" id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
-      			<div class="tabcontent" id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
-                  <div class="tabcontent" id="tabs-4">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+      			        </div>
+                  </div>
+      			<div class="tabcontent" id="tabs-2">
+
+                      <div class="tabborder" id="GVS2">
+      			            <div class="scrollingHotSpotLeft"></div><div class="scrollingHotSpotRight"></div>
+      			            <div class="scrollWrapper">
+      			                <div class="scrollableArea">
+      			                    {% for s in slides2 %}
+      			                    <div class="slidiv" onmousedown="document.location='{{ s.url }}'" style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                          <div class="sbaner alpha60">
+                                          <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div>
+                                      </div>
+      			                    {% endfor %}
+      			                </div>
+      			            </div>
+      			        </div>
+
+      			</div>
+      			<div class="tabcontent" id="tabs-3">
+
+                  <div class="tabborder" id="GVS3">
+  			            <div class="scrollingHotSpotLeft"></div><div class="scrollingHotSpotRight"></div>
+  			            <div class="scrollWrapper">
+  			                <div class="scrollableArea">
+  			                    {% for s in slides3 %}
+  			                    <div class="slidiv" onmousedown="document.location='{{ s.url }}'" style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                      <div class="sbaner alpha60">
+                                      <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div>
+                                  </div>
+  			                    {% endfor %}
+  			                </div>
+  			            </div>
+  			        </div>
+
+              </div>
+                  <div class="tabcontent" id="tabs-4">
+
+
+<div id="likethat">
+</div>
+                  </div>
       		</div>
 
 
@@ -56,7 +91,8 @@
     <img class="pngi" src="{{ STATIC_URL }}images/ganihomes-logo-inline.png" >
 </div>
 <div class="span-8 last">
-	The last column
+aaaa
+
 </div>
 
 <div class="span-24">
@@ -64,10 +100,12 @@
 </div>
 </div>
 <div class="piee" id="mhtabela">
-<b>Müşteri Hizmetleri</b><br>
-Pazaretesi - Cumartesi 08:00 - 19:00<br>
-232 422 42 64<br>
-info@ganihomes.com
+<div class="hdr"><b>Müşteri Hizmetleri</b></div>
+<div class="shdr">Pzts - Cmts  08:00 - 19:00</div>
+<div class="tkutu tel"> 0232<br>422<br>4264</div>
+<div class="tkutu epo">info@<br><span id="epogani">ganihomes</span><br>.com</div>
+<div class="tkutu dst">Online<br>Destek<br>Sistemi</div>
+
 </div>
     <div id="arabg_cont">
 <div id="arabg">

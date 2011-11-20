@@ -22,7 +22,7 @@ def anasayfa(request):
 #        stoklu_urunler = []
 
 
-    context = {'slides': Vitrin.get_slides(), }
+    context = {'slides': Vitrin.get_slides(), 'slides2': Vitrin.get_slides(type=1), 'slides3': Vitrin.get_slides(type=2), }
     ci = RequestContext(request)
     return render_to_response('index.html', context, context_instance=ci)
 

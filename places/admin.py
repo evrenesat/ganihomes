@@ -4,8 +4,15 @@ from django.contrib import admin
 from utils.admin import admin_register
 from models import *
 
+class PromotionCodeAdmin(admin.ModelAdmin):
+    list_display = ('id','code', 'puser', 'sender','price','percentage','expiry_date','timestamp','type','used','active')
+    search_fields = ['code', ]
+    list_filter = ['type', ]
+    raw_id_fields = ['puser','sender']
+    save_on_top = True
+
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('name', 'place', 'type')
+    list_display = ('id','name', 'place', 'type')
     search_fields = ['name', ]
     list_filter = ['type', ]
     raw_id_fields = ['place']

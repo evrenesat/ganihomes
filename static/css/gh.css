@@ -16,28 +16,45 @@
     -moz-box-shadow: #666 0px 1px 1px;
     box-shadow: #666 0px 1px 1px;
 }
+#smekle{
+    float: right;
+    text-align: right;
+    width: 180px;
+
+    font-weight: bold;
+    text-wrap: none;
+}
 #supermenu div{
     float:left;
     border-left: 1px solid #ccc;
-    border-top: 4px solid #fff;
-    border-bottom: 2px solid #fff;
+    /*border-top: 4px solid #fff;*/
+    /*border-bottom: 2px solid #fff;*/
+
     /*height: 10px;*/
+    margin-top: 4px;
     padding-left: 8px;
     padding-right: 8px;
+    font-size: 13px;
+}
+
+#supermenu {
+    width: 407px;
+    height: 27px;
+    background: url(/images/supermenu.png);
 }
 #supermenu .firstitem{
     border-left: 0;
 }
 .showcase {
     height: 450px;
-    padding: 20px;
+    padding-top: 10px;
 }
 
 #hdr {
-    background-color: #f1f1f1;
+    background-color: #f7f7f7;
     width: 100%;
     text-align: center;
-    height: 100px;
+    height: 80px;
 }
 
 #hdrContainer {
@@ -50,11 +67,14 @@
     float: left;
     padding-top: 14px;
 }
+.logo img{
+    margin-top:-12px
+}
 .logo div{
     color: #919191;
     font-size: 12px;
     letter-spacing: 7px;
-    margin-top: -10px;
+    margin-top: -12px;
     padding-left: 24px;
     padding-top: 4px;
      }
@@ -62,7 +82,7 @@
 
 .slidiv {
     width: 568px;
-    height: 400px;
+    height: 360px;;
     background: #4d4d4d no-repeat center;
     position: relative;
     display: block;
@@ -192,8 +212,8 @@ div.scrollableArea {
     margin-left:14px !important;
 }
 #GVS1 {
-    width: 98%;
-    height: 400px;
+    /*width: 98%;*/
+    /*height: 360px;*/
     position: relative;
 }
 
@@ -250,8 +270,8 @@ div.scrollableArea {
 }
 
 #tabs .ui-tabs-nav {
-    background-color: #fff !important;
-    background: url() !important;
+    background-color: #fff;
+    background: url();
     border: 0px;
     padding: 0;
 
@@ -264,10 +284,10 @@ div.scrollableArea {
 .tabcontent{
     border-radius: 0 4px 4px 4px !important;
     background-color: #ccc !important;
-    border: 10px solid #b3b3b3;
+    border: 5px solid #b3b3b3;
 }
 .tabborder{
-    border: 10px solid #4d4d4d;
+    border: 5px solid #4d4d4d;
 }
 /*#tabs-1 {*/
     /**/
@@ -276,7 +296,7 @@ div.scrollableArea {
 
 #tabs li {
     border: 0 !important;
-    border-radius: 12px 12px 0 0;
+    border-radius: 7px 7px 0 0;
     padding-left:10px;
     padding-right:10px;
     margin-bottom: 0.8px !important;
@@ -284,11 +304,33 @@ div.scrollableArea {
 
 #tabs .ui-state-active {
     background-color: #ccc !important;
-    background: url();
+    background-image: none !important;
     border: 0;
 }
 #tabli1 a{
-    margin-bottom:-10px;
+    margin-bottom:-9px;
+}
+#tabs-4{
+    background: #edba79 !important;
+    /*background: -webkit-gradient(linear, 0 0, 0 bottom, from(#feb645), to(#FDFF5C)) !important;*/
+    /*background: -webkit-linear-gradient(#FDFF5C, #feb645) !important;*/
+    /*background: -moz-linear-gradient(#FDFF5C, #feb645) !important;*/
+    /*background: -ms-linear-gradient(#FDFF5C, #feb645) !important;*/
+    /*background: -o-linear-gradient(#FDFF5C, #feb645) !important;*/
+    /*background: linear-gradient(#FDFF5C, #feb645) !important;*/
+    /*-pie-background: linear-gradient(#feb645, #FDFF5C) !important;*/
+}
+
+
+#likethat{
+    width:100%;
+    height:400px;
+    background: #fff;
+}
+
+
+#vitrin .ui-tabs-panel{
+    /*padding:7px 10px 5px 10px;*/
 }
 .g{
     font-family: "Pinyon Script", Sans;
@@ -310,8 +352,8 @@ div.scrollableArea {
 #arabar{
 
     background-color:#b3b3b3;
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     width: 100%;
 }
 
@@ -326,12 +368,12 @@ div.scrollableArea {
 #araf{
     background-color:#fff;
     border:1px solid #ccc;
-    -moz-border-radius: 12px;
-    -webkit-border-radius: 12px;
-    border-radius: 12px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
 
     height:40px;
-    width:700px;
+    width:675px;
     padding-left:10px;
     padding-right:10px;
     position: relative;
@@ -352,19 +394,57 @@ div.scrollableArea {
 
 #mhtabela{
     display:none;
-    width:170px;
+    width:200px;
     position: absolute;
-    height: 90px;
-    padding: 10px;
-    border:3px solid orange;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
-    background-color: #fff;
-    -webkit-box-shadow: #666 0px 2px 3px;
-    -moz-box-shadow: #666 0px 2px 3px;
-    box-shadow: #666 0px 2px 3px;
+    height: 100px;
+    padding: 0;
+    margin: 0;
+    background-color: #b3b3b3;
+    /*border:3px solid #d4d4d4;*/
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    color:#fff;
+    /*-webkit-box-shadow: #666 0px 2px 3px;*/
+    /*-moz-box-shadow: #666 0px 2px 3px;*/
+    /*box-shadow: #666 0px 2px 3px;*/
+    text-align: center;
 }
+#mhtabela .hdr{
+    margin-left:auto;
+    margin-right: auto;
+    /*margin-top:-10px;*/
+    width:140px;
+    font-weight: bold;
+    font-size:13px;
+}
+#mhtabela #epogani{
+    font-size:12px !important;
+}
+#mhtabela .shdr{
+    margin-top:-2px;
+    margin-bottom: 4px;
+}
+#mhtabela .tkutu{
+    background-position: top center !important;
+    padding-top:30px;
+    float:left;
+    width: 32%;
+    line-height:100%;
+    font-size: 13px;
+    font-weight: bold;
+}
+#mhtabela .tel{
+    background: url(/images/icon/telb.png) no-repeat;
+}
+
+#mhtabela .epo{
+    background: url(/images/icon/epob.png) no-repeat;;
+}
+#mhtabela .dst{
+    background: url(/images/icon/dstb.png) no-repeat;;
+}
+
 
 #aramsj{
     font-size:14px;
@@ -381,9 +461,9 @@ div.scrollableArea {
 #arabg{
     padding: 10px;
     border:1px solid #ccc;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
     background-color: #fff;
     -webkit-box-shadow: #666 0px 3px 3px;
     -moz-box-shadow: #666 0px 3px 3px;
@@ -396,4 +476,32 @@ div.scrollableArea {
     z-index: 4;
     padding-top:20px;
     /*display: none;*/
+}
+
+#footercont{
+    background-color:#c8c8c8;
+    height: 17px;
+    width: 100%;
+    position:relative;
+    margin-top:40px;
+}
+
+#footer{
+    text-align: center;
+    padding-top: 8px;
+    position:relative;
+    top: -19px;
+    color:#fff;
+    font-size:16px;
+    background-color:#c8c8c8;
+    /*background-color:#b3b3b3;*/
+    margin-left:auto;
+    margin-right:auto;
+    height: 22px;
+    width:900px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+
+
 }
