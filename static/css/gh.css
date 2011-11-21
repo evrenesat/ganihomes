@@ -72,8 +72,9 @@
 }
 .logo div{
     color: #919191;
-    font-size: 12px;
-    letter-spacing: 7px;
+    font-size: 14px !important;
+    font-weight: bold;
+    letter-spacing: 5px;
     margin-top: -12px;
     padding-left: 24px;
     padding-top: 4px;
@@ -379,7 +380,19 @@ div.scrollableArea {
     position: relative;
     z-index: 10;
 }
-#araf input{
+
+#aradugme{
+    background-color:#fff;
+    border:1px solid #ccc;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-topright: 8px;
+    -webkit-border-radius-bottomright: 8px;
+    -webkit-border-radius-topright: 8px;
+    border-radius-bottomright: 8px;
+    border-radius-topright: 8px;
+}
+
+#arain{
     font-size: 22px;
     font-weight: bold;
     color: #979a9e;
@@ -391,7 +404,9 @@ div.scrollableArea {
     background-position:0px 5px;
     padding-left:50px;
 }
-
+.ui-autocomplete{
+    width:300px !important;
+}
 #mhtabela{
     display:none;
     width:200px;
@@ -468,7 +483,7 @@ div.scrollableArea {
     -webkit-box-shadow: #666 0px 3px 3px;
     -moz-box-shadow: #666 0px 3px 3px;
     box-shadow: #666 0px 3px 3px;
-    width: 710px;
+    width: 690px;
     height: 220px;
     position: relative;
     left:0;

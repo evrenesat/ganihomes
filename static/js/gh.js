@@ -15,6 +15,7 @@ gh = {
         self.sks = {}
         $('#arabg').fadeTo('fast',.5)
         self.doRePlacements();
+        self.otoTamamla('arain')
         $(window).resize(function () { self.doRePlacements() });
         $('#araf input').focus(function () { self.akToggle(0) });
         $('html').click(function () { self.akToggle(1) });
@@ -87,6 +88,35 @@ gh = {
         var ntop= sof.top + off_top, nleft = sof.left + off_left;
         trg.css({top:ntop, left: nleft});
 //        if (typeof(debug) != 'undefined') this.bas(['sof.left ', sof.left, ' sof.top ', sof.top, ' off_left ', off_left, ' off_top ', off_top, ' trg.left ', trg.css('left'), ' trg.top ',trg.css('top'), 'ntop',ntop, 'nleft',nleft])
+    },
+    otoTamamla: function(id){
+        var availableTags = [
+            "İzmir",
+            "İstanbul",
+            "Ankara",
+            "Antalya",
+            "New York",
+            "Madrid",
+            "Londra",
+            "Kıbrıs",
+            "Aydın",
+            "Manisa",
+            "Karşıyaka, İzmir, Türkiye",
+            "Bornova, İzmir, Türkiye",
+            "Alsancak, İzmir, Türkiye",
+            "Taksim, İstanbul, Türkiye",
+            "Bursa",
+            "Denizli",
+            "Konya",
+            "Avusturalya",
+            "Amerika Birleşik Devletleri",
+            "Hollanda",
+            "İspanya",
+            "Rusya"
+        ];
+        $( "#"+id ).autocomplete({
+            source: availableTags
+        });
     }
 };
 

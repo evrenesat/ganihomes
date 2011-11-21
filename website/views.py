@@ -5,6 +5,7 @@ from django.template.context import RequestContext
 from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
+from places.models import Place
 from website.models.icerik import Sayfa, Haber, Vitrin
 from django.http import HttpResponseRedirect
 from website.models.medya import Medya
@@ -13,18 +14,18 @@ from django.contrib import messages
 def anasayfa(request):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
-#    try:
-#        stoklu_urunler = [{'ad': u.al_baslik(lang), 'url': u.al_url(lang),
-#                           'tanim': u.al_icerik(lang).tanim,
-#                           'foto': u.gorseller()}
-#                          for u in Urun.stoklu.all()]
-#    except:
-#        stoklu_urunler = []
+    context = {'slides': Vitrin.get_slides(), 'slides2': Vitrin.get_slides(type=1),
+               'slides3': Vitrin.get_slides(type=2), }
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
+class addPlaceForm(ModelForm):
+    model = Place
 
-    context = {'slides': Vitrin.get_slides(), 'slides2': Vitrin.get_slides(type=1), 'slides3': Vitrin.get_slides(type=2), }
-    ci = RequestContext(request)
-    return render_to_response('index.html', context, context_instance=ci)
+def addPlace(request):
+    sayfa = Sayfa.al_anasayfa()
+    lang = request.LANGUAGE_CODE
+    context = { }
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
 #def bannerxml(request, tip):
