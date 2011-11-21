@@ -1,16 +1,24 @@
 {% extends "base.html" %}
-{% load  thumbnail%}
+{% load  thumbnail %}
 {% block extrajs %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
-<script type="text/javascript">$(window).ready(function () {gh.index_init()}) </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
+    <script type="text/javascript">$(window).ready(function () {
+        gh.index_init()
+    }) </script>
 {% endblock %}
 {% block header %}
     <div id="arabar">
-    <div id="arakutu">
-        <div id="aramsj"> Türkiye'den ve dünyadan yüzlerce  kiralık mekandan size uygun olanını bulmak için buradan başlayın;</div>
-        <div id="araf"><input id="arain" type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz" onfocus="this.select()" />
+        <div id="arakutu">
+            <div id="aramsj"> Türkiye'den ve dünyadan yüzlerce kiralık mekandan size uygun olanını bulmak için buradan
+                başlayın;
+            </div>
+            <div id="araf">
+                <input id="arainput" type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz"
+                       onfocus="this.value=''"/>
+
+                <div id="aradugme"><span>&nbsp; Ara &nbsp;</span></div>
+            </div>
         </div>
-    </div>
     </div>
 {% endblock %}
 {% block content %}
@@ -18,106 +26,128 @@
     <div id="vitrin" class="span-24 showcase">
 
 
-      		<div id="tabs">
-      			<ul>
-      				<li class="gritab" id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span class="h">VİTRİN</span></a></li>
-      				<li class="gritab"><a href="#tabs-2">İç Mekanlar</a></li>
-      				<li class="gritab"><a href="#tabs-3">Manzaralar</a></li>
-      				<li id="howitworks"><a href="#tabs-4"><span class="g">gani</span><span class="h">HOMES</span> Nasıl Çalışır?</a></li>
-      			</ul>
-      			<div class="tabcontent" id="tabs-1">
-                      <div class="tabborder" id="GVS1">
-      			            <div class="scrollingHotSpotLeft"></div><div class="scrollingHotSpotRight"></div>
-      			            <div class="scrollWrapper">
-      			                <div class="scrollableArea">
-      			                    {% for s in slides %}
-      			                    <div class="slidiv" onmousedown="document.location='{{ s.url }}'" style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                          <div class="sbaner alpha60">
-                                          <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div>
-                                      </div>
-      			                    {% endfor %}
-      			                </div>
-      			            </div>
-      			        </div>
-                  </div>
-      			<div class="tabcontent" id="tabs-2">
+        <div id="tabs">
+            <ul>
+                <li class="gritab" id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span
+                        class="h">VİTRİN</span></a></li>
+                <li class="gritab"><a href="#tabs-2">İç Mekanlar</a></li>
+                <li class="gritab"><a href="#tabs-3">Manzaralar</a></li>
+                <li id="howitworks"><a href="#tabs-4">
+                    <div class="inlinelogo logo-basta">Nasıl Çalışır?</div>
+                </a></li>
+            </ul>
+            <div class="tabcontent" id="tabs-1">
+                <div class="tabborder" id="GVS1">
+                    <div class="scrollingHotSpotLeft"></div>
+                    <div class="scrollingHotSpotRight"></div>
+                    <div class="scrollWrapper">
+                        <div class="scrollableArea">
+                            {% for s in slides %}
+                                {% if not s.thumbs %}
+                                    <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
+                                         style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                        <div class="sbaner alpha60">
+                                            <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                                        </div>
+                                    </div>
+                                {% else %}
 
-                      <div class="tabborder" id="GVS2">
-      			            <div class="scrollingHotSpotLeft"></div><div class="scrollingHotSpotRight"></div>
-      			            <div class="scrollWrapper">
-      			                <div class="scrollableArea">
-      			                    {% for s in slides2 %}
-      			                    <div class="slidiv" onmousedown="document.location='{{ s.url }}'" style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                          <div class="sbaner alpha60">
-                                          <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div>
-                                      </div>
-      			                    {% endfor %}
-      			                </div>
-      			            </div>
-      			        </div>
+                                    <div class="slidiv slidiv-thumb" onmouseclick="document.location='{{ s.url }}'">
+                                        {#                                          {{ s.photos }}#}
+                                        {% for photo in s.photos %}
+                                            <div class="thumbphoto"
+                                                 style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                                        {% endfor %}
+                                        <div class="sbaner alpha60">
+                                            <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabcontent" id="tabs-2">
 
-      			</div>
-      			<div class="tabcontent" id="tabs-3">
+                <div class="tabborder" id="GVS2">
+                    <div class="scrollingHotSpotLeft"></div>
+                    <div class="scrollingHotSpotRight"></div>
+                    <div class="scrollWrapper">
+                        <div class="scrollableArea">
+                            {% for s in slides2 %}
+                                <div class="slidiv" onmousedown="document.location='{{ s.url }}'"
+                                     style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                    <div class="sbaner alpha60">
+                                        <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
 
-                  <div class="tabborder" id="GVS3">
-  			            <div class="scrollingHotSpotLeft"></div><div class="scrollingHotSpotRight"></div>
-  			            <div class="scrollWrapper">
-  			                <div class="scrollableArea">
-  			                    {% for s in slides3 %}
-  			                    <div class="slidiv" onmousedown="document.location='{{ s.url }}'" style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                      <div class="sbaner alpha60">
-                                      <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah</div>
-                                  </div>
-  			                    {% endfor %}
-  			                </div>
-  			            </div>
-  			        </div>
+            </div>
+            <div class="tabcontent" id="tabs-3">
 
-              </div>
-                  <div class="tabcontent" id="tabs-4">
+                <div class="tabborder" id="GVS3">
+                    <div class="scrollingHotSpotLeft"></div>
+                    <div class="scrollingHotSpotRight"></div>
+                    <div class="scrollWrapper">
+                        <div class="scrollableArea">
+                            {% for s in slides3 %}
+                                <div class="slidiv" onmousedown="document.location='{{ s.url }}'"
+                                     style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                    <div class="sbaner alpha60">
+                                        <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tabcontent" id="tabs-4">
 
 
-<div id="likethat">
-</div>
-                  </div>
-      		</div>
+                <div id="likethat">
+                </div>
+            </div>
+        </div>
 
 
+    </div>
+    <div class="span-15 thetest align-center">
+        <img class="pngi" src="{{ STATIC_URL }}images/ganihomes-logo-inline.png">
+    </div>
+    <div class="span-8  thetest last align-center">
+    ssss
+
+    </div>
 
 
 
     </div>
-<div class="span-16 thetest" >
-    <img class="pngi" src="{{ STATIC_URL }}images/ganihomes-logo-inline.png" >
-</div>
-<div class="span-8 last">
-aaaa
+    <div class="piee" id="mhtabela">
+        <div class="hdr"><b>Müşteri Hizmetleri</b></div>
+        <div class="shdr">Pzts - Cmts 08:00 - 19:00</div>
+        <div class="tkutu tel"> 0232<br>422<br>4264</div>
+        <div class="tkutu epo">info@<br><span id="epogani">ganihomes</span><br>.com</div>
+        <div class="tkutu dst">Online<br>Destek<br>Sistemi</div>
 
-</div>
-
-<div class="span-24">
-	The footer
-</div>
-</div>
-<div class="piee" id="mhtabela">
-<div class="hdr"><b>Müşteri Hizmetleri</b></div>
-<div class="shdr">Pzts - Cmts  08:00 - 19:00</div>
-<div class="tkutu tel"> 0232<br>422<br>4264</div>
-<div class="tkutu epo">info@<br><span id="epogani">ganihomes</span><br>.com</div>
-<div class="tkutu dst">Online<br>Destek<br>Sistemi</div>
-
-</div>
+    </div>
     <div id="arabg_cont">
-<div id="arabg">
-<div id="araoneri">
-    <ul>
-        <li>İzmir</li>
-        <li>İstanbul</li>
-        <li>Ankara</li>
-        <li>Antalya</li>
-    </ul>
-</div>
-<div id="aradetay"></div>
-</div>
+        <div id="arabg">
+            <div id="araoneri">
+{#                <ul>#}
+{#                    <li>İzmir</li>#}
+{#                    <li>İstanbul</li>#}
+{#                    <li>Ankara</li>#}
+{#                    <li>Antalya</li>#}
+{#                </ul>#}
+            </div>
+            <div id="aradetay"></div>
+        </div>
     </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 
 DEFAULT_STORAGE = 'easy_thumbnails.storage.ThumbnailFileSystemStorage'
 MEDIA_ROOT = ''

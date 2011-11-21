@@ -258,6 +258,7 @@ class Vitrin(models.Model):
     gorsel = models.ImageField(u"Vitrin Görseli", upload_to='vitrin', null=True, blank=True)
     type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
     active = models.BooleanField(u"Yayında", default=True)
+    thumbs = models.BooleanField(u"Küçük Resimler Yap", default=False)
     tops = models.BooleanField(u"Favori", default=False, help_text=_(u'Sadece favori olarak seçilen ögeler ana vitrinde gösterilir.'))
     url = models.CharField(u"URL", max_length=100, help_text=u"İsteğe Bağlı. Tıklanınca gidilecek url. ",null=True,blank=True)
 #    icerik = models.TextField(u'İçerik',help_text=u"İsteğe Bağlı. Buraya gireceğiniz HTML içerik slaytın üzerinde gösterilir.", null=True, blank=True,)
@@ -273,6 +274,9 @@ class Vitrin(models.Model):
 
     def image(self):
         return self.gorsel or self.place_photo.image
+
+    def photos(self):
+        return self.image() if not self.thumbs else self.place.photo_set.all()[:4]
 
     @classmethod
     def get_slides(cls, lang=None, type=None):

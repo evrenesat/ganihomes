@@ -3,11 +3,14 @@ gh = {
         $('#arabg').prepend(m + '<br>')
     },
     init: function(){
-        var usableHeight = $(window).height();
-        if (usableHeight>610){
-            $('#hdr').css({height:'90px'})
-            $('.logo div').css({marginTop:'-6px'})
-        }
+        var usableHeight = $(window).height(), hdr_h = 0, logo_pad=0, sc_pad=0;
+
+        if (usableHeight>800)hdr_h = 110, logo_pad=-6,sc_pad=20;
+        else if (usableHeight>610)  hdr_h = 90, logo_pad=-6;
+
+        if(hdr_h)$('#hdr').css({height: hdr_h + 'px'})
+        if(logo_pad)$('.logo div').css({marginTop: logo_pad + 'px'})
+        if(sc_pad)$('.showcase').css({paddingTop: sc_pad + 'px'})
     },
     index_init:function () {
         var self = this;
@@ -15,7 +18,7 @@ gh = {
         self.sks = {}
         $('#arabg').fadeTo('fast',.5)
         self.doRePlacements();
-        self.otoTamamla('arain')
+//        self.otoTamamla('arainput')
         $(window).resize(function () { self.doRePlacements() });
         $('#araf input').focus(function () { self.akToggle(0) });
         $('html').click(function () { self.akToggle(1) });

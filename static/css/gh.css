@@ -80,6 +80,24 @@
     padding-top: 4px;
      }
 
+.thumbphoto{
+    width:270px;
+    height:170px;
+    float:left;
+    background: #4d4d4d no-repeat center;
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 5px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.slidiv-thumb{
+    background-color: #000 !important;
+}
 
 .slidiv {
     width: 568px;
@@ -89,7 +107,7 @@
     display: block;
     float: left;
     padding: 0;
-    margin: 0 5px 0 0;
+    margin: 0 5px 0 14px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -133,7 +151,7 @@ div.scrollingHotSpotLeft {
     background-repeat: repeat;
     background-position: center center;
     position: absolute;
-    z-index: 200;
+    z-index: 2;
     left: 0;
     /*  The first cursor url is for Firefox and other
          browsers, the second is for Internet Explorer */
@@ -166,7 +184,7 @@ div.scrollingHotSpotRight {
     background-repeat: repeat;
     background-position: center center;
     position: absolute;
-    z-index: 200;
+    z-index: 2;
     right: 0;
     cursor: url(../images/cursors/cursor_arrow_right.cur), url(../images/cursors/cursor_arrow_right.cur), e-resize;
 }
@@ -209,64 +227,60 @@ div.scrollableArea {
     /*padding: 0;*/
     /*margin: 0;*/
 /*}*/
-.slidiv{
-    margin-left:14px !important;
-}
+
+
+
 #GVS1 {
     /*width: 98%;*/
     /*height: 360px;*/
     position: relative;
 }
 
+
 #howitworks {
     float: right !important;
-    /*background: #feb645;*/
-    /*background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlYjY0NSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iI2YxZTc2NyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);*/
-    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#feb645', endColorstr = '#f1e767', GradientType = 0);*/
-    background: #feb645;
-    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#feb645), to(#FDFF5C));
-    background: -webkit-linear-gradient(#feb645, #FDFF5C);
-    background: -moz-linear-gradient(#feb645, #FDFF5C);
-    background: -ms-linear-gradient(#feb645, #FDFF5C);
-    background: -o-linear-gradient(#feb645, #FDFF5C);
-    background: linear-gradient(#feb645, #FDFF5C);
-    -pie-background: linear-gradient(#feb645, #FDFF5C);
-
+    background: url(/images/grd-trunc-1.png);
     height: 30px;
-    width: 300px;
-    top:0.9px;
-
-
+    width: 290px;
+    top:1px;
+}
+.inlinelogo{
+    background: url(/images/logo-inline-sb.png) no-repeat ;
+    background-position: 2px;
+    height:35px;
 }
 
-#ghlogo{
-    background: url(/images/ganihomes-logo-inline.png) no-repeat;
-    width:225px;
-    height: 40px;
-    position: relative;
-    z-index: 1111;
+.logo-basta{
+    padding-left:135px;
 }
+
+
+/*#ghlogo{*/
+    /*background: url(/images/ganihomes-logo-inline.png) no-repeat;*/
+    /*width:225px;*/
+    /*height: 40px;*/
+    /*position: relative;*/
+    /*z-index: 1111;*/
+/*}*/
 
 .thetest {
     border-radius: 14px;
-    width: 300px;
+    /*width: 300px;*/
     height: 200px;
-    border: 2px #ccc solid;
-    margin-top:20px;
+    border: 1px #ccc solid;
+    /*margin-top:20px;*/
 }
 
 
-#howitworks a {
-    margin: -7px 0 0 0;
-}
 
 #howitworks a {
+    padding:0;
     color: #ffffff !important;
     font-weight: bold;
-    text-shadow: 1px 1px 0.9px #0a0a0a;
+    text-shadow: 1px 0.4px 1px #c7430a;
     /*filter: dropshadow(color = #cccccc, offx = 2, offy = 2);*/
     font-size: 20px;
-    margin-right: 0px;
+    /*margin-right: 0px;*/
 
 }
 
@@ -283,7 +297,7 @@ div.scrollableArea {
 
 }
 .tabcontent{
-    border-radius: 0 4px 4px 4px !important;
+    border-radius: 4px !important;
     background-color: #ccc !important;
     border: 5px solid #b3b3b3;
 }
@@ -312,20 +326,14 @@ div.scrollableArea {
     margin-bottom:-9px;
 }
 #tabs-4{
-    background: #edba79 !important;
-    /*background: -webkit-gradient(linear, 0 0, 0 bottom, from(#feb645), to(#FDFF5C)) !important;*/
-    /*background: -webkit-linear-gradient(#FDFF5C, #feb645) !important;*/
-    /*background: -moz-linear-gradient(#FDFF5C, #feb645) !important;*/
-    /*background: -ms-linear-gradient(#FDFF5C, #feb645) !important;*/
-    /*background: -o-linear-gradient(#FDFF5C, #feb645) !important;*/
-    /*background: linear-gradient(#FDFF5C, #feb645) !important;*/
-    /*-pie-background: linear-gradient(#feb645, #FDFF5C) !important;*/
+    background-color: #fff !important;
+    background-image: url(/images/grd-trunc-ysl-byz.png);
 }
 
 
 #likethat{
     width:100%;
-    height:400px;
+    height:375px;
     background: #fff;
 }
 
@@ -368,7 +376,7 @@ div.scrollableArea {
 
 #araf{
     background-color:#fff;
-    border:1px solid #ccc;
+    border:1px solid #b3b3b3;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -376,27 +384,44 @@ div.scrollableArea {
     height:40px;
     width:675px;
     padding-left:10px;
-    padding-right:10px;
+    /*margin-right:-2px;*/
+
     position: relative;
     z-index: 10;
 }
 
 #aradugme{
-    background-color:#fff;
-    border:1px solid #ccc;
-    -moz-border-radius-bottomright: 8px;
-    -moz-border-radius-topright: 8px;
-    -webkit-border-radius-bottomright: 8px;
-    -webkit-border-radius-topright: 8px;
-    border-radius-bottomright: 8px;
-    border-radius-topright: 8px;
+    float:right;
+    height:40px;
+    /*border:1px solid green;*/
+    background-color: #d8ff9d;
+    font-size:20px;
+    font-weight: bold;
+    text-align: center;
+    padding-left:14px;
+    padding-right:14px;
+    -moz-border-radius-bottomright: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: url(/images/grd-yesil-1.png);
+    text-shadow: 1px 1px 0.4px #ccc;
+}
+#aradugme span{
+
+    position:relative;
+    top:5px;
+    color:green;
 }
 
-#arain{
-    font-size: 22px;
+#arainput{
+    font-size: 21px;
+    letter-spacing: -2px;
     font-weight: bold;
     color: #979a9e;
-    width:90%;
+    width:70%;
     background-color:#fff;
     border:0;
     height: 38px;
@@ -475,11 +500,11 @@ div.scrollableArea {
 }
 #arabg{
     padding: 10px;
-    border:1px solid #ccc;
+    /*border:1px solid #ccc;*/
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
-    background-color: #fff;
+    background-color: #b3b3b3;
     -webkit-box-shadow: #666 0px 3px 3px;
     -moz-box-shadow: #666 0px 3px 3px;
     box-shadow: #666 0px 3px 3px;
@@ -519,4 +544,8 @@ div.scrollableArea {
     border-radius: 7px;
 
 
+}
+
+.align-center{
+    text-align:center;
 }
