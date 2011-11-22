@@ -1,35 +1,46 @@
 gh = {
-    bas : function(m){
+    bas:function (m) {
         $('#arabg').prepend(m + '<br>')
     },
-    init: function(){
-        var usableHeight = $(window).height(), hdr_h = 0, logo_pad=0, sc_pad=0;
+    init:function () {
+        var usableHeight = $(window).height(), hdr_h = 0, logo_pad = 0, sc_pad = 0;
 
-        if (usableHeight>800)hdr_h = 110, logo_pad=-6,sc_pad=20;
-        else if (usableHeight>610)  hdr_h = 90, logo_pad=-6;
+        if (usableHeight > 800)hdr_h = 110, logo_pad = -6, sc_pad = 20;
+        else if (usableHeight > 610)  hdr_h = 90, logo_pad = -6;
 
-        if(hdr_h)$('#hdr').css({height: hdr_h + 'px'})
-        if(logo_pad)$('.logo div').css({marginTop: logo_pad + 'px'})
-        if(sc_pad)$('.showcase').css({paddingTop: sc_pad + 'px'})
+        if (hdr_h)$('#hdr').css({height:hdr_h + 'px'})
+        if (logo_pad)$('.logo div').css({marginTop:logo_pad + 'px'})
+        if (sc_pad)$('.showcase').css({paddingTop:sc_pad + 'px'})
     },
     index_init:function () {
         var self = this;
         self.akGorunur = 0
         self.sks = {}
-        $('#arabg').fadeTo('fast',.5)
+        $('#arabg').fadeTo('fast', .5)
         self.doRePlacements();
-//        self.otoTamamla('arainput')
-        $(window).resize(function () { self.doRePlacements() });
-        $('#araf input').focus(function () { self.akToggle(0) });
-        $('html').click(function () { self.akToggle(1) });
-        $('#araf, #arabg_cont').click(function(event){event.stopPropagation();})
-        $('#howitworks a').click(function(){$('#howitworks').removeClass('ui-state-active');})
-        $('.slidiv').mouseenter(function(){
-            sld=$(this)
+        self.otoTamamla('arainput')
+        $(window).resize(function () {
+            self.doRePlacements()
+        });
+        $('#araf input').focus(function () {
+            self.akToggle(0)
+        });
+        $('html').click(function () {
+            self.akToggle(1)
+        });
+        $('#araf, #arabg_cont').click(function (event) {
+            event.stopPropagation();
+        })
+        $('#howitworks a').click(function () {
+            $('#howitworks').removeClass('ui-state-active');
+        })
+        $('.slidiv').mouseenter(
+            function () {
+                sld = $(this)
 //            console.log(sld.index()+1)
 //            sld.parents('.tabborder').smoothDivScroll("moveToElement", "number", sld.index()+1);
-            sld.find('.sbaner').animate({height:'110px'});
-        }).mouseleave(function(){
+                sld.find('.sbaner').animate({height:'110px'});
+            }).mouseleave(function () {
                 $(this).find('.sbaner').animate({height:'40px'})
             });
         self.makeScroller('GVS1')
@@ -38,8 +49,8 @@ gh = {
     },
     makeScroller:function (container_id, hidden) {
         if (typeof(hidden) == 'undefined') hidden = false;
-        var sk = $('#'+container_id);
-        this.sks[container_id]=sk
+        var sk = $('#' + container_id);
+        this.sks[container_id] = sk
         sk.smoothDivScroll({
             hiddenOnStart:hidden,
             autoScroll:"", //"onstart" ,
@@ -68,11 +79,11 @@ gh = {
         if (typeof(gorunurluk) != 'undefined') self.akGorunur = gorunurluk;
         if (self.akGorunur == 0) {
             akCont.show('fast', function () {
-                ak.animate({top:'0'}, { "duration":"fast" }).fadeTo('fast',1)
+                ak.animate({top:'0'}, { "duration":"fast" }).fadeTo('fast', 1)
             });
             self.akGorunur = 1;
         } else {
-            ak.fadeTo('fast',.5,function () {
+            ak.fadeTo('fast', .5, function () {
                 akCont.hide();
                 ak.css({top:'-477px'});
             })
@@ -87,12 +98,12 @@ gh = {
     rePlace:function (src_id, trg_id, off_left, off_top, show) {
         // re-place the target object relatively to src object.
         var trg = $(trg_id), sof = $(src_id).offset();
-        if (typeof(show) != 'undefined' && show==1) trg.fadeIn('fast');
-        var ntop= sof.top + off_top, nleft = sof.left + off_left;
-        trg.css({top:ntop, left: nleft});
+        if (typeof(show) != 'undefined' && show == 1) trg.fadeIn('fast');
+        var ntop = sof.top + off_top, nleft = sof.left + off_left;
+        trg.css({top:ntop, left:nleft});
 //        if (typeof(debug) != 'undefined') this.bas(['sof.left ', sof.left, ' sof.top ', sof.top, ' off_left ', off_left, ' off_top ', off_top, ' trg.left ', trg.css('left'), ' trg.top ',trg.css('top'), 'ntop',ntop, 'nleft',nleft])
     },
-    otoTamamla: function(id){
+    otoTamamla:function (id) {
         var availableTags = [
             "İzmir",
             "İstanbul",
@@ -117,8 +128,9 @@ gh = {
             "İspanya",
             "Rusya"
         ];
-        $( "#"+id ).autocomplete({
-            source: availableTags
+        it='';
+        ak=$("#" + id).autocomplete({
+            source:availableTags, appendTo:'#araoneri',focus: function(event, ui) {$('#araoneri').scrollTo($("#araoneri li:contains("+ui.item.value+")'"));}
         });
     }
 };
