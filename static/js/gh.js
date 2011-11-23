@@ -104,6 +104,7 @@ gh = {
 //        if (typeof(debug) != 'undefined') this.bas(['sof.left ', sof.left, ' sof.top ', sof.top, ' off_left ', off_left, ' off_top ', off_top, ' trg.left ', trg.css('left'), ' trg.top ',trg.css('top'), 'ntop',ntop, 'nleft',nleft])
     },
     otoTamamla:function (id) {
+        self = this
         var availableTags = [
             "İzmir",
             "İstanbul",
@@ -129,9 +130,8 @@ gh = {
             "Rusya"
         ];
         it='';
-        ak=$("#" + id).autocomplete({
-            source:availableTags, appendTo:'#araoneri',focus: function(event, ui) {$('#araoneri').scrollTo($("#araoneri li:contains("+ui.item.value+")'"));}
-        });
+        $("#" + id).autocomplete({minLength: 3, source:availableTags, appendTo:'#araoneri'});
+
     }
 };
 
@@ -144,3 +144,13 @@ $(window).ready(function () {
         });
     }
 })
+
+//
+//,focus: function(event, ui) {
+//                   console.log($("#araoneri li").length)
+//                   focitem=$("#araoneri li:contains("+ui.item.value+")'").index();
+//                   console.log(focitem)
+//                   if(focitem < 1)focitem = 1;
+//   //                console.log(focitem)
+//                   $('#araoneri').scrollTo('ul li:eq('+ focitem +')');
+//               }

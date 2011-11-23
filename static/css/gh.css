@@ -552,6 +552,7 @@ div.scrollableArea {
     color: #fff;
     font-size: 12px;
     border-bottom: #ccc 1px solid;
+    margin-bottom: 6px;
 }
 
 .vsplit {
