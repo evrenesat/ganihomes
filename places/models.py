@@ -167,7 +167,7 @@ class Place(models.Model):
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
-
+    lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
 
 
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True)

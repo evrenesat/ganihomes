@@ -7,9 +7,9 @@ gh = {
         if (usableHeight > 800)hdr_h = 110, logo_pad = -6, sc_pad = 20;
         else if (usableHeight > 610)  hdr_h = 90, logo_pad = -6;
 
-        if (hdr_h)$('#hdr').css({height:hdr_h + 'px'})
-        if (logo_pad)$('.logo div').css({marginTop:logo_pad + 'px'})
-        if (sc_pad)$('.showcase').css({paddingTop:sc_pad + 'px'})
+//        if (hdr_h)$('#hdr').css({height:hdr_h + 'px'})
+//        if (logo_pad)$('.logo div').css({marginTop:logo_pad + 'px'})
+//        if (sc_pad)$('.showcase').css({paddingTop:sc_pad + 'px'})
         $('#smekle').click(function(){document.location='/add_place/'})
     },
     index_init:function () {
@@ -103,7 +103,7 @@ gh = {
     },
     doRePlacements:function () {
         var self = this
-        self.rePlace('#araf', '#mhtabela', 720, -65, 1);
+//        self.rePlace('#araf', '#mhtabela', 720, -65, 1);
         self.rePlace('#araf', '#arabg_cont', -7, 20);
     },
     rePlace:function (src_id, trg_id, off_left, off_top, show) {

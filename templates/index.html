@@ -6,19 +6,30 @@
         gh.index_init()
     }) </script>
 {% endblock %}
+{% block hdrclass %}hdrbgindex{% endblock %}
 {% block header %}
     <div id="arabar">
         <div id="arakutu">
             <div id="aramsj"> Türkiye'den ve dünyadan yüzlerce kiralık mekandan size uygun olanını bulmak için buradan
                 başlayın;
-            </div>
-            <div id="araf">
-                <input id="arainput" type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz"
-                       onfocus="this.value=''"/>
+                <div id="araf">
+                    <input id="arainput" type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz"
+                           onfocus="this.value=''"/>
 
-                <div id="aradugme"><span>&nbsp; Ara &nbsp;</span></div>
+                    <div id="aradugme"><span>&nbsp; Ara &nbsp;</span></div>
+                </div>
+            </div>
+
+            <div id="mhtabela">
+                <div class="hdr"><b>Müşteri Hizmetleri</b></div>
+                <div class="shdr">Pzts - Cmts 08:00 - 19:00</div>
+                <div class="tkutu tel"> 0232 4224264</div>
+{#                <div class="tkutu epo">info@</div>#}
+                <div class="tkutu dst"><span>Online Soru Sorun</span></div>
+
             </div>
         </div>
+
     </div>
 {% endblock %}
 {% block content %}
@@ -129,14 +140,7 @@
 
 
     </div>
-    <div class="piee" id="mhtabela">
-        <div class="hdr"><b>Müşteri Hizmetleri</b></div>
-        <div class="shdr">Pzts - Cmts 08:00 - 19:00</div>
-        <div class="tkutu tel"> 0232<br>422<br>4264</div>
-        <div class="tkutu epo">info@<br><span id="epogani">ganihomes</span><br>.com</div>
-        <div class="tkutu dst">Online<br>Destek<br>Sistemi</div>
 
-    </div>
     <div id="arabg_cont">
         <div id="arabg">
             <div id="araoneri">
