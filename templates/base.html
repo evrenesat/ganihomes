@@ -23,7 +23,7 @@
 {% block extrajs %} {% endblock %}
 {#<script type="text/javascript">$(document).ready(function(){ $(document).pngFix(); });</script>#}
 </head><body>
-<div id="hdr">
+<div id="hdr" class="{% block hdrclass%}{% endblock %}">
     <div id="hdrContainer">
               <div class="logo">
                   <a href="/"><img src="{{ STATIC_URL }}images/logob.png"></a>
@@ -45,6 +45,7 @@
     {% block content %}
 
     {% endblock  %}
+  </div>
 <div id="footercont">
 <div id="footer">
     Yardım | İletişim | GaniHomes Hakkında | Gizlilik İlkelerimiz

@@ -28,6 +28,7 @@ urlpatterns += patterns('website.views',
     (r'mesaj_goster/$', 'mesaj_goster',{} , 'mesaj_goster'),
 #    (r'banner/anasayfa.xml$', 'bannerxml',{'tip':1} , 'bannerxml'),
 #    (r'banner/altsayfa.xml$', 'bannerxml',{'tip':2} , 'bannerxml'),
+    (r'^add_place/$', 'addPlace', {}, 'add_place'),
     (r'^/?$', 'anasayfa', {}, 'anasayfa'),
     (r'^news/(?P<slug>[-\w]+)/(?P<id>\d+)/$', 'haber_goster',{} , 'haber_goster'),
 )

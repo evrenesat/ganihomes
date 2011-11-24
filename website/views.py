@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.forms.models import ModelForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
@@ -6,26 +7,45 @@ from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
 from places.models import Place
+from places.options import n_tuple, PLACE_TYPES
 from website.models.icerik import Sayfa, Haber, Vitrin
 from django.http import HttpResponseRedirect
 from website.models.medya import Medya
 from django.contrib import messages
 
+class SearchForm(forms.Form):
+    noOfBeds=n_tuple(7, first=[(0,u'--')])
+    placeTypes = [(0,u'--')] + PLACE_TYPES
+    checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
+    checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
+    search_pharse = forms.CharField(widget=forms.TextInput())
+    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
+    placeType = forms.ChoiceField(choices=placeTypes)
+
+
 def anasayfa(request):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
+    searchForm = SearchForm()
     context = {'slides': Vitrin.get_slides(), 'slides2': Vitrin.get_slides(type=1),
-               'slides3': Vitrin.get_slides(type=2), }
+               'slides3': Vitrin.get_slides(type=2), 'srForm':searchForm }
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):
-    model = Place
+    class Meta:
+        model=Place
+        fields = ('title','type','capacity','space','bedroom','description','price','currency',)
 
 def addPlace(request):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
-    context = { }
-    return render_to_response('index.html', context, context_instance=RequestContext(request))
+    if request.method == 'POST':
+        form = addPlaceForm(request.POST)
+
+    else:
+        form = addPlaceForm()
+    context = {'form':form}
+    return render_to_response('mekan_ekle.html', context, context_instance=RequestContext(request))
 
 
 #def bannerxml(request, tip):

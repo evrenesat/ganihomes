@@ -166,6 +166,7 @@ class Place(models.Model):
     comfort_rating = models.SmallIntegerField(_('Comfort'), choices=PLACE_RATING, default=0)
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
+    description = models.TextField(_('Description'), null=True, blank=True)
 
 
 
@@ -327,7 +328,7 @@ class SessionalPrice(models.Model):
 class Description(models.Model):
     """Place description"""
 
-    place = models.ForeignKey(Place,verbose_name=_('Place'))
+    place = models.ForeignKey(Place,verbose_name=_('Place'), related_name='descriptions')
     lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
     text = models.TextField(_('Description'))
     auto = models.BooleanField(_('Auto translation'))

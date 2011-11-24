@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 def n_tuple (n, first=[], last=[]):
     return tuple(first + [(i,i) for i in range(1, n)] + last)
 
-PLACE_TYPES = (
+PLACE_TYPES = [
     (1, _('Apartment')),
     (2, _('House')),
     (3, _('Garden House')),
@@ -12,7 +12,7 @@ PLACE_TYPES = (
     (5, _('Villa')),
     (6, _('Caravan')),
     (50, _('Office')),
-)
+]
 
 PROMOTION_TYPES = (
     (1, _('Amount (positive balance)')),
@@ -42,6 +42,8 @@ MAX_STAY = n_tuple(7, first=[(0,'Unlimited')])
 NO_OF_BEDS = n_tuple(20)
 PLACE_RATING = n_tuple(10, first=[(0, 'Not rated')])
 ORDER = n_tuple(20)
+
+
 
 TRANSACTION_TYPES = (
     (1, _('PayPal > System')),

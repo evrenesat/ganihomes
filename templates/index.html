@@ -151,6 +151,30 @@
             <div class="vsplit"></div>
             <div id="aradetay">
                 <div class="kbaslik">ayrıntılı arama</div>
+                <div class="foge checkinout">
+                    <label for="checkin">Varış</label><br>
+                    {{ srForm.checkin }}
+                </div>
+                <div class="foge checkinout">
+                    <label for="checkout">Ayrlılış</label><br>
+                    {{ srForm.checkout }}
+                </div>
+                <div class="foge noofguest">
+                    <label for="no_of_guests">Konuk Sayısı</label><br>
+                    {{ srForm.no_of_guests }}
+                </div>
+                <div class="foge placetype">
+                    <label for="fiyat">Mekan Tipi</label><br>
+                    {{ srForm.placeType }}
+                </div>
+                <div class="foge pricebar">
+                    <label for="fiyat">Gecelik Fiyat (TL)</label><br>
+                    <input type="hidden" name=pricerange id=pricerange>
+                    <div id="pricediv"></div>
+                    <div id="pmin" class="pRangeBox">20</div>
+                    <div id="pmax" class="pRangeBox">500</div>
+                </div>
+{#                <div id="ayintiliAraDugme"><span>Ayrıntılı Ara</span></div>#}
 
 
             </div>
