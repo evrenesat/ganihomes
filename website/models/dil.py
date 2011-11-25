@@ -52,15 +52,15 @@ class Kelime(models.Model):
     """Çevrilecek kelime"""
 
     # = models.ForeignKey(, verbose_name=_(''))
-    kelime = models.CharField(_('Anahtar Kelime'), max_length=100, help_text='En çok 100 karakter uzunluğunda olabilir')
+    kelime = models.CharField(_('Anahtar Kelime'), max_length=100, help_text='<ul><li>En çok 100 karakter uzunluğunda olabilir<li>Ne yaptığınızdan emin değilseniz mevcut anahtar kelimeleri değiştirmeyiniz.</ul>')
     durum = models.SmallIntegerField(_('Durum'), choices=((0, 'Yok'), (1, 'Eksik'), (2, 'Tam')), default=0)
     # = models.IntegerField(_(''))
     # = models.SmallIntegerField(_(''))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
-        verbose_name = u"Çeviri"
-        verbose_name_plural = u"Çeviriler"
+        verbose_name = u"İçerik Bloku"
+        verbose_name_plural = u"İçerik Blokları"
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         app_label = 'website'
@@ -79,7 +79,7 @@ class Ceviriler(models.Model):
     asil = models.CharField(max_length=100, editable=False)
     kod = models.CharField(_('Dil'), max_length=5, choices=LOCALES)
 #    dil = models.SmallIntegerField(verbose_name=_('Dil'), choices=LOCALES)
-    ceviri = models.TextField(_('Çevirisi'), help_text='En çok 100 karakter uzunluğunda olabilir')
+    ceviri = models.TextField(_('Çevirisi'))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
 

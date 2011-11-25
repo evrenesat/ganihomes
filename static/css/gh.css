@@ -732,9 +732,162 @@ div.scrollableArea {
     -webkit-box-shadow: 2px 2px 10px 2px #cccccc;
      -moz-box-shadow: 2px 2px 10px 2px #cccccc;
      box-shadow: 2px 2px 10px 2px #cccccc;
+    float:left;
 
+}
+.ikikutu{
+
+    float:left;
+    width:200px;
+    /*min-height:500px;*/
+    padding:10px;
+    margin-top:40px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
+     -moz-box-shadow: 1px 1px 10px 1px #cccccc;
+     box-shadow: 1px 1px 10px 1px #cccccc;
+
+}
+.ikikutu h3{
+    color: #2f4769;
+    font-size:15px;
+    margin:0;
+    text-shadow: 1px 0.4px 1px #ccc;
 }
 
 .container{
-    min-height:500px;
+    min-height:450px;
 }
+
+/* add place  /////////////////////////////////////// */
+
+/* wide scroll form */
+#wfContainer{
+    width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    height: 450px;
+    /*margin-left: 20px;*/
+    overflow: hidden;
+    position: relative;
+    border:1px solid #ccc;
+    border-top: 0px;
+}
+
+#wf{
+    height: 500px;
+    width:3000px;
+    /*-moz-border-radius: 6px;*/
+    /*-webkit-border-radius: 6px;*/
+    /*border-radius: 6px;*/
+}
+.wfParts{
+    /*background-color: #EDF3FE;*/
+    float:left;
+    width:560px;
+    padding:20px;
+    /*margin-right:30px;*/
+}
+
+#wfHeader{
+    height: 100px;
+    /*margin-left: 20px;*/
+    width: 600px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #ccc;
+    border:1px solid #ccc;
+    border-bottom: 0px;
+    -moz-border-radius-topleft: 8px;
+     -moz-border-radius-topright: 8px;
+     -moz-border-radius-bottomright: 0px;
+     -moz-border-radius-bottomleft: 0px;
+     -webkit-border-radius: 8px 8px 0px 0px;
+     border-radius: 8px 8px 0px 0px;
+    position: relative;
+
+
+background: #e2e2e2;
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UyZTJlMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIyJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY2JSIgc3RvcC1jb2xvcj0iI2YyZjJmMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e2e2e2), color-stop(22%,#f7f7f7), color-stop(66%,#f2f2f2), color-stop(100%,#fefefe));
+background: -webkit-linear-gradient(top,  #e2e2e2 0%,#f7f7f7 22%,#f2f2f2 66%,#fefefe 100%);
+background: -o-linear-gradient(top,  #e2e2e2 0%,#f7f7f7 22%,#f2f2f2 66%,#fefefe 100%);
+background: -ms-linear-gradient(top,  #e2e2e2 0%,#f7f7f7 22%,#f2f2f2 66%,#fefefe 100%);
+background: linear-gradient(top,  #e2e2e2 0%,#f7f7f7 22%,#f2f2f2 66%,#fefefe 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 );
+
+}
+.wfhdr{
+    position: absolute;
+    top:20px;
+    left:20px;
+    width:440px;
+    height:130px;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding-right: 128px;
+    color: #8a8a8a;
+    font-size:14px;
+    /*width: 100%;*/
+
+}
+.location{
+    background-image: url(/images/location-128.png)
+}
+.define{
+    background-image: url(/images/faq-128.png)
+}
+.members{
+    background-image: url(/images/register-128.png)
+}
+.sakli{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+}
+
+#id_description{
+    height: 50px;
+}
+.wfParts li{
+    list-style: none;
+}
+
+.wfParts label{
+    display: block;
+    float: left;
+    margin: 3px 0px;
+    width: 150px;
+}
+
+.dugme1 {
+    float: right;
+    height: 40px;
+    border:1px solid green;
+    background-color: #fff !important;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: url(/images/grd-yesil-1.png);
+    text-shadow: 1px 1px 0.4px #ccc;
+}
+
+.dugme1 span {
+
+    position: relative;
+    top: 5px;
+    color: green;
+}
+
+/****************************************************/

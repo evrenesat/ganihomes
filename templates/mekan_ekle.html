@@ -1,4 +1,61 @@
 {% extends "content.html" %}
-{% block altikutu %}
-    {{ form.as_p }}
+{% block content %}
+    <div class="altikutu">
+    <div  id="wfHeader">
+        <div id=wfhdr1 class="wfhdr define">
+            <h3>En güzeli sizinki!..</h3>
+            Mekanınızın ne kadar güzel olduğunu ballandıra ballandıra anlatın.
+        </div>
+        <div id=wfhdr2 class="wfhdr sakli location">
+                <h3>Mekanınız nerede?..</h3>
+                Adres ve iltişim bilgilerinizi sadece rezarvasyonu onaylanmış misafirlerle paylaşacağız.
+        </div>
+        <div id=wfhdr3 class="wfhdr sakli members">
+                <h3>İçeri buyrun...</h3>
+                Henüz üyemiz değilseniz Facebook hesabınızla hemen giriş yapabilir ya da bir dakikanızı ayırıp yeni bir hesap oluşturabilirsiniz.
+        </div>
+    </div>
+    <div id=wfContainer>
+        <div id="wf">
+            <div id="form1" class="wfParts">
+
+                {{ form.as_ul }}
+                <div onclick="gh.changeForm(2)" class="dugme1"><span>Kaydet ve Devam Et</span></div>
+            </div>
+            <div id="form2" class="wfParts">
+
+                {{ form.as_ul }}
+                <div onclick="gh.changeForm(3)" class="dugme1"><span>Kaydet ve Devam Et</span></div>
+            </div>
+            <div id="form3" class="wfParts">
+
+                {{ form.as_ul }}
+                <div onclick="gh.changeForm(1)" class="dugme1"><span>Tamamla</span></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="ikikutu">
+
+<h3>Aklınızda soru kalmasın!</h3>
+<hr>
+<ul>
+<li>şu nasıl olcak</li>
+<li>bunlar nasıl?</li>
+<li>peki ya şu nasıl oluyor??</li>
+<li>ya şöyle olursa?</li>
+</ul>
+</div>
+
+    <div class="ikikutu">
+
+    <h3>Müşteri Temsilcimize Danışın</h3>
+    <hr>
+    <b>Telefon</b><br>
+    0232 422 4465<br>
+    Eposta ya da Online Destek için tıklayın
+    </div>
+
+
 {% endblock %}

@@ -145,6 +145,14 @@ gh = {
 //            ,focus: function(event, ui) {$('#araoneri').scrollTo('ul li:eq('+ $("#araoneri li:contains("+ui.item.value+")'").index() +')');}
         });
 
+    },
+
+    changeForm:function(id){
+        var self = this;
+        $('#wfContainer').scrollTo('#form'+id,800);
+        $('.wfhdr').fadeTo(400, 0)
+        $('#wfhdr'+id).fadeTo(800, 1)
+
     }
 };
 
