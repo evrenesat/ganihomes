@@ -12,6 +12,7 @@ from website.models.icerik import Sayfa, Haber, Vitrin
 from django.http import HttpResponseRedirect
 from website.models.medya import Medya
 from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 
 class SearchForm(forms.Form):
     noOfBeds=n_tuple(7, first=[(0,u'--')])
@@ -32,9 +33,13 @@ def anasayfa(request):
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):
+    email= forms.EmailField(label=_(u'Email'))
+    geocode= forms.HiddenInput()
     class Meta:
         model=Place
-        fields = ('title','type','capacity','space','bedroom','description','price','currency',)
+        fields = ('title','type','capacity','space','bedroom','description','price','currency',
+            'phone','emergency_phone','city','country','district','state','street','address','geocode'
+            )
 
 def addPlace(request):
     sayfa = Sayfa.al_anasayfa()

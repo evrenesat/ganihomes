@@ -310,7 +310,8 @@ div.scrollableArea {
 .tabcontent {
     border-radius: 4px !important;
     background-color: #ccc !important;
-    border: 5px solid #b3b3b3;
+    /*border: 2 !important;*/
+    padding: 2px !important;
 }
 
 .tabborder {
@@ -765,7 +766,7 @@ div.scrollableArea {
 
 /* wide scroll form */
 #wfContainer{
-    width:600px;
+    width:100%;
     margin-left:auto;
     margin-right:auto;
     height: 450px;
@@ -786,15 +787,16 @@ div.scrollableArea {
 .wfParts{
     /*background-color: #EDF3FE;*/
     float:left;
-    width:560px;
+    width:620px;
     padding:20px;
+    /*min-height:400px;*/
     /*margin-right:30px;*/
 }
 
 #wfHeader{
-    height: 100px;
+    height: 140px;
     /*margin-left: 20px;*/
-    width: 600px;
+    width: 660px;
     margin-left:auto;
     margin-right:auto;
     background-color: #ccc;
@@ -824,7 +826,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
     position: absolute;
     top:20px;
     left:20px;
-    width:440px;
+    width:500px;
     height:130px;
     background-position: right;
     background-repeat: no-repeat;
@@ -837,11 +839,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 .location{
     background-image: url(/images/location-128.png)
 }
+.home{
+    background-image: url(/images/home-128.png)
+}
+
 .define{
     background-image: url(/images/faq-128.png)
 }
 .members{
     background-image: url(/images/register-128.png)
+}
+.gizli{
+    display:none;
 }
 .sakli{
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -851,21 +860,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
     opacity: 0;
 }
 
+
+
 #id_description{
     height: 50px;
 }
 .wfParts li{
     list-style: none;
 }
-
+.wfParts p{
+    margin-bottom: 0.5em !important;
+}
 .wfParts label{
     display: block;
     float: left;
-    margin: 3px 0px;
+    margin: 3px 0;
+    padding-top: 6px;
     width: 150px;
+    font-size:14px;
+    color: #6e6e6e;
 }
+.wfParts input, .wfParts select{
+    font-size:16px;
+    border: solid 1px #bfbfbf;
 
+}
 .dugme1 {
+    margin-top:40px;
     float: right;
     height: 40px;
     border:1px solid green;
@@ -890,4 +911,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
     color: green;
 }
 
+#map_canvas{
+    width:620px;
+    height:300px;
+    margin-top:10px;
+    margin-left:auto;
+    margin-right:auto;
+}
+#adresikullan{
+    font-size:14px;
+    color:green;
+    font-weight:bold;
+}
+.ustbilgi{
+    color:#777777;
+}
+#address{
+    width:400px;
+}
 /****************************************************/

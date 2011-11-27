@@ -147,13 +147,53 @@ gh = {
 
     },
 
-    changeForm:function(id){
+    changeForm:function(id,static_header){
         var self = this;
         $('#wfContainer').scrollTo('#form'+id,800);
-        $('.wfhdr').fadeTo(400, 0)
-        $('#wfhdr'+id).fadeTo(800, 1)
+        if(typeof(static_header)=='undefined'){
+            $('.wfhdr').fadeTo(400, 0)
+            $('#wfhdr'+id).fadeTo(800, 1)
+        }
+    },
+    showGeocode:function(){
+        self = this;
+        $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback=gh.gcinit')
+        $('#adres_form').hide();
+        $('#adres_harita').show();
+    },
+    gcinit:function(){
+
+    self = this;
+    self.geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = { zoom: 8, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+    self.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    },
+    geocodeAddress: function () {
+        self = this;
+        var address = document.getElementById("address").value;
+        self.geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            self.map.setCenter(results[0].geometry.location);
+            res = results[0];
+            var infoWindow = new google.maps.InfoWindow({content:res.formatted_address+'<br><b></b><a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam(res)">Bu adresi kullan</a></b>'});
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                draggable: true
+            });
+              infoWindow.open(map, marker);
+//            marker.setDraggable(true);
+//            marker.openInfoWindowHtml(results[0].formatted_address)
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        });
+      },
+    gcAdresTamam:function(o){
 
     }
+
 };
 
 $(window).ready(function () {

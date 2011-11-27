@@ -137,6 +137,7 @@ class Place(models.Model):
     tags = models.ManyToManyField(Tag,verbose_name=_('Tags'), null=True, blank=True)
     title = models.CharField(_('Place title'), max_length=100)
     slug = models.SlugField(_('URL Name'))
+    address = models.CharField(_('Address Line'), max_length=100, null=True, blank=True)
     country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
     street = models.CharField(_('Street'), max_length=60)
     postcode = models.CharField(_('Postcode'), max_length=15)
@@ -168,6 +169,7 @@ class Place(models.Model):
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
     lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
+    geocode = models.CharField(_('Geographical Location'), max_length=30, null=True, blank=True)
 
 
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True)
