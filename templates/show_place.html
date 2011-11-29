@@ -1,0 +1,96 @@
+{% extends "content.html" %}
+{% load thumbnail %}
+{#{% block extrajs %}#}
+{#<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>#}
+{#{% endblock %}#}
+{% block content %}
+    <div class="altikutu">
+
+    <div id="place-conatiner">
+        <div id="place-title">
+            <div id="titlediv">{{ place.title }}</div>
+            <div id="subtitlediv">{{ place.city}} - {{ place.district }}, {{ place.get_country_display }}</div>
+
+        </div>
+
+        <div id="placediv">
+
+            <div>
+
+            <div id="toptabs">
+                <ul>
+                    <li class="ptab"><a href="#pphoto">Fotoğraflar</a></li>
+                    <li class="ptab"><a href="#pcalendar">Uygunluk</a></li>
+                    <li class="ptab"><a href="#pmaps">Harita</a></li>
+
+                </ul>
+                <div id="pphoto">
+                    <div id="photoframe">
+                        <div id="phimg" style="background:url({% thumbnail place.photo_set.all.0.image 615x400 upscale crop=scale %}) no-repeat center center;">
+                    </div>
+
+
+                <div id="photoslider-left"></div>
+                <div id="photoslider_container">
+
+                    <div id="photoslider">
+                        {% for p in place.photo_set.all %}
+                            <li  class="pthumb"><a href="{% thumbnail p.image 615x400 upscale crop=scale %}"><img  src="{% thumbnail p.image 0x100 upscale crop=scale %}"></a></li>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div id="photoslider-right"></div>
+
+                </div>
+                <div id="pcalendar">
+
+                </div>
+                <div id="pmaps">
+
+                </div>
+        </div>
+
+    </div>
+        </div>
+</div>
+</div>
+<div class="ikikutu">
+
+<span id="placeprice">{{ place.price }}</span> {{ place.currency }} / gece<
+<hr>
+<ul>
+<li>şu nasıl olcak</li>
+<li>bunlar nasıl?</li>
+<li>peki ya şu nasıl oluyor??</li>
+<li>ya şöyle olursa?</li>
+</ul>
+</div>
+
+    <div class="ikikutu">
+
+    <h3>Müşteri Temsilcimize Danışın</h3>
+    <hr>
+    <b>Telefon</b><br>
+    0232 422 4465<br>
+    Eposta ya da Online Destek için tıklayın
+    </div>
+<script>
+    $('#toptabs').tabs();
+    $('.pthumb').click(function(){
+        ths = $(this)
+        var ix = ths.index() + 1;
+        url = ths.find('a').attr('href')
+        url = "url("+url+") no-repeat center center"
+        $('#phimg').fadeTo(300,0,function(){
+            $('#phimg').css('background', url).fadeTo(200,1)
+        })
+//        $('#phimg').css('background', url)
+        $('#photoslider_container').scrollTo("li:nth-child("+ix+")",800);
+        return false
+    })
+
+</script>
+<script>$('#subtabs').tabs();</script>
+
+{% endblock %}

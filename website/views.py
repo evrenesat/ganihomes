@@ -15,6 +15,8 @@ from django.http import HttpResponseRedirect
 from website.models.medya import Medya
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from  django.core.urlresolvers import reverse
+
 
 class SearchForm(forms.Form):
     noOfBeds=n_tuple(7, first=[(0,u'--')])
@@ -24,6 +26,16 @@ class SearchForm(forms.Form):
     search_pharse = forms.CharField(widget=forms.TextInput())
     no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
     placeType = forms.ChoiceField(choices=placeTypes)
+
+
+def showPlace(request, id):
+    place = Place.objects.get(pk=id)
+    context = {'place':place, }
+    return render_to_response('show_place.html', context, context_instance=RequestContext(request))
+
+def searchPlace(request):
+    context = {}
+    return render_to_response('search_place.html', context, context_instance=RequestContext(request))
 
 class LoginForm(forms.Form):
     login_email = forms.EmailField(label=_(u'E-mail address'))
@@ -80,6 +92,7 @@ def addPlace(request):
                     for tag in form.cleaned_data['tags']:
                         new_place.tags.add(tag)
                     new_place.save()
+                    return HttpResponseRedirect(reverse('places', args=[new_place.id]))
             except:
                 if owner: owner.delete()
                 if new_place: new_place.delete()
@@ -175,4 +188,6 @@ def dilsec(request, kod):
     url = request.GET.get('url')
     url = '/%s%s/' % (kod[:2], url[3:] if url else '/')
     return HttpResponseRedirect(url.replace('//', '/'))
+
+
 
