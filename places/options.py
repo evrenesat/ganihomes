@@ -40,7 +40,7 @@ NO_OF_ROOMS = n_tuple(10)
 MIN_STAY = n_tuple(7)
 MAX_STAY = n_tuple(7, first=[(0,'Unlimited')])
 NO_OF_BEDS = n_tuple(20)
-PLACE_RATING = n_tuple(10, first=[(0, 'Not rated')])
+PLACE_RATING = n_tuple(6, first=[(0, 'Not rated')])
 ORDER = n_tuple(20)
 
 

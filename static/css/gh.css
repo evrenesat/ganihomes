@@ -37,7 +37,7 @@
     margin-top: 4px;
     padding-left: 8px;
     padding-right: 8px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 #supermenu {
@@ -103,7 +103,7 @@
     position: relative;
     display: block;
     padding: 0;
-    margin: 5px;
+    margin: 2px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -111,7 +111,7 @@
 }
 
 .slidiv-thumb {
-    background-color: #000 !important;
+    background-color: #4d4d4d    !important;
 }
 
 .slidiv {
@@ -122,7 +122,7 @@
     display: block;
     float: left;
     padding: 0;
-    margin: 0 5px 0 14px;
+    margin: 0 3px 0 3px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -144,14 +144,25 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 }
 
-.sbaner h3 {
+.sbaner-info {
     margin: 10px;
     font-size: 18px;
     font-weight: bold;
-    color: #525160;
+    color: #9e9e9e;
     font-family: arial, sans;
+    float:left;
+}
+.sbaner .stardiv{
+    width:100px;
+    height:20px;
+    margin-top:10px;
+    float:right;
+    color: #9e9e9e;
 }
 
+.stardiv ul{
+    margin-top:10px;
+}
 div.scrollingHotSpotLeft {
     /* The hotspots have a minimum width of 75 pixels
         and if there is room the will grow and occupy 10%
@@ -668,6 +679,7 @@ div.scrollableArea {
 
 #pmax{
     float:right;
+    margin-right: 40px;
 }
 
 .checkinout{
@@ -689,8 +701,9 @@ div.scrollableArea {
 
 }
 .pricebar{
-    width:225px;
+    width:240px;
 }
+
 /*.pricebar label{*/
     /*position: relative;*/
     /*top:-10px;*/
@@ -769,7 +782,7 @@ div.scrollableArea {
     width:100%;
     margin-left:auto;
     margin-right:auto;
-    height: 450px;
+    height: 475px;
     /*margin-left: 20px;*/
     overflow: hidden;
     position: relative;
@@ -831,8 +844,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
     background-position: right;
     background-repeat: no-repeat;
     padding-right: 128px;
-    color: #8a8a8a;
-    font-size:14px;
+    color: #625e5e;
+    font-size:1.3em;
     /*width: 100%;*/
 
 }
@@ -862,28 +875,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 
 
 
-#id_description{
-    height: 50px;
+#accordion textarea{
+    height: 100px;
+    width:100%;
 }
 .wfParts li{
     list-style: none;
 }
 .wfParts p{
-    margin-bottom: 0.5em !important;
+    margin-bottom: 0.2em !important;
 }
 .wfParts label{
     display: block;
     float: left;
     margin: 3px 0;
     padding-top: 6px;
-    width: 150px;
+    width: 195px;
     font-size:14px;
     color: #6e6e6e;
+}
+#form2 input, #form2 select{
+    width:300px;
 }
 .wfParts input, .wfParts select{
     font-size:16px;
     border: solid 1px #bfbfbf;
+    padding:3px;
+    color:#5d6b71;
 
+}
+.wfParts #id_price{
+    width:75px;
+}
+.wfParts #id_title{
+    width:340px;
 }
 .dugme1 {
     margin-top:40px;
@@ -926,7 +951,230 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 .ustbilgi{
     color:#777777;
 }
-#address{
-    width:400px;
+.altbilgi1{
+    font-size:12px;
+    font-weight: bold;
+}
+.wfParts #address_find{
+    height: 32px !important;
+    width: 71px !important;
+    background-color: #fff !important;
+}
+.wfParts #address, .wfParts #address_find{
+    font-size:16px;
+    height:30px;
+}
+.wfParts #address{
+    width:450px;
+    color:#006600;
 }
 /****************************************************/
+
+
+#accordion h3.ui-state-active a{
+    color:green !important;
+    /*font-weight: bolder;*/
+    font-size:16px;
+    background-color: #d8ff9d;
+}
+#accordion h3 a{
+    padding-left:60px;
+}
+#accordion h3 .nums{
+    width:20px;
+    height:20px;
+    position: absolute;
+    top:3px;
+    left:24px;
+    background-color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding:2px;
+    padding-left:9px !important;
+    color:#006600;
+    font-weight: bold;
+
+}
+#accordion h3.ui-state-active .nums{
+    top:5px !important;
+    background-color: #006600;
+    color:#fff;
+}
+
+#accordion label{
+    font-size:11px !important;
+    margin:0 !important;
+    font-weight: normal !important;
+    width:170px;
+    padding-top:1px;
+}
+
+
+
+/* star rating code - use lists because its more semantic */
+/* No javascript required */
+/* all the stars are contained in one matrix to solve rollover problems with delay */
+/* the background position is just shifted to reveal the correct image. */
+/* the images are 16px by 16px and the background position will be shifted in negative 16px increments */
+/*  key:  B=Blank : O=Orange : G = Green * /
+/*..... The Matrix ....... */
+/* colours ....Background position */
+/* B B B B B - (0 0)*/
+/* G B B B B - (0 -16px)*/
+/* G G B B B - (0 -32px)*/
+/* G G G B B - (0 -48px)*/
+/* G G G G B - (0 -64px)*/
+/* G G G G G - (0 -80px)*/
+/* O B B B B - (0 -96px)*/
+/* O O B B B - (0 -112px)*/
+/* O O O B B - (0 -128px)*/
+/* O O O O B - (0 -144px)*/
+/* O O O O O - (0 -160px)*/
+
+
+/* the default rating is placed as a background image in the ul */
+/* use the background position according to the table above to display the required images*/
+.rating{
+	width:80px;
+	height:16px;
+	margin:0 0 20px 0;
+	padding:0;
+	list-style:none;
+	clear:both;
+	position:relative;
+	background: url(/images/star-matrix.png) no-repeat 0 0;
+}
+/* add these classes to the ul to effect the change to the correct number of stars */
+.star0 {background-position:0 0}
+.star1 {background-position:0 -16px}
+.star2 {background-position:0 -32px}
+.star3 {background-position:0 -48px}
+.star4 {background-position:0 -64px}
+.star5 {background-position:0 -80px}
+ul.rating li {
+	cursor: pointer;
+ /*ie5 mac doesn't like it if the list is floated\*/
+	float:left;
+	/* end hide*/
+	text-indent:-999em;
+}
+ul.rating li a {
+	position:absolute;
+	left:0;
+	top:0;
+	width:16px;
+	height:16px;
+	text-decoration:none;
+	z-index: 200;
+}
+ul.rating li.one a {left:0}
+ul.rating li.two a {left:16px;}
+ul.rating li.three a {left:32px;}
+ul.rating li.four a {left:48px;}
+ul.rating li.five a {left:64px;}
+ul.rating li a:hover {
+	z-index:2;
+	width:80px;
+	height:16px;
+	overflow:hidden;
+	left:0;
+	background: url(/images/star-matrix.png) no-repeat 0 0
+}
+ul.rating li.one a:hover {background-position:0 -96px;}
+ul.rating li.two a:hover {background-position:0 -112px;}
+ul.rating li.three a:hover {background-position:0 -128px}
+ul.rating li.four a:hover {background-position:0 -144px}
+ul.rating li.five a:hover {background-position:0 -160px}
+
+
+.wflogin{
+    float:left;
+    /*text-align: center;*/
+    width:295px;
+
+}
+.fbbutton{
+    margin-left:auto;
+    margin-right:auto;
+    background: #5b76af url(/images/facebook-icon.png) no-repeat 1px 1px;
+    padding-left:46px;
+    width:200px;
+    height:34px;
+    font-size:16px;
+    border:2px solid #9aafd8;
+    color:#fff;
+    font-weight:bold;
+    margin-bottom: 20px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+.fbbutton div{
+    margin-top:4px;
+}
+#ormail{
+    width:100% !important;
+    border-top:2px outset #ccc;
+    margin: 7px auto;
+    text-align: center;
+}
+#ormail div{
+    margin-top:-10px;
+    background-color: #fff;
+    width:70px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:14px;
+    color:#2f4769;
+}
+.wflogin label{
+    padding:0;
+    margin:0;
+    float:none;
+}
+#em_login{
+    padding-left:10px;
+}
+#em_register input,#em_login input{
+    margin-left:30px;
+}
+.dugme2{
+     border:1px solid green;
+     background-color: #fff !important;
+     font-weight: bold;
+     cursor: pointer;
+     text-align: center;
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     border-radius: 6px;
+     background: url(/images/grd-yesil-1.png);
+     text-shadow: 1px 1px 0.4px #ccc;
+    width: 170px !important;
+    margin:0 0 0 10px;
+    font-size:14px;
+    height:25px;
+
+}
+.dugme2 span{
+    top:3px;
+    position: relative;
+    color: green;
+}
+#em_register .dugme2, #em_login .dugme2 {
+    margin: 0 auto;
+}
+.wflogin input, .wflogin select{
+    margin-top:2px !important;
+    /*padding:0 !important;*/
+    /*color:#5d6b71;*/
+
+}
+
+#gshow{
+    position:absolute;
+    top:2px;
+    left:2px;
+}

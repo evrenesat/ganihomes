@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.contrib.auth.models import User
 from django.forms.models import ModelForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
-from places.models import Place
+from places.models import Place, Tag
+from django.db import models
 from places.options import n_tuple, PLACE_TYPES
 from website.models.icerik import Sayfa, Haber, Vitrin
 from django.http import HttpResponseRedirect
@@ -23,6 +25,16 @@ class SearchForm(forms.Form):
     no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
     placeType = forms.ChoiceField(choices=placeTypes)
 
+class LoginForm(forms.Form):
+    login_email = forms.EmailField(label=_(u'E-mail address'))
+    login_pass = forms.CharField(widget=forms.PasswordInput(),label=_(u'Password'))
+
+class RegisterForm(ModelForm):
+    pass1 = forms.CharField(widget=forms.PasswordInput(),label=_(u'Şifre'))
+    pass2 = forms.CharField(widget=forms.PasswordInput(),label=_(u'Şifre Tekrar'))
+    class Meta:
+        model=User
+        fields = ('email','first_name','last_name',)
 
 def anasayfa(request):
     sayfa = Sayfa.al_anasayfa()
@@ -33,23 +45,52 @@ def anasayfa(request):
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):
-    email= forms.EmailField(label=_(u'Email'))
-    geocode= forms.HiddenInput()
+    geocode= forms.CharField(widget=forms.HiddenInput())
+    postcode= forms.CharField(widget=forms.HiddenInput())
+    def __init__(self, *args, **kwargs):
+        super(addPlaceForm, self).__init__(*args, **kwargs)
+        self.fields['tags'].widget = forms.CheckboxSelectMultiple()
+        self.fields["tags"].queryset = Tag.objects.all()
+
     class Meta:
         model=Place
-        fields = ('title','type','capacity','space','bedroom','description','price','currency',
-            'phone','emergency_phone','city','country','district','state','street','address','geocode'
+        fields = ('title','type','capacity','space','description','price','currency',
+            'city','country','district','street','address','geocode',
+            'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules'
             )
 
 def addPlace(request):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
     if request.method == 'POST':
+        register_form = RegisterForm(request.POST)
+        login_form = LoginForm(request.POST)
         form = addPlaceForm(request.POST)
+        if form.is_valid():
+            new_place=form.save(commit=False)
+            try:
+                if register_form.is_valid():
+                    owner = register_form.save(commit=False)
+                    owner.username = owner.email
+                    owner.save()
+                    new_place.owner = owner
+                    new_place.save()
+    #                assert 0, new_place.tags.all()
+                    form.save_m2m()
+                    for tag in form.cleaned_data['tags']:
+                        new_place.tags.add(tag)
+                    new_place.save()
+            except:
+                if owner: owner.delete()
+                if new_place: new_place.delete()
+                raise
+
 
     else:
         form = addPlaceForm()
-    context = {'form':form}
+        register_form = RegisterForm()
+        login_form = LoginForm()
+    context = {'form':form, 'rform':register_form,'lform':login_form}
     return render_to_response('mekan_ekle.html', context, context_instance=RequestContext(request))
 
 

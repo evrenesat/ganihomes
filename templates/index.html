@@ -41,8 +41,8 @@
             <ul>
                 <li class="gritab" id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span
                         class="h">VİTRİN</span></a></li>
-                <li class="gritab"><a href="#tabs-2">İç Mekanlar</a></li>
-                <li class="gritab"><a href="#tabs-3">Manzaralar</a></li>
+                <li class="gritab"><a href="#tabs-2">Manzaralar</a></li>
+                <li class="gritab"><a href="#tabs-3">İç Mekanlar</a></li>
                 <li id="howitworks"><a href="#tabs-4">
                     <div class="inlinelogo logo-basta">Nasıl Çalışır?</div>
                 </a></li>
@@ -58,7 +58,21 @@
                                     <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
                                          style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                         <div class="sbaner alpha60">
-                                            <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                                            <div class="sbaner-info">{{ s.placeName }}<br>
+                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                            </div>
+                                            <div class="stardiv">
+                                                {{ s.place.price }} {{ s.place.currency }}
+                                                <ul class="rating star{{ s.place.overall_rating}}">
+                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
+                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
+                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
+                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
+                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
+                                                </ul>
+
+                                            </div>
                                         </div>
                                     </div>
                                 {% else %}
@@ -70,7 +84,24 @@
                                                  style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
                                         {% endfor %}
                                         <div class="sbaner alpha60">
-                                            <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                                            <div class="sbaner-info">{{ s.placeName }}<br>
+                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                            </div>
+                                            <div class="stardiv">
+                                                {{ s.place.price }} {{ s.place.currency }}
+                                                <ul class="rating star{{ s.place.overall_rating}}">
+                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
+                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
+                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
+                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
+                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
+                                                </ul>
+
+                                            </div>
+
+
+
                                         </div>
                                     </div>
                                 {% endif %}
@@ -86,13 +117,58 @@
                     <div class="scrollingHotSpotRight"></div>
                     <div class="scrollWrapper">
                         <div class="scrollableArea">
-                            {% for s in slides2 %}
-                                <div class="slidiv" onmousedown="document.location='{{ s.url }}'"
-                                     style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                    <div class="sbaner alpha60">
-                                        <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
-                                    </div>
-                                </div>
+                            {% for s in slides3 %}
+                                {% if not s.thumbs %}
+                                                                   <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
+                                                                        style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                                                       <div class="sbaner alpha60">
+                                                                           <div class="sbaner-info">{{ s.placeName }}<br>
+                                                                               <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                                                           </div>
+                                                                           <div class="stardiv">
+                                                                               {{ s.place.price }} {{ s.place.currency }}
+                                                                               <ul class="rating star{{ s.place.overall_rating}}">
+                                                                               	<li class="one"><a href="#" title="1 Star">1</a></li>
+                                                                               	<li class="two"><a href="#" title="2 Stars">2</a></li>
+                                                                               	<li class="three"><a href="#" title="3 Stars">3</a></li>
+                                                                               	<li class="four"><a href="#" title="4 Stars">4</a></li>
+                                                                               	<li class="five"><a href="#" title="5 Stars">5</a></li>
+                                                                               </ul>
+
+                                                                           </div>
+                                                                       </div>
+                                                                   </div>
+                                                               {% else %}
+
+                                                                   <div class="slidiv slidiv-thumb" onmouseclick="document.location='{{ s.url }}'">
+                                                                       {#                                          {{ s.photos }}#}
+                                                                       {% for photo in s.photos %}
+                                                                           <div class="thumbphoto"
+                                                                                style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                                                                       {% endfor %}
+                                                                       <div class="sbaner alpha60">
+                                                                           <div class="sbaner-info">{{ s.placeName }}<br>
+                                                                               <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                                                           </div>
+                                                                           <div class="stardiv">
+                                                                               {{ s.place.price }} {{ s.place.currency }}
+                                                                               <ul class="rating star{{ s.place.overall_rating}}">
+                                                                               	<li class="one"><a href="#" title="1 Star">1</a></li>
+                                                                               	<li class="two"><a href="#" title="2 Stars">2</a></li>
+                                                                               	<li class="three"><a href="#" title="3 Stars">3</a></li>
+                                                                               	<li class="four"><a href="#" title="4 Stars">4</a></li>
+                                                                               	<li class="five"><a href="#" title="5 Stars">5</a></li>
+                                                                               </ul>
+
+                                                                           </div>
+
+
+
+                                                                       </div>
+                                                                   </div>
+                                                               {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -106,13 +182,58 @@
                     <div class="scrollingHotSpotRight"></div>
                     <div class="scrollWrapper">
                         <div class="scrollableArea">
-                            {% for s in slides3 %}
-                                <div class="slidiv" onmousedown="document.location='{{ s.url }}'"
-                                     style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                    <div class="sbaner alpha60">
-                                        <h3>{{ s.placeName }}</h3><br>blah<br>blah<br>blah
+                            {% for s in slides2 %}
+                                {% if not s.thumbs %}
+                                    <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
+                                         style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                        <div class="sbaner alpha60">
+                                            <div class="sbaner-info">{{ s.placeName }}<br>
+                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                            </div>
+                                            <div class="stardiv">
+                                                {{ s.place.price }} {{ s.place.currency }}
+                                                <ul class="rating star{{ s.place.overall_rating}}">
+                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
+                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
+                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
+                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
+                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                {% else %}
+
+                                    <div class="slidiv slidiv-thumb" onmouseclick="document.location='{{ s.url }}'">
+                                        {#                                          {{ s.photos }}#}
+                                        {% for photo in s.photos %}
+                                            <div class="thumbphoto"
+                                                 style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                                        {% endfor %}
+                                        <div class="sbaner alpha60">
+                                            <div class="sbaner-info">{{ s.placeName }}<br>
+                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                            </div>
+                                            <div class="stardiv">
+                                                {{ s.place.price }} {{ s.place.currency }}
+                                                <ul class="rating star{{ s.place.overall_rating}}">
+                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
+                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
+                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
+                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
+                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
+                                                </ul>
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -123,6 +244,7 @@
 
 
                 <div id="likethat">
+                    <img style="margin-top:10px;margin-left:10px;" src="{{ STATIC_URL }}images/ganihomes-nasil.png">
                 </div>
             </div>
         </div>

@@ -50,22 +50,24 @@ gh = {
                 sld = $(this)
 //            console.log(sld.index()+1)
 //            sld.parents('.tabborder').smoothDivScroll("moveToElement", "number", sld.index()+1);
-                sld.find('.sbaner').animate({height:'110px'});
+                sld.find('.sbaner').animate({height:'70px'});
             }).mouseleave(function () {
                 $(this).find('.sbaner').animate({height:'40px'})
             });
-        self.makeScroller('GVS1')
-        self.makeScroller('GVS2')
-        self.makeScroller('GVS3')
+        self.makeScroller('GVS1');
+        self.makeScroller('GVS2', 0, 1);
+        self.makeScroller('GVS3');
     },
-    makeScroller:function (container_id, hidden) {
+    makeScroller:function (container_id, hidden, lft) {
         if (typeof(hidden) == 'undefined') hidden = false;
+        if (typeof(lft) == 'undefined') lft = false;
         var sk = $('#' + container_id);
         this.sks[container_id] = sk
+        direction =  lft ? 'endlessloopright' : 'endlessloopleft';
         sk.smoothDivScroll({
             hiddenOnStart:hidden,
-            autoScroll:"", //"onstart" ,
-            autoScrollDirection:'endlessloopright',
+            autoScroll:"onstart", //"onstart" ,
+            autoScrollDirection:direction,
             autoScrollStep:2,
             autoScrollInterval:50,
             visibleHotSpots:"onstart"
@@ -155,19 +157,19 @@ gh = {
             $('#wfhdr'+id).fadeTo(800, 1)
         }
     },
-    showGeocode:function(){
-        self = this;
-        $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback=gh.gcinit')
-        $('#adres_form').hide();
-        $('#adres_harita').show();
+    gcGosterGizle:function(){
+        $('#adres_form').toggle();
+        $('#adres_harita').toggle();
     },
     gcinit:function(){
-
-    self = this;
-    self.geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
-    var myOptions = { zoom: 8, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
-    self.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        self = this;
+        if (typeof(self.geocoder)=='undefined'){
+            $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback=gh.gcinit')
+        }
+        self.geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = { zoom: 8, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+        self.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     },
     geocodeAddress: function () {
         self = this;
@@ -175,14 +177,14 @@ gh = {
         self.geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             self.map.setCenter(results[0].geometry.location);
-            res = results[0];
-            var infoWindow = new google.maps.InfoWindow({content:res.formatted_address+'<br><b></b><a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam(res)">Bu adresi kullan</a></b>'});
+            self.gcResult = results[0];
+            var infoWindow = new google.maps.InfoWindow({content:self.gcResult.formatted_address+'<br><b></b><a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">Bu adresi kullan</a></b>'});
             var marker = new google.maps.Marker({
-                map: map,
+                map: self.map,
                 position: results[0].geometry.location,
                 draggable: true
             });
-              infoWindow.open(map, marker);
+              infoWindow.open(self.map, marker);
 //            marker.setDraggable(true);
 //            marker.openInfoWindowHtml(results[0].formatted_address)
           } else {
@@ -190,8 +192,23 @@ gh = {
           }
         });
       },
-    gcAdresTamam:function(o){
+    getGCResult:function(){return self.gcResult;},
+    gcAdresTamam:function(){
+        acs = self.gcResult.address_components
+        $('#id_geocode').val(self.gcResult.geometry.location)
+        for (i in acs){
+            var ac = acs[i]
+            var typ = ac.types[0]
+            console.log(ac.long_name, typ)
+            if(typ=='country')$('#id_country').val(ac.short_name)
+            if(typ=='route')$('#id_street').val(ac.long_name)
+            if(typ=='neighborhood')$('#id_street').val($('#id_street').val() + ' ' + ac.long_name)
 
+            if(typ=='postal_code')$('#id_postcode').val(ac.long_name)
+            if(typ=='administrative_area_level_2')$('#id_district').val(ac.long_name)
+            if(typ=='administrative_area_level_1')$('#id_city').val(ac.long_name)
+        }
+        self.gcGosterGizle()
     }
 
 };

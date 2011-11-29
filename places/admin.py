@@ -107,11 +107,15 @@ class PlaceAdmin(admin.ModelAdmin):
     #list_display_links = ('','')
     date_hierarchy = 'timestamp'
     #list_select_related=False
+    filter_horizontal = ('tags',)
 
 
     #def save_model(self, request, obj, form, change):
     #    obj.save()
 
+
+class TagInline(admin.TabularInline):
+    model = Tag
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'active', 'category')
@@ -125,9 +129,11 @@ class CurrencyAdmin(admin.ModelAdmin):
     list_filter = ['active', ]
 
 
+
 class TagCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'active')
     list_filter = ['active', ]
+    inlines = [TagInline,]
 
 
 class ProfileAdmin(admin.ModelAdmin):
