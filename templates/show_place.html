@@ -21,7 +21,7 @@
                 <ul>
                     <li class="ptab"><a href="#pphoto">Fotoğraflar</a></li>
                     <li class="ptab"><a href="#pcalendar">Uygunluk</a></li>
-                    <li class="ptab"><a href="#pmaps">Harita</a></li>
+                    <li class="ptab"><a id="openmap" href="#pmaps">Harita</a></li>
 
                 </ul>
                 <div id="pphoto">
@@ -47,7 +47,8 @@
 
                 </div>
                 <div id="pmaps">
-
+                    <div id="map_canvas"></div>
+                    <input type="hidden" value="{{ place.geocode }}" id="latlng">
                 </div>
         </div>
 
@@ -55,11 +56,11 @@
         </div>
 </div>
 </div>
-<div class="ikikutu">
-<div id="pricebox">
+<div class="ikikutu" id="pricebox">
+
 <span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>
 <hr>
-    <div class="cinout">
+    <div class="cinout separate">
         <label for="checkin">Varış</label><br>
         {{ bform.checkin }}
     </div>
@@ -68,19 +69,31 @@
         {{ bform.checkout }}
     </div>
     <div class="cinout">
-        <label for="no_of_guests">Konuk Sayısı</label><br>
+        <label for="no_of_guests">Konuklar</label><br>
         {{ bform.no_of_guests }}
     </div>
+
+
+    <div id="totalPriceDiv">
+    <span id="totalPriceLabel">Toplam:</span> <span id="totalPriceValue">0,00 TL</span>
+    </div>
+    <hr>
+    <div class="dugme2" id="bookit"><span>Rezervasyon Yap</span></div>
+    <div id="askus">
+        <h3>Rezervasyon Destek Hattı</h3>
+        <hr>
+        0232 4456565<br>
+                <span id="resHelpSubinfo">Ekibimizden her konuda yardım alabilirsiniz</span>
+     </div>
 </div>
-</div>
+
 
     <div class="ikikutu">
 
-    <h3>Müşteri Temsilcimize Danışın</h3>
-    <hr>
-    <b>Telefon</b><br>
-    0232 422 4465<br>
-    Eposta ya da Online Destek için tıklayın
+    <h3>Ev Sahibi</h3>
+    <hr>{{ place.owner.get_full_name }}
+        <br><br>
+        <div class="dugme2" ><span>İletişime Geç</span></div>
     </div>
 <script>$('#subtabs').tabs();</script>
 

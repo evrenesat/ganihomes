@@ -18,7 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
 
 noOfBeds=n_tuple(7, first=[(0,u'--')])
-placeTypes = [(0,u'--')] + PLACE_TYPES
+placeTypes = [(0,_(u'All'))] + PLACE_TYPES
 
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))

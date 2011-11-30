@@ -106,7 +106,7 @@ gh = {
     doRePlacements:function () {
         var self = this
 //        self.rePlace('#araf', '#mhtabela', 720, -65, 1);
-        self.rePlace('#araf', '#arabg_cont', -7, 20);
+        self.rePlace('#araf', '#arabg_cont', -27, 20);
     },
     rePlace:function (src_id, trg_id, off_left, off_top, show) {
         // re-place the target object relatively to src object.
@@ -161,15 +161,45 @@ gh = {
         $('#adres_form').toggle();
         $('#adres_harita').toggle();
     },
+    gmapsLoad:function(initFunc){
+        if(typeof(initFunc)=='undefined')initFunc='gh.gcinit';
+//        if (typeof(self.geocoder)=='undefined'){
+            $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback='+initFunc)
+//        }
+    },
+    latlng:'',
+    glatlng:'',
+    gZoom:8,
+    setLatLng:function(l){
+        self.latlng = $(l).val().replace('(','').replace(')','').split(',')
+    },
+    circleMaps:function(latlng){
+        self.setLatLng(latlng);
+        self.gmapsLoad('gh.drawCircle')
+    },
+    drawCircle:function(){
+        self.gZoom = 14
+        self.gcinit()
+
+        var mapOptions = {
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
+          map: self.map,
+          center: self.glatlng,
+          radius: 500
+        };
+        cityCircle = new google.maps.Circle(mapOptions);
+    },
     gcinit:function(){
         self = this;
-        if (typeof(self.geocoder)=='undefined'){
-            $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback=gh.gcinit')
-        }
-        self.geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(-34.397, 150.644);
-        var myOptions = { zoom: 8, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
-        self.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        if (!self.latlng)if(typeof(latlng)=='undefined')latlng=[38.434, 27.125]
+            self.geocoder = new google.maps.Geocoder();
+            self.glatlng = new google.maps.LatLng(self.latlng[0],self.latlng[1]);
+            var myOptions = { zoom: self.gZoom, center: self.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+            self.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     },
     geocodeAddress: function () {
         self = this;
@@ -217,6 +247,7 @@ gh = {
         self.currentImg = $('.pthumb').first()
         $('.pthumb').click(self._gotoNextPhoto)
         $('#phimg').click(function(){self._changePlacePhoto()})
+        $('#openmap').click(function(){self.circleMaps('#latlng')})
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
