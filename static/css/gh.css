@@ -38,12 +38,13 @@
     padding-left: 8px;
     padding-right: 8px;
     font-size: 14px;
+    white-space:nowrap;
 }
 
 #supermenu {
-    width: 407px;
+    width: 410px;
     height: 27px;
-    background: url(/images/supermenu.png);
+    background: url(/images/supermenu.png) no-repeat right center;
 }
 
 #supermenu .firstitem {
@@ -1222,24 +1223,46 @@ ul.rating li.five a:hover {background-position:0 -160px}
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 );
 
 }
+.nextpre{
+    width:20px;
+    height: 40px;
+    /*border:1px solid green;*/
+    background-color: #d8ff9d;
+    font-size: 20px;
+    color:#fff;
+    cursor:pointer;
+    text-align: center;
+    /*padding-right: 4px;*/
+    margin-top:20px;
 
-#photoslider-right{
+    background: url(/images/grd-yesil-1.png);
+    text-shadow: 1px 1px 0.4px #ccc;
     float:left;
-    width:25px;
-    height:75px;
-    background-color:#ccc;
+}
+#photoslider-right{
+    -moz-border-radius-bottomright: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-left:2px;
 }
 #photoslider-left{
-    float:left;
-    width:25px;
-    height:75px;
-    background-color:#ccc;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-topleft: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    margin-right:2px;
 }
+
 #photoslider_container{
     float:left;
     overflow:hidden;
     height:75px;
-    width:560px;
+    width:600px;
 
 }
 .pthumb{
@@ -1253,15 +1276,37 @@ ul.rating li.five a:hover {background-position:0 -160px}
 
 #pphoto{
     height:500px;
+    padding:0;
 }
 #photoframe{
-    width:615px;
-    height:400px;
-    background-color:#919191;
-    text-align:center;
-    margin-bottom:7px;
+    /*width:615px;*/
+    /*height:400px;*/
+    /*background-color:#000;*/
+    /*text-align:center;*/
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
+    /*margin-bottom:7px;*/
+    /*-moz-border-radius: 5px;*/
+    /*-webkit-border-radius: 5px;*/
+    /*border-radius: 5px;*/
+    /*border:3px outset #bbccdd;*/
+    margin:10px;
+    /*background-color:#000;*/
 }
 #phimg{
     width:615px;
     height:400px;
+
+}
+#placeprice{
+    font-size:32px;
+}
+
+#pricebox{
+
+    padding:5px;
+    margin:3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }

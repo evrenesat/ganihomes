@@ -209,6 +209,40 @@ gh = {
             if(typ=='administrative_area_level_1')$('#id_city').val(ac.long_name)
         }
         self.gcGosterGizle()
+    },
+    showPlaceInit:function(){
+        self = this;
+        $('#toptabs').tabs();
+
+        self.currentImg = $('.pthumb').first()
+        $('.pthumb').click(self._gotoNextPhoto)
+        $('#phimg').click(function(){self._changePlacePhoto()})
+        $('#photoslider-right').click(function(){self._changePlacePhoto()})
+        $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
+        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
+
+    },
+    _gotoNextPhoto:function(){
+        ths = $(this)
+        var next
+        self._changePlacePhoto(ths)
+        if($("#photoslider_container li").length > ths.index() + 1){
+            next = '+='+ ths.find('img').width() +'px';
+        }else next = $('#photoslider_container li').first()
+
+        $('#photoslider_container').scrollTo(next, 800);
+        return false
+    },
+    _changePlacePhoto:function(ob){
+        if(typeof(ob)=='undefined')ob = self.currentImg.next()
+        else if(ob=='prev')ob = self.currentImg.prev()
+        if(ob.html()){
+            self.currentImg = ob
+            var url = "url("+ob.find('a').attr('href')+") no-repeat center center"
+            $('#phimg').fadeTo(100,0,function(){
+                $('#phimg').css('background', url).fadeTo(100,1)
+            })
+        }
     }
 
 };

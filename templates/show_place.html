@@ -1,8 +1,8 @@
 {% extends "content.html" %}
 {% load thumbnail %}
-{#{% block extrajs %}#}
-{#<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>#}
-{#{% endblock %}#}
+{% block extrajs %}
+<script>$(document).ready(function(){gh.showPlaceInit()})</script>
+{% endblock %}
 {% block content %}
     <div class="altikutu">
 
@@ -26,21 +26,21 @@
                 </ul>
                 <div id="pphoto">
                     <div id="photoframe">
-                        <div id="phimg" style="background:url({% thumbnail place.photo_set.all.0.image 615x400 upscale crop=scale %}) no-repeat center center;">
+                        <div id="phimg" style="background:url({% thumbnail place.photo_set.all.0.image 615x400 upscale crop=smart %}) no-repeat center center;"></div>
                     </div>
 
 
-                <div id="photoslider-left"></div>
+                <div id="photoslider-left" class="nextpre">&laquo;</div>
                 <div id="photoslider_container">
 
                     <div id="photoslider">
                         {% for p in place.photo_set.all %}
-                            <li  class="pthumb"><a href="{% thumbnail p.image 615x400 upscale crop=scale %}"><img  src="{% thumbnail p.image 0x100 upscale crop=scale %}"></a></li>
+                            <li  class="pthumb"><a href="{% thumbnail p.image 615x400 upscale crop=scale %}"><img  src="{% thumbnail p.image 0x80 upscale crop=scale %}"></a></li>
                         {% endfor %}
                     </div>
 
                 </div>
-                <div id="photoslider-right"></div>
+                <div id="photoslider-right" class="nextpre">&raquo;</div>
 
                 </div>
                 <div id="pcalendar">
@@ -56,15 +56,22 @@
 </div>
 </div>
 <div class="ikikutu">
-
-<span id="placeprice">{{ place.price }}</span> {{ place.currency }} / gece<
+<div id="pricebox">
+<span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>
 <hr>
-<ul>
-<li>şu nasıl olcak</li>
-<li>bunlar nasıl?</li>
-<li>peki ya şu nasıl oluyor??</li>
-<li>ya şöyle olursa?</li>
-</ul>
+    <div class="cinout">
+        <label for="checkin">Varış</label><br>
+        {{ bform.checkin }}
+    </div>
+    <div class="cinout">
+        <label for="checkout">Ayrlılış</label><br>
+        {{ bform.checkout }}
+    </div>
+    <div class="cinout">
+        <label for="no_of_guests">Konuk Sayısı</label><br>
+        {{ bform.no_of_guests }}
+    </div>
+</div>
 </div>
 
     <div class="ikikutu">
@@ -75,22 +82,6 @@
     0232 422 4465<br>
     Eposta ya da Online Destek için tıklayın
     </div>
-<script>
-    $('#toptabs').tabs();
-    $('.pthumb').click(function(){
-        ths = $(this)
-        var ix = ths.index() + 1;
-        url = ths.find('a').attr('href')
-        url = "url("+url+") no-repeat center center"
-        $('#phimg').fadeTo(300,0,function(){
-            $('#phimg').css('background', url).fadeTo(200,1)
-        })
-//        $('#phimg').css('background', url)
-        $('#photoslider_container').scrollTo("li:nth-child("+ix+")",800);
-        return false
-    })
-
-</script>
 <script>$('#subtabs').tabs();</script>
 
 {% endblock %}

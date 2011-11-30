@@ -55,7 +55,7 @@
                         <div class="scrollableArea">
                             {% for s in slides %}
                                 {% if not s.thumbs %}
-                                    <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
+                                    <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
                                          style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                         <div class="sbaner alpha60">
                                             <div class="sbaner-info">{{ s.placeName }}<br>
@@ -77,8 +77,8 @@
                                     </div>
                                 {% else %}
 
-                                    <div class="slidiv slidiv-thumb" onmouseclick="document.location='{{ s.url }}'">
-                                        {#                                          {{ s.photos }}#}
+                                    <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+
                                         {% for photo in s.photos %}
                                             <div class="thumbphoto"
                                                  style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
@@ -119,7 +119,7 @@
                         <div class="scrollableArea">
                             {% for s in slides3 %}
                                 {% if not s.thumbs %}
-                                                                   <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
+                                                                   <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
                                                                         style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                                                        <div class="sbaner alpha60">
                                                                            <div class="sbaner-info">{{ s.placeName }}<br>
@@ -141,7 +141,7 @@
                                                                    </div>
                                                                {% else %}
 
-                                                                   <div class="slidiv slidiv-thumb" onmouseclick="document.location='{{ s.url }}'">
+                                                                   <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
                                                                        {#                                          {{ s.photos }}#}
                                                                        {% for photo in s.photos %}
                                                                            <div class="thumbphoto"
@@ -184,7 +184,7 @@
                         <div class="scrollableArea">
                             {% for s in slides2 %}
                                 {% if not s.thumbs %}
-                                    <div class="slidiv" onmouseclick="document.location='{{ s.url }}'"
+                                    <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
                                          style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                         <div class="sbaner alpha60">
                                             <div class="sbaner-info">{{ s.placeName }}<br>
@@ -206,7 +206,7 @@
                                     </div>
                                 {% else %}
 
-                                    <div class="slidiv slidiv-thumb" onmouseclick="document.location='{{ s.url }}'">
+                                    <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
                                         {#                                          {{ s.photos }}#}
                                         {% for photo in s.photos %}
                                             <div class="thumbphoto"
@@ -278,7 +278,7 @@
             <div id="aradetay">
                 <div class="kbaslik">ayrıntılı arama</div>
                 <div class="foge checkinout">
-                    <label for="checkin">Varış</label><br>
+                    <label for="checkin">VsrFormlabel><br>
                     {{ srForm.checkin }}
                 </div>
                 <div class="foge checkinout">

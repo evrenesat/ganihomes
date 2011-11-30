@@ -268,7 +268,8 @@ class Vitrin(models.Model):
 
     objects = models.Manager()
     actives = ActiveManager()
-
+    def getUrl(self):
+        return reverse('show_place', args=[self.place.id]) if self.place else self.url;
     def placeName(self):
         return self.place.title if self.place else ''
 

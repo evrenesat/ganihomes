@@ -17,20 +17,26 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
 
+noOfBeds=n_tuple(7, first=[(0,u'--')])
+placeTypes = [(0,u'--')] + PLACE_TYPES
 
 class SearchForm(forms.Form):
-    noOfBeds=n_tuple(7, first=[(0,u'--')])
-    placeTypes = [(0,u'--')] + PLACE_TYPES
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
     checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
     search_pharse = forms.CharField(widget=forms.TextInput())
     no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
     placeType = forms.ChoiceField(choices=placeTypes)
 
+class BookingForm(forms.Form):
+    checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
+    checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
+    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
+
 
 def showPlace(request, id):
     place = Place.objects.get(pk=id)
-    context = {'place':place, }
+
+    context = {'place':place,'bform':BookingForm() }
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 def searchPlace(request):
