@@ -39,10 +39,9 @@
 
         <div id="tabs">
             <ul>
-                <li class="gritab" id="tabli1"><a href="#tabs-1"><span class="g">gani</span><span
-                        class="h">VİTRİN</span></a></li>
-                <li class="gritab"><a href="#tabs-2">Manzaralar</a></li>
-                <li class="gritab"><a href="#tabs-3">İç Mekanlar</a></li>
+                <li class="gritab" id="tabli1"><a href="#tabs-1">&nbsp;</a></li>
+                <li class="gritab alttab" id="manztab"><a href="#tabs-2">Manzaralar</a></li>
+                <li class="gritab alttab" id="ictab"><a href="#tabs-3">İç Mekanlar</a></li>
                 <li id="howitworks"><a href="#tabs-4">
                     <div class="inlinelogo logo-basta">Nasıl Çalışır?</div>
                 </a></li>
@@ -278,15 +277,15 @@
             <div id="aradetay">
                 <div class="kbaslik">ayrıntılı arama</div>
                 <div class="foge checkinout">
-                    <label for="checkin">Varış<br>
+                    <label for="checkin">{{ srForm.checkin.label }}<br>
                     {{ srForm.checkin }}
                 </div>
                 <div class="foge checkinout">
-                    <label for="checkout">Ayrlılış</label><br>
+                    <label for="checkout">{{ srForm.checkout.label }}</label><br>
                     {{ srForm.checkout }}
                 </div>
                 <div class="foge noofguest">
-                    <label for="no_of_guests">Konuk Sayısı</label><br>
+                    <label for="no_of_guests">{{ srForm.no_of_guests.label }}</label><br>
                     {{ srForm.no_of_guests }}
                 </div>
                 <div class="foge placetype">

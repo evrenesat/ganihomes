@@ -116,6 +116,7 @@ class Tag(models.Model):
 
     category = models.ForeignKey(TagCategory)
     name = models.CharField(_('Name'), max_length=30)
+    help = models.TextField(_('Help Text'),default='',blank=True)
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
@@ -127,6 +128,24 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.name,)
+
+class TagTranslation(models.Model):
+    """Place description"""
+
+    tag = models.ForeignKey(Tag,verbose_name=_('Tag'), related_name='tags')
+    lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
+    translation = models.CharField(_('Translation'),max_length=30)
+    help = models.TextField(_('Help Text'),default='',blank=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Tag Translation')
+        verbose_name_plural = _('Tag Translations')
+
+    def __unicode__(self):
+        return 'Place #%s Lang:%s' % (self.tag_id, self.lang)
 
 
 class Place(models.Model):
@@ -232,10 +251,14 @@ class Friendship(models.Model):
 
 class Photo(models.Model):
     """Photos"""
-    place = models.ForeignKey(Place,verbose_name=_('Place'))
+
+    #FIXME : delete actual file on delete
+
+    place = models.ForeignKey(Place,verbose_name=_('Place'), null=True, blank=True)
     name = models.CharField(_('Image name'), max_length=60, null=True, blank=True)
     image = models.ImageField(_('Image File'), upload_to='place_photos')
     type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
+    order = models.SmallIntegerField(_('Display order'), editable=False, default=1)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:

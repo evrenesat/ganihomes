@@ -1,22 +1,29 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import UploadedFile
+from django.utils import simplejson as json
 from django.forms.models import ModelForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
-from places.models import Place, Tag
+from django.views.decorators.csrf import csrf_exempt
+from places.models import Place, Tag, Photo
 from django.db import models
 from places.options import n_tuple, PLACE_TYPES
 from website.models.icerik import Sayfa, Haber, Vitrin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
 from website.models.medya import Medya
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
-
+from easy_thumbnails.files import get_thumbnailer
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+import logging
+log = logging.getLogger('genel')
 noOfBeds=n_tuple(7, first=[(0,u'--')])
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
 
@@ -24,7 +31,7 @@ class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
     checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
     search_pharse = forms.CharField(widget=forms.TextInput())
-    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
+    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1, label=_(u'Guests'))
     placeType = forms.ChoiceField(choices=placeTypes)
 
 class BookingForm(forms.Form):
@@ -48,8 +55,9 @@ class LoginForm(forms.Form):
     login_pass = forms.CharField(widget=forms.PasswordInput(),label=_(u'Password'))
 
 class RegisterForm(ModelForm):
-    pass1 = forms.CharField(widget=forms.PasswordInput(),label=_(u'Şifre'))
-    pass2 = forms.CharField(widget=forms.PasswordInput(),label=_(u'Şifre Tekrar'))
+    pass1 = forms.CharField(widget=forms.PasswordInput(),label=_(u'Password'))
+    pass2 = forms.CharField(widget=forms.PasswordInput(),label=_(u'Password (Again)'))
+    email = forms.EmailField(label=_(u'E-mail address'))
     class Meta:
         model=User
         fields = ('email','first_name','last_name',)
@@ -80,29 +88,34 @@ class addPlaceForm(ModelForm):
 def addPlace(request):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
+    user = request.user
+    loged_in = user.is_authenticated()
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
         login_form = LoginForm(request.POST)
         form = addPlaceForm(request.POST)
         if form.is_valid():
             new_place=form.save(commit=False)
-            try:
-                if register_form.is_valid():
-                    owner = register_form.save(commit=False)
-                    owner.username = owner.email
-                    owner.save()
-                    new_place.owner = owner
-                    new_place.save()
-    #                assert 0, new_place.tags.all()
-                    form.save_m2m()
-                    for tag in form.cleaned_data['tags']:
-                        new_place.tags.add(tag)
-                    new_place.save()
-                    return HttpResponseRedirect(reverse('places', args=[new_place.id]))
-            except:
-                if owner: owner.delete()
-                if new_place: new_place.delete()
-                raise
+#            try:
+            if register_form.is_valid() or loged_in:
+                if not loged_in:
+                    user = register_form.save(commit=False)
+                    user.username = user.email
+                    user.save()
+                new_place.owner = user
+                new_place.save()
+                form.save_m2m()
+                for tag in form.cleaned_data['tags']:
+                    new_place.tags.add(tag)
+                new_place.save()
+                tmp_photos = request.session.get('tmp_photos')
+                if tmp_photos:
+                    Photo.objects.filter(id__in=tmp_photos).update(place=new_place)
+                return HttpResponseRedirect(reverse('show_place', args=[new_place.id]))
+#            except:
+#                if owner: owner.delete()
+#                if new_place: new_place.delete()
+#                raise
 
 
     else:
@@ -197,3 +210,128 @@ def dilsec(request, kod):
 
 
 
+@csrf_exempt
+def multiuploader_delete(request, pk):
+    """
+    View for deleting photos with multiuploader AJAX plugin.
+    made from api on:
+    https://github.com/blueimp/jQuery-File-Upload
+    """
+    if request.method == 'POST':
+        log.info('Called delete image. Photo id='+str(pk))
+        image = get_object_or_404(Photo, pk=pk)
+        image.delete()
+        log.info('DONE. Deleted photo id='+str(pk))
+        return HttpResponse(str(pk))
+    else:
+        log.info('Recieved not POST request todelete image view')
+        return HttpResponseBadRequest('Only POST accepted')
+
+
+
+def square_thumbnail(source):
+    thumbnail_options = dict(size=(50, 50), crop=True)
+    return get_thumbnailer(source).get_thumbnail(thumbnail_options)
+
+@csrf_exempt
+def multiuploader(request):
+    #FIXME : file type checking
+    if request.method == 'POST':
+        log.info('received POST to main multiuploader view')
+        if request.FILES == None:
+            return HttpResponseBadRequest('Must have files attached!')
+
+        #getting file data for farther manipulations
+        file = request.FILES[u'files[]']
+        wrapped_file = UploadedFile(file)
+        filename = wrapped_file.name
+        file_size = wrapped_file.file.size
+        log.info ('Got file: "'+str(filename)+'"')
+
+        #writing file manually into model
+        #because we don't need form of any type.
+        image = Photo()
+        image.name=str(filename)
+        image.image=file
+        image.save()
+        tmp_photos = request.session.get('tmp_photos',[])
+        tmp_photos.append(image.id)
+        request.session['tmp_photos'] = tmp_photos
+        log.info('File saving done')
+
+        #getting url for photo deletion
+        file_delete_url = '/delete/'
+
+        #getting file url here
+        file_url = image.image.url
+
+        #getting thumbnail url using sorl-thumbnail
+        im = square_thumbnail(image.image)
+        thumb_url = im.url
+#        thumb_tag = im.tag()
+
+        #generating json response array
+        result = []
+        result.append({"name":filename,
+                       "size":file_size,
+                       "url":file_url,
+#                       "tag":thumb_tag,
+                       "turl":thumb_url,
+                       "delete_url":file_delete_url+str(image.pk)+'/',
+                       "delete_type":"POST",})
+        response_data = json.dumps(result)
+        return HttpResponse(response_data, mimetype='application/json')
+
+
+def image_view(request):
+    items = Photo.objects.all()
+    return render_to_response('images.html', {'items':items})
+
+def statusCheck(request):
+    context={
+        'authenticated':request.user.is_authenticated(),
+    }
+    response =  HttpResponse(json.dumps(context), mimetype='application/json')
+    response.set_cookie('lin', 1 if context['authenticated'] else -1)
+    return response
+
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        rform = RegisterForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            if user:
+                login(request, user)
+
+            user = User.objects.get(username=cd['username'])
+            if user.check_password(cd['username']):
+                user.authenticate()
+            else:
+                pass
+            return HttpResponseRedirect('/')
+    else:
+        form = LoginForm()
+        rform = RegisterForm()
+    context = {'form':form, 'rform':rform}
+    return render_to_response('login.html', context, context_instance=RequestContext(request))
+
+def register(request):
+    sayfa = Sayfa.al_anasayfa()
+    lang = request.LANGUAGE_CODE
+    user = request.user
+    loged_in = user.is_authenticated()
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+
+
+        if form.is_valid():
+            user = register_form.save(commit=False)
+            user.username = user.email
+            user.save()
+            return HttpResponseRedirect('/')#reverse('show_place'))
+    else:
+        form = RegisterForm()
+    context = {'form':form}
+    return render_to_response('register.html', context, context_instance=RequestContext(request))

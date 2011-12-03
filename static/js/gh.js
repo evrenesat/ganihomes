@@ -11,14 +11,16 @@ gh = {
 //        if (logo_pad)$('.logo div').css({marginTop:logo_pad + 'px'})
 //        if (sc_pad)$('.showcase').css({paddingTop:sc_pad + 'px'})
         $('#smekle').click(function(){document.location='/add_place/'})
+        $('#smkayit').click(function(){document.location='/register/'})
+        $('#smgir').click(function(){document.location='/login/'})
     },
     index_init:function () {
         var self = this;
-        self.akGorunur = 0
-        self.sks = {}
+        this.akGorunur = 0
+        this.sks = {}
         $('#arabg').fadeTo('fast', .5)
-        self.doRePlacements();
-        self.otoTamamla('arainput')
+        this.doRePlacements();
+        this.otoTamamla('arainput')
         $(window).resize(function () {
             self.doRePlacements()
         });
@@ -26,14 +28,14 @@ gh = {
             self.akToggle(0)
         });
         $('html').click(function (data) {
-            console.log(data.srcElement.className)
-            if(data.srcElement.className.indexOf("ui-")>-1)return;
+//            console.log(data.srcElement, data.target)
+            if(data.target.className.indexOf("ui-")>-1)return;
             self.akToggle(1)
         });
         $('#araf, #arabg_cont').click(function (event) {
             event.stopPropagation();
         })
-        $()
+
         $('#howitworks a').click(function () {
             $('#howitworks').removeClass('ui-state-active');
         })
@@ -54,9 +56,9 @@ gh = {
             }).mouseleave(function () {
                 $(this).find('.sbaner').animate({height:'40px'})
             });
-        self.makeScroller('GVS1');
-        self.makeScroller('GVS2', 0, 1);
-        self.makeScroller('GVS3');
+        this.makeScroller('GVS1');
+        this.makeScroller('GVS2', 0, 1);
+        this.makeScroller('GVS3');
     },
     makeScroller:function (container_id, hidden, lft) {
         if (typeof(hidden) == 'undefined') hidden = false;
@@ -105,8 +107,8 @@ gh = {
     },
     doRePlacements:function () {
         var self = this
-//        self.rePlace('#araf', '#mhtabela', 720, -65, 1);
-        self.rePlace('#araf', '#arabg_cont', -27, 20);
+//        this.rePlace('#araf', '#mhtabela', 720, -65, 1);
+        this.rePlace('#araf', '#arabg_cont', -27, 20);
     },
     rePlace:function (src_id, trg_id, off_left, off_top, show) {
         // re-place the target object relatively to src object.
@@ -162,8 +164,9 @@ gh = {
         $('#adres_harita').toggle();
     },
     gmapsLoad:function(initFunc){
+        var self = this
         if(typeof(initFunc)=='undefined')initFunc='gh.gcinit';
-//        if (typeof(self.geocoder)=='undefined'){
+//        if (typeof(this.geocoder)=='undefined'){
             $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback='+initFunc)
 //        }
     },
@@ -171,15 +174,20 @@ gh = {
     glatlng:'',
     gZoom:8,
     setLatLng:function(l){
-        self.latlng = $(l).val().replace('(','').replace(')','').split(',')
+        this.latlng = $(l).val().replace('(','').replace(')','').split(',')
     },
-    circleMaps:function(latlng){
-        self.setLatLng(latlng);
-        self.gmapsLoad('gh.drawCircle')
+    markerMaps:function(){
+        var self = this;
+//        console.log(self)
+        this.gmapsLoad('gh.gcinit')
+    },
+    _circleMaps:function(latlng){
+        this.setLatLng(latlng);
+        this.gmapsLoad('gh.drawCircle')
     },
     drawCircle:function(){
-        self.gZoom = 14
-        self.gcinit()
+        this.gZoom = 14;
+        this.gcinit();
 
         var mapOptions = {
           strokeColor: "#FF0000",
@@ -187,28 +195,30 @@ gh = {
           strokeWeight: 2,
           fillColor: "#FF0000",
           fillOpacity: 0.35,
-          map: self.map,
-          center: self.glatlng,
+          map: this.map,
+          center: this.glatlng,
           radius: 500
         };
         cityCircle = new google.maps.Circle(mapOptions);
     },
     gcinit:function(){
-        self = this;
-        if (!self.latlng)if(typeof(latlng)=='undefined')latlng=[38.434, 27.125]
-            self.geocoder = new google.maps.Geocoder();
-            self.glatlng = new google.maps.LatLng(self.latlng[0],self.latlng[1]);
-            var myOptions = { zoom: self.gZoom, center: self.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
-            self.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+//        var self = this;
+        if (!this.latlng)this.latlng=[38.434, 27.125]
+//        console.log(self)
+        this.geocoder = new google.maps.Geocoder();
+        this.glatlng = new google.maps.LatLng(this.latlng[0],this.latlng[1]);
+        var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+        this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     },
     geocodeAddress: function () {
-        self = this;
+        var self = this;
+//        console.log(this)
         var address = document.getElementById("address").value;
-        self.geocoder.geocode( { 'address': address}, function(results, status) {
+        this.geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             self.map.setCenter(results[0].geometry.location);
             self.gcResult = results[0];
-            var infoWindow = new google.maps.InfoWindow({content:self.gcResult.formatted_address+'<br><b></b><a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">Bu adresi kullan</a></b>'});
+            var infoWindow = new google.maps.InfoWindow({content:results[0].formatted_address+'<br><b></b><a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">Bu adresi kullan</a></b>'});
             var marker = new google.maps.Marker({
                 map: self.map,
                 position: results[0].geometry.location,
@@ -218,18 +228,18 @@ gh = {
 //            marker.setDraggable(true);
 //            marker.openInfoWindowHtml(results[0].formatted_address)
           } else {
-            alert("Geocode was not successful for the following reason: " + status);
+            alert("Adres bulunamadı\n\n" + status);
           }
         });
       },
-    getGCResult:function(){return self.gcResult;},
+    getGCResult:function(){return this.gcResult;},
     gcAdresTamam:function(){
-        acs = self.gcResult.address_components
-        $('#id_geocode').val(self.gcResult.geometry.location)
+        acs = this.gcResult.address_components
+        $('#id_geocode').val(this.gcResult.geometry.location)
         for (i in acs){
             var ac = acs[i]
             var typ = ac.types[0]
-            console.log(ac.long_name, typ)
+//            console.log(ac.long_name, typ)
             if(typ=='country')$('#id_country').val(ac.short_name)
             if(typ=='route')$('#id_street').val(ac.long_name)
             if(typ=='neighborhood')$('#id_street').val($('#id_street').val() + ' ' + ac.long_name)
@@ -238,42 +248,85 @@ gh = {
             if(typ=='administrative_area_level_2')$('#id_district').val(ac.long_name)
             if(typ=='administrative_area_level_1')$('#id_city').val(ac.long_name)
         }
-        self.gcGosterGizle()
+        this.gcGosterGizle()
     },
     showPlaceInit:function(){
-        self = this;
+        var self = this;
         $('#toptabs').tabs();
 
-        self.currentImg = $('.pthumb').first()
-        $('.pthumb').click(self._gotoNextPhoto)
+        this.currentImg = $('.pthumb').first()
+        $('.pthumb').click(function(){return self._gotoNextPhoto(this)})
         $('#phimg').click(function(){self._changePlacePhoto()})
-        $('#openmap').click(function(){self.circleMaps('#latlng')})
+        $('#openmap').click(function(){self._circleMaps('#latlng')})
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
 
     },
-    _gotoNextPhoto:function(){
-        ths = $(this)
+    addPlaceInit:function(){
+        var self = this;
+//        console.log(self,this)
+        $( "#accordion").accordion({ autoHeight: false, collapsible: true });
+        $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+        $('#addrFindBut').click(function(){self.geocodeAddress()});
+        $('#gotomap').click(function(){
+            self.changeForm(2);
+            self.markerMaps();
+        });
+        /*gecici*/
+//        self.changeForm(3);
+//        $( "#accordion").accordion( "activate" , 4 )
+        //**//
+        this.upload_init()
+    },
+    _gotoNextPhoto:function(current_photo){
         var next
-        self._changePlacePhoto(ths)
-        if($("#photoslider_container li").length > ths.index() + 1){
-            next = '+='+ ths.find('img').width() +'px';
+//        xx=this
+//        return false;
+        current_photo = $(current_photo)
+        this._changePlacePhoto(current_photo)
+        if($("#photoslider_container li").length > current_photo.index() + 1){
+            next = '+='+ current_photo.find('img').width() +'px';
         }else next = $('#photoslider_container li').first()
 
         $('#photoslider_container').scrollTo(next, 800);
         return false
     },
     _changePlacePhoto:function(ob){
-        if(typeof(ob)=='undefined')ob = self.currentImg.next()
-        else if(ob=='prev')ob = self.currentImg.prev()
+        if(typeof(ob)=='undefined')ob = this.currentImg.next()
+        else if(ob=='prev')ob = this.currentImg.prev()
         if(ob.html()){
-            self.currentImg = ob
+            this.currentImg = ob
             var url = "url("+ob.find('a').attr('href')+") no-repeat center center"
             $('#phimg').fadeTo(100,0,function(){
                 $('#phimg').css('background', url).fadeTo(100,1)
             })
         }
+    },
+    upload_init:function(){
+        $('#fileupload').fileupload({
+               dataType: 'json',
+               url: '/upload_photo/',
+               done: function (e, data) {
+                   $.each(data.result, function (index, file) {
+                       $('<img />').attr('src',(file.turl)).appendTo('#uploaded');
+                   });
+               }
+           });
+    },
+    login_init: function(){
+        $('html').click(function (data) {
+            $('#uyekapsar').addClass('silik');
+        });
+        $('#uyekapsar').click(function (event) {
+            event.stopPropagation();
+        })
+        $('#uyeol input').focus(function(){
+            $('#uyekapsar').removeClass('silik');
+        })
+        $('#uyeol').mouseenter(function(){
+            $('#uyekapsar').removeClass('silik');
+        })
     }
 
 };

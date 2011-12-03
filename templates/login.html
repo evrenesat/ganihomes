@@ -1,0 +1,92 @@
+{% extends "content.html" %}
+{% block extrajs %}
+<script>$(document).ready(function(){gh.login_init()})</script>
+{% endblock %}
+{% block content %}
+    <div class="dortkutu">
+        <div class="kutuici">
+
+
+            <h3>Hoşgeldiniz</h3>
+
+            GaniHomes hesabınıza giriş yapmak için e-posta ya da FaceBook hesabınızı kullanabilirsiniz.
+
+
+
+            <form action="." method="post" id="addplaceform">
+
+
+                <div class="loginform forms autocenter" >
+
+                    {{ form.as_ul }}
+                    <button class="yesildugme fo16">Giriş Yap</button>
+                    <label class="ramlabel normallabel" for="rem">Beni Hatırla</label>
+                    <input type="checkbox" id="rem" name="rem">
+
+
+                </div>
+
+                <div class="orline" ></div>
+                <div class="or">ya da</div>
+                <div class="orline" ></div>
+
+                    <div style="margin-top:50px;" class="fbbutton">
+                        <div>Facebook ile Giriş Yap</div>
+                    </div>
+
+
+
+
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </div>
+
+    <div id="uyeol" class="ikikutu">
+
+        <h3>Henüz Üyü Değil misiniz?</h3>
+        <hr>
+<form action="{% url register %}" method="post">
+    {% csrf_token %}
+        <div id="uyekapsar" class="silik">
+            <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
+            </p>
+        <div class="sideform2 separate">
+                <label for="id_first_name">{{ rform.first_name.label }}</label><br>
+                {{ rform.first_name }}
+            </div>
+            <div class="sideform2">
+                <label for="id_last_name">{{ rform.last_name.label }}</label><br>
+                {{ rform.last_name }}
+            </div>
+
+        <div class="sideform2 separate" style="width:98%;   ">
+                <label for="id_email">{{ rform.email.label }}</label><br>
+                {{ rform.email }}
+            </div>
+
+        <div class="sideform2 separate">
+                <label for="id_pass1">{{ rform.pass1.label }}</label><br>
+                {{ rform.pass1 }}
+            </div>
+            <div class="sideform2">
+                <label for="id_pass2">{{ rform.pass2.label }}</label><br>
+                {{ rform.pass2 }}
+            </div>
+        <div class="float-left yuzz txtcnt">
+        <button class="yesildugme fo11">Üye Ol</button>
+            </div>
+
+        <div class="orline" ></div>
+        <div class="or">yada</div>
+        <div class="orline" ></div>
+
+        <div class="yuzz float-left" style="text-align:center;">
+            <button class="minifbbutton">Facebook ile Bağlanın</button>
+            </div>
+        </div>
+</form>
+    </div>
+
+{% endblock %}

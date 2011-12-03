@@ -20,6 +20,17 @@ class PhotoAdmin(admin.ModelAdmin):
 
 
 
+class TagTranslationAdmin(admin.ModelAdmin):
+    list_display = ('tag','lang', 'translation',)
+    search_fields = ['translation', ]
+    list_filter = ['lang','tag' ]
+    save_on_top = True
+
+
+
+class TagTranslationInline(admin.TabularInline):
+    model = TagTranslation
+
 class PhotoInline(admin.TabularInline):
     model = Photo
 
@@ -121,6 +132,7 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'active', 'category')
     search_fields = ['name', ]
     list_filter = ['category', ]
+    inlines = [TagTranslationInline]
 
 
 class CurrencyAdmin(admin.ModelAdmin):

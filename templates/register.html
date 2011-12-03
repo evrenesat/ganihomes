@@ -1,0 +1,98 @@
+{% extends "content.html" %}
+{#{% block extrajs %}#}
+{#<script>$(document).ready(function(){gh.register_init()})</script>#}
+{#{% endblock %}#}
+{% block content %}
+    <div class="dortkutu">
+        <div class="kutuici">
+
+
+            <h3>Hoşgeldiniz</h3>
+
+                        Facebook hesabınızla  ya da eposta adresinizi girerek bir kaç dakikada GaniHomes'a üye olabilirsiniz.
+
+
+
+            <form action="." method="post" id="addplaceform">
+
+
+                <div class="regform forms autocenter" >
+
+                    <div class="forms2 separate">
+                                 <label for="id_first_name">{{ form.first_name.label }}</label><br>
+                                 {{ form.first_name }}
+                             </div>
+                             <div class="forms2">
+                                 <label for="id_last_name">{{ form.last_name.label }}</label><br>
+                                 {{ form.last_name }}
+                             </div>
+                           <div class="float-left" style="width:600px">
+                         <div class="forms2 separate" style="width:60%">
+                                 <label for="id_email">{{ form.email.label }}</label><br>
+                                 {{ form.email }}
+                             </div></div>
+
+                         <div class="forms2 separate">
+                                 <label for="id_pass1">{{ form.pass1.label }}</label><br>
+                                 {{ form.pass1 }}
+                             </div>
+                             <div class="forms2">
+                                 <label for="id_pass2">{{ form.pass2.label }}</label><br>
+                                 {{ form.pass2 }}
+                             </div>
+                         <div class="float-left yuzz txtcnt">
+                             </div>
+                    <button  class="yesildugme fo16">Hesabımı Oluştur</button>
+
+
+
+                </div>
+
+                <div class="orline" ></div>
+                <div class="or">ya da</div>
+                <div class="orline" ></div>
+
+                    <div style="margin-top:50px;" class="fbbutton">
+                        <div>Facebook ile Bağlan</div>
+                    </div>
+
+
+
+
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </div>
+
+    <div class="ikikutu">
+
+    <h3>Aklınızda soru kalmasın!</h3>
+    <hr>
+    <ul>
+    <li>şu nasıl olcak</li>
+    <li>bunlar nasıl?</li>
+    <li>peki ya şu nasıl oluyor??</li>
+    <li>ya şöyle olursa?</li>
+    </ul>
+    </div>
+
+        <div class="ikikutu">
+
+        <h3>Müşteri Temsilcimize Danışın</h3>
+        <hr>
+        <b>Telefon</b><br>
+        0232 422 4465<br>
+        Eposta ya da Online Destek için tıklayın
+        </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

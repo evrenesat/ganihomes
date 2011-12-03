@@ -1,7 +1,9 @@
 {% extends "content.html" %}
-{#{% block extrajs %}#}
-{#<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>#}
-{#{% endblock %}#}
+{% block extrajs %}
+<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>
+<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>
+<script>$(document).ready(function(){gh.addPlaceInit()})</script>
+{% endblock %}
 {% block content %}
     <div class="altikutu">            {{ form.errors }}
                 {{ rform.errors }}
@@ -36,7 +38,7 @@
                 <p>{{ form.min_stay.label_tag }} {{ form.min_stay }}</p>
                 <p>{{ form.max_stay.label_tag }} {{ form.max_stay }}</p>
                 <p>{{ form.cancellation.label_tag }} {{ form.cancellation }}</p>
-                <div onclick="gh.changeForm(2);gh.gmapsLoad()" class="dugme1"><span>1/4 Kaydet ve Devam Et</span></div>
+                <div id="gotomap" class="dugme1"><span>1/4 Kaydet ve Devam Et</span></div>
             </div>
             <div id="form2" class="wfParts">
 {#                <div style="position:relative">#}
@@ -56,7 +58,7 @@
                             Lütfen kiralamak istediğiniz yerin adresini aşağıdaki alana girerek harita üzerindeki konumunu doğrulayınız;
                             <span style="font-size:smaller"> (1715 sok. No:11/4 izmir gibi)</span></span>
                         <input id="address" type="textbox" value="1715 sok. No:11/4 izmir">
-                        <input type="button" id="address_find" value="Bul" onclick="gh.geocodeAddress()">
+                        <input type="button" value="Bul" id="addrFindBut">
                         <div id="map_canvas"></div>
                     </div>
 {#                </div>#}
@@ -71,7 +73,7 @@
                         <p>{{ form.description }}</p>
                 	</div>
                 	<h3><span class="nums">2</span><a href="#">Konuklarınıza sunduğunuz imkanları seçin;</a></h3>
-                	<div>
+                	<div id="place_tags">
                 		{{ form.tags }}
                 	</div>
                 	<h3><span class="nums">3</span><a href="#">Konaklama sırasında uyulacak kurallar;</a></h3>
@@ -86,8 +88,8 @@
                    	</div>
                 	<h3><span class="nums">5</span><a href="#">Mekanınızın fotoğraflarını yükleyin</a></h3>
                 	<div>
-                		<input type="file" name="fotoup" id="fotoup">
-                		<div style="width:100%;border:#bbccdd 1px solid;height: 150px;margin-top:10px"></div>
+                        <input id="fileupload" type="file" name="files[]" multiple>
+                		<div id="uploaded"></div>
                 	</div>
                 </div>
 
@@ -119,12 +121,6 @@
 
             </div>
         </div>
-   <script>
-//       gh.changeForm(3)
-       $( "#accordion").accordion({ autoHeight: false, collapsible: true });
-       $('#address').keydown(function(event){if(event.keyCode == '13')gh.geocodeAddress()});
-
-   </script>
             {% csrf_token %}
         </form>
     </div>
