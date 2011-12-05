@@ -3,6 +3,19 @@
 
 
 {% block hdrclass %}hdrbg{% endblock %}
+
+    {% if messages %}
+        {% block header %}
+
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+        {% endblock %}
+    {% endif %}
+
 {#{% block content %}#}
 {#    <div class="altikutu">{% block altikutu %}{%  endblock  %}</div>#}
 {#    <div class="ikikutu">{% block ikikutu %}{%  endblock  %}</div>#}

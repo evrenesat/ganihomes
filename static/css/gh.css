@@ -125,6 +125,7 @@
     display: block;
     float: left;
     padding: 0;
+    cursor:pointer;
     margin: 0 3px 0 3px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -136,7 +137,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 40px;
+    height: 38px;
     overflow: hidden;
 }
 
@@ -149,7 +150,7 @@
 
 .sbaner-info {
     margin: 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #9e9e9e;
     font-family: arial, sans;
@@ -164,7 +165,7 @@
     color: #9e9e9e;
 }
 
-.stardiv ul {
+.sbaner .stardiv ul {
     margin-top: 10px;
 }
 
@@ -417,6 +418,23 @@ div.scrollableArea {
     /*padding-top: 10px;*/
     width: 100%;
     height: 85px;
+}
+.messages li {list-style: none;display:block;
+font-size:16px;
+font-weight:bold;
+}
+ul.messages {
+    margin-top:0;
+    margin-bottom:0;
+    text-align:center;
+    display:block;
+    width: 960px;
+    margin-left:auto;
+    margin-right:auto;
+    /*border:dotted 1px #font:;fb265;*/
+}
+.messages {
+
 }
 
 #arakutu {
@@ -698,10 +716,12 @@ div.scrollableArea {
 
 .foge input{
     text-align: center;
+    letter-spacing: -1px;
 }
 .foge input, .foge select {
     /*border:1px solid #ccc;*/
     font-size: 16px;
+
     height: 26px;
     color: #7e7979;
 
@@ -794,7 +814,19 @@ div.scrollableArea {
 /*top: 5px;*/
 /*color: green;*/
 /*}*/
+.dokuzkutu {
+    width: 960px;
+    padding: 15px;
+    margin-top: 20px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 2px 2px 10px 2px #cccccc;
+    -moz-box-shadow: 2px 2px 10px 2px #cccccc;
+    box-shadow: 2px 2px 10px 2px #cccccc;
+    float: left;
 
+}
 .altikutu {
     width: 660px;
     padding: 15px;
@@ -865,6 +897,42 @@ div.scrollableArea {
     width:40%;
     float:left;
 }
+
+ul.like-buttons{
+float: left;
+list-style: none;
+margin: 0;
+padding: 0;
+width: 100%;
+height:25px;
+}
+
+ul.like-buttons li{
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin-top: 4px;
+}
+li.twitter-like{
+    position:relative;
+    left:115px;
+    top:-25px;
+}
+
+li.g-plus-one{
+    position:relative;
+    left:116px;
+    top:-25px;
+}
+
+.sepline{
+    margin-top:4px;
+    margin-bottom:4px;
+    height:1px;
+    background-color: #e4e4e4;
+    width:95%;
+}
+
 .yuzz{
     width:100%;
 }
@@ -880,18 +948,58 @@ div.scrollableArea {
     font-size:16px;
 }
 
+.ml10{
+    margin-left:10px
+}
+
+.ml20{
+    margin-left:20px
+}
+
+.ml30{
+    margin-left:30px
+}
+
+.mt10{
+    margin-top:10px
+}
+
+.mt20{
+    margin-top:20px
+}
+
+.mt30{
+    margin-top:30px
+}
+.tsdw1{
+    text-shadow: 1px 0.4px 1px #ccc;
+}
+.tsdw2{
+    text-shadow: 2px 0.4px 2px #ccc;
+}
+.pt10{padding-top:10px;}
+.pt20{padding-top:20px;}
+.pt30{padding-top:30px;}
+
+.pl10{padding-left:10px;}
+.pl20{padding-left:20px;}
+.pl30{padding-left:30px;}
+
 .txtcnt{
     text-align:center;
+}
+.txtrgh{
+    text-align:right;
 }
 .yesildugme{
     border: 1px solid #acbfac;
     background-color: #fff !important;
     cursor: pointer;
     text-align: center;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     color:green;
-    border-radius: 6px;
+    border-radius: 4px;
     background: url(/images/grd-yesil-1.png);
     text-shadow: 1px 1px 0.4px #ccc;
 }
@@ -1001,7 +1109,9 @@ div.scrollableArea {
 
 
 
-
+#pricebox.ikikutu{
+    margin-top: 10px;
+}
 .ikikutu {
 
     float: left;
@@ -1142,9 +1252,12 @@ div.scrollableArea {
     opacity: 0;
 }
 
-#accordion textarea {
+#paccordion textarea {
     height: 100px;
     width: 100%;
+}
+#paccordion.ui-widget-content {
+    boder:solid 1px red;
 }
 
 .wfParts li {
@@ -1251,19 +1364,55 @@ div.scrollableArea {
 }
 
 /****************************************************/
-
-#accordion h3.ui-state-active a {
-    color: green !important;
-    /*font-weight: bolder;*/
-    font-size: 16px;
-    background-color: #d8ff9d;
+#dbcontent{
+    float:left;
+}
+.dugmul{
+    display:block;
+}
+.dugmul li{
+    display:block;
+    list-style:none;
+    float:left;
+    width:90px;
+    margin:10px;
+    height:90px;
+    padding: 5px 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+}
+#menuccordion .ui-accordion-header a{
+    padding-top:3px;
+    padding-bottom:3px;
 }
 
-#accordion h3 a {
+#menuccordion{
+    float:left;
+    width:200px;
+}
+#menuccordion h3.ui-state-active a {
+    color: white !important;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #f5a22f;
+}
+
+#paccordion h3.ui-state-active a {
+    color: white !important;
+    /*font-weight: bolder;*/
+    font-size: 16px;
+    background-color: #f5a22f;
+}
+
+#paccordion h3 a {
     padding-left: 60px;
 }
 
-#accordion h3 .nums {
+#paccordion h3 .nums {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -1274,19 +1423,19 @@ div.scrollableArea {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     padding: 2px;
-    padding-left: 9px !important;
-    color: #006600;
+    padding-left: 11px !important;
+    color: #ba7312;
     font-weight: bold;
 
 }
 
-#accordion h3.ui-state-active .nums {
+#paccordion h3.ui-state-active .nums {
     top: 5px !important;
-    background-color: #006600;
-    color: #fff;
+    background-color: #fff;
+    color: #f5a22f;
 }
 
-#accordion label {
+#paccordion label {
     font-size: 11px !important;
     margin: 0 !important;
     font-weight: normal !important;
@@ -1390,34 +1539,34 @@ ul.rating li.five a {
     left: 64px;
 }
 
-ul.rating li a:hover {
-    z-index: 2;
-    width: 80px;
-    height: 16px;
-    overflow: hidden;
-    left: 0;
-    background: url(/images/star-matrix.png) no-repeat 0 0
-}
+    /*ul.rating li a:hover {*/
+        /*z-index: 2;*/
+        /*width: 80px;*/
+        /*height: 16px;*/
+        /*overflow: hidden;*/
+        /*left: 0;*/
+        /*background: url(/images/star-matrix.png) no-repeat 0 0*/
+    /*}*/
 
-ul.rating li.one a:hover {
-    background-position: 0 -96px;
-}
+/*ul.rating li.one a:hover {*/
+    /*background-position: 0 -96px;*/
+/*}*/
 
-ul.rating li.two a:hover {
-    background-position: 0 -112px;
-}
+/*ul.rating li.two a:hover {*/
+    /*background-position: 0 -112px;*/
+/*}*/
 
-ul.rating li.three a:hover {
-    background-position: 0 -128px
-}
+/*ul.rating li.three a:hover {*/
+    /*background-position: 0 -128px*/
+/*}*/
 
-ul.rating li.four a:hover {
-    background-position: 0 -144px
-}
+/*ul.rating li.four a:hover {*/
+    /*background-position: 0 -144px*/
+/*}*/
 
-ul.rating li.five a:hover {
-    background-position: 0 -160px
-}
+/*ul.rating li.five a:hover {*/
+    /*background-position: 0 -160px*/
+/*}*/
 
 .wflogin {
     float: left;
@@ -1582,6 +1731,7 @@ ul.rating li.five a:hover {
     background: url(/images/grd-yesil-1.png);
     text-shadow: 1px 1px 0.4px #ccc;
     float: left;
+    border:solid 1px #ccc;
 }
 
 #photoslider-right {
@@ -1591,7 +1741,7 @@ ul.rating li.five a:hover {
     -webkit-border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    margin-left: 2px;
+    margin-right: 5px;
 }
 
 #photoslider-left {
@@ -1601,15 +1751,20 @@ ul.rating li.five a:hover {
     -webkit-border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    margin-right: 2px;
+    margin-left: 12px;
 }
 
 #photoslider_container {
     float: left;
     overflow: hidden;
     height: 75px;
-    width: 600px;
-
+    width: 590px;
+    border:1px solid #ece2e2;
+    padding-bottom: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    width: 582px;
 }
 
 .pthumb {
@@ -1653,9 +1808,12 @@ ul.rating li.five a:hover {
     font-size: 32px;
 }
 
-/*#pricebox{*/
-/*padding:12px;*/
-/*}*/
+#pricebox-ic{
+background: url(/images/sari-beyaz-grd.png) repeat-x;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+}
 .cinout {
     float: left;
     margin-left: 8px;
@@ -1733,4 +1891,39 @@ ul.rating li.five a:hover {
 }
 #place_tags{
     height:175px;
+}
+#toptabs.ui-corner-all{
+    border:0;
+}
+#toptabs.ui-widget-content{
+    margin:0;
+    padding:0;
+    border:0;
+}
+#toptabs div.stardiv{
+    margin-top: 7px;
+    height:20px;
+    width: 100px;
+    float: right;
+}
+#ttabul.ui-widget-header{
+    border-top-style:none;
+    border-left-style:none;
+    border-right-style:none;
+}
+#ttabul.ui-corner-all{
+    border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0
+}
+#ttabul.ui-tabs li a {
+padding-left: 2em;
+padding-right: 2em;
+}
+
+#ttabul.ui-tabs-nav li  {
+    margin-left: 4px;
 }

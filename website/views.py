@@ -305,11 +305,6 @@ def login(request):
             if user:
                 login(request, user)
 
-            user = User.objects.get(username=cd['username'])
-            if user.check_password(cd['username']):
-                user.authenticate()
-            else:
-                pass
             return HttpResponseRedirect('/')
     else:
         form = LoginForm()
@@ -324,14 +319,24 @@ def register(request):
     loged_in = user.is_authenticated()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-
-
         if form.is_valid():
-            user = register_form.save(commit=False)
-            user.username = user.email
-            user.save()
-            return HttpResponseRedirect('/')#reverse('show_place'))
+            if form.cleaned_data['pass1']==form.cleaned_data['pass2']:
+                user = form.save(commit=False)
+                user.username = user.email
+                user.save()
+                return HttpResponseRedirect(reverse('registeration_thanks'))
+            else:
+                messages.error(request, _('The passwords you entered do not match.'))
     else:
         form = RegisterForm()
     context = {'form':form}
     return render_to_response('register.html', context, context_instance=RequestContext(request))
+
+
+def dashboard(request):
+    context = {}
+    return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
+
+def registeration_thanks(request):
+    context = {}
+    return render_to_response('registeration_thanks.html', context, context_instance=RequestContext(request))

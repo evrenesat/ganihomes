@@ -9,7 +9,7 @@
 
             <h3>Hoşgeldiniz</h3>
 
-            GaniHomes hesabınıza giriş yapmak için e-posta ya da FaceBook hesabınızı kullanabilirsiniz.
+
 
 
 
@@ -22,6 +22,7 @@
                     <button class="yesildugme fo16">Giriş Yap</button>
                     <label class="ramlabel normallabel" for="rem">Beni Hatırla</label>
                     <input type="checkbox" id="rem" name="rem">
+                    <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
 
 
                 </div>
@@ -45,7 +46,7 @@
 
     <div id="uyeol" class="ikikutu">
 
-        <h3>Henüz Üyü Değil misiniz?</h3>
+        <h3>Henüz üye olmadınız mı?</h3>
         <hr>
 <form action="{% url register %}" method="post">
     {% csrf_token %}

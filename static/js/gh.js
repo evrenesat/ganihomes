@@ -54,7 +54,7 @@ gh = {
 //            sld.parents('.tabborder').smoothDivScroll("moveToElement", "number", sld.index()+1);
                 sld.find('.sbaner').animate({height:'70px'});
             }).mouseleave(function () {
-                $(this).find('.sbaner').animate({height:'40px'})
+                $(this).find('.sbaner').animate({height:'38px'})
             });
         this.makeScroller('GVS1');
         this.makeScroller('GVS2', 0, 1);
@@ -266,7 +266,7 @@ gh = {
     addPlaceInit:function(){
         var self = this;
 //        console.log(self,this)
-        $( "#accordion").accordion({ autoHeight: false, collapsible: true });
+        $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
         $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
         $('#gotomap').click(function(){
@@ -327,6 +327,9 @@ gh = {
         $('#uyeol').mouseenter(function(){
             $('#uyekapsar').removeClass('silik');
         })
+    },
+    dashboardInit: function(){
+        $( "#menuccordion").accordion({ autoHeight: false, });
     }
 
 };
