@@ -309,8 +309,9 @@ gh = {
             })
         }
     },
-    upload_init:function(){
-        $('#fileupload').fileupload({
+    upload_init:function(id){
+        if(typeof(id)=='undefined')id='fileupload'
+        $('#'+id).fileupload({
                dataType: 'json',
                url: '/upload_photo/',
                done: function (e, data) {
@@ -359,27 +360,24 @@ gh = {
     do_dbAddPlaceWizzard:function(self){
         frm=$('#addplace_wizard')
         if (!frm.html()){
-        self.showFrame('loading')
-        $.get('/add_place_ajax/',function(data){
-            self.showFrame(frm,data)
-            $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-            $('#gotomap').click(function(){
-                self.changeForm(2);
-                self.markerMaps();
-            });
-            $('#apbutton3').click(function(){self.changeForm(4);});
-
-            self.upload_init()
-            $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
-            $('#addrFindBut').click(function(){self.geocodeAddress()});
-            self.dbAddPlaceWizzard_initialized = true;
-        })
+            self.showFrame('loading')
+            $.get('/add_place_ajax/',function(data){
+                self.showFrame(frm,data)
+                self.init_placeWizzard()
+            })
         }
         else self.showFrame(frm)
     },
+    init_placeWizzard:function(){
+        $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
+        $('#gotomap').click(function(){ self.changeForm(2); self.markerMaps();});
+        $('#apbutton3').click(function(){self.changeForm(4);});
+        $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+        $('#addrFindBut').click(function(){self.geocodeAddress()});
+        self.upload_init()
+    },
     editPlaceWizzard:function(id){
         frm=$('#addplace_wizard')
-        if (!frm.html()){
         self.showFrame('loading')
         $.get('/add_place_ajax/'+id,function(data){
             self.showFrame(frm,data)
@@ -393,10 +391,7 @@ gh = {
             self.upload_init()
             $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
             $('#addrFindBut').click(function(){self.geocodeAddress()});
-            self.dbAddPlaceWizzard_initialized = true;
         })
-        }
-        else self.showFrame(frm)
     }
 
 
