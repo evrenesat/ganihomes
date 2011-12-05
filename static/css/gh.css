@@ -2,30 +2,56 @@
     float: right;
     /*padding-top: 8px;*/
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 13px;
     background-color: #fff;
     border: 1px solid #ccc;
     height: 28px;
     /*width: 350px;*/
-    padding-left: 20px;
-    padding-right: 20px;
+    /*padding-left: 20px;*/
+    /*padding-right: 20px;*/
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
     -webkit-box-shadow: #666 0px 1px 1px;
     -moz-box-shadow: #666 0px 1px 1px;
     box-shadow: #666 0px 1px 1px;
+    /*width: 410px;*/
+    height: 27px;
+    color:#444444;
+    background: url(/images/supermenu.png) no-repeat right center;
 }
 
-#smekle {
+#supermenu .smekle {
+    text-shadow: 1px 0.4px 2px #fff;
     float: right;
     text-align: right;
-    width: 180px;
-
+    /*width: 180px;*/
+    color:#000;
     font-weight: bold;
     text-wrap: none;
+    background:url(/images/add-icon-16.png) no-repeat 0 2px;
+    padding-left:20px;
 }
+#supermenu .mypage{
+    background:url(/images/home_icon-16.png) no-repeat 0 1px;
+    padding-left:20px;
+    display:block;
+}
+#supermenu a,#supermenu a:visited{
+    text-decoration:none;
+    color:#444444;
+    font-size: 13px;
+}
+#supermenu .smdil{
+    background:url(/images/flags/tr.png) no-repeat 0 2px;
+    padding-left:20px;
+}
+#supermenu .logout{
 
+    background:url(/images/logout.bw.png) no-repeat 0 2px;
+    padding-left:20px;
+    display:block;
+}
 #supermenu div {
     cursor: pointer;
     float: left;
@@ -35,17 +61,12 @@
 
     /*height: 10px;*/
     margin-top: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
-    font-size: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
     white-space: nowrap;
 }
 
-#supermenu {
-    width: 410px;
-    height: 27px;
-    background: url(/images/supermenu.png) no-repeat right center;
-}
+
 
 #supermenu .firstitem {
     border-left: 0;
@@ -1364,42 +1385,7 @@ li.g-plus-one{
 }
 
 /****************************************************/
-#dbcontent{
-    float:left;
-}
-.dugmul{
-    display:block;
-}
-.dugmul li{
-    display:block;
-    list-style:none;
-    float:left;
-    width:90px;
-    margin:10px;
-    height:90px;
-    padding: 5px 5px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
-    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
-    box-shadow: 1px 1px 4px 1px #cccccc;
-}
-#menuccordion .ui-accordion-header a{
-    padding-top:3px;
-    padding-bottom:3px;
-}
 
-#menuccordion{
-    float:left;
-    width:200px;
-}
-#menuccordion h3.ui-state-active a {
-    color: white !important;
-    font-weight: bold;
-    font-size: 14px;
-    background-color: #f5a22f;
-}
 
 #paccordion h3.ui-state-active a {
     color: white !important;
@@ -1926,4 +1912,77 @@ padding-right: 2em;
 
 #ttabul.ui-tabs-nav li  {
     margin-left: 4px;
+}
+
+.dugmul li{
+    text-align:center;
+}
+.dugmul h6{
+    font-size:9px;
+    color:#4d4d4d;
+}
+
+#addplace_wizard{
+    width:660px;
+}
+
+
+#dbcontent{
+    float:left;
+    margin-left:30px;
+
+}
+.dugmul{
+    display:block;
+}
+.dugmul li{
+    display:block;
+    list-style:none;
+    float:left;
+    width:90px;
+    margin:10px;
+    height:90px;
+    padding: 5px 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+}
+#menuccordion .ui-accordion-header a{
+    padding-top:3px;
+    padding-bottom:3px;
+}
+
+#menuccordion{
+    float:left;
+    width:200px;
+}
+#menuccordion h3.ui-state-active a {
+    color: white !important;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #f5a22f;
+}
+
+#menuccordion .ui-accordion-content{
+    padding:4px;
+    overflow:hidden;
+}
+#menuccordion .ui-accordion-content li{
+    list-style-type: circle;
+    color:#ba7312;
+    width:180px;
+
+}
+
+.btn{
+    cursor:pointer;
+}
+#loading{
+    width:660px;
+    height:500px;
+    background: url(/images/loading2.gif) no-repeat center center;
+    display:none;
 }

@@ -14,13 +14,13 @@ from places.models import Place, Tag, Photo
 from django.db import models
 from places.options import n_tuple, PLACE_TYPES
 from website.models.icerik import Sayfa, Haber, Vitrin
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from website.models.medya import Medya
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
 from easy_thumbnails.files import get_thumbnailer
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 import logging
 log = logging.getLogger('genel')
@@ -85,18 +85,23 @@ class addPlaceForm(ModelForm):
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules'
             )
 
-def addPlace(request):
+def addPlace(request, template_name="add_place.html", id=None):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
     user = request.user
     loged_in = user.is_authenticated()
+    if id:
+        old_place = get_object_or_404(Place, pk=id)
+        if old_place.owner != request.user:
+            raise HttpResponseForbidden()
+    else:
+        old_place = Place()
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
         login_form = LoginForm(request.POST)
-        form = addPlaceForm(request.POST)
+        form = addPlaceForm(request.POST, instance=old_place)
         if form.is_valid():
             new_place=form.save(commit=False)
-#            try:
             if register_form.is_valid() or loged_in:
                 if not loged_in:
                     user = register_form.save(commit=False)
@@ -112,18 +117,12 @@ def addPlace(request):
                 if tmp_photos:
                     Photo.objects.filter(id__in=tmp_photos).update(place=new_place)
                 return HttpResponseRedirect(reverse('show_place', args=[new_place.id]))
-#            except:
-#                if owner: owner.delete()
-#                if new_place: new_place.delete()
-#                raise
-
-
     else:
-        form = addPlaceForm()
+        form = addPlaceForm(instance=old_place)
         register_form = RegisterForm()
         login_form = LoginForm()
-    context = {'form':form, 'rform':register_form,'lform':login_form}
-    return render_to_response('mekan_ekle.html', context, context_instance=RequestContext(request))
+    context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place}
+    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 
 #def bannerxml(request, tip):
@@ -301,11 +300,14 @@ def login(request):
         form = LoginForm(request.POST)
         rform = RegisterForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            user = authenticate(username=form.cleaned_data['login_email'], password=form.cleaned_data['login_pass'])
             if user:
-                login(request, user)
-
-            return HttpResponseRedirect('/')
+                if not request.POST.get('remember_me', None):
+                    request.session.set_expiry(0)
+                auth_login(request, user)
+                return HttpResponseRedirect(reverse('dashboard'))
+            else:
+                messages.error(request, _('Wrong email or password.'))
     else:
         form = LoginForm()
         rform = RegisterForm()
@@ -323,6 +325,7 @@ def register(request):
             if form.cleaned_data['pass1']==form.cleaned_data['pass2']:
                 user = form.save(commit=False)
                 user.username = user.email
+                user.set_password(form.cleaned_data['pass1'])
                 user.save()
                 return HttpResponseRedirect(reverse('registeration_thanks'))
             else:
@@ -334,7 +337,7 @@ def register(request):
 
 
 def dashboard(request):
-    context = {}
+    context = {'places':request.user.place_set.all(),'form' : addPlaceForm()}
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
 def registeration_thanks(request):

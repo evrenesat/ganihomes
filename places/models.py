@@ -166,6 +166,7 @@ class Place(models.Model):
     emergency_phone = models.CharField(_('Emergency phone'), max_length=20, null=True, blank=True)
 #    phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     currency = models.ForeignKey(Currency,verbose_name=_('Currency'))
+    primary_photo = models.ImageField(_('Primay photo'), upload_to='place_photos', null=True, blank=True)
     price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
     capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS, default=2)
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES, default=1)
@@ -250,28 +251,6 @@ class Friendship(models.Model):
     confirmed = models.BooleanField(_('Confirmed'), default=False)
 
 
-class Photo(models.Model):
-    """Photos"""
-
-    #FIXME : delete actual file on delete
-
-    place = models.ForeignKey(Place,verbose_name=_('Place'), null=True, blank=True)
-    name = models.CharField(_('Image name'), max_length=60, null=True, blank=True)
-    image = models.ImageField(_('Image File'), upload_to='place_photos')
-    type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
-    order = models.SmallIntegerField(_('Display order'), editable=False, default=1)
-    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
-
-    class Meta:
-        ordering = ['timestamp']
-        get_latest_by = "timestamp"
-        verbose_name = _('Photo')
-        verbose_name_plural = _('Photos')
-
-    def __unicode__(self):
-        return '%s' % (self.name,)
-
-
 class ReservedDates(models.Model):
     """unavailable dates"""
 
@@ -291,6 +270,34 @@ class ReservedDates(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.start,self.end)
+
+class Photo(models.Model):
+    """Photos"""
+
+    #FIXME : delete actual file on delete
+
+    place = models.ForeignKey(Place,verbose_name=_('Place'), null=True, blank=True)
+    name = models.CharField(_('Image name'), max_length=60, null=True, blank=True)
+    image = models.ImageField(_('Image File'), upload_to='place_photos')
+    type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
+    order = models.SmallIntegerField(_('Display order'),  default=60)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Photo')
+        verbose_name_plural = _('Photos')
+
+    def __unicode__(self):
+        return '%s' % (self.name,)
+
+    def save(self, *args, **kwargs):
+        super(Photo, self).save(*args, **kwargs)
+        #FIXME: order on save
+        if self.order==1:
+            self.place.primary_photo = self.image
+            self.place.save()
 
 
 

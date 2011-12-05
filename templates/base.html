@@ -30,10 +30,18 @@
                   <div>Dünya sizin...</div>
               </div>
               <div id="supermenu">
+                  {% if user.is_authenticated %}
+{#                  <div class="firstitem">Merhaba {{ user.get_full_name }}</div>#}
+                      <div class="firstitem"><a href="/logut" class="logout">Çıkış</a></div>
+                      <div><a href="#" class=smdil>TL</a></div>
+                  <div><a href="/dashboard" class="mypage" >Benim Sayfam</a></div>
+                  {% else %}
                   <div class="firstitem" id=smkayit>Kayıt Ol</div>
                   <div id=smgir>Giriş Yap</div>
-                  <div id=smdil>TL TRK</div>
-                  <div id=smekle>Mekanınızı Ücretsiz Ekleyin</div>
+                      <div><a href="#" class=smdil>TL</a></div>
+                  {% endif %}
+
+                  <div><a href="/add_place" class=smekle>Mekanınızı Ekleyin</a></div>
               </div>
         </div>
 </div>
@@ -51,13 +59,6 @@
     Yardım | İletişim | GaniHomes Hakkında | Gizlilik İlkelerimiz
 </div>
 </div>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+{% block closebody %}
+{% endblock %}
 </body></html>

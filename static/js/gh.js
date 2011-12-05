@@ -273,6 +273,12 @@ gh = {
             self.changeForm(2);
             self.markerMaps();
         });
+        $('#apbutton3').click(function(){
+            if($.cookie('sessionid')==null){
+                self.changeForm(4);
+            }
+            else $('#addplaceform').submit()
+        });
         /*gecici*/
 //        self.changeForm(3);
 //        $( "#accordion").accordion( "activate" , 4 )
@@ -329,8 +335,70 @@ gh = {
         })
     },
     dashboardInit: function(){
-        $( "#menuccordion").accordion({ autoHeight: false, });
+        var self = this;
+        $( "#menuccordion").accordion({  collapsible: true});
+        $('.btn').click(function(data){
+            var target_div=''
+            $(data.target).parents('.btn').andSelf().each(function(){
+            if(typeof($(this).attr('class'))=='string' && $(this).attr('class').indexOf('btn')>=0)target_div=$(this);
+            })
+            if (target_div){
+                $(target_div.attr('class').split(' ')).each(function(){
+                    if(this.indexOf('show_')==0)self.showFrame(this.split('show_')[1])
+                    if(this.indexOf('do_')==0)self[this](self)
+                })
+                }
+            });
+    },
+    showFrame:function(target,data){
+        if(typeof(target)=='string') target = $('#'+target)
+        if(typeof(data)!='undefined' && data!='')target.html(data)
+        $('div.dbcontent').hide()
+        target.show('normal')
+    },
+    do_dbAddPlaceWizzard:function(self){
+        frm=$('#addplace_wizard')
+        if (!frm.html()){
+        self.showFrame('loading')
+        $.get('/add_place_ajax/',function(data){
+            self.showFrame(frm,data)
+            $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
+            $('#gotomap').click(function(){
+                self.changeForm(2);
+                self.markerMaps();
+            });
+            $('#apbutton3').click(function(){self.changeForm(4);});
+
+            self.upload_init()
+            $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+            $('#addrFindBut').click(function(){self.geocodeAddress()});
+            self.dbAddPlaceWizzard_initialized = true;
+        })
+        }
+        else self.showFrame(frm)
+    },
+    editPlaceWizzard:function(id){
+        frm=$('#addplace_wizard')
+        if (!frm.html()){
+        self.showFrame('loading')
+        $.get('/add_place_ajax/'+id,function(data){
+            self.showFrame(frm,data)
+            $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
+            $('#gotomap').click(function(){
+                self.changeForm(2);
+                self.markerMaps();
+            });
+            $('#apbutton3').click(function(){self.changeForm(4);});
+
+            self.upload_init()
+            $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+            $('#addrFindBut').click(function(){self.geocodeAddress()});
+            self.dbAddPlaceWizzard_initialized = true;
+        })
+        }
+        else self.showFrame(frm)
     }
+
 
 };
 

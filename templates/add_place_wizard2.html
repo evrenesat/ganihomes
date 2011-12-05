@@ -1,0 +1,96 @@
+<div  id="wfHeader">
+           <div id=wfhdr1 class="wfhdr home">
+               <h3>Mekanınız GaniHomes'ta değerlensin!..</h3>
+               Evinizi, ofinisinizi hatta evinizin bir odanısını GaniHomes'a ekleyin,<br>değerine değer katın!
+           </div>
+           <div id=wfhdr2 class="wfhdr sakli location">
+                   <h3>Mekanınız nerede?..</h3>
+                   Adres ve iltişim bilgilerinizi sadece rezarvasyonu onaylanmış misafirlerle paylaşacağız.
+           </div>
+           <div id=wfhdr3 class="wfhdr define sakli">
+               <h3>En güzeli sizinki!..</h3>
+               Mekanınız hakkında gireceğiniz bilgilerin doğruluğu ve fazlalığı <br>kiralanma şansını önemli ölçüde arttıracaktır.
+               <br><span class="altbilgi1">(Bu bölümdeki alanları dilerseniz boş bırakabilir ve daha sonra düzenleyebilirsiniz)</span>
+           </div>
+
+       </div>
+       <div id=wfContainer>
+           <form action="." method="post" id="addplaceform">
+           <div id="wf">
+               <div id="form1" class="wfParts">
+                   <p>{{ form.title.label_tag }} {{ form.title }}</p>
+                   <p>{{ form.type.label_tag }} {{ form.type }}</p>
+                   <p>{{ form.space.label_tag }} {{ form.space }}</p>
+                   <p>{{ form.capacity.label_tag }} {{ form.capacity }}</p>
+                   <p>{{ form.price.label_tag }} {{ form.price }} {{ form.currency }}</p>
+                   <p>{{ form.min_stay.label_tag }} {{ form.min_stay }}</p>
+                   <p>{{ form.max_stay.label_tag }} {{ form.max_stay }}</p>
+                   <p>{{ form.cancellation.label_tag }} {{ form.cancellation }}</p>
+                   <div id="gotomap" class="dugme1"><span>1/4 Kaydet ve Devam Et</span></div>
+               </div>
+               <div id="form2" class="wfParts">
+   {#                <div style="position:relative">#}
+
+                       <div id="adres_form"  class="gizli">
+                       <a href="javascript:void(0);" onclick="gh.gcGosterGizle()">Haritaya Tekrar Bak</a><br>
+                       <p>{{ form.country.label_tag }} {{ form.country }}</p>
+                       <p>{{ form.city.label_tag }} {{ form.city }}</p>
+                       <p>{{ form.district.label_tag }} {{ form.district }}</p>
+                       <p>{{ form.street.label_tag }} {{ form.street }}</p>
+                           {{ form.geocode }} {{ form.postcode }}
+                           <div onclick="gh.changeForm(3)" class="dugme1"><span>2/4 Kaydet ve Devam Et</span></div>
+                       </div>
+
+                       <div id="adres_harita">
+                           <span style="font-size:16px;color:#666666;">
+                               Lütfen kiralamak istediğiniz yerin adresini aşağıdaki alana girerek harita üzerindeki konumunu doğrulayınız;
+                               <span style="font-size:smaller"> (1715 sok. No:11/4 izmir gibi)</span></span>
+                           <input id="address" type="textbox" value="1715 sok. No:11/4 izmir">
+                           <input type="button" id="addrFindBut" class="yesildugme" value="Bul">
+                           <div id="map_canvas"></div>
+                       </div>
+   {#                </div>#}
+
+               </div>
+               <div id="form3" class="wfParts">
+
+                   <div id="paccordion">
+                   	<h3><span class="nums">1</span><a href="#">Mekanınızı tanıtın;</a></h3>
+                   	<div>
+                           Mekanınızın üstün yönlerini ve potansiyel konuklarınız için neden doğru tercih olduğunu ayrıntılı bir şekilde anlatın.
+                           <p>{{ form.description }}</p>
+                   	</div>
+                   	<h3><span class="nums">2</span><a href="#">Konuklarınıza sunduğunuz imkanları seçin;</a></h3>
+                   	<div id="place_tags">
+                   		{{ form.tags }}
+                   	</div>
+                   	<h3><span class="nums">3</span><a href="#">Konaklama sırasında uyulacak kurallar;</a></h3>
+                   	<div>
+                           Mekanda nasıl davranılmasını beklediğinizi anlatmak olası yanlış anlaşmaları en aza indirir.
+                           <p>{{ form.rules }}</p>
+                   	</div>
+                       <h3><span class="nums">4</span><a href="#">Ev kılavuzu ;</a></h3>
+                      	<div>
+                              Dilerseniz konuklarınıza yardımcı olacak bir ev kılavuzu hazırlayabilirsiniz.
+                              <p>{{ form.manual }}</p>
+                      	</div>
+                   	<h3><span class="nums">5</span><a href="#">Mekanınızın fotoğraflarını yükleyin</a></h3>
+                   	<div>
+                           <input id="fileupload" type="file" name="files[]" multiple>
+                   		<div id="uploaded"></div>
+                   	</div>
+                   </div>
+
+
+
+
+                   <div id="apbutton3" class="dugme1"><span>Kaydet </span></div>
+               </div>
+
+           </div>
+               {% csrf_token %}
+           </form>
+       </div>
+   </div>
+
+</div>

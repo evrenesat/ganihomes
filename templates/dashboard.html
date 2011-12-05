@@ -1,6 +1,8 @@
 {% extends "content.html" %}
 {% load thumbnail %}
 {% block extrajs %}
+<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>
+<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>
 <script>$(document).ready(function(){gh.dashboardInit()})</script>
 {% endblock %}
 {% block content %}
@@ -11,7 +13,11 @@
         <div id="menuccordion">
                        	<h3><a href="#">Genel Bakış</a></h3>
                        	<div>
+                            <ul>
+                                <li class="btn show_dash">Hızlı Görünümü Göster</li>
+                                <li class="btn do_dbAddPlaceWizzard">Yeni Mekan Ekle</li>
 
+                            </ul>
                        	</div>
                          	<h3><a href="#">Ayarlar</a></h3>
                        	<div>
@@ -45,19 +51,26 @@
 
         </div>
 <div id="dbcontent">
-    <dir class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</dir>
+
+    <div class="dbcontent" id="loading"></div>
+    <div class="dbcontent" id="dash">
+    <div  class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</div>
      <ul class="dugmul">
-         <li>Yeni Mekan Ekle</li>
-         <li>Mekanlarımı Listele</li>
-         <li></li>
-         <li></li>
-         <li></li>
-     </ul>
-
+         <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png"><h6>Yeni Mekan Ekle </h6></li>
+        {% for p in places %}
+        <li>
+            <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+            <h6>{{ p.title|slice:":40" }}</h6>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
+<div class="dbcontent gizli " id="addplace_wizard"></div>
+
 
 </div>
+    </div>
 
 
 {% endblock %}
