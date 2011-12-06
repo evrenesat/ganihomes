@@ -278,7 +278,7 @@ gh = {
             self.markerMaps();
         });
         $('#apbutton3').click(function(){
-            if($.cookie('sessionid')==null){
+            if(typeof(LGD)=='undefined'){
                 self.changeForm(4);
             }
             else $('#addplaceform').submit()

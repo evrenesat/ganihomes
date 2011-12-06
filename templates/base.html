@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html><head>
+{% if user.is_authenticated %}<script>LGD='223'</script>{% endif %}
 <title>{% block title %}GaniHomes {{ title }}{% endblock %}</title>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
