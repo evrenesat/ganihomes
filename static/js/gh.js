@@ -52,9 +52,9 @@ gh = {
                 sld = $(this)
 //            console.log(sld.index()+1)
 //            sld.parents('.tabborder').smoothDivScroll("moveToElement", "number", sld.index()+1);
-                sld.find('.sbaner').animate({height:'70px'});
+                sld.find('.sbaner').animate({height:'50px'});
             }).mouseleave(function () {
-                $(this).find('.sbaner').animate({height:'38px'})
+                $(this).find('.sbaner').animate({height:'28px'})
             });
         this.makeScroller('GVS1');
         this.makeScroller('GVS2', 0, 1);
@@ -119,7 +119,7 @@ gh = {
 //        if (typeof(debug) != 'undefined') this.bas(['sof.left ', sof.left, ' sof.top ', sof.top, ' off_left ', off_left, ' off_top ', off_top, ' trg.left ', trg.css('left'), ' trg.top ',trg.css('top'), 'ntop',ntop, 'nleft',nleft])
     },
     otoTamamla:function (id) {
-        self = this
+        var self = this;
         var availableTags = [
             "İzmir",
             "İstanbul",
@@ -163,6 +163,9 @@ gh = {
         $('#adres_form').toggle();
         $('#adres_harita').toggle();
     },
+    //////////////////////////////////////////////////////
+    ////////////////////MAPPPS - GEOCODING////////////////
+    //////////////////////////////////////////////////////
     gmapsLoad:function(initFunc){
         var self = this
         if(typeof(initFunc)=='undefined')initFunc='gh.gcinit';
@@ -174,7 +177,8 @@ gh = {
     glatlng:'',
     gZoom:8,
     setLatLng:function(l){
-        this.latlng = $(l).val().replace('(','').replace(')','').split(',')
+//        console.log($(l))
+        if(l) this.latlng = $(l).val().replace('(','').replace(')','').split(',')
     },
     markerMaps:function(){
         var self = this;
@@ -187,7 +191,7 @@ gh = {
     },
     drawCircle:function(){
         this.gZoom = 14;
-        this.gcinit();
+        this.gcinit(true);
 
         var mapOptions = {
           strokeColor: "#FF0000",
@@ -201,32 +205,26 @@ gh = {
         };
         cityCircle = new google.maps.Circle(mapOptions);
     },
-    gcinit:function(){
-//        var self = this;
+    gcinit:function(nomarker){
         if (!this.latlng)this.latlng=[38.434, 27.125]
-//        console.log(self)
         this.geocoder = new google.maps.Geocoder();
         this.glatlng = new google.maps.LatLng(this.latlng[0],this.latlng[1]);
         var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
         this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
+        this.infoWindow = new google.maps.InfoWindow()
     },
+    popup_html:'<a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">Bu adresi kullan</a>',
     geocodeAddress: function () {
         var self = this;
-//        console.log(this)
-        var address = document.getElementById("address").value;
-        this.geocoder.geocode( { 'address': address}, function(results, status) {
+        this.geocoder.geocode( { 'address': $('#id_address').val()}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             self.map.setCenter(results[0].geometry.location);
             self.gcResult = results[0];
-            var infoWindow = new google.maps.InfoWindow({content:results[0].formatted_address+'<br><b></b><a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">Bu adresi kullan</a></b>'});
-            var marker = new google.maps.Marker({
-                map: self.map,
-                position: results[0].geometry.location,
-                draggable: true
-            });
-              infoWindow.open(self.map, marker);
-//            marker.setDraggable(true);
-//            marker.openInfoWindowHtml(results[0].formatted_address)
+            self.infoWindow.setContent(results[0].formatted_address+self.popup_html)
+            self.marker.setPosition(results[0].geometry.location)
+            self.infoWindow.open(self.map, self.marker);
+
           } else {
             alert("Adres bulunamadı\n\n" + status);
           }
@@ -250,6 +248,9 @@ gh = {
         }
         this.gcGosterGizle()
     },
+    //////////////////////////////////////////////////////
+    ////////////////////ENDO OF MAPPPS - GEOCODING////////
+    //////////////////////////////////////////////////////
     showPlaceInit:function(){
         var self = this;
         $('#toptabs').tabs();
@@ -269,6 +270,7 @@ gh = {
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
         $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
+        $('#gotodetails').click(function(){ self.changeForm(3); });
         $('#gotomap').click(function(){
             self.changeForm(2);
             self.markerMaps();
@@ -309,14 +311,17 @@ gh = {
             })
         }
     },
-    upload_init:function(id){
-        if(typeof(id)=='undefined')id='fileupload'
-        $('#'+id).fileupload({
+    upload_init:function(place_id){
+        if(typeof(place_id)=='undefined')place_id=''
+        //console.log($('#fileupload'))
+        $('#fileupload').fileupload({
                dataType: 'json',
-               url: '/upload_photo/',
+               url: '/upload_photo/'+place_id,
                done: function (e, data) {
                    $.each(data.result, function (index, file) {
-                       $('<img />').attr('src',(file.turl)).appendTo('#uploaded');
+                       $('<img />').attr('src',(file.turl)).attr('id','img_'+file.id).dblclick(function(){
+                           $.post('/delete_photo/'+file.id,function(data){$('#img_'+file.id).hide('slow')})
+                       }).appendTo('#uploaded');
                    });
                }
            });
@@ -352,45 +357,68 @@ gh = {
             });
     },
     showFrame:function(target,data){
+
         if(typeof(target)=='string') target = $('#'+target)
         if(typeof(data)!='undefined' && data!='')target.html(data)
         $('div.dbcontent').hide()
         target.show('normal')
-    },
-    do_dbAddPlaceWizzard:function(self){
-        frm=$('#addplace_wizard')
-        if (!frm.html()){
-            self.showFrame('loading')
-            $.get('/add_place_ajax/',function(data){
-                self.showFrame(frm,data)
-                self.init_placeWizzard()
-            })
+
+        if (window.PIE) {
+            $('.piee').each(function () {
+                PIE.attach(this);
+            });
         }
-        else self.showFrame(frm)
     },
-    init_placeWizzard:function(){
+    new_place_wizard_html:'',
+    add_place_url:'/add_place_ajax/',
+    do_dbAddPlaceWizzard:function(self){
+        var frm=$('#addplace_wizard')
+        var icerik = frm.html()
+        if (!icerik||icerik.indexOf('npw-flag')==-1){
+            if(!self.new_place_wizard_html){
+                self.showFrame('loading')
+                $.get(self.add_place_url,function(data){
+                    self.new_place_wizard_html = '<!--npw-flag-->'+data
+                    self.showFrame(frm,self.new_place_wizard_html)
+                    self.init_placeWizzard()
+                })
+            }else {
+                self.showFrame(frm,self.new_place_wizard_html)
+                self.init_placeWizzard()
+            }
+
+        }else self.showFrame(frm)
+    },
+    init_placeWizzard:function(place_id){
+        if(typeof(place_id)=='undefined')place_id=''
+        var self=this
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
         $('#gotomap').click(function(){ self.changeForm(2); self.markerMaps();});
-        $('#apbutton3').click(function(){self.changeForm(4);});
+        $('#gotodetails').click(function(){ self.changeForm(3); });
+        $('#uploaded img').dblclick(function(){
+            $.post('/delete_photo/'+$(this).attr('id').replace('img_',''),function(data){$('#img_'+data).hide('slow')})
+        })
+//        self.gcGosterGizle()
+        $('#apbutton3').val('Kaydet').click(function(){
+            $.post(self.add_place_url+place_id, $("#addplaceform").serialize(),function(){
+                self.showFrame('results','<div class="success">İşlem başarılı</div>')
+                $("#addplaceform").html()
+            });
+        });
         $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
-        self.upload_init()
+        this.upload_init(place_id)
     },
     editPlaceWizzard:function(id){
-        frm=$('#addplace_wizard')
-        self.showFrame('loading')
-        $.get('/add_place_ajax/'+id,function(data){
-            self.showFrame(frm,data)
-            $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-            $('#gotomap').click(function(){
-                self.changeForm(2);
-                self.markerMaps();
-            });
-            $('#apbutton3').click(function(){self.changeForm(4);});
+        var self = this
+        this.showFrame('loading')
+        $.get(this.add_place_url+id,function(data){
+            self.showFrame('addplace_wizard',data)
 
-            self.upload_init()
-            $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
-            $('#addrFindBut').click(function(){self.geocodeAddress()});
+            self.init_placeWizzard(id)
+
+            self.gcGosterGizle()
+            self.setLatLng('#id_geocode')
         })
     }
 
@@ -414,3 +442,5 @@ $(window).ready(function () {
 //console.log(focitem)
 //if(focitem < 1)focitem = 1;
 ////                console.log(focitem)
+
+

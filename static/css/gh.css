@@ -42,6 +42,16 @@
     color:#444444;
     font-size: 13px;
 }
+#supermenu .smgir{
+    background:url(/images/key-16.png) no-repeat 0 2px;
+    padding-left:20px;
+    display:block;
+}
+#supermenu .smkayit{
+    background:url(/images/reg-16.png) no-repeat 0 2px;
+    padding-left:20px;
+    display:block;
+}
 #supermenu .smdil{
     background:url(/images/flags/tr.png) no-repeat 0 2px;
     padding-left:20px;
@@ -158,7 +168,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 38px;
+    height: 28px;
     overflow: hidden;
 }
 
@@ -170,7 +180,7 @@
 }
 
 .sbaner-info {
-    margin: 10px;
+    margin: 3px 10px 5px 10px;
     font-size: 16px;
     font-weight: bold;
     color: #9e9e9e;
@@ -181,7 +191,7 @@
 .sbaner .stardiv {
     width: 100px;
     height: 20px;
-    margin-top: 10px;
+    margin-top: 5px;
     float: right;
     color: #9e9e9e;
 }
@@ -347,13 +357,13 @@ div.scrollableArea {
 
 .tabcontent {
     border-radius: 4px !important;
-    background-color: #707070 !important;
+    background-color: #6c6c6c !important;
     /*border: 2 !important;*/
     padding: 2px !important;
 }
 
 .tabborder {
-    border: 5px solid #4d4d4d;
+    border: 5px solid #6c6c6c;
 }
 
 /*#tabs-1 {*/
@@ -1019,7 +1029,7 @@ li.g-plus-one{
     text-align: center;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    color:green;
+    color:green !important;
     border-radius: 4px;
     background: url(/images/grd-yesil-1.png);
     text-shadow: 1px 1px 0.4px #ccc;
@@ -1684,7 +1694,7 @@ ul.rating li.five a {
 }
 
 #placediv {
-    min-height: 650px;
+    min-height: 560px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -1985,4 +1995,69 @@ padding-right: 2em;
     height:500px;
     background: url(/images/loading2.gif) no-repeat center center;
     display:none;
+}
+#adresikullan{
+    font-size:20px;
+    padding-top:20px;
+    font-weight:bold;
+    display:block;
+}
+
+.fsag{
+    float:right;
+    margin-left:100px;
+    margin-right:100px;
+}
+#aciklama{
+    float:left;
+    width:300px;
+
+
+}
+#ack{
+    height:520px;
+}
+#ozellikler{
+    float:right;
+    width:300px;
+    border:1px solid #ccc;
+    height:275px;
+    padding:10px;
+    font-size:12px;
+    background-color: #fff;
+    -webkit-box-shadow: #ccc 1px 1px 4px;
+    -moz-box-shadow: #ccc 1px 1px 4px;
+    box-shadow: #ccc 1px 1px 4px;
+}
+#ozellikler span{
+    margin-top:4px;
+    border-bottom: 1px solid #fffccf;
+    -webkit-box-shadow: #ccc 1px 1px 4px;
+    -moz-box-shadow: #ccc 1px 1px 4px;
+    box-shadow: #ccc 1px 1px 4px;
+    padding:2px;
+    height:20px;
+}
+.ozz_label{
+    float:left;
+    color:#444444;
+    display:block;
+    width:150px;
+
+
+}
+.ozz_value{
+
+    float:right;
+    color:#444444;
+    font-weight:bold;
+    display:block;
+    width:120px;
+}
+#subtabs{
+    height:500px;
+    width:650px;
+    margin-top:20px;
+    margin-left:auto;
+    margin-right:auto;
 }

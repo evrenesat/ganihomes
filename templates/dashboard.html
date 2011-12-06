@@ -21,31 +21,40 @@
                        	</div>
                          	<h3><a href="#">Ayarlar</a></h3>
                        	<div>
-
+                               <li class="">Kişisel Bilgilerim</li>
+                               <li class="">Ödeme Ayarlarım</li>
+                               <li class="">Site Tercihlerim</li>
                        	</div>
                          	<h3><a href="#">Mesajlar</a></h3>
                        	<div>
-
+                               <li class="">Gelen Kutusu</li>
+                               <li class="">Yeni Mesaj Yaz</li>
                        	</div>
                          	<h3><a href="#">Mekanlarım</a></h3>
                        	<div>
-
+                               <li class="btn do_dbAddPlaceWizzard">Yeni Mekan Ekle</li>
+                               <li class="">Sitede Listeler</li>
+                               <li class="">Arşivdekiler</li>
+                               <li class="">Favorilerim</li>
                        	</div>
                          	<h3><a href="#">Gezilerim</a></h3>
                        	<div>
-
-                       	</div>
-                         	<h3><a href="#">Favorilerim</a></h3>
-                       	<div>
-
+                               <li class="">Güncel Gezi İşlemleri</li>
+                               <li class="">Yaklaşan Geziler</li>
+                               <li class="">Geçmiş Gezilerim</li>
                        	</div>
                          	<h3><a href="#">Yorumlarım</a></h3>
                        	<div>
-
+                               <li class="">Yorum Yap</li>
+                               <li class="">Yazdığım Yorumlar</li>
+                               <li class="">Bana Yapılan Yorumlar</li>
+                               <li class="">Mekanlarıma Yapılan Yorumlar</li>
                        	</div>
                          	<h3><a href="#">Arkadaşlarım</a></h3>
                        	<div>
-
+                               <li class="">Arkadaşlarım</li>
+                                 <li class="">Yeni Arkadaş Ekle</li>
+                                 <li class="">Arkadaşıma Öner</li>
                        	</div>
 
 
@@ -58,7 +67,7 @@
      <ul class="dugmul">
          <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png"><h6>Yeni Mekan Ekle </h6></li>
         {% for p in places %}
-        <li>
+        <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
             <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
             <h6>{{ p.title|slice:":40" }}</h6>
         </li>
@@ -67,7 +76,7 @@
 </div>
 
 <div class="dbcontent gizli " id="addplace_wizard"></div>
-<div class="dbcontent gizli " id="editplace_wizard"></div>
+<div class="dbcontent gizli " id="results"></div>
 
 
 </div>

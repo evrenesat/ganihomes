@@ -32,13 +32,13 @@
               <div id="supermenu">
                   {% if user.is_authenticated %}
 {#                  <div class="firstitem">Merhaba {{ user.get_full_name }}</div>#}
-                      <div class="firstitem"><a href="/logut" class="logout">Çıkış</a></div>
+                      <div class="firstitem"><a href="/logout/" class="logout">Çıkış</a></div>
                       <div><a href="#" class=smdil>TL</a></div>
                   <div><a href="/dashboard" class="mypage" >Benim Sayfam</a></div>
                   {% else %}
-                  <div class="firstitem" id=smkayit>Kayıt Ol</div>
-                  <div id=smgir>Giriş Yap</div>
-                      <div><a href="#" class=smdil>TL</a></div>
+                  <div class="firstitem"><a href="/register/" class="smkayit">Kayıt Ol</a></div>
+                  <div><a href="/login/" class="smgir">Giriş Yap</a></div>
+                      <div><a href="#" class="smdil">TL</a></div>
                   {% endif %}
 
                   <div><a href="/add_place" class=smekle>Mekanınızı Ekleyin</a></div>

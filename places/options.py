@@ -33,6 +33,10 @@ SPACE_TYPES = (
     (2, _('Private Room')),
     (3, _('Shared Room')),
 )
+MTYPES = (
+    (1, _('ft')),
+    (2, _('mt')),
+)
 
 
 

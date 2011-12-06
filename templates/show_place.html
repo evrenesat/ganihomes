@@ -64,7 +64,51 @@
         </div>
 
     </div>
+
+
         </div>
+
+
+
+
+
+
+
+
+        <div>
+
+               <div id="subtabs">
+                   <ul id="stabul">
+                       <li class="ptab"><a href="#ack">Açıklamalar</a></li>
+                       <li class="ptab"><a href="#tes">Tesisler</a></li>
+                       <li class="ptab"><a href="#klv">Kılavuz ve Kurallar</a></li>
+                   </ul>
+
+                   <div id="ack">
+                       <div id="aciklama">{{ place.description }}</div>
+                       <div id="ozellikler">
+                           {% for label, value in properties %}
+                               <span class="ozz_label">{{ label }}</span>
+                               <span class="ozz_value">{{ value|default:'-' }}</span>
+                           {% endfor %}
+
+                       </div>
+                   </div>
+                   <div id="tes"></div>
+                   <div id="klv"></div>
+
+
+           </div>
+
+       </div>
+
+
+
+
+
+
+
+
 </div>
 </div>
 
@@ -133,6 +177,7 @@
         <div class="dugme2" ><span>İletişime Geç</span></div>
     </div>
 <script>$('#subtabs').tabs();</script>
+
 
 {% endblock %}
 {% block closebody %}

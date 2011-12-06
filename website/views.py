@@ -20,7 +20,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
 from easy_thumbnails.files import get_thumbnailer
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import auth
 from django.contrib import messages
 import logging
 log = logging.getLogger('genel')
@@ -42,8 +42,18 @@ class BookingForm(forms.Form):
 
 def showPlace(request, id):
     place = Place.objects.get(pk=id)
-
-    context = {'place':place,'bform':BookingForm() }
+    properties=(
+        (_(u'Place type'),place.get_type_display()),
+        (_(u'Space offered'),place.get_space_display()),
+        (_(u'Accommodates'),place.capacity),
+        (_(u'Size'), place.get_size()  ),
+        (_(u'Bedrooms'),place.bedroom),
+        (_(u'Bed type'),place.get_bed_type_display()),
+        (_(u'Bathrooms'),place.bathrooms),
+        (_(u'Cancellation'),place.get_cancellation_display()),
+        (_(u'Space offered'),place.get_space_display()),
+    )
+    context = {'place':place,'bform':BookingForm(),'properties':properties }
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 def searchPlace(request):
@@ -72,7 +82,7 @@ def anasayfa(request):
 
 class addPlaceForm(ModelForm):
     geocode= forms.CharField(widget=forms.HiddenInput())
-    postcode= forms.CharField(widget=forms.HiddenInput())
+#    postcode= forms.CharField(widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         super(addPlaceForm, self).__init__(*args, **kwargs)
         self.fields['tags'].widget = forms.CheckboxSelectMultiple()
@@ -85,15 +95,18 @@ class addPlaceForm(ModelForm):
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules'
             )
 
-def addPlace(request, template_name="add_place.html", id=None):
+def addPlace(request, ajax=False, id=None):
+    template_name = "add_place_wizard.html" if ajax else "add_place.html"
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
     user = request.user
+    response = {}
+    new_place = None
     loged_in = user.is_authenticated()
     if id:
         old_place = get_object_or_404(Place, pk=id)
         if old_place.owner != request.user:
-            raise HttpResponseForbidden()
+            return HttpResponseForbidden()
     else:
         old_place = Place()
     if request.method == 'POST':
@@ -116,7 +129,21 @@ def addPlace(request, template_name="add_place.html", id=None):
                 tmp_photos = request.session.get('tmp_photos')
                 if tmp_photos:
                     Photo.objects.filter(id__in=tmp_photos).update(place=new_place)
-                return HttpResponseRedirect(reverse('show_place', args=[new_place.id]))
+                    Photo.objects.get(pk=tmp_photos[0]).save()
+                    request.session['tmp_photos']=[]
+                if not ajax:
+                    return HttpResponseRedirect(reverse('show_place', args=[new_place.id]))
+        if ajax:
+            response = {
+                'user':getattr(user,'username'),
+                'loged_in':loged_in,
+#                'new_place':repr(new_place),
+                'errors':form.errors,
+                'new_place_id':getattr(new_place,'id','yok!'),
+            }
+            return HttpResponse(json.dumps(response), mimetype='application/json')
+
+
     else:
         form = addPlaceForm(instance=old_place)
         register_form = RegisterForm()
@@ -219,6 +246,8 @@ def multiuploader_delete(request, pk):
     if request.method == 'POST':
         log.info('Called delete image. Photo id='+str(pk))
         image = get_object_or_404(Photo, pk=pk)
+        if image.place and image.place.owner != request.user:
+            return HttpResponseForbidden()
         image.delete()
         log.info('DONE. Deleted photo id='+str(pk))
         return HttpResponse(str(pk))
@@ -233,7 +262,7 @@ def square_thumbnail(source):
     return get_thumbnailer(source).get_thumbnail(thumbnail_options)
 
 @csrf_exempt
-def multiuploader(request):
+def multiuploader(request, place_id=None):
     #FIXME : file type checking
     if request.method == 'POST':
         log.info('received POST to main multiuploader view')
@@ -249,17 +278,24 @@ def multiuploader(request):
 
         #writing file manually into model
         #because we don't need form of any type.
+
         image = Photo()
         image.name=str(filename)
         image.image=file
+        if place_id:
+            place = get_object_or_404(Place, pk=place_id)
+            if place.owner != request.user:
+                return HttpResponseForbidden()
+            image.place = place
         image.save()
-        tmp_photos = request.session.get('tmp_photos',[])
-        tmp_photos.append(image.id)
-        request.session['tmp_photos'] = tmp_photos
-        log.info('File saving done')
+        if not place_id:
+            tmp_photos = request.session.get('tmp_photos',[])
+            tmp_photos.append(image.id)
+            request.session['tmp_photos'] = tmp_photos
+#        log.info('File saving done')
 
         #getting url for photo deletion
-        file_delete_url = '/delete/'
+        file_delete_url = '/delete_photo/'
 
         #getting file url here
         file_url = image.image.url
@@ -276,7 +312,8 @@ def multiuploader(request):
                        "url":file_url,
 #                       "tag":thumb_tag,
                        "turl":thumb_url,
-                       "delete_url":file_delete_url+str(image.pk)+'/',
+                       "id":str(image.pk),
+                       "delete_url":file_delete_url+str(image.pk),
                        "delete_type":"POST",})
         response_data = json.dumps(result)
         return HttpResponse(response_data, mimetype='application/json')
@@ -295,16 +332,20 @@ def statusCheck(request):
     return response
 
 
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/')
+
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         rform = RegisterForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=form.cleaned_data['login_email'], password=form.cleaned_data['login_pass'])
+            user = auth.authenticate(username=form.cleaned_data['login_email'], password=form.cleaned_data['login_pass'])
             if user:
                 if not request.POST.get('remember_me', None):
                     request.session.set_expiry(0)
-                auth_login(request, user)
+                auth.login(request, user)
                 return HttpResponseRedirect(reverse('dashboard'))
             else:
                 messages.error(request, _('Wrong email or password.'))

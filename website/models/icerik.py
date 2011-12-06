@@ -237,7 +237,7 @@ class Haber(models.Model):
 #        self.dil_kodu = self.dil.kodu
 #        super(Haber, self).save(*args, **kwargs)
 #
-
+from easy_thumbnails.files import get_thumbnailer
 dPHOTO_TYPES = dict(PHOTO_TYPES)
 class Vitrin(models.Model):
     """
@@ -275,6 +275,13 @@ class Vitrin(models.Model):
 
     def image(self):
         return self.gorsel or self.place_photo.image
+
+
+    def admin_image(self):
+        thumbnail_options = dict(size=(50, 50), crop=True)
+        tmb=get_thumbnailer(self.image()).get_thumbnail(thumbnail_options)
+        return '<a href="%s"><img src="%s%s"/></a>'%(self.image().url, settings.MEDIA_URL, tmb)
+    admin_image.allow_tags = True
 
     def photos(self):
         return self.image() if not self.thumbs else self.place.photo_set.all()[:4]

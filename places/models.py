@@ -176,6 +176,7 @@ class Place(models.Model):
     bed_type = models.SmallIntegerField(_('Bed type'), choices=BATHROOM_TYPES, default=1)
     bathrooms = models.SmallIntegerField(_('Number of bathrooms'), choices=NO_OF_ROOMS, default=1)
     size = models.IntegerField(_('Size'), null=True, blank=True)
+    size_type = models.IntegerField(_('Measurement type'), choices=MTYPES, default=1)
     cancellation = models.SmallIntegerField(_('Cancellation rules'), choices=CANCELATION_RULES, default=1)
     min_stay = models.SmallIntegerField(_('Minimum number of nights'), choices=MIN_STAY, default=1)
     max_stay = models.SmallIntegerField(_('Maximum number of nights'), choices=MAX_STAY, default=0)
@@ -205,6 +206,9 @@ class Place(models.Model):
     active = models.BooleanField(_('Place is online'), default=True)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
+
+    def get_size(self):
+        return '%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-'
 
     class Meta:
         ordering = ['timestamp']
@@ -295,7 +299,7 @@ class Photo(models.Model):
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)
         #FIXME: order on save
-        if self.order==1:
+        if self.order==1 or (self.place and not self.place.primary_photo):
             self.place.primary_photo = self.image
             self.place.save()
 
