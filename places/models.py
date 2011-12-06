@@ -147,7 +147,7 @@ class TagTranslation(models.Model):
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.tag_id, self.lang)
 
-
+from django.utils.safestring import mark_safe
 class Place(models.Model):
     """Places"""
 
@@ -208,7 +208,7 @@ class Place(models.Model):
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
 
     def get_size(self):
-        return '%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-'
+        return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-')
 
     class Meta:
         ordering = ['timestamp']
