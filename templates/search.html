@@ -1,0 +1,51 @@
+{% extends "content.html" %}
+{% load thumbnail %}
+{% block extrajs %}
+<script>$(document).ready(function(){gh.searchPlaceInit()})</script>
+{% endblock %}
+{% block content %}
+    <div class="altikutu">
+
+    <div id="place-conatiner" class="sresults">
+
+        <ul>
+        {% for s in results %}
+            <li onclick="gh.showPlace({{ s.id }})">
+
+                 <h3>{{ s.title }}</h3>
+                 <img  src="{% thumbnail s.primary_photo 0x80 upscale crop=scale %}">
+                 <h4>{{ s.city}} - {{ s.district }}, {{ s.get_country_display }}</h4>
+                 <h5>{{ s.price }} {{ s.currency }}</h5>
+
+            </li>
+
+        {% endfor %}
+        </ul>
+
+</div>
+</div>
+
+
+
+<div class="ikikutu" >
+
+ayrıntılı arama...
+
+</div>
+
+
+
+
+{% endblock %}
+{% block closebody %}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+{% endblock %}

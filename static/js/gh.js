@@ -15,6 +15,7 @@ gh = {
         $('#smgir').click(function(){document.location='/login/'})
     },
     index_init:function () {
+
         var self = this;
         this.akGorunur = 0
         this.sks = {}
@@ -27,6 +28,7 @@ gh = {
         $('#araf input').focus(function () {
             self.akToggle(0)
         });
+        $('#aradugme').click(function () {document.location='/search/?place='+$('#arainput').val()});
         $('html').click(function (data) {
 //            console.log(data.srcElement, data.target)
             if(data.target.className.indexOf("ui-")>-1)return;
@@ -420,6 +422,9 @@ gh = {
             self.gcGosterGizle()
             self.setLatLng('#id_geocode')
         })
+    },
+    showPlace:function(id){
+        document.location='/places/'+id
     }
 
 

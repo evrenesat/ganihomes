@@ -384,3 +384,8 @@ def dashboard(request):
 def registeration_thanks(request):
     context = {}
     return render_to_response('registeration_thanks.html', context, context_instance=RequestContext(request))
+
+def search(request):
+
+    context = {'results':Place.objects.all()}
+    return render_to_response('search.html', context, context_instance=RequestContext(request))
