@@ -113,33 +113,15 @@
 </div>
 
 
-    <div class="ikikutu">
-        <button class="yesildugme fo11">Favorilere Ekle</button>
-        <div class="sepline"></div>
 
-        <ul class="like-buttons">
-
-        <li class="fb-like">
-            <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-        </li>
-    <li class="g-plus-one">
-        <div class="g-plusone" data-size="medium" data-annotation="none"></div>
-    </li>
-    <li class="twitter-like">
-        <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    </li>
-
-        </ul>
-
-
-    </div>
 
 <div class="ikikutu" id="pricebox">
+<div class="fetiket"><div id="placeprice"><span class="pr">{{ place.price|floatformat  }}</span><span class="zr">.00</span> </div><div id="placecurrency">{{ place.currency }} / gece</div></div>
 <div id="pricebox-ic">
 <div class="pl10 pt10 tsdw2" style="color:#111111;">
-<span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>
+{#<span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>#}
 </div>
-<hr>
+
     <div class="cinout separate">
         <label for="checkin">Varış</label><br>
         {{ bform.checkin }}
@@ -168,6 +150,27 @@
 </div>
 </div>
 
+
+    <div class="ikikutu">
+            <button class="yesildugme fo11">Favorilere Ekle</button>
+            <div class="sepline"></div>
+
+            <ul class="like-buttons">
+
+            <li class="fb-like">
+                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+            </li>
+        <li class="g-plus-one">
+            <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+        </li>
+        <li class="twitter-like">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </li>
+
+            </ul>
+
+
+        </div>
 
     <div class="ikikutu">
 

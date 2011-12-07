@@ -264,6 +264,7 @@ gh = {
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
+        this.rePlace('#titlediv', '.fetiket', 615, -3);
 
     },
     addPlaceInit:function(){

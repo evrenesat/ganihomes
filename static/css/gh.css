@@ -1031,6 +1031,7 @@ li.g-plus-one{
     border: 1px solid #acbfac;
     background-color: #fff !important;
     cursor: pointer;
+    padding:8px !important;
     text-align: center;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -1146,7 +1147,8 @@ li.g-plus-one{
 
 
 #pricebox.ikikutu{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
+    background: url(/images/sari-beyaz-grd.png) no-repeat;
 }
 .ikikutu {
 
@@ -1684,18 +1686,42 @@ ul.rating li.five a {
     margin-bottom: 10px;
     color: #5d6b71;
     padding-left: 15px;
+    background-color:#ffce81;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+}
+.fetiket{
+    background:url(/images/fiyat-etiket-ipli.png) no-repeat;
+    position:absolute;
+    top:-10px;
+    width:290px;
+    height:110px;
+
+
+    -webkit-transform: rotate(7.5deg);
+       -moz-transform: rotate(7.5deg);
+        -ms-transform: rotate(7.5deg);
+         -o-transform: rotate(7.5deg);
+            transform: rotate(7.5deg);
+               filter: progid:DXImageTransform.Microsoft.Matrix(
+                       M11=0.9914448613738104, M12=-0.13052619222005157,M21=0.13052619222005157, M22=0.9914448613738104, sizingMethod='auto expand');
+                 zoom: 1;
+
 }
 
 #titlediv {
     font-size: 26px;
     font-weight: 200;
     height: 30px;
+    text-shadow: 0px 1px 0px #83712a;
 }
 
 #subtitlediv {
     font-size: 16px;
     font-weight: 200;
-    color: #979a9e;
+    color: #4f5154;
+    text-shadow: 0px 1px 0px #83712a;
 }
 
 #placediv {
@@ -1806,14 +1832,31 @@ ul.rating li.five a {
 }
 
 #placeprice {
-    font-size: 32px;
+    color: rgb(166, 57, 17);
+    font-family: "Times New Roman", "Book Antiqua";
+    margin-left: 133px;
+    margin-top: -2px;
+    text-shadow: 1px 1px 8px rgb(143, 156, 42);
+}
+#placeprice .pr{
+    font-size: 50px;
+}
+#placeprice .zr{
+    font-size: 20px;
+}
+#placecurrency{
+    color: rgb(129, 86, 86);
+    font-size: 16px;
+    margin-left: 168px;
+    margin-top: -21px;
 }
 
 #pricebox-ic{
-background: url(/images/sari-beyaz-grd.png) repeat-x;
+/*background: url(/images/sari-beyaz-grd.png) repeat-x;*/
     -moz-border-radius: 16px;
     -webkit-border-radius: 16px;
     border-radius: 16px;
+    margin-top:79px;
 }
 .cinout {
     float: left;
@@ -1988,6 +2031,7 @@ padding-right: 2em;
 #menuccordion .ui-accordion-content li{
     list-style-type: circle;
     color:#ba7312;
+    line-height: 25px;
     width:180px;
 
 }
