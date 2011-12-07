@@ -120,20 +120,20 @@ class Icerik(models.Model):
 #    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
     dil_kodu = models.CharField(max_length=5,  db_index=True, choices=LOCALES)
     #    sablon = models.CharField(max_length=200, null=True, blank=True,choices=[('',u'Seçiniz'),],help_text=u'Bu içeriği standart dışı bir şablonla göstermek istiyorsanız buradan seçebilirsiniz. <br><b>!!! Lütfen emin değilseniz bu ayarı değiştirmeyiniz !!!</b>', editable=False)
-    metin = tinymce_models.HTMLField(_("İçerik Gövdesi"), blank=True, null=True)
-    baslik = models.CharField(_("başlık"), max_length=255)
-    menu_baslik = models.CharField(_("menü başlık"), max_length=255, blank=True, null=True,
-                                   help_text=_("Menüde başlığın üzerine yazmak için"))
+    metin = tinymce_models.HTMLField(_(u"İçerik Gövdesi"), blank=True, null=True)
+    baslik = models.CharField(_(u"başlık"), max_length=255)
+    menu_baslik = models.CharField(_(u"menü başlık"), max_length=255, blank=True, null=True,
+                                   help_text=_(u"Menüde başlığın üzerine yazmak için"))
     slug = models.SlugField(_("slug"), max_length=255, db_index=True, unique=False,
                             help_text='Sayfa adresi. (otomatik üretilir)')
-    url = models.CharField(_("URL'ye Yönlen"), max_length=255, db_index=True, null=True, blank=True)
+    url = models.CharField(_(u"URL'ye Yönlen"), max_length=255, db_index=True, null=True, blank=True)
     #    redirect = models.CharField(_("yönlen"), max_length=255, blank=True, null=True)
-    tanim = models.TextField(_("meta tanım"), max_length=255, blank=True, null=True)
-    anahtar = models.CharField(_("meta anahtar kelimeler"), max_length=255, blank=True, null=True)
-    html_baslik = models.CharField(_("html başlığı"), max_length=255, blank=True, null=True,
-                                   help_text=_("tarayıcı  başlığının üzerine yaz"))
-    sayfa = models.ForeignKey(Sayfa, verbose_name=_("Sayfa"))
-    olusturma = models.DateTimeField(_("oluşturulma zamanı"), editable=False, default=datetime.now)
+    tanim = models.TextField(_(u"meta tanım"), max_length=255, blank=True, null=True)
+    anahtar = models.CharField(_(u"meta anahtar kelimeler"), max_length=255, blank=True, null=True)
+    html_baslik = models.CharField(_(u"html başlığı"), max_length=255, blank=True, null=True,
+                                   help_text=_(u"tarayıcı  başlığının üzerine yaz"))
+    sayfa = models.ForeignKey(Sayfa, verbose_name=_(u"Sayfa"))
+    olusturma = models.DateTimeField(_(u"oluşturulma zamanı"), editable=False, default=datetime.now)
     guncelleme = models.DateTimeField(null=True, blank=True, auto_now=True)
 
     def get_absolute_url(self, force_lang=None):
