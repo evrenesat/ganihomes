@@ -1027,19 +1027,52 @@ li.g-plus-one{
 .txtrgh{
     text-align:right;
 }
+.yesildugme:hover{
+    -webkit-box-shadow: 0px 0px 10px 2px #fac9a9;
+    -moz-box-shadow: 0px 0px 10px 2px #fac9a9;
+    box-shadow: 0px 0px 10px 2px #fac9a9;
+}
 .yesildugme{
-    border: 1px solid #acbfac;
+    border: 1px solid #f0dbc6;
     background-color: #fff !important;
     cursor: pointer;
     padding:8px !important;
     text-align: center;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    color:green !important;
-    border-radius: 4px;
-    background: url(/images/grd-yesil-1.png);
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 10px 2px #fae4ce;
+    -moz-box-shadow: 0px 0px 10px 2px #fae4ce;
+    box-shadow: 0px 0px 10px 2px #fae4ce;
+    color:brown !important;
+    background: url(/images/grd-agc-1.png);
+    /*background: url(/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png);*/
     text-shadow: 1px 1px 0.4px #ccc;
 }
+.minidugme:hover{
+    -webkit-box-shadow: 0px 0px 5px 1px #fac9a9;
+    -moz-box-shadow: 0px 0px 5px 1px #fac9a9;
+    box-shadow: 0px 0px 5px 1px #fae8a3;
+}
+.minidugme{
+    border: 1px solid #f0dbc6;
+    background-color: #fff !important;
+    cursor: pointer;
+    padding:3px !important;
+    font-size:10px;
+    text-align: center;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 5px 1px #fae4ce;
+    -moz-box-shadow: 0px 0px 5px 1px #fae4ce;
+    box-shadow: 0px 0px 5px 1px #fae4ce;
+    color: #54373f !important;
+    background: url(/images/grd-krm-22px.png);
+
+    text-shadow: 1px 1px 0.4px #fff;
+}
+
 .or{
     color: #777777;
     margin-top:10px;
@@ -1632,22 +1665,32 @@ ul.rating li.five a {
     margin-left: 30px;
 }
 
+.dugme2:hover{
+    -webkit-box-shadow: 0px 0px 10px 2px #fac9a9;
+    -moz-box-shadow: 0px 0px 10px 2px #fac9a9;
+    box-shadow: 0px 0px 10px 2px #fac9a9;
+}
 .dugme2 {
-    border: 1px solid green;
-    background-color: #fff !important;
     font-weight: bold;
     cursor: pointer;
     text-align: center;
+    border: 1px solid #f0dbc6;
+    padding:5px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
-    background: url(/images/grd-yesil-1.png);
     text-shadow: 1px 1px 0.4px #ccc;
     width: 170px;
-    margin: 0 0 0 10px;
-    font-size: 14px;
-    height: 25px;
 
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 14px;
+
+    -webkit-box-shadow: 0px 0px 10px 2px #fae4ce;
+    -moz-box-shadow: 0px 0px 10px 2px #fae4ce;
+    box-shadow: 0px 0px 10px 2px #fae4ce;
+    color:brown !important;
+    background: url(/images/grd-agc-1.png);
 }
 
 .dugme2 span {
@@ -1684,9 +1727,10 @@ ul.rating li.five a {
     border: 1px solid #f0e4e4;
     height: 55px;
     margin-bottom: 10px;
-    color: #5d6b71;
+    color: #0d0402;
     padding-left: 15px;
     background-color:#ffce81;
+    background:url(/images/tahta.jpg) repeat-x;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
@@ -1714,14 +1758,14 @@ ul.rating li.five a {
     font-size: 26px;
     font-weight: 200;
     height: 30px;
-    text-shadow: 0px 1px 0px #83712a;
+    text-shadow: 0px 0px 2px rgb(163, 42, 42);
 }
 
 #subtitlediv {
+    color: rgb(136, 72, 72);
     font-size: 16px;
     font-weight: 200;
-    color: #4f5154;
-    text-shadow: 0px 1px 0px #83712a;
+    text-shadow: 0px 0px 1px rgb(123, 42, 42);
 }
 
 #placediv {
@@ -1730,7 +1774,6 @@ ul.rating li.five a {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     border: 1px solid #ccc;
-
     background: #e2e2e2;
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UyZTJlMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIyJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY2JSIgc3RvcC1jb2xvcj0iI2YyZjJmMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
     background: -moz-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
@@ -1895,10 +1938,10 @@ ul.rating li.five a {
     float: left;
 }
 
-#bookit.dugme2 {
-    width: 90% !important;
-    margin: 0 auto !important;
-}
+/*#bookit.dugme2 {*/
+    /*width: 90% !important;*/
+    /*margin: 0 auto !important;*/
+/*}*/
 
 #askus {
     float: left;
@@ -2103,6 +2146,27 @@ padding-right: 2em;
     display:block;
     width:120px;
 }
+#stabul.ui-widget-header{
+    border-top-style:none;
+    border-left-style:none;
+    border-right-style:none;
+}
+#stabul.ui-corner-all{
+    border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0
+}
+
+
+#subtabs.ui-tabs{
+
+    padding:0;
+
+}
+
 #subtabs{
     height:500px;
     width:650px;

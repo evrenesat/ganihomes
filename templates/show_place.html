@@ -119,6 +119,7 @@
 <div class="fetiket"><div id="placeprice"><span class="pr">{{ place.price|floatformat  }}</span><span class="zr">.00</span> </div><div id="placecurrency">{{ place.currency }} / gece</div></div>
 <div id="pricebox-ic">
 <div class="pl10 pt10 tsdw2" style="color:#111111;">
+    <script>gh.rePlace('#titlediv', '.fetiket', 615, -3);</script>
 {#<span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>#}
 </div>
 
@@ -140,19 +141,19 @@
     <span id="totalPriceLabel">Toplam:</span> <span id="totalPriceValue">0,00 TL</span>
     </div>
     <hr>
-    <div class="dugme2" id="bookit"><span>Rezervasyon Yap</span></div>
-    <div id="askus">
-        <h3>Rezervasyon Destek Hattı</h3>
-        <hr>
-        0232 4456565<br>
-                <span id="resHelpSubinfo">Ekibimizden her konuda yardım alabilirsiniz</span>
-     </div>
+    <div class="align-center"><input type="button" class="dugme2" id="bookit" value="Rezervasyon Yap"></div>
+{#    <div id="askus">#}
+{#        <h3>Rezervasyon Destek Hattı</h3>#}
+{#        <hr>#}
+{#        0232 4456565<br>#}
+{#                <span id="resHelpSubinfo">Ekibimizden her konuda yardım alabilirsiniz</span>#}
+{#     </div>#}
 </div>
 </div>
 
 
     <div class="ikikutu">
-            <button class="yesildugme fo11">Favorilere Ekle</button>
+            <button class="minidugme">Favorilere Ekle</button>
             <div class="sepline"></div>
 
             <ul class="like-buttons">
@@ -177,7 +178,7 @@
     <h3>Ev Sahibi</h3>
     <hr>{{ place.owner.get_full_name }}
         <br><br>
-        <div class="dugme2" ><span>İletişime Geç</span></div>
+        <div class="align-center"><input type="button" class="dugme2" id="contacthost" value="İletişime Geç"></div>
     </div>
 <script>$('#subtabs').tabs();</script>
 
