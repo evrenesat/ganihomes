@@ -51,7 +51,6 @@ def showPlace(request, id):
         (_(u'Bed type'),place.get_bed_type_display()),
         (_(u'Bathrooms'),place.bathrooms),
         (_(u'Cancellation'),place.get_cancellation_display()),
-        (_(u'Space offered'),place.get_space_display()),
     )
     context = {'place':place,'bform':BookingForm(),'properties':properties }
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
