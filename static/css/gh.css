@@ -91,11 +91,14 @@
     padding-top: 10px;
 }
 
+.krm.hdrbgindex{
+
+    background: url(/images/sayfa-tepe-krm-grd.png) bottom repeat-x !important;
+}
 .hdrbg {
     background: url(/images/sayfa-tepe-grd.png) bottom repeat-x !important;
     height: 105px !important;
 }
-
 .hdrbgindex {
     background: url(/images/sayfa-tepe-gri-grd.png) bottom repeat-x !important;
     height: 105px !important;
@@ -358,7 +361,9 @@ div.scrollableArea {
     border: 1px #ccc !important;
 
 }
-
+.tabcontent.krm {
+    background-color: #cec1a7 !important;
+}
 .tabcontent {
     border-radius: 4px !important;
     background-color: #6c6c6c !important;
@@ -368,6 +373,9 @@ div.scrollableArea {
 
 .tabborder {
     border: 5px solid #6c6c6c;
+}
+.tabborder.krm {
+    border: 5px solid #cec1a7;
 }
 
 /*#tabs-1 {*/
@@ -387,6 +395,11 @@ div.scrollableArea {
 #ictab a, #manztab a{
     color:#777777;
 }
+#ictab.krm, #manztab.krm {
+    background: url(/images/tab-ark-silik-krm.png) repeat-x;
+
+}
+
 #ictab, #manztab {
     background-position: -3px -13px;
     background: url(/images/tab-ark-silik.png) repeat-x;
@@ -394,6 +407,11 @@ div.scrollableArea {
 }
 #ictab.ui-state-active a, #manztab.ui-state-active a {
     color:#fff;
+}
+#ictab.ui-state-active.krm,#manztab.ui-state-active.krm {
+    background: url(/images/tab-ark-krm.png) repeat-x;
+    background-position: -3px -13px;
+    font-weight: bold;
 }
 #ictab.ui-state-active,#manztab.ui-state-active {
     background: url(/images/tab-ark.png) repeat-x;
@@ -409,6 +427,18 @@ div.scrollableArea {
 }
 #tabli1  {
     background: url(/images/ganishow-silik.png) no-repeat;
+    background-position: -3px -13px !important;
+    height: 30px;
+    width:135px;
+}
+
+#tabli1.ui-state-active.krm {
+    background: url(/images/ganishow-krm.png) no-repeat !important;
+    background-position: -3px -13px !important;
+}
+
+#tabli1.krm  {
+    background: url(/images/ganishow-silik-krm.png) no-repeat;
     background-position: -3px -13px !important;
     height: 30px;
     width:135px;
@@ -445,7 +475,9 @@ div.scrollableArea {
     font-size: 16px;
     text-shadow: 1px 1px 0.5px white;
 }
-
+#arabar.krm{
+    background-color:#e7dfd2;
+}
 #arabar {
 
     background-color: #b3b3b3;
@@ -500,7 +532,7 @@ ul.messages {
     float: right;
     height: 40px;
     /*border:1px solid green;*/
-    background-color: #d8ff9d;
+    background-color: #ffebdc;
     font-size: 20px;
     cursor:pointer;
     font-weight: bold;
@@ -513,7 +545,7 @@ ul.messages {
     -webkit-border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    background: url(/images/grd-yesil-1.png);
+    background: url(/images/grd-agc-1.png);
     text-shadow: 1px 1px 0.4px #ccc;
 }
 
@@ -521,7 +553,7 @@ ul.messages {
 
     position: relative;
     top: 5px;
-    color: green;
+    color: #7d4f3e;
 }
 
 /*.showcase .ui-tabs-nav li a{*/
@@ -545,7 +577,9 @@ ul.messages {
     background-position: 0px 5px;
     padding-left: 50px;
 }
-
+#mhtabela.krm{
+    color:#000;
+}
 #mhtabela {
     /*display: none;*/
     width: 170px;
@@ -567,7 +601,9 @@ ul.messages {
     /*box-shadow: #666 0px 2px 3px;*/
     text-align: center;
 }
-
+#mhtabela.krm .hdr {
+    text-shadow: 1px 1px 0.4px #fff;
+}
 #mhtabela .hdr {
     margin-left: auto;
     margin-right: auto;
@@ -631,6 +667,14 @@ ul.messages {
 
 }
 
+#aramsj.krm {
+    font-size: 14px;
+    color: #757575;
+    font-weight: bold;
+    width: 710px;
+    float: left;
+    text-shadow: 1px 1px 0.4px #fff;
+}
 #arabg_cont {
     width: 650px;
     height: 500px;

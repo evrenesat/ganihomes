@@ -29,6 +29,8 @@ gh = {
             self.akToggle(0)
         });
         $('#aradugme').click(function () {document.location='/search/?place='+$('#arainput').val()});
+        $('.logo').mouseover(function () {$('.krm').removeClass('krm').addClass('dekrm')}).mouseleave(function () {$('.dekrm').removeClass('dekrm').addClass('krm')});
+
         $('html').click(function (data) {
 //            console.log(data.srcElement, data.target)
             if(data.target.className.indexOf("ui-")>-1)return;
