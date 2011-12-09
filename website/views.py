@@ -91,7 +91,7 @@ class addPlaceForm(ModelForm):
         model=Place
         fields = ('title','type','capacity','space','description','price','currency',
             'city','country','district','street','address','geocode',
-            'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules'
+            'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
 
 def addPlace(request, ajax=False, id=None):

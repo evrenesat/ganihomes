@@ -264,6 +264,8 @@
 
     <div id="arabg_cont">
         <div id="arabg">
+            <form action="/search" method="get">
+
             <div id="araoneri">
                 <div class="kbaslik">öneriler</div>
 {#                <ul>#}
@@ -275,6 +277,7 @@
             </div>
             <div class="vsplit"></div>
             <div id="aradetay">
+                <input type="hidden" name=phrase id=phrase>
                 <div class="kbaslik">ayrıntılı arama</div>
                 <div class="foge checkinout">
                     <label for="checkin">{{ srForm.checkin.label }}<br>
@@ -295,14 +298,16 @@
                 <div class="foge pricebar">
                     <label for="fiyat">Gecelik Fiyat (TL)</label><br>
                     <input type="hidden" name=pricerange id=pricerange>
+
                     <div id="pricediv"></div>
-                    <div id="pmin" class="pRangeBox">20</div>
-                    <div id="pmax" class="pRangeBox">500</div>
+                    <input type="text" id="pmin" class="pRangeBox" value="20">
+                    <input type="text" id="pmax" class="pRangeBox" value="500">
                 </div>
 {#                <div id="ayintiliAraDugme"><span>Ayrıntılı Ara</span></div>#}
 
 
             </div>
+            </form>
         </div>
     </div>
 {% endblock %}

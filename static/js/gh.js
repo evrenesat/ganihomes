@@ -28,7 +28,7 @@ gh = {
         $('#araf input').focus(function () {
             self.akToggle(0)
         });
-        $('#aradugme').click(function () {document.location='/search/?place='+$('#arainput').val()});
+        $('#aradugme').click(function () {$('#phrase').val($('#arainput').val());$('#arabg form').submit()});
         $('.logo').mouseover(function () {$('.krm').removeClass('krm').addClass('dekrm')}).mouseleave(function () {$('.dekrm').removeClass('dekrm').addClass('krm')});
 
         $('html').click(function (data) {
@@ -46,11 +46,11 @@ gh = {
         $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
             change: function(event, ui) {
                 var values = $( this ).slider( "option", "values" );
-                $('#pmin').html(values[0]);
-                $('#pmax').html(values[1]);
+                $('#pmin').val(values[0]);
+                $('#pmax').val(values[1]);
             }
         });
-        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
+        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
         $('.slidiv').mouseenter(
             function () {
                 sld = $(this)
@@ -258,7 +258,12 @@ gh = {
     showPlaceInit:function(){
         var self = this;
         $('#toptabs').tabs();
+//        $('#pcalendar').DatePicker({flat: true, calendars: 2, mode: 'range', date:['2011-12-09']});
+        $('#uygtab').click(function(){
+            console.log('hmmhs')
+//            $('#calendar').DatePickerShow()
 
+        })
         this.currentImg = $('.pthumb').first()
         $('.pthumb').click(function(){return self._gotoNextPhoto(this)})
         $('#phimg').click(function(){self._changePlacePhoto()})
@@ -280,6 +285,7 @@ gh = {
             self.changeForm(2);
             self.markerMaps();
         });
+//        $('#wfContainer').scroll(function(event){self.changeForm(1);})
         $('#apbutton3').click(function(){
             if(typeof(LGD)=='undefined'){
                 self.changeForm(4);

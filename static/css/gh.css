@@ -513,8 +513,7 @@ ul.messages {
 
 #araf {
     background-color: #fff;
-    border: 1px solid #b3b3b3;
-    border-bottom-color: #e7e7e7 !important;
+    border: 1px solid #d9c6b0;;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -833,11 +832,15 @@ ul.messages {
 
 #pmin {
     float: left;
+    height: 16px;
+    padding:3px !important;
 }
 
 #pmax {
     float: right;
     margin-right: 40px;
+    height: 16px;
+    padding:3px !important;
 }
 
 .checkinout {
@@ -1267,11 +1270,16 @@ li.g-plus-one{
     position: relative;
     border: 1px solid #ccc;
     border-top: 0px;
+    position:relative;
 }
 
 #wf {
     height: 500px;
     width: 3000px;
+    position:absolute;
+    overflow:auto;
+    top:0px;
+    left:0px;
     /*-moz-border-radius: 6px;*/
     /*-webkit-border-radius: 6px;*/
     /*border-radius: 6px;*/
@@ -2151,7 +2159,8 @@ padding-right: 2em;
 
 }
 #ack{
-    height:520px;
+    display:inline-block;
+    font-size:11px;
 }
 #ozellikler{
     float:right;
@@ -2212,7 +2221,7 @@ padding-right: 2em;
 }
 
 #subtabs{
-    height:500px;
+    /*height:500px;*/
     width:650px;
     margin-top:20px;
     margin-left:auto;

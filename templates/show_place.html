@@ -1,6 +1,11 @@
 {% extends "content.html" %}
 {% load thumbnail %}
+{#{% block extracss %}#}
+{#    <link rel="stylesheet" media="screen" type="text/css" href="{{ STATIC_URL }}css/datepicker.css" />#}
+{#{% endblock %}#}
 {% block extrajs %}
+
+{#    <script type="text/javascript" src="{{ STATIC_URL }}js/datepicker.js"></script>#}
 <script>$(document).ready(function(){gh.showPlaceInit()})</script>
 {% endblock %}
 {% block content %}
@@ -20,7 +25,7 @@
             <div id="toptabs">
                 <ul id="ttabul">
                     <li class="ptab"><a href="#pphoto">Fotoğraflar</a></li>
-                    <li class="ptab"><a href="#pcalendar">Uygunluk</a></li>
+                    <li class="ptab"><a id="uygtab" href="#pcalendar">Uygunluk</a></li>
                     <li class="ptab"><a id="openmap" href="#pmaps">Harita</a></li>
                     {% if place.overall_rating %}
                     <div class="stardiv" >
@@ -54,8 +59,8 @@
                 <div id="photoslider-right" class="nextpre">&raquo;</div>
 
                 </div>
-                <div id="pcalendar">
-
+                <div id="pcalendar" style="height:600px;">
+                <input type="hidden" name="calendar" id="calendar">
                 </div>
                 <div id="pmaps">
                     <div id="map_canvas"></div>
@@ -85,7 +90,7 @@
                    </ul>
 
                    <div id="ack">
-                       <div id="aciklama">{{ place.description }}</div>
+                       <div id="aciklama">{{ place.description|linebreaksbr }}</div>
                        <div id="ozellikler">
                            {% for label, value in properties %}
                                <span class="ozz_label">{{ label }}</span>
@@ -156,19 +161,19 @@
             <button class="minidugme">Favorilere Ekle</button>
             <div class="sepline"></div>
 
-            <ul class="like-buttons">
-
-            <li class="fb-like">
-                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-            </li>
-        <li class="g-plus-one">
-            <div class="g-plusone" data-size="medium" data-annotation="none"></div>
-        </li>
-        <li class="twitter-like">
-            <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-        </li>
-
-            </ul>
+{#            <ul class="like-buttons">#}
+{##}
+{#            <li class="fb-like">#}
+{#                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>#}
+{#            </li>#}
+{#        <li class="g-plus-one">#}
+{#            <div class="g-plusone" data-size="medium" data-annotation="none"></div>#}
+{#        </li>#}
+{#        <li class="twitter-like">#}
+{#            <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>#}
+{#        </li>#}
+{##}
+{#            </ul>#}
 
 
         </div>
@@ -186,13 +191,13 @@
 {% endblock %}
 {% block closebody %}
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+{#<div id="fb-root"></div>#}
+{#<script>(function(d, s, id) {#}
+{#  var js, fjs = d.getElementsByTagName(s)[0];#}
+{#  if (d.getElementById(id)) {return;}#}
+{#  js = d.createElement(s); js.id = id;#}
+{#  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";#}
+{#  fjs.parentNode.insertBefore(js, fjs);#}
+{# }(document, 'script', 'facebook-jssdk'));</script>#}
+{#<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>#}
 {% endblock %}

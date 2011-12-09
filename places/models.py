@@ -171,7 +171,6 @@ class Place(models.Model):
     capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS, default=2)
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES, default=1)
     space = models.SmallIntegerField(_('Space offered'), choices=SPACE_TYPES, default=1)
-    size = models.PositiveIntegerField(_('Size'))
     bedroom = models.SmallIntegerField(_('Number of bedrooms'), choices=NO_OF_ROOMS, default=1)
     bed_type = models.SmallIntegerField(_('Bed type'), choices=BATHROOM_TYPES, default=1)
     bathrooms = models.SmallIntegerField(_('Number of bathrooms'), choices=NO_OF_ROOMS, default=1)
@@ -309,7 +308,7 @@ class Booking(models.Model):
     """Booking"""
 
     host = models.ForeignKey(User, verbose_name=_('Host'), related_name='host')
-    guest = models.ForeignKey(User, verbose_name=_('Host'), related_name='guest')
+    guest = models.ForeignKey(User, verbose_name=_('Guest'), related_name='guest')
     place = models.ForeignKey(Place, verbose_name=_('Place'))
     reservation = models.ForeignKey(ReservedDates, verbose_name=_('Reservation Dates'))
 
