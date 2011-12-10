@@ -255,10 +255,33 @@ gh = {
     //////////////////////////////////////////////////////
     ////////////////////ENDO OF MAPPPS - GEOCODING////////
     //////////////////////////////////////////////////////
+    isUnAvailable:function(d){
+        var d = parseInt($.datepick.formatDate('yymmdd', d))
+//        console.log(d, d in  [111229,111230,111231,120101,120102])
+        ud = [111229,111230,111231,120101,120102]
+        return ud.indexOf(d) >-1
+    },
     showPlaceInit:function(){
         var self = this;
+        x={}
+        var s=0;
+
         $('#toptabs').tabs();
-//        $('#pcalendar').DatePicker({flat: true, calendars: 2, mode: 'range', date:['2011-12-09']});
+        $('#pcalendar').datepick({monthsToShow:2,  rangeSelect: true,
+            onSelect: function(dates) {
+                x = dates
+
+                },
+            onDate: function(date, current) {
+//                s=s+1;
+//                if (current){console.log(date, current);x[s]=date}
+        return self.isUnAvailable(date) ? {selectable:false} :{}
+//            {content: date.getDate() + '<br><sub>' +
+//            $.datepick.dayOfYear(date) + '</sub>',
+//            dateClass: 'showDoY'};
+    }
+
+        });
         $('#uygtab').click(function(){
             console.log('hmmhs')
 //            $('#calendar').DatePickerShow()

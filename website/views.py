@@ -118,6 +118,7 @@ def addPlace(request, ajax=False, id=None):
                 if not loged_in:
                     user = register_form.save(commit=False)
                     user.username = user.email
+                    user.set_password(register_form.cleaned_data['pass1'])
                     user.save()
                 new_place.owner = user
                 new_place.save()

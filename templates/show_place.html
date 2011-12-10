@@ -1,11 +1,11 @@
 {% extends "content.html" %}
 {% load thumbnail %}
-{#{% block extracss %}#}
-{#    <link rel="stylesheet" media="screen" type="text/css" href="{{ STATIC_URL }}css/datepicker.css" />#}
-{#{% endblock %}#}
+{% block extracss %}
+<style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>
+{% endblock %}
 {% block extrajs %}
 
-{#    <script type="text/javascript" src="{{ STATIC_URL }}js/datepicker.js"></script>#}
+    <script type="text/javascript" src="{{ STATIC_URL }}datepick/jquery.datepick.js"></script>
 <script>$(document).ready(function(){gh.showPlaceInit()})</script>
 {% endblock %}
 {% block content %}
@@ -60,7 +60,9 @@
 
                 </div>
                 <div id="pcalendar" style="height:600px;">
-                <input type="hidden" name="calendar" id="calendar">
+                <input type="hidden" name="calendar" id="calendarinput">
+                    <div id="minDate"></div>
+                    <div id="calendar" style="height:550px;width:100%"></div>
                 </div>
                 <div id="pmaps">
                     <div id="map_canvas"></div>
