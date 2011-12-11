@@ -6,7 +6,7 @@ from options import *
 from countries import *
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-
+from django.utils import simplejson as json
 from django.db.models.signals import post_save
 
 def create_user_profile(sender, instance, created, **kwargs):
@@ -147,7 +147,15 @@ class TagTranslation(models.Model):
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.tag_id, self.lang)
 
+
+import datetime
 from django.utils.safestring import mark_safe
+
+def date_range(start, end):
+     r = (end+datetime.timedelta(days=1)-start).days
+     return [start+datetime.timedelta(days=i) for i in range(r)]
+
+
 class Place(models.Model):
     """Places"""
 
@@ -195,7 +203,7 @@ class Place(models.Model):
 
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True)
     monthly_discount = models.SmallIntegerField(_('Monthly discount (%)'), null=True, blank=True)
-
+    weekend_price = models.DecimalField(_('Weekend price'), help_text=_('Price for guest'), decimal_places=2, max_digits=6, default=0.0)
     extra_limit = models.SmallIntegerField(_('Extra charge for more guests than'), choices=NO_OF_BEDS, null=True, blank=True)
     extra_price = models.DecimalField(_('Extra charge per person'), null=True, blank=True, decimal_places=2, max_digits=6,
                                       help_text=_('Each extra person exceeding the number you specified, must pay this extra charge.'))
@@ -205,9 +213,24 @@ class Place(models.Model):
     active = models.BooleanField(_('Place is online'), default=True)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
+    reserved_dates = models.TextField(editable=False, default='')
 
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-')
+
+
+    def prices(self):
+        pass
+        #TODO: yap bunu
+
+    def update_reserved_dates(self):
+        ard=[]
+        for rd in self.reserveddates_set.all():
+            r = (rd.end+datetime.timedelta(days=1)-rd.start).days
+            ard.extend([int((rd.start+datetime.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
+        self.reserved_dates =  json.dumps(ard)
+        self.save()
+
 
     class Meta:
         ordering = ['timestamp']
@@ -273,6 +296,11 @@ class ReservedDates(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.start,self.end)
+
+    def save(self, *args, **kwargs):
+        super(ReservedDates, self).save(*args, **kwargs)
+        self.place.update_reserved_dates()
+
 
 class Photo(models.Model):
     """Photos"""
@@ -343,7 +371,7 @@ class SessionalPrice(models.Model):
     """Sessional pricing"""
     place = models.ForeignKey(Place,verbose_name=_('Place'))
     price = models.DecimalField(_('Price'), decimal_places=2, max_digits=8)
-    weekend_price = models.DecimalField(_('Weekly price'), decimal_places=2, max_digits=8, null=True, blank=True)
+    weekend_price = models.DecimalField(_('Weekly price'), decimal_places=2, max_digits=8, default=0.0, blank=True)
     name = models.CharField(_('Name'), max_length=30, null=True, blank=True)
     active = models.BooleanField(_('Active'), default=True)
     start = models.DateField(_('Session start'))

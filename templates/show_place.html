@@ -4,7 +4,7 @@
 <style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>
 {% endblock %}
 {% block extrajs %}
-
+<script>gh_rdts={{ place.reserved_dates }};gh_prcs={{ place.get_prices }}</script>
     <script type="text/javascript" src="{{ STATIC_URL }}datepick/jquery.datepick.js"></script>
 <script>$(document).ready(function(){gh.showPlaceInit()})</script>
 {% endblock %}
@@ -126,7 +126,7 @@
 <div class="fetiket"><div id="placeprice"><span class="pr">{{ place.price|floatformat  }}</span><span class="zr">.00</span> </div><div id="placecurrency">{{ place.currency }} / gece</div></div>
 <div id="pricebox-ic">
 <div class="pl10 pt10 tsdw2" style="color:#111111;">
-    <script>gh.rePlace('#titlediv', '.fetiket', 615, -3);</script>
+    <script>gh.replace_pricetag()</script>
 {#<span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>#}
 </div>
 

@@ -275,7 +275,7 @@ gh = {
             onDate: function(date, current) {
 //                s=s+1;
 //                if (current){console.log(date, current);x[s]=date}
-        return self.isUnAvailable(date) ? {selectable:false} :{}
+        return self.isUnAvailable(date) ? {selectable:false,dateClass:'datepick-reserved'} :{}
 //            {content: date.getDate() + '<br><sub>' +
 //            $.datepick.dayOfYear(date) + '</sub>',
 //            dateClass: 'showDoY'};
@@ -283,7 +283,7 @@ gh = {
 
         });
         $('#uygtab').click(function(){
-            console.log('hmmhs')
+//            console.log('hmmhs')
 //            $('#calendar').DatePickerShow()
 
         })
@@ -294,9 +294,10 @@ gh = {
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
-        this.rePlace('#titlediv', '.fetiket', 615, -3);
+        $(window).resize(function(){self.replace_pricetag()}).trigger('resize')
 
     },
+    replace_pricetag : function(){this.rePlace('#titlediv', '.fetiket', 615, -3);},
     addPlaceInit:function(){
         var self = this;
 //        console.log(self,this)
