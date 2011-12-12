@@ -257,9 +257,25 @@ gh = {
     //////////////////////////////////////////////////////
     isUnAvailable:function(d){
         var d = parseInt($.datepick.formatDate('yymmdd', d))
-//        console.log(d, d in  [111229,111230,111231,120101,120102])
-        ud = [111229,111230,111231,120101,120102]
-        return ud.indexOf(d) >-1
+        return gh_rdts.indexOf(d) >-1
+    },
+    //{'default':34.33, 'weekend':40.42, }
+    checkReservationDates:function(dates){
+        var loopDate = new Date();
+        loopDate.setTime(dates[0]);
+        try{
+            while (loopDate.valueOf() < dates[1].valueOf() + 86400000) {
+    //            sdate = $.datepick.formatDate('yymmdd', loopDate)
+                if (this.isUnAvailable(loopDate)){
+                    $('#pcalendar').datepick('setDate',-1);
+                    throw 'unv_dates';
+                }
+
+                loopDate.setTime(loopDate.valueOf() + 86400000);
+            }
+        }catch(er){
+            if(er=='unv_dates'){alert(trns('Those dates are not available') )}
+        }
     },
     showPlaceInit:function(){
         var self = this;
@@ -267,18 +283,10 @@ gh = {
         var s=0;
 
         $('#toptabs').tabs();
-        $('#pcalendar').datepick({monthsToShow:2,  rangeSelect: true,
-            onSelect: function(dates) {
-                x = dates
-
-                },
-            onDate: function(date, current) {
-//                s=s+1;
-//                if (current){console.log(date, current);x[s]=date}
-        return self.isUnAvailable(date) ? {selectable:false,dateClass:'datepick-reserved'} :{}
-//            {content: date.getDate() + '<br><sub>' +
-//            $.datepick.dayOfYear(date) + '</sub>',
-//            dateClass: 'showDoY'};
+        $('#pcalendar').datepick({monthsToShow:2,minDate:0,  rangeSelect: true,
+            onSelect: function(dates) { self.checkReservationDates(dates)},
+            onDate: function(date, current){return self.isUnAvailable(date) ?
+                    {selectable:false, dateClass:'datepick-reserved'} : {}
     }
 
         });
@@ -463,6 +471,13 @@ gh = {
 
 };
 
+MSGS={
+    'Those dates are not available':'Seçtiğiniz tarihler uygun değil.'
+}
+
+function trns (msg){
+     return  MSGS[msg] || msg;
+ }
 $(window).ready(function () {
     gh.init()
     $('#tabs').tabs();

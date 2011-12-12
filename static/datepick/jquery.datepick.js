@@ -1,8 +1,8 @@
 ﻿/* http://keith-wood.name/datepick.html
    Date picker for jQuery v4.0.6.
    Written by Keith Wood (kbwood{at}iinet.com.au) February 2010.
-   Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and 
-   MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses. 
+   Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and
+   MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses.
    Please attribute the author if you use it. */
 
 (function($) { // Hide scope, no $ conflict
@@ -69,17 +69,17 @@ function Datepicker() {
 			dateFormat: 'mm/dd/yyyy', // See options on formatDate
 			firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
 			renderer: this.defaultRenderer, // The rendering templates
-			prevText: '&lt;Prev', // Text for the previous month command
+			prevText: '&laquo; Previous Month', // Text for the previous month command
 			prevStatus: 'Show the previous month', // Status text for the previous month command
 			prevJumpText: '&lt;&lt;', // Text for the previous year command
 			prevJumpStatus: 'Show the previous year', // Status text for the previous year command
-			nextText: 'Next&gt;', // Text for the next month command
+			nextText: 'Next Month &raquo;', // Text for the next month command
 			nextStatus: 'Show the next month', // Status text for the next month command
 			nextJumpText: '&gt;&gt;', // Text for the next year command
 			nextJumpStatus: 'Show the next year', // Status text for the next year command
 			currentText: 'Current', // Text for the current month command
 			currentStatus: 'Show the current month', // Status text for the current month command
-			todayText: 'Today', // Text for the today's month command
+			todayText: 'This Month', // Text for the today's month command
 			todayStatus: 'Show today\'s month', // Status text for the today's month command
 			clearText: 'Clear', // Text for the clear command
 			clearStatus: 'Clear all the dates', // Status text for the clear command
@@ -99,7 +99,7 @@ function Datepicker() {
 
 $.extend(Datepicker.prototype, {
 	dataName: 'datepick',
-	
+
 	/* Class name added to elements to indicate already configured with datepicker. */
 	markerClass: 'hasDatepick',
 
@@ -111,7 +111,7 @@ $.extend(Datepicker.prototype, {
 	_curMonthClass: 'datepick-month-', // Marker for current month/year
 	_anyYearClass: 'datepick-any-year', // Marker for year direct input
 	_curDoWClass: 'datepick-dow-', // Marker for day of week
-	
+
 	commands: { // Command actions that may be added to a layout by name
 		// name: { // The command name, use '{button:name}' or '{link:name}' in layouts
 		//		text: '', // The field in the regional settings for the displayed text
@@ -1606,7 +1606,7 @@ $.extend(Datepicker.prototype, {
 			inst.prevDate = $.datepick.newDate(inst.drawDate);
 			var show = this._checkMinMax((year != null ?
 				$.datepick.newDate(year, month, 1) : $.datepick.today()), inst);
-			inst.drawDate = $.datepick.newDate(show.getFullYear(), show.getMonth() + 1, 
+			inst.drawDate = $.datepick.newDate(show.getFullYear(), show.getMonth() + 1,
 				(day != null ? day : Math.min(inst.drawDate.getDate(),
 				$.datepick.daysInMonth(show.getFullYear(), show.getMonth() + 1))));
 			this._update(target);
