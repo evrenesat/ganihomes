@@ -259,23 +259,45 @@ gh = {
         var d = parseInt($.datepick.formatDate('yymmdd', d))
         return gh_rdts.indexOf(d) >-1
     },
-    //{'default':34.33, 'weekend':40.42, }
+    sessional_prices:{},
+    prepareSessionalPrices:function(){
+        if(gh_prcs[0].length>0){
+            for (p in gh_prcs[0]){
+                p = gh_prcs[0][p]
+                //p = [start_date_array(yyyy,mm,dd), end_date_array, price, weekend_price]
+                var loopDate = new Date(p[0][0],p[0][1]-1,p[0][2]);
+//                console.log(p)
+                var endDate = new Date(p[1][0],p[1][1]-1,p[1][2]);
+                while (loopDate.valueOf() < endDate.valueOf() + 86400000) {
+//                    sessional_prices[p[0].toString().substring(2) + p[1].toString() + p[2].toString()] = ''
+                    this.sessional_prices[$.datepick.formatDate('yymmdd', loopDate)] =
+                        (loopDate.getDay() in [0,6] && p[3]) ? p[3] : p[2]
+                    loopDate.setTime(loopDate.valueOf() + 86400000);
+                }
+            }
+        }
+    },
     checkReservationDates:function(dates){
         var loopDate = new Date();
         loopDate.setTime(dates[0]);
         try{
             while (loopDate.valueOf() < dates[1].valueOf() + 86400000) {
+//                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
                 if (this.isUnAvailable(loopDate)){
                     $('#pcalendar').datepick('setDate',-1);
                     throw 'unv_dates';
                 }
-
                 loopDate.setTime(loopDate.valueOf() + 86400000);
             }
         }catch(er){
             if(er=='unv_dates'){alert(trns('Those dates are not available') )}
         }
+    },
+    dayPrice:function(d){
+//        console.log($.datepick.formatDate('yymmdd', d))
+        return this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
+            ((d.getDay() in [0,6] && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1])
     },
     showPlaceInit:function(){
         var self = this;
@@ -283,11 +305,14 @@ gh = {
         var s=0;
 
         $('#toptabs').tabs();
+        this.prepareSessionalPrices()
         $('#pcalendar').datepick({monthsToShow:2,minDate:0,  rangeSelect: true,
             onSelect: function(dates) { self.checkReservationDates(dates)},
-            onDate: function(date, current){return self.isUnAvailable(date) ?
-                    {selectable:false, dateClass:'datepick-reserved'} : {}
-    }
+            onDate: function(date, current){
+                return self.isUnAvailable(date) ?
+                    {selectable:false, dateClass:'datepick-reserved'} : { content:
+                date.getDate() + '<br><sub>' + self.dayPrice(date) + '</sub>'}
+            }
 
         });
         $('#uygtab').click(function(){
