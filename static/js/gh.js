@@ -13,6 +13,22 @@ gh = {
         $('#smekle').click(function(){document.location='/add_place/'})
         $('#smkayit').click(function(){document.location='/register/'})
         $('#smgir').click(function(){document.location='/login/'})
+        $('.smdil').mouseover(function(){$('#langcurr').show('normal').mouseleave(function(){$(this).hide()})})
+        this.rePlace('.smdil', '#langcurr', -10, 25);
+        this.fillCurrencies()
+    },
+    fillCurrencies:function(){
+        self = this
+        dv = $('.currs')
+        for (c in gh_crc){
+            var cc = gh_crc[c]
+            var x = c
+            $('<span />').click(function(){console.log(x);self.setCurrency(x)}).html('<sub>'+cc[2]+'</sub> '+cc[1]).appendTo(dv);
+                }
+    },
+    setCurrency:function(curr_id){
+        cc = gh_crc[curr_id]
+        $('a .smdil').html('<sub>'+cc[2]+'</sub> '+cc[1])
     },
     index_init:function () {
 

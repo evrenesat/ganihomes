@@ -1,3 +1,5 @@
+{% load localeurl_tags %}
+{% load i18n %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html><head>
@@ -18,6 +20,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/curr.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/gh.js"></script>
 {% block extrahead %} {% endblock %}
 {% block extracss %} {% endblock %}
@@ -34,17 +37,27 @@
                   {% if user.is_authenticated %}
 {#                  <div class="firstitem">Merhaba {{ user.get_full_name }}</div>#}
                       <div class="firstitem"><a href="/logout/" class="logout">Çıkış</a></div>
-                      <div><a href="#" class=smdil>TL</a></div>
+                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);">TL</a></div>
                   <div><a href="/dashboard" class="mypage" >Benim Sayfam</a></div>
                   {% else %}
                   <div class="firstitem"><a href="/register/" class="smkayit">Üye Ol</a></div>
                   <div><a href="/login/" class="smgir">Giriş Yap</a></div>
-                      <div><a href="#" class="smdil">TL</a></div>
+                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);">TL</a></div>
                   {% endif %}
 
                   <div><a href="/add_place" class=smekle>Mekanınızı Ekleyin</a></div>
               </div>
         </div>
+</div>
+<div id="langcurr">
+<div class="langs">
+    {% for lang in LANGUAGES %}
+        {% ifnotequal lang.0 LANGUAGE_CODE %}
+            <li><a style="background-image: url({{ STATIC_URL }}images/flags/{{ lang.0 }}.png);" href="{{ request.path|chlocale:lang.0 }}">{% trans lang.1 %}</a></li>
+        {% endifnotequal %}
+    {% endfor %}
+</div>
+<div class="currs"></div>
 </div>
 {% block header%}
 {% endblock %}

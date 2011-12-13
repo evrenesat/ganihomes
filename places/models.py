@@ -1,3 +1,5 @@
+import os
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -23,6 +25,10 @@ post_save.connect(create_user_profile, sender=User)
 ugettext('Support')
 ugettext('Website')
 ugettext('Auth')
+import re
+from urllib2 import urlopen
+ecb_forex_xml_regex = re.compile("<Cube currency='(\w*?)' rate='(\d*?.\d*?)'/>")
+ecb_forex_xml_url = 'http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml'
 
 class TagCategory(models.Model):
     """Tag category"""
@@ -45,7 +51,7 @@ class Currency(models.Model):
 
     name = models.CharField(_('Currency name'), max_length=20)
     code = models.CharField(_('Currency code'), max_length=3)
-    factor = models.DecimalField(_('Conversation factor'), decimal_places=2, max_digits=8)
+    factor = models.DecimalField(_('Conversation factor'), decimal_places=4, max_digits=12, default=0.0)
     main = models.BooleanField(_('Main site currency?'), default=False, help_text=_('Main currency is the \
     conversation bridge between other currencies.'))
     active = models.BooleanField(_('Active'), default=True)
@@ -56,6 +62,34 @@ class Currency(models.Model):
         get_latest_by = "timestamp"
         verbose_name = _('Currency')
         verbose_name_plural = _('Currencies')
+
+    def save(self, *args, **kwargs):
+        super(Currency, self).save(*args, **kwargs)
+        self.generateJSON()
+
+    @classmethod
+    def updateRates(cls):
+        rates = urlopen(ecb_forex_xml_url).read()
+        for r in ecb_forex_xml_regex.findall(rates):
+            try:
+                c,new = Currency.objects.get_or_create(name=r[0])
+                c.factor = r[1]
+                if new:
+                    c.active = False
+                c.save()
+            except:
+                print r
+                raise
+
+    @classmethod
+    def generateJSON(cls):
+        di = {}
+        for c in Currency.objects.filter(active=True):
+            if c.factor:
+                di[c.id] = [float(str(round(c.factor,4))),c.name, c.code]
+        f=open(os.path.join(settings.STATIC_ROOT, "js", u'curr.js'),'w')
+        f.write(("gh_crc=%s"%json.dumps(di, ensure_ascii=False)).replace(" ",''))
+        f.close()
 
 
     def __unicode__(self):

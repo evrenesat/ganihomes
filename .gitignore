@@ -8,4 +8,5 @@ log/access_log
 yuklemeler
 settings.py
 static/admin
+static/js/curr.js
 .idea

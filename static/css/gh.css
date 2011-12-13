@@ -57,7 +57,9 @@
     display:block;
 }
 #supermenu .smdil{
-    background:url(/images/flags/tr.png) no-repeat 0 2px;
+    /*background-size: 0 2px;*/
+    background-repeat: no-repeat;
+    background-position: 0 2px;
     padding-left:20px;
 }
 #supermenu .logout{
@@ -2277,4 +2279,61 @@ padding-right: 2em;
 .sresults ul{
     margin:0;
     padding:0;
+}
+
+#langcurr{
+
+    list-style: none;
+    width:230px;
+    height:90px;
+    /*display:none;*/
+    position:absolute;
+    top:-300px;
+    z-index:100;
+    left:-300px;
+    padding:10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: #666 0px 1px 1px;
+    -moz-box-shadow: #666 0px 1px 1px;
+    box-shadow: #666 0px 1px 1px;
+
+}
+#langcurr .langs a{
+    background-repeat: no-repeat;
+    background-position: 0 2px;
+    padding-left:20px;
+}
+#langcurr a:link, #langcurr a:visited{
+    text-decoration:none;
+    color:#0b3e6f;
+}
+.currs span:hover, #langcurr a:hover{
+    color:blue;
+}
+.langs{
+    border-right:1px solid #ccc;
+    width:90px;
+    min-height:80px;
+    float:left;
+}
+.currs{
+    float:right;
+    width:130px
+}
+.currs span{
+    text-align:right;
+    float:left;
+    width:50px;
+    display:block;
+    cursor:pointer;
+    color:#0b3e6f;
+    margin-left:10px;
+    padding-top:2px;
+}
+.currs sub{
+    vertical-align:3px;
 }

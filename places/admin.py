@@ -136,7 +136,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class CurrencyAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name', 'main', 'active')
+    list_display = ('code', 'name', 'main', 'active','factor')
     search_fields = ['name','code' ]
     list_filter = ['active', ]
 
