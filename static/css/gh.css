@@ -60,7 +60,7 @@
     /*background-size: 0 2px;*/
     background-repeat: no-repeat;
     background-position: 0 2px;
-    padding-left:20px;
+    padding-left:24px;
 }
 #supermenu .logout{
 
@@ -1938,13 +1938,14 @@ ul.rating li.five a {
 #placeprice .pr{
     font-size: 50px;
 }
-#placeprice .zr{
+#placeprice .pr sub{
     font-size: 20px;
+    vertical-align: baseline;
 }
 #placecurrency{
     color: rgb(129, 86, 86);
     font-size: 16px;
-    margin-left: 168px;
+    margin-left: 154px;
     margin-top: -21px;
 }
 
@@ -2286,7 +2287,7 @@ padding-right: 2em;
     list-style: none;
     width:230px;
     height:90px;
-    /*display:none;*/
+    display:none;
     position:absolute;
     top:-300px;
     z-index:100;
@@ -2336,4 +2337,8 @@ padding-right: 2em;
 }
 .currs sub{
     vertical-align:3px;
+}
+
+.smdil sub{
+    margin-right:-4px;
 }

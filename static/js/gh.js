@@ -1,3 +1,19 @@
+Number.prototype.formatMoney = function(c, d, t){
+var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
+
+//(function($) {
+//        $.fn.currencyFormat = function() {
+//            this.each( function( i ) {
+//                $(this).change( function( e ){
+//                    if( isNaN( parseFloat( this.value ) ) ) return;
+//                    this.value = parseFloat(this.value).toFixed(2);
+//                });
+//            });
+//            return this; //for chaining
+//        }
+//    })( jQuery );
 gh = {
     bas:function (m) {
         $('#arabg').prepend(m + '<br>')
@@ -15,6 +31,8 @@ gh = {
         $('#smgir').click(function(){document.location='/login/'})
         $('.smdil').mouseover(function(){$('#langcurr').show('normal').mouseleave(function(){$(this).hide()})})
         this.rePlace('.smdil', '#langcurr', -10, 25);
+        if(!this.selected_currency){
+            this.selected_currency = $.cookie('gh_curr') || 0}
         this.fillCurrencies()
     },
     fillCurrencies:function(){
@@ -22,14 +40,54 @@ gh = {
         dv = $('.currs')
         for (c in gh_crc){
             var cc = gh_crc[c]
-            var x = c
-            $('<span />').click(function(){console.log(x);self.setCurrency(x)}).html('<sub>'+cc[2]+'</sub> '+cc[1]).appendTo(dv);
+            if(!this.selected_currency && cc[0]=='1.0')this.selected_currency = c
+            $('<span />').attr('data-crr',c).click(function(e){self.setCurrency(e.target)}).html('<sub>'+cc[2]+'</sub> '+cc[1]).appendTo(dv);
                 }
+        this.setCurrRates()
+        this.priceScanConvert()
     },
-    setCurrency:function(curr_id){
-        cc = gh_crc[curr_id]
-        $('a .smdil').html('<sub>'+cc[2]+'</sub> '+cc[1])
+    setCurrency:function(ob){
+        var cid = $(ob).data('crr')
+        $.cookie('gh_curr', cid, { expires: 365, path: '/' });
+        this.selected_currency = cid
+        this.setCurrRates()
+        this.priceScanConvert()
+        this.makeAvailabilityTab(1)
     },
+    setCurrRates:function(){
+        var selCrr = parseFloat(gh_crc[this.selected_currency][0])
+        for (c in gh_crc){
+            var cc = gh_crc[c]
+            this.currRates[c] = selCrr / parseFloat(cc[0])
+        }
+    },
+    getCurrPrice:function(p){
+      var cc = gh_crc[this.selected_currency]
+//      if (typeof(p)=='undefined')return cc[1]
+      p = " <span class='gprc'>"+p+"</span> "
+      c = "<span class='gcrc'>"+cc[1]+"</span>"
+      return cc[3]==1 ? c + p : p + c
+    },
+    priceScanConvert:function(){
+      self = this
+      var cc = gh_crc[this.selected_currency]
+      $('a.smdil').html('<sub>'+cc[2]+'</sub> '+cc[1])
+      $('.gh-prc').each(function(){
+          var ob = $(this)
+          var cid = ob.data('crc')
+          var setCrcName = this.className.indexOf("crc") > -1
+          prc = self.convertPrice(parseFloat(ob.data('prc')),cid)
+          if(setCrcName) ob.html(self.getCurrPrice(prc))
+          else {
+              cprc = prc.split(',')
+              var sub = cprc[0].length<6 ? "<sub>,"+cprc[1]+"</sub>" : ''
+              ob.html(cprc[0]+sub)
+          }
+      })
+     $('.only-crc').html(cc[1])
+    },
+    currRates:{},
+    selected_currency:0,
     index_init:function () {
 
         var self = this;
@@ -276,6 +334,10 @@ gh = {
         return gh_rdts.indexOf(d) >-1
     },
     sessional_prices:{},
+    convertPrice:function(prc,cid){
+        if(typeof(cid)=='undefined')cid = gh_prcs[3]
+        return (this.currRates[cid] * prc).formatMoney(2, ',', '.')
+    },
     prepareSessionalPrices:function(){
         if(gh_prcs[0].length>0){
             for (p in gh_prcs[0]){
@@ -302,6 +364,8 @@ gh = {
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
                 if (this.isUnAvailable(loopDate)){
                     $('#pcalendar').datepick('setDate',-1);
+                    $('.vDateField').val('')
+                    this.selected_dates = {}
                     throw 'unv_dates';
                 }
                 loopDate.setTime(loopDate.valueOf() + 86400000);
@@ -312,16 +376,11 @@ gh = {
     },
     dayPrice:function(d){
 //        console.log($.datepick.formatDate('yymmdd', d))
-        return this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
-            ((d.getDay() in [0,6] && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1])
+        return this.convertPrice(this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
+            ((d.getDay() in [0,6] && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1]))
     },
-    showPlaceInit:function(){
-        var self = this;
-        x={}
-        var s=0;
-
-        $('#toptabs').tabs();
-        this.prepareSessionalPrices()
+    makeAvailabilityTab:function(destroy){
+        if(typeof(destroy)!='undefined')$('#pcalendar').datepick('destroy')
         $('#pcalendar').datepick({monthsToShow:2,minDate:0,  rangeSelect: true,
             onSelect: function(dates) { self.checkReservationDates(dates)},
             onDate: function(date, current){
@@ -331,6 +390,17 @@ gh = {
             }
 
         });
+
+    },
+    showPlaceInit:function(){
+        var self = this;
+        x={}
+        var s=0;
+
+        $('#toptabs').tabs();
+        this.prepareSessionalPrices()
+
+        this.makeAvailabilityTab()
         $('#uygtab').click(function(){
 //            console.log('hmmhs')
 //            $('#calendar').DatePickerShow()
@@ -342,10 +412,21 @@ gh = {
         $('#openmap').click(function(){self._circleMaps('#latlng')})
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
-        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd' });
+        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true ,
+            beforeShowDay: function(date) { return self.isUnAvailable(date) ? [false,'datepick-reserved','']:[true,'',''] },
+            onSelect: function(dateText, inst) {
+                self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
+                if(self.selected_dates.id_checkin && self.selected_dates.id_checkout){
+                    $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
+                }
+            }
+
+        });
+
         $(window).resize(function(){self.replace_pricetag()}).trigger('resize')
 
     },
+    selected_dates:{},
     replace_pricetag : function(){this.rePlace('#titlediv', '.fetiket', 615, -3);},
     addPlaceInit:function(){
         var self = this;

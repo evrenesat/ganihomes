@@ -51,7 +51,8 @@ class Currency(models.Model):
 
     name = models.CharField(_('Currency name'), max_length=20)
     code = models.CharField(_('Currency code'), max_length=3)
-    factor = models.DecimalField(_('Conversation factor'), decimal_places=4, max_digits=12, default=0.0)
+    code_position = models.SmallIntegerField(_('Currency placement'), default=1, choices=((1,_('Prefix')), (2,_('Suffix'))))
+    factor = models.DecimalField(_('Conversation factor'), decimal_places=4, max_digits=12, default='0')
     main = models.BooleanField(_('Main site currency?'), default=False, help_text=_('Main currency is the \
     conversation bridge between other currencies.'))
     active = models.BooleanField(_('Active'), default=True)
@@ -73,7 +74,7 @@ class Currency(models.Model):
         for r in ecb_forex_xml_regex.findall(rates):
             try:
                 c,new = Currency.objects.get_or_create(name=r[0])
-                c.factor = r[1]
+                c.factor = str(r[1])
                 if new:
                     c.active = False
                 c.save()
@@ -86,7 +87,7 @@ class Currency(models.Model):
         di = {}
         for c in Currency.objects.filter(active=True):
             if c.factor:
-                di[c.id] = [float(str(round(c.factor,4))),c.name, c.code]
+                di[c.id] = [str(round(float(c.factor),4)),c.name, c.code, c.code_position]
         f=open(os.path.join(settings.STATIC_ROOT, "js", u'curr.js'),'w')
         f.write(("gh_crc=%s"%json.dumps(di, ensure_ascii=False)).replace(" ",''))
         f.close()

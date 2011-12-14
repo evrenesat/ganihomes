@@ -170,6 +170,10 @@ div a.datepick-cmd-prev.datepick-disabled{
 	border: 2px solid transparent;
 	border-collapse: collapse;
 }
+
+.datepick-month td sub{
+    vertical-align: text-bottom;
+}
 .datepick-month th, .datepick-month td {
 	margin: 0em;
 	padding: 0.125em;

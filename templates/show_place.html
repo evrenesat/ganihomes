@@ -124,7 +124,7 @@
 
 
 <div class="ikikutu" id="pricebox">
-<div class="fetiket"><div id="placeprice"><span class="pr">{{ place.price|floatformat  }}</span><span class="zr">.00</span> </div><div id="placecurrency">{{ place.currency }} / gece</div></div>
+<div class="fetiket"><div id="placeprice"><span class="gh-prc pr" data-crc="{{ place.currency_id }}" data-prc="{{ place.price  }}" class="pr"></span></div><div  id="placecurrency"><span class="only-crc"></span> / {% trans "night" %}</div></div>
 <div id="pricebox-ic">
 <div class="pl10 pt10 tsdw2" style="color:#111111;">
     <script>gh.replace_pricetag()</script>
@@ -132,24 +132,24 @@
 </div>
 
     <div class="cinout separate">
-        <label for="checkin">Varış</label><br>
+        <label for="checkin">{% trans "Check-in" %}</label><br>
         {{ bform.checkin }}
     </div>
     <div class="cinout">
-        <label for="checkout">Ayrlılış</label><br>
+        <label for="checkout">{% trans "Check-out" %}</label><br>
         {{ bform.checkout }}
     </div>
     <div class="cinout">
-        <label for="no_of_guests">Konuklar</label><br>
+        <label for="no_of_guests">{% trans "Guests" %}</label><br>
         {{ bform.no_of_guests }}
     </div>
 
 
     <div id="totalPriceDiv">
-    <span id="totalPriceLabel">Toplam:</span> <span id="totalPriceValue">0,00 TL</span>
+    <span id="totalPriceLabel">{% trans "Total" %}:</span> <span id="totalPriceValue"> 0</span></span>
     </div>
     <hr>
-    <div class="align-center"><input type="button" class="dugme2" id="bookit" value="Rezervasyon Yap"></div>
+    <div class="align-center"><input type="button" class="dugme2" id="bookit" value="{% trans "Book" %}"></div>
 {#    <div id="askus">#}
 {#        <h3>Rezervasyon Destek Hattı</h3>#}
 {#        <hr>#}
@@ -161,7 +161,7 @@
 
 
     <div class="ikikutu">
-            <button class="minidugme">Favorilere Ekle</button>
+            <button class="minidugme">{% trans "Add to Favorites" %}</button>
             <div class="sepline"></div>
 
 {#            <ul class="like-buttons">#}
@@ -183,10 +183,10 @@
 
     <div class="ikikutu">
 
-    <h3>Ev Sahibi</h3>
+    <h3>{% trans "Host" %}</h3>
     <hr>{{ place.owner.get_full_name }}
         <br><br>
-        <div class="align-center"><input type="button" class="dugme2" id="contacthost" value="İletişime Geç"></div>
+        <div class="align-center"><input type="button" class="dugme2" id="contacthost" value="{% trans "Contact with Host" %}"></div>
     </div>
 <script>$('#subtabs').tabs();</script>
 

@@ -31,21 +31,21 @@
     <div id="hdrContainer">
               <div class="logo">
                   <a href="/"><img src="{{ STATIC_URL }}images/logob.png"></a>
-                  <div>Dünya sizin...</div>
+                  <div>{% trans "World is yours..." %}</div>
               </div>
               <div id="supermenu">
                   {% if user.is_authenticated %}
 {#                  <div class="firstitem">Merhaba {{ user.get_full_name }}</div>#}
-                      <div class="firstitem"><a href="/logout/" class="logout">Çıkış</a></div>
-                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);">TL</a></div>
-                  <div><a href="/dashboard" class="mypage" >Benim Sayfam</a></div>
+                      <div class="firstitem"><a href="/logout/" class="logout">{% trans "Log out" %}</a></div>
+                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
+                  <div><a href="/dashboard" class="mypage" >{% trans "My Page" %}</a></div>
                   {% else %}
-                  <div class="firstitem"><a href="/register/" class="smkayit">Üye Ol</a></div>
-                  <div><a href="/login/" class="smgir">Giriş Yap</a></div>
-                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);">TL</a></div>
+                  <div class="firstitem"><a href="/register/" class="smkayit">{% trans "Sign Up" %}</a></div>
+                  <div><a href="/login/" class="smgir">{% trans "Log in" %}</a></div>
+                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
                   {% endif %}
 
-                  <div><a href="/add_place" class=smekle>Mekanınızı Ekleyin</a></div>
+                  <div><a href="/add_place" class=smekle>{% trans "Add your place" %}</a></div>
               </div>
         </div>
 </div>
@@ -70,7 +70,7 @@
   </div>
 <div id="footercont">
 <div id="footer">
-    Yardım | İletişim | GaniHomes Hakkında | Gizlilik İlkelerimiz
+    {% trans "Help" %} | {% trans "Contact" %} | {% trans "About Us" %} | {% trans "Terms and Privacy" %}
 </div>
 </div>
 {% block closebody %}
