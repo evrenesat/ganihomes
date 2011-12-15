@@ -195,8 +195,12 @@
     <div class="ikikutu">
 
     <h3>{% trans "Host" %}</h3>
-    <hr>{{ place.owner.get_full_name }}
-        <br><br>
+    <hr><div class="photobig">
+        <img src="{% thumbnail profile.photo 200x300 upscale crop=scale %}">
+        <br>
+        <span>{{ profile.private_name }}</span>
+    </div>
+
         <div class="align-center"><input type="button" class="dugme2" id="contacthost" value="{% trans "Contact with Host" %}"></div>
     </div>
 <script>$('#subtabs').tabs();</script>

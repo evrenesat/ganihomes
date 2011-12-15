@@ -20,7 +20,9 @@ def create_user_profile(sender, instance, created, **kwargs):
             currency = currency[0]
         else:
             currency = Currency.objects.create(main=True, code='TL', name='TL', factor=1)
-        Profile.objects.create(usr=instance, currency=currency)
+        po = Profile.objects.create(usr=instance, currency=currency)
+        po.photo = po.photo.field.attr_class(po, po.photo.field, 'user_photos/user-256.png')
+        po.save()
 
 post_save.connect(create_user_profile, sender=User)
 
@@ -323,6 +325,18 @@ class Profile(models.Model):
     lastlogin = models.DateTimeField(_('Last login time'), auto_now=True)
     lang = models.CharField(_('Default Language'), max_length=5, choices=LOCALES, default='tr_TR')
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    private_name = models.CharField(_('Private Name'), max_length=60, null=True, blank=True)
+    full_name = models.CharField(_('Full Name'), max_length=60, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.update_names()
+        super(Profile, self).save(*args, **kwargs)
+
+    def update_names(self):
+        self.private_name = u"%s %s." % (self.usr.first_name, self.usr.last_name[0])
+        self.full_name = self.usr.get_full_name()
+
+
 
     class Meta:
         ordering = ['timestamp']

@@ -5,11 +5,12 @@
 <html><head>
 {% if user.is_authenticated %}<script>LGD='223'</script>{% endif %}
 <title>{% block title %}GaniHomes {{ title }}{% endblock %}</title>
+<link rel="icon" type="image/png" href="{{ STATIC_URL }}images/favicon.png">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
 <link type="text/css" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-{#<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Zeyada|Pinyon+Script|Montez' rel='stylesheet' type='text/css'>#}
+<link href='http://fonts.googleapis.com/css?family=Montez' rel='stylesheet' type='text/css'>
 <!--[if lt IE 10]>
 <script type="text/javascript" src="{{ STATIC_URL }}js/PIE.js"></script>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/ghie.css" type="text/css" media="screen, projection">

@@ -2508,3 +2508,19 @@ padding-right: 2em;
     display:block;
     width:430px;
 }
+
+.photobig img{
+    margin:10px 0;
+    -webkit-box-shadow: 1px 1px 5px 1px #ccc;
+    -moz-box-shadow: 1px 1px 5px 1px #ccc;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.photobig{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:30px;
+    font-family:Montez;
+}

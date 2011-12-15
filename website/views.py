@@ -44,7 +44,9 @@ class BookingForm(forms.Form):
 
 
 def showPlace(request, id):
-    place = Place.objects.get(pk=id)
+    place = Place.objects.select_related().get(pk=id)
+    owner = place.owner
+    profile = owner.profile
     properties=(
         (_(u'Place type'),place.get_type_display()),
         (_(u'Space offered'),place.get_space_display()),
@@ -55,7 +57,7 @@ def showPlace(request, id):
         (_(u'Bathrooms'),place.bathrooms),
         (_(u'Cancellation'),place.get_cancellation_display()),
     )
-    context = {'place':place,'bform':BookingForm(),'properties':properties }
+    context = {'place':place,'bform':BookingForm(),'properties':properties , 'owner':owner, 'profile':profile}
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 def searchPlace(request):
