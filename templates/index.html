@@ -10,7 +10,8 @@
 {% block header %}
     <div id="arabar" class="krm">
         <div id="arakutu">
-            <div id="aramsj" class="krm"> Türkiye'den ve dünyadan yüzlerce kiralık mekandan size uygun olanını bulmak için buradan
+            <div id="aramsj" class="krm"> Türkiye'den ve dünyadan yüzlerce kiralık mekandan size uygun olanını bulmak
+                için buradan
                 başlayın;
                 <div id="araf">
                     <input id="arainput" type=input value="Şehir ya da ülke adı yazarak arayabilirsiniz"
@@ -24,7 +25,7 @@
                 <div class="hdr"><b>Müşteri Hizmetleri</b></div>
                 <div class="shdr">Pzts - Cmts 08:00 - 19:00</div>
                 <div class="tkutu tel"> 0232 4627278-9</div>
-{#                <div class="tkutu epo">info@</div>#}
+                {#                <div class="tkutu epo">info@</div>#}
                 <div class="tkutu dst"><span>Online Soru Sorun</span></div>
 
             </div>
@@ -37,226 +38,247 @@
     <div id="vitrin" class="span-24 showcase">
 
 
-        <div id="tabs">
-            <ul>
-                <li class="gritab krm" id="tabli1"><a href="#tabs-1">&nbsp;</a></li>
-                <li class="gritab alttab krm" id="manztab"><a href="#tabs-2">Manzaralar</a></li>
-                <li class="gritab alttab krm" id="ictab"><a href="#tabs-3">İç Mekanlar</a></li>
-                <li id="howitworks"><a href="#tabs-4">
-                    <div class="inlinelogo logo-basta">Nasıl Çalışır?</div>
-                </a></li>
-            </ul>
-            <div class="tabcontent krm" id="tabs-1">
-                <div class="tabborder krm" id="GVS1">
-                    <div class="scrollingHotSpotLeft"></div>
-                    <div class="scrollingHotSpotRight"></div>
-                    <div class="scrollWrapper">
-                        <div class="scrollableArea">
-                            {% for s in slides %}
-                                {% if not s.thumbs %}
-                                    <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
-                                         style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                        <div class="sbaner alpha60">
-                                            <div class="sbaner-info">{{ s.placeName }}<br>
-                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+    <div id="tabs">
+    <ul>
+        <li class="gritab krm" id="tabli1"><a href="#tabs-1">&nbsp;</a></li>
+        <li class="gritab alttab krm" id="manztab"><a href="#tabs-2">Manzaralar</a></li>
+        <li class="gritab alttab krm" id="ictab"><a href="#tabs-3">İç Mekanlar</a></li>
+        <li id="howitworks"><a href="#tabs-4">
+            <div class="inlinelogo logo-basta">Nasıl Çalışır?</div>
+        </a></li>
+    </ul>
+    <div class="tabcontent krm" id="tabs-1">
+        <div class="tabborder krm" id="GVS1">
+            <div class="scrollingHotSpotLeft"></div>
+            <div class="scrollingHotSpotRight"></div>
+            <div class="scrollWrapper">
+                <div class="scrollableArea">
+                    {% for s in slides %}
+                        {% if not s.thumbs %}
+                            <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
+                                 style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                <div class="sbaner alpha60">
+                                    <div class="sbaner-info">{{ s.placeName }}<br>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
 
-                                            </div>
-                                            <div class="stardiv">
-                                                <span class="gh-prc crc" data-prc="{{ s.place.price }}" data-crc="{{ s.place.currency_id }}"></span>
-                                                <ul class="rating star{{ s.place.overall_rating}}">
-                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
-                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
-                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
-                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
-                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
                                     </div>
-                                {% else %}
+                                    <div class="stardiv">
+                                        <span class="gh-prc crc" data-prc="{{ s.place.price }}"
+                                              data-crc="{{ s.place.currency_id }}"></span>
+                                        <ul class="rating star{{ s.place.overall_rating}}">
+                                            <li class="one"><a href="#" title="1 Star">1</a></li>
+                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
+                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
+                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
+                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
+                                        </ul>
 
-                                    <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
-
-                                        {% for photo in s.photos %}
-                                            <div class="thumbphoto"
-                                                 style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
-                                        {% endfor %}
-                                        <div class="sbaner alpha60">
-                                            <div class="sbaner-info">{{ s.placeName }}<br>
-                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
-
-                                            </div>
-                                            <div class="stardiv">
-                                                <span class="gh-prc crc" data-prc="{{ s.place.price }}" data-crc="{{ s.place.currency_id }}"></span>
-                                                <ul class="rating star{{ s.place.overall_rating}}">
-                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
-                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
-                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
-                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
-                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
-                                                </ul>
-
-                                            </div>
-
-
-
-                                        </div>
                                     </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+
+                            <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+
+                                {% for photo in s.photos %}
+                                    <div class="thumbphoto"
+                                         style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                                {% endfor %}
+                                <div class="sbaner alpha60">
+                                    <div class="sbaner-info">{{ s.placeName }}<br>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                    </div>
+                                    <div class="stardiv">
+                                        <span class="gh-prc crc" data-prc="{{ s.place.price }}"
+                                              data-crc="{{ s.place.currency_id }}"></span>
+                                        <ul class="rating star{{ s.place.overall_rating}}">
+                                            <li class="one"><a href="#" title="1 Star">1</a></li>
+                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
+                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
+                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
+                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
+                                        </ul>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
-            <div class="tabcontent" id="tabs-2">
+        </div>
+    </div>
+    <div class="tabcontent" id="tabs-2">
 
-                <div class="tabborder" id="GVS2">
-                    <div class="scrollingHotSpotLeft"></div>
-                    <div class="scrollingHotSpotRight"></div>
-                    <div class="scrollWrapper">
-                        <div class="scrollableArea">
-                            {% for s in slides3 %}
-                                {% if not s.thumbs %}
-                                                                   <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
-                                                                        style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                                                       <div class="sbaner alpha60">
-                                                                           <div class="sbaner-info">{{ s.placeName }}<br>
-                                                                               <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+        <div class="tabborder" id="GVS2">
+            <div class="scrollingHotSpotLeft"></div>
+            <div class="scrollingHotSpotRight"></div>
+            <div class="scrollWrapper">
+                <div class="scrollableArea">
+                    {% for s in slides3 %}
+                        {% if not s.thumbs %}
+                            <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
+                                 style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                <div class="sbaner alpha60">
+                                    <div class="sbaner-info">{{ s.placeName }}<br>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
 
-                                                                           </div>
-                                                                           <div class="stardiv">
-                                                                               <span class="gh-prc crc" data-crc="{{ s.place.currency_id }}" data-prc="{{ s.place.price }}"></span>
-                                                                               <ul class="rating star{{ s.place.overall_rating}}">
-                                                                               	<li class="one"><a href="#" title="1 Star">1</a></li>
-                                                                               	<li class="two"><a href="#" title="2 Stars">2</a></li>
-                                                                               	<li class="three"><a href="#" title="3 Stars">3</a></li>
-                                                                               	<li class="four"><a href="#" title="4 Stars">4</a></li>
-                                                                               	<li class="five"><a href="#" title="5 Stars">5</a></li>
-                                                                               </ul>
-
-                                                                           </div>
-                                                                       </div>
-                                                                   </div>
-                                                               {% else %}
-
-                                                                   <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
-                                                                       {#                                          {{ s.photos }}#}
-                                                                       {% for photo in s.photos %}
-                                                                           <div class="thumbphoto"
-                                                                                style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
-                                                                       {% endfor %}
-                                                                       <div class="sbaner alpha60">
-                                                                           <div class="sbaner-info">{{ s.placeName }}<br>
-                                                                               <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
-
-                                                                           </div>
-                                                                           <div class="stardiv">
-                                                                               {{ s.place.price }} {{ s.place.currency }}
-                                                                               <ul class="rating star{{ s.place.overall_rating}}">
-                                                                               	<li class="one"><a href="#" title="1 Star">1</a></li>
-                                                                               	<li class="two"><a href="#" title="2 Stars">2</a></li>
-                                                                               	<li class="three"><a href="#" title="3 Stars">3</a></li>
-                                                                               	<li class="four"><a href="#" title="4 Stars">4</a></li>
-                                                                               	<li class="five"><a href="#" title="5 Stars">5</a></li>
-                                                                               </ul>
-
-                                                                           </div>
-
-
-
-                                                                       </div>
-                                                                   </div>
-                                                               {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="tabcontent" id="tabs-3">
-
-                <div class="tabborder" id="GVS3">
-                    <div class="scrollingHotSpotLeft"></div>
-                    <div class="scrollingHotSpotRight"></div>
-                    <div class="scrollWrapper">
-                        <div class="scrollableArea">
-                            {% for s in slides2 %}
-                                {% if not s.thumbs %}
-                                    <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
-                                         style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                        <div class="sbaner alpha60">
-                                            <div class="sbaner-info">{{ s.placeName }}<br>
-                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
-
-                                            </div>
-                                            <div class="stardiv">
-                                                {{ s.place.price }} {{ s.place.currency }}
-                                                <ul class="rating star{{ s.place.overall_rating}}">
-                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
-                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
-                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
-                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
-                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
                                     </div>
-                                {% else %}
+                                    <div class="stardiv">
+                                        <span class="gh-prc crc" data-crc="{{ s.place.currency_id }}"
+                                              data-prc="{{ s.place.price }}"></span>
+                                        <ul class="rating star{{ s.place.overall_rating}}">
+                                            <li class="one"><a href="#" title="1 Star">1</a></li>
+                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
+                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
+                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
+                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
+                                        </ul>
 
-                                    <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
-                                        {#                                          {{ s.photos }}#}
-                                        {% for photo in s.photos %}
-                                            <div class="thumbphoto"
-                                                 style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
-                                        {% endfor %}
-                                        <div class="sbaner alpha60">
-                                            <div class="sbaner-info">{{ s.placeName }}<br>
-                                                <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
-
-                                            </div>
-                                            <div class="stardiv">
-                                                {{ s.place.price }} {{ s.place.currency }}
-                                                <ul class="rating star{{ s.place.overall_rating}}">
-                                                	<li class="one"><a href="#" title="1 Star">1</a></li>
-                                                	<li class="two"><a href="#" title="2 Stars">2</a></li>
-                                                	<li class="three"><a href="#" title="3 Stars">3</a></li>
-                                                	<li class="four"><a href="#" title="4 Stars">4</a></li>
-                                                	<li class="five"><a href="#" title="5 Stars">5</a></li>
-                                                </ul>
-
-                                            </div>
-
-
-
-                                        </div>
                                     </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+                                </div>
+                            </div>
+                        {% else %}
 
-            </div>
-            <div class="tabcontent" id="tabs-4">
+                            <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+                                {#                                          {{ s.photos }}#}
+                                {% for photo in s.photos %}
+                                    <div class="thumbphoto"
+                                         style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                                {% endfor %}
+                                <div class="sbaner alpha60">
+                                    <div class="sbaner-info">{{ s.placeName }}<br>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                    </div>
+                                    <div class="stardiv">
+                                        {{ s.place.price }} {{ s.place.currency }}
+                                        <ul class="rating star{{ s.place.overall_rating}}">
+                                            <li class="one"><a href="#" title="1 Star">1</a></li>
+                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
+                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
+                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
+                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
+                                        </ul>
+
+                                    </div>
 
 
-                <div id="likethat">
-                    <img style="margin-top:10px;margin-left:10px;" src="{{ STATIC_URL }}images/ganihomes-nasil.png">
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
 
+    </div>
+    <div class="tabcontent" id="tabs-3">
+
+        <div class="tabborder" id="GVS3">
+            <div class="scrollingHotSpotLeft"></div>
+            <div class="scrollingHotSpotRight"></div>
+            <div class="scrollWrapper">
+                <div class="scrollableArea">
+                    {% for s in slides2 %}
+                        {% if not s.thumbs %}
+                            <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
+                                 style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                                <div class="sbaner alpha60">
+                                    <div class="sbaner-info">{{ s.placeName }}<br>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                    </div>
+                                    <div class="stardiv">
+                                        {{ s.place.price }} {{ s.place.currency }}
+                                        <ul class="rating star{{ s.place.overall_rating}}">
+                                            <li class="one"><a href="#" title="1 Star">1</a></li>
+                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
+                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
+                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
+                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+
+                            <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+                                {#                                          {{ s.photos }}#}
+                                {% for photo in s.photos %}
+                                    <div class="thumbphoto"
+                                         style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                                {% endfor %}
+                                <div class="sbaner alpha60">
+                                    <div class="sbaner-info">{{ s.placeName }}<br>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+
+                                    </div>
+                                    <div class="stardiv">
+                                        {{ s.place.price }} {{ s.place.currency }}
+                                        <ul class="rating star{{ s.place.overall_rating}}">
+                                            <li class="one"><a href="#" title="1 Star">1</a></li>
+                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
+                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
+                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
+                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
+                                        </ul>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
     </div>
-    <div class="span-15 thetest align-center">
-        <img class="pngi" src="{{ STATIC_URL }}images/ganihomes-logo-inline.png">
+    <div class="tabcontent" id="tabs-4">
+
+
+        <div id="likethat">
+            <div id="nasilsunum"></div>
+            <div id="nasilvideo">
+                <object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="controls" value="0"></param><embed src="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+
+            </div>
+
+
+        </div>
     </div>
-    <div class="span-8  thetest last align-center">
-    ssss
+    </div>
+
 
     </div>
+        <div class="span-12 shadoblok" id="howmonitordiv">
+            <img id="howmonitorimg" src="{{ STATIC_URL }}images/howmonitor.png">
+            <div id="howmonitortext">
+                <h3>Best place rental experience!</h3>
+                <ul>
+                    <li>Easier</li>
+                    <li>Safer</li>
+                    <li>Faster</li>
+                    <li>For both hosts and guests!</li>
+                </ul>
+                <span>Learn how it works &raquo;</span>
+            </div>
+        </div>
+        <div class="span-9 shadoblok">
+            <img id="howmonitorimg" src="{{ STATIC_URL }}images/mobile-apps.jpg">
+
+
+                <h4>Access from everywhere!</h4>
+
+
+
+        </div>
 
 
 
@@ -266,47 +288,48 @@
         <div id="arabg">
             <form action="/search" method="get">
 
-            <div id="araoneri">
-                <div class="kbaslik">öneriler</div>
-{#                <ul>#}
-{#                    <li>İzmir</li>#}
-{#                    <li>İstanbul</li>#}
-{#                    <li>Ankara</li>#}
-{#                    <li>Antalya</li>#}
-{#                </ul>#}
-            </div>
-            <div class="vsplit"></div>
-            <div id="aradetay">
-                <input type="hidden" name=phrase id=phrase>
-                <div class="kbaslik">ayrıntılı arama</div>
-                <div class="foge checkinout">
-                    <label for="checkin">{{ srForm.checkin.label }}<br>
-                    {{ srForm.checkin }}
+                <div id="araoneri">
+                    <div class="kbaslik">öneriler</div>
+                    {#                <ul>#}
+                    {#                    <li>İzmir</li>#}
+                    {#                    <li>İstanbul</li>#}
+                    {#                    <li>Ankara</li>#}
+                    {#                    <li>Antalya</li>#}
+                    {#                </ul>#}
                 </div>
-                <div class="foge checkinout">
-                    <label for="checkout">{{ srForm.checkout.label }}</label><br>
-                    {{ srForm.checkout }}
-                </div>
-                <div class="foge noofguest">
-                    <label for="no_of_guests">{{ srForm.no_of_guests.label }}</label><br>
-                    {{ srForm.no_of_guests }}
-                </div>
-                <div class="foge placetype">
-                    <label for="fiyat">Mekan Tipi</label><br>
-                    {{ srForm.placeType }}
-                </div>
-                <div class="foge pricebar">
-                    <label for="fiyat">Gecelik Fiyat (TL)</label><br>
-                    <input type="hidden" name=pricerange id=pricerange>
+                <div class="vsplit"></div>
+                <div id="aradetay">
+                    <input type="hidden" name=phrase id=phrase>
 
-                    <div id="pricediv"></div>
-                    <input type="text" id="pmin" class="pRangeBox" value="20">
-                    <input type="text" id="pmax" class="pRangeBox" value="500">
+                    <div class="kbaslik">ayrıntılı arama</div>
+                    <div class="foge checkinout">
+                        <label for="checkin">{{ srForm.checkin.label }}<br>
+                            {{ srForm.checkin }}
+                    </div>
+                    <div class="foge checkinout">
+                        <label for="checkout">{{ srForm.checkout.label }}</label><br>
+                        {{ srForm.checkout }}
+                    </div>
+                    <div class="foge noofguest">
+                        <label for="no_of_guests">{{ srForm.no_of_guests.label }}</label><br>
+                        {{ srForm.no_of_guests }}
+                    </div>
+                    <div class="foge placetype">
+                        <label for="fiyat">Mekan Tipi</label><br>
+                        {{ srForm.placeType }}
+                    </div>
+                    <div class="foge pricebar">
+                        <label for="fiyat">Gecelik Fiyat (TL)</label><br>
+                        <input type="hidden" name=pricerange id=pricerange>
+
+                        <div id="pricediv"></div>
+                        <input type="text" id="pmin" class="pRangeBox" value="20">
+                        <input type="text" id="pmax" class="pRangeBox" value="500">
+                    </div>
+                    {#                <div id="ayintiliAraDugme"><span>Ayrıntılı Ara</span></div>#}
+
+
                 </div>
-{#                <div id="ayintiliAraDugme"><span>Ayrıntılı Ara</span></div>#}
-
-
-            </div>
             </form>
         </div>
     </div>

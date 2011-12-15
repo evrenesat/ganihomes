@@ -404,7 +404,7 @@ def book_place(request):
     if request.POST:
         request.session['booking_selection']=request.POST.copy()
     if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('lregister'))
+        return HttpResponseRedirect('%s?next=%s'% (reverse('lregister'),reverse('book_place')))
 
     bi = request.POST.copy() or request.session.get('booking_selection',{})
     if bi:

@@ -1456,7 +1456,7 @@ li.g-plus-one{
 }
 
 .wfParts p {
-    margin-bottom: 0.2em !important;
+    margin-bottom: 0 !important;
 }
 
 .wfParts label {
@@ -2523,4 +2523,95 @@ padding-right: 2em;
     margin-bottom:10px;
     font-size:30px;
     font-family:Montez;
+}
+
+.yemyesildugme{
+    border: 1px solid #b2ff61;
+    background-color: #baff96 !important;
+    cursor: pointer;
+    text-align: center;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 0px 10px 2px #d6ff91;
+    -moz-box-shadow: 0px 0px 10px 2px #d6ff91;
+    box-shadow: 1px 1px 5.4px #d6ff91;
+    color: #fff !important;
+    font-weight:bold;
+    background: url(/images/grd-yesil-1.png);
+    padding:8px 18px;
+    text-shadow: 1px 1px 2px #000;
+}
+.yemyesildugme:hover{
+    -webkit-box-shadow: 0px 0px 10px 2px #d6ff91;
+    -moz-box-shadow: 0px 0px 10px 2px #d6ff91;
+    box-shadow: 0px 0px 10px 2px #d6ff91;
+}
+
+#nasilvideo{
+    float:right;
+
+    height:315px;
+    margin:10px 30px;
+
+    -webkit-box-shadow: 1px 1px 5px 1px #ccc;
+    -moz-box-shadow: 1px 1px 5px 1px #ccc;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    padding:20px 50px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+background: rgb(255,255,255);
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxNiUiIHN0b3AtY29sb3I9IiNmMWYxZjEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI1MSUiIHN0b3AtY29sb3I9IiNlMWUxZTEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjZmNmY2IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 16%, rgba(225,225,225,1) 51%, rgba(246,246,246,1) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(16%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1)));
+background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 16%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%);
+background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 16%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%);
+background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 16%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%);
+background: radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 16%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=1 );
+
+}
+#howmonitordiv{
+    margin-left:15px;
+}
+#howmonitorimg{
+    float:left;
+}
+
+#howmonitortext h3{
+    color: #497054;
+    font-size:18px;
+    text-shadow: 1px 1px 2px #ccc;}
+
+#howmonitortext li {
+    list-style: square;
+    font-size:16px;
+    color:#006600;
+    text-shadow: 1px 1px 2px #bfc970;
+}
+#howmonitortext span{
+    float:right;
+    text-shadow: 1px 1px 2px #bfc970;
+    font-size:16px;
+    font-weight:bold;
+    color:green;
+}
+#howmonitortext{
+    float:right;
+
+
+}
+
+.shadoblok {
+    margin-left:10px;
+    padding: 20px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 10px 1px #cccccc;
+    box-shadow: 1px 1px 10px 1px #cccccc;
+    font-size:13px;
 }
