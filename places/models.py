@@ -97,7 +97,7 @@ class Currency(models.Model):
             if c.factor:
                 di[c.id] = [str(round(float(c.factor),4)),c.name, c.code, c.code_position]
         f=codecs.open(os.path.join(settings.STATIC_ROOT, "js", u'curr.js'),'w','utf-8')
-        f.write(("gh_crc=%s"%json.dumps(di, ensure_ascii=False)).replace(" ",''))
+        f.write((u"gh_crc=%s"%json.dumps(di, ensure_ascii=False)).replace(" ",''))
         f.close()
 
 
