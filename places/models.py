@@ -10,7 +10,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.utils import simplejson as json
 from django.db.models.signals import post_save
-
+from utils.cache import kes
+from random import randint
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         currency = Currency.objects.filter(main=True)
@@ -46,6 +47,8 @@ class TagCategory(models.Model):
     def __unicode__(self):
         return '%s' % (self.name,)
 
+CURR_CACHE = kes('crv')
+CURR_CACHE.s(randint(10,100000),999999)
 class Currency(models.Model):
     """Currencies """
 
@@ -57,6 +60,9 @@ class Currency(models.Model):
     conversation bridge between other currencies.'))
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    def get_factor(self, target_currency_id):
+        return Currency.objects.filter(pk=target_currency_id).values_list('factor')[0][0] / self.factor
 
     class Meta:
         ordering = ['timestamp']
@@ -84,6 +90,7 @@ class Currency(models.Model):
 
     @classmethod
     def generateJSON(cls):
+        CURR_CACHE.incr()
         di = {}
         for c in Currency.objects.filter(active=True):
             if c.factor:
@@ -254,9 +261,12 @@ class Place(models.Model):
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-')
 
-
+    # [ 0|sessional_prices_list[[startdate, enddate, price, weekendprice]],
+    # 1|default_price, 2|weekend_price, 3|currency_id, 4|weekly_discount, 5|monthly_discount,
+    #  6|extra_limit, 7|extra_price, 8|cleaning_fee]
     def _update_prices(self):
-        di =[float(str(self.price)), float(str(self.weekend_price)), self.currency_id,  self.weekly_discount or 0, self.monthly_discount or 0]
+
+        di =[float(str(self.price)), float(str(self.weekend_price)), self.currency_id,  self.weekly_discount or 0, self.monthly_discount or 0, self.extra_limit or 0, float(str(self.extra_price or 0)), float(str(self.cleaning_fee or 0))]
         sessions = []
         for sp in self.sessionalprice_set.filter(active=True,end__gte=datetime.datetime.today()):
             sessions.append([sp.start.timetuple()[:3],sp.end.timetuple()[:3],float(str(sp.price or 0)),float(str(sp.weekend_price or 0))])
@@ -271,6 +281,13 @@ class Place(models.Model):
             ard.extend([int((rd.start+datetime.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
         self.reserved_dates =  json.dumps(ard)
         self.save()
+
+    def calculateTotalPrice(self, currency_id, start, end, guests):
+        factor = self.currency.get_factor(currency_id)
+        r = (end+datetime.timedelta(days=1)-start).days
+        #FIXME: sezonlu fiyatlar, indirimler ve haftasonlarini yoksaydik
+        days = [start+datetime.timedelta(days=i) for i in range(r)]
+        return {'total':len(days) * self.price * factor}
 
 
     def save(self, *args, **kwargs):
@@ -291,6 +308,7 @@ class Profile(models.Model):
 
 
     usr = models.OneToOneField(User, verbose_name=_('User'))
+    photo = models.ImageField(_('Photo'), upload_to='user_photos', null=True, blank=True)
     favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'))
     friends = models.ManyToManyField(User, through='Friendship', related_name='friend_profiles')
     currency = models.ForeignKey(Currency,verbose_name=_('Currency'))

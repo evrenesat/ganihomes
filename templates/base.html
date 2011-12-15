@@ -20,7 +20,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo-min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/curr.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={{ curr_version }}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/gh.js"></script>
 {% block extrahead %} {% endblock %}
 {% block extracss %} {% endblock %}
@@ -70,7 +70,10 @@
   </div>
 <div id="footercont">
 <div id="footer">
-    {% trans "Help" %} | {% trans "Contact" %} | {% trans "About Us" %} | {% trans "Terms and Privacy" %}
+    {% trans "Help" %} |
+    {% trans "Contact" %} |
+    {% trans "About Us" %} |
+    {% trans "Terms and Privacy" %}
 </div>
 </div>
 {% block closebody %}

@@ -1,4 +1,5 @@
 {% extends "content.html" %}
+{% load i18n%}
 {% block extrajs %}
 <script>$(document).ready(function(){gh.login_init()})</script>
 {% endblock %}
@@ -7,20 +8,20 @@
         <div class="kutuici">
 
 
-            <h3>Hoşgeldiniz</h3>
+            <h3>{% trans "Wellcome" %}</h3>
 
 
 
 
 
             <form action="." method="post" id="addplaceform">
-
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
 
                 <div class="loginform forms autocenter" >
 
                     {{ form.as_ul }}
-                    <button class="yesildugme fo16">Giriş Yap</button>
-                    <label class="ramlabel normallabel" for="remember_me">Beni Hatırla</label>
+                    <button class="yesildugme fo16">{% trans "Login" %}</button>
+                    <label class="ramlabel normallabel" for="remember_me">{% trans "Remember  Me" %}</label>
                     <input type="checkbox" id="remember_me" name="remember_me">
                     <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
 
@@ -31,13 +32,9 @@
                 <div class="or">ya da</div>
                 <div class="orline" ></div>
 
-                    <div style="margin-top:50px;" class="fbbutton">
-                        <div>Facebook ile Giriş Yap</div>
-                    </div>
-
-
-
-
+<div style="width:100;text-align:center;">
+                <input class="fbbutton" type="button" value="{% trans "Login with Facebook" %}">
+</div>
                 {% csrf_token %}
             </form>
 
@@ -50,7 +47,7 @@
         <hr>
 <form action="{% url register %}" method="post">
     {% csrf_token %}
-        <div id="uyekapsar" class="silik">
+        <div id="uyekapsar" >
             <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
             </p>
         <div class="sideform2 separate">
@@ -75,16 +72,21 @@
                 <label for="id_pass2">{{ rform.pass2.label }}</label><br>
                 {{ rform.pass2 }}
             </div>
-        <div class="float-left yuzz txtcnt">
-        <button class="yesildugme fo11">Üye Ol</button>
-            </div>
+
+            <button class="yesildugme fo11">{% trans "Register" %}</button>
+                                <div id="regtosdiv"><label id="regtoslabel" class="ramlabel normallabel" for="regtoscheck">{% trans "I accept the Terms of service" %} </label>
+
+                                <input id="regtoscheck" type="checkbox"  name="accepttos">
+
+                                <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
+                                </div>
 
         <div class="orline" ></div>
         <div class="or">yada</div>
         <div class="orline" ></div>
 
         <div class="yuzz float-left" style="text-align:center;">
-            <button class="minifbbutton">Facebook ile Bağlanın</button>
+            <button class="minifbbutton">{% trans "Connect with Facebook" %}</button>
             </div>
         </div>
 </form>

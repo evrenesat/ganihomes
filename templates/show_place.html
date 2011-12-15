@@ -1,6 +1,7 @@
 {% extends "content.html" %}
 {% load thumbnail i18n%}
-{% block extracss %}
+{#{% load localeurl_tags %}#}
+1{% block extracss %}
 <style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>
 {% endblock %}
 {% block extrajs %}
@@ -124,7 +125,13 @@
 
 
 <div class="ikikutu" id="pricebox">
-<div class="fetiket"><div id="placeprice"><span class="gh-prc pr" data-crc="{{ place.currency_id }}" data-prc="{{ place.price  }}" class="pr"></span></div><div  id="placecurrency"><span class="only-crc"></span> / {% trans "night" %}</div></div>
+<form action="{% url book_place %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="currencyid" id="currencyid">
+    <input type="hidden" name="placeid" id="placeid" value="{{ place.id }}">
+    <input type="hidden" name="displayed_price" id="displayed_price">
+    <input type="hidden" name="ndays" id="ndays">
+<div class="piee fetiket"><div id="placeprice"><span class="gh-prc pr" data-crc="{{ place.currency_id }}" data-prc="{{ place.price  }}" class="pr"></span></div><div  id="placecurrency"><span class="only-crc"></span> / {% trans "night" %}</div></div>
 <div id="pricebox-ic">
 <div class="pl10 pt10 tsdw2" style="color:#111111;">
     <script>gh.replace_pricetag()</script>
@@ -146,10 +153,13 @@
 
 
     <div id="totalPriceDiv">
-    <span id="totalPriceLabel">{% trans "Total" %}:</span> <span id="totalPriceValue"> 0</span></span>
+    <label class="fl" for="totalPrice">{% trans "Total" %}:</label>
+            <span id="totalPrice">
+                <span id="totalPriceValue"> 0</span> <span class="only-crc"></span>
+            </span>
     </div>
     <hr>
-    <div class="align-center"><input type="button" class="dugme2" id="bookit" value="{% trans "Book" %}"></div>
+    <div class="align-center"><input type="button" class="dugme2" id="bookitbutton" value="{% trans "Book" %}"></div>
 {#    <div id="askus">#}
 {#        <h3>Rezervasyon Destek Hattı</h3>#}
 {#        <hr>#}
@@ -157,6 +167,7 @@
 {#                <span id="resHelpSubinfo">Ekibimizden her konuda yardım alabilirsiniz</span>#}
 {#     </div>#}
 </div>
+</form>
 </div>
 
 

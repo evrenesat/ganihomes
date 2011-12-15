@@ -36,7 +36,7 @@ gh = {
         this.fillCurrencies()
     },
     fillCurrencies:function(){
-        self = this
+        var self = this
         dv = $('.currs')
         for (c in gh_crc){
             var cc = gh_crc[c]
@@ -53,6 +53,7 @@ gh = {
         this.setCurrRates()
         this.priceScanConvert()
         this.makeAvailabilityTab(1)
+        this.calculateTotalPrice()
     },
     setCurrRates:function(){
         var selCrr = parseFloat(gh_crc[this.selected_currency][0])
@@ -69,7 +70,7 @@ gh = {
       return cc[3]==1 ? c + p : p + c
     },
     priceScanConvert:function(){
-      self = this
+      var self = this
       var cc = gh_crc[this.selected_currency]
       $('a.smdil').html('<sub>'+cc[2]+'</sub> '+cc[1])
       $('.gh-prc').each(function(){
@@ -330,8 +331,8 @@ gh = {
     ////////////////////ENDO OF MAPPPS - GEOCODING////////
     //////////////////////////////////////////////////////
     isUnAvailable:function(d){
-        var d = parseInt($.datepick.formatDate('yymmdd', d))
-        return gh_rdts.indexOf(d) >-1
+        var d = parseInt($.datepick.formatDate('yymmdd', d));
+        return $.inArray(d,gh_rdts) >-1
     },
     sessional_prices:{},
     convertPrice:function(prc,cid){
@@ -355,10 +356,22 @@ gh = {
             }
         }
     },
+    total:{ndays:0, price:0.0},
+    calculateTotalPrice:function(){
+        var tprice = this.convertPrice(this.total.price)
+        $('#totalPriceValue').html(tprice)
+        $('#displayed_price').val(tprice)
+        $('#ndays').val(this.total.ndays)
+        $('#currencyid').val(this.selected_currency)
+    },
     checkReservationDates:function(dates){
         var loopDate = new Date();
         loopDate.setTime(dates[0]);
+        $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
+        $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
+        this.total = {ndays:0, price:0.0}
         try{
+            var days=0 ,price=0.0;
             while (loopDate.valueOf() < dates[1].valueOf() + 86400000) {
 //                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
@@ -368,18 +381,28 @@ gh = {
                     this.selected_dates = {}
                     throw 'unv_dates';
                 }
+                else{
+                    days ++;
+                    price += this.dPrice(loopDate)
+                }
                 loopDate.setTime(loopDate.valueOf() + 86400000);
             }
         }catch(er){
             if(er=='unv_dates'){alert(trns('Those dates are not available') )}
         }
+        this.total.ndays = days
+        this.total.price = price
+        this.calculateTotalPrice()
+    },
+    dPrice:function(d){
+        return this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
+            ((d.getDay() in [0,6] && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1])
     },
     dayPrice:function(d){
-//        console.log($.datepick.formatDate('yymmdd', d))
-        return this.convertPrice(this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
-            ((d.getDay() in [0,6] && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1]))
+        return this.convertPrice(this.dPrice(d))
     },
     makeAvailabilityTab:function(destroy){
+        var self = this
         if(typeof(destroy)!='undefined')$('#pcalendar').datepick('destroy')
         $('#pcalendar').datepick({monthsToShow:2,minDate:0,  rangeSelect: true,
             onSelect: function(dates) { self.checkReservationDates(dates)},
@@ -391,6 +414,9 @@ gh = {
 
         });
 
+    },
+    bookPlace: function(e){
+        $(e.target).parents('form').submit()
     },
     showPlaceInit:function(){
         var self = this;
@@ -407,8 +433,9 @@ gh = {
 
         })
         this.currentImg = $('.pthumb').first()
+        $('#bookitbutton').click(function(e){return self.bookPlace(e)})
         $('.pthumb').click(function(){return self._gotoNextPhoto(this)})
-        $('#phimg').click(function(){self._changePlacePhoto()})
+        $('#phimg').click(function(){self._changePlacePhoto(ez)})
         $('#openmap').click(function(){self._circleMaps('#latlng')})
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})

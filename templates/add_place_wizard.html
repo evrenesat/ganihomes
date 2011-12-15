@@ -12,11 +12,11 @@
     <h3>En güzeli sizinki!..</h3>
     Mekanınız hakkında gireceğiniz bilgilerin doğruluğu ve fazlalığı <br>kiralanma şansını önemli ölçüde arttıracaktır.
 </div>
-<div id=wfhdr4 class="wfhdr sakli members piee">
-    <h3>İçeri buyrun...</h3>
-    Henüz üyemiz değilseniz Facebook hesabınızla hemen giriş yapabilir ya da bir dakikanızı ayırıp yeni bir hesap
-    oluşturabilirsiniz.
-</div>
+{#<div id=wfhdr4 class="wfhdr sakli members piee">#}
+{#    <h3>İçeri buyrun...</h3>#}
+{#    Henüz üyemiz değilseniz Facebook hesabınızla hemen giriş yapabilir ya da bir dakikanızı ayırıp yeni bir hesap#}
+{#    oluşturabilirsiniz.#}
+{#</div>#}
 </div>
 <div id=wfContainer>
     <form action="." method="post" id="addplaceform">
@@ -39,7 +39,7 @@
                 <p>{{ form.max_stay.label_tag }} {{ form.max_stay }}</p>
 
                 <p>{{ form.cancellation.label_tag }} {{ form.cancellation }}</p>
-                <input id="gotomap" type="button" class="yesildugme fsag" value="1/4 Kaydet ve Devam Et">
+                <input id="gotomap" type="button" class="yesildugme fsag" value="1/3 Kaydet ve Devam Et">
             </div>
             <div id="form2" class="wfParts">
                 {#                <div style="position:relative">#}
@@ -58,7 +58,7 @@
                     <p>{{ form.postcode.label_tag }} {{ form.postcode }}</p>
                     {{ form.geocode }}
                     <input type="button" id="gotodetails" class="yesildugme fsag"
-                           value="2/4 Kaydet ve Devam Et">
+                           value="2/3 Kaydet ve Devam Et">
                 </div>
 
                 <div id="adres_harita">
@@ -117,36 +117,36 @@
 
 
                 <input id="apbutton3" type="button" class="yesildugme fsag"
-                       value="3/4 Kaydet ve Devam Et">
+                       value="3/3 Kaydet ve Devam Et">
 
             </div>
-            <div id="form4" class="wfParts">
-                <div id="fb_register" class="wflogin">
-                    <div class="fbbutton">
-                        <div>Facebook ile Kaydolun</div>
-                    </div>
-                </div>
-                <div id="fb_login" class="wflogin">
-                    <div class="fbbutton">
-                        <div>Facebook ile Giriş Yapın</div>
-                    </div>
-                </div>
-                <div id="ormail" class="wflogin">
-                    <div>ya da</div>
-                </div>
-                <div id="em_register" class="wflogin">
-                    {{ rform.as_ul }}
-                    <div onclick="$('#addplaceform').submit()" class="dugme2"><span>Hesabımı Oluştur</span></div>
-                </div>
-                <div id="em_login" class="wflogin">
-
-                    {{ lform.as_ul }}
-                    <div class="dugme2"><span>Giriş Yap</span></div>
-
-                </div>
-
-
-            </div>
+{#            <div id="form4" class="wfParts">#}
+{#                <div id="fb_register" class="wflogin">#}
+{#                    <div class="fbbutton">#}
+{#                        <div>Facebook ile Kaydolun</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div id="fb_login" class="wflogin">#}
+{#                    <div class="fbbutton">#}
+{#                        <div>Facebook ile Giriş Yapın</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div id="ormail" class="wflogin">#}
+{#                    <div>ya da</div>#}
+{#                </div>#}
+{#                <div id="em_register" class="wflogin">#}
+{#                    {{ rform.as_ul }}#}
+{#                    <div onclick="$('#addplaceform').submit()" class="dugme2"><span>Hesabımı Oluştur</span></div>#}
+{#                </div>#}
+{#                <div id="em_login" class="wflogin">#}
+{##}
+{#                    {{ lform.as_ul }}#}
+{#                    <div class="dugme2"><span>Giriş Yap</span></div>#}
+{##}
+{#                </div>#}
+{##}
+{##}
+{#            </div>#}
         </div>
         {% csrf_token %}
     </form>

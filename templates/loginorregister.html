@@ -1,0 +1,95 @@
+{% extends "content.html" %}
+{% load i18n%}
+{% block extrajs %}
+<script>$(document).ready(function(){gh.login_init()})</script>
+{% endblock %}
+{% block content %}
+    <div class="altiOkutu">
+        <div class="kutuici">
+            <div class="ginfo">{% trans "Please login or register to complete your booking process." %}</div>
+            <div class="iblock" >
+
+                <div class="fl" style="width:380px">
+
+                     <form action="{% url login %}" method="post" id="addplaceform">
+
+                         <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+                         <div class="loginform forms autocenter" >
+                             <h3>{% trans "Login to your account" %}</h3>
+
+                             {{ lform.as_p }}
+                             <button class="yesildugme fo16">{% trans "Login" %}</button>
+                             <label class="ramlabel normallabel" for="remember_me">{% trans "Remember  Me" %}</label>
+                             <input type="checkbox" id="remember_me" name="remember_me">
+                             <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
+
+
+                         </div>
+                         {% csrf_token %}
+                     </form>
+
+                 </div>
+
+            <div class="form3 fl forms">
+                <form action="{% url register %}" method="post">
+                {% csrf_token %}
+                        <h3>{% trans "Join Us" %}</h3>
+                    <div class="hlfrm">
+                            <label for="id_first_name">{{ form.first_name.label }}</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="hlfrm">
+                            <label for="id_last_name">{{ form.last_name.label }}</label>
+                            {{ form.last_name }}
+                        </div>
+
+                    <div style="width:98%;">
+                            <label for="id_email">{{ form.email.label }}</label>
+                            {{ form.email }}
+                        </div>
+
+                    <div class="hlfrm">
+                            <label for="id_pass1">{{ form.pass1.label }}</label>
+                            {{ form.pass1 }}
+                        </div>
+                        <div class="hlfrm">
+                            <label for="id_pass2">{{ form.pass2.label }}</label>
+                            {{ form.pass2 }}
+                        </div>
+{#                    <div class="float-left yuzz txtcnt">#}
+{#                    <button class="yesildugme fo16">{% trans "Register" %}</button>#}
+{#                        <label class="ramlabel normallabel" for="remember_me">{% trans "I Accept" %}</label>#}
+{#                        <br>{% trans "the Terms of service" %}#}
+{#                        <input type="checkbox" id="remember_me" name="remember_me">#}
+{##}
+{#                        #}
+{#                        #}
+{#                        </div>#}
+                    <button class="yesildugme fo16">{% trans "Register" %}</button>
+                    <div id="regtosdiv" style="left:-50px;"><label id="regtoslabel" class="ramlabel normallabel" for="regtoscheck">{% trans "I accept the Terms of service" %} </label>
+
+                    <input id="regtoscheck" type="checkbox"  name="accepttos">
+
+                    <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
+                    </div>
+            </form></div>
+
+
+<div class="iblock" style="width:100%">
+            <div class="fbdv">
+                <div class="orline" ></div><div class="or">yada</div><div class="orline" ></div>
+                <input class="fbbutton" type="button" value="{% trans "Login with Facebook" %}">
+            </div>
+            <div class="fbdv">
+                <div class="orline" ></div><div class="or">yada</div><div class="orline" ></div>
+                <input class="fbbutton" type="button" value="{% trans "Connect with Facebook" %}">
+            </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

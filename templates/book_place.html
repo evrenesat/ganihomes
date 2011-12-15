@@ -1,0 +1,65 @@
+{% extends "content.html" %}
+{% load i18n thumbnail currency%}
+{% block extrajs %}
+{#<script>$(document).ready(function(){gh.login_init()})</script>#}
+{% endblock %}
+{% block content %}
+    <div class="altiOkutu">
+        <div class="kutuici">
+
+            <div class="iblock" >
+
+            <div style="background-color:#fff;" class="bookpart">
+                <h3>{% trans "How it works" %}</h3>
+
+                Provide your booking details below. You will not be charged unless the host accepts your request. They'll have 24 hours to reply.<br>
+                If the host declines or does not respond, no charge is made. Then you can try booking those dates with someone else.
+
+
+            </div>
+            <div class="bookpart">
+                <h3>{% trans "Property details" %}</h3>
+                <div id="bookinplace">
+                    <img  src="{% thumbnail place.primary_photo 0x120 upscale crop=scale %}">
+                    <span class="booksubtitle">{{ place.title }}</span><br>
+                    {{ place.city}} - {{ place.district }} {{ place.get_country_display }}
+                    <br>
+                    {{ place.get_type_display }} / {{ place.get_space_display }}
+                    <br>
+
+
+                </div>
+                <div id="bookinhost">
+
+                </div>
+            </div>
+
+                <div class="bookpart"><h3>{% trans "Travel Details & Pricing" %}</h3>
+
+
+                    <div id="bookdetail" class="iblock">
+                    <span class="ozz_label">{% trans "Check-in" %}</span> <span class="ozz_value">{{ ci|date:"d F Y l" }}</span>
+                    <span class="ozz_label">{% trans "Check-out" %}</span> <span class="ozz_value">{{ co|date:"d F Y l" }}</span>
+                    <span class="ozz_label">{% trans "Nights" %}</span> <span class="ozz_value">{{ ndays }}</span>
+                    <span class="ozz_label">{% trans "Guests" %}</span> <span class="ozz_value">{{ guests }}</span>
+                    <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
+                        {% if crrpos == 1%} {{ crr }} {{ prices.total|currency }}
+                        {% else %}{{ prices.total|currency }} {{ crr }}
+                        {% endif %}
+                    </span>
+                    </div>
+
+
+
+                </div>
+{#                <div class="bookpart"><h3>{% trans "Additional Information" %}</h3></div>#}
+                <div class="bookpart"><h3>{% trans "Payment" %}</h3></div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

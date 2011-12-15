@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
+from django.db.utils import IntegrityError
 from django.utils import simplejson as json
 from django.forms.models import ModelForm
 from django.shortcuts import render_to_response, get_object_or_404
@@ -10,7 +12,7 @@ from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
 from django.views.decorators.csrf import csrf_exempt
-from places.models import Place, Tag, Photo
+from places.models import Place, Tag, Photo, Currency
 from django.db import models
 from places.options import n_tuple, PLACE_TYPES
 from website.models.icerik import Sayfa, Haber, Vitrin
@@ -26,6 +28,7 @@ import logging
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7, first=[(0,u'--')])
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
+from datetime import datetime
 
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
@@ -93,7 +96,7 @@ class addPlaceForm(ModelForm):
             'city','country','district','street','address','geocode',
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
-
+@login_required
 def addPlace(request, ajax=False, id=None):
     template_name = "add_place_wizard.html" if ajax else "add_place.html"
     sayfa = Sayfa.al_anasayfa()
@@ -346,7 +349,7 @@ def login(request):
                 if not request.POST.get('remember_me', None):
                     request.session.set_expiry(0)
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('dashboard'))
+                return HttpResponseRedirect(request.POST.get('next',reverse('dashboard')))
             else:
                 messages.error(request, _('Wrong email or password.'))
     else:
@@ -355,28 +358,32 @@ def login(request):
     context = {'form':form, 'rform':rform}
     return render_to_response('login.html', context, context_instance=RequestContext(request))
 
-def register(request):
+def register(request,template='register.html'):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
     user = request.user
-    loged_in = user.is_authenticated()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        lform = LoginForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data['pass1']==form.cleaned_data['pass2']:
-                user = form.save(commit=False)
-                user.username = user.email
-                user.set_password(form.cleaned_data['pass1'])
-                user.save()
-                return HttpResponseRedirect(reverse('registeration_thanks'))
-            else:
-                messages.error(request, _('The passwords you entered do not match.'))
+            try:
+                if form.cleaned_data['pass1']==form.cleaned_data['pass2']:
+                    user = form.save(commit=False)
+                    user.username = user.email
+                    user.set_password(form.cleaned_data['pass1'])
+                    user.save()
+                    return HttpResponseRedirect(reverse('registeration_thanks'))
+                else:
+                    messages.error(request, _('The passwords you entered do not match.'))
+            except IntegrityError:
+                messages.error(request, _('This email is already registered, please choose another one.'))
     else:
         form = RegisterForm()
-    context = {'form':form}
-    return render_to_response('register.html', context, context_instance=RequestContext(request))
+        lform = LoginForm()
+    context = {'form':form, 'lform':lform}
+    return render_to_response(template, context, context_instance=RequestContext(request))
 
-
+@login_required
 def dashboard(request):
     context = {'places':request.user.place_set.all(),'form' : addPlaceForm()}
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
@@ -389,3 +396,23 @@ def search(request):
 
     context = {'results':Place.objects.all()}
     return render_to_response('search.html', context, context_instance=RequestContext(request))
+
+
+def book_place(request):
+    if request.POST:
+        request.session['booking_selection']=request.POST.copy()
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('lregister'))
+
+    bi = request.POST.copy() or request.session.get('booking_selection',{})
+    if bi:
+        place = Place.objects.get(pk=bi['placeid'])
+    ci = datetime.strptime(bi['checkin'],'%Y-%m-%d')
+    co = datetime.strptime(bi['checkout'],'%Y-%m-%d')
+    guests = bi['no_of_guests']
+    crrid = bi['currencyid']
+    crr,crrposition = Currency.objects.filter(pk=crrid).values_list('name','code_position')[0]
+    prices = place.calculateTotalPrice(crrid,ci, co, guests)
+    context ={'place':place, 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
+              'crr':crr,'crrpos':crrposition}
+    return render_to_response('book_place.html',context, context_instance=RequestContext(request))

@@ -1,4 +1,5 @@
 {% extends "content.html" %}
+{% load i18n%}
 {#{% block extrajs %}#}
 {#<script>$(document).ready(function(){gh.register_init()})</script>#}
 {#{% endblock %}#}
@@ -7,7 +8,7 @@
         <div class="kutuici">
 
 
-            <h3>GaniHomes'a Üye Olun</h3>
+            <h3>{% trans "Join to GaniHomes" %}</h3>
 
                         Facebook hesabınızla  ya da eposta adresinizi girerek bir kaç dakikada GaniHomes'a üye olabilirsiniz.
 
@@ -42,8 +43,14 @@
                              </div>
                          <div class="float-left yuzz txtcnt">
                              </div>
-                    <div class="txtrgh">
-                    <button style="margin-right:40px;"  class="ml30 yesildugme fo16">Hesabımı Oluştur</button>
+                    <div style="width:100%;margin-left:30px;" class="iblock">
+                    <button class="yesildugme fo16">{% trans "Register" %}</button>
+                                        <div id="regtosdiv" style="left: -200px;"><label id="regtoslabel" class="ramlabel normallabel" for="regtoscheck">{% trans "I accept the Terms of service" %} </label>
+
+                                        <input id="regtoscheck" type="checkbox"  name="accepttos">
+
+                                        <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
+                                        </div>
                     </div>
 
 
@@ -53,10 +60,9 @@
                 <div class="or">ya da</div>
                 <div class="orline" ></div>
 
-                    <div style="margin-top:50px;" class="fbbutton">
-                        <div>Facebook ile Bağlan</div>
-                    </div>
-
+                 <div style="width:100%;text-align:center;">
+                <input class="fbbutton" type="button" value="{% trans "Connect with Facebook" %}">
+                 </div>
 
 
 
@@ -68,24 +74,40 @@
 
     <div class="ikikutu">
 
-    <h3>Aklınızda soru kalmasın!</h3>
+    <h3>{% trans "Already registered?" %}</h3>
     <hr>
-    <ul>
-    <li>şu nasıl olcak</li>
-    <li>bunlar nasıl?</li>
-    <li>peki ya şu nasıl oluyor??</li>
-    <li>ya şöyle olursa?</li>
-    </ul>
+        <form action="{% url login %}" method="post">
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% csrf_token %}
+                <div id="uyekapsar">
+                    <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
+                    </p>
+
+                <div class="sideform2 separate" style="width:98%;">
+                        <label for="id_email">{{ lform.login_email.label }}</label><br>
+                        {{ lform.login_email }}
+                    </div>
+
+                <div class="sideform2 separate"  style="width:98%;">
+                        <label for="id_pass1">{{ lform.login_pass.label }}</label><br>
+                        {{ lform.login_pass }}
+                    </div>
+                <div class="float-left yuzz txtcnt">
+                <button class="yesildugme fo11">{% trans "Login" %}</button>
+                    </div>
+
+                <div class="orline" ></div>
+                <div class="or">yada</div>
+                <div class="orline" ></div>
+
+                <div class="yuzz float-left" style="text-align:center;">
+                    <input class="minifbbutton" type="button" value="{% trans "Login with Facebook" %}">
+                    </div>
+                </div>
+        </form>
     </div>
 
-        <div class="ikikutu">
 
-        <h3>Müşteri Temsilcimize Danışın</h3>
-        <hr>
-        <b>Telefon</b><br>
-        0232 422 4465<br>
-        Eposta ya da Online Destek için tıklayın
-        </div>
 
 {% endblock %}
 
