@@ -2581,13 +2581,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 
 #howmonitortext h3{
+
     color: #497054;
     font-size:18px;
-    text-shadow: 1px 1px 2px #ccc;}
+    text-shadow: 1px 1px 2px #ccc;
+    margin-bottom:15px;
+}
 
+
+#howmonitortext ul {
+    margin-left:15px;
+}
 #howmonitortext li {
+
     list-style: square;
-    font-size:16px;
+    font-size:20px;
     color:#006600;
     text-shadow: 1px 1px 2px #bfc970;
 }
@@ -2600,6 +2608,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 #howmonitortext{
     float:right;
+    width:260px;
 
 
 }
