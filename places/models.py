@@ -12,6 +12,7 @@ from django.utils import simplejson as json
 from django.db.models.signals import post_save
 from utils.cache import kes
 from random import randint
+import codecs
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         currency = Currency.objects.filter(main=True)
@@ -95,7 +96,7 @@ class Currency(models.Model):
         for c in Currency.objects.filter(active=True):
             if c.factor:
                 di[c.id] = [str(round(float(c.factor),4)),c.name, c.code, c.code_position]
-        f=open(os.path.join(settings.STATIC_ROOT, "js", u'curr.js'),'w')
+        f=codecs.open(os.path.join(settings.STATIC_ROOT, "js", u'curr.js'),'w','utf-8')
         f.write(("gh_crc=%s"%json.dumps(di, ensure_ascii=False)).replace(" ",''))
         f.close()
 
