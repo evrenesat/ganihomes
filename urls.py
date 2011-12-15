@@ -6,6 +6,8 @@ from django.conf.urls.i18n import i18n_patterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+from django.conf.urls.defaults import *
+handler500 = 'website.views.server_error'
 
 urlpatterns = patterns('',
     # Examples:

@@ -416,3 +416,15 @@ def book_place(request):
     context ={'place':place, 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
               'crr':crr,'crrpos':crrposition}
     return render_to_response('book_place.html',context, context_instance=RequestContext(request))
+
+
+def server_error(request, template_name='500.html'):
+    """
+    500 error handler.
+
+    Templates: `500.html`
+    Context: None
+    """
+    return render_to_response(template_name,
+        context_instance = RequestContext(request)
+    )
