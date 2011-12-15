@@ -1,0 +1,25 @@
+{% extends "content.html" %}
+{% load i18n thumbnail currency%}
+{% block extrajs %}
+{#<script>$(document).ready(function(){gh.login_init()})</script>#}
+{% endblock %}
+{% block content %}
+    <div class="altiOkutu">
+        <div class="kutuici">
+
+            <div class="iblock" >
+
+            <div style="background-color:#fff;" class="bookpart">
+                <h3>{% trans "Internal Server Error" %}</h3>
+
+                {% trans "An error occured. System admins are informed and problem should be fixed soon. Sorry for the inconvenience" %}
+
+
+            </div>
+                        </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
