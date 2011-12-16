@@ -30,16 +30,7 @@
                     <li class="ptab"><a id="uygtab" href="#pcalendar">{% trans "Availablity" %}</a></li>
                     <li class="ptab"><a id="openmap" href="#pmaps">{% trans "Map" %}</a></li>
                     {% if place.overall_rating %}
-                    <div class="stardiv" >
-                          <ul class="rating star{{ place.overall_rating}}">
-                          	<li class="one"><a >1</a></li>
-                          	<li class="two"><a >2</a></li>
-                          	<li class="three"><a >3</a></li>
-                          	<li class="four"><a >4</a></li>
-                          	<li class="five"><a >5</a></li>
-                          </ul>
-
-                      </div>
+                    <div class="stardiv rating star{{ place.overall_rating}}" ></div>
                     {% endif %}
                 </ul>
                 <div id="pphoto">

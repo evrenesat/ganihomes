@@ -89,7 +89,11 @@ gh = {
     },
     currRates:{},
     selected_currency:0,
+    otokompliti:function(p){
+      return ['abc']
+    },
     searchPlaceInit:function () {
+        self = this
         $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
             change: function(event, ui) {
                 var values = $( this ).slider( "option", "values" );
@@ -98,6 +102,7 @@ gh = {
             }
         });
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
+        $("#id_search_pharse").autocomplete({minLength: 1, source:function(p){self.otokompliti(p)}})
     },
     index_init:function () {
 

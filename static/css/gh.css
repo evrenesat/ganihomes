@@ -1685,40 +1685,18 @@ li.g-plus-one {
     padding-top: 1px;
 }
 
-/* star rating code - use lists because its more semantic */
-/* No javascript required */
-/* all the stars are contained in one matrix to solve rollover problems with delay */
-/* the background position is just shifted to reveal the correct image. */
-/* the images are 16px by 16px and the background position will be shifted in negative 16px increments */
-/*  key:  B=Blank : O=Orange : G = Green * /
-/*..... The Matrix ....... */
-/* colours ....Background position */
-/* B B B B B - (0 0)*/
-/* G B B B B - (0 -16px)*/
-/* G G B B B - (0 -32px)*/
-/* G G G B B - (0 -48px)*/
-/* G G G G B - (0 -64px)*/
-/* G G G G G - (0 -80px)*/
-/* O B B B B - (0 -96px)*/
-/* O O B B B - (0 -112px)*/
-/* O O O B B - (0 -128px)*/
-/* O O O O B - (0 -144px)*/
-/* O O O O O - (0 -160px)*/
-
-/* the default rating is placed as a background image in the ul */
-/* use the background position according to the table above to display the required images*/
 .rating {
     width: 80px;
     height: 16px;
-    margin: 0 0 20px 0;
+    /*margin: 0 0 20px 0;*/
     padding: 0;
     list-style: none;
-    clear: both;
+    /*clear: both;*/
     position: relative;
     background: url(/images/star-matrix.png) no-repeat 0 0;
 }
 
-/* add these classes to the ul to effect the change to the correct number of stars */
+
 .star0 {
     background-position: 0 0
 }
@@ -1742,73 +1720,6 @@ li.g-plus-one {
 .star5 {
     background-position: 0 -80px
 }
-
-ul.rating li {
-    cursor: pointer;
-    /*ie5 mac doesn't like it if the list is floated\*/
-    float: left;
-    /* end hide*/
-    text-indent: -999em;
-}
-
-ul.rating li a {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 16px;
-    height: 16px;
-    text-decoration: none;
-    z-index: 200;
-}
-
-ul.rating li.one a {
-    left: 0
-}
-
-ul.rating li.two a {
-    left: 16px;
-}
-
-ul.rating li.three a {
-    left: 32px;
-}
-
-ul.rating li.four a {
-    left: 48px;
-}
-
-ul.rating li.five a {
-    left: 64px;
-}
-
-/*ul.rating li a:hover {*/
-/*z-index: 2;*/
-/*width: 80px;*/
-/*height: 16px;*/
-/*overflow: hidden;*/
-/*left: 0;*/
-/*background: url(/images/star-matrix.png) no-repeat 0 0*/
-/*}*/
-
-/*ul.rating li.one a:hover {*/
-/*background-position: 0 -96px;*/
-/*}*/
-
-/*ul.rating li.two a:hover {*/
-/*background-position: 0 -112px;*/
-/*}*/
-
-/*ul.rating li.three a:hover {*/
-/*background-position: 0 -128px*/
-/*}*/
-
-/*ul.rating li.four a:hover {*/
-/*background-position: 0 -144px*/
-/*}*/
-
-/*ul.rating li.five a:hover {*/
-/*background-position: 0 -160px*/
-/*}*/
 
 .wflogin {
     float: left;
@@ -2185,9 +2096,7 @@ ul.rating li.five a {
 }
 
 #toptabs div.stardiv {
-    margin-top: 7px;
-    height: 20px;
-    width: 100px;
+    margin: 7px 5px 0 0;
     float: right;
 }
 
@@ -2404,7 +2313,7 @@ ul.rating li.five a {
     float: left;
     width: 98%;
     margin: 4px;
-    height: 140px;
+    /*height: 140px;*/
     padding: 5px 5px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -2419,23 +2328,43 @@ ul.rating li.five a {
     margin: 0;
     padding: 0;
 }
-.sresults .pimg{
-    float:left;
-    margin-right:20px;
-    width:100px;
-}
-.sresults .detail{
-    float:left;
-    width:450px;
-}
-.sresults .price{
-    float:right;
-    width:75px;
-    height:75px;
+.sresults .pimg img, .sresults .ownimg{
+    border: 2px solid #fff;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
-    background-color:#e1e463;
+}
+.sresults .pimg{
+    float:left;
+    padding-right:20px;
+    width:120px;
+}
+.sresults .price .rating{
+    margin:0 auto;
+}
+
+.sresults .detail h4{
+    margin:0px;
+    font-size:18px;
+    color:#7d4f3e;
+    text-shadow: 1px 1px 1px #ffb76c;
+}
+.sresults .detail{
+    float:left;
+    width:400px;
+    color:#7f6161;
+    font-size:14px;
+}
+.sresults .price{
+
+    float:right;
+    width:105px;
+    text-align:center;
+    height:53px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    background-color: #fffcdd;
     font-size:20px;
 }
 
