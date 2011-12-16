@@ -33,7 +33,7 @@ from datetime import datetime
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
     checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
-    search_pharse = forms.CharField(widget=forms.TextInput())
+    search_pharse = forms.CharField(widget=forms.TextInput(), label=_(u'City or address'))
     no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1, label=_(u'Guests'))
     placeType = forms.ChoiceField(choices=placeTypes)
 
@@ -394,9 +394,14 @@ def registeration_thanks(request):
     context = {}
     return render_to_response('registeration_thanks.html', context, context_instance=RequestContext(request))
 
+@csrf_exempt
 def search(request):
-
-    context = {'results':Place.objects.all()}
+    sresults = Place.objects.filter(active=True)
+    if request.method == 'GET':
+        form = SearchForm(request.GET)
+    else:
+        form = SearchForm()
+    context = {'results':Place.objects.all(),'form':form }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
 

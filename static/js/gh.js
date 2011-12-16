@@ -89,6 +89,16 @@ gh = {
     },
     currRates:{},
     selected_currency:0,
+    searchPlaceInit:function () {
+        $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
+            change: function(event, ui) {
+                var values = $( this ).slider( "option", "values" );
+                $('#pmin').val(values[0]);
+                $('#pmax').val(values[1]);
+            }
+        });
+        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
+    },
     index_init:function () {
 
         var self = this;
@@ -103,7 +113,7 @@ gh = {
         $('#araf input').focus(function () {
             self.akToggle(0)
         });
-        $('#aradugme').click(function () {$('#phrase').val($('#arainput').val());$('#arabg form').submit()});
+        $('#aradugme').click(function () {$('#id_search_pharse').val($('#arainput').val());$('#arabg form').submit()});
         $('.logo').mouseover(function () {$('.krm').removeClass('krm').addClass('dekrm')}).mouseleave(function () {$('.dekrm').removeClass('dekrm').addClass('krm')});
 
         $('html').click(function (data) {

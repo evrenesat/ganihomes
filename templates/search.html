@@ -1,51 +1,82 @@
 {% extends "content.html" %}
-{% load thumbnail %}
+{% load i18n thumbnail %}
 {% block extrajs %}
-<script>$(document).ready(function(){gh.searchPlaceInit()})</script>
+    <script>$(document).ready(function () {
+        gh.searchPlaceInit()
+    })</script>
 {% endblock %}
 {% block content %}
-    <div class="altikutu">
+    <form action="." method=get>
+        <div class="altikutu">
 
-    <div id="place-conatiner" class="sresults">
+            <div id="place-conatiner" class="sresults">
+                <div id="araust">
 
-        <ul>
-        {% for s in results %}
-            <li onclick="gh.showPlace({{ s.id }})">
+                    <div>
+                        <label>{{ form.search_pharse.label }}</label><br>
+                        {{ form.search_pharse }}</div>
 
-                 <h3>{{ s.title }}</h3>
-                 <img  src="{% thumbnail s.primary_photo 0x80 upscale crop=scale %}">
-                 <h4>{{ s.city}} - {{ s.district }}, {{ s.get_country_display }}</h4>
-                 <h5>{{ s.price }} {{ s.currency }}</h5>
+                    <div><label>{{ form.checkin.label }}</label><br>
+                    {{ form.checkin }}</div>
+                    <div><label>{{ form.checkout.label }}</label><br>
+                    {{ form.checkout }}</div>
+                    <div><label>{{ form.no_of_guests.label }}</label><br>
+                    {{ form.no_of_guests }}</div>
+                    <div><label>&nbsp;</label><br>
+                    <button type="submit" id="submit">{% trans "Search" %}</button>
+                    </div>
+                </div>
+                <ul>
+                    {% for s in results %}
+                        <li onclick="gh.showPlace({{ s.id }})">
 
-            </li>
+                            <h3>{{ s.title }}</h3>
+                            <img src="{% thumbnail s.primary_photo 0x80 upscale crop=scale %}">
+                            <h4>{{ s.city }} - {{ s.district }}, {{ s.get_country_display }}</h4>
+                            <h5>{{ s.price }} {{ s.currency }}</h5>
 
-        {% endfor %}
-        </ul>
+                        </li>
 
-</div>
-</div>
+                    {% endfor %}
+                </ul>
 
-
-
-<div class="ikikutu" >
-
-ayrıntılı arama...
-
-</div>
+            </div>
+        </div>
 
 
+        <div class="ikikutu">
+            <div class="iblock" style="min-height:300px;padding-left:10px">
+                <div class="foge placetype">
+                    <label for="fiyat">Mekan Tipi</label><br>
+                    {{ form.placeType }}
+                </div>
+                <div class="foge pricebar">
+                    <label for="fiyat">Gecelik Fiyat (TL)</label><br>
+                    <input type="hidden" name=pricerange id=pricerange>
+
+                    <div id="pricediv"></div>
+                    <input type="text" id="pmin" class="pRangeBox" value="20">
+                    <input type="text" id="pmax" class="pRangeBox" value="500">
+                </div>
+
+            </div>
 
 
+        </div>
+    </form>
 {% endblock %}
 {% block closebody %}
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 {% endblock %}

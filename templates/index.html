@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load  thumbnail %}
+{% load  thumbnail i18n%}
 {% block extrajs %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
     <script type="text/javascript">$(window).ready(function () {
@@ -44,7 +44,7 @@
         <li class="gritab alttab krm" id="manztab"><a href="#tabs-2">Manzaralar</a></li>
         <li class="gritab alttab krm" id="ictab"><a href="#tabs-3">İç Mekanlar</a></li>
         <li id="howitworks"><a href="#tabs-4">
-            <div class="inlinelogo logo-basta">Nasıl Çalışır?</div>
+            <div class="inlinelogo logo-ortada">How &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Works?</div>
         </a></li>
     </ul>
     <div class="tabcontent krm" id="tabs-1">
@@ -260,7 +260,7 @@
         <div class="span-12 shadoblok" id="howmonitordiv">
             <img id="howmonitorimg" src="{{ STATIC_URL }}images/howmonitor.png">
             <div id="howmonitortext">
-                <h3>Best place rental experience for both hosts and guests!</h3>
+                <h3 class="oh3">Best place rental experience for both hosts and guests!</h3>
                 <ul>
                     <li>Easier</li>
                     <li>Safer</li>
@@ -274,7 +274,11 @@
             <img id="howmonitorimg" src="{{ STATIC_URL }}images/mobile-apps.jpg">
 
 
-                <h4>Access from everywhere!</h4>
+            <div style="width:178px; float:right;font-size:18px;color:#6a6a6a;">
+                           <h3 class="oh3">Accesible from anywhere</h3>
+                           You can use our site from any mobile device which have a web browser.
+
+                       </div>
 
 
 
@@ -299,7 +303,7 @@
                 </div>
                 <div class="vsplit"></div>
                 <div id="aradetay">
-                    <input type="hidden" name=phrase id=phrase>
+                    <input type="hidden" name=search_pharse id=id_search_pharse>
 
                     <div class="kbaslik">ayrıntılı arama</div>
                     <div class="foge checkinout">
