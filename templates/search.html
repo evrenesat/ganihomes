@@ -30,7 +30,7 @@
                     {% for s in results %}
                         <li>
                             <div class="pimg">
-                                <img src="{% thumbnail s.primary_photo 120x0 upscale crop=scale %}">
+                                <img src="{% thumbnail s.primary_photo 120x0 crop %}">
                             </div>
                             <div class="detail">
                                 <h4>{{ s.title }}</h4>
