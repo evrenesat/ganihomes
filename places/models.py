@@ -310,13 +310,13 @@ class Profile(models.Model):
     """User profile"""
 
 
-    usr = models.OneToOneField(User, verbose_name=_('User'), related_name='uusr')
-    user = models.OneToOneField(User, verbose_name=_('User'), related_name='uuusr',  null=True, blank=True)
+#    usr = models.OneToOneField(User, verbose_name=_('User'), related_name='uusr')
+    user = models.OneToOneField(User, verbose_name=_('User'), null=True, blank=True)
     photo = models.ImageField(_('Photo'), upload_to='user_photos', null=True, blank=True)
-    favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'))
+    favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'), null=True, blank=True)
     friends = models.ManyToManyField(User, through='Friendship', related_name='friend_profiles')
     currency = models.ForeignKey(Currency,verbose_name=_('Currency'))
-    city = models.CharField(_('City'), max_length=30)
+    city = models.CharField(_('City'), max_length=30, null=True, blank=True )
     phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     cell = models.CharField(_('Cellular Phone'), max_length=20, null=True, blank=True)
     occupation = models.CharField(_('Occupation'), max_length=30, null=True, blank=True)

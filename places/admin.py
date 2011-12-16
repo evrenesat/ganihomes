@@ -136,7 +136,7 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class CurrencyAdmin(admin.ModelAdmin):
-    list_display = ('code', 'name', 'main', 'active','factor')
+    list_display = ('name', 'code',  'main', 'active','factor')
     search_fields = ['name','code' ]
     list_filter = ['active', ]
 
@@ -149,7 +149,8 @@ class TagCategoryAdmin(admin.ModelAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('usr', )
+    raw_id_fields=('user', )
+    list_display = ('full_name', )
 #    search_fields = ['', ]
 #    list_filter = ['', ]
 
