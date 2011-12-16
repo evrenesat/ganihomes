@@ -102,7 +102,12 @@ gh = {
             }
         });
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
-        $("#id_search_pharse").autocomplete({minLength: 1, source:function(p){self.otokompliti(p)}})
+        $("#id_search_pharse").autocomplete({minLength: 1,
+            source:function(p){
+                console.log('sss');
+                self.otokompliti(p)
+            }
+        })
     },
     index_init:function () {
 
