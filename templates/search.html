@@ -29,11 +29,17 @@
                 <ul>
                     {% for s in results %}
                         <li onclick="gh.showPlace({{ s.id }})">
+                            <div class="pimg">
+                                <img src="{% thumbnail s.primary_photo 0x80 upscale crop=scale %}">
+                            </div>
+                            <div class="detail">
+                                <h4>{{ s.title }}</h4>
+                                <img src="{% thumbnail s.owner.get_profile.photo 0x30 crop=scale %}">
+                                {{ s.city }} - {{ s.district }}, {{ s.get_country_display }}
+                            </div>
 
-                            <h3>{{ s.title }}</h3>
-                            <img src="{% thumbnail s.primary_photo 0x80 upscale crop=scale %}">
-                            <h4>{{ s.city }} - {{ s.district }}, {{ s.get_country_display }}</h4>
-                            <h5>{{ s.price }} {{ s.currency }}</h5>
+
+                            <div class="price">{{ s.price }} {{ s.currency }}</div>
 
                         </li>
 

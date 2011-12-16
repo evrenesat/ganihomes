@@ -20,7 +20,7 @@ def create_user_profile(sender, instance, created, **kwargs):
             currency = currency[0]
         else:
             currency = Currency.objects.create(main=True, code='TL', name='TL', factor=1)
-        po = Profile.objects.create(usr=instance, currency=currency)
+        po = Profile.objects.create(user=instance, currency=currency)
         po.photo = po.photo.field.attr_class(po, po.photo.field, 'user_photos/user-256.png')
         po.save()
 
@@ -310,7 +310,8 @@ class Profile(models.Model):
     """User profile"""
 
 
-    usr = models.OneToOneField(User, verbose_name=_('User'))
+    usr = models.OneToOneField(User, verbose_name=_('User'), related_name='uusr')
+    user = models.OneToOneField(User, verbose_name=_('User'), related_name='uuusr',  null=True, blank=True)
     photo = models.ImageField(_('Photo'), upload_to='user_photos', null=True, blank=True)
     favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'))
     friends = models.ManyToManyField(User, through='Friendship', related_name='friend_profiles')
@@ -333,8 +334,8 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
     def update_names(self):
-        self.private_name = u"%s %s." % (self.usr.first_name, self.usr.last_name[0])
-        self.full_name = self.usr.get_full_name()
+        self.private_name = u"%s %s." % (self.user.first_name, self.user.last_name[0])
+        self.full_name = self.user.get_full_name()
 
 
 
@@ -345,7 +346,7 @@ class Profile(models.Model):
         verbose_name_plural = _('Profiles')
 
     def __unicode__(self):
-        return 'User #%s' % (self.usr_id,)
+        return 'User #%s' % (self.user_id,)
 
 class Friendship(models.Model):
     """Friendship"""
