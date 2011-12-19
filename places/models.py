@@ -243,7 +243,9 @@ class Place(models.Model):
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
     lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
-    geocode = models.CharField(_('Geographical Location'), max_length=40, null=True, blank=True)
+#    geocode = models.CharField(_('Geographical Location'), max_length=40, null=True, blank=True)
+    lat = models.FloatField(_('Latitude'),default=0.0)
+    lon = models.FloatField(_('Longitude'),default=0.0)
 
 
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True, default=0)

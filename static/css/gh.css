@@ -2342,12 +2342,14 @@ li.g-plus-one {
 .sresults .price .rating{
     margin:0 auto;
 }
-
+.sresults .detail h4 a{
+    color:#7d4f3e;
+    text-shadow: 1px 1px 1px #ffb76c;
+    text-decoration:none;
+}
 .sresults .detail h4{
     margin:0px;
     font-size:18px;
-    color:#7d4f3e;
-    text-shadow: 1px 1px 1px #ffb76c;
 }
 .sresults .detail{
     float:left;

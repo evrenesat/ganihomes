@@ -1,17 +1,159 @@
 /*
- * jQuery File Upload Plugin 5.0.3
+ * jQuery Iframe Transport Plugin 1.2.2
  * https://github.com/blueimp/jQuery-File-Upload
  *
- * Copyright 2010, Sebastian Tschan
+ * Copyright 2011, Sebastian Tschan
  * https://blueimp.net
  *
  * Licensed under the MIT license:
  * http://creativecommons.org/licenses/MIT/
  */
 
-/*jslint nomen: true, unparam: true, regexp: true */
-/*global document, XMLHttpRequestUpload, Blob, File, FormData, location, jQuery */
+/*jslint unparam: true */
+/*global jQuery */
 
+(function ($) {
+    'use strict';
+
+    // Helper variable to create unique names for the transport iframes:
+    var counter = 0;
+
+    // The iframe transport accepts three additional options:
+    // options.fileInput: a jQuery collection of file input fields
+    // options.paramName: the parameter name for the file form data,
+    //  overrides the name property of the file input field(s)
+    // options.formData: an array of objects with name and value properties,
+    //  equivalent to the return data of .serializeArray(), e.g.:
+    //  [{name: a, value: 1}, {name: b, value: 2}]
+    $.ajaxTransport('iframe', function (options, originalOptions, jqXHR) {
+        if (options.type === 'POST' || options.type === 'GET') {
+            var form,
+                iframe;
+            return {
+                send: function (headers, completeCallback) {
+                    form = $('<form style="display:none;"></form>');
+                    // javascript:false as initial iframe src
+                    // prevents warning popups on HTTPS in IE6.
+                    // IE versions below IE8 cannot set the name property of
+                    // elements that have already been added to the DOM,
+                    // so we set the name along with the iframe HTML markup:
+                    iframe = $(
+                        '<iframe src="javascript:false;" name="iframe-transport-' +
+                            (counter += 1) + '"></iframe>'
+                    ).bind('load', function () {
+                        var fileInputClones;
+                        iframe
+                            .unbind('load')
+                            .bind('load', function () {
+                                var response;
+                                // Wrap in a try/catch block to catch exceptions thrown
+                                // when trying to access cross-domain iframe contents:
+                                try {
+                                    response = iframe.contents();
+                                    // Google Chrome and Firefox do not throw an
+                                    // exception when calling iframe.contents() on
+                                    // cross-domain requests, so we unify the response:
+                                    if (!response.length || !response[0].firstChild) {
+                                        throw new Error();
+                                    }
+                                } catch (e) {
+                                    response = undefined;
+                                }
+                                // The complete callback returns the
+                                // iframe content document as response object:
+                                completeCallback(
+                                    200,
+                                    'success',
+                                    {'iframe': response}
+                                );
+                                // Fix for IE endless progress bar activity bug
+                                // (happens on form submits to iframe targets):
+                                $('<iframe src="javascript:false;"></iframe>')
+                                    .appendTo(form);
+                                form.remove();
+                            });
+                        form
+                            .prop('target', iframe.prop('name'))
+                            .prop('action', options.url)
+                            .prop('method', options.type);
+                        if (options.formData) {
+                            $.each(options.formData, function (index, field) {
+                                $('<input type="hidden"/>')
+                                    .prop('name', field.name)
+                                    .val(field.value)
+                                    .appendTo(form);
+                            });
+                        }
+                        if (options.fileInput && options.fileInput.length &&
+                                options.type === 'POST') {
+                            fileInputClones = options.fileInput.clone();
+                            // Insert a clone for each file input field:
+                            options.fileInput.after(function (index) {
+                                return fileInputClones[index];
+                            });
+                            if (options.paramName) {
+                                options.fileInput.each(function () {
+                                    $(this).prop('name', options.paramName);
+                                });
+                            }
+                            // Appending the file input fields to the hidden form
+                            // removes them from their original location:
+                            form
+                                .append(options.fileInput)
+                                .prop('enctype', 'multipart/form-data')
+                                // enctype must be set as encoding for IE:
+                                .prop('encoding', 'multipart/form-data');
+                        }
+                        form.submit();
+                        // Insert the file input fields at their original location
+                        // by replacing the clones with the originals:
+                        if (fileInputClones && fileInputClones.length) {
+                            options.fileInput.each(function (index, input) {
+                                var clone = $(fileInputClones[index]);
+                                $(input).prop('name', clone.prop('name'));
+                                clone.replaceWith(input);
+                            });
+                        }
+                    });
+                    form.append(iframe).appendTo('body');
+                },
+                abort: function () {
+                    if (iframe) {
+                        // javascript:false as iframe src aborts the request
+                        // and prevents warning popups on HTTPS in IE6.
+                        // concat is used to avoid the "Script URL" JSLint error:
+                        iframe
+                            .unbind('load')
+                            .prop('src', 'javascript'.concat(':false;'));
+                    }
+                    if (form) {
+                        form.remove();
+                    }
+                }
+            };
+        }
+    });
+
+    // The iframe transport returns the iframe content document as response.
+    // The following adds converters from iframe to text, json, html, and script:
+    $.ajaxSetup({
+        converters: {
+            'iframe text': function (iframe) {
+                return iframe.text();
+            },
+            'iframe json': function (iframe) {
+                return $.parseJSON(iframe.text());
+            },
+            'iframe html': function (iframe) {
+                return iframe.find('body').html();
+            },
+            'iframe script': function (iframe) {
+                return $.globalEval(iframe.text());
+            }
+        }
+    });
+
+}(jQuery));
 (function ($) {
     'use strict';
 
@@ -24,7 +166,7 @@
     // "add" method are uploaded immediately, but it is possible to override
     // the "add" callback option to queue file uploads.
     $.widget('blueimp.fileupload', {
-        
+
         options: {
             // The namespace used for event handler binding on the dropZone and
             // fileInput collections.
@@ -75,7 +217,7 @@
             // global progress calculation. Set the following option to false to
             // prevent recalculating the global progress data:
             recalculateProgress: true,
-            
+
             // Additional form data to be sent along with the file uploads can be set
             // using this option, which accepts an array of objects with name and
             // value properties, a function returning such an array, a FormData
@@ -84,7 +226,7 @@
             formData: function (form) {
                 return form.serializeArray();
             },
-            
+
             // The add callback is invoked as soon as files are added to the fileupload
             // widget (via file input selection, drag & drop or add API call).
             // If the singleFileUploads option is enabled, this callback will be
@@ -101,7 +243,7 @@
             add: function (e, data) {
                 data.submit();
             },
-            
+
             // Other callbacks:
             // Callback for the start of each file upload request:
             // send: function (e, data) {}, // .bind('fileuploadsend', func);
@@ -125,14 +267,14 @@
             // drop: function (e, data) {}, // .bind('fileuploaddrop', func);
             // Callback for dragover events of the dropZone collection:
             // dragover: function (e) {}, // .bind('fileuploaddragover', func);
-            
+
             // The plugin options are used as settings object for the ajax calls.
             // The following are jQuery ajax settings required for the file uploads:
             processData: false,
             contentType: false,
             cache: false
         },
-        
+
         // A list of options that require a refresh after assigning a new value:
         _refreshOptionsList: ['namespace', 'dropZone', 'fileInput'],
 
@@ -258,14 +400,14 @@
             // Blob reference is not needed anymore, free memory:
             options.blob = null;
         },
-        
+
         _initIframeSettings: function (options) {
             // Setting the dataType to iframe enables the iframe transport:
             options.dataType = 'iframe ' + (options.dataType || '');
             // The iframe transport accepts a serialized array as form data:
             options.formData = this._getFormData(options);
         },
-        
+
         _initDataSettings: function (options) {
             if (this._isXHRUpload(options)) {
                 if (!this._chunkedUpload(options, true)) {
@@ -278,7 +420,7 @@
                 this._initIframeSettings(options);
             }
         },
-        
+
         _initFormSettings: function (options) {
             // Retrieve missing options from the input field and the
             // associated form, if available:
@@ -299,7 +441,7 @@
                 options.type = 'POST';
             }
         },
-        
+
         _getAJAXSettings: function (data) {
             var options = $.extend({}, this.options, data);
             this._initFormSettings(options);
@@ -508,7 +650,7 @@
             }
             return send();
         },
-        
+
         _onAdd: function (e, data) {
             var that = this,
                 result = true,
@@ -530,7 +672,7 @@
                 return this._trigger('add', e, data);
             }
         },
-        
+
         // File Normalization for Gecko 1.9.1 (Firefox 3.5) support:
         _normalizeFile: function (index, file) {
             if (file.name === undefined && file.size === undefined) {
@@ -555,7 +697,7 @@
                 return el;
             });
         },
-        
+
         _onChange: function (e) {
             var that = e.data.fileupload,
                 data = {
@@ -570,7 +712,7 @@
                 data.files = [{name: e.target.value.replace(/^.*\\/, '')}];
             }
             // Store the form reference as jQuery data for other event handlers,
-            // as the form property is not available after replacing the file input: 
+            // as the form property is not available after replacing the file input:
             if (data.form.length) {
                 data.fileInput.data('blueimp.fileupload.form', data.form);
             } else {
@@ -584,7 +726,7 @@
                 return false;
             }
         },
-        
+
         _onDrop: function (e) {
             var that = e.data.fileupload,
                 dataTransfer = e.dataTransfer = e.originalEvent.dataTransfer,
@@ -600,7 +742,7 @@
             }
             e.preventDefault();
         },
-        
+
         _onDragOver: function (e) {
             var that = e.data.fileupload,
                 dataTransfer = e.dataTransfer = e.originalEvent.dataTransfer;
@@ -612,7 +754,7 @@
             }
             e.preventDefault();
         },
-        
+
         _initEventHandlers: function () {
             var ns = this.options.namespace || this.name;
             this.options.dropZone
@@ -630,11 +772,11 @@
             this.options.fileInput
                 .unbind('change.' + ns, this._onChange);
         },
-        
+
         _beforeSetOption: function (key, value) {
             this._destroyEventHandlers();
         },
-        
+
         _afterSetOption: function (key, value) {
             var options = this.options;
             if (!options.fileInput) {
@@ -645,7 +787,7 @@
             }
             this._initEventHandlers();
         },
-        
+
         _setOption: function (key, value) {
             var refresh = $.inArray(key, this._refreshOptionsList) !== -1;
             if (refresh) {
@@ -672,7 +814,7 @@
             this._active = this._loaded = this._total = 0;
             this._initEventHandlers();
         },
-        
+
         destroy: function () {
             this._destroyEventHandlers();
             $.Widget.prototype.destroy.call(this);
@@ -682,7 +824,7 @@
             $.Widget.prototype.enable.call(this);
             this._initEventHandlers();
         },
-        
+
         disable: function () {
             this._destroyEventHandlers();
             $.Widget.prototype.disable.call(this);
@@ -699,7 +841,7 @@
             data.files = $.each($.makeArray(data.files), this._normalizeFile);
             this._onAdd(null, data);
         },
-        
+
         // This method is exposed to the widget API and allows sending files
         // using the fileupload API. The data parameter accepts an object which
         // must have a files property and can contain additional options:
@@ -714,7 +856,7 @@
             }
             return this._getXHRPromise(false, data && data.context);
         }
-        
+
     });
-    
+
 }(jQuery));

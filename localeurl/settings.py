@@ -7,8 +7,12 @@ LOCALES_RE = '|'.join(
     sorted(SUPPORTED_LOCALES.keys(), key=lambda i: len(i), reverse=True))
 PATH_RE = re.compile(r'^/(?P<locale>%s)(?P<path>.*)$' % LOCALES_RE)
 
+
 LOCALE_INDEPENDENT_PATHS = [re.compile(p) for p in
-                            getattr(settings, 'LOCALE_INDEPENDENT_PATHS', [])]
+                            getattr(settings, 'LOCALE_INDEPENDENT_PATHS', [
+                                r'^/upload_photo/',
+                                r'^/jsearch'
+                            ])]
 
 LOCALE_INDEPENDENT_MEDIA_URL = getattr(settings,
         'LOCALE_INDEPENDENT_MEDIA_URL', True)

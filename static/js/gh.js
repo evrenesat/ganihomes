@@ -2,38 +2,53 @@ Number.prototype.formatMoney = function(c, d, t){
 var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
  };
+$.getScript = function(url, callback, cache){
+	$.ajax({
+			type: "GET",
+			url: url,
+			success: callback,
+			dataType: "script",
+			cache: cache || true
+	});
+};
 
-//(function($) {
-//        $.fn.currencyFormat = function() {
-//            this.each( function( i ) {
-//                $(this).change( function( e ){
-//                    if( isNaN( parseFloat( this.value ) ) ) return;
-//                    this.value = parseFloat(this.value).toFixed(2);
-//                });
-//            });
-//            return this; //for chaining
-//        }
-//    })( jQuery );
 gh = {
     bas:function (m) {
         $('#arabg').prepend(m + '<br>')
     },
+    initPagesAndSetLang:function(){
+        parts = document.location.pathname.split('/')
+        for (p in parts){
+            p = parts[p]
+            var fname = 'init_' + p
+            if(p.length==2)this.LANGUAGE_CODE = p
+            else if(fname in this){
+                this[fname]()
+                return
+            }
+
+        }
+    },
+    STATIC_URL : '',
+    LANGUAGE_CODE : 'en',
     init:function () {
+        this.STATIC_URL = $('#script0').attr('src').split('js/')[0]
         var usableHeight = $(window).height(), hdr_h = 0, logo_pad = 0, sc_pad = 0;
         if (usableHeight > 800)hdr_h = 110, logo_pad = -6, sc_pad = 20;
         else if (usableHeight > 610)  hdr_h = 90, logo_pad = -6;
-
 //        if (hdr_h)$('#hdr').css({height:hdr_h + 'px'})
 //        if (logo_pad)$('.logo div').css({marginTop:logo_pad + 'px'})
 //        if (sc_pad)$('.showcase').css({paddingTop:sc_pad + 'px'})
-        $('#smekle').click(function(){document.location='/add_place/'})
-        $('#smkayit').click(function(){document.location='/register/'})
-        $('#smgir').click(function(){document.location='/login/'})
+//        $('#smekle').click(function(){document.location='/add_place/'})
+//        $('#smkayit').click(function(){document.location='/register/'})
+//        $('#smgir').click(function(){document.location='/login/'})
         $('.smdil').mouseover(function(){$('#langcurr').show('normal').mouseleave(function(){$(this).hide()})})
         this.rePlace('.smdil', '#langcurr', -10, 25);
         if(!this.selected_currency){
             this.selected_currency = $.cookie('gh_curr') || 0}
         this.fillCurrencies()
+        this.initPagesAndSetLang()
+
     },
     fillCurrencies:function(){
         var self = this
@@ -92,7 +107,7 @@ gh = {
     otokompliti:function(request, response){
       response(['ab asdasdasc','weqq sdasdw'])
     },
-    searchPlaceInit:function () {
+    init_search:function () {
         self = this
         $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
             change: function(event, ui) {
@@ -109,7 +124,7 @@ gh = {
             }
         })
     },
-    index_init:function () {
+    init_index:function () {
 
         var self = this;
         this.akGorunur = 0
@@ -268,24 +283,28 @@ gh = {
     gmapsLoad:function(initFunc){
         var self = this
         if(typeof(initFunc)=='undefined')initFunc='gh.gcinit';
-//        if (typeof(this.geocoder)=='undefined'){
             $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback='+initFunc)
-//        }
+
     },
-    latlng:'',
+    //FIXME: lat lon should be came from geoip!!!
+    lat:38.434,
+    lon:27.125,
     glatlng:'',
     gZoom:8,
-    setLatLng:function(l){
-//        console.log($(l))
-        if(l) this.latlng = $(l).val().replace('(','').replace(')','').split(',')
+    setLatLon:function(){
+            this.lat = $('#id_lat').val()
+            this.lon = $('#id_lon').val()
+    },
+    getLatLon:function(l){
+            $('#id_lat').val(l.Qa)
+            $('#id_lon').val(l.Ra)
     },
     markerMaps:function(){
         var self = this;
 //        console.log(self)
         this.gmapsLoad('gh.gcinit')
     },
-    _circleMaps:function(latlng){
-        this.setLatLng(latlng);
+    _circleMaps:function(){
         this.gmapsLoad('gh.drawCircle')
     },
     drawCircle:function(){
@@ -305,9 +324,8 @@ gh = {
         cityCircle = new google.maps.Circle(mapOptions);
     },
     gcinit:function(nomarker){
-        if (!this.latlng)this.latlng=[38.434, 27.125]
         this.geocoder = new google.maps.Geocoder();
-        this.glatlng = new google.maps.LatLng(this.latlng[0],this.latlng[1]);
+        this.glatlng = new google.maps.LatLng(this.lat,this.lon);
         var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
         this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
@@ -325,14 +343,14 @@ gh = {
             self.infoWindow.open(self.map, self.marker);
 
           } else {
-            alert("Adres bulunamadı\n\n" + status);
+            alert("Adres bulunamadı, lütfen girdiğiniz bilgileri gözden geçirip tekrar deneyiniz.\n\nHata Kodu: " + status);
           }
         });
       },
     getGCResult:function(){return this.gcResult;},
     gcAdresTamam:function(){
         acs = this.gcResult.address_components
-        $('#id_geocode').val(this.gcResult.geometry.location)
+        this.getLatLon(this.gcResult.geometry.location)
         for (i in acs){
             var ac = acs[i]
             var typ = ac.types[0]
@@ -438,44 +456,54 @@ gh = {
     bookPlace: function(e){
         $(e.target).parents('form').submit()
     },
-    showPlaceInit:function(){
+    init_places:function(){
         var self = this;
         x={}
         var s=0;
 
+
+
         $('#toptabs').tabs();
         this.prepareSessionalPrices()
 
-        this.makeAvailabilityTab()
+
         $('#uygtab').click(function(){
 //            console.log('hmmhs')
 //            $('#calendar').DatePickerShow()
 
         })
+        this.setLatLon()
         this.currentImg = $('.pthumb').first()
         $('#bookitbutton').click(function(e){return self.bookPlace(e)})
         $('.pthumb').click(function(){return self._gotoNextPhoto(this)})
         $('#phimg').click(function(){self._changePlacePhoto(ez)})
-        $('#openmap').click(function(){self._circleMaps('#latlng')})
+        $('#openmap').click(function(){self._circleMaps()})
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
-        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true ,
-            beforeShowDay: function(date) { return self.isUnAvailable(date) ? [false,'datepick-reserved','']:[true,'',''] },
-            onSelect: function(dateText, inst) {
-                self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
-                if(self.selected_dates.id_checkin && self.selected_dates.id_checkout){
-                    $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
-                }
-            }
-
-        });
-
         $(window).resize(function(){self.replace_pricetag()}).trigger('resize')
+        $.getScript(this.STATIC_URL + 'datepick/jquery.datepick.js',function(){
+            $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){
+                self.makeAvailabilityTab()
+            })
+
+
+            $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true ,
+                beforeShowDay: function(date) { return self.isUnAvailable(date) ? [false,'datepick-reserved','']:[true,'',''] },
+                onSelect: function(dateText, inst) {
+                    self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
+                    if(self.selected_dates.id_checkin && self.selected_dates.id_checkout){
+                        $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
+                    }
+                }
+
+            });
+
+        })
 
     },
     selected_dates:{},
     replace_pricetag : function(){this.rePlace('#titlediv', '.fetiket', 615, -3);},
-    addPlaceInit:function(){
+    init_add_place:function(){
         var self = this;
 //        console.log(self,this)
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
@@ -526,6 +554,7 @@ gh = {
     upload_init:function(place_id){
         if(typeof(place_id)=='undefined')place_id=''
         //console.log($('#fileupload'))
+        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
         $('#fileupload').fileupload({
                dataType: 'json',
                url: '/upload_photo/'+place_id,
@@ -537,8 +566,9 @@ gh = {
                    });
                }
            });
+        })
     },
-    login_init: function(){
+    init_login: function(){
         $('html').click(function (data) {
             $('#uyekapsar').addClass('silik');
         });
@@ -552,7 +582,7 @@ gh = {
             $('#uyekapsar').removeClass('silik');
         })
     },
-    dashboardInit: function(){
+    init_dashboard: function(){
         var self = this;
         $( "#menuccordion").accordion({  collapsible: true});
         $('.btn').click(function(data){
@@ -630,11 +660,8 @@ gh = {
             self.init_placeWizzard(id)
 
             self.gcGosterGizle()
-            self.setLatLng('#id_geocode')
+            self.setLatLon('#id_geocode')
         })
-    },
-    showPlace:function(id){
-        document.location='/places/'+id
     }
 
 
@@ -647,6 +674,9 @@ MSGS={
 function trns (msg){
      return  MSGS[msg] || msg;
  }
+
+
+
 $(window).ready(function () {
     gh.init()
     $('#tabs').tabs();

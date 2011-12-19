@@ -85,7 +85,9 @@ def anasayfa(request):
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):
-    geocode= forms.CharField(widget=forms.HiddenInput())
+    lat= forms.FloatField(widget=forms.HiddenInput())
+    lon= forms.FloatField(widget=forms.HiddenInput())
+
 #    postcode= forms.CharField(widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         super(addPlaceForm, self).__init__(*args, **kwargs)
@@ -95,7 +97,7 @@ class addPlaceForm(ModelForm):
     class Meta:
         model=Place
         fields = ('title','type','capacity','space','description','price','currency',
-            'city','country','district','street','address','geocode',
+            'city','country','district','street','address','lat','lon',
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
 @login_required
@@ -262,8 +264,8 @@ def multiuploader_delete(request, pk):
 
 
 
-def square_thumbnail(source):
-    thumbnail_options = dict(size=(50, 50), crop=True)
+def square_thumbnail(source, size=(50, 50)):
+    thumbnail_options = dict(size=size, crop=True)
     return get_thumbnailer(source).get_thumbnail(thumbnail_options)
 
 @csrf_exempt
@@ -397,13 +399,12 @@ def registeration_thanks(request):
 @csrf_exempt
 def search(request):
     sresults = Place.objects.filter(active=True)
-    if request.method == 'GET':
-        form = SearchForm(request.GET)
-    else:
-        form = SearchForm()
+    form = SearchForm()
     context = {'results':Place.objects.all(),'form':form }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
+def search_ajax(request):
+    form = SearchForm(request.GET)
 
 def book_place(request):
     if request.POST:

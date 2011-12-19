@@ -1,10 +1,5 @@
 {% extends "content.html" %}
 {% load i18n thumbnail %}
-{% block extrajs %}
-    <script>$(document).ready(function () {
-        gh.searchPlaceInit()
-    })</script>
-{% endblock %}
 {% block content %}
     <form action="." method=get>
         <div class="altikutu">
@@ -33,7 +28,7 @@
                                 <img src="{% thumbnail s.primary_photo 120x100 crop %}">
                             </div>
                             <div class="detail">
-                                <h4>{{ s.title }}</h4>
+                                <h4><a href="{% url show_place s.id %}">{{ s.title }}</a></h4>
                                 {{ s.city }} - {{ s.district }}, {{ s.get_country_display }}<br>
                                 {{ s.get_type_display }} / {{ s.get_space_display }}<br>
                                 <img class="ownimg" src="{% thumbnail s.owner.get_profile.photo 0x30 crop=scale %}">

@@ -296,7 +296,7 @@ class Vitrin(models.Model):
         elif type in dPHOTO_TYPES:
             log.error('testt')
             ogeler = ogeler.filter(type=type)
-        log.info('testt', type)
+#        log.info('testt', type)
         return ogeler
 
 #        o = o if dilkodu is None else o.filter(dil_kodu=dilkodu)
