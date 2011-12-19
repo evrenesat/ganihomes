@@ -743,7 +743,7 @@ ul.messages {
     /*display: none;*/
 }
 
-.ui-autocomplete {
+#araoneri .ui-autocomplete {
     width: 265px !important;
     position: inherit !important;
 }

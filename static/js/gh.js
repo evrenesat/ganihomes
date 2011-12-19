@@ -89,8 +89,8 @@ gh = {
     },
     currRates:{},
     selected_currency:0,
-    otokompliti:function(p){
-      return ['abc']
+    otokompliti:function(request, response){
+      response(['ab asdasdasc','weqq sdasdw'])
     },
     searchPlaceInit:function () {
         self = this
@@ -103,9 +103,9 @@ gh = {
         });
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
         $("#id_search_pharse").autocomplete({minLength: 1,
-            source:function(p){
-                console.log('sss');
-                self.otokompliti(p)
+            source:function(request, response){
+                response(['ab asdasdasc','weqq sdasdw'])
+//                self.otokompliti(request, response)
             }
         })
     },
