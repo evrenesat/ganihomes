@@ -405,8 +405,9 @@ def search(request):
 @csrf_exempt
 def search_ajax(request):
     form = SearchForm(request.GET)
-    results = Place.objects.filter(active=True).values_list('summary')
-    HttpResponse(json.dumps(list(results)), mimetype='application/json')
+    pls = Place.objects.filter(active=True)
+    return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
+        mimetype='application/json')
 
 
 def book_place(request):

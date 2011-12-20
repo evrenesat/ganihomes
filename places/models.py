@@ -266,12 +266,12 @@ class Place(models.Model):
     prices = models.TextField(editable=False, default='')
     summary = models.TextField(editable=False, default='')
 #    details = models.TextField(editable=False, default='')
-
+    SHORTS = {'id':'id','title':'tt','city':'ci','district':'di','country':'co','postcode':'pc','currency_id':'cid','owner_id':'oid','lat':'lt','lon':'ln','favorite_counter':'fc','overall_rating':'or'}
     def _updateSummary(self):
         di={}
-        for i in ['id','title','city','district','country','postcode','currency_id','owner_id','lat','lon','favorite_counter','overall_rating']:
-            di[i]=getattr(self,i)
-        self.summary = json.dumps(di)
+        for k,v in self.SHORTS.items():
+            di[v]=getattr(self,k)
+        self.summary = json.dumps(di,ensure_ascii=False)
 
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-')
