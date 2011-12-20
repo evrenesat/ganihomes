@@ -402,9 +402,12 @@ def search(request):
     form = SearchForm()
     context = {'results':Place.objects.all(),'form':form }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
-
+@csrf_exempt
 def search_ajax(request):
     form = SearchForm(request.GET)
+    results = Place.objects.filter(active=True).values_list('summary')
+    HttpResponse(json.dumps(list(results)), mimetype='application/json')
+
 
 def book_place(request):
     if request.POST:

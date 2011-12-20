@@ -260,8 +260,18 @@ class Place(models.Model):
     active = models.BooleanField(_('Place is online'), default=True)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
+
+    #####JSON CACHES######
     reserved_dates = models.TextField(editable=False, default='')
     prices = models.TextField(editable=False, default='')
+    summary = models.TextField(editable=False, default='')
+#    details = models.TextField(editable=False, default='')
+
+    def _updateSummary(self):
+        di={}
+        for i in ['id','title','city','district','country','postcode','currency_id','owner_id','lat','lon','favorite_counter','overall_rating']:
+            di[i]=getattr(self,i)
+        self.summary = json.dumps(di)
 
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (self.size, self.get_size_type_display()) if self.size else '-')
@@ -269,7 +279,7 @@ class Place(models.Model):
     # [ 0|sessional_prices_list[[startdate, enddate, price, weekendprice]],
     # 1|default_price, 2|weekend_price, 3|currency_id, 4|weekly_discount, 5|monthly_discount,
     #  6|extra_limit, 7|extra_price, 8|cleaning_fee]
-    def _update_prices(self):
+    def _updatePrices(self):
 
         di =[float(str(self.price)), float(str(self.weekend_price)), self.currency_id,  self.weekly_discount or 0, self.monthly_discount or 0, self.extra_limit or 0, float(str(self.extra_price or 0)), float(str(self.cleaning_fee or 0))]
         sessions = []
@@ -279,7 +289,7 @@ class Place(models.Model):
         self.prices = json.dumps(di)
 
 
-    def update_reserved_dates(self):
+    def updateReservedDates(self):
         ard=[]
         for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
             r = (rd.end+datetime.timedelta(days=1)-rd.start).days
@@ -296,7 +306,8 @@ class Place(models.Model):
 
 
     def save(self, *args, **kwargs):
-        self._update_prices()
+        self._updatePrices()
+        self._updateSummary()
         super(Place, self).save(*args, **kwargs)
 
     class Meta:
@@ -380,7 +391,7 @@ class ReservedDates(models.Model):
 
     def save(self, *args, **kwargs):
         super(ReservedDates, self).save(*args, **kwargs)
-        self.place.update_reserved_dates()
+        self.place.updateReservedDates()
 
 
 class Photo(models.Model):

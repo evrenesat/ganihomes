@@ -123,6 +123,7 @@ gh = {
 //                self.otokompliti(request, response)
             }
         })
+        $('#submit').click(this.jsearch)
     },
     init_index:function () {
 
@@ -274,8 +275,8 @@ gh = {
         }
     },
     gcGosterGizle:function(){
-        $('#adres_form').toggle();
-        $('#adres_harita').toggle();
+        $('#adres_form').toggleClass('to_neverland');
+        $('#adres_harita').toggleClass('to_neverland');
     },
     //////////////////////////////////////////////////////
     ////////////////////MAPPPS - GEOCODING////////////////
@@ -292,8 +293,8 @@ gh = {
     glatlng:'',
     gZoom:8,
     setLatLon:function(){
-            this.lat = $('#id_lat').val()
-            this.lon = $('#id_lon').val()
+        if($('#id_lat').val()!='0.0')this.lat = $('#id_lat').val()
+        if($('#id_lon').val()!='0.0')this.lon = $('#id_lon').val()
     },
     getLatLon:function(l){
             $('#id_lat').val(l.Qa)
@@ -326,6 +327,7 @@ gh = {
     gcinit:function(nomarker){
         this.geocoder = new google.maps.Geocoder();
         this.glatlng = new google.maps.LatLng(this.lat,this.lon);
+//        console.log(this.glatlng,this.lat,this.lon)
         var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
         this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
@@ -336,6 +338,7 @@ gh = {
         var self = this;
         this.geocoder.geocode( { 'address': $('#id_address').val()}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
+//              a=results[0].geometry.location
             self.map.setCenter(results[0].geometry.location);
             self.gcResult = results[0];
             self.infoWindow.setContent(results[0].formatted_address+self.popup_html)
@@ -612,24 +615,37 @@ gh = {
         }
     },
     new_place_wizard_html:'',
-    add_place_url:'/add_place_ajax/',
+    add_place_url:function(id){
+        return '/' + this.LANGUAGE_CODE + '/add_place_ajax/' +
+            (typeof(id)=='undefined' ? '' : id)
+    },
+    search_url:function(){ return '/' + this.LANGUAGE_CODE + '/jsearch/'},
     do_dbAddPlaceWizzard:function(self){
         var frm=$('#addplace_wizard')
+//        console.log('wwwwjmm')
         var icerik = frm.html()
         if (!icerik||icerik.indexOf('npw-flag')==-1){
+//            console.log('aajmm')
             if(!self.new_place_wizard_html){
                 self.showFrame('loading')
-                $.get(self.add_place_url,function(data){
+                $.get(self.add_place_url(),function(data){
                     self.new_place_wizard_html = '<!--npw-flag-->'+data
                     self.showFrame(frm,self.new_place_wizard_html)
                     self.init_placeWizzard()
                 })
             }else {
+//                console.log('jmm')
                 self.showFrame(frm,self.new_place_wizard_html)
                 self.init_placeWizzard()
             }
 
         }else self.showFrame(frm)
+    },
+    jsearch:function(){
+            $.post('/jsearch/', $("#search_form").serialize(),function(data){
+                console.log(data)
+                $("#addplaceform").html()
+            });
     },
     init_placeWizzard:function(place_id){
         if(typeof(place_id)=='undefined')place_id=''
@@ -642,25 +658,26 @@ gh = {
         })
 //        self.gcGosterGizle()
         $('#apbutton3').val('Kaydet').click(function(){
-            $.post(self.add_place_url+place_id, $("#addplaceform").serialize(),function(){
+            $.post(self.add_place_url(place_id), $("#addplaceform").serialize(),function(){
                 self.showFrame('results','<div class="success">İşlem başarılı</div>')
                 $("#addplaceform").html()
             });
         });
-        $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+        self.changeForm(1)
+        $('#id_address').keydown(function(event){console.log(event.keyCode);if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
         this.upload_init(place_id)
     },
     editPlaceWizzard:function(id){
         var self = this
         this.showFrame('loading')
-        $.get(this.add_place_url+id,function(data){
+        $.get(this.add_place_url(id)    ,function(data){
             self.showFrame('addplace_wizard',data)
-
+            self.gcGosterGizle()
             self.init_placeWizzard(id)
 
-            self.gcGosterGizle()
-            self.setLatLon('#id_geocode')
+
+            self.setLatLon()
         })
     }
 

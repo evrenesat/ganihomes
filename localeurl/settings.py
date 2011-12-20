@@ -11,7 +11,8 @@ PATH_RE = re.compile(r'^/(?P<locale>%s)(?P<path>.*)$' % LOCALES_RE)
 LOCALE_INDEPENDENT_PATHS = [re.compile(p) for p in
                             getattr(settings, 'LOCALE_INDEPENDENT_PATHS', [
                                 r'^/upload_photo/',
-                                r'^/jsearch'
+                                r'^/jsearch',
+#                                r'nolocale=1$'
                             ])]
 
 LOCALE_INDEPENDENT_MEDIA_URL = getattr(settings,

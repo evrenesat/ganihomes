@@ -1,7 +1,7 @@
 {% extends "content.html" %}
 {% load i18n thumbnail %}
 {% block content %}
-    <form action="." method=get>
+    <form action="." method=get id='search_form'>
         <div class="altikutu">
 
             <div id="place-conatiner" class="sresults">
@@ -18,10 +18,10 @@
                     <div><label>{{ form.no_of_guests.label }}</label><br>
                     {{ form.no_of_guests }}</div>
                     <div><label>&nbsp;</label><br>
-                    <button type="submit" id="submit">{% trans "Search" %}</button>
+                    <button type="button" id="submit">{% trans "Search" %}</button>
                     </div>
                 </div>
-                <ul>
+                <ul id="resul">
                     {% for s in results %}
                         <li>
                             <div class="pimg">

@@ -1601,7 +1601,11 @@ li.g-plus-one {
     top: 5px;
     color: green;
 }
-
+.to_neverland{
+    position:absolute;
+    top:-10000px;
+    left:-10000px;
+}
 #map_canvas {
     width: 620px;
     height: 300px;
