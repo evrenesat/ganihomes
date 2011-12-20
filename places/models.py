@@ -200,7 +200,21 @@ def date_range(start, end):
      r = (end+datetime.timedelta(days=1)-start).days
      return [start+datetime.timedelta(days=i) for i in range(r)]
 
+class GeoPlanet(models.Model):
+    name = models.CharField(_('Name'), max_length=40)
+    alias = models.CharField(_('Alias'), max_length=40)
+    woeid = models.IntegerField('WOEID')
+    parent_id = models.IntegerField('WOEID')
+    iso = models.CharField(_('Country'), max_length=2)
+    type = models.SmallIntegerField(_('Type'), choices=LOCATION_TYPES)
 
+    class Meta:
+        ordering = ['woeid']
+        verbose_name = _('GeoPlanet Data')
+        verbose_name_plural = _('GeoPlanet Datas')
+
+    def __unicode__(self):
+        return '%s %s' % (self.iso, self.name)
 class Place(models.Model):
     """Places"""
 
@@ -215,6 +229,8 @@ class Place(models.Model):
     postcode = models.CharField(_('Postcode'), max_length=15)
     city = models.CharField(_('City'), max_length=40)
     district = models.CharField(_('District'), max_length=40)
+    woeid = models.IntegerField('WOEID')
+    neighborhood = models.CharField(_('Neighborhood'), max_length=40)
     state = models.CharField(_('State/Region'), max_length=40, null=True, blank=True)
     emergency_phone = models.CharField(_('Emergency phone'), max_length=20, null=True, blank=True)
 #    phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)

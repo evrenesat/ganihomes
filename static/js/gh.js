@@ -360,8 +360,7 @@ gh = {
 //            console.log(ac.long_name, typ)
             if(typ=='country')$('#id_country').val(ac.short_name)
             if(typ=='route')$('#id_street').val(ac.long_name)
-            if(typ=='neighborhood')$('#id_street').val($('#id_street').val() + ' ' + ac.long_name)
-
+            if(typ=='neighborhood')$('#id_neighborhood').val(ac.long_name)
             if(typ=='postal_code')$('#id_postcode').val(ac.long_name)
             if(typ=='administrative_area_level_2')$('#id_district').val(ac.long_name)
             if(typ=='administrative_area_level_1')$('#id_city').val(ac.long_name)
@@ -510,7 +509,7 @@ gh = {
         var self = this;
 //        console.log(self,this)
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-        $('#address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+        $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
         $('#gotodetails').click(function(){ self.changeForm(3); });
         $('#gotomap').click(function(){

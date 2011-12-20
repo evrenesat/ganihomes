@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
+from django.db.models.query_utils import Q
 from django.db.utils import IntegrityError
 from django.utils import simplejson as json
 from django.forms.models import ModelForm
@@ -402,10 +403,18 @@ def search(request):
     form = SearchForm()
     context = {'results':Place.objects.all(),'form':form }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @csrf_exempt
 def search_ajax(request):
     form = SearchForm(request.GET)
     pls = Place.objects.filter(active=True)
+    page = request.GET.get('page',1)
+
+    if form.is_valid():
+        if form.cleaned_data['search_pharse']:
+            pls = pls.filter(Q())
+    paginator = Paginator(contact_list, 25)
     return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
         mimetype='application/json')
 
