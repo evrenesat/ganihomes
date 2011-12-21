@@ -1,11 +1,11 @@
 {% extends "content.html" %}
-{% load i18n%}
+{% load i18n cevir%}
 {% block content %}
     <div class="dortkutu">
         <div class="kutuici">
 
 
-            <h3>{% trans "Wellcome" %}</h3>
+            <h3>{% cevir "giris form baslik" %}</h3>
 
 
 
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="orline" ></div>
-                <div class="or">ya da</div>
+                <div class="or">{% trans "or" %}</div>
                 <div class="orline" ></div>
 
 <div style="width:100;text-align:center;">
@@ -40,12 +40,14 @@
 
     <div id="uyeol" class="ikikutu">
 
-        <h3>Henüz üye olmadınız mı?</h3>
+        <h3>{% cevir "giris sag blok mini kayit form baslik" %}</h3>
         <hr>
 <form action="{% url register %}" method="post">
     {% csrf_token %}
         <div id="uyekapsar" >
-            <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
+            <p style="margin:-10px 10px 10px 10px;">
+
+{% cevir "giris sag blok mini kayit form ustyazi" %}
             </p>
         <div class="sideform2 separate">
                 <label for="id_first_name">{{ rform.first_name.label }}</label><br>
@@ -79,7 +81,7 @@
                                 </div>
 
         <div class="orline" ></div>
-        <div class="or">yada</div>
+        <div class="or">{% trans "or" %}</div>
         <div class="orline" ></div>
 
         <div class="yuzz float-left" style="text-align:center;">

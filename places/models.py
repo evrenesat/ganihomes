@@ -200,18 +200,23 @@ def date_range(start, end):
      r = (end+datetime.timedelta(days=1)-start).days
      return [start+datetime.timedelta(days=i) for i in range(r)]
 
-class GeoPlanet(models.Model):
-    name = models.CharField(_('Name'), max_length=40)
-    alias = models.CharField(_('Alias'), max_length=40)
-    woeid = models.IntegerField('WOEID')
-    parent_id = models.IntegerField('WOEID')
-    iso = models.CharField(_('Country'), max_length=2)
-    type = models.SmallIntegerField(_('Type'), choices=LOCATION_TYPES)
+class GeoLocation(models.Model):
+    id = models.IntegerField('WOEID',primary_key=True)
+    iso = models.CharField(_('Country'), max_length=2, db_index=True)
+    name = models.CharField(_('Name'), max_length=100, db_index=True)
+    type = models.SmallIntegerField(_('Type'), choices=LOCATION_TYPES )
+#    parent_id = models.IntegerField('WOEID')
+    parent = models.ForeignKey('self')
+#    alias = models.CharField(_('Alias'), max_length=40,default='')
+#    popularity = models.IntegerField('Popularity',default=0)
+#    priority = models.IntegerField('Priority',default=0)
+#
+
 
     class Meta:
-        ordering = ['woeid']
-        verbose_name = _('GeoPlanet Data')
-        verbose_name_plural = _('GeoPlanet Datas')
+#        ordering = ['priority','popularity']
+        verbose_name = _('GeoLocation Data')
+        verbose_name_plural = _('GeoLocation Datas')
 
     def __unicode__(self):
         return '%s %s' % (self.iso, self.name)
@@ -229,7 +234,8 @@ class Place(models.Model):
     postcode = models.CharField(_('Postcode'), max_length=15)
     city = models.CharField(_('City'), max_length=40)
     district = models.CharField(_('District'), max_length=40)
-    woeid = models.IntegerField('WOEID')
+#    woeid = models.IntegerField('WOEID')
+    placement = models.ManyToManyField(GeoLocation,verbose_name=_('Geographic Location'), null=True, blank=True)
     neighborhood = models.CharField(_('Neighborhood'), max_length=40)
     state = models.CharField(_('State/Region'), max_length=40, null=True, blank=True)
     emergency_phone = models.CharField(_('Emergency phone'), max_length=20, null=True, blank=True)
@@ -304,6 +310,8 @@ class Place(models.Model):
         di.insert(0,sessions)
         self.prices = json.dumps(di)
 
+    def setWoeid(self):
+        pass
 
     def updateReservedDates(self):
         ard=[]

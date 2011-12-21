@@ -20,6 +20,15 @@ class PhotoAdmin(admin.ModelAdmin):
 
 
 
+class GeoLocationAdmin(admin.ModelAdmin):
+    list_display = ('name','iso', 'id', 'type')
+    search_fields = ['=name', ]
+    list_filter = ['type','iso' ]
+#    raw_id_fields = ['place']
+    save_on_top = True
+
+
+
 class TagTranslationAdmin(admin.ModelAdmin):
     list_display = ('tag','lang', 'translation',)
     search_fields = ['translation', ]

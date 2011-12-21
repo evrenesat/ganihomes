@@ -357,13 +357,13 @@ gh = {
         for (i in acs){
             var ac = acs[i]
             var typ = ac.types[0]
-//            console.log(ac.long_name, typ)
+            console.log(ac.long_name, typ)
             if(typ=='country')$('#id_country').val(ac.short_name)
             if(typ=='route')$('#id_street').val(ac.long_name)
             if(typ=='neighborhood')$('#id_neighborhood').val(ac.long_name)
             if(typ=='postal_code')$('#id_postcode').val(ac.long_name)
             if(typ=='administrative_area_level_2')$('#id_district').val(ac.long_name)
-            if(typ=='administrative_area_level_1')$('#id_city').val(ac.long_name)
+            if(typ=='locality')$('#id_city').val(ac.long_name)
         }
         this.gcGosterGizle()
     },

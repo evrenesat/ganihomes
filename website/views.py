@@ -98,7 +98,7 @@ class addPlaceForm(ModelForm):
     class Meta:
         model=Place
         fields = ('title','type','capacity','space','description','price','currency',
-            'city','country','district','street','address','lat','lon',
+            'city','country','district','street','address','lat','lon','neighborhood',
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
 @login_required

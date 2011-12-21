@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
+
 __author__ = 'Evren Esat Ozkan'
 from places.options import LOCALES
 from django.db import models
@@ -58,6 +60,12 @@ class Kelime(models.Model):
     # = models.SmallIntegerField(_(''))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
+
+    def save(self, *args, **kwargs):
+        super(Kelime, self).save(*args, **kwargs)
+        for k,n in settings.LANGUAGES:
+            self.ceviriler_set.get_or_create(kod=k)
+
     class Meta:
         verbose_name = u"İçerik Bloku"
         verbose_name_plural = u"İçerik Blokları"
@@ -77,9 +85,9 @@ class Ceviriler(models.Model):
 
     kelime = models.ForeignKey(Kelime, verbose_name=_('Türkçesi'))
     asil = models.CharField(max_length=100, editable=False)
-    kod = models.CharField(_('Dil'), max_length=5, choices=LOCALES)
+    kod = models.CharField(_('Dil'), max_length=5, choices=settings.LANGUAGES)
 #    dil = models.SmallIntegerField(verbose_name=_('Dil'), choices=LOCALES)
-    ceviri = models.TextField(_('Çevirisi'))
+    ceviri = models.TextField(_('Çevirisi'), default='', blank=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
 
@@ -100,30 +108,19 @@ class Ceviriler(models.Model):
     @classmethod
     def cevir(cls, kelime, dil_kodu):
         skelime = slugify(kelime)
-
         k = kes(cls.KES_PREFIX, skelime[:40], dil_kodu)
         c = k.g()
-        if c:
-            return  c
-        else:
-            c = cls.objects.filter(asil=skelime, kod=dil_kodu).values_list('ceviri')
-
-        if c:
-            k.s(c[0][0])
-            return c[0][0]
-        else:
-            c = cls.objects.filter(asil=skelime).values_list('ceviri')
-
-        if c:
-            k.s(c[0][0])
-            return c[0][0]
-        else:
-            Kelime.objects.get_or_create(kelime=skelime)
-            return kelime
+        if c: return  c or kelime
+        c = cls.objects.filter(asil=skelime, kod=dil_kodu).exclude(ceviri='').values_list('ceviri',flat=True)
+        if c: return k.s(c[0])
+        c = cls.objects.filter(asil=skelime).exclude(ceviri='').values_list('ceviri',flat=True)
+        if c: return k.s(c[0])
+        Kelime.objects.get_or_create(kelime=skelime)
+        return k.s(kelime)
 
 
     def save(self, *args, **kwargs):
-        self.asil = self.kelime.kelime
+        self.asil = slugify(self.kelime.kelime)
 #        self.kod = self.dil.kodu
         super(Ceviriler, self).save(*args, **kwargs)
         ceviri_sayisi = self.kelime.ceviriler_set.exclude(ceviri='').count()

@@ -13,6 +13,33 @@ PLACE_TYPES = [
     (6, _('Caravan')),
     (50, _('Office')),
 ]
+LOCATION_TYPES = (
+ (25, 'Continent'),
+ (19, 'Sport'),
+ (8, 'Timezone'),
+ (23, 'Sea'),
+ (9, 'Island'),
+ (3, 'County'),
+ (13, 'Colloquial'),
+ (21, 'Estate'),
+ (7, 'LandFeature'),
+ (18, 'HistoricalCounty'),
+ (14, 'Drainage'),
+ (5, 'Airport'),
+ (26, 'Ocean'),
+ (17, 'HistoricalTown'),
+ (6, 'Country'),
+ (16, 'LocalAdmin'),
+ (4, 'Town'),
+ (12, 'HistoricalState'),
+ (15, 'POI'),
+ (11, 'Suburb'),
+ (22, 'Miscellaneous'),
+ (10, 'Zip'),
+ (24, 'Supername'),
+ (2, 'State'),
+ (1, 'PlaceType'),
+ (20, 'Zone'))
 
 PROMOTION_TYPES = (
     (1, _('Amount (positive balance)')),
