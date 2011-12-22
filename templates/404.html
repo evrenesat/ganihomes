@@ -8,21 +8,24 @@
         <div class="kutuici">
 
 
+
                 <div style="height:350px;width:680px;padding-top:70px;">
                     <img style="float:left;" src="{{ STATIC_URL }}images/ganiman-sorry.png" >
-                <div style="width:460px;float:left;margin-left:-10px;">
+                <div style="width:440px;;float:left;">
                     <div class="triangle-border left">
-                    <h3>{% trans "Oops! That should not happen" %}</h3>
+                    <h3>{% trans "Page not found!" %}</h3>
 
-                    {% trans "An unexpected error occured. Our team is informed and problem should be fixed soon." %}
+                    {% trans "Sorry, but we can't find the page you are looking for. Our team is informed about the broken link. " %}
                         <br><br>
-                    {% trans "Sorry for the inconvenience." %}
+                                        <a style="text-decoration:none;" href="javascript:history.back()">&laquo; {% trans "Go to back" %}</a>
                     </div>
                 </div>
 
                 </div>
             </div>
                         </div>
+
+
 
 
 {% endblock %}

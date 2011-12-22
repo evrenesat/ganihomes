@@ -183,5 +183,3 @@ LOCALES = (
 #('zh_CN', _('Chinese (China)')),
 #('zh_TW', _('Chinese (Taiwan)')),
 )
-
-INFORM_TYPES

@@ -363,6 +363,7 @@ gh = {
             if(typ=='neighborhood')$('#id_neighborhood').val(ac.long_name)
             if(typ=='postal_code')$('#id_postcode').val(ac.long_name)
             if(typ=='administrative_area_level_2')$('#id_district').val(ac.long_name)
+            if(typ=='administrative_area_level_1')$('#id_state').val(ac.long_name)
             if(typ=='locality')$('#id_city').val(ac.long_name)
         }
         this.gcGosterGizle()
@@ -505,30 +506,7 @@ gh = {
     },
     selected_dates:{},
     replace_pricetag : function(){this.rePlace('#titlediv', '.fetiket', 615, -3);},
-    init_add_place:function(){
-        var self = this;
-//        console.log(self,this)
-        $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-        $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
-        $('#addrFindBut').click(function(){self.geocodeAddress()});
-        $('#gotodetails').click(function(){ self.changeForm(3); });
-        $('#gotomap').click(function(){
-            self.changeForm(2);
-            self.markerMaps();
-        });
-//        $('#wfContainer').scroll(function(event){self.changeForm(1);})
-        $('#apbutton3').click(function(){
-            if(typeof(LGD)=='undefined'){
-                self.changeForm(4);
-            }
-            else $('#addplaceform').submit()
-        });
-        /*gecici*/
-//        self.changeForm(3);
-//        $( "#accordion").accordion( "activate" , 4 )
-        //**//
-        this.upload_init()
-    },
+
     _gotoNextPhoto:function(current_photo){
         var next
 //        xx=this
@@ -646,26 +624,49 @@ gh = {
                 $("#addplaceform").html()
             });
     },
-    init_placeWizzard:function(place_id){
-        if(typeof(place_id)=='undefined')place_id=''
-        var self=this
+    markReqFields:function(container_id, label_fors){
+        if(typeof(label_fors)=='undefined'){
+            $("#"+container_id+" label").append('<span class="redstar">*</span>')
+        }
+        else{
+            for(l in label_fors){
+                $("#"+container_id+" label[for=id_"+label_fors[l]+"]").each(function(){
+                    $(this).append('<span class="redstar">*</span>')
+                })
+            }
+        }
+
+    },
+    init_add_place:function(place_id){
+        var self = this;
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-        $('#gotomap').click(function(){ self.changeForm(2); self.markerMaps();});
+        $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+        $('#addrFindBut').click(function(){self.geocodeAddress()});
         $('#gotodetails').click(function(){ self.changeForm(3); });
+        $('#gotomap').click(function(){
+            self.changeForm(2);
+            self.markerMaps();
+        });
+        $('#apbutton3').click(function(){$('#addplaceform').submit()});
+        this.markReqFields('form1')
+        this.markReqFields('form2',['country','city','street'])
+        this.upload_init(place_id)
+        self.changeForm(1)
         $('#uploaded img').dblclick(function(){
             $.post('/delete_photo/'+$(this).attr('id').replace('img_',''),function(data){$('#img_'+data).hide('slow')})
         })
-//        self.gcGosterGizle()
-        $('#apbutton3').val('Kaydet').click(function(){
+    },
+    init_placeWizzard:function(place_id){
+        if(typeof(place_id)=='undefined')place_id=''
+        var self=this
+        $('#addplaceform').submit(function(){
             $.post(self.add_place_url(place_id), $("#addplaceform").serialize(),function(){
                 self.showFrame('results','<div class="success">İşlem başarılı</div>')
                 $("#addplaceform").html()
             });
+            return false;
         });
-        self.changeForm(1)
-        $('#id_address').keydown(function(event){console.log(event.keyCode);if(event.keyCode == '13')self.geocodeAddress()});
-        $('#addrFindBut').click(function(){self.geocodeAddress()});
-        this.upload_init(place_id)
+        this.init_add_place(place_id)
     },
     editPlaceWizzard:function(id){
         var self = this

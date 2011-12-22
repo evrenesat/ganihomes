@@ -310,8 +310,16 @@ class Place(models.Model):
         di.insert(0,sessions)
         self.prices = json.dumps(di)
 
-    def setWoeid(self):
-        pass
+    def setGeoLocation(self):
+        gl = GeoLocation.objects
+        cset = [[l.geolocation_set.count(), l] for l in  gl.filter(parent_id=1, iso=self.country)]
+        country = sorted(cset, key=lambda x:x[0])[-1][1]
+        locs = [self.state, self.city, self.district, self.neighborhood]
+
+
+        self.placement.add([0])
+        self.placement.add(gl.filter(parent_id=1, iso=self.country)[0])
+
 
     def updateReservedDates(self):
         ard=[]

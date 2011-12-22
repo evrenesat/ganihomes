@@ -88,6 +88,7 @@ def anasayfa(request):
 class addPlaceForm(ModelForm):
     lat= forms.FloatField(widget=forms.HiddenInput())
     lon= forms.FloatField(widget=forms.HiddenInput())
+#    neighborhood= forms.FloatField(widget=forms.HiddenInput())
 
 #    postcode= forms.CharField(widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
@@ -98,7 +99,7 @@ class addPlaceForm(ModelForm):
     class Meta:
         model=Place
         fields = ('title','type','capacity','space','description','price','currency',
-            'city','country','district','street','address','lat','lon','neighborhood',
+            'city','country','district','street','address','lat','lon','neighborhood','state',
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
 @login_required
