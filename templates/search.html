@@ -8,8 +8,8 @@
                 <div id="araust">
 
                     <div>
-                        <label>{{ form.search_pharse.label }}</label><br>
-                        {{ form.search_pharse }}</div>
+                        <label>{{ form.query.label }}</label><br>
+                        {{ form.query }}</div>
 
                     <div><label>{{ form.checkin.label }}</label><br>
                     {{ form.checkin }}</div>
@@ -21,29 +21,60 @@
                     <button type="button" id="submit">{% trans "Search" %}</button>
                     </div>
                 </div>
+                <script type="text/x-jqote-template" id="wideResultsTpl">
+                                        <![CDATA[
+
+
+
+                                        <li>
+                                            <div class="pimg">
+                                                <img src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=this.id%>_s.jpg">
+                                            </div>
+                                            <div class="detail">
+                                                <h4><a href="/{{ LANGUAGE_CODE }}/places/<%=this.id%>"><%=this.tt%></a></h4>
+                                                <%=this.ci%> - <%=this.di%>, <%=COUNTRIES[this.co]%><br>
+                                                <%=SPACE_TYPES[this.typ]%> / <%=PLACE_TYPES[this.spc]%><br>
+                                                <img class="ownimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/<%=this.oid%>_s.jpg">
+
+                                            </div>
+
+
+                                            <div class="price">
+                                                <div class="    gh-prc crc" data-prc="<%=this.prc%>" data-crc="<%=this.cid%>">
+                                                <%=this.price%>
+                                                </div>
+                                                <div class="rating star<%=this.or%>"></div>
+                                            </div>
+
+                                        </li>
+                                        ]]>
+
+                                    </script>
                 <ul id="resul">
-                    {% for s in results %}
-                        <li>
-                            <div class="pimg">
-                                <img src="{% thumbnail s.primary_photo 120x100 crop %}">
-                            </div>
-                            <div class="detail">
-                                <h4><a href="{% url show_place s.id %}">{{ s.title }}</a></h4>
-                                {{ s.city }} - {{ s.district }}, {{ s.get_country_display }}<br>
-                                {{ s.get_type_display }} / {{ s.get_space_display }}<br>
-                                <img class="ownimg" src="{% thumbnail s.owner.get_profile.photo 0x30 crop=scale %}">
-
-                            </div>
 
 
-                            <div class="price">
-                                {{ s.price }} {{ s.currency }}
-                                <div class="rating star{{ s.overall_rating}}"></div>
-                            </div>
-
-                        </li>
-
-                    {% endfor %}
+{#                    {% for s in results %}#}
+{#                        <li>`#}
+{#                            <div class="pimg">#}
+{#                                <img src="{% thumbnail s.primary_photo 120x100 crop %}">#}
+{#                            </div>#}
+{#                            <div class="detail">#}
+{#                                <h4><a href="{% url show_place s.id %}">{{ s.title }}</a></h4>#}
+{#                                {{ s.city }} - {{ s.district }}, {{ s.get_country_display }}<br>#}
+{#                                {{ s.get_type_display }} / {{ s.get_space_display }}<br>#}
+{#                                <img class="ownimg" src="{% thumbnail s.owner.get_profile.photo 0x30 crop=scale %}">#}
+{##}
+{#                            </div>#}
+{##}
+{##}
+{#                            <div class="price">#}
+{#                                {{ s.price }} {{ s.currency }}#}
+{#                                <div class="rating star{{ s.overall_rating}}"></div>#}
+{#                            </div>#}
+{##}
+{#                        </li>#}
+{##}
+{#                    {% endfor %}#}
                 </ul>
 
             </div>

@@ -6,7 +6,7 @@
 {% endblock %}
 {% block extrajs %}
 <script>gh_rdts={{ place.reserved_dates|default:"[]" }};gh_prcs={{ place.prices|default:"{}" }};</script>
-{#    <script type="text/javascript" src="{{ STATIC_URL }}datepick/jquery.datepick.js"></script>#}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
 {#    <script type="text/javascript" src="{{ STATIC_URL }}datepick/jquery.datepick-{{ LANGUAGE_CODE }}.js"></script>#}
 {#<script>$(document).ready(function(){gh.showPlaceInit()})</script>#}
 {% endblock %}

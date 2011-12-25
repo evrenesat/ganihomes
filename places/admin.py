@@ -24,7 +24,7 @@ class GeoLocationAdmin(admin.ModelAdmin):
     list_display = ('name','iso', 'id', 'type')
     search_fields = ['=name', ]
     list_filter = ['type','iso' ]
-#    raw_id_fields = ['place']
+    raw_id_fields = ['parent']
     save_on_top = True
 
 
@@ -116,7 +116,7 @@ class PlaceAdmin(admin.ModelAdmin):
     list_filter = ['type', 'space', 'bedroom', ]
     save_on_top = True
 
-    raw_id_fields=('owner', )
+    raw_id_fields=('owner', 'placement')
     readonly_fields=['timestamp','last_modified']
     #save_as=True
     #ordering = ['',]

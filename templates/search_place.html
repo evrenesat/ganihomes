@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>&nbsp;</title>
+    <!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+    <style type="text/css" media="all">@import url("/css/main.css");</style>
+    <style type="text/css" media="all">@import url("/css/calendar.css");</style>
+    <script src="http://www.google.com/jsapi"></script>
+    <script>
+        google.load("jquery", "1");
+        google.setOnLoadCallback(initialize);
+        var soa_host = "http://localhost:8080";
+        function initialize() {
+            $('#container').hide();
+            $('#ajax-loader').show();
+            var params = $.getUrlVars();
+            if (params['lat'] == null && params['lng'] == null) {
+                var ajax_params = {'place':params['place'], 'month':params['month']};
+            } else {
+                var ajax_params = {'lat':params['lat'], 'lng':params['lng'], 'month':params['month']};
+            }
+            var url = soa_host + "/api/calendar?callback=?";
+            $.getJSON(url, ajax_params, function (json) {
+                /* the calendar template */
+                for (wn in json.weeks) {
+                    var week = json.weeks[wn];
+                    var tr_innerHtml = "";
+                    for (dn in week) {
+                        var day = week[dn];
+                        var td = $('#calendar_td').jqote(day);
+                        tr_innerHtml += td
+                    }
+                    $('#calendar').jqoteapp($('#calendar_tr'), {
+                        "innerHtml":tr_innerHtml });
+                }
+                /* smallclass and ad-hoc templates */
+                $('title').jqotesub('<%= this.title %>', json);
+                $('#title').jqotesub('<%= this.title %>', json);
+                $('#prev_month').jqotesub('#prev_month_link', json);
+                $('#next_month').jqotesub('#next_month_link', json);
+                $('#container').show('slow');
+                $('#ajax-loader').hide('fast');
+            });
+        }
+    </script>
+    <script type="text/javascript" src="/js/jquery.jqote2.min.js"></script>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/x-jqote-template" id="calendar_td">
+        <![CDATA[
+        <td class="<%= this.css_classes %>"><span class="date"><%=
+this.daymon %></span>
+
+            <div>&nbsp;</div>
+            <div class="day">
+                <% if ( parseFloat(this.price) > 0.0 ) { %>
+                <i>Best Price</i> <br>
+                <a href='<%= this.url %>'><b>&pound;<%= this.price
+                    %></b></a>
+                <% } else { %>
+                <i>Sorry, No Slots Available</i>
+                <% } %>
+            </div>
+        </td>
+        ]]>
+    </script>
+    <script type="text/x-jqote-template" id="calendar_tr">
+        <![CDATA[
+        <tr>
+            <%= this.innerHtml %>
+        </tr>
+        ]]>
+    </script>
+    <script type="text/x-jqote-template" id="prev_month_link">
+        <![CDATA[
+        <a href="<%= this.prev_month.url %>">&lt;&lt;&nbsp;<%=
+            this.prev_month.text %></a>
+        ]]>
+    </script>
+    <script type="text/x-jqote-template" id="next_month_link">
+        <![CDATA[
+        <a href="<%= this.next_month.url %>">&gt;&gt;&nbsp;<%=
+            this.next_month.text %></a>
+        ]]>
+    </script>
+</head>
+<body>
+<div id="top">
+    <a href="/"><img src="/images/logo.jpg"/></a>Choose a Place,
+    Choose a Time, Choose a Price
+</div>
+<div id="left">
+    <p>Adverts</p>
+</div>
+<div id="middle">
+    <div id="ajax-loader">
+        <img src="/images/ajax-loader.gif" class="margin: auto"/>
+    </div>
+    <div id="container">
+        <div class="month-header">
+            <div class="keepleft" id="prev_month">&nbsp;</div>
+            <div class="keepleft" id="next_month">&nbsp;</div>
+            <div class="clear"></div>
+        </div>
+        <table id="month">
+            <thead>
+            <tr>
+                <th class="weekend">Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th class="weekend">Saturday</th>
+            </tr>
+            </thead>
+            <tbody id="calendar">
+            &nbsp;
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="right">
+    <p>Adverts</p>
+</div>
+</body>
+</html>

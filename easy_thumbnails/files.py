@@ -8,6 +8,8 @@ from easy_thumbnails import engine, models, utils
 import datetime
 import os
 from django.utils.http import urlquote
+import logging
+log = logging.getLogger('genel')
 
 
 DEFAULT_THUMBNAIL_STORAGE = get_storage_class(
@@ -21,7 +23,7 @@ def get_thumbnailer(object, relative_name=None):
     The ``object`` argument is usually either one of the following:
 
         * ``FieldFile`` instance (i.e. a model instance file/image field
-          property). 
+          property).
 
         * ``File`` or ``Storage`` instance, and for both of these cases the
           ``relative_name`` argument must also be provided
@@ -282,6 +284,8 @@ class Thumbnailer(File):
         extension = extension or 'jpg'
 
         thumbnail_options = thumbnail_options.copy()
+        custom_filename = thumbnail_options.pop('custom_name',None)
+
         size = tuple(thumbnail_options.pop('size'))
         quality = thumbnail_options.pop('quality', self.thumbnail_quality)
         initial_opts = ['%sx%s' % size, 'q%s' % quality]
@@ -304,8 +308,9 @@ class Thumbnailer(File):
                 filename_parts.append(extension)
         else:
             filename_parts += [all_opts, extension]
+        if custom_filename:
+            filename_parts = [custom_filename, extension]
         filename = '.'.join(filename_parts)
-
         return os.path.join(basedir, path, subdir, filename)
 
     def get_thumbnail(self, thumbnail_options, save=True):

@@ -78,10 +78,11 @@ gh = {
         }
     },
     getCurrPrice:function(p){
+        //cc[3] 1 ise para birimi once(usd 1) degilse (1 usd)
       var cc = gh_crc[this.selected_currency]
 //      if (typeof(p)=='undefined')return cc[1]
-      p = " <span class='gprc'>"+p+"</span> "
-      c = "<span class='gcrc'>"+cc[1]+"</span>"
+      p = "<span class='gprc'>"+p+"</span>"
+      c = "<span class='gcrc'>"+cc[2]+"</span>"
       return cc[3]==1 ? c + p : p + c
     },
     priceScanConvert:function(){
@@ -93,8 +94,8 @@ gh = {
           var cid = ob.data('crc')
           var setCrcName = this.className.indexOf("crc") > -1
           prc = self.convertPrice(parseFloat(ob.data('prc')),cid)
-          if(setCrcName) ob.html(self.getCurrPrice(prc))
-          else {
+          if(setCrcName) ob.html(self.getCurrPrice(prc))  //parabirimi yanina ilistirilecekse
+          else {// bol sifirli bir para birimiyse kurus kismini atiyoruz
               cprc = prc.split(',')
               var sub = cprc[0].length<6 ? "<sub>,"+cprc[1]+"</sub>" : ''
               ob.html(cprc[0]+sub)
@@ -104,8 +105,20 @@ gh = {
     },
     currRates:{},
     selected_currency:0,
-    otokompliti:function(request, response){
-      response(['ab asdasdasc','weqq sdasdw'])
+    otokompliti:function(req,res){
+        $.getJSON('/' + this.LANGUAGE_CODE + '/sac/?q=' +req.term, function(data) {
+          var items = [];
+          $.each(data, function(i) {
+              var line = []
+              var place = data[i]
+             for(var p in place){
+                 if(place[p] && line.indexOf(place[p])<0){line.push(place[p])}
+             }
+              items.push(line.join(', '))
+          });
+            res(items)
+        });
+
     },
     init_search:function () {
         self = this
@@ -117,13 +130,13 @@ gh = {
             }
         });
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
-        $("#id_search_pharse").autocomplete({minLength: 1,
+        $("#id_query").autocomplete({minLength: 1,
             source:function(request, response){
-                response(['ab asdasdasc','weqq sdasdw'])
-//                self.otokompliti(request, response)
+                self.otokompliti(request, response)
             }
         })
-        $('#submit').click(this.jsearch)
+        $('#submit').click(function(){self.jsearch()})
+        this.jsearch()
     },
     init_index:function () {
 
@@ -139,8 +152,8 @@ gh = {
         $('#araf input').focus(function () {
             self.akToggle(0)
         });
-        $('#aradugme').click(function () {$('#id_search_pharse').val($('#arainput').val());$('#arabg form').submit()});
-        $('.logo').mouseover(function () {$('.krm').removeClass('krm').addClass('dekrm')}).mouseleave(function () {$('.dekrm').removeClass('dekrm').addClass('krm')});
+        $('#aradugme').click(function () {$('#id_query').val($('#arainput').val());$('#arabg form').submit()});
+    //        $('.logo').mouseover(function () {$('.krm').removeClass('krm').addClass('dekrm')}).mouseleave(function () {$('.dekrm').removeClass('dekrm').addClass('krm')});
 
         $('html').click(function (data) {
 //            console.log(data.srcElement, data.target)
@@ -618,11 +631,33 @@ gh = {
 
         }else self.showFrame(frm)
     },
+    getCurrentCurrency:function(){
+        return gh_crc[this.selected_currency]
+    },
+    setSearchPrices:function(data){
+        for(i in data){
+        var prc = this.convertPrice(parseFloat(data[i].prc),data[i].cid)
+        cc = this.getCurrentCurrency()
+//        prc = " <span class='gprc'>"+prc+"</span> "
+        currency = "<span class='gcrc'>"+cc[2]+"</span>"
+        cprc = prc.split(',')
+        prc = cprc[0].length<6 ? cprc[0] + " <span class='decimal'>,"+cprc[1]+"</span>" : cprc[0]
+        prc = "<span class='gprc'>"+prc+"</span>"
+
+        data[i].price = cc[3]==1 ? currency + prc : prc + currency
+
+
+        }
+        return data
+    },
     jsearch:function(){
-            $.post('/jsearch/', $("#search_form").serialize(),function(data){
-                console.log(data)
-                $("#addplaceform").html()
-            });
+        self=this
+        $.post('/jsearch/', $("#search_form").serialize(),function(data){
+        data =self.setSearchPrices(data)
+        console.log(data)
+        $("#resul").html($("#wideResultsTpl").jqote(data));
+        });
+
     },
     markReqFields:function(container_id, label_fors){
         if(typeof(label_fors)=='undefined'){

@@ -13,6 +13,7 @@ from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
 from django.views.decorators.csrf import csrf_exempt
+from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
 from places.models import Place, Tag, Photo, Currency
 from django.db import models
 from places.options import n_tuple, PLACE_TYPES
@@ -32,11 +33,11 @@ placeTypes = [(0,_(u'All'))] + PLACE_TYPES
 from datetime import datetime
 
 class SearchForm(forms.Form):
-    checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
-    checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
-    search_pharse = forms.CharField(widget=forms.TextInput(), label=_(u'City or address'))
-    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1, label=_(u'Guests'))
-    placeType = forms.ChoiceField(choices=placeTypes)
+    checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
+    checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
+    query = forms.CharField(widget=forms.TextInput(), label=_(u'City or address'),required=False)
+    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1, label=_(u'Guests'),required=False)
+    placeType = forms.ChoiceField(choices=placeTypes,required=False)
 
 class BookingForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
@@ -402,22 +403,55 @@ def registeration_thanks(request):
 def search(request):
     sresults = Place.objects.filter(active=True)
     form = SearchForm()
-    context = {'results':Place.objects.all(),'form':form }
+    context = {'form':form }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @csrf_exempt
+
 def search_ajax(request):
-    form = SearchForm(request.GET)
+    form = SearchForm(request.REQUEST)
     pls = Place.objects.filter(active=True)
     page = request.GET.get('page',1)
-
+    log.debug('search view')
+#    pls = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
     if form.is_valid():
-        if form.cleaned_data['search_pharse']:
-            pls = pls.filter(Q())
-    paginator = Paginator(contact_list, 25)
+        log.debug('search valid')
+        query = form.cleaned_data['query']
+#        query = request.GET.get('query')
+
+        if query:
+            query = [q.strip() for q in query.split(',')[:2]]
+            log.debug('query: %s'%query)
+            q = Q()
+            for qp in query:
+                q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
+            pls = pls.filter(q)
+#    paginator = Paginator(contact_list, 25)
     return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
         mimetype='application/json')
+def cleandict(d):
+     if not isinstance(d, dict):
+         return d
+     return dict((k,cleandict(v)) for k,v in d.iteritems() if v is not None)
+
+def search_autocomplete(request):
+    query = request.GET.get('q').split(' ')[:3]
+    q = Q()
+    for qp in query:
+        q = q | Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
+    places = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
+    nplaces = []
+    for place in places:
+        place = list(place)
+        place[4] = COUNTRIES_DICT[place[4]].encode('utf-8')
+        nplace = []
+        for p in place:
+            if not p: p = ''
+            nplace.append(p)
+        nplaces.append(nplace)
+#    places = [filter(None,p) for p in places]
+    return HttpResponse(json.dumps(nplaces,  ensure_ascii=False), mimetype='application/json')
 
 
 def book_place(request):
