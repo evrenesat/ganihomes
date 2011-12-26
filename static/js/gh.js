@@ -137,6 +137,7 @@ gh = {
         })
         $('#submit').click(function(){self.jsearch()})
         this.jsearch()
+        $('#amenulsr li').click(function(){$(this).toggleClass('hit')})
     },
     init_index:function () {
 
@@ -470,6 +471,12 @@ gh = {
 
     },
     bookPlace: function(e){
+        cin = $('#id_checkin').val()
+        cout = $('#id_checkout').val()
+        if(!cin || !cout){
+            $('#info-select-dates').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
+            return false
+        }
         $(e.target).parents('form').submit()
     },
     init_places:function(){
@@ -480,7 +487,7 @@ gh = {
 
 
         $('#toptabs').tabs();
-        this.prepareSessionalPrices()
+
 
 
         $('#uygtab').click(function(){
@@ -500,7 +507,9 @@ gh = {
         $.getScript(this.STATIC_URL + 'datepick/jquery.datepick.js',function(){
             $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){
                 self.makeAvailabilityTab()
+                self.prepareSessionalPrices()
             })
+
 
 
             $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true ,
@@ -515,6 +524,17 @@ gh = {
             });
 
         })
+    this.init_social_plugins()
+    },
+    init_social_plugins:function(){
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        $.getScript("https://apis.google.com/js/plusone.js")
 
     },
     selected_dates:{},

@@ -17,6 +17,7 @@ from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
 from places.models import Place, Tag, Photo, Currency
 from django.db import models
 from places.options import n_tuple, PLACE_TYPES
+from utils.cache import kes
 from website.models.icerik import Sayfa, Haber, Vitrin
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from website.models.medya import Medya
@@ -59,7 +60,7 @@ def showPlace(request, id):
         (_(u'Bathrooms'),place.bathrooms),
         (_(u'Cancellation'),place.get_cancellation_display()),
     )
-    context = {'place':place,'bform':BookingForm(),'properties':properties , 'owner':owner, 'profile':profile}
+    context = {'place':place,'bform':BookingForm(),'properties':properties , 'owner':owner, 'profile':profile, 'amens':place.getTags(request.LANGUAGE_CODE)}
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 def searchPlace(request):
@@ -403,7 +404,8 @@ def registeration_thanks(request):
 def search(request):
     sresults = Place.objects.filter(active=True)
     form = SearchForm()
-    context = {'form':form }
+    amens = kes(request.LANGUAGE_CODE,'tags').g()
+    context = {'form':form, 'amens':amens }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger

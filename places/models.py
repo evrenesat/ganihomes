@@ -73,6 +73,7 @@ class TagCategory(models.Model):
 CURR_CACHE = kes('crv')
 CURR_CACHE.s(randint(10, 100000), 999999)
 
+
 class Currency(models.Model):
     """Currencies """
 
@@ -196,13 +197,29 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.name,)
+    @classmethod
+    def _updateCache(cls):
 
+        for code,name in settings.LANGUAGES:
+            tags = []
+            TAGS_CACHE = kes(code,'tags')
+            if code == 'en': #assuming en as the default language
+                for d in cls.objects.filter(active=True).values('id','name','help'):
+                    tags.append(d)
+            else:
+                for d in TagTranslation.objects.filter(tag__active=True,lang=code).values('tag_id','translation','help'):
+                    tags.append({'id':d['tag_id'],'help':d['help'],'name':d['translation']})
+            TAGS_CACHE.s(tags,999999)
+
+    def save(self, *args, **kwargs):
+        self._updateCache()
+        super(Tag, self).save(*args, **kwargs)
 
 class TagTranslation(models.Model):
     """Place description"""
 
     tag = models.ForeignKey(Tag, verbose_name=_('Tag'), related_name='tags')
-    lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
+    lang = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES)
     translation = models.CharField(_('Translation'), max_length=30)
     help = models.TextField(_('Help Text'), default='', blank=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
@@ -383,6 +400,15 @@ class Place(models.Model):
                              float(str(sp.weekend_price or 0))])
         di.insert(0, sessions)
         self.prices = json.dumps(di)
+
+    def getTags(self, lang):
+        tag_ids = self.tags.values_list('id',flat=True)
+        tags = []
+        for t in kes(lang,'tags').g():
+            if t['id'] in tag_ids:
+                t['class']='hit'
+            tags.append(t)
+        return tags
 
 
     def setGeoLocation(self):

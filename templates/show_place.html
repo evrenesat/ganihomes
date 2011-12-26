@@ -80,7 +80,7 @@
                <div id="subtabs">
                    <ul id="stabul">
                        <li class="ptab"><a href="#ack">{% trans "Description" %}</a></li>
-                       <li class="ptab"><a href="#tes">{% trans "Amenities" %}</a></li>
+                       <li class="ptab"><a href="#amens">{% trans "Amenities" %}</a></li>
                        <li class="ptab"><a href="#klv">{% trans "Manual & Rules" %}</a></li>
                    </ul>
 
@@ -94,7 +94,16 @@
 
                        </div>
                    </div>
-                   <div id="tes"></div>
+                   <div id="amens">
+                      <ul id="amenul">
+                          {% for l in amens %}
+                          <li class="{{ l.class }}">{{ l.name }}</li>
+                          {% endfor %}
+                      </ul>
+
+
+
+                   </div>
                    <div id="klv"></div>
 
 
@@ -126,7 +135,6 @@
 <div id="pricebox-ic">
 <div class="pl10 pt10 tsdw2" style="color:#111111;">
     <script>gh.replace_pricetag()</script>
-{#<span id="placeprice">{{ place.price }} {{ place.currency }}</span> <span id="pernight"> / gece</span>#}
 </div>
 
     <div class="cinout separate">
@@ -151,6 +159,8 @@
     </div>
     <hr>
     <div class="align-center"><input type="button" class="dugme2" id="bookitbutton" value="{% trans "Book" %}"></div>
+    <div id="info-select-dates" class="warn gizli">{% trans "Please select the check in and check out dates first."%}</div>
+    <div id="info-select-valid-dates" class="warn  gizli">{% trans "Those dates are unavailable. Select differend dates or <a href='#looknearby'>look for nearby places</a>."%}</div>
 {#    <div id="askus">#}
 {#        <h3>Rezervasyon Destek Hattı</h3>#}
 {#        <hr>#}
@@ -166,19 +176,19 @@
             <button class="minidugme">{% trans "Add to Favorites" %}</button>
             <div class="sepline"></div>
 
-{#            <ul class="like-buttons">#}
-{##}
-{#            <li class="fb-like">#}
-{#                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>#}
-{#            </li>#}
-{#        <li class="g-plus-one">#}
-{#            <div class="g-plusone" data-size="medium" data-annotation="none"></div>#}
-{#        </li>#}
-{#        <li class="twitter-like">#}
-{#            <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>#}
-{#        </li>#}
-{##}
-{#            </ul>#}
+            <ul class="like-buttons">
+
+            <li class="fb-like">
+                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+            </li>
+        <li class="g-plus-one">
+            <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+        </li>
+        <li class="twitter-like">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Twt</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </li>
+
+            </ul>
 
 
         </div>
@@ -200,13 +210,5 @@
 {% endblock %}
 {% block closebody %}
 
-{#<div id="fb-root"></div>#}
-{#<script>(function(d, s, id) {#}
-{#  var js, fjs = d.getElementsByTagName(s)[0];#}
-{#  if (d.getElementById(id)) {return;}#}
-{#  js = d.createElement(s); js.id = id;#}
-{#  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";#}
-{#  fjs.parentNode.insertBefore(js, fjs);#}
-{# }(document, 'script', 'facebook-jssdk'));</script>#}
-{#<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>#}
+<div id="fb-root"></div>
 {% endblock %}

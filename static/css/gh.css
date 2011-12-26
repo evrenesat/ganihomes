@@ -1063,13 +1063,13 @@ ul.like-buttons li {
 
 li.twitter-like {
     position: relative;
-    left: 115px;
+    left: 146px;
     top: -25px;
 }
 
 li.g-plus-one {
     position: relative;
-    left: 116px;
+    left: 149px;
     top: -25px;
 }
 
@@ -1504,7 +1504,16 @@ li.g-plus-one {
 .gizli {
     display: none;
 }
-
+.warn {
+    border:2px dotted #fff;
+    text-align:center;
+    background-color: #529214;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    padding:4px;
+    margin-top:5px;
+}
 .silik {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.4)";
     filter: alpha(opacity = 0.4);
@@ -2220,7 +2229,78 @@ li.g-plus-one {
     margin-left: 100px;
     margin-right: 100px;
 }
+.ssp{
+    margin:10px 3px;
+    float:left;
+    width:190px;
+    display: inline-block;
+}
+#sidesearch pricebar{
+    height:100px;
+}
+.sstitle{
+    padding-left:8px;
+    float:left;
+    height:25px;
+    width:230px;
+    font-size:16px;
+    font-weight:bold;
+    background-color:#ececd8;
+    color: #a69e9e;
+    -webkit-box-shadow: #ccc 1px 1px 4px;
+    -moz-box-shadow: #ccc 1px 1px 4px;
+    box-shadow: #ccc 1px 1px 4px;
 
+
+}
+#amens{
+    height:280px;
+}
+#amensearch{
+
+    margin-top:30px;
+    height:30px;
+    /*overflow:hidden;*/
+}
+#amenulsr{
+margin-top:20px !important;
+}
+#amenulsr li{
+    cursor:pointer;
+    list-style: none;
+    padding-left:20px;
+    float:left;
+    width:190px;
+    margin-left:10px;
+    margin-top:5px;
+    height:20px;
+    display:block;
+    color:#6e4f4f;
+    text-shadow: 1px 1px 1px #ffb76c;
+    background: url(/images/unchecked.png) 0 0px no-repeat;
+
+}
+
+#amenulsr li.hit{
+    background-position: 0 -20px;
+}
+
+#amenul li{
+    list-style: none;
+    padding-left:20px;
+    float:left;
+    width:190px;
+    margin-left:10px;
+    height:20px;
+    display:block;
+    color:#6e4f4f;
+    text-shadow: 1px 1px 1px #ffb76c;
+    background: url(/images/unchecked.png) 0 -40px no-repeat;
+
+}
+#amenul li.hit{
+    background-position: 0 -20px;
+}
 #aciklama {
     float: left;
     width: 290px;
@@ -2238,7 +2318,7 @@ li.g-plus-one {
     border: 1px solid #ccc;
     height: 275px;
     padding: 10px;
-    font-size: 12px;
+    font-size: 14px;
     background-color: #fff;
     -webkit-box-shadow: #ccc 1px 1px 4px;
     -moz-box-shadow: #ccc 1px 1px 4px;

@@ -82,19 +82,32 @@
 
 
         <div class="ikikutu">
-            <div class="iblock" style="min-height:300px;padding-left:10px">
-                <div class="foge placetype">
-                    <label for="fiyat">Mekan Tipi</label><br>
+            <div class="iblock" style="min-height:300px;" id="sidesearch">
+                <div class="sstitle"> ::. {% trans "Place Type" %}</div>
+                <div class="foge placetype ssp">
+
                     {{ form.placeType }}
                 </div>
-                <div class="foge pricebar">
-                    <label for="fiyat">Gecelik Fiyat (TL)</label><br>
+                <div class="sstitle"> ::. {% trans "Nightly Price" %}</div>
+                <div class="foge pricebar ssp">
+
                     <input type="hidden" name=pricerange id=pricerange>
 
                     <div id="pricediv"></div>
                     <input type="text" id="pmin" class="pRangeBox" value="20">
                     <input type="text" id="pmax" class="pRangeBox" value="500">
                 </div>
+
+                <div class="sstitle"> ::. {% trans "Amenities" %}</div>
+                <div id="amensearch ssp">
+                    <ul id="amenulsr">
+                                              {% for l in amens %}
+                                              <li>{{ l.name }}</li>
+                                              {% endfor %}
+                                          </ul>
+
+                </div>
+
 
             </div>
 
