@@ -405,7 +405,7 @@ class Place(models.Model):
     def getTags(self, lang):
         tag_ids = self.tags.values_list('id',flat=True)
         tags = []
-        for t in kes(lang,'tags').g():
+        for t in kes(lang,'tags').g([]):
             if t['id'] in tag_ids:
                 t['class']='hit'
             tags.append(t)
