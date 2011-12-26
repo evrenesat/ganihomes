@@ -12,6 +12,7 @@ from django.template.context import RequestContext
 from django import http
 #from personel.models import Personel, Ileti
 #from urun.models import Urun
+from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
 from places.models import Place, Tag, Photo, Currency
@@ -446,7 +447,7 @@ def search_autocomplete(request):
     nplaces = []
     for place in places:
         place = list(place)
-        place[4] = COUNTRIES_DICT[place[4]].encode('utf-8')
+        place[4] = force_unicode(COUNTRIES_DICT[place[4]])
         nplace = []
         for p in place:
             if not p: p = u''
