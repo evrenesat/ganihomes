@@ -409,6 +409,8 @@ class Place(models.Model):
             if t['id'] in tag_ids:
                 t['class']='hit'
             tags.append(t)
+        if not tags and tag_ids:
+            Tag._updateCache()
         return tags
 
 

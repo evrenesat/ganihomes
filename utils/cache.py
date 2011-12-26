@@ -1,9 +1,9 @@
 # -*-  coding: utf-8 -*-
 __author__ = 'Evren Esat Ozkan'
 
-import memcache
-
-cache = memcache.Client(['127.0.0.1:11211'], debug=0)
+#import memcache
+from django.core.cache import cache
+#cache = memcache.Client(['127.0.0.1:11211'], debug=0)
 from django.conf import settings
 
 from django.utils.encoding import smart_unicode, smart_str
