@@ -457,6 +457,8 @@ class Place(models.Model):
 
 def customThumbnailer(img, id, opts):
     results = []
+    if not img:
+        return
     for opt in opts:
         size, name = opt[:2], '%s_%s' % (id, opt[2])
         thumbnail_options = dict(size=size, upscale=True, crop='smart', custom_name=name)
