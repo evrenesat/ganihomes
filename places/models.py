@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -27,7 +28,7 @@ for code,name in settings.LANGUAGES:
         items = {}
         for c in getattr(options,o):
             items[c[0]]=force_unicode(c[1])
-        fp.write('%s=%s;'% (o, json.dumps(items,ensure_ascii=False)))
+        fp.write(u'%s=%s;'% (o, json.dumps(items,ensure_ascii=False)))
     fp.close()
 
 activate(settings.LANGUAGES[0][0])
