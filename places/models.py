@@ -46,6 +46,13 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_user_profile, sender=User)
 
+from paypal.standard.ipn.signals import payment_was_successful
+
+def show_me_the_money(sender, **kwargs):
+    ipn_obj = sender
+    log.info('para aktarimi %s'%ipn_obj)
+payment_was_successful.connect(show_me_the_money)
+
 ugettext('Support')
 ugettext('Website')
 ugettext('Auth')
@@ -436,7 +443,9 @@ class Place(models.Model):
         r = (end + datetime.timedelta(days=1) - start).days
         #FIXME: sezonlu fiyatlar, indirimler ve haftasonlarini yoksaydik
         days = [start + datetime.timedelta(days=i) for i in range(r)]
-        return {'total': len(days) * self.price * factor}
+        total= len(days) * self.price * factor
+        paypal_price = total
+        return {'total': total, 'paypal':paypal_price}
 
     def createThumbnails(self):
         customThumbnailer(self.primary_photo, self.id, [(120, 100, 's')])

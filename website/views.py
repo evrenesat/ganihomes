@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
@@ -33,6 +34,8 @@ log = logging.getLogger('genel')
 noOfBeds=n_tuple(7, first=[(0,u'--')])
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
 from datetime import datetime
+
+from paypal.standard.forms import PayPalPaymentsForm
 
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
@@ -464,6 +467,8 @@ def book_place(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('%s?next=%s'% (reverse('lregister'),reverse('book_place')))
 
+
+
     bi = request.POST.copy() or request.session.get('booking_selection',{})
     if bi:
         place = Place.objects.get(pk=bi['placeid'])
@@ -473,8 +478,20 @@ def book_place(request):
     crrid = bi['currencyid']
     crr,crrposition = Currency.objects.filter(pk=crrid).values_list('name','code_position')[0]
     prices = place.calculateTotalPrice(crrid,ci, co, guests)
+
+    paypal_dict = {
+        "business": settings.PAYPAL_RECEIVER_EMAIL,
+        "amount": prices.paypal_price,
+        "item_name": "name of the item",
+        "invoice": "unique-invoice-id",
+        "notify_url": "%s%s" %(settings.SITE_NAME, reverse('paypal-ipn')),
+        "return_url": "%s%s" %(settings.SITE_NAME, reverse('paypal-complete')),
+        "cancel_return": "%s%s" %(settings.SITE_NAME, reverse('paypal-cancel')),
+
+    }
+    form = PayPalPaymentsForm(initial=paypal_dict)
     context ={'place':place, 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
-              'crr':crr,'crrpos':crrposition}
+              'crr':crr,'crrpos':crrposition, 'form':form.sandbox()}
     return render_to_response('book_place.html',context, context_instance=RequestContext(request))
 
 
