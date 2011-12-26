@@ -451,7 +451,7 @@ def search_autocomplete(request):
         for p in place:
             if not p: p = u''
             nplace.append(p)
-            log.info('type of %s : %s' % (p, typeof(p)))
+            log.info('type of %s : %s' % (p, type(p)))
         nplaces.append(nplace)
 #    places = [filter(None,p) for p in places]
     return HttpResponse(json.dumps(nplaces,  ensure_ascii=False), mimetype='application/json')
