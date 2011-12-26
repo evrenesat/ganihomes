@@ -404,7 +404,7 @@ def registeration_thanks(request):
 @csrf_exempt
 def search(request):
     sresults = Place.objects.filter(active=True)
-    form = SearchForm()
+    form = SearchForm(request.REQUEST)
     amens = kes(request.LANGUAGE_CODE,'tags').g()
     context = {'form':form, 'amens':amens }
     return render_to_response('search.html', context, context_instance=RequestContext(request))

@@ -135,6 +135,7 @@ gh = {
                 self.otokompliti(request, response)
             }
         })
+        $('#id_query').keydown(function(event){if(event.keyCode == '13')self.jsearch()})
         $('#submit').click(function(){self.jsearch()})
         this.jsearch()
         $('#amenulsr li').click(function(){$(this).toggleClass('hit')})
