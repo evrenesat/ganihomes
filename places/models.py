@@ -23,7 +23,7 @@ import options
 
 for code,name in settings.LANGUAGES:
     activate(code)
-    fp = codecs.open('%s/js/gh_%s.js' % (settings.STATIC_ROOT,code), 'w')
+    fp = codecs.open('%s/js/gh_%s.js' % (settings.STATIC_ROOT,code), 'w', encoding='utf8')
     for o in ['COUNTRIES','SPACE_TYPES','PLACE_TYPES']:
         items = {}
         for c in getattr(options,o):
