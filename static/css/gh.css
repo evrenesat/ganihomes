@@ -2316,11 +2316,12 @@ margin-top:20px !important;
 
 #ozellikler {
     float: right;
-    width: 300px;
+    width: 330px;
     border: 1px solid #ccc;
-    height: 275px;
-    padding: 10px;
-    font-size: 14px;
+    /*height: 275px;*/
+    padding: 5px;
+    display: inline-block;
+    font-size: 12px;
     background-color: #fff;
     -webkit-box-shadow: #ccc 1px 1px 4px;
     -moz-box-shadow: #ccc 1px 1px 4px;
@@ -2351,7 +2352,7 @@ margin-top:20px !important;
     color: #444444;
     font-weight: bold;
     display: block;
-    width: 120px;
+    width: 170px;
 }
 
 #stabul.ui-widget-header {

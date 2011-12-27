@@ -81,7 +81,7 @@
                    <ul id="stabul">
                        <li class="ptab"><a href="#ack">{% trans "Description" %}</a></li>
                        <li class="ptab"><a href="#amens">{% trans "Amenities" %}</a></li>
-                       <li class="ptab"><a href="#klv">{% trans "Manual & Rules" %}</a></li>
+                       {% if place.manual or place.rules %}<li class="ptab"><a href="#klv">{% trans "Manual & Rules" %}</a></li>{% endif %}
                    </ul>
 
                    <div id="ack">
@@ -104,8 +104,14 @@
 
 
                    </div>
-                   <div id="klv"></div>
+                   {% if place.manual or place.rules %}
+                   <div id="klv">
+                       <p>{{ place.rules }}</p>
+                       <p>{{ place.manual }}</p>
 
+
+                   </div>
+                   {% endif %}
 
            </div>
 
