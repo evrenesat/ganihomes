@@ -94,6 +94,8 @@ def anasayfa(request):
 class addPlaceForm(ModelForm):
     lat= forms.FloatField(widget=forms.HiddenInput())
     lon= forms.FloatField(widget=forms.HiddenInput())
+
+
 #    neighborhood= forms.FloatField(widget=forms.HiddenInput())
 
 #    postcode= forms.CharField(widget=forms.HiddenInput())
@@ -101,6 +103,7 @@ class addPlaceForm(ModelForm):
         super(addPlaceForm, self).__init__(*args, **kwargs)
         self.fields['tags'].widget = forms.CheckboxSelectMultiple()
         self.fields["tags"].queryset = Tag.objects.all()
+        self.fields['currency'].queryset = Currency.objects.filter(active=True)
 
     class Meta:
         model=Place
