@@ -358,7 +358,7 @@ class Place(models.Model):
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True, default=0)
     monthly_discount = models.SmallIntegerField(_('Monthly discount (%)'), null=True, blank=True, default=0)
     weekend_price = models.DecimalField(_('Weekend price'), help_text=_('Price for guest'), decimal_places=2,
-        max_digits=6, default=0.0)
+        max_digits=6, default='0.0')
     extra_limit = models.SmallIntegerField(_('Extra charge for more guests than'), choices=NO_OF_BEDS, null=True,
         blank=True)
     extra_price = models.DecimalField(_('Extra charge per person'), null=True, blank=True, decimal_places=2,
