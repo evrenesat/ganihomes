@@ -46,11 +46,11 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_user_profile, sender=User)
 
-from paypal.standard.ipn.signals import payment_was_successful
+#from paypal.standard.ipn.signals import payment_was_successful
+from paypal.pro.signals import payment_was_successful
 
 def show_me_the_money(sender, **kwargs):
-    ipn_obj = sender
-    log.info('para aktarimi %s'%ipn_obj)
+    log.info('para aktarimi %s'%sender)
 payment_was_successful.connect(show_me_the_money)
 
 ugettext('Support')
@@ -444,7 +444,7 @@ class Place(models.Model):
         #FIXME: sezonlu fiyatlar, indirimler ve haftasonlarini yoksaydik
         days = [start + datetime.timedelta(days=i) for i in range(r)]
         total= len(days) * self.price * factor
-        paypal_price = total
+        paypal_price = round(total,2)
         return {'total': total, 'paypal':paypal_price}
 
     def createThumbnails(self):

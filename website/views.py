@@ -34,7 +34,7 @@ log = logging.getLogger('genel')
 noOfBeds=n_tuple(7, first=[(0,u'--')])
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
 from datetime import datetime
-
+from paypal.pro.views import PayPalPro
 from paypal.standard.forms import PayPalPaymentsForm
 
 class SearchForm(forms.Form):
@@ -461,38 +461,61 @@ def search_autocomplete(request):
     return HttpResponse(json.dumps(nplaces,  ensure_ascii=False), mimetype='application/json')
 
 
+def paypal_complete(request):
+    return render_to_response('paypal-compelete.html',{}, context_instance=RequestContext(request))
+
+def paypal_cancel(request):
+    return render_to_response('paypal-cancel.html',{}, context_instance=RequestContext(request))
+
+@csrf_exempt
 def book_place(request):
-    if request.POST:
-        request.session['booking_selection']=request.POST.copy()
     if not request.user.is_authenticated():
         return HttpResponseRedirect('%s?next=%s'% (reverse('lregister'),reverse('book_place')))
 
+    if request.POST.get('placeid'):
+        request.session['booking_selection']=request.POST.copy()
+        bi = request.POST.copy()
+    else:
+        bi = request.session.get('booking_selection',{})
 
 
-    bi = request.POST.copy() or request.session.get('booking_selection',{})
-    if bi:
-        place = Place.objects.get(pk=bi['placeid'])
+
+    place = Place.objects.get(pk=bi['placeid'])
     ci = datetime.strptime(bi['checkin'],'%Y-%m-%d')
     co = datetime.strptime(bi['checkout'],'%Y-%m-%d')
     guests = bi['no_of_guests']
     crrid = bi['currencyid']
     crr,crrposition = Currency.objects.filter(pk=crrid).values_list('name','code_position')[0]
     prices = place.calculateTotalPrice(crrid,ci, co, guests)
+    item = {"amt": str(prices['paypal']),             # amount to charge for item
+              "inv": "AAAAAA",         # unique tracking variable paypal
+              "custom": "BBBBBBBB",       # custom tracking variable for you
+              "cancelurl": "%s%s" %(settings.SITE_NAME, reverse('paypal_cancel')),  # Express checkout cancel url
+              "returnurl": "%s%s" %(settings.SITE_NAME, reverse('book_place')),}  # Express checkout return url
 
-    paypal_dict = {
-        "business": settings.PAYPAL_RECEIVER_EMAIL,
-        "amount": prices.paypal_price,
-        "item_name": "name of the item",
-        "invoice": "unique-invoice-id",
-        "notify_url": "%s%s" %(settings.SITE_NAME, reverse('paypal-ipn')),
-        "return_url": "%s%s" %(settings.SITE_NAME, reverse('paypal-complete')),
-        "cancel_return": "%s%s" %(settings.SITE_NAME, reverse('paypal-cancel')),
+    kw = {"item": item,                            # what you're selling
+        "payment_template": "book_place.html",      # template name for payment
+        "confirm_template": "paypal-confirm.html", # template name for confirmation
+        "success_url": reverse('paypal_complete')}              # redirect location after success
+#paypal_dict = {
+#        "business": settings.PAYPAL_RECEIVER_EMAIL,
+#        "amount": prices['paypal'],
+#        "item_name": "name of the item",
+#        "invoice": "unique-invoice-id",
+#        "notify_url": "%s%s" %(settings.SITE_NAME, reverse('paypal-ipn')),
+#        "return_url": "%s%s" %(settings.SITE_NAME, reverse('paypal_complete')),
+#        "cancel_return": "%s%s" %(settings.SITE_NAME, reverse('paypal_  cancel')),
+#
+#    }
 
-    }
-    form = PayPalPaymentsForm(initial=paypal_dict)
+#    form = PayPalPaymentsForm(initial=paypal_dict)
+    #'form':form.sandbox()
     context ={'place':place, 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
-              'crr':crr,'crrpos':crrposition, 'form':form.sandbox()}
-    return render_to_response('book_place.html',context, context_instance=RequestContext(request))
+              'crr':crr,'crrpos':crrposition,}
+    kw['context'] = context
+#    return render_to_response('book_place.html',context, context_instance=RequestContext(request))
+    ppp = PayPalPro(**kw)
+    return ppp(request)
 
 
 def server_error(request, template_name='500.html'):

@@ -10,4 +10,5 @@ settings.py
 static/admin
 static/js/curr.js
 static/js/gh_*.js
+static/js/gh_*.js~
 .idea

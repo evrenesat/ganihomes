@@ -125,7 +125,7 @@
 
 
 <div class="ikikutu" id="pricebox">
-<form action="{% url book_place %}" method="post">
+<form action="{% url book_place %}?express" method="post">
     {% csrf_token %}
     <input type="hidden" name="currencyid" id="currencyid">
     <input type="hidden" name="placeid" id="placeid" value="{{ place.id }}">
