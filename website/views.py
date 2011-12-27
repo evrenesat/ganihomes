@@ -17,7 +17,7 @@ from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
 from places.models import Place, Tag, Photo, Currency
-from django.db import models
+from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES
 from utils.cache import kes
 from website.models.icerik import Sayfa, Haber, Vitrin
@@ -294,7 +294,7 @@ def multiuploader(request, place_id=None):
         wrapped_file = UploadedFile(file)
         filename = wrapped_file.name
         file_size = wrapped_file.file.size
-        log.info ('Got file: "'+str(filename)+'"')
+        log.info (u'Got file: %s'%filename)
 
         #writing file manually into model
         #because we don't need form of any type.
@@ -385,6 +385,9 @@ def register(request,template='register.html'):
         if form.is_valid():
             try:
                 if form.cleaned_data['pass1']==form.cleaned_data['pass2']:
+                    if User.objects.filter(username = form.cleaned_data['email']):
+                        raise DatabaseError
+#                        raise DatabaseError
                     user = form.save(commit=False)
                     user.username = user.email
                     user.set_password(form.cleaned_data['pass1'])
@@ -392,7 +395,7 @@ def register(request,template='register.html'):
                     return HttpResponseRedirect(reverse('registeration_thanks'))
                 else:
                     messages.error(request, _('The passwords you entered do not match.'))
-            except IntegrityError:
+            except DatabaseError:
                 messages.error(request, _('This email is already registered, please choose another one.'))
     else:
         form = RegisterForm()
