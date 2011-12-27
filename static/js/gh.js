@@ -298,6 +298,7 @@ gh = {
     //////////////////////////////////////////////////////
     gmapsLoad:function(initFunc){
         var self = this
+            this.setLatLon()
         if(typeof(initFunc)=='undefined')initFunc='gh.gcinit';
             $.getScript('http://maps.googleapis.com/maps/api/js?sensor=false&callback='+initFunc)
 
