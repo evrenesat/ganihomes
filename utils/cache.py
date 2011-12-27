@@ -33,8 +33,8 @@ class kes:
         val :: atanacak deger (istege bagli bossa 1 atanir).
         lifetime :: önbellek süresi, varsayilan 100saat
         '''
-        if cache.set(self.key, val, lifetime):
-            return val
+        cache.set(self.key, val, lifetime)
+        return val
 
     def d(self, *args):
         '''

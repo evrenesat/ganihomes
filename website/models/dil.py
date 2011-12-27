@@ -7,6 +7,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from utils.cache import kes
 from django.template.defaultfilters import slugify
+import logging
+log = logging.getLogger('genel')
 
 
 #class Dil(models.Model):
@@ -107,17 +109,20 @@ class Ceviriler(models.Model):
 
     @classmethod
     def cevir(cls, kelime, dil_kodu):
-        skelime = slugify(kelime)
-        k = kes(cls.KES_PREFIX, skelime[:40], dil_kodu)
-        c = k.g()
-        if c: return  c or kelime
-        c = cls.objects.filter(asil=skelime, kod=dil_kodu).exclude(ceviri='').values_list('ceviri',flat=True)
-        if c: return k.s(c[0])
-        c = cls.objects.filter(asil=skelime).exclude(ceviri='').values_list('ceviri',flat=True)
-        if c: return k.s(c[0])
-        Kelime.objects.get_or_create(kelime=skelime)
-        return k.s(kelime)
-
+        try:
+            skelime = slugify(kelime)
+            k = kes(cls.KES_PREFIX, skelime[:40], dil_kodu)
+            c = k.g()
+            if c: return  c
+            c = cls.objects.filter(asil=skelime, kod=dil_kodu).exclude(ceviri='').values_list('ceviri',flat=True)
+            if c: return k.s(c[0])
+    #        c = cls.objects.filter(asil=skelime).exclude(ceviri='').values_list('ceviri',flat=True)
+    #        if c: return k.s(c[0])
+            Kelime.objects.get_or_create(kelime=skelime)
+            return k.s(kelime)
+        except:
+            log.exception('cevir taginda patlama')
+            return kelime
 
     def save(self, *args, **kwargs):
         self.asil = slugify(self.kelime.kelime)

@@ -140,6 +140,8 @@ def addPlace(request, ajax=False, id=None):
                 form.save_m2m()
                 for tag in form.cleaned_data['tags']:
                     new_place.tags.add(tag)
+                new_place.lat = str(new_place.lat)
+                new_place.lon = str(new_place.lon)
                 new_place.save()
                 tmp_photos = request.session.get('tmp_photos')
                 if tmp_photos:

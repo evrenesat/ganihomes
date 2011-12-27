@@ -8,17 +8,33 @@
         <div class="kutuici">
 
             <div class="iblock" >
+                <div class="bookpart"><h3>{% trans "Travel Details & Pricing" %}</h3>
 
+
+                    <div id="bookdetail" class="iblock">
+                    <span class="ozz_label">{% trans "Check-in" %}</span> <span class="ozz_value">{{ ci|date:"d F Y l" }}</span>
+                    <span class="ozz_label">{% trans "Check-out" %}</span> <span class="ozz_value">{{ co|date:"d F Y l" }}</span>
+                    <span class="ozz_label">{% trans "Nights" %}</span> <span class="ozz_value">{{ ndays }}</span>
+                    <span class="ozz_label">{% trans "Guests" %}</span> <span class="ozz_value">{{ guests }}</span>
+                    <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
+                        {% if crrpos == 1%} {{ crr }} {{ prices.total|currency }}
+                        {% else %}{{ prices.total|currency }} {{ crr }}
+                        {% endif %}
+                    </span>
+                    </div>
+
+
+
+                </div>
             <div style="background-color:#fff;" class="bookpart">
-                <h3>{% trans "Confirm your order" %}</h3>
-
+                <h3>{% trans "Confirmation" %}</h3>
+                Please confirm your reservation request by clicking the button bellow;
                 <form action="" method="post">
-                    <table>
-                        <tr>
-                            {{ form.as_table }}
-                            <td colspan="2" align="right"><input type="submit" value="confirm" /></td>
-                        </tr>
-                    </table>
+
+                            {{ form }}
+                    <div style="width:100%;text-align:center;margin-top:20px;">
+                <input type="submit" class="yemyesildugme fo16" value="{% trans "Confirm My Reservation" %}" />
+                </div>
                 </form>
 
 

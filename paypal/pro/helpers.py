@@ -115,6 +115,20 @@ class PayPalWPP(object):
         payment_was_successful.send(params)
         return nvp_obj
 
+    def doCapture(self, params):
+        """
+        Check the dude out:
+        """
+        defaults = {"method": "DoCapture",
+                    "COMPLETETYPE": "Complete",
+        }
+        required = L("AMT AUTHORIZATIONID CURRENCYCODE")
+        nvp_obj = self._fetch(params, required, defaults)
+        if nvp_obj.flag:
+            raise PayPalFailure(nvp_obj.flag_info)
+        payment_was_successful.send(params)
+        return nvp_obj
+
     def createRecurringPaymentsProfile(self, params, direct=False):
         """
         Set direct to True to indicate that this is being called as a directPayment.
