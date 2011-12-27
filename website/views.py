@@ -139,12 +139,12 @@ def addPlace(request, ajax=False, id=None):
                     user.set_password(register_form.cleaned_data['pass1'])
                     user.save()
                 new_place.owner = user
+                new_place.lat = str(new_place.lat)
+                new_place.lon = str(new_place.lon)
                 new_place.save()
                 form.save_m2m()
                 for tag in form.cleaned_data['tags']:
                     new_place.tags.add(tag)
-                new_place.lat = str(new_place.lat)
-                new_place.lon = str(new_place.lon)
                 new_place.save()
                 tmp_photos = request.session.get('tmp_photos')
                 if tmp_photos:
