@@ -147,7 +147,11 @@ gh = {
         this.sks = {}
         $('#arabg').fadeTo('fast', .5)
         this.doRePlacements();
-        this.otoTamamla('arainput')
+        $('#arainput').autocomplete({minLength: 1,appendTo:'#araoneri', source:function(request, response){
+                        self.otokompliti(request, response)
+                    }
+                }).keydown(function(event){if(event.keyCode == '13')$('#arabg form').submit()})
+
         $(window).resize(function () {
             self.doRePlacements()
         });
