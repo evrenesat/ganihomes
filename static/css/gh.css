@@ -2457,6 +2457,19 @@ margin-top:20px !important;
     font-size:20px;
 }
 
+.sresults .ratingdiv{
+    padding:5px 5px 5px 12px;
+    float:right;
+    width:88px;
+    text-align:center;
+    /*height:53px;*/
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    background-color: #fff;
+    font-size:20px;
+}
+
 
 #langcurr {
 
