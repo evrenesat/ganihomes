@@ -1556,7 +1556,9 @@ li.g-plus-one {
     font-size: 14px;
     color: #6e6e6e;
 }
-
+#form1 #id_size{
+    width:60px;
+}
 #form2 input, #form2 select {
     width: 300px;
 }

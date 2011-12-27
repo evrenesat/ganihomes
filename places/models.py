@@ -336,7 +336,7 @@ class Place(models.Model):
     bed_type = models.SmallIntegerField(_('Bed type'), choices=BATHROOM_TYPES, default=1)
     bathrooms = models.SmallIntegerField(_('Number of bathrooms'), choices=NO_OF_ROOMS, default=1)
     size = models.IntegerField(_('Size'), null=True, blank=True)
-    size_type = models.IntegerField(_('Measurement type'), choices=MTYPES, default=1)
+    size_type = models.IntegerField(_('Measurement type'), choices=MTYPES, default=2)
     cancellation = models.SmallIntegerField(_('Cancellation rules'), choices=CANCELATION_RULES, default=1)
     min_stay = models.SmallIntegerField(_('Minimum number of nights'), choices=MIN_STAY, default=1)
     max_stay = models.SmallIntegerField(_('Maximum number of nights'), choices=MAX_STAY, default=0)
