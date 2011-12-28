@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block ustkomple %}{%endblock%}
+{% block navbar %}
+<a href="{{shop_base}}/">{{ shop_name }}</a><a href={% url kup_account_info %}>Müşteri Hizmetleri </a>Yeni Üyelik
+{% endblock %}
+
+{% block icerik %}
+<div class="ortalayici">
+<h3>Hesap Etkinleştirme</h3>
+
+{% if account %}
+    <p>Sitemize üye olduğunuz için teşekkür ederiz. Şuanda giriş yapmış oludunuz, daha sonraki ziyaretlerinizde eposta adresinizi girerek giriş yapabilirsiniz.
+    ({{ account.email }}).
+    </p>
+{% else %}
+    <p>Hesap etkinleştirme bağlantınız yanlış ya da süresi dolmuş. Hesap etkinleştirme bağlantıları üye olduktan {{ expiration_days }} gün sonra geçerliliklerini yitirirler.</p>
+{% endif %}
+</div>
+{% endblock %}

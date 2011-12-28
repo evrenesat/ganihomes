@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} {{ shop_name }} | Siparişlerim{% endblock %}
+{% block navbar %}
+<a href="{{shop_base}}/">{{ shop_name }}</a>Siparişlerim
+{% endblock %}
+{% block ustkomple %}{%endblock%}
+{% block icerik %}
+<div class="ortalayici">
+<p>Sayın {{ user_data}},</p> 
+{% if orders %}
+<p><strong>Daha önce vermiş olduğunuz siparişler aşağıdaki gibidir;</strong></p>
+<table cellpadding="0" cellspacing="0" border="0"><tr><th>Sipariş No</th><th>Sipariş Tutarı</th><th>Ürün Adedi</th><th>Sipariş Tarihi</th><th>Durum</th></tr>
+{%for order in orders %}
+
+<tr class="hand" onclick="document.location='{% url order_detail order.id %}'" title='Sipariş detayını görmek için tıklayın.'><td><a href={% url order_detail order.id %}>{{order.id}}</a></td><td>{{order.order_total}}</td><td>{{order.orderitem_set.all.count}}</td><td>{{order.timeStamp|date}} - {{order.timeStamp|time}}</td><td>{{order.status}}</td></tr>
+</ul>
+{%endfor%}
+</table>
+{%endif%}
+</div>
+{% endblock %}

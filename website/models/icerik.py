@@ -284,7 +284,8 @@ class Vitrin(models.Model):
     admin_image.allow_tags = True
 
     def photos(self):
-        return self.image() if not self.thumbs else self.place.photo_set.all()[:4]
+        return self.image() if not self.thumbs else (self.place.photo_set.all()[:4] if self.place else [])
+
 
     @classmethod
     def get_slides(cls, lang=None, type=None):

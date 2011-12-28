@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+<a href="{{shop_base}}/">{{ shop_name }}</a>Müşteri Hizmetleri
+{% endblock %}
+{% block ustkomple %}{%endblock%}
+{% block icerik %}
+<div class="ortalayici">
+
+
+
+
+  <table width="513" height="76" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+     <td width="6" height="22"><img src="/static/grafik/m1sol.gif" /></td>
+    <td background="/static/grafik/m1orta.gif" class="detay_ust" ><span class="beyaz_yazi"><center>
+      Hoşgeldiniz
+    </center>
+    </span></td>
+    <td width="6" height="22"><img src="/static/grafik/m1sag2.gif" /></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="3"><table width="513" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><div style="padding:4px">Sayın {{ user_data.full_name }}, <br />
+          Müşteri Hizmetleri bölümüne hoşgeldiniz. Bu bölümden aşağıdaki işlemleri gerçekleştirebilirisiniz.</div> </td>
+      </tr>
+    </table>
+      <div align="center">
+        <img style="margin-top:4px" src="/static/grafik/kes.gif" width="513" height="20" /><br />
+        <a href="{%url order_status %}"><img src="/static/grafik/sepetbuyuk.gif" width="76" height="93" border="0" /></a><a href="{% url auth_password_change %}"><img src="/static/grafik/paralo_yenile.gif" width="108" height="93" border="0" /></a><img src="/static/grafik/adres_iletisim.gif" width="99" height="93" border="0" /><a href="/destek/listele/"><img src="/static/grafik/musteri.gif" width="91" height="93" border="0" /></a><a href="/accounts/logout/"><img src="/static/grafik/guvenli_cikis.gif" width="77" height="93" border="0" /></a></div>
+      <br />
+      </td>
+  </tr>
+
+</table>
+
+</div>
+{% endblock %}

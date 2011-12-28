@@ -1,0 +1,10 @@
+Bu eposta  {{ site }} sitesine yaptığınız üyelik başvurusunun onayı için gönderilmiştir. Üyeliğinizi etkinleştirmek için lütfen aşağıdaki bağlantıya tıklayınız ya da bağlantıyı seçip tarayıcınızın adres çubuğuna yapıştırınız.
+
+http://{{ site|slice:":-1" }}{% url registration_activate activation_key=activation_key %}
+
+Bu işlemi siz talep etmediyseniz hiç bir şey yapmanıza gerek yoktur, yukarıdaki bağlantıya tıklamamanız halinde bu hesap   {{ expiration_days }} gün içinde iptal olacak ve bizden bir daha herhangi bir eposta almayacaksınız.
+
+Saygılarımızla, 
+
+{{ company_name }}
+{{site_url}} Site Yönetimi

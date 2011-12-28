@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} {{ shop_name }} | Sipariş Detayı{% endblock %}
+{% block navbar %}
+<a href="{{shop_base}}/">{{ shop_name }}</a><a href="{%url order_status %}/">Siparişlerim</a>Sipariş Detayı
+{% endblock %}
+{% block ustkomple %}{%endblock%}
+{% block icerik %}
+<div class="ortalayici">
+{% if order %}
+<p><h3>Sipariş detaylarınız aşağıdaki gibidir;</h3></p>
+<table cellpadding="0" cellspacing="0" border="0">
+<tr><td>Sipariş No</td><td> : </td><td>{{order.id}}</td></tr>
+<tr><td>Sipariş Tutarı</td><td> : </td><td>{{order.order_total}}</td></tr>
+<tr><td>Ürün Adedi</td><td> : </td><td>{{order.orderitem_set.all.count}}</td></tr>
+<tr><td>Sipariş Tarihi</td><td> : </td><td>{{order.timeStamp|date}} - {{order.timeStamp|time}}</td></tr>
+<tr><td>Durum</td><td> : </td><td>{{order.status}}</td></tr>
+</table>
+
+<table cellpadding="0" border="0" cellspacing="0"><tr><th>No</th><th>Ürün</th><th>Adet</th><th>Birim Fiyat</th><th>Toplam</th></tr>
+{%for o in order.orderitem_set.all %}
+
+<tr><td>{{forloop.counter}}</td><td><a title='Ürün detayını görmek için tıklayın.' href={% url kup_product o.product.id o.product.slug %}>{{o}}</a></td><td>{{o.quantity}}</td><td>{{o.unitPrice}}</td><td>{{o.lineItemPrice}}</td></tr>
+</ul>
+{%endfor%}
+</table>
+
+
+{%endif%}
+
+{% endblock icerik %}

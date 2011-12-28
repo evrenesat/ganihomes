@@ -1,0 +1,9 @@
+Sayın {{ first_name }} {{ last_name }},
+
+{{ company_name }} a üye olduğunuz için teşekkür ederiz.
+
+Eposta adresinizi kullanıcı adı olarak girerek http://{{ site_url }}{% url giris_yap %} adresinden mağzamıza giriş yapabilirsiniz.
+
+Saygılarımızla,
+
+{{ company_name }}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block navbar %}
+<a href="{{shop_base}}/">{{ shop_name }}</a>Giriş
+{% endblock %}
+{% block ustkomple %}{%endblock%}
+
+{% block icerik %}
+<div class="ortalayici">
+
+
+
+  <table width="513" height="76" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+     <td width="6" height="22"><img src="/static/grafik/m1sol.gif" /></td>
+    <td background="/static/grafik/m1orta.gif" class="detay_ust" ><span class="beyaz_yazi"><center>
+      Üye Girişi
+    </center>
+    </span></td>
+    <td width="6" height="22"><img src="/static/grafik/m1sag2.gif" /></td>
+  </tr>
+  <tr>
+    <td valign="top" colspan="3"><table width="510" border="0" align="center" cellpadding="3" cellspacing="3">
+      <tr>
+        <td valign="top" width="150"><div align="center"><img src="/static/grafik/giris.jpg" /></div></td>
+        <td width="350">
+
+
+{% if form.has_errors %}
+{{form.ValidationError}}
+<p>Girdiğiniz bilgilere uyan bir hesap bulunamadı, lütfen tekrar deneyin.</p>
+{% endif %}
+
+<form method="post" action=".">
+<table>
+<tr><td><label for="id_username">{% trans 'Email address' %}:</label></td><td>{{ form.username }}</td></tr>
+<tr><td><label for="id_password">{% trans 'Password' %}:</label></td><td>{{ form.password }}</td></tr>
+</table>
+
+<input type="submit" value="{% trans 'Login' %}" />
+<input type="hidden" name="next" 
+{% if next %}
+    value={{ next }} />
+{% else %}
+    value="{% url kup_account_info %}" />
+{% endif %}
+</form>
+</td>
+      </tr>
+    </table></td>
+  </tr>
+
+</table>
+  <div align="center"><img src="/static/grafik/kes.gif" />
+  </div><br />
+  <ul><li>Henüz üyemiz değilseniz  <a href="{% url registration_register %}">buraya </a>tıklayarak hemen üye olabilirsiniz.</li></ul>
+<ul><li>Parolanızı hatırlamıyorsanız, <a href="{% url auth_password_reset %}">buraya tıklayarak parolanızı yeniliyebilirsiniz</a>.</li></li>
+</div>
+{% endblock %}

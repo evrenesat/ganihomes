@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block ustkomple %}{%endblock%}
+{% block navbar %}
+<a href="{{shop_base}}/">{{ shop_name }}</a><a href={% url kup_account_info %}>Müşteri Hizmetleri </a>Yeni Üyelik
+{% endblock %}
+
+{% block icerik %}
+<div class="ortalayici">
+<h3>Yeni Üyelik</h3>
+<p>Üye olduğunuz için teşekkür ederiz.
+{% if verify %}
+E-posta adresinize gönderilen epostadaki bağlantıya tıklayarak üyeliğinizi etkinleştirebilirsiniz.
+{% endif %}
+</p>
+</div>
+{% endblock %}
