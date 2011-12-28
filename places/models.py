@@ -476,8 +476,8 @@ def customThumbnailer(img, id, opts):
         results.append(get_thumbnailer(img).get_thumbnail(thumbnail_options))
     return results
 
-
-class Profile(models.Model):
+from django_facebook.models import FacebookProfileModel
+class Profile(FacebookProfileModel):
     """User profile"""
 
 
@@ -506,7 +506,8 @@ class Profile(models.Model):
         self.createThumbnails()
 
     def update_names(self):
-        self.private_name = u"%s %s." % (self.user.first_name, self.user.last_name[0])
+        if self.user.last_name:
+            self.private_name = u"%s %s." % (self.user.first_name, self.user.last_name[0])
         self.full_name = self.user.get_full_name()
 
     def createThumbnails(self):
