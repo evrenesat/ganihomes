@@ -150,7 +150,10 @@ gh = {
         $('#arainput').autocomplete({minLength: 1,appendTo:'#araoneri', source:function(request, response){
                         self.otokompliti(request, response)
                     }
-                }).keydown(function(event){if(event.keyCode == '13')$('#arabg form').submit()})
+                }).keydown(function(event){if(event.keyCode == '13'){
+                $('#id_query').val($('#arainput').val());
+                $('#arabg form').submit()
+            }})
 
         $(window).resize(function () {
             self.doRePlacements()
