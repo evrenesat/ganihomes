@@ -12,6 +12,7 @@ LOCALE_INDEPENDENT_PATHS = [re.compile(p) for p in
                             getattr(settings, 'LOCALE_INDEPENDENT_PATHS', [
                                 r'^/upload_photo/',
                                 r'^/jsearch',
+                                r'^/facebook/connect',
                                 r'^/delete_photo',
 #                                r'nolocale=1$'
                             ])]
