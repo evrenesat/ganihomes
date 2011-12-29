@@ -22,7 +22,7 @@ from open_facebook.utils import send_warning
 from open_facebook.exceptions import OpenFacebookException
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('genel')
 
 
 
