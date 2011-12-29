@@ -151,7 +151,7 @@
                                 {% endfor %}
                                 <div class="sbaner alpha60">
                                     <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
 
                                     </div>
                                     <div class="stardiv">
@@ -189,7 +189,7 @@
                                  style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                 <div class="sbaner alpha60">
                                     <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
 
                                     </div>
                                     <div class="stardiv">
@@ -215,7 +215,7 @@
                                 {% endfor %}
                                 <div class="sbaner alpha60">
                                     <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_full_name }}</span>
+                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
 
                                     </div>
                                     <div class="stardiv">
