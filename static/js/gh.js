@@ -313,8 +313,8 @@ gh = {
     glatlng:'',
     gZoom:8,
     setLatLon:function(){
-        if($('#id_lat').val()!='0.0')this.lat = $('#id_lat').val()
-        if($('#id_lon').val()!='0.0')this.lon = $('#id_lon').val()
+        if($('#id_lat').val()!='0.0')this.lat = $('#id_lat').val().replace(',','.')
+        if($('#id_lon').val()!='0.0')this.lon = $('#id_lon').val().replace(',','.')
     },
     getLatLon:function(l){
             $('#id_lat').val(l.Qa)
