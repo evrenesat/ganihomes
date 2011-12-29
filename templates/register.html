@@ -46,7 +46,7 @@
 
                                         <input id="regtoscheck" type="checkbox"  name="accepttos">
 
-                                        <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
+                                        <input type="hidden" id="next" name="next" value="{{ request.REQUEST.next    }}">
                                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
                  <div style="width:100%;text-align:center;">
                      <form action="{% url facebook_connect %}?facebook_login=1" method="post">
                                  <input type="submit" onclick="F.connect(this.parentNode); return false;" class="fbbutton" value="{% trans "Connect with Facebook" %}">
-                     <input type="hidden"  name="next" value="{{ request.GET.next }}">
+                     <input type="hidden"  name="next" value="{{ request.REQUEST.next }}">
                                  </form>
 
                  </div>
@@ -81,7 +81,7 @@
 
                 <div id="uyekapsar">
                     <form action="{% url login %}" method="post">
-                                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                                <input type="hidden" name="next" value="{{ request.REQUEST.next }}">
                                 {% csrf_token %}
                     <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
                     </p>
@@ -106,7 +106,7 @@
                 <div class="yuzz float-left" style="text-align:center;">
                     <form action="{% url facebook_connect %}?facebook_login=1" method="post">
                                                      <input type="submit" onclick="F.connect(this.parentNode); return false;" class="minifbbutton" value="{% trans "Login with Facebook" %}">
-                                         <input type="hidden"  name="next" value="{{ request.GET.next }}">
+                                         <input type="hidden"  name="next" value="{{ request.REQUEST.next }}">
                                                      </form>
 
                     </div>

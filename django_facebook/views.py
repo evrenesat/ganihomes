@@ -123,7 +123,7 @@ def connect(request):
     if not settings.DEBUG and facebook_settings.FACEBOOK_HIDE_CONNECT_TEST:
         raise Http404
 
-    return render_to_response('django_facebook/connect.html', context)
+    return render_to_response('login.html', context)
 
 
 
@@ -150,7 +150,7 @@ def poll_connect_task(request, task_id):
     Not yet implemented
     '''
     pass
-    
+
 
 
 
