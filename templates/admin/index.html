@@ -14,7 +14,7 @@
 
 {% if app_list %}
     {% for app in app_list %}
-        {% if app.name != 'Sites' %}
+        {% if app.name not in 'Sites Appsettings' %}
         <div class="module">
         <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
         <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
@@ -51,7 +51,9 @@
 
 {% block sidebar %}
 <div id="content-related">
+    <h2><a href="/appsettings/gh/">{% trans 'Site Ayarları' %}</a></h2>
     <div class="module" id="recent-actions-module">
+
         <h2>{% trans 'Recent Actions' %}</h2>
         <h3>{% trans 'My Actions' %}</h3>
             {% load log %}

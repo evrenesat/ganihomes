@@ -135,13 +135,13 @@ def _register_user(request, facebook, profile_callback=None, remove_old_connecti
     Creates a new user and authenticates
     The registration form handles the registration and validation
     Other data on the user profile is updates afterwards
-    
-    if remove_old_connections = True we will disconnect old profiles from their 
+
+    if remove_old_connections = True we will disconnect old profiles from their
     facebook flow
     '''
     if not facebook.is_authenticated():
         raise ValueError('Facebook needs to be authenticated for connect flows')
-    
+
 
 
     #get the backend on new registration systems, or none if we are on an older version
@@ -156,7 +156,7 @@ def _register_user(request, facebook, profile_callback=None, remove_old_connecti
     for k, v in facebook_data.items():
         if not data.get(k):
             data[k] = v
-            
+
     if remove_old_connections:
         _remove_old_connections(facebook_data['facebook_id'])
 
@@ -174,6 +174,7 @@ def _register_user(request, facebook, profile_callback=None, remove_old_connecti
 
     #for new registration systems use the backends methods of saving
     if backend:
+        request.via_facebook = True
         new_user = backend.register(request, **form.cleaned_data)
     else:
         # For backward compatibility, if django-registration form is used
@@ -181,10 +182,10 @@ def _register_user(request, facebook, profile_callback=None, remove_old_connecti
             new_user = form.save(profile_callback=profile_callback)
         except TypeError:
             new_user = form.save()
-    
+
     signals.facebook_user_registered.send(sender=auth.models.User,
         user=new_user, facebook_data=facebook_data)
-    
+
     #update some extra data not yet done by the form
     new_user = _update_user(new_user, facebook)
 
@@ -206,7 +207,7 @@ def _remove_old_connections(facebook_id, current_user_id=None):
     if current_user_id:
         other_facebook_accounts = other_facebook_accounts.exclude(user__id=current_user_id)
     updated = other_facebook_accounts.update(facebook_id=None)
-    
+
 
 def _update_user(user, facebook):
     '''
@@ -219,10 +220,10 @@ def _update_user(user, facebook):
         'date_of_birth', 'about_me', 'website_url', 'first_name', 'last_name']
     user_dirty = profile_dirty = False
     profile = user.get_profile()
-    
+
     signals.facebook_pre_update.send(sender=get_profile_class(),
         profile=profile, facebook_data=facebook_data)
-    
+
     profile_field_names = [f.name for f in profile._meta.fields]
     user_field_names = [f.name for f in user._meta.fields]
 

@@ -1563,6 +1563,44 @@ li.g-plus-one {
     width: 300px;
 }
 
+#yourpayout{
+    width: 231px;
+    height: 73px;
+    position: absolute;
+    right: 44px;
+    top: 217px;
+    background-color:#fdf5ce;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    unicode-bidi: 145px;
+    display: inline-block;
+    left: 419px;
+    text-shadow: 1px 1px 0.4px #ccc;
+
+}
+#ypdv{
+    padding: 9px;
+}
+#yprice{
+    font-size: 19px;
+    font-weight:bold;
+}
+#yptitle{
+    text-align:center;
+    font-size: 17px;
+    background-color: #facc5e;
+    color:#633c1e;
+    padding: 1px;
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+
+}
+#ypservicefee{
+    font-size: 12px;
+    padding-right: 6px;
+}
 .wfParts input, .wfParts select {
     font-size: 16px;
     border: solid 1px #bfbfbf;

@@ -12,7 +12,7 @@
 
 
             <form action="." method="post" id="addplaceform">
-                <input type="hidden" name="next" value="{{ request.GET.next }}">
+
 
                 <div class="loginform forms autocenter" >
 
@@ -20,7 +20,7 @@
                     <button class="yesildugme fo16">{% trans "Login" %}</button>
                     <label class="ramlabel normallabel" for="remember_me">{% trans "Remember  Me" %}</label>
                     <input type="checkbox" id="remember_me" name="remember_me">
-                    <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
+                    <input type="hidden" id="next" name="next" value="{{ request.GET.next }}">
 
 
                 </div>
@@ -28,12 +28,17 @@
                 <div class="orline" ></div>
                 <div class="or">{% trans "or" %}</div>
                 <div class="orline" ></div>
-
-<div style="width:100;text-align:center;">
-                <input class="fbbutton" type="button" value="{% trans "Login with Facebook" %}">
-</div>
                 {% csrf_token %}
             </form>
+
+                <div style="width:100;text-align:center;">
+                    <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+          <input class="fbbutton"  onclick="F.connect(this.parentNode); return false;" type="submit" value="{% trans "Login with Facebook" %}">
+           <input type="hidden" id="next" name="next" value="{{ request.GET.next }}">
+            </form>
+                </div>
+
+            <iframe src="http://www.facebook.com/plugins/facepile.php?app_id={{ FACEBOOK_APP_ID }}&amp;width=500&amp;max_rows=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px; height:80px;" allowTransparency="true"></iframe>
 
         </div>
     </div>
@@ -42,13 +47,14 @@
 
         <h3>{% cevir "giris sag blok mini kayit form baslik" %}</h3>
         <hr>
-<form action="{% url register %}" method="post">
-    {% csrf_token %}
+
         <div id="uyekapsar" >
             <p style="margin:-10px 10px 10px 10px;">
 
 {% cevir "giris sag blok mini kayit form ustyazi" %}
             </p>
+            <form action="{% url register %}" method="post">
+                {% csrf_token %}
         <div class="sideform2 separate">
                 <label for="id_first_name">{{ rform.first_name.label }}</label><br>
                 {{ rform.first_name }}
@@ -79,16 +85,38 @@
 
                                 <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
                                 </div>
-
+</form>
         <div class="orline" ></div>
         <div class="or">{% trans "or" %}</div>
         <div class="orline" ></div>
 
         <div class="yuzz float-left" style="text-align:center;">
-            <button class="minifbbutton">{% trans "Connect with Facebook" %}</button>
+            <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+            <input type="submit" onclick="F.connect(this.parentNode); return false;" class="minifbbutton" value="{% trans "Connect with Facebook" %}">
+<input type="hidden"  name="next" value="{{ request.GET.next }}">
+            </form>
             </div>
+
+
         </div>
-</form>
+
     </div>
+
+{% endblock %}
+{% block closebody %}
+    <div id="fb-root"></div>
+    <script src="{{ STATIC_URL }}js/facebook.js" type="text/javascript"></script>
+    <script>
+        facebookAppId = '{{ FACEBOOK_APP_ID }}';
+        facebookDefaultScope = {{ FACEBOOK_DEFAULT_SCOPE_JS }};
+        staticUrl = '{{ STATIC_URL }}';
+        function facebookJSLoaded(){
+            FB.init({appId: facebookAppId, status: false, cookie: true, xfbml: true, oauth: true});
+        }
+        window.fbAsyncInit = facebookJSLoaded;
+        F = new facebookClass(facebookAppId);
+        F.load();
+    </script>
+
 
 {% endblock %}

@@ -708,6 +708,19 @@ gh = {
             self.changeForm(2);
             self.markerMaps();
         });
+        $('#id_currency').val(this.selected_currency)
+        $('#id_price').keyup(function(){
+            var pr = $(this).val()
+            try{
+                pr =  pr * ((100-host_fee)/100)
+                if (isNaN(pr))throw 'NaN'
+            }
+            catch(er){
+                pr = ''
+            }
+
+            $('#yprice').html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
+        })
         $('#apbutton3').click(function(){$('#addplaceform').submit()});
         this.markReqFields('form1')
         this.markReqFields('form2',['country','city','street'])

@@ -7,7 +7,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.db.models.query_utils import Q
 from django.db.utils import IntegrityError
 from django.utils import simplejson as json
-from django.forms.models import ModelForm
+from django.forms.models import ModelForm, ModelChoiceField
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django import http
@@ -94,7 +94,7 @@ def anasayfa(request):
 class addPlaceForm(ModelForm):
     lat= forms.FloatField(widget=forms.HiddenInput())
     lon= forms.FloatField(widget=forms.HiddenInput())
-
+    currency = ModelChoiceField(Currency.objects.filter(active=True), empty_label=None)
 
 #    neighborhood= forms.FloatField(widget=forms.HiddenInput())
 
@@ -103,7 +103,7 @@ class addPlaceForm(ModelForm):
         super(addPlaceForm, self).__init__(*args, **kwargs)
         self.fields['tags'].widget = forms.CheckboxSelectMultiple()
         self.fields["tags"].queryset = Tag.objects.all()
-        self.fields['currency'].queryset = Currency.objects.filter(active=True)
+#        self.fields['currency'].queryset = Currency.objects.filter(active=True)
 
     class Meta:
         model=Place
@@ -111,6 +111,10 @@ class addPlaceForm(ModelForm):
             'city','country','district','street','address','lat','lon','neighborhood','state',
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
+
+from appsettings import app
+ghs = app.settings.gh
+
 @login_required
 def addPlace(request, ajax=False, id=None):
     template_name = "add_place_wizard.html" if ajax else "add_place.html"
@@ -168,7 +172,9 @@ def addPlace(request, ajax=False, id=None):
         form = addPlaceForm(instance=old_place)
         register_form = RegisterForm()
         login_form = LoginForm()
-    context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place}
+    str_fee =  _('Service Fee (%s%%)'% ghs.host_fee)
+    context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
+               'host_fee':ghs.host_fee, 'str_fee':str_fee }
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 

@@ -52,19 +52,24 @@
 
 
                 </div>
+                {% csrf_token %}
+                            </form>
 
                 <div class="orline" ></div>
                 <div class="or">ya da</div>
                 <div class="orline" ></div>
 
                  <div style="width:100%;text-align:center;">
-                <input class="fbbutton" type="button" value="{% trans "Connect with Facebook" %}">
+                     <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+                                 <input type="submit" onclick="F.connect(this.parentNode); return false;" class="fbbutton" value="{% trans "Connect with Facebook" %}">
+                     <input type="hidden"  name="next" value="{{ request.GET.next }}">
+                                 </form>
+
                  </div>
 
 
 
-                {% csrf_token %}
-            </form>
+
 
         </div>
     </div>
@@ -73,10 +78,11 @@
 
     <h3>{% trans "Already registered?" %}</h3>
     <hr>
-        <form action="{% url login %}" method="post">
-            <input type="hidden" name="next" value="{{ request.GET.next }}">
-            {% csrf_token %}
+
                 <div id="uyekapsar">
+                    <form action="{% url login %}" method="post">
+                                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                                {% csrf_token %}
                     <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
                     </p>
 
@@ -92,22 +98,43 @@
                 <div class="float-left yuzz txtcnt">
                 <button class="yesildugme fo11">{% trans "Login" %}</button>
                     </div>
-
+        </form>
                 <div class="orline" ></div>
                 <div class="or">yada</div>
                 <div class="orline" ></div>
 
                 <div class="yuzz float-left" style="text-align:center;">
-                    <input class="minifbbutton" type="button" value="{% trans "Login with Facebook" %}">
+                    <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+                                                     <input type="submit" onclick="F.connect(this.parentNode); return false;" class="minifbbutton" value="{% trans "Login with Facebook" %}">
+                                         <input type="hidden"  name="next" value="{{ request.GET.next }}">
+                                                     </form>
+
                     </div>
                 </div>
-        </form>
+
     </div>
 
 
 
 {% endblock %}
 
+{% block closebody %}
+    <div id="fb-root"></div>
+    <script src="{{ STATIC_URL }}js/facebook.js" type="text/javascript"></script>
+    <script>
+        facebookAppId = '{{ FACEBOOK_APP_ID }}';
+        facebookDefaultScope = {{ FACEBOOK_DEFAULT_SCOPE_JS }};
+        staticUrl = '{{ STATIC_URL }}';
+        function facebookJSLoaded(){
+            FB.init({appId: facebookAppId, status: false, cookie: true, xfbml: true, oauth: true});
+        }
+        window.fbAsyncInit = facebookJSLoaded;
+        F = new facebookClass(facebookAppId);
+        F.load();
+    </script>
+
+
+{% endblock %}
 
 
 

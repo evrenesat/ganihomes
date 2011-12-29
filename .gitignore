@@ -6,7 +6,7 @@ log/access_log
 *_log
 *.xcf
 yuklemeler
-settings.py
+/settings.py
 static/admin
 static/js/curr.js
 static/js/gh_*.js

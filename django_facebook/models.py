@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 class FacebookProfileModel(models.Model):
     '''
     Abstract class to add to your profile model.
-    
+
     NOTE: If you don't use this this abstract class, make sure you copy/paste
     the fields in.
     '''
@@ -21,14 +21,14 @@ class FacebookProfileModel(models.Model):
     image = models.ImageField(blank=True, null=True,
         upload_to='profile_images', max_length=255)
     date_of_birth = models.DateField(blank=True, null=True)
-    raw_data = models.TextField(blank=True)
+    raw_data = models.TextField(blank=True)#, editable=False
 
     def __unicode__(self):
         return self.user.__unicode__()
-    
+
     class Meta:
         abstract = True
-        
+
     def post_facebook_registration(self, request):
         '''
         Behaviour after registering with facebook
@@ -37,9 +37,9 @@ class FacebookProfileModel(models.Model):
         default_url = reverse('facebook_connect')
         response = next_redirect(request, default=default_url, next_key='register_next')
         response.set_cookie('fresh_registration', self.user_id)
-        
+
         return response
-    
+
     def get_offline_graph(self):
         '''
         Returns a open facebook graph client based on the access token stored
@@ -50,7 +50,7 @@ class FacebookProfileModel(models.Model):
             graph = OpenFacebook(access_token=self.access_token)
             graph.current_user_id = self.facebook_id
             return graph
-        
+
 
 class FacebookUser(models.Model):
     '''
@@ -74,6 +74,6 @@ class FacebookLike(models.Model):
     name = models.TextField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)
     created_time = models.DateTimeField(blank=True, null=True)
-    
+
     class Meta:
         unique_together = ['user_id', 'facebook_id']

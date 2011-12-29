@@ -1,4 +1,4 @@
-{% load  thumbnail %}
+{% load  thumbnail i18n%}
 <div id="wfHeader">
 <div id=wfhdr1 class="wfhdr home piee">
     <h3>Mekanınız GaniHomes'ta değerlensin!..</h3>
@@ -18,6 +18,7 @@
 {#    oluşturabilirsiniz.#}
 {#</div>#}
 </div>
+<script>host_fee = {{ host_fee }};</script>
 <div id=wfContainer>
     <form action="." method="post" id="addplaceform">
         <div id="wf">
@@ -32,14 +33,20 @@
 
                 <p>{{ form.size.label_tag }} {{ form.size }} {{ form.size_type }}</p>
 
-                <p>{{ form.price.label_tag }} {{ form.price }} {{ form.currency }}</p>
+                <p style="position:relative">{{ form.price.label_tag }} {{ form.price }} {{ form.currency }} <div id="yourpayout">
+                <div id="yptitle">{% trans "Your Payout" %}</div>
+                <div id="ypdv">
+                <span id="ypservicefee">- {{ str_fee }} = </span>  <span id="yprice"></span></div>
+                </div>
+                </p>
+
 
                 <p>{{ form.min_stay.label_tag }} {{ form.min_stay }}</p>
 
                 <p>{{ form.max_stay.label_tag }} {{ form.max_stay }}</p>
 
                 <p>{{ form.cancellation.label_tag }} {{ form.cancellation }}</p>
-                <input id="gotomap" type="button" class="yesildugme fsag" value="1/3 Kaydet ve Devam Et">
+                <input id="gotomap" type="button" class="yesildugme fsag" value="1/3 {% trans "Save & Continue" %}">
             </div>
             <div id="form2" class="wfParts">
                 {#                <div style="position:relative">#}
@@ -62,7 +69,7 @@
                     <p>{{ form.postcode.label_tag }} {{ form.postcode }}</p>
                     {{ form.lat }}{{ form.lon }}
                     <input type="button" id="gotodetails" class="yesildugme fsag"
-                           value="2/3 Kaydet ve Devam Et">
+                           value="2/3 {% trans "Save & Continue" %}">
                 </div>
 
                 <div id="adres_harita">
@@ -80,7 +87,7 @@
             <div id="form3" class="wfParts">
 
                 <div id="paccordion">
-                    <h3><span class="nums">1</span><a href="#">Mekanınızı tanıtın;</a></h3>
+                    <h3><span class="nums">1</span><a href="#">{% trans "Tell us about your place" %};</a></h3>
 
                     <div>
                         Mekanınızın üstün yönlerini ve potansiyel konuklarınız için neden doğru tercih olduğunu
@@ -121,7 +128,7 @@
 
 
                 <input id="apbutton3" type="button" class="yesildugme fsag"
-                       value="3/3 Kaydet ve Devam Et">
+                       value="{% trans "Save" %}">
 
             </div>
 {#            <div id="form4" class="wfParts">#}
