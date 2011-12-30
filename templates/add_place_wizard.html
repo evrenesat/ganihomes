@@ -1,4 +1,5 @@
 {% load  thumbnail i18n%}
+<script>place_photos = {{ photos }};</script>
 <div id="wfHeader">
 <div id=wfhdr1 class="wfhdr home piee">
     <h3>Mekanınız GaniHomes'ta değerlensin!..</h3>
@@ -115,13 +116,15 @@
 
                     <div>
                         <input id="fileupload" type="file" name="files[]" multiple>
+                        <script type="text/x-jqote-template" id="upPlacePhotos">
+                                                <![CDATA[
+                                        <div><img id="img_<%=%>" src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=%>_s.jpg">
+                                        <img class="delete" src="{{ STATIC_URL }}/images/icon/delete_12.png">
+                                         </div>
+                                                ]]>
 
+                                            </script>
                         <div id="uploaded">
-                            {% if place.id %}
-                                {% for f in place.photo_set.all %}
-                                    <img id="img_{{ f.id }}" src="{% thumbnail f.image 50x50 crop%}">
-                                {% endfor %}
-                            {% endif %}
                         </div>
                     </div>
                 </div>

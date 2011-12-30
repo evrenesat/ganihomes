@@ -124,8 +124,10 @@ def addPlace(request, ajax=False, id=None):
     response = {}
     new_place = None
     loged_in = user.is_authenticated()
+    photos = []
     if id:
         old_place = get_object_or_404(Place, pk=id)
+        photos = old_place.photo_set.values_list('id',flat=True)
         if old_place.owner != request.user:
             return HttpResponseForbidden()
     else:
@@ -174,7 +176,7 @@ def addPlace(request, ajax=False, id=None):
         login_form = LoginForm()
     str_fee =  _('%s%% Service Fee '% ghs.host_fee)
     context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
-               'host_fee':ghs.host_fee, 'str_fee':str_fee
+               'host_fee':ghs.host_fee, 'str_fee':str_fee, 'photos':photos,
     }
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
@@ -543,3 +545,5 @@ def server_error(request, template_name='500.html'):
     return render_to_response(template_name,
         context_instance = RequestContext(request)
     )
+
+

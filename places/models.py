@@ -391,6 +391,8 @@ class Place(models.Model):
             di[v] = val
         self.summary = json.dumps(di, ensure_ascii=False)
 
+
+
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (
         self.size, self.get_size_type_display()) if self.size else '-')
@@ -579,6 +581,7 @@ class Photo(models.Model):
 
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)
+        customThumbnailer(self.image, self.id, [(50, 50, 's')])
         #FIXME: order on save
         if self.order == 1 or (self.place and not self.place.primary_photo):
             self.place.primary_photo = self.image
