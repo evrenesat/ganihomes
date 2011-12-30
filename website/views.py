@@ -174,7 +174,8 @@ def addPlace(request, ajax=False, id=None):
         login_form = LoginForm()
     str_fee =  _('%s%% Service Fee '% ghs.host_fee)
     context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
-               'host_fee':ghs.host_fee, 'str_fee':str_fee }
+               'host_fee':ghs.host_fee, 'str_fee':str_fee
+    }
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 
@@ -406,7 +407,7 @@ def register(request,template='register.html'):
     else:
         form = RegisterForm()
         lform = LoginForm()
-    context = {'form':form, 'lform':lform}
+    context = {'form':form, 'lform':lform, 'next': request.GET.get('next','/')}
     return render_to_response(template, context, context_instance=RequestContext(request))
 
 @login_required
