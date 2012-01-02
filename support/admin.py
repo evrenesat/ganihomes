@@ -27,7 +27,7 @@ class TicketAdmin(admin.ModelAdmin):
         list_per_page=20
 
 
-class MessageAdmin(admin.ModelAdmin):
+class MesajAdmin(admin.ModelAdmin):
     list_display = ('fullname', 'subject', 'submit_time','email', 'called',  'archived' )
     list_filter=('called', 'archived')
     date_hierarchy = 'submit_time'

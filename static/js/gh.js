@@ -642,7 +642,7 @@ gh = {
         self = this
         if(!this.TEMPLATES[tpl_file]){
             $.get('/templates/'+tpl_file, function(doc) {
-                    self.TEMPLATES[tpl_file] = doc;
+                    self.TEMPLATES[tpl_file] = $.jqotec(doc);
             });
         }
         return this.TEMPLATES[tpl_file]
@@ -794,7 +794,7 @@ gh = {
 
 //            $("#generic").
 
-            self.showFrame('generic',$(tpl).jqote(data))
+            self.showFrame('generic',$.jqote(tpl, data))
         });
 
     }

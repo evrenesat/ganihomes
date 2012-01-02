@@ -86,7 +86,7 @@ def AdminClose(request, id=None):
     ticket = get_object_or_404(Ticket, pk=id)
     ticket.status = 40
     ticket.save()
-    request.user.message_set.create(message=ugettext(u'Ticket closed.'))
+    request.user.mesaj_set.create(mesaj=ugettext(u'Ticket closed.'))
     return HttpResponseRedirect('/admin/support/ticket')
 
 #@staff_member_required
@@ -155,7 +155,7 @@ class contactUsForm(forms.ModelForm):
 #    city = forms.ChoiceField(choices=[('', u'Seçiniz'), ] + iller, widget=forms.Select(attrs={'class': 'formselect'}))
 
     class Meta:
-        model = Message
+        model = Mesaj
         exclude = ('notes', 'called', 'archived')
 
 
@@ -167,7 +167,7 @@ def contactUs(request, subjectid=None):
         if aform.is_valid():
             obj = aform.save(commit=False)
             obj.save()
-            mail2perm(obj, url='/admin/contactus/message/', sbj=u'Yeni ileti alındı. ')
+            mail2perm(obj, url='/admin/contactus/mesaj/', sbj=u'Yeni ileti alındı. ')
             return http.HttpResponseRedirect(reverse('contact_us_thanks'))
     else:
         aform = contactUsForm()

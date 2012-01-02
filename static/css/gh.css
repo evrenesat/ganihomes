@@ -2273,6 +2273,7 @@ li.g-plus-one {
     color: #ba7312;
     line-height: 25px;
     width: 180px;
+    padding-left: 22px;
 
 }
 
@@ -2461,6 +2462,72 @@ margin-top:20px !important;
 
 /*}*/
 
+#generic .detail{
+    float:left;
+    width: 300px;
+    color:#7f6161;
+    font-size:14px;
+}
+#generic .buttons button:hover {
+    -webkit-box-shadow: 0px 0px 5px 1px #c7d66d ;
+    -moz-box-shadow: 0px 0px 5px 1px #c7d66d;
+    box-shadow: 0px 0px 5px 1px #c7d66d;
+}
+#generic .buttons button{
+    margin-top:4px;
+    border: 1px solid #f0dbc6;
+    background-color: #fff !important;
+    cursor: pointer;
+    padding: 3px !important;
+    font-size: 10px;
+    text-align: center;
+    width: 150px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 5px 1px #ffe7b8;
+    -moz-box-shadow: 0px 0px 5px 1px #ffe7b8;
+    box-shadow: 0px 0px 5px 1px #ffe7b8;
+    color: #54373f !important;
+    background: url(/images/grd-krm-22px.png);
+
+    text-shadow: 1px 1px 0.4px #fff;
+
+}
+#generic li:hover  .buttons{
+    display:block;
+}
+
+#generic .buttons{
+    float:right;
+    width: 200px;
+    display:none;
+    text-align: right;
+}
+#generic .pimg{
+    float:left;
+    padding-right:20px;
+    width:120px;
+}
+#generic li {
+    display: block;
+    position: relative;
+    list-style: none;
+    float: left;
+    width: 98%;
+    margin: 4px;
+    /*height: 140px;*/
+    padding: 5px 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    height: 110px;
+}
+
+
 .sresults li {
     display: block;
     position: relative;
@@ -2476,7 +2543,6 @@ margin-top:20px !important;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
-    cursor: pointer;
 }
 
 .sresults ul {

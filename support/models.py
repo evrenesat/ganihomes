@@ -103,7 +103,7 @@ class Inform(models.Model):
         return '%s' % (self.title,)
 
 
-class Message(models.Model):
+class Mesaj(models.Model):
     first_name = models.CharField(_(u"First Name"), max_length=50)
     last_name = models.CharField(_(u"Last Name"), max_length=50)
     country=models.SmallIntegerField(_(u"Country"), default=0, choices=COUNTRIES)
