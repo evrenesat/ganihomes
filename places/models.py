@@ -450,7 +450,7 @@ class Place(models.Model):
         return {'total': total, 'paypal':paypal_price}
 
     def createThumbnails(self):
-        customThumbnailer(self.primary_photo, self.id, [(120, 100, 's')])
+        customThumbnailer(self.primary_photo, self.id, [(120, 100, 'pls')])
 
     def save(self, *args, **kwargs):
         self._updatePrices()
@@ -583,7 +583,7 @@ class Photo(models.Model):
         super(Photo, self).save(*args, **kwargs)
         customThumbnailer(self.image, self.id, [(50, 50, 's')])
         #FIXME: order on save
-        if self.order == 1 or (self.place and not self.place.primary_photo):
+        if self.place and (self.order == 1 or (self.place and not self.place.primary_photo)):
             self.place.primary_photo = self.image
             self.place.save()
 
