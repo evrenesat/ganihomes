@@ -1,64 +1,61 @@
 {% extends "content.html" %}
-{% load thumbnail %}
+{% load thumbnail i18n currency cevir%}
 {% block extrajs %}
 {#<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>#}
 {#<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>#}
 {% endblock %}
 {% block content %}
+
     <div class="dokuzkutu" >
+    <div id="dokuzbar">
 
 
+    </div>
 
+<div id="dokuzic">
         <div id="menuccordion">
-                       	<h3><a href="#">Genel Bakış</a></h3>
+                       	<h3><a href="#">{% trans "Overview" %}</a></h3>
                        	<div>
                             <ul>
-                                <li class="btn show_dash">Hızlı Görünümü Göster</li>
-                                <li class="btn do_dbAddPlaceWizzard">Yeni Mekan Ekle</li>
+                                <li class="btn show_dash">{% trans "Show Quick View" %}</li>
+                                <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
 
                             </ul>
                        	</div>
-                         	<h3><a href="#">Ayarlar</a></h3>
+                         	<h3><a href="#">{% trans "Preferences" %}</a></h3>
                        	<div>
-                               <li class="">Kişisel Bilgilerim</li>
-                               <li class="">Ödeme Ayarlarım</li>
-                               <li class="">Site Tercihlerim</li>
+                               <li class="">{% trans "Profile Information" %}</li>
+                               <li class="">{% trans "Payment Preferences" %}</li>
+                               <li class="">{% trans "Site Preferences" %}</li>
                        	</div>
-                         	<h3><a href="#">Mesajlar</a></h3>
+                         	<h3><a href="#">{% trans "Messages" %}</a></h3>
                        	<div>
-                               <li class="">Gelen Kutusu</li>
-                               <li class="">Yeni Mesaj Yaz</li>
+                               <li class="">{% trans "Inbox" %}</li>
+                               <li class="">{% trans "New Message" %}</li>
                        	</div>
-                         	<h3><a href="#">Mekanlarım</a></h3>
+                         	<h3><a href="#">{% trans "My Places" %}</a></h3>
                        	<div>
-                               <li class="btn do_dbAddPlaceWizzard">Yeni Mekan Ekle</li>
-                               <li class="">Sitede Listeler</li>
-                               <li class="">Arşivdekiler</li>
-                               <li class="">Favorilerim</li>
+                               <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
+                               <li class="btn do_listPlaces">{% trans "Active Listings" %}</li>
+                               <li class="">{% trans "Archived" %}</li>
+                               <li class="">{% trans "My Favorites" %}</li>
                        	</div>
-                         	<h3><a href="#">Gezilerim</a></h3>
+                         	<h3><a href="#">{% trans "My Trips" %}</a></h3>
                        	<div>
-                               <li class="">Güncel Gezi İşlemleri</li>
-                               <li class="">Yaklaşan Geziler</li>
-                               <li class="">Geçmiş Gezilerim</li>
+                               <li class="">{% trans "Current" %}</li>
+                               <li class="">{% trans "Upcoming" %}</li>
+                               <li class="">{% trans "Past" %}</li>
                        	</div>
-                         	<h3><a href="#">Yorumlarım</a></h3>
+
+                         	<h3><a href="#">{% trans "Friends" %}</a></h3>
                        	<div>
-                               <li class="">Yorum Yap</li>
-                               <li class="">Yazdığım Yorumlar</li>
-                               <li class="">Bana Yapılan Yorumlar</li>
-                               <li class="">Mekanlarımın Yorumları</li>
+                               <li class="">{% trans "My Friends" %}</li>
+                                 <li class="">{% trans "Invite a Friend" %}</li>
                        	</div>
-                         	<h3><a href="#">Arkadaşlarım</a></h3>
+                           <h3><a href="#">{% trans "Help & Support" %}</a></h3>
                        	<div>
-                               <li class="">Arkadaşlarım</li>
-                                 <li class="">Yeni Arkadaş Ekle</li>
-                                 <li class="">Arkadaşıma Öner</li>
-                       	</div>
-                           <h3><a href="#">Yardım</a></h3>
-                       	<div>
-                               <li class="">Sıkça Sorulan Sorular</li>
-                                 <li class="">Bize Sorun</li>
+                               <li class="">{% trans "Frequently Asked Questions" %}</li>
+                                 <li class="">{% trans "Ask a Question" %}</li>
                        	</div>
 
 
@@ -67,9 +64,9 @@
 
     <div class="dbcontent" id="loading"></div>
     <div class="dbcontent" id="dash">
-    <div  class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</div>
+{#    <div  class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</div>#}
      <ul class="dugmul">
-         <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png"><h6>Yeni Mekan Ekle </h6></li>
+         <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png"><h6>{% trans "Add New Place" %} </h6></li>
         {% for p in places %}
         <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
             <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
@@ -81,10 +78,11 @@
 
 <div class="dbcontent gizli " id="addplace_wizard"></div>
 <div class="dbcontent gizli " id="results"></div>
+<div class="dbcontent gizli " id="generic"></div>
 
 
 </div>
     </div>
-
+    </div>
 
 {% endblock %}

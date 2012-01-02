@@ -127,7 +127,7 @@ class PayPalPro(object):
         return 'token' in self.request.POST and 'PayerID' in self.request.POST
 
     def should_validate_payment_form(self):
-        return True
+        return 'firstname' in self.request.POST
 
     def render_payment_form(self):
         """Display the DirectPayment for entering payment information."""
@@ -163,6 +163,7 @@ class PayPalPro(object):
         try:
             nvp_obj = wpp.setExpressCheckout(self.item)
         except PayPalFailure:
+            log.exception('paypal failure')
             self.context['errors'] = self.errors['paypal']
             return self.render_payment_form()
         else:
@@ -197,6 +198,7 @@ class PayPalPro(object):
             else:
                 nvp_obj = wpp.doExpressCheckoutPayment(self.item)
         except PayPalFailure:
+            log.exception('paypal error')
             self.context['errors'] = self.errors['processing']
             return self.render_payment_form()
         else:

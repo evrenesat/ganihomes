@@ -1,23 +1,18 @@
-{% load  thumbnail i18n%}
+{% load  thumbnail i18n cevir%}
 <script>place_photos = {{ photos }};</script>
 <div id="wfHeader">
 <div id=wfhdr1 class="wfhdr home piee">
-    <h3>Mekanınız GaniHomes'ta değerlensin!..</h3>
-    Evinizi, ofinisinizi hatta evinizin bir odanısını GaniHomes'a ekleyin,<br>değerine değer katın!
+    <h3>{% cevir "mes1 baslik" %}</h3>
+    {% cevir "mes1 slogan" %}
 </div>
 <div id=wfhdr2 class="wfhdr sakli location piee">
-    <h3>Mekanınız nerede?..</h3>
-    Adres ve iltişim bilgilerinizi sadece rezarvasyonu onaylanmış misafirlerle paylaşacağız.
-</div>
+    <h3>{% cevir "mes2 baslik" %}</h3>
+    {% cevir "mes2 slogan" %}</div>
 <div id=wfhdr3 class="wfhdr define sakli piee">
-    <h3>En güzeli sizinki!..</h3>
-    Mekanınız hakkında gireceğiniz bilgilerin doğruluğu ve fazlalığı <br>kiralanma şansını önemli ölçüde arttıracaktır.
+    <h3>{% cevir "mes3 baslik" %}</h3>
+    {% cevir "mes3 slogan" %}
 </div>
-{#<div id=wfhdr4 class="wfhdr sakli members piee">#}
-{#    <h3>İçeri buyrun...</h3>#}
-{#    Henüz üyemiz değilseniz Facebook hesabınızla hemen giriş yapabilir ya da bir dakikanızı ayırıp yeni bir hesap#}
-{#    oluşturabilirsiniz.#}
-{#</div>#}
+
 </div>
 <script>host_fee = {{ host_fee }};</script>
 <div id=wfContainer>
@@ -47,14 +42,14 @@
                 <p>{{ form.max_stay.label_tag }} {{ form.max_stay }}</p>
 
                 <p>{{ form.cancellation.label_tag }} {{ form.cancellation }}</p>
-                <input id="gotomap" type="button" class="yesildugme fsag" value="1/3 {% trans "Save & Continue" %}">
+                <button id="gotomap"  class="yesildugme fsag">1/3 {% trans "Save & Continue" %}</button>
             </div>
             <div id="form2" class="wfParts">
                 {#                <div style="position:relative">#}
 
                 <div id="adres_form" class="to_neverland">
-                    <a href="javascript:void(0);" onclick="gh.gcGosterGizle()">Haritaya Tekrar Bak</a><br>
 
+                    <button class="minidugme fr" onclick="return gh.gcGosterGizle()">{% trans "Show Map" %}</button>
                     <p>{{ form.country.label_tag }} {{ form.country }}</p>
 
                     <p>{{ form.state.label_tag }} {{ form.state }}</p>
@@ -69,57 +64,58 @@
 
                     <p>{{ form.postcode.label_tag }} {{ form.postcode }}</p>
                     {{ form.lat }}{{ form.lon }}
-                    <input type="button" id="gotodetails" class="yesildugme fsag"
-                           value="2/3 {% trans "Save & Continue" %}">
+
+                    <button type="button" class="yesildugme fsag" id="gotodetails">{% trans "2/3 Save & Continue"%}</button>
                 </div>
 
                 <div id="adres_harita">
                       <span style="font-size:16px;color:#666666;">
-                          Lütfen kiralamak istediğiniz yerin adresini aşağıdaki alana girerek harita üzerindeki konumunu doğrulayınız;
-                          <span style="font-size:smaller"> (1715 sok. No:11/4 izmir gibi)</span></span>
+                          {% cevir "mes harita yardim" %}
+                          <span style="font-size:smaller"> ({% cevir "mes harita ornek" %})</span></span><br>
                     {{ form.address }}
                     <input type="button" value="Bul" id="addrFindBut" class="yesildugme fsag">
 
                     <div id="map_canvas"></div>
                 </div>
+                <br><a href="#" onclick="gh.changeForm(1)">&laquo; {% trans "Go Back" %}</a>
                 {#                </div>#}
 
             </div>
             <div id="form3" class="wfParts">
 
                 <div id="paccordion">
-                    <h3><span class="nums">1</span><a href="#">{% trans "Tell us about your place" %};</a></h3>
+                    <h3><span class="nums">1</span><a href="#">{% cevir "mes3 ozellikler baslik" %};</a></h3>
 
                     <div>
-                        Mekanınızın üstün yönlerini ve potansiyel konuklarınız için neden doğru tercih olduğunu
-                        ayrıntılı bir şekilde anlatın.
+                        {% cevir "mes3 ozellikler metin" %}
                         <p>{{ form.description }}</p>
                     </div>
-                    <h3><span class="nums">2</span><a href="#">Konuklarınıza sunduğunuz imkanları seçin;</a></h3>
+                    <h3><span class="nums">2</span><a href="#">{% cevir "mes3 tesisler baslik" %};</a></h3>
 
                     <div id="place_tags">
+                        {% cevir "mes3 tesisler metin" %}
                         {{ form.tags }}
                     </div>
-                    <h3><span class="nums">3</span><a href="#">Konaklama sırasında uyulacak kurallar;</a></h3>
+                    <h3><span class="nums">3</span><a href="#">{% cevir "mes3 kurallar baslik" %}</a></h3>
 
                     <div>
-                        Mekanda nasıl davranılmasını beklediğinizi anlatmak olası yanlış anlaşmaları en aza indirir.
+                        {% cevir "mes3 kurallar metin" %}
                         <p>{{ form.rules }}</p>
                     </div>
-                    <h3><span class="nums">4</span><a href="#">Ev kılavuzu ;</a></h3>
+                    <h3><span class="nums">4</span><a href="#">{% cevir "mes3 kilavuz baslik" %}</a></h3>
 
                     <div>
-                        Dilerseniz konuklarınıza yardımcı olacak bir ev kılavuzu hazırlayabilirsiniz.
+                        {% cevir "mes3 kilavuz metin" %}
                         <p>{{ form.manual }}</p>
                     </div>
-                    <h3><span class="nums">5</span><a href="#">Mekanınızın fotoğraflarını yükleyin</a></h3>
-
+                    <h3><span class="nums">5</span><a href="#">{% cevir "mes3 fotoekle baslik" %}</a></h3>
                     <div>
+                        {% cevir "mes3 fotoekle metin" %}
                         <input id="fileupload" type="file" name="files[]" multiple>
-                        <script type="text/x-jqote-template" id="upPlacePhotos">
+                        <script type="text/x-jqote-template" id="upPlacePhotosTpl">
                                                 <![CDATA[
-                                        <div><img id="img_<%=%>" src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=%>_s.jpg">
-                                        <img class="delete" src="{{ STATIC_URL }}/images/icon/delete_12.png">
+                                        <div id="img_<%=this%>"><img  src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=this%>_s.jpg">
+                                        <img class="delete" data-imgid="<%=this%>" src="{{ STATIC_URL }}/images/icon/delete_12.png">
                                          </div>
                                                 ]]>
 
@@ -128,39 +124,12 @@
                         </div>
                     </div>
                 </div>
+                <br><a href="#" onclick="gh.changeForm(2)">&laquo; {% trans "Go Back" %}</a>
 
-
-                <input id="apbutton3" type="button" class="yesildugme fsag"
-                       value="{% trans "Save" %}">
+                <button id="apbutton3" type="button" class="yesildugme fsag">{% trans "Save" %}</button>
 
             </div>
-{#            <div id="form4" class="wfParts">#}
-{#                <div id="fb_register" class="wflogin">#}
-{#                    <div class="fbbutton">#}
-{#                        <div>Facebook ile Kaydolun</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div id="fb_login" class="wflogin">#}
-{#                    <div class="fbbutton">#}
-{#                        <div>Facebook ile Giriş Yapın</div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div id="ormail" class="wflogin">#}
-{#                    <div>ya da</div>#}
-{#                </div>#}
-{#                <div id="em_register" class="wflogin">#}
-{#                    {{ rform.as_ul }}#}
-{#                    <div onclick="$('#addplaceform').submit()" class="dugme2"><span>Hesabımı Oluştur</span></div>#}
-{#                </div>#}
-{#                <div id="em_login" class="wflogin">#}
-{##}
-{#                    {{ lform.as_ul }}#}
-{#                    <div class="dugme2"><span>Giriş Yap</span></div>#}
-{##}
-{#                </div>#}
-{##}
-{##}
-{#            </div>#}
+
         </div>
         {% csrf_token %}
     </form>

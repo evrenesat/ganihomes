@@ -299,6 +299,7 @@ gh = {
     gcGosterGizle:function(){
         $('#adres_form').toggleClass('to_neverland');
         $('#adres_harita').toggleClass('to_neverland');
+        return false
     },
     //////////////////////////////////////////////////////
     ////////////////////MAPPPS - GEOCODING////////////////
@@ -574,20 +575,34 @@ gh = {
         }
     },
     upload_init:function(place_id){
+        var self = this;
+        self.uploadeds = place_photos
         if(typeof(place_id)=='undefined')place_id=''
-        //console.log($('#fileupload'))
+        self.renderUpPlacePhotos()
         $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
+
         $('#fileupload').fileupload({
                dataType: 'json',
                url: '/upload_photo/'+place_id,
                done: function (e, data) {
-                   $.each(data.result, function (index, file) {
-                       $('<img />').attr('src',(file.turl)).attr('id','img_'+file.id).dblclick(function(){
-                           $.post('/delete_photo/'+file.id,function(data){$('#img_'+file.id).hide('slow')})
-                       }).appendTo('#uploaded');
-                   });
+                   console.log(data)
+                   self.uploaded.push(data.result.id)
+                   self.renderUpPlacePhotos()
+//                   $.each(data.result, function (index, file) {
+//                       $('<img />').attr('src',(file.turl)).attr('id','img_'+file.id).dblclick(function(){
+//                           $.post('/delete_photo/'+file.id,function(data){$('#img_'+file.id).hide('slow')})
+//                       }).appendTo('#uploaded');
+//                   });
+
                }
            });
+        })
+    },
+    renderUpPlacePhotos:function(){
+        $("#uploaded").html($("#upPlacePhotosTpl").jqote(this.uploadeds))
+        $('#uploaded .delete').click(function(){
+            imgid = $(this).data('imgid')
+           $.post('/delete_photo/'+imgid,function(data){$('#img_'+imgid).hide('slow')})
         })
     },
     init_login: function(){
@@ -619,12 +634,24 @@ gh = {
                 })
                 }
             });
+        self.loadTemplate('dashboard_place_listing.tpl')
+            //FIXME: preload
+    },
+    TEMPLATES:{},
+    loadTemplate:function(tpl_file){
+        self = this
+        if(!this.TEMPLATES[tpl_file]){
+            $.get('/templates/'+tpl_file, function(doc) {
+                    self.TEMPLATES[tpl_file] = doc;
+            });
+        }
+        return this.TEMPLATES[tpl_file]
     },
     showFrame:function(target,data){
 
+        $('div.dbcontent').hide()
         if(typeof(target)=='string') target = $('#'+target)
         if(typeof(data)!='undefined' && data!='')target.html(data)
-        $('div.dbcontent').hide()
         target.show('normal')
 
         if (window.PIE) {
@@ -683,7 +710,7 @@ gh = {
         self=this
         $.post('/jsearch/', $("#search_form").serialize(),function(data){
         data =self.setSearchPrices(data)
-        console.log(data)
+//        console.log(data)
         $("#resul").html($("#wideResultsTpl").jqote(data));
         });
 
@@ -710,6 +737,7 @@ gh = {
         $('#gotomap').click(function(){
             self.changeForm(2);
             self.markerMaps();
+            return false
         });
         $('#id_currency').val(this.selected_currency)
         $('#id_price').keyup(function(){
@@ -724,14 +752,15 @@ gh = {
 
             $('#yprice').html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
         })
+        $('#id_price').trigger('keyup')
         $('#apbutton3').click(function(){$('#addplaceform').submit()});
         this.markReqFields('form1')
         this.markReqFields('form2',['country','city','street'])
         this.upload_init(place_id)
         self.changeForm(1)
-        $('#uploaded img').dblclick(function(){
-            $.post('/delete_photo/'+$(this).attr('id').replace('img_',''),function(data){$('#img_'+data).hide('slow')})
-        })
+//        $('#uploaded img').dblclick(function(){
+//            $.post('/delete_photo/'+$(this).attr('id').replace('img_',''),function(data){$('#img_'+data).hide('slow')})
+//        })
     },
     init_placeWizzard:function(place_id){
         if(typeof(place_id)=='undefined')place_id=''
@@ -756,6 +785,18 @@ gh = {
 
             self.setLatLon()
         })
+    },
+    do_listPlaces:function(self, typ){
+        if(typeof(typ)=='undefined')typ=''
+
+        var tpl = self.loadTemplate('dashboard_place_listing.tpl')
+        $.get('/'+self.LANGUAGE_CODE+'/dashboard/list_places/'+typ, function(data){
+
+//            $("#generic").
+
+            self.showFrame('generic',$(tpl).jqote(data))
+        });
+
     }
 
 

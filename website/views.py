@@ -486,15 +486,16 @@ def paypal_cancel(request):
 
 @csrf_exempt
 def book_place(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('%s?next=%s'% (reverse('lregister'),reverse('book_place')))
+
 
     if request.POST.get('placeid'):
-        request.session['booking_selection']=request.POST.copy()
         bi = request.POST.copy()
+        request.session['booking_selection']=bi
     else:
         bi = request.session.get('booking_selection',{})
 
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('%s?next=%s?express=1'% (reverse('lregister'),reverse('book_place')))
 
 
     place = Place.objects.get(pk=bi['placeid'])

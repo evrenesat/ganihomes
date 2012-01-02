@@ -118,7 +118,7 @@ class Sayfa(MPTTModel):
 
 class Icerik(models.Model):
 #    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
-    dil_kodu = models.CharField(max_length=5,  db_index=True, choices=LOCALES)
+    dil_kodu = models.CharField(max_length=5,  db_index=True, choices=settings.LANGUAGES)
     #    sablon = models.CharField(max_length=200, null=True, blank=True,choices=[('',u'Seçiniz'),],help_text=u'Bu içeriği standart dışı bir şablonla göstermek istiyorsanız buradan seçebilirsiniz. <br><b>!!! Lütfen emin değilseniz bu ayarı değiştirmeyiniz !!!</b>', editable=False)
     metin = tinymce_models.HTMLField(_(u"İçerik Gövdesi"), blank=True, null=True)
     baslik = models.CharField(_(u"başlık"), max_length=255)
@@ -175,7 +175,7 @@ class Haber(models.Model):
     belgelendirme eksik !!!!!!!!
     """
 #    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
-    dil_kodu = models.CharField(max_length=5, db_index=True, choices=LOCALES)
+    dil_kodu = models.CharField(max_length=5, db_index=True, choices=settings.LANGUAGES)
     baslik = models.CharField(u"Başlık", max_length=200, help_text=u"Sayfa Başlığı")
     slug = models.SlugField(u"URL Başlık",
                             help_text=u"Sayfa başlığının adres satırında görenecek hali. Türkçe karakterler haricindeki harfleri, rakamları ve tire işaretini kullanabilirsiniz.")
