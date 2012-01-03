@@ -1,21 +1,24 @@
 {% load  thumbnail i18n cevir%}
 {% include "show_messages.html" %}
-<div style="width:500px;">
-    <h3>{% cevir "profile duzenle baslik" %}</h3>
-    {% cevir "profile duzenle altbaslik" %}
+<div id="genhdr">
     <div style="float:right">
         <img id="pfotoimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ user.id }}_m.jpg"><br>
         <button onclick="$('#pfoto').trigger('click');" class="minidugme" style="width:100px;">{% trans "Change Photo" %}</button>
         <input id="pfoto" type="file" name="pfoto" style="display:none;">
     </div>
+    <h3>{% cevir "profile duzenle baslik" %}</h3>
+    {% cevir "profile duzenle altbaslik" %}
+
 </div>
 
 
-<form action="." method="post" id="editprofile">
-        <div id="form1" class="wfParts">
+
+        <div id="genbdy" class="wfParts">
+            <form action="." method="post" id="editprofile">
             {% csrf_token %}
             {{ uform.as_p }}
             {{ form.as_p }}
-            <p><input type="submit" class="yesildugme fsag" value="{% trans "Save" %}"></p>
+            <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
+            </form>
          </div>
-</form>
+
