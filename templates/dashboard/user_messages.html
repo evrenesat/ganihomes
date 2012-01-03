@@ -1,0 +1,24 @@
+{% load  thumbnail i18n cevir%}
+{% include "show_messages.html" %}
+<div id="genhdr">
+    <h3>{% cevir "mesajlar baslik" %}</h3>
+{#    {% cevir "profile duzenle altbaslik" %}#}
+
+</div>
+
+
+
+        <div  class="wfParts genbdy">
+            {% if rms %}
+            <table>
+                {% for m in rms %}
+                <tr><td>{{ m }}</td></tr>
+                {% endfor %}
+            </table>
+            {% else %}
+                <h3>{% trans "No new messages" %}</h3><br><br><br>
+            {% endif %}
+
+
+         </div>
+

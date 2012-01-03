@@ -1,87 +1,97 @@
 {% extends "content.html" %}
-{% load thumbnail i18n currency cevir%}
+{% load thumbnail i18n currency cevir %}
 {% block extrajs %}
-{#<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>#}
-{#<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>#}
+    {#<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>#}
+    {#<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>#}
 {% endblock %}
 {% block content %}
 
-    <div class="dokuzkutu" >
-    <div id="dokuzbar">
-<div id=message><span></span><div></div></div>
-
-    </div>
-
-<div id="dokuzic">
-        <div id="menuccordion">
-                       	<h3><a href="#">{% trans "Overview" %}</a></h3>
-                       	<div>
-                            <ul>
-                                <li class="btn show_dash">{% trans "Show Quick View" %}</li>
-                                <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
-
-                            </ul>
-                       	</div>
-                         	<h3><a href="#">{% trans "Preferences" %}</a></h3>
-                       	<div>
-                               <li class="btn do_editProfile">{% trans "Edit Profile" %}</li>
-                               <li class="btn do_editPayment">{% trans "Payment Preferences" %}</li>
-                       	</div>
-                         	<h3><a href="#">{% trans "Messages" %}</a></h3>
-                       	<div>
-                               <li class="">{% trans "Inbox" %}</li>
-                               <li class="">{% trans "New Message" %}</li>
-                       	</div>
-                         	<h3><a href="#">{% trans "My Places" %}</a></h3>
-                       	<div>
-                               <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
-                               <li class="btn do_listPlaces">{% trans "Active Listings" %}</li>
-                               <li class="">{% trans "Archived" %}</li>
-                               <li class="">{% trans "My Favorites" %}</li>
-                       	</div>
-                         	<h3><a href="#">{% trans "My Trips" %}</a></h3>
-                       	<div>
-                               <li class="">{% trans "Current" %}</li>
-                               <li class="">{% trans "Upcoming" %}</li>
-                               <li class="">{% trans "Past" %}</li>
-                       	</div>
-
-                         	<h3><a href="#">{% trans "Friends" %}</a></h3>
-                       	<div>
-                               <li class="">{% trans "My Friends" %}</li>
-                                 <li class="">{% trans "Invite a Friend" %}</li>
-                       	</div>
-                           <h3><a href="#">{% trans "Help & Support" %}</a></h3>
-                       	<div>
-                               <li class="">{% trans "Frequently Asked Questions" %}</li>
-                                 <li class="">{% trans "Ask a Question" %}</li>
-                       	</div>
-
+    <div class="dokuzkutu">
+        <div id="dokuzbar">
+            <div id=message><span>{% trans "My Page" %}</span>
+            </div>
 
         </div>
-<div id="dbcontent">
 
-    <div class="dbcontent" id="loading"></div>
-    <div class="dbcontent" id="dash">
-{#    <div  class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</div>#}
-     <ul class="dugmul">
-         <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png"><h6>{% trans "Add New Place" %} </h6></li>
-        {% for p in places %}
-        <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
-            <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
-            <h6>{{ p.title|slice:":40" }}</h6>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
+        <div id="dokuzic">
+            <ul id="menuccordion">
+                <li  class="btn show_dash">
+                    <div id="mcoverview"><a href="#">{% trans "Overview" %}</a></div>
+                </li>
 
-<div class="dbcontent gizli " id="addplace_wizard"></div>
-<div class="dbcontent gizli " id="results"></div>
-<div class="dbcontent gizli " id="generic"></div>
+                <li>
+                    <div id="mcpref"><a href="#">{% trans "Preferences" %}</a></div>
+                    <ul>
+                        <li class="btn do_editProfile">{% trans "Edit Profile" %}</li>
+                        <li class="btn do_editPayment">{% trans "Payment Preferences" %}</li>
+                    </ul>
+                </li>
+                <li class="btn do_showMessages">
+                    <div  id="mcmess"><a href="#">{% trans "Messages" %}</a></div>
+
+                <li>
+                    <div id="mcmyplace"><a href="#">{% trans "My Places" %}</a></div>
+                    <ul>
+                        <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
+                        <li class="btn do_listPlaces">{% trans "Active Listings" %}</li>
+                        <li class="">{% trans "Archived" %}</li>
+                        <li class="">{% trans "My Favorites" %}</li>
+                    </ul>
+                </li>
+                <li>
+                    <div id="mctrips"><a href="#">{% trans "My Trips" %}</a></div>
+                    <ul>
+                        <li class="">{% trans "Current" %}</li>
+                        <li class="">{% trans "Upcoming" %}</li>
+                        <li class="">{% trans "Past" %}</li>
+                    </ul>
+                </li>
+                <li>
+                    <div id="mcfriends"><a href="#">{% trans "Friends" %}</a></div>
+                    <ul>
+                        <li class="">{% trans "My Friends" %}</li>
+                        <li class="">{% trans "Invite a Friend" %}</li>
+                    </ul>
+                </li>
+                <li>
+                    <div id="mchelp"><a href="#">{% trans "Help & Support" %}</a></div>
+                    <ul>
+                        <li class="">{% trans "FAQ" %}</li>
+                        <li class="">{% trans "Ask a Question" %}</li>
+                        <li class="">{% trans "Help Desk " %}</li>
+                    </ul>
+                </li>
 
 
-</div>
-    </div>
+            </ul>
+            <div id="dbcontent">
+
+                <div class="dbcontent" id="loading"></div>
+                <div class="dbcontent" id="dash">
+                    {#    <div  class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</div>#}
+                    <ul class="dugmul">
+                        <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png">
+                            <h6>{% trans "Add New Place" %} </h6></li>
+                        {% for p in places %}
+                            <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
+                                <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                                <h6>{{ p.title|slice:":40" }}</h6>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="dbcontent gizli " id="addplace_wizard"></div>
+                <div class="dbcontent gizli " id="results"></div>
+                <div class="dbcontent gizli " id="generic"></div>
+                <div class="dbcontent gizli " id="placelist">
+                    <div id="genhdr"><h3>{% cevir "mekanlarim baslik" %}</h3></div>
+                    <div  class="wfParts genbdy"><div id="placelistic"></div></div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 
 {% endblock %}

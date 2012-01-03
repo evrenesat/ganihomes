@@ -9,10 +9,10 @@
             <%= SPACE_TYPES[this.typ] %> / <%= PLACE_TYPES[this.spc] %>
         </div>
         <div class="buttons">
-            <button><%=JSTRANS.edit_prices%></button><br>
-            <button><%=JSTRANS.edit_place_details%></button><br>
-            <button><%=JSTRANS.set_availability%></button>
-            <button><%=JSTRANS.manage_photos%></button><br>
+            <button onclick="gh.editPrices(<%= this.id %>)"><%=JSTRANS.edit_prices%></button><br>
+            <button onclick="gh.editPlaceWizzard(<%= this.id %>)"><%=JSTRANS.edit_place_details%></button><br>
+            <button onclick="gh.editAvailability(<%= this.id %>)" ><%=JSTRANS.set_availability%></button>
+            <!--br><button class="photos"><%=JSTRANS.manage_photos%></button-->
         </div>
     </li>
 ]]>

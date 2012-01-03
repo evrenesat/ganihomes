@@ -935,21 +935,28 @@ ul.messages {
 /*top: 5px;*/
 /*color: green;*/
 /*}*/
-#dokuzbar #message div{
-    float:right;
 
+#dokuzbar #message span{
+    font-size: 27px;
+    font-weight:bold;
+    text-shadow: 2px 1px 4px #5B5C5A;
+    padding-left: 70px;
+    color: #EDEDED;
 }
 #dokuzbar #message{
     color:#fff;
     font-weight:bold;
     font-size:11px;
+    background: url("/images/icon/ghome.png") no-repeat scroll 8px 50% transparent;
+    height: 43px;
 }
 #dokuzbar{
     height: 44px;
-    background-color: #E8D1A9;
+    /*background-color: #E8D1A9;*/
     -webkit-border-radius: 6px 6px 0 0;
     -moz-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
+    background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;
 
 }
 #dokuzic{
@@ -2230,8 +2237,8 @@ li.g-plus-one {
 
 #dbcontent {
     float: left;
-    margin-left: 30px;
-    width: 694px;
+    margin-left: 10px;
+    width: 650px;
     min-height: 650px;
 
 }
@@ -2256,35 +2263,115 @@ li.g-plus-one {
     box-shadow: 1px 1px 4px 1px #cccccc;
 }
 
-#menuccordion .ui-accordion-header a {
-    padding-top: 3px;
-    padding-bottom: 3px;
+/*#menuccordion .ui-accordion-header a {*/
+    /*padding-top: 3px;*/
+    /*padding-bottom: 3px;*/
+/*}*/
+
+/*#menuccordion {*/
+    /*float: left;*/
+    /*width: 200px;*/
+/*}*/
+
+/*#menuccordion h3.ui-state-active a {*/
+    /*color: white !important;*/
+    /*font-weight: bold;*/
+    /*font-size: 14px;*/
+    /*background-color: #f5a22f;*/
+/*}*/
+
+/*#menuccordion .ui-accordion-content {*/
+    /*padding: 4px;*/
+    /*overflow: hidden;*/
+/*}*/
+
+/*#menuccordion .ui-accordion-content li {*/
+    /*list-style-type: circle;*/
+    /*color: #ba7312;*/
+    /*line-height: 25px;*/
+    /*width: 180px;*/
+    /*padding-left: 22px;*/
+
+/*}*/
+
+#mcoverview a{
+    background: url("/images/icon/overview.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
+#mcpref a{
+    background: url("/images/icon/preferences.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
+#mcmess a{
+    background: url("/images/icon/messages.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
+#mcmyplace a{
+    background: url("/images/icon/myplaces.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
+#mctrips a{
+    background: url("/images/icon/trips.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
+#mcfriends a{
+    background: url("/images/icon/friends.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
+#mchelp a{
+    background: url("/images/icon/help.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
 }
 
 #menuccordion {
+    list-style: none;
+    padding: 0 0 0 0;
+    width: 214px;
     float: left;
-    width: 200px;
 }
-
-#menuccordion h3.ui-state-active a {
-    color: white !important;
+#menuccordion div {
+    display: block;
+    /*background-color: #DDB385;*/
+    background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;
     font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+    padding: 3px;
+    list-style: circle;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 5px 5px 0 0;
+    text-shadow: 1px 2px 1px #FFFFFF;
+    padding-left: 6px;
+}
+#menuccordion ul {
+    list-style: none;
+    padding: 0 0 0 0;
+}
+#menuccordion ul{
+    display: none;
+}
+#menuccordion ul li {
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 0 0 0 12px;
     font-size: 14px;
-    background-color: #f5a22f;
+    color: #7A6F69;
+    list-style: inside;
+    pointer: cursor;
+    text-shadow: 1px 1px 5px #EBE099;
+
 }
-
-#menuccordion .ui-accordion-content {
-    padding: 4px;
-    overflow: hidden;
+#menuccordion a {
+    text-decoration: none;
+    color: #818181;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
-
-#menuccordion .ui-accordion-content li {
-    list-style-type: circle;
-    color: #ba7312;
-    line-height: 25px;
-    width: 180px;
-    padding-left: 22px;
-
+#menuccordion a:hover {
+    /*text-decoration: underline;*/
 }
 
 .btn {
@@ -2492,18 +2579,18 @@ ul.messages li{
 
 }
 
-#generic .detail{
+#placelist .detail{
     float:left;
-    width: 300px;
+    width: 260px;
     color:#7f6161;
     font-size:14px;
 }
-#generic .buttons button:hover {
+#placelist .buttons button:hover {
     -webkit-box-shadow: 0px 0px 5px 1px #c7d66d ;
     -moz-box-shadow: 0px 0px 5px 1px #c7d66d;
     box-shadow: 0px 0px 5px 1px #c7d66d;
 }
-#generic .buttons button{
+#placelist .buttons button{
     margin-top:4px;
     border: 1px solid #D3BE95;
     background-color: #fff !important;
@@ -2524,22 +2611,34 @@ ul.messages li{
     text-shadow: 1px 1px 0.4px #fff;
 
 }
-#generic .plist:hover  .buttons{
-    display:block;
+#placelist .plist:hover  .buttons{
+    /*display:block;*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+    filter: alpha(opacity = 1);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
 }
-
-#generic .buttons{
+#placelistic{
+    display:inline-block;
+}
+#placelist .buttons{
     float:right;
     width: 200px;
-    display:none;
+    /*display:none;*/
     text-align: right;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.3)";
+    filter: alpha(opacity = 0.3);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
 }
-#generic .pimg{
+#placelist .pimg{
     float:left;
     padding-right:20px;
     width:120px;
 }
-#generic .plist {
+#placelist .plist {
     display: block;
     position: relative;
     list-style: none;
@@ -3146,6 +3245,7 @@ ul.messages li{
     position: relative;
     float:none !important;
     padding: 0 20px !important;
+    margin-bottom: 20px;
 }
 #editpayment label{
     width:170px;

@@ -42,6 +42,14 @@ def list_places(request, type=None):
     return HttpResponse(result, mimetype='application/json')
 
 
+
+def show_messages(request, type=None):
+    rms = request.user.received_messages.all()
+    sms = request.user.sent_messages.all()
+    context = {'rms':rms,'sms':sms}
+    return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
+
+
 class ProfileForm(ModelForm):
 #    lat= forms.FloatField(widget=forms.HiddenInput())
 #    lon= forms.FloatField(widget=forms.HiddenInput())

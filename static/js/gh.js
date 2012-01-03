@@ -636,9 +636,21 @@ gh = {
             $('#uyekapsar').removeClass('silik');
         })
     },
+    menucordion:function(cont){
+        $("#"+cont+" > li > div").click(function(){
+
+            if(false == $(this).next().is(':visible')) {
+                $("#"+cont+" ul").slideUp(300);
+            }
+            $(this).next().slideToggle(300);
+        });
+
+//        $("#"+cont+" ul:eq(0)").show();
+    },
     init_dashboard: function(){
         var self = this;
-        $( "#menuccordion").accordion({  collapsible: true});
+//        $( "#menuccordion").accordion({  collapsible: true});
+        this.menucordion('menuccordion')
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){
@@ -813,13 +825,10 @@ gh = {
     },
     do_listPlaces:function(self, typ){
         if(typeof(typ)=='undefined')typ=''
-
         var tpl = self.loadTemplate('dashboard_place_listing.tpl')
         $.get('/'+self.LANGUAGE_CODE+'/dashboard/list_places/'+typ, function(data){
-
-//            $("#generic").
-
-            self.showFrame('generic',$.jqote(tpl, data))
+            $('#placelistic').html($.jqote(tpl, data))
+            self.showFrame('placelist')
         });
 
     },
@@ -842,6 +851,9 @@ gh = {
             })
             $('#pt'+current_payment_selection).trigger('click')
         })
+    },
+    do_showMessages:function(self){
+        this.genericEdit('/dashboard/show_messages/')
     },
     genericEdit:function(url,fn){
         self = this

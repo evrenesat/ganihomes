@@ -699,8 +699,8 @@ class Description(models.Model):
 class Message(models.Model):
     """user messaging system"""
 
-    sender = models.ForeignKey(User, verbose_name=_('Sender'), related_name='sender')
-    receiver = models.ForeignKey(User, verbose_name=_('Receiver'), related_name='receiver')
+    sender = models.ForeignKey(User, verbose_name=_('Sender'), related_name='sent_messages')
+    receiver = models.ForeignKey(User, verbose_name=_('Receiver'), related_name='received_messages')
     text = models.TextField(_('Message'))
     read = models.BooleanField(_('Message was read'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
