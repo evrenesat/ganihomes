@@ -1593,10 +1593,9 @@ li.g-plus-one {
 }
 
 #yourpayout{
-    width: 231px;
+    width: 207px;
     height: 73px;
     position: absolute;
-    right: 44px;
     top: 217px;
     background-color:#fdf5ce;
     -moz-border-radius: 6px;
@@ -1604,7 +1603,7 @@ li.g-plus-one {
     border-radius: 6px;
     unicode-bidi: 145px;
     display: inline-block;
-    left: 419px;
+    left: 446px;
     text-shadow: 1px 1px 0.4px #ccc;
 
 }
