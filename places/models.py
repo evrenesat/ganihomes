@@ -24,7 +24,7 @@ import options
 for code,name in settings.LANGUAGES:
     activate(code)
     fp = codecs.open('%s/js/gh_%s.js' % (settings.STATIC_ROOT,code), 'w', encoding='utf8')
-    for o in ['COUNTRIES','SPACE_TYPES','PLACE_TYPES']:
+    for o in ['COUNTRIES','SPACE_TYPES','PLACE_TYPES','JSTRANS']:
         items = {}
         for c in getattr(options,o):
             items[c[0]]=force_unicode(c[1])
@@ -513,7 +513,7 @@ class Profile(FacebookProfileModel):
         self.full_name = self.user.get_full_name()
 
     def createThumbnails(self):
-        customThumbnailer(self.photo, self.user.id, [(200, 0, 'l'), (0, 30, 's')])
+        customThumbnailer(self.photo, self.user.id, [(200, 0, 'l'), (100, 0, 'm'), (0, 30, 's')])
 
     class Meta:
         ordering = ['timestamp']
@@ -523,6 +523,35 @@ class Profile(FacebookProfileModel):
 
     def __unicode__(self):
         return 'User #%s' % (self.user_id,)
+
+class PaymentSelection(models.Model):
+    '''Payment Selections'''
+
+    name = models.CharField(_('Name'), max_length=20, null=True, blank=True)
+    user = models.OneToOneField(User, verbose_name=_('User'), null=True, blank=True)
+    payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES)
+    email = models.EmailField(_('PayPal email'), null=True, blank=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    active = models.BooleanField(_('Active'), default=True)
+    acc_owner = models.CharField(_('Account Owner'), max_length=40, null=True, blank=True)
+    iban = models.CharField(_('IBAN/Account No'), max_length=40, null=True, blank=True)
+    bic = models.CharField(_('SWIFT/BIC Code'), max_length=40, null=True, blank=True)
+    street = models.CharField(_('Street'), max_length=40, null=True, blank=True)
+    postcode = models.CharField(_('Postcode'), max_length=40, null=True, blank=True)
+    city = models.CharField(_('City'), max_length=40, null=True, blank=True)
+    bank_name = models.CharField(_('Bank name'), max_length=40, null=True, blank=True)
+    bank_street = models.CharField(_('Bank street'), max_length=40, null=True, blank=True)
+    bank_postcode = models.CharField(_('Bank postcode'), max_length=40, null=True, blank=True)
+    bank_city = models.CharField(_('Bank city'), max_length=40, null=True, blank=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Payment Selection')
+        verbose_name_plural = _('Payment Selections')
+
+    def __unicode__(self):
+        return '%s %s' % (self.name,self.get_payment_type_display())
 
 
 class Friendship(models.Model):

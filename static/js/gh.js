@@ -598,6 +598,23 @@ gh = {
            });
         })
     },
+    profile_upload_init:function(){
+        var self = this;
+
+        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
+
+        $('#pfoto').fileupload({
+               dataType: 'json',
+               url: '/dashboard/pfoto/',
+               done: function (e, data) {
+                   src = $('#pfotoimg').attr('src').split('?')[0]
+                   $('#pfotoimg').attr('src',src + '?rnd='+Math.random())
+
+
+               }
+           });
+        })
+    },
     renderUpPlacePhotos:function(){
         $("#uploaded").html($("#upPlacePhotosTpl").jqote(this.uploadeds))
         $('#uploaded .delete').click(function(){
@@ -659,6 +676,7 @@ gh = {
                 PIE.attach(this);
             });
         }
+        return target
     },
     new_place_wizard_html:'',
     add_place_url:function(id){
@@ -786,6 +804,13 @@ gh = {
             self.setLatLon()
         })
     },
+    translateStrings:function(container){
+        if(typeof(container)=='undefined')container=''
+        $(conatiner + ' .trans').each(function(){
+            t = $(this)
+            t.html(JSTRANS[t.data('trans')])
+        })
+    },
     do_listPlaces:function(self, typ){
         if(typeof(typ)=='undefined')typ=''
 
@@ -795,6 +820,57 @@ gh = {
 //            $("#generic").
 
             self.showFrame('generic',$.jqote(tpl, data))
+        });
+
+    },
+    show_message:function(m){
+        md = $('#message')
+        md.find('span').html(m)
+        md.fadeTo(300,0.0).fadeTo(800,1).fadeTo(300,0.3).fadeTo(300,1)
+    },
+    do_editProfile:function(self){
+        this.genericEdit('/dashboard/edit_profile/')
+//
+//        var url = '/'+self.LANGUAGE_CODE+'/dashboard/edit_profile/'
+//        $.get(url, function(data){
+//            self.showFrame('generic',data)
+//            var frame = $('#generic')
+//            var form = frame.find('form')
+//            form.submit(function(){
+//                $.post(url, form.serialize(),function(data){
+//                    frame.html(data)
+//                });
+//                return false;
+//            });
+//
+//        });
+
+    },
+    genericEdit:function(url){
+        self = this
+        var url = '/'+self.LANGUAGE_CODE+url
+        $.get(url, function(data){
+            frame = self.showFrame('generic',data)
+            self.form_submit_handler(frame,url,function(){
+                self.profile_upload_init()
+                $('#id_brithdate').datepicker({dateFormat: 'yy-mm-dd', maxDate: '0',
+                    changeMonth: true  ,changeYear: true , yearRange: '1910:2012' });
+            })
+
+        });
+
+    },
+    form_submit_handler:function(frame,url,fn){
+        self = this
+        var form = frame.find('form')
+//        console.log(form)
+        if(typeof(fn)!='undefined')fn()
+        form.submit(function(){
+            $.post(url, form.serialize(),function(data){
+                frame.html(data)
+                self.form_submit_handler(frame, url, fn)
+            });
+            return false;
         });
 
     }

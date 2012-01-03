@@ -18,7 +18,7 @@ from django import http
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency
+from places.models import Place, Tag, Photo, Currency, Profile
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES
 from utils.cache import kes
@@ -40,3 +40,83 @@ def list_places(request, type=None):
     pls = request.user.place_set.all()
     result = u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)])
     return HttpResponse(result, mimetype='application/json')
+
+
+class ProfileForm(ModelForm):
+#    lat= forms.FloatField(widget=forms.HiddenInput())
+#    lon= forms.FloatField(widget=forms.HiddenInput())
+#    currency = ModelChoiceField(Currency.objects.filter(active=True), empty_label=None)
+
+#    neighborhood= forms.FloatField(widget=forms.HiddenInput())
+
+#    postcode= forms.CharField(widget=forms.HiddenInput())
+#    def __init__(self, *args, **kwargs):
+#        super(ProfileForm, self).__init__(*args, **kwargs)
+#        self.fields.insert (0, 'first_name' , forms.CharField())
+#        self.fields.insert (1, 'last_name' , forms.CharField())
+#        self.fields.insert (2, 'email' , forms.EmailField())
+
+    class Meta:
+        model=Profile
+        fields = ('city','phone','occupation','brithdate')
+
+class UserForm(ModelForm):
+    class Meta:
+        model=User
+        fields = ('first_name','last_name','email')
+
+@login_required
+def edit_profile(request):
+    lang = request.LANGUAGE_CODE
+    user = request.user
+    profile = user.get_profile()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,instance=profile)
+        uform = UserForm(request.POST,instance=user)
+        if form.is_valid() and uform.is_valid():
+            profile = form.save()
+            user = uform.save()
+            messages.success(request, _('Your profile successfully updated.'))
+    else:
+        form = ProfileForm(instance=profile)
+        uform = UserForm(instance=user)
+    context = {'form':form,'profile':profile,'user':user,'uform':uform}
+    return render_to_response('dashboard/edit_profile.html', context, context_instance=RequestContext(request))
+
+
+
+
+
+@csrf_exempt
+def pfoto(request):
+    profile = request.user.get_profile()
+    if request.method == 'POST':
+        log.info('received POST to main multiuploader view')
+        if request.FILES == None:
+            return HttpResponseBadRequest('Must have files attached!')
+
+        #getting file data for farther manipulations
+        file = request.FILES[u'pfoto']
+        wrapped_file = UploadedFile(file)
+        filename = wrapped_file.name
+#        file_size = wrapped_file.file.size
+        log.info (u'Got file: %s'%filename)
+
+        profile.photo=file
+        profile.save()
+        return HttpResponse('[1]', mimetype='application/json')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -116,7 +116,7 @@ CANCELATION_RULES = (
 PAYMENT_TYPES = (
     (1, _('Credit Card')),
     (2, _('PayPal')),
-    (3, _('Bank Transfer')),
+    (3, _('Bank Transfer (IBAN)')),
 )
 
 
@@ -184,5 +184,16 @@ LOCALES = (
 #('zh_TW', _('Chinese (Taiwan)')),
 )
 
+JSTRANS = (
+    ('edit_prices',_('Edit Prices')),
+    ('edit_place_details',_('Edit Place Details')),
+    ('set_availability',_('Set Availability')),
+    ('manage_photos',_('Manage Photos')),
+    ('successfully_complete',_('Operation succesfully completed.')),
+    ('profile_saved',_('Your profile successfully updated.')),
+#    ('',_('')),
+#    ('',_('')),
+#    ('',_('')),
+)
 
 from countries import *
