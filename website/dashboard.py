@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from telepathy._generated.errors import DoesNotExist
+
 __author__ = 'Evren Esat Ozkan'
 
 from django import forms
@@ -18,7 +20,7 @@ from django import http
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency, Profile
+from places.models import Place, Tag, Photo, Currency, Profile, PaymentSelection
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES
 from utils.cache import kes
@@ -107,6 +109,39 @@ def pfoto(request):
         return HttpResponse('[1]', mimetype='application/json')
 
 
+
+
+class PaymentSelectionBankForm(ModelForm):
+    class Meta:
+        model=PaymentSelection
+        exclude= ('email','user','payment_type','active')
+class PaymentSelectionPaypalForm(ModelForm):
+    class Meta:
+        model=PaymentSelection
+        fields= ('email',)
+
+@login_required
+def edit_payment(request):
+    user = request.user
+    ps,yeni=PaymentSelection.objects.get_or_create(user=user)
+    saved_ps = None
+    if request.method == 'POST':
+        bform = PaymentSelectionBankForm(request.POST,instance=ps)
+        pform = PaymentSelectionPaypalForm(request.POST,instance=ps)
+        if bform.is_valid():
+            saved_ps = bform.save(commit=False)
+            saved_ps.payment_type =3 #bank transfer
+        if pform.is_valid():
+            saved_ps = pform.save(commit=False)
+            saved_ps.payment_type = 2 #paypal
+        if saved_ps:
+            saved_ps.save()
+            messages.success(request, _('Your payment selection successfully updated.'))
+    else:
+        bform = PaymentSelectionBankForm(instance=ps)
+        pform = PaymentSelectionPaypalForm(instance=ps)
+    context = {'bform':bform,'pform':pform, 'ps':ps}
+    return render_to_response('dashboard/edit_payment.html', context, context_instance=RequestContext(request))
 
 
 

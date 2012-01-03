@@ -527,9 +527,9 @@ class Profile(FacebookProfileModel):
 class PaymentSelection(models.Model):
     '''Payment Selections'''
 
-    name = models.CharField(_('Name'), max_length=20, null=True, blank=True)
+
     user = models.OneToOneField(User, verbose_name=_('User'), null=True, blank=True)
-    payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES)
+    payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES, default=2, blank=True)
     email = models.EmailField(_('PayPal email'), null=True, blank=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     active = models.BooleanField(_('Active'), default=True)
@@ -551,7 +551,7 @@ class PaymentSelection(models.Model):
         verbose_name_plural = _('Payment Selections')
 
     def __unicode__(self):
-        return '%s %s' % (self.name,self.get_payment_type_display())
+        return '%s %s' % (self.user.username,self.get_payment_type_display())
 
 
 class Friendship(models.Model):

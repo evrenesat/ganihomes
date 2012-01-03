@@ -1,0 +1,32 @@
+{% load  thumbnail i18n cevir%}
+{% include "show_messages.html" %}
+<div id="genhdr">
+
+    <h3>{% cevir "odeme sekli sec baslik" %}</h3>
+    {% cevir "odeme sekli sec altbaslik" %}
+
+</div>
+
+
+        <script>current_payment_selection = {{ ps.payment_type }}</script>
+        <div id="editpayment" class="wfParts genbdy">
+            <div class="fl paymseldiv">
+                <input type=radio name=payment_type value=2 id=pt2> <label style="width:auto;" for=pt2>{% trans "PayPal" %}</label>
+            </div>
+            <div class="fl paymseldiv">
+                <input type=radio name=payment_type value=3 id=pt3> <label style="width:auto;" for=pt3>{% trans "Bank Transfer" %}</label>
+            </div>
+            <form action="." method="post">
+            {% csrf_token %}
+            <div class="ptforms gizli" id="form_pt2">
+                {% cevir "odeme sekli paypal bilgi" %}
+                {{ pform.as_p }}
+            </div>
+            <div class="ptforms gizli" id="form_pt3">
+                {% cevir "odeme sekli banka bilgi" %}
+                {{ bform.as_p }}
+            </div>
+            <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
+            </form>
+         </div>
+
