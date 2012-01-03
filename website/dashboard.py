@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from telepathy._generated.errors import DoesNotExist
-
 __author__ = 'Evren Esat Ozkan'
 
 from django import forms
