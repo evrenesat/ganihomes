@@ -2421,7 +2421,8 @@ li.g-plus-one {
 
 }
 #amens{
-    height:280px;
+    height: 280px;
+    display: inline-block;
 }
 #amensearch{
 
@@ -2456,13 +2457,15 @@ margin-top:20px !important;
     list-style: none;
     padding-left:20px;
     float:left;
-    width:190px;
+    width: 169px;
     margin-left:10px;
-    height:20px;
+    height: 23px;
     display:block;
-    color:#6e4f4f;
-    text-shadow: 1px 1px 1px #ffb76c;
-    background: url(/images/unchecked.png) 0 -40px no-repeat;
+    color: #4D4333;
+    text-shadow: 1px 1px 1px #BCC2A6;
+    background: url("/images/unchecked.png") no-repeat scroll 0 -38px transparent;
+    font-size: 16px;
+    padding-bottom: 7px;
 
 }
 #amenul li.hit{
@@ -2471,17 +2474,19 @@ margin-top:20px !important;
 #aciklama {
     float: left;
     width: 290px;
+    margin: 10px;
 
 }
 
 #ack {
     display: inline-block;
     font-size: 11px;
+    padding: 0;
 }
 
 #ozellikler {
     float: right;
-    width: 330px;
+    width: 316px;
     border: 1px solid #ccc;
     /*height: 275px;*/
     padding: 5px;
@@ -2491,10 +2496,11 @@ margin-top:20px !important;
     -webkit-box-shadow: #ccc 1px 1px 4px;
     -moz-box-shadow: #ccc 1px 1px 4px;
     box-shadow: #ccc 1px 1px 4px;
+    margin: 3px;
 }
 
 #ozellikler span {
-    margin-top: 4px;
+    margin-top: 2px;
     border-bottom: 1px solid #fffccf;
     -webkit-box-shadow: #ccc 1px 1px 4px;
     -moz-box-shadow: #ccc 1px 1px 4px;
@@ -2507,7 +2513,7 @@ margin-top:20px !important;
     float: left;
     color: #444444;
     display: block;
-    width: 150px;
+    width: 139px;
 
 }
 
@@ -2517,7 +2523,7 @@ margin-top:20px !important;
     color: #444444;
     font-weight: bold;
     display: block;
-    width: 170px;
+    width: 167px;
 }
 
 #stabul.ui-widget-header {
