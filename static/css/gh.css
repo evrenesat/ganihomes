@@ -796,15 +796,14 @@ ul.messages {
 #footercont {
     background-color: #c8c8c8;
     background: url(/images/sayfa-alt-grd.png) repeat-x !important;
-    height: 75px;
+    height: 166px;
     width: 100%;
     /*position: relative;*/
     margin-top: 40px;
 }
 
 #footer {
-    text-align: center;
-    padding-top: 40px;
+    padding-top: 10px;
     /*position: relative;*/
     /*top: -19px;*/
     /*color: #fff;*/
@@ -814,7 +813,7 @@ ul.messages {
     margin-left: auto;
     margin-right: auto;
     /*height: 22px;*/
-    width: 900px;
+    width: 935px;
     /*-moz-border-radius: 7px;*/
     /*-webkit-border-radius: 7px;*/
     /*border-radius: 7px;*/
@@ -1611,7 +1610,7 @@ li.g-plus-one {
     padding: 9px;
 }
 #yprice{
-    font-size: 19px;
+    font-size: 17px;
     font-weight:bold;
 }
 #yptitle{
@@ -3260,4 +3259,52 @@ ul.messages li{
 #editpayment .paymseldiv{
     width:180px;
     margin-bottom:20px;
+}
+#footmessage{
+    width: 96%;
+    margin:10px;
+    text-align:left;
+    padding:10px;
+    font-size:12px;
+    color: #ababab;
+    border:1px #ccc dotted;
+    float: left;
+}
+#f1{
+    float:left;
+    width: 370px;
+
+    font-size: 17px;
+    color: gray;
+    padding-top: 31px;
+}
+#f2{
+    float:left;
+    text-align:center;
+    width: 152px;
+    color: gray;
+    font-size: 12px;
+    padding-top: 6px;
+}
+#f3{
+    float:right;
+    width: 367px;
+    padding-top: 27px;
+
+}
+.footdiv{
+    width:140px;
+    float:left;
+    height: 121px;
+
+}
+.footdiv h4{
+    margin:3px;
+    font-size:14px;
+    color:gray;
+}
+.footdiv a{
+    margin:3px;
+    font-size:11px;
+    text-decoration:none;
 }

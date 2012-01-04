@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load  thumbnail i18n%}
+{% load cevir thumbnail i18n%}
 {% block extrajs %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
     <script type="text/javascript">$(window).ready(function () {
@@ -338,3 +338,4 @@
         </div>
     </div>
 {% endblock %}
+{% block footmessage %}{% cevir "altmetin index" %}{% endblock %}

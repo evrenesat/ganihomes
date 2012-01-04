@@ -73,10 +73,34 @@
   </div>
 <div id="footercont">
 <div id="footer">
-    {% trans "Help" %} |
-    {% trans "Contact" %} |
-    {% trans "About Us" %} |
-    {% trans "Terms and Privacy" %}
+<div id="f1">
+    <div class="footdiv">
+    <h4>{% trans "Help & Support" %}</h4>
+        <a href="#">{% trans "FAQ" %}</a><br>
+        <a href="#">{% trans "Help Desk" %}</a><br>
+        <a href="#">{% trans "Phone Support" %}</a>
+    </div>
+    <div class="footdiv">
+        <h4>{% trans "Corporate" %}</h4>
+            <a href="#">{% trans "Imprint" %}</a><br>
+            <a href="#">{% trans "Terms and Conditions" %}</a><br>
+            <a href="#">{% trans "Privacy policy" %}</a>
+        </div>
+</div>
+<div id="f2">
+    <img src="{{ STATIC_URL }}/images/grighome.png"><br>
+    2011 &copy; GaniHomes Ltd.
+</div>
+<div id="f3">
+    <div class="footdiv">
+        <h4>{% trans "Contact" %}</h4>
+            <a href="#">{% trans "Send us an email " %}</a><br>
+            <a href="#">{% trans "Press" %}</a><br>
+        </div>
+    <a class="fr" href="#"><img src="{{ STATIC_URL }}/images/icon/facebook.png"></a>
+    <a class="fr" href="#"><img src="{{ STATIC_URL }}/images/icon/twitter.png"></a>
+</div>
+<div id="footmessage">{% block footmessage %}{% endblock %}</div>
 </div>
 </div>
 {% block closebody %}

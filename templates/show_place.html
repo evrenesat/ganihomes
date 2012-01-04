@@ -1,5 +1,5 @@
 {% extends "content.html" %}
-{% load thumbnail i18n%}
+{% load cevir thumbnail i18n%}
 {#{% load localeurl_tags %}#}
 1{% block extracss %}
 <style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>
@@ -219,3 +219,4 @@
 
 <div id="fb-root"></div>
 {% endblock %}
+{% block footmessage %}{% cevir "altmetin mekan" %}{% endblock %}

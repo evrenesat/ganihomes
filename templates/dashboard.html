@@ -34,7 +34,7 @@
                     <ul>
                         <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
                         <li class="btn do_listPlaces">{% trans "Active Listings" %}</li>
-                        <li class="">{% trans "Archived" %}</li>
+                        <li data-type="2" class="btn do_listPlaces">{% trans "Archived" %}</li>
                         <li class="">{% trans "Requests" %} <span style="font-size:smaller;font-weight:normal;">(0)</span></li>
 
                     </ul>
@@ -70,7 +70,6 @@
 
                 <div class="dbcontent" id="loading"></div>
                 <div class="dbcontent" id="dash">
-                    {#    <div  class="info">Gösterilecek yeni bir ileti ya da etkinlik yok.</div>#}
                     <ul class="dugmul">
                         <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png">
                             <h6>{% trans "Add New Place" %} </h6></li>
