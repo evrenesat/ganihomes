@@ -33,22 +33,22 @@
 <div id="hdr" class="{% block hdrclass%}{% endblock %}">
     <div id="hdrContainer">
               <div class="logo">
-                  <a href="/"><img src="{{ STATIC_URL }}images/logob.png"></a>
+                  <a href="/{{ LANGUAGE_CODE }}/"><img src="{{ STATIC_URL }}images/logob.png"></a>
                   <div>{% trans "World is yours..." %}</div>
               </div>
               <div id="supermenu">
                   {% if user.is_authenticated %}
 {#                  <div class="firstitem">Merhaba {{ user.get_full_name }}</div>#}
-                      <div class="firstitem"><a href="/logout/" class="logout">{% trans "Log out" %}</a></div>
+                      <div class="firstitem"><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
                       <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
-                  <div><a href="/dashboard" class="mypage" >{% trans "My Page" %}</a></div>
+                  <div><a href="{%  url dashboard %}" class="mypage" >{% trans "My Page" %}</a></div>
                   {% else %}
-                  <div class="firstitem"><a href="/register/" class="smkayit">{% trans "Sign Up" %}</a></div>
-                  <div><a href="/login/" class="smgir">{% trans "Log in" %}</a></div>
+                  <div class="firstitem"><a href="{%  url register %}" class="smkayit">{% trans "Sign Up" %}</a></div>
+                  <div><a href="{%  url login %}" class="smgir">{% trans "Log in" %}</a></div>
                       <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
                   {% endif %}
 
-                  <div><a href="/add_place" class=smekle>{% trans "Add your place" %}</a></div>
+                  <div><a href="{%  url add_place %}" class=smekle>{% trans "Add your place" %}</a></div>
               </div>
         </div>
 </div>

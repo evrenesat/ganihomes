@@ -55,7 +55,7 @@
                 <div class="scrollableArea">
                     {% for s in slides %}
                         {% if not s.thumbs %}
-                            <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
+                            <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
                                  style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                 <div class="sbaner alpha60">
                                     <div class="sbaner-info">{{ s.placeName }}<br>
@@ -78,7 +78,7 @@
                             </div>
                         {% else %}
 
-                            <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+                            <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
 
                                 {% for photo in s.photos %}
                                     <div class="thumbphoto"
@@ -120,7 +120,7 @@
                 <div class="scrollableArea">
                     {% for s in slides3 %}
                         {% if not s.thumbs %}
-                            <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
+                            <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
                                  style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                 <div class="sbaner alpha60">
                                     <div class="sbaner-info">{{ s.placeName }}<br>
@@ -143,7 +143,7 @@
                             </div>
                         {% else %}
 
-                            <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+                            <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
                                 {#                                          {{ s.photos }}#}
                                 {% for photo in s.photos %}
                                     <div class="thumbphoto"
@@ -185,7 +185,7 @@
                 <div class="scrollableArea">
                     {% for s in slides2 %}
                         {% if not s.thumbs %}
-                            <div class="slidiv" onclick="document.location='{{ s.getUrl }}'"
+                            <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
                                  style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
                                 <div class="sbaner alpha60">
                                     <div class="sbaner-info">{{ s.placeName }}<br>
@@ -207,7 +207,7 @@
                             </div>
                         {% else %}
 
-                            <div class="slidiv slidiv-thumb" onclick="document.location='{{ s.getUrl }}'">
+                            <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
                                 {#                                          {{ s.photos }}#}
                                 {% for photo in s.photos %}
                                     <div class="thumbphoto"

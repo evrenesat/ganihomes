@@ -17,8 +17,35 @@ class IcerikInline(admin.StackedInline):
     prepopulated_fields = {"slug": ("baslik",)}
     extra = 1
 
-#class MedyaInline(admin.StackedInline):
-#    model = Sayfa.medya.through
+class QuestionInline(admin.StackedInline):
+    model = Question
+    save_on_top = True
+    save_as = True
+    extra = 3
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('text', 'lang', 'active')
+    search_fields = ['text', ]
+    list_filter = ['lang', 'active']
+    save_on_top = True
+    inlines = [QuestionInline, ]
+    save_as = True
+
+
+class AnswerInline(admin.StackedInline):
+    model = Answer
+    save_on_top = True
+    save_as = True
+    extra = 3
+
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('text', 'lang','active')
+    search_fields = ['text', ]
+    list_filter = ['lang', 'active']
+    save_on_top = True
+    inlines = [QuestionInline, ]
+    save_as = True
+
 
 class SayfaAdmin(admin.ModelAdmin):
     change_form_template = 'admin/wysiwyg/website_sayfa.html'
