@@ -48,8 +48,9 @@
                 {#                <div style="position:relative">#}
 
                 <div id="adres_form" class="to_neverland">
-
-                    <button class="minidugme fr" onclick="return gh.gcGosterGizle()">{% trans "Show Map" %}</button>
+                    <div style="height: 20px;padding-right: 18px; margin-top: -19px;">
+                    <button class="minidugme fr" onclick="return gh.gcGosterGizle()">{% trans " :: Show Map :: " %}</button>
+                        </div>
                     <p>{{ form.country.label_tag }} {{ form.country }}</p>
 
                     <p>{{ form.state.label_tag }} {{ form.state }}</p>

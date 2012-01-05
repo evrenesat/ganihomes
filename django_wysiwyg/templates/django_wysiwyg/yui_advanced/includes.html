@@ -1,0 +1,113 @@
+{% extends "django_wysiwyg/yui/includes.html" %}{% load i18n %}
+{% block django_wysiwyg_editor_config %}
+    var django_wysiwyg_editor_config = {
+        height: "400px",
+        width: "624px",
+        animate: true,
+        autoHeight: true,
+        // BUG: handleSubmit breaks contrib.admin's save-and-continue-editing feature - we can avoid by listening for blur events
+        // This will cause the rich editor to update the original textarea's value when the containing form submit event fires
+        handleSubmit: true,
+        focusAtStart: false,
+        toolbar: {
+            //collapse: true,
+            //titlebar: 'Body',
+            draggable: false,
+            buttonType: 'advanced',
+            buttons: [
+            {
+                group: 'fontstyle',
+                label: '{% trans "Font Name and Size" %}',
+                buttons: [
+                    { type: 'select', label: 'Arial', value: 'fontname', disabled: true,
+                      menu: [
+                        { text: 'Arial', checked: true },
+                        { text: 'Arial Black' },
+                        { text: 'Comic Sans MS' },
+                        { text: 'Courier New' },
+                        { text: 'Georgia' },
+                        { text: 'Impact' },
+                        { text: 'Lucida Console' },
+                        { text: 'Tahoma' },
+                        { text: 'Times New Roman' },
+                        { text: 'Trebuchet MS' },
+                        { text: 'Verdana' }
+                      ]
+                    },
+                    { type: 'spin', label: '13', value: 'fontsize', range: [9, 75], disabled: true }
+                ]
+            },
+            {
+                type: 'separator'
+            },
+            {
+                group: 'textstyle',
+                label: '{% trans "Font Style" %}',
+                buttons: [
+                    { type: 'push', label: '{% trans "Bold CTRL + SHIFT + B" %}', value: 'bold' },
+                    { type: 'push', label: '{% trans "Italic CTRL + SHIFT + I" %}', value: 'italic' },
+                    { type: 'push', label: '{% trans "Underline CTRL + SHIFT + U" %}', value: 'underline' },
+                    { type: 'separator' },
+                    { type: 'push', label: '{% trans "Subscript" %}', value: 'subscript', disabled: true },
+                    { type: 'push', label: '{% trans "Superscript" %}', value: 'superscript', disabled: true },
+                    { type: 'separator' },
+                    { type: 'color', label: '{% trans "Font Color" %}', value: 'forecolor', disabled: true },
+                    { type: 'color', label: '{% trans "Background Color" %}', value: 'backcolor', disabled: true },
+                    { type: 'separator' },
+                    { type: 'push', label: '{% trans "Remove Formatting" %}', value: 'removeformat', disabled: true },
+                    { type: 'push', label: '{% trans "Show/Hide Hidden Elements" %}', value: 'hiddenelements' }
+                ]
+            },
+            { type: 'separator' },
+            { group: 'alignment', label: 'Alignment',
+                buttons: [
+                    { type: 'push', label: '{% trans "Align Left CTRL + SHIFT + [" %}', value: 'justifyleft' },
+                    { type: 'push', label: '{% trans "Align Center CTRL + SHIFT + |" %}', value: 'justifycenter' },
+                    { type: 'push', label: '{% trans "Align Right CTRL + SHIFT + ]" %}', value: 'justifyright' },
+                    { type: 'push', label: '{% trans "Justify" %}', value: 'justifyfull' }
+                ]
+            },
+            { type: 'separator' },
+            { group: 'parastyle', label: '{% trans "Paragraph Style" %}',
+                buttons: [
+                { type: 'select', label: '{% trans "Normal" %}', value: 'heading', disabled: true,
+                    menu: [
+                        { text: '{% trans "Normal" %}', value: 'none', checked: true },
+                        { text: '{% trans "Header 1" %}', value: 'h1' },
+                        { text: '{% trans "Header 2" %}', value: 'h2' },
+                        { text: '{% trans "Header 3" %}', value: 'h3' },
+                        { text: '{% trans "Header 4" %}', value: 'h4' },
+                        { text: '{% trans "Header 5" %}', value: 'h5' },
+                        { text: '{% trans "Header 6" %}', value: 'h6' }
+                    ]
+                }
+                ]
+            },
+            {
+                type: 'separator'
+            },
+            {
+                group: 'indentlist',
+                label: '{% trans "Lists" %}',
+                buttons: [
+                    { type: 'push', label: '{% trans "Indent" %}', value: 'indent', disabled: true },
+                    { type: 'push', label: '{% trans "Outdent" %}', value: 'outdent', disabled: true },
+                    { type: 'push', label: '{% trans "Create an Unordered List" %}', value: 'insertunorderedlist' },
+                    { type: 'push', label: '{% trans "Create an Ordered List" %}', value: 'insertorderedlist' }
+                ]
+            },
+            {
+                type: 'separator'
+            },
+            {
+                group: 'insertitem',
+                label: '{% trans "Insert Item" %}',
+                buttons: [
+                    { type: 'push', label: '{% trans "HTML Link CTRL + SHIFT + L" %}', value: 'createlink', disabled: true },
+                    { type: 'push', label: '{% trans "Insert Image" %}', value: 'insertimage' }
+                ]
+            }
+            ]
+        }
+    };
+{% endblock %}

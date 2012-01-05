@@ -1210,7 +1210,7 @@ li.g-plus-one {
     color: brown !important;
     background: url(/images/grd-agc-1.png);
     /*background: url(/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png);*/
-    text-shadow: 1px 1px 0.4px #ccc;
+    text-shadow: 1px 1px 1.4px #9369A4;
 }
 
 .minidugme:hover {

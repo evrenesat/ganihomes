@@ -21,6 +21,7 @@ class IcerikInline(admin.StackedInline):
 #    model = Sayfa.medya.through
 
 class SayfaAdmin(admin.ModelAdmin):
+    change_form_template = 'admin/wysiwyg/website_sayfa.html'
     list_display = ('baslik', 'pul', 'menude', 'etkin')
     mptt_indent_field = "baslik"
     #    search_fields = ['', ]
@@ -77,6 +78,7 @@ class KelimeAdmin(admin.ModelAdmin):
     #    search_fields = ['', ]
     #    list_filter = ['', ]
     readonly_fields = ['durum']
+    change_form_template = 'admin/wysiwyg/website_kelime.html'
     save_on_top = True
     inlines = [CeviriInline, ]
 

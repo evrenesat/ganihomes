@@ -1,0 +1,23 @@
+{% extends "admin/change_form.html" %}
+
+{% load wysiwyg %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% wysiwyg_setup %}
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    {% wysiwyg_editor "id_icerik_set-0-metin" %}
+    {% wysiwyg_editor "id_icerik_set-1-metin" %}
+    {% wysiwyg_editor "id_icerik_set-2-metin" %}
+    {% wysiwyg_editor "id_icerik_set-3-metin" %}
+    {% wysiwyg_editor "id_icerik_set-4-metin" %}
+    {% wysiwyg_editor "id_icerik_set-7-metin" %}
+    {% wysiwyg_editor "id_icerik_set-8-metin" %}
+    {% wysiwyg_editor "id_icerik_set-9-metin" %}
+    {% wysiwyg_editor "id_icerik_set-10-metin" %}
+    {% wysiwyg_editor "id_icerik_set-11-metin" %}
+	
+{% endblock %}
