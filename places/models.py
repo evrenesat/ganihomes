@@ -195,10 +195,11 @@ class Tag(models.Model):
     name = models.CharField(_('Name'), max_length=30)
     help = models.TextField(_('Help Text'), default='', blank=True)
     active = models.BooleanField(_('Active'), default=True)
+    order = models.SmallIntegerField(_('Order'))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['order']
         get_latest_by = "timestamp"
         verbose_name = _('Tag')
         verbose_name_plural = _('Tags')
@@ -759,3 +760,5 @@ class PlaceReview(models.Model):
 
     def __unicode__(self):
         return 'Message from user #%s' % (self.writer,)
+
+

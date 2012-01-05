@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db.models.query_utils import Q
-from places.options import LOCALES
-
+#from places.options import LOCALES
+from django.conf import settings
 __author__ = 'Evren Esat Ozkan'
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -35,7 +35,7 @@ class Medya(models.Model):
     sablon = models.CharField(max_length=200, null=True, blank=True,choices=[('',u'Seçiniz'),],help_text=u'Yüklediğiniz dosyanın özel bir biçimde gösterilmesi için farklı bir gösterim şablonu seçebilirsiniz.. <br><b>!!! Emin değilseniz bu ayarı değiştirmeyiniz !!!</b>', editable=False)
     etkin = models.BooleanField(u"Etkin", default=True, help_text=u"İçerik yayınlansın mı?", db_index=True)
     dosya = models.FileField(_('Dosya'), upload_to=upload_to)
-    dil_kodu = models.CharField(max_length=5, choices=LOCALES)
+    dil_kodu = models.CharField(max_length=5, choices=settings.LANGUAGES)
 
     objects = models.Manager() # The default manager.
     gorseller = DosyaManager(1)

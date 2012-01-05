@@ -2422,6 +2422,7 @@ li.g-plus-one {
 #amens{
     height: 280px;
     display: inline-block;
+    padding: 1em 0 !important;
 }
 #amensearch{
 
@@ -2451,7 +2452,9 @@ margin-top:20px !important;
 #amenulsr li.hit{
     background-position: 0 -20px;
 }
-
+#amenul{
+    pardding:0;
+}
 #amenul li{
     list-style: none;
     padding-left:20px;
@@ -2463,7 +2466,7 @@ margin-top:20px !important;
     color: #4D4333;
     text-shadow: 1px 1px 1px #BCC2A6;
     background: url("/images/unchecked.png") no-repeat scroll 0 -38px transparent;
-    font-size: 16px;
+    font-size: 11px;
     padding-bottom: 7px;
 
 }
@@ -3314,3 +3317,19 @@ ul.messages li{
     color: #7E7061;
     text-shadow: 1px 1px 1px #AEAB8D;
 }
+.mhelp{
+    background-image:('/images/icon/qmark.png')
+}
+#easyTooltip{
+	padding:5px 10px;
+	border:1px solid #195fa4;
+	background: #decdc0;
+	color: #664033;
+    text-shadow: 1px 1.4px 1px #A3A2A2;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: #666 0px 1px 1px;
+    -moz-box-shadow: #666 0px 1px 1px;
+    box-shadow: #666 0px 1px 1px;
+	}

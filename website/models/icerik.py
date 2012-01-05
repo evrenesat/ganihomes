@@ -262,7 +262,7 @@ class Vitrin(models.Model):
     tops = models.BooleanField(u"Favori", default=False, help_text=_(u'Sadece favori olarak seçilen ögeler ana vitrinde gösterilir.'))
     url = models.CharField(u"URL", max_length=100, help_text=u"İsteğe Bağlı. Tıklanınca gidilecek url. ",null=True,blank=True)
 #    icerik = models.TextField(u'İçerik',help_text=u"İsteğe Bağlı. Buraya gireceğiniz HTML içerik slaytın üzerinde gösterilir.", null=True, blank=True,)
-    dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=LOCALES)
+    dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=settings.LANGUAGES)
     pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
 
 
@@ -331,3 +331,5 @@ class Vitrin(models.Model):
             self.type = self.place_photo.type
             #FIXME: self.url = self.place.get_absolute_url()
         super(Vitrin, self).save(*args, **kwargs)
+
+

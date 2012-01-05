@@ -3,54 +3,57 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-import logging
-log = logging.getLogger('genel')
+#import logging
+#log = logging.getLogger('genel')
 
 class Category(models.Model):
     """Tag category"""
 
     text = models.CharField(_('Name'), max_length=100)
-    lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
+    lang = models.CharField(_('Category'), max_length=2, db_index=True, choices=settings.LANGUAGES)
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
+        app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Tag Category')
         verbose_name_plural = _('Tag Categories')
 
     def __unicode__(self):
-        return '%s' % (self.name,)
+        return '%s' % (self.text,)
 
 class CategoryTranslation(models.Model):
     """Place description"""
 
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey('Category')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.CharField(_('Translation'), max_length=100)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
+        app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Category Name Translation')
         verbose_name_plural = _('Category Name Translations')
 
     def __unicode__(self):
-        return 'Place #%s Lang:%s' % (self.tag_id, self.lang)
+        return 'Place #%s Lang:%s' % (self.category_id, self.lang)
 
 
 class Question(models.Model):
     """Place tags"""
 
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey('Category')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.CharField(_('Question'), max_length=250)
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
+        app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Question')
@@ -63,30 +66,32 @@ class Question(models.Model):
 class QuestionTranslation(models.Model):
     """Place description"""
 
-    category = models.ForeignKey(Question)
+    question = models.ForeignKey('Question')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.CharField(_('Question'), max_length=250)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
+        app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Tag Translation')
         verbose_name_plural = _('Tag Translations')
 
     def __unicode__(self):
-        return '#%s Lang:%s' % (self.category_id, self.lang)
+        return '#%s Lang:%s' % (self.question_id, self.lang)
 
 class Answer(models.Model):
     """Place tags"""
 
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey('Question')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.TextField(_('Answer'))
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
+        app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Answer')
@@ -99,12 +104,13 @@ class Answer(models.Model):
 class AnswerTranslation(models.Model):
     """Place description"""
 
-    answer = models.ForeignKey(Answer)
+    answer = models.ForeignKey('Answer')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.TextField(_('Answer'))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
+        app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Answer Translation')

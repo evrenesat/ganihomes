@@ -1,6 +1,7 @@
 from django.templatetags.static import register
 from website.models.dil import Ceviriler
 
+
 __author__ = 'Evren Esat Ozkan'
 
 def cevir(context, kelime):
