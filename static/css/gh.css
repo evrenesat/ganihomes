@@ -955,7 +955,8 @@ ul.messages {
     -webkit-border-radius: 6px 6px 0 0;
     -moz-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
-    background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;
+    /*background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;*/
+    background-color: #EAC36A;
 
 }
 #dokuzic{
@@ -2331,7 +2332,6 @@ li.g-plus-one {
 #menuccordion div {
     display: block;
     /*background-color: #DDB385;*/
-    background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;
     font-weight: bold;
     margin: 5px;
     cursor: pointer;
@@ -2340,8 +2340,9 @@ li.g-plus-one {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 5px 5px 0 0;
-    text-shadow: 1px 2px 1px #FFFFFF;
+    text-shadow: 1px 2px 1px #DEDBDB;
     padding-left: 6px;
+    background-color: #EAC36A;
 }
 #menuccordion ul {
     list-style: none;
@@ -2356,7 +2357,7 @@ li.g-plus-one {
     background-color: #fff;
     padding: 0 0 0 12px;
     font-size: 14px;
-    color: #7A6F69;
+    color: #403C3A;
     list-style: inside;
     pointer: cursor;
     text-shadow: 1px 1px 5px #EBE099;
@@ -2364,7 +2365,7 @@ li.g-plus-one {
 }
 #menuccordion a {
     text-decoration: none;
-    color: #818181;
+    color: #563D3D;
     font-size: 18px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -3213,7 +3214,7 @@ ul.messages li{
 }
 
 #genhdr {
-    height: 103px;
+    height: 64px;
     width: 620px;
     margin-left: auto;
     margin-right: auto;
@@ -3389,7 +3390,9 @@ ul.messages li{
     /*text-shadow: 1px 1px 5px #EBE099;*/
 
 }
-.expclp {text-decoration:none;}
+.expclp {text-decoration:none;
+    margin-right: 50px;
+}
 .expclp  span.ea{ display:inline;}
 .expclp  span.ca{ display:none;}
 .expclp.expanded  span.ea{ display:none;}

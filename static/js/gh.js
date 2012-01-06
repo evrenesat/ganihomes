@@ -696,23 +696,24 @@ gh = {
         $(cont+" > li > div").click(function(){
 
             if(false == $(this).next().is(':visible')) {
-                $("#"+cont+" ul").slideUp(300);
+                $(cont+" ul").slideUp(300);
             }
             $(this).next().slideToggle(300);
         });
-        this.ecordion_state[cont]=0
+        var cnt = cont.replace('#','')
+        this.ecordion_state[cnt]=0
         return function(state){
             console.log(self.ecordion_state)
-            var sel = $(cont+' li > ul')
-            if (typeof(state)!='undefined')self.ecordion_state[cont] = state
-            if (!self.ecordion_state[cont]){
+            var sel = $(cnt+' li > ul')
+            if (typeof(state)!='undefined')self.ecordion_state[cnt] = state
+            if (!self.ecordion_state[cnt]){
                 sel.slideDown(300);
-                self.ecordion_state[cont]=1
+                self.ecordion_state[cnt]=1
             }else{
                 sel.slideUp(300);
-                self.ecordion_state[cont]=0
+                self.ecordion_state[cnt]=0
             }
-            return self.ecordion_state[cont]
+            return self.ecordion_state[cnt]
         }
 
 
@@ -933,6 +934,12 @@ gh = {
     },
     do_showMessages:function(self){
         this.genericEdit('/dashboard/show_messages/')
+    },
+    do_showFaq:function(self){
+        self = this
+        this.genericEdit('/dashboard/show_faq/',function(){
+            self.init_faq()
+        })
     },
     genericEdit:function(url,fn){
         self = this

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from website.models.faq import Question
+
 __author__ = 'Evren Esat Ozkan'
 
 from django import forms
@@ -41,6 +43,12 @@ def list_places(request, type=None):
     result = u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)])
     return HttpResponse(result, mimetype='application/json')
 
+
+
+def show_faq(request, type=None):
+    return render_to_response('dashboard/dash_faq.html',
+            {'faq':Question.getFaqs(request.LANGUAGE_CODE)},
+        context_instance=RequestContext(request))
 
 
 def show_messages(request, type=None):
