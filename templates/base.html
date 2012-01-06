@@ -67,8 +67,10 @@
 
   <div class="container">
 
+    {% block outercontent %}
     {% block content %}
 
+    {% endblock  %}
     {% endblock  %}
   </div>
 <div id="footercont">
@@ -76,7 +78,7 @@
 <div id="f1">
     <div class="footdiv">
     <h4>{% trans "Help & Support" %}</h4>
-        <a href="#">{% trans "FAQ" %}</a><br>
+        <a href="{% url faq %}">{% trans "FAQ" %}</a><br>
         <a href="#">{% trans "Help Desk" %}</a><br>
         <a href="#">{% trans "Phone Support" %}</a>
     </div>

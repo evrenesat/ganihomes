@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load  thumbnail %}
+
+
+{% block hdrclass %}hdrbg{% endblock %}
+
+    {% if messages %}
+        {% block header %}
+
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+        {% endblock %}
+    {% endif %}
+{% block outercontent %}
+<div class="altikutu">
+{% block content %}{%  endblock  %}
+</div>
+<div class="ikikutu">
+{% block sidebar %}{%  endblock  %}
+</div>
+{%  endblock  %}

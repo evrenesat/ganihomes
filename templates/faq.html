@@ -1,22 +1,15 @@
-{% extends "content.html" %}
+{% extends "content_boxed.html" %}
 {% load thumbnail i18n currency cevir %}
 {% block content %}
-    {% for cat_name,questions  in faq%}
-<ul class="faqcats">
-    <li>
-        <div><a href="#">{{ cat_name }}</a></div>
-        <ul class="faqcat">
-            {% for q in questions %}
-                        <li>
-                            <div><a href="#">{{ q.question }}</a></div>
-                            <ul>
-                                <li class="">{{ q.answers }}</li>
-                            </ul>
-                        </li>
-
-                {% endfor %}
-        </ul>
-
-</ul>
-    {% endfor %}
+{% include "faq_ic.html" %}
 {% endblock %}
+{% block sidebar %}
+    <h3>{% cevir "faq yancubuk baslik" %}</h3>
+    <hr>
+    {% cevir "faq yancubuk altmetin" %}
+<p></p>
+<p></p>
+<p></p>
+    buraya soru sorma kutusu gelecek
+    <p></p><p></p><p></p><p></p><p></p>
+{%  endblock  %}

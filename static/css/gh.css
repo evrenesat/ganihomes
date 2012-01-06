@@ -978,6 +978,7 @@ ul.messages {
 
 .altikutu {
     width: 660px;
+    min-height:500px;
     padding: 15px;
     margin-top: 20px;
     -moz-border-radius: 6px;
@@ -3353,10 +3354,10 @@ ul.messages li{
 .faqcat {
     list-style: none;
     padding: 0 0 0 0;
-    width: 214px;
     float: left;
 }
 .faqcat div {
+    width: 600px;
     display: block;
     /*background-color: #DDB385;*/
     /*background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;*/
@@ -3368,7 +3369,6 @@ ul.messages li{
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 5px 5px 0 0;
-    text-shadow: 1px 2px 1px #ccc;
     padding-left: 6px;
 }
 .faqcat ul {
@@ -3389,6 +3389,12 @@ ul.messages li{
     /*text-shadow: 1px 1px 5px #EBE099;*/
 
 }
+.expclp {text-decoration:none;}
+.expclp  span.ea{ display:inline;}
+.expclp  span.ca{ display:none;}
+.expclp.expanded  span.ea{ display:none;}
+.expclp.expanded  span.ca{ display:inline;}
+
 .faqcat a {
     text-decoration: none;
     /*color: #818181;*/
@@ -3402,22 +3408,22 @@ ul.messages li{
 .faqcats {
     list-style: none;
     padding: 0 0 0 0;
-    width: 214px;
+    /*width: 214px;*/
     float: left;
 }
-.faqcats li > div {
+.faqcats > li > div {
     display: block;
     /*background-color: #DDB385;*/
     /*background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;*/
     font-weight: bold;
     margin: 5px;
     cursor: pointer;
+    width: 600px;
     padding: 3px;
     /*list-style: none;*/
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 5px 5px 0 0;
-    text-shadow: 1px 2px 1px #ccc;
     padding-left: 6px;
 }
 .faqcats  ul {
@@ -3434,7 +3440,7 @@ ul.messages li{
     /*color: #7A6F69;*/
     /*list-style: inside;*/
     pointer: cursor;
-    text-shadow: 1px 1px 5px #EBE099;
+    /*text-shadow: 1px 1px 5px #EBE099;*/
 
 }
 .faqcats  > li > div > a {

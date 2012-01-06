@@ -690,7 +690,9 @@ gh = {
             $('#uyekapsar').removeClass('silik');
         })
     },
-    menucordion:function(cont){
+    ecordion_state:{},
+    ecordion:function(cont){
+        self = this
         $(cont+" > li > div").click(function(){
 
             if(false == $(this).next().is(':visible')) {
@@ -698,17 +700,36 @@ gh = {
             }
             $(this).next().slideToggle(300);
         });
+        this.ecordion_state[cont]=0
+        return function(state){
+            console.log(self.ecordion_state)
+            var sel = $(cont+' li > ul')
+            if (typeof(state)!='undefined')self.ecordion_state[cont] = state
+            if (!self.ecordion_state[cont]){
+                sel.slideDown(300);
+                self.ecordion_state[cont]=1
+            }else{
+                sel.slideUp(300);
+                self.ecordion_state[cont]=0
+            }
+            return self.ecordion_state[cont]
+        }
 
-//        $("#"+cont+" ul:eq(0)").show();
+
     },
     init_faq:function(){
-        this.menucordion('.faqcats')
-        this.menucordion('.faqcat')
+        var fn2 = this.ecordion('.faqcats')
+        var fn1 = this.ecordion('.faqcat')
+            $('.expclp').click(function(){
+                $(this).toggleClass('expanded')
+              if(fn1()==1)fn2(0)
+            })
+
     },
     init_dashboard: function(){
         var self = this;
-//        $( "#menuccordion").accordion({  collapsible: true});
-        this.menucordion('#menuccordion')
+
+        this.ecordion('#menuccordion')
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){

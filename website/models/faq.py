@@ -59,20 +59,18 @@ class Question(models.Model):
     def getFaqs(cls, lang):
         return kes(lang,'faqs').g({})
 
+    def getTrans(self,lang):
+        return self.questiontranslation_set.filter(lang=lang).values_list('text',flat=True)[0]
+
     @classmethod
     def _updateCache(cls):
 
         for code,name in settings.LANGUAGES:
             di = defaultdict(list)
-            for a in Answer.objects.order_by('question__order').filter(lang=code, active=True):
-                di[a.question.category_id].append(
-                    {'answer':a.text, 'qid':a.question_id,
-                    'question':a.question.questiontranslation_set.filter(lang=code).values_list('text',flat=True)[0]})
-            dt = []
             cat_names = dict(CategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
-            for k,v in di.items():
-                dt.append( ( cat_names[k] , v ) )
-            kes(code,'faqs').s(dt,999999)
+            for a in Answer.objects.select_related().order_by('question__order').filter(lang=code, active=True):
+                di[cat_names[a.question.category_id]].append({'answer':a.text, 'qid':a.question_id, 'question':a.question.getTrans(code)})
+            kes(code,'faqs').s(di.items(),999999)
 
     def save(self, *args, **kwargs):
         self._updateCache()
