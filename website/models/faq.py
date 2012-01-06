@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 #import logging
@@ -68,7 +69,7 @@ class Question(models.Model):
             di = defaultdict(list)
             cat_names = dict(CategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
             for a in Answer.objects.select_related().order_by('question__order').filter(lang=code, active=True):
-                di[cat_names[a.question.category_id]].append({'answer':a.text, 'qid':a.question_id, 'question':a.question.getTrans(code)})
+                di[cat_names[a.question.category_id]].append({'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
             di = di.items()
             kes(code,'faqs').s(di,999999)
             if lang == code:
