@@ -3,6 +3,7 @@ from tinymce.widgets import TinyMCE
 
 __author__ = 'Evren Esat Ozkan'
 from django.contrib import admin
+from django.forms import Textarea
 from utils.admin import admin_register
 from website.models import *
 #from mptt.admin import MPTTModelAdmin as mpttadmin
@@ -23,28 +24,62 @@ class QuestionInline(admin.StackedInline):
     save_as = True
     extra = 3
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('text', 'lang', 'active')
-    search_fields = ['text', ]
-    list_filter = ['lang', 'active']
+class QuestionTranslationInline(admin.StackedInline):
+    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+    model = QuestionTranslation
     save_on_top = True
-    inlines = [QuestionInline, ]
+    save_as = True
+    extra = 3
+
+class CategoryTranslationInline(admin.StackedInline):
+    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+    model = CategoryTranslation
+    save_on_top = True
+    save_as = True
+    extra = 3
+
+class CategoryAdmin(admin.ModelAdmin):
+    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+    list_display = ('text', 'active')
+    search_fields = ['text', ]
+    list_filter = ['active']
+    save_on_top = True
+    inlines = [CategoryTranslationInline, QuestionInline, ]
     save_as = True
 
 
 class AnswerInline(admin.StackedInline):
+#    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
     model = Answer
     save_on_top = True
     save_as = True
     extra = 3
 
 class QuestionAdmin(admin.ModelAdmin):
+    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+    list_display = ('text','active')
+    search_fields = ['text', ]
+    list_filter = ['active','category']
+    save_on_top = True
+    inlines = [QuestionTranslationInline, AnswerInline]
+    save_as = True
+
+
+class AnswerAdmin(admin.ModelAdmin):
+    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
     list_display = ('text', 'lang','active')
     search_fields = ['text', ]
-    list_filter = ['lang', 'active']
+    list_filter = ['active','lang']
     save_on_top = True
-    inlines = [QuestionInline, ]
     save_as = True
+
+#class QuestionTranslationAdmin(admin.ModelAdmin):
+#    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+#    list_display = ('text', 'lang', 'active')
+#    search_fields = ['text', ]
+#    list_filter = ['lang', 'active']
+#    save_on_top = True
+#    save_as = True
 
 
 class SayfaAdmin(admin.ModelAdmin):

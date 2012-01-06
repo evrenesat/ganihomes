@@ -192,6 +192,7 @@ class Tag(models.Model):
     """Place tags"""
 
     category = models.ForeignKey(TagCategory)
+#    lang = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE)
     name = models.CharField(_('Name'), max_length=30)
     help = models.TextField(_('Help Text'), default='', blank=True)
     active = models.BooleanField(_('Active'), default=True)
@@ -211,14 +212,13 @@ class Tag(models.Model):
 
         for code,name in settings.LANGUAGES:
             tags = []
-            TAGS_CACHE = kes(code,'tags')
-            if code == 'en': #assuming en as the default language
-                for d in cls.objects.filter(active=True).values('id','name','help'):
-                    tags.append(d)
-            else:
-                for d in TagTranslation.objects.filter(tag__active=True,lang=code).values('tag_id','translation','help'):
-                    tags.append({'id':d['tag_id'],'help':d['help'],'name':d['translation']})
-            TAGS_CACHE.s(tags,999999)
+#            if code == 'en': #assuming en as the default language
+#                for d in cls.objects.filter(active=True).values('id','name','help'):
+#                    tags.append(d)
+#            else:
+            for d in TagTranslation.objects.filter(tag__active=True,lang=code).values('tag_id','translation','help'):
+                tags.append({'id':d['tag_id'],'help':d['help'],'name':d['translation']})
+            kes(code,'tags').s(tags,999999)
 
     def save(self, *args, **kwargs):
         self._updateCache()

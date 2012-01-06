@@ -3318,18 +3318,129 @@ ul.messages li{
     text-shadow: 1px 1px 1px #AEAB8D;
 }
 .mhelp{
-    background-image:('/images/icon/qmark.png')
+    background: url("/images/icon/qmark.png") no-repeat scroll 100% 0;
+    width:16px;
+    height:16px;
+    display: inline-block;
+    n: 3px;
+    margin: 3px 0 0 3px;
+    padding-left: 3px;
+    padding-top: -5px;
+    adding-top: -5px;
+    -top: -5px;
+    margin-top: -1px;
+    position: relative;
+    left: 5px;
+    top: 3px;
+
 }
 #easyTooltip{
 	padding:5px 10px;
-	border:1px solid #195fa4;
-	background: #decdc0;
-	color: #664033;
+	border:1px solid #b3a69c;
+	background: none repeat scroll 0 0 #fff;
+	color: #3A2D29;
     text-shadow: 1px 1.4px 1px #A3A2A2;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
     -webkit-box-shadow: #666 0px 1px 1px;
     -moz-box-shadow: #666 0px 1px 1px;
-    box-shadow: #666 0px 1px 1px;
+    box-shadow: 1px 3px 8px #666666;
 	}
+
+
+
+.faqcat {
+    list-style: none;
+    padding: 0 0 0 0;
+    width: 214px;
+    float: left;
+}
+.faqcat div {
+    display: block;
+    /*background-color: #DDB385;*/
+    /*background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;*/
+    font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+    padding: 3px;
+    /*list-style: circle;*/
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 5px 5px 0 0;
+    text-shadow: 1px 2px 1px #ccc;
+    padding-left: 6px;
+}
+.faqcat ul {
+    list-style: none;
+    padding: 0 0 0 0;
+}
+.faqcat ul{
+    display: none;
+}
+.faqcat ul li {
+    /*font-weight: bold;*/
+    /*cursor: auto;*/
+    /*background-color: #fff;*/
+    padding: 0 0 0 12px;
+    font-size: 14px;
+    /*color: #7A6F69;*/
+    /*list-style: inside;*/
+    /*text-shadow: 1px 1px 5px #EBE099;*/
+
+}
+.faqcat a {
+    text-decoration: none;
+    /*color: #818181;*/
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.faqcat a:hover {
+    /*text-decoration: underline;*/
+}
+.faqcats {
+    list-style: none;
+    padding: 0 0 0 0;
+    width: 214px;
+    float: left;
+}
+.faqcats li > div {
+    display: block;
+    /*background-color: #DDB385;*/
+    /*background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;*/
+    font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+    padding: 3px;
+    /*list-style: none;*/
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 5px 5px 0 0;
+    text-shadow: 1px 2px 1px #ccc;
+    padding-left: 6px;
+}
+.faqcats  ul {
+    list-style: none;
+    padding: 0 0 0 0;
+    /*display: none;*/
+}
+.faqcats > li {
+    /*font-weight: bold;*/
+    /*cursor: pointer;*/
+    background-color: #fff;
+    padding: 0 0 0 12px;
+    font-size: 14px;
+    /*color: #7A6F69;*/
+    /*list-style: inside;*/
+    pointer: cursor;
+    text-shadow: 1px 1px 5px #EBE099;
+
+}
+.faqcats  > li > div > a {
+    text-decoration: none;
+    color: #818181;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

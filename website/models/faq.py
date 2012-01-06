@@ -5,12 +5,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 #import logging
 #log = logging.getLogger('genel')
+from utils.cache import kes
 
 class Category(models.Model):
     """Tag category"""
 
     text = models.CharField(_('Name'), max_length=100)
-    lang = models.CharField(_('Category'), max_length=2, db_index=True, choices=settings.LANGUAGES)
+#    lang = models.CharField(_('Category'), max_length=2, db_index=True, choices=settings.LANGUAGES)
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
@@ -18,8 +19,8 @@ class Category(models.Model):
         app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _('Tag Category')
-        verbose_name_plural = _('Tag Categories')
+        verbose_name = _('FAQ Category')
+        verbose_name_plural = _('FAQ Categories')
 
     def __unicode__(self):
         return '%s' % (self.text,)
@@ -30,25 +31,6 @@ class CategoryTranslation(models.Model):
     category = models.ForeignKey('Category')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.CharField(_('Translation'), max_length=100)
-    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
-
-    class Meta:
-        app_label = 'website'
-        ordering = ['timestamp']
-        get_latest_by = "timestamp"
-        verbose_name = _('Category Name Translation')
-        verbose_name_plural = _('Category Name Translations')
-
-    def __unicode__(self):
-        return 'Place #%s Lang:%s' % (self.category_id, self.lang)
-
-
-class Question(models.Model):
-    """Place tags"""
-
-    category = models.ForeignKey('Category')
-    lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
-    text = models.CharField(_('Question'), max_length=250)
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
@@ -56,8 +38,52 @@ class Question(models.Model):
         app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _('Question')
-        verbose_name_plural = _('Questions')
+        verbose_name = _('FAQ Category Name Translation')
+        verbose_name_plural = _('FAQ Category Name Translations')
+
+    def __unicode__(self):
+        return 'Place #%s Lang:%s' % (self.category_id, self.lang)
+
+from collections import defaultdict
+class Question(models.Model):
+    """Place tags"""
+
+    category = models.ForeignKey('Category')
+#    lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
+    order = models.SmallIntegerField(_('Order'),default=100)
+    text = models.CharField(_('Question'), max_length=250)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    @classmethod
+    def getFaqs(cls, lang):
+        return kes(lang,'faqs').g({})
+
+    @classmethod
+    def _updateCache(cls):
+
+        for code,name in settings.LANGUAGES:
+            di = defaultdict(list)
+            for a in Answer.objects.order_by('question__order').filter(lang=code, active=True):
+                di[a.question.category_id].append(
+                    {'answer':a.text, 'qid':a.question_id,
+                    'question':a.question.questiontranslation_set.filter(lang=code).values_list('text',flat=True)[0]})
+            dt = []
+            cat_names = dict(CategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
+            for k,v in di.items():
+                dt.append( ( cat_names[k] , v ) )
+            kes(code,'faqs').s(dt,999999)
+
+    def save(self, *args, **kwargs):
+        self._updateCache()
+        super(Question, self).save(*args, **kwargs)
+
+    class Meta:
+        app_label = 'website'
+        ordering = ['order']
+        get_latest_by = "timestamp"
+        verbose_name = _('FAQ Question')
+        verbose_name_plural = _('FAQ Questions')
 
     def __unicode__(self):
         return '%s' % (self.text,)
@@ -69,14 +95,15 @@ class QuestionTranslation(models.Model):
     question = models.ForeignKey('Question')
     lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
     text = models.CharField(_('Question'), max_length=250)
+    active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
         app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _('Tag Translation')
-        verbose_name_plural = _('Tag Translations')
+        verbose_name = _('FAQ Question Translation')
+        verbose_name_plural = _('FAQ Question Translations')
 
     def __unicode__(self):
         return '#%s Lang:%s' % (self.question_id, self.lang)
@@ -94,27 +121,8 @@ class Answer(models.Model):
         app_label = 'website'
         ordering = ['timestamp']
         get_latest_by = "timestamp"
-        verbose_name = _('Answer')
-        verbose_name_plural = _('Answers')
+        verbose_name = _('FAQ Answer')
+        verbose_name_plural = _('FAQ Answers')
 
     def __unicode__(self):
         return '%s' % (self.text,)
-
-
-class AnswerTranslation(models.Model):
-    """Place description"""
-
-    answer = models.ForeignKey('Answer')
-    lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
-    text = models.TextField(_('Answer'))
-    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
-
-    class Meta:
-        app_label = 'website'
-        ordering = ['timestamp']
-        get_latest_by = "timestamp"
-        verbose_name = _('Answer Translation')
-        verbose_name_plural = _('Answer Translations')
-
-    def __unicode__(self):
-        return '#%s Lang:%s' % (self.answer_id, self.lang)

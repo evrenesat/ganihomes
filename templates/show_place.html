@@ -95,10 +95,10 @@
 
                        </div>
                    </div>
-                   <div id="amens">{{ amens }}
+                   <div id="amens">
                       <ul id="amenul">
                           {% for l in amens %}
-                          <li class="{{ l.class }}" >{{ l.name }}{% if t.help %}<span class="mhelp" title="{{ t.help }}"></span>{% endif %}</li>
+                          <li class="{{ l.class }}" >{{ l.name }}{% if l.help %}<span class="mhelp" title="{{ l.help }}"></span>{% endif %}</li>
                           {% endfor %}
                       </ul>
 

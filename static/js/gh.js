@@ -547,7 +547,7 @@ gh = {
         var self = this;
         x={}
         var s=0;
-
+        $('#amenul .mhelp').easyTooltip()
 
 
         $('#toptabs').tabs();
@@ -691,7 +691,7 @@ gh = {
         })
     },
     menucordion:function(cont){
-        $("#"+cont+" > li > div").click(function(){
+        $(cont+" > li > div").click(function(){
 
             if(false == $(this).next().is(':visible')) {
                 $("#"+cont+" ul").slideUp(300);
@@ -701,10 +701,14 @@ gh = {
 
 //        $("#"+cont+" ul:eq(0)").show();
     },
+    init_faq:function(){
+        this.menucordion('.faqcats')
+        this.menucordion('.faqcat')
+    },
     init_dashboard: function(){
         var self = this;
 //        $( "#menuccordion").accordion({  collapsible: true});
-        this.menucordion('menuccordion')
+        this.menucordion('#menuccordion')
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){
@@ -937,32 +941,7 @@ gh = {
         });
 
     },
-    mktip:function(selector){
-        if(typeof(selector)=='undefined')selector='.toolTip'
-        $(selector).hover(
-        		function() {
-        		this.tip = this.title;
-        		$(this).append(
-        			'<div class="toolTipWrapper">'
-        				+'<div class="toolTipTop"></div>'
-        				+'<div class="toolTipMid">'
-        					+this.tip
-        				+'</div>'
-        				+'<div class="toolTipBtm"></div>'
-        			+'</div>'
-        		);
-        		this.title = "";
-        		this.width = $(this).width();
-        		$(this).find('.toolTipWrapper').css({left:this.width-22})
-        		$('.toolTipWrapper').fadeIn(300);
-        	},
-        	function() {
-        		$('.toolTipWrapper').fadeOut(100);
-        		$(this).children().remove();
-        			this.title = this.tip;
-        		}
-        	);
-    }
+
 
 
 };

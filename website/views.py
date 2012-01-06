@@ -20,7 +20,8 @@ from places.models import Place, Tag, Photo, Currency
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES
 from utils.cache import kes
-from website.models.icerik import Sayfa, Haber, Vitrin
+from website.models import Sayfa, Haber, Vitrin, Question
+
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from website.models.medya import Medya
 from django.contrib import messages
@@ -547,4 +548,8 @@ def server_error(request, template_name='500.html'):
         context_instance = RequestContext(request)
     )
 
-
+from collections import defaultdict
+def show_faqs(request):
+    return render_to_response('faq.html',
+            {'faq':Question.getFaqs(request.LANGUAGE_CODE)},
+        context_instance=RequestContext(request))
