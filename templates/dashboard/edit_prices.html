@@ -1,24 +1,90 @@
 {% load  thumbnail i18n cevir%}
 {% include "show_messages.html" %}
 <div id="genhdr">
-    <div style="float:right">
-        <img id="pfotoimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ user.id }}_m.jpg"><br>
-        <button onclick="$('#pfoto').trigger('click');" class="minidugme" style="width:100px;">{% trans "Change Photo" %}</button>
-        <input id="pfoto" type="file" name="pfoto" style="position:fixed;top:-1000px;">
-    </div>
-    <h3>{% cevir "profile duzenle baslik" %}</h3>
-    {% cevir "profile duzenle altbaslik" %}
+
+    <h3>{% cevir "odeme sekli sec baslik" %}</h3>
+    {% cevir "odeme sekli sec altbaslik" %}
 
 </div>
 
 
 
-        <div  class="wfParts genbdy">
-            <form action="." method="post" id="editprices">
+        <div class="wfParts genbdy">
+            <div id="editprices">
+            <ul id="pricetabs">
+                <li class="prtab"><a href="#simple">{% trans "Basic Pricing" %}</a></li>
+                <li class="prtab"><a href="#sessional">{% trans "Sessional Pricing" %}</a></li>
+
+            </ul>
+            <div id="simple">
+            <form action="." method="post">
             {% csrf_token %}
-            {{ uform.as_p }}
-            {{ form.as_p }}
-            <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
+<div id="simpleprice">
+                <p>{{ bform.currency.label_tag }} : {{ bform.currency }}
+                    <span class="helptext">{{ bform.currency.help_text }}</span>
+                    <span class="errortext">{{ bform.currency.errors }}</span>
+                </p>
+                <p>{{ bform.price.label_tag }} : {{ bform.price }} <span class="current_curr"></span>
+                    <span class="helptext">{{ bform.price.help_text }}</span>
+                    <span class="errortext">{{ bform.price.errors }}</span>
+                </p>
+
+                <p>{{ bform.weekly_discount.label_tag }} : {{ bform.weekly_discount}}
+                    <span class="helptext">{{ bform.weekly_discount.help_text }}</span>
+                    <span class="errortext">{{ bform.weekly_discount.errors }}</span>
+                </p>
+
+                <p>{{ bform.monthly_discount.label_tag }} : {{ bform.monthly_discount}}
+                    <span class="helptext">{{ bform.monthly_discount.help_text }}</span>
+                    <span class="errortext">{{ bform.monthly_discount.errors }}</span>
+                </p>
+
+                <p>{{ bform.weekend_price.label_tag }} : {{ bform.weekend_price}} <span class="current_curr"></span>
+                    <span class="helptext">{{ bform.weekend_price.help_text }}</span>
+                    <span class="errortext">{{ bform.weekend_price.errors }}</span>
+                </p>
+
+                <p>{{ bform.extra_limit.label_tag }} : {{ bform.extra_limit}}
+                    <span class="helptext">{{ bform.extra_limit.help_text }}</span>
+                    <span class="errortext">{{ bform.extra_limit.errors }}</span>
+                </p>
+
+                <p>{{ bform.extra_price.label_tag }} : {{ bform.extra_price}} <span class="current_curr"></span>
+                    <span class="helptext">{{ bform.extra_price.help_text }}</span>
+                    <span class="errortext">{{ bform.extra_price.errors }}</span>
+                </p>
+                <p>{{ bform.cleaning_fee.label_tag }} : {{ bform.cleaning_fee}} <span class="current_curr"></span>
+                    <span class="helptext">{{ bform.cleaning_fee.help_text }}</span>
+                    <span class="errortext">{{ bform.cleaning_fee.errors }}</span>
+                </p>
+
+</div>
+            <p><input type="submit" class="yesildugme fr" value="{% trans "Save Pricing" %}"></p>
             </form>
+            </div>
+            <div id="sessional">
+            <form action="." method="post">
+            {% csrf_token %}
+            <div id="sesform">
+                {{ sform.management_form }}
+                   {% for form in sform %}
+                            {{ form.id }}
+                           <div>{{ form.price.label_tag }} {{ form.price }} <span class="current_curr"></span>
+                               <span class="errortext">{{ bform.price.errors }}</span></div>
+                           <div>{{ form.weekend_price.label_tag }} {{ form.weekend_price }} <span class="current_curr"></span>
+                               <span class="errortext">{{ bform.weekend_price.errors }}</span></div>
+                       <div class="datef">{{ form.start.label_tag }} {{ form.start }}
+                           <span class="errortext">{{ bform.start.errors }}</span></div>
+                       <div class="datef">{{ form.end.label_tag }} {{ form.end }}
+                           <span class="errortext">{{ bform.end.errors }}</span></div>
+                       <div><label style="display:inline" for="{{ form.DELETE.auto_id }}">{% trans "Delete Session" %}</label>{{ form.DELETE }}</div>
+                       <hr>
+                   {% endfor %}
+            </div>
+            <p><input type="submit" class="yesildugme fr" value="{% trans "Save Sessional Pricing" %}"></p>
+            </form>
+            </div>
          </div>
+
+        </div>
 

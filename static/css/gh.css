@@ -516,7 +516,7 @@ div.scrollableArea {
 .messages li {
     list-style: none;
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -956,7 +956,12 @@ ul.messages {
     -moz-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
     /*background: url("/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #CCCCCC;*/
-    background-color: #EAC36A;
+    background-color: #EBD6A6;
+    background: -moz-linear-gradient(center top, #EADAC8  0%,  #FCF8F4 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+    background: linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
 
 }
 #dokuzic{
@@ -1209,7 +1214,7 @@ li.g-plus-one {
     -webkit-box-shadow: 0px 0px 10px 2px #fae4ce;
     -moz-box-shadow: 0px 0px 10px 2px #fae4ce;
     box-shadow: 0px 0px 10px 2px #fae4ce;
-    color: brown !important;
+    color: #361F04 !important;
     background: url(/images/grd-agc-1.png);
     /*background: url(/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png);*/
     text-shadow: 1px 1px 1.4px #9369A4;
@@ -1441,7 +1446,7 @@ li.g-plus-one {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    height: 475px;
+    height: 550px;
     /*margin-left: 20px;*/
     overflow: hidden;
     position: relative;
@@ -1451,7 +1456,7 @@ li.g-plus-one {
 }
 
 #wf {
-    height: 500px;
+    height: 550px;
     width: 3000px;
     position: absolute;
     overflow: auto;
@@ -1488,15 +1493,12 @@ li.g-plus-one {
     border-radius: 8px 8px 0px 0px;
     position: relative;
 
-    background: #e2e2e2;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UyZTJlMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIyJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY2JSIgc3RvcC1jb2xvcj0iI2YyZjJmMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-    background: -moz-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e2e2e2), color-stop(22%, #f7f7f7), color-stop(66%, #f2f2f2), color-stop(100%, #fefefe));
-    background: -webkit-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: -o-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: -ms-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#e2e2e2', endColorstr = '#fefefe', GradientType = 0);
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#F5D7B5', endColorstr = '#FFFFFF', GradientType = 0);
 
 }
 
@@ -1574,7 +1576,9 @@ li.g-plus-one {
 }
 
 .wfParts p {
-    margin-bottom: 0 !important;
+    margin-bottom: 6px !important;
+    display: inline-block;
+    width: 100%;
 }
 
 .wfParts label {
@@ -1630,6 +1634,7 @@ li.g-plus-one {
     font-size: 12px;
     padding-right: 6px;
 }
+
 .wfParts input, .wfParts select {
     font-size: 16px;
     border: solid 1px #bfbfbf;
@@ -2154,7 +2159,7 @@ li.g-plus-one {
 #uploaded {
     width: 100%;
     border: #bbccdd 1px solid;
-    height: 140px;
+    height: 186px;
     margin-top: 10px mheight: 125px;
     min-height: 125px;
     overflow: auto;
@@ -2178,7 +2183,7 @@ li.g-plus-one {
 }
 
 #place_tags {
-    height: 175px;
+    height: 210px;
 }
 #place_tags ul{
     margin:0;
@@ -2238,7 +2243,6 @@ li.g-plus-one {
 #dbcontent {
     float: left;
     margin-left: 10px;
-    width: 650px;
     min-height: 650px;
 
 }
@@ -2326,8 +2330,9 @@ li.g-plus-one {
 #menuccordion {
     list-style: none;
     padding: 0 0 0 0;
-    width: 214px;
+    width: 209px;
     float: left;
+    margin:0 0 0 0;
 }
 #menuccordion div {
     display: block;
@@ -2342,13 +2347,17 @@ li.g-plus-one {
     border-radius: 5px 5px 0 0;
     text-shadow: 1px 2px 1px #DEDBDB;
     padding-left: 6px;
-    background-color: #EAC36A;
+    background: -moz-linear-gradient(center top, #EADAC8  0%,  #FCF8F4 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+    background: linear-gradient(top, #EADAC8 0%,   #FCF8F4  100%) repeat scroll 0 0 transparent;
+
 }
 #menuccordion ul {
     list-style: none;
     padding: 0 0 0 0;
-}
-#menuccordion ul{
+
     display: none;
 }
 #menuccordion ul li {
@@ -2365,7 +2374,7 @@ li.g-plus-one {
 }
 #menuccordion a {
     text-decoration: none;
-    color: #563D3D;
+    color: #746B6B;
     font-size: 18px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -2571,10 +2580,8 @@ margin-top:20px !important;
 ul.messages li{
     display: block;
     list-style: none;
-    float: left;
-    width: 98%;
-    margin: 4px;
-    padding: 10px;
+    margin: 10px;
+    padding: 12px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -2585,14 +2592,16 @@ ul.messages li{
     margin-bottom: 21px;
     margin-right: 20px;
     margin-left: -16px;
+    left: 311px;
+    top: 27px;
 
 }
 
 #placelist .detail{
     float:left;
-    width: 260px;
-    color:#7f6161;
-    font-size:14px;
+    width: 432px;
+    color: gray;
+    font-size: 13px;
 }
 #placelist .buttons button:hover {
     -webkit-box-shadow: 0px 0px 5px 1px #c7d66d ;
@@ -2633,19 +2642,26 @@ ul.messages li{
 }
 #placelist .buttons{
     float:right;
-    width: 200px;
+    width: 169px;
     /*display:none;*/
     text-align: right;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.3)";
     filter: alpha(opacity = 0.3);
     -moz-opacity: 0.3;
     -khtml-opacity: 0.3;
-    opacity: 0.3;
+    opacity: 0.8;
+}
+#placelist .title{
+    font-size: 14px;
+    color: #4E3838;
 }
 #placelist .pimg{
-    float:left;
-    padding-right:20px;
-    width:120px;
+    float: left;
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-top: -8px;
+    padding-left: 10px;
 }
 #placelist .plist {
     display: block;
@@ -2662,7 +2678,7 @@ ul.messages li{
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
-    height: 110px;
+    height: 144px;
 }
 
 
@@ -3213,13 +3229,18 @@ ul.messages li{
 
 }
 
-h3{
+/*h3{*/
+    /*font-family: Cardo;*/
+    /*font-size: 2em;*/
+/*}*/
+#genhdr h3, .wfhdr h3, .altikutu h3{
+    color: #2F1B0B;
     font-family: Cardo;
-    font-size: 2em;
+    text-shadow: 1px 1px 1px #AEAB8D;
 }
 #genhdr {
     height: 64px;
-    width: 620px;
+    width: 666px;
     margin-left: auto;
     margin-right: auto;
     background-color: #ccc;
@@ -3232,15 +3253,13 @@ h3{
     -webkit-border-radius: 8px 8px 0px 0px;
     border-radius: 8px 8px 0px 0px;
 
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#e2e2e2', endColorstr = '#fefefe', GradientType = 0);
+
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -webkit-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -o-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -ms-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#F5D7B5', endColorstr = '#ffffff', GradientType = 0);
     padding: 20px;
     border-color: #DEB291;
 
@@ -3251,7 +3270,7 @@ h3{
     padding-bottom:20px;
 }
 .genbdy {
-    width: 620px;
+    width: 666px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #ccc;
@@ -3301,9 +3320,10 @@ h3{
     padding-top: 6px;
 }
 #f3{
-    float:right;
-    width: 367px;
+    float: left;
+    width: 279px;
     padding-top: 27px;
+    padding-left: 73px;
 
 }
 .footdiv{
@@ -3390,7 +3410,7 @@ h3{
     /*cursor: auto;*/
     /*background-color: #fff;*/
     padding: 0 0 0 12px;
-    font-size: 14px;
+    font-size: 12px;
     /*color: #7A6F69;*/
     /*list-style: inside;*/
     /*text-shadow: 1px 1px 5px #EBE099;*/
@@ -3458,4 +3478,40 @@ h3{
     font-size: 19px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+#editprices{
+    border:0;
+    background:none;
+}
+#editprices .ui-widget-header{
+    border:0;
+    background:none;
+    border-bottom: 1px solid #ccc;
+}
+.helptext{
+    font-size:9px;
+    display: block;
+    oi: block;
+}
+.helptext:before{
+    content:"("
+}
+.helptext:after{
+    content:")"
+}
+#simpleprice input {
+    width:75px;
+}
+#sesform label{
+    float:none;
+    font-weight: normal;
+    margin: -6px -1px;
+}
+#sesform input {
+    width: 85px;
+}
+#sesform div{
+    width: 205px;
+    float:left;
+    height: 73px;
 }

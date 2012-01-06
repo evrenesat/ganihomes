@@ -98,8 +98,8 @@ class ReservedDatesAdmin(admin.ModelAdmin):
 
 
 class SessionalPriceAdmin(admin.ModelAdmin):
-    list_display = ('name','price', 'place','active')
-    search_fields = ['name', ]
+    list_display = ('price', 'place','active')
+#    search_fields = ['name', ]
     list_filter = ['active', ]
     raw_id_fields = ['place']
     save_on_top = True

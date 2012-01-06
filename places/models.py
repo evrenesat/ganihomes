@@ -135,7 +135,7 @@ class Currency(models.Model):
 
 
     def __unicode__(self):
-        return '%s' % (self.code,)
+        return '%s (%s)' % (self.name, self.code,)
 
 
 class PromotionCode(models.Model):
@@ -338,7 +338,7 @@ class Place(models.Model):
     bathrooms = models.SmallIntegerField(_('Number of bathrooms'), choices=NO_OF_ROOMS, default=1)
     size = models.IntegerField(_('Size'), null=True, blank=True)
     size_type = models.IntegerField(_('Measurement type'), choices=MTYPES, default=2)
-    cancellation = models.SmallIntegerField(_('Cancellation rules'), choices=CANCELATION_RULES, default=1)
+    cancellation = models.SmallIntegerField(_('Cancellation policy'), choices=CANCELATION_RULES, default=1)
     min_stay = models.SmallIntegerField(_('Minimum number of nights'), choices=MIN_STAY, default=1)
     max_stay = models.SmallIntegerField(_('Maximum number of nights'), choices=MAX_STAY, default=0)
     manual = models.TextField(_('House manual'), null=True, blank=True)
@@ -361,7 +361,7 @@ class Place(models.Model):
     weekend_price = models.DecimalField(_('Weekend price'), help_text=_('Price for guest'), decimal_places=2,
         max_digits=6, default='0.0')
     extra_limit = models.SmallIntegerField(_('Extra charge for more guests than'), choices=NO_OF_BEDS, null=True,
-        blank=True)
+        blank=True, default=0)
     extra_price = models.DecimalField(_('Extra charge per person'), null=True, blank=True, decimal_places=2,
         max_digits=6,
         help_text=_('Each extra person exceeding the number you specified, must pay this extra charge.'))
@@ -451,7 +451,7 @@ class Place(models.Model):
         return {'total': total, 'paypal':paypal_price}
 
     def createThumbnails(self):
-        customThumbnailer(self.primary_photo, self.id, [(120, 100, 'pls')])
+        customThumbnailer(self.primary_photo, self.id, [(120, 100, 'pls'), (60, 50, 'plxs')])
 
     def save(self, *args, **kwargs):
         self._updatePrices()
@@ -655,9 +655,9 @@ class Booking(models.Model):
 class SessionalPrice(models.Model):
     """Sessional pricing"""
     place = models.ForeignKey(Place, verbose_name=_('Place'))
+#    name = models.CharField(_('Name'), max_length=30, null=True, blank=True)
     price = models.DecimalField(_('Price'), decimal_places=2, max_digits=8)
     weekend_price = models.DecimalField(_('Weekend price'), decimal_places=2, max_digits=8, null=True, blank=True)
-    name = models.CharField(_('Name'), max_length=30, null=True, blank=True)
     active = models.BooleanField(_('Active'), default=True)
     start = models.DateField(_('Session start'))
     end = models.DateField(_('Session end'))

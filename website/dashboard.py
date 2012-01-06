@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.forms.fields import ChoiceField
 from website.models.faq import Question
 
 __author__ = 'Evren Esat Ozkan'
@@ -20,9 +21,9 @@ from django import http
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency, Profile, PaymentSelection
+from places.models import Place, Tag, Photo, Currency, Profile, PaymentSelection, SessionalPrice
 from django.db import DatabaseError
-from places.options import n_tuple, PLACE_TYPES
+from places.options import n_tuple, PLACE_TYPES, NO_OF_BEDS
 from utils.cache import kes
 from website.models.icerik import Sayfa, Haber, Vitrin
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
@@ -38,7 +39,7 @@ log = logging.getLogger('genel')
 
 
 
-def list_places(request, type=None):
+def list_places(request):
     pls = request.user.place_set.all()
     result = u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)])
     return HttpResponse(result, mimetype='application/json')
@@ -168,4 +169,38 @@ def edit_payment(request):
 
 
 
+
+class PlacePriceForm(ModelForm):
+    currency = ModelChoiceField(Currency.objects.filter(active=True), empty_label=None)
+    extra_limit = ChoiceField(choices=NO_OF_BEDS)
+    class Meta:
+        model=Place
+        fields = ('price','currency','weekend_price','weekly_discount','monthly_discount','extra_limit','extra_price','cleaning_fee')
+
+from django.forms.models import modelformset_factory
+SPFormSet = modelformset_factory(SessionalPrice, extra=2,  exclude=('place','active'),can_delete =True)
+
+@login_required
+def edit_prices(request, id):
+    lang = request.LANGUAGE_CODE
+    user = request.user
+    place = Place.objects.get(pk=id, owner=user)
+    if request.method == 'POST':
+        form = PlacePriceForm(request.POST,instance=place)
+        spset = SPFormSet(request.POST, queryset=SessionalPrice.objects.filter(place=place))
+
+        if spset.is_valid():
+            spset = spset.save(commit=False)
+            for f in spset:
+                f.place = place
+                f.save()
+        if form.is_valid():
+            saved_place = form.save()
+
+            messages.success(request, _('Your pricing successfully updated.'))
+
+    form = PlacePriceForm(instance=place)
+    spset = SPFormSet(queryset=SessionalPrice.objects.filter(place=place))
+    context = {'bform':form,'sform':spset,}
+    return render_to_response('dashboard/edit_prices.html', context, context_instance=RequestContext(request))
 

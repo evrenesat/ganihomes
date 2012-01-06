@@ -11,7 +11,8 @@ urlpatterns = patterns('',
         url(r'^edit_payment/$', db.edit_payment, name='edit_payment'),
         url(r'^show_messages/$', db.show_messages, name='show_messages'),
         url(r'^edit_profile/$', db.edit_profile, name='edit_profile'),
-        url(r'^list_places/(?P<type>[^/]+)/$', db.list_places, name='list_places_bytype'),
+#        url(r'^list_places/(?P<type>[^/]+)/$', db.list_places, name='list_places_bytype'),
+        url(r'^edit_prices/(?P<id>\d+)$', db.edit_prices, name='edit_prices'),
     )
 
 # vim: et sw=4 sts=4

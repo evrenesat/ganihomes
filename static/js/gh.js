@@ -737,14 +737,19 @@ gh = {
             if(typeof($(this).attr('class'))=='string' && $(this).attr('class').indexOf('btn')>=0)target_div=$(this);
             })
             if (target_div){
+                var param = target_div.data('param')
                 $(target_div.attr('class').split(' ')).each(function(){
                     if(this.indexOf('show_')==0)self.showFrame(this.split('show_')[1])
-                    if(this.indexOf('do_')==0)self[this](self)
+                    if(this.indexOf('do_')==0){
+                        if (param)self[this](self,param)
+                        else self[this](self)
+                    }
                 })
                 }
             });
         self.loadTemplate('dashboard_place_listing.tpl')
             //FIXME: preload
+        this.editPrices(2)
     },
     TEMPLATES:{},
     loadTemplate:function(tpl_file){
@@ -904,7 +909,7 @@ gh = {
         })
     },
     do_listPlaces:function(self, typ){
-        if(typeof(typ)=='undefined')typ=''
+        typ = (typeof(typ)!='undefined')? '?type='+typ : ''
         var tpl = self.loadTemplate('dashboard_place_listing.tpl')
         $.get('/'+self.LANGUAGE_CODE+'/dashboard/list_places/'+typ, function(data){
             $('#placelistic').html($.jqote(tpl, data))
@@ -941,6 +946,21 @@ gh = {
             self.init_faq()
         })
     },
+    editPrices:function(id){
+        this.genericEdit('/dashboard/edit_prices/'+id,function(){
+            $('.datef input').datepicker({dateFormat: 'yy-mm-dd', minDate: '0',
+                            changeMonth: true  ,changeYear: true  });
+            $('#editprices').tabs()
+            $('.helptext:empty').remove()
+            $('#id_currency').change(function(){
+                cr = gh_crc[$(this).val()]
+                    console.log(cr)
+                $('.current_curr').html(cr[1])
+
+            }).trigger('change')
+
+        })
+        },
     genericEdit:function(url,fn){
         self = this
         var url = '/'+self.LANGUAGE_CODE+url
