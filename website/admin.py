@@ -65,13 +65,13 @@ class QuestionAdmin(admin.ModelAdmin):
     save_as = True
 
 
-class AnswerAdmin(admin.ModelAdmin):
-    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
-    list_display = ('text', 'lang','active')
-    search_fields = ['text', ]
-    list_filter = ['active','lang']
-    save_on_top = True
-    save_as = True
+#class AnswerAdmin(admin.ModelAdmin):
+#    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+#    list_display = ('text', 'lang','active')
+#    search_fields = ['text', ]
+#    list_filter = ['active','lang']
+#    save_on_top = True
+#    save_as = True
 
 #class QuestionTranslationAdmin(admin.ModelAdmin):
 #    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
