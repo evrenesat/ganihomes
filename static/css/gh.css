@@ -3213,6 +3213,10 @@ ul.messages li{
 
 }
 
+h3{
+    font-family: Cardo;
+    font-size: 2em;
+}
 #genhdr {
     height: 64px;
     width: 620px;
@@ -3228,16 +3232,17 @@ ul.messages li{
     -webkit-border-radius: 8px 8px 0px 0px;
     border-radius: 8px 8px 0px 0px;
 
-    background: #e2e2e2;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UyZTJlMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIyJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY2JSIgc3RvcC1jb2xvcj0iI2YyZjJmMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-    background: -moz-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e2e2e2), color-stop(22%, #f7f7f7), color-stop(66%, #f2f2f2), color-stop(100%, #fefefe));
-    background: -webkit-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: -o-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: -ms-linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
-    background: linear-gradient(top, #e2e2e2 0%, #f7f7f7 22%, #f2f2f2 66%, #fefefe 100%);
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top, #F5D7B5 0%, #EFD6B5 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#e2e2e2', endColorstr = '#fefefe', GradientType = 0);
     padding: 20px;
+    border-color: #DEB291;
 
 }
 .genbdy form{
@@ -3255,6 +3260,7 @@ ul.messages li{
     float:none !important;
     padding: 0 20px !important;
     margin-bottom: 20px;
+    border-color: #DEB291;
 }
 #editpayment label{
     width:170px;
@@ -3448,8 +3454,8 @@ ul.messages li{
 }
 .faqcats  > li > div > a {
     text-decoration: none;
-    color: #818181;
-    font-size: 18px;
+    color: #432E05;
+    font-size: 19px;
     padding-top: 5px;
     padding-bottom: 5px;
 }

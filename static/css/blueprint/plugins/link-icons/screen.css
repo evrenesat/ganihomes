@@ -40,3 +40,18 @@ a[href$=".xls"]   { background-image: url(icons/xls.png); }
 a[href$=".rss"],
 a[href$=".rdf"]   { background-image: url(icons/feed.png); }
 a[href^="aim:"]   { background-image: url(icons/im.png); }
+
+a {
+    color: #8F694C;
+
+}
+
+a:focus, a:hover {
+    color: #C88513;
+
+}
+
+h3 {
+    font-size: 2em;
+
+}

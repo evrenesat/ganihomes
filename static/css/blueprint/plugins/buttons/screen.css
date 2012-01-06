@@ -1,8 +1,8 @@
-/* -------------------------------------------------------------- 
-  
+/* --------------------------------------------------------------
+
    buttons.css
    * Gives you some great CSS-only buttons.
-   
+
    Created by Kevin Hale [particletree.com]
    * particletree.com/features/rediscovering-the-button-element
 
@@ -15,7 +15,7 @@ a.button, button {
   float:left;
   margin: 0.7em 0.5em 0.7em 0;
   padding:5px 10px 5px 7px;   /* Links */
-  
+
   border:1px solid #dedede;
   border-top:1px solid #eee;
   border-left:1px solid #eee;
@@ -94,4 +94,19 @@ a.negative:active {
   background-color:#d12f19;
   border:1px solid #d12f19;
   color:#fff;
+}
+
+a {
+    color: #8F694C;
+
+}
+
+a:focus, a:hover {
+    color: #C88513;
+
+}
+
+h3 {
+    font-size: 2em;
+
 }

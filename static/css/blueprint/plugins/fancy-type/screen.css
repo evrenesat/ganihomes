@@ -69,3 +69,18 @@ p.incr, .incr p {
   font-weight:bold;
   padding:0 2px;
 }
+
+a {
+    color: #8F694C;
+
+}
+
+a:focus, a:hover {
+    color: #C88513;
+
+}
+
+h3 {
+    font-size: 2em;
+
+}

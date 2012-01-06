@@ -108,3 +108,18 @@ body pre,body code,body tt { font-family: monospace; }
 body p img { float: right; margin: 1.5em 0 1.5em 1.5em; }
 body dd, body ul, body ol { margin-left: 0; margin-right: 1.5em;}
 body td, body th { text-align:right; }
+
+a {
+    color: #8F694C;
+
+}
+
+a:focus, a:hover {
+    color: #C88513;
+
+}
+
+h3 {
+    font-size: 2em;
+
+}
