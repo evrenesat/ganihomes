@@ -1,0 +1,26 @@
+{% extends "content_boxed.html" %}
+{% load thumbnail i18n currency cevir %}
+{% block content %}
+    <h3>{{ icerik.baslik }}</h3>
+
+    {{ icerik.metin|safe }}
+
+{% endblock %}
+{% block sidebar %}
+    <h3>{{ ust_baslik }}</h3>
+    <hr>
+    <ul>
+    {% for k in kategoriler %}
+
+
+    				      <li class=" {% if k.etkin %} active{% else %}passive{% endif %}_title"><a class="menubaslik" href="{{ k.url }}">{{ k.baslik }}</a>
+    				      {% if k.ogeler %}<ul>
+                              {% for o in k.ogeler %}
+                          <li class="item{% if o.etkin %} active{% endif %}"><a href="{{ o.url }}">{{ o.baslik }}</a></li>
+                                  {% endfor %}
+                           </ul>{% endif %}
+
+                          </li>
+                        {% endfor %}
+    </ul>
+{%  endblock  %}

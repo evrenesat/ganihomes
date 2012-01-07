@@ -10,14 +10,25 @@
 
         <script>current_payment_selection = {{ ps.payment_type }}</script>
         <div id="editpayment" class="wfParts genbdy">
-            <div class="fl paymseldiv">
-                <input type=radio name=payment_type value=2 id=pt2> <label style="width:auto;" for=pt2>{% trans "PayPal" %}</label>
-            </div>
-            <div class="fl paymseldiv">
-                <input type=radio name=payment_type value=3 id=pt3> <label style="width:auto;" for=pt3>{% trans "Bank Transfer" %}</label>
-            </div>
-            <form action="." method="post">
-            {% csrf_token %}
+{#            <div class="fl paymseldiv">#}
+{#                <input type=radio name=payment_type value=2 id=pt2> <label style="width:auto;" for=pt2>{% trans "PayPal" %}</label>#}
+{#            </div>#}
+{#            <div class="fl paymseldiv">#}
+{#                <input type=radio name=payment_type value=3 id=pt3> <label style="width:auto;" for=pt3>{% trans "Bank Transfer" %}</label>#}
+{#            </div>#}
+
+
+            <div id="litetabs">
+
+            <ul id="pricetabs">
+                <li class="prtab"><a href="#form_pt2">{% trans "PayPal" %}</a></li>
+                <li class="prtab"><a href="#form_pt3">{% trans "Bank Transfer" %}</a></li>
+
+            </ul>
+                <form action="." method="post">{% csrf_token %}
+
+
+
             <div class="ptforms gizli" id="form_pt2">
                 {% cevir "odeme sekli paypal bilgi" %}
                 {{ pform.as_p }}
@@ -26,7 +37,9 @@
                 {% cevir "odeme sekli banka bilgi" %}
                 {{ bform.as_p }}
             </div>
-            <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
-            </form>
+                    <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
+                </form>
+
+
          </div>
 

@@ -699,8 +699,12 @@ gh = {
                 $(cont+" ul").slideUp(300);
             }
             $(this).next().slideToggle(300);
+
+            return false;
         });
         var cnt = cont.replace('#','')
+
+        //expand/collapse all
         this.ecordion_state[cnt]=0
         return function(state){
             console.log(self.ecordion_state)
@@ -934,7 +938,8 @@ gh = {
                 $('.ptforms').hide()
                 $('#form_'+this.id).show()
             })
-            $('#pt'+current_payment_selection).trigger('click')
+            $('#litetabs').tabs()
+//            $('#pt'+current_payment_selection).trigger('click')
         })
     },
     do_showMessages:function(self){
@@ -950,8 +955,8 @@ gh = {
         this.genericEdit('/dashboard/edit_prices/'+id,function(){
             $('.datef input').datepicker({dateFormat: 'yy-mm-dd', minDate: '0',
                             changeMonth: true  ,changeYear: true  });
-            $('#editprices').tabs()
-            $('.helptext:emptyform.id.value').remove()
+            $('#litetabs').tabs()
+            $('.helptext:empty').remove()
             $('#id_currency').change(function(){
                 cr = gh_crc[$(this).val()]
                     console.log(cr)

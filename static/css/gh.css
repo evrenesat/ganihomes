@@ -3266,8 +3266,8 @@ ul.messages li{
 }
 .genbdy form{
     display:inline-block;
+    padding-bottom: 20px;
     margin-left: 40px;
-    padding-bottom:20px;
 }
 .genbdy {
     width: 666px;
@@ -3479,11 +3479,12 @@ ul.messages li{
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#editprices{
+.ptforms{width:100%}
+#litetabs{
     border:0;
     background:none;
 }
-#editprices .ui-widget-header{
+#litetabs .ui-widget-header{
     border:0;
     background:none;
     border-bottom: 1px solid #ccc;
@@ -3503,7 +3504,7 @@ ul.messages li{
     width:75px;
 }
 #sesform label{
-    float:none;
+    float: none;
     font-weight: normal;
     margin: -6px -1px;
 }

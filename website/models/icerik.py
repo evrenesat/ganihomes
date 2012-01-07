@@ -22,9 +22,10 @@ add_introspection_rules([], ["^tinymce.models.HTMLField"])
 from glob import iglob
 
 def sablonListesi():
-    dizin = settings.TEMPLATE_DIRS[0]
+    dizin = settings.TEMPLATE_DIRS[0] + '/content_templates/'
     #    assert 0, dizin
-    return [('', u'Varsayılan')] + [[t.replace(dizin, '')] * 2 for t in iglob(dizin + '/kullanici_sablonlari/*.html')]
+    log.info(dizin)
+    return [('', u'Varsayılan')] + [[t.replace(dizin, '')] * 2 for t in iglob(dizin + '*.html') if not t.endswith('/icerik.html')]
 
 
 class Sayfa(MPTTModel):
@@ -84,7 +85,20 @@ class Sayfa(MPTTModel):
         menu = ks.g([])
         if not menu:
             kat = self if self.get_descendant_count() else self.parent
-            for k in kat.get_siblings(include_self=True):
+            for k in kat.get_siblings(include_self=True) if kat else []:
+                ogeler = []
+                for s in k.get_children():
+                    ogeler.append({'baslik': s.al_baslik(dilkodu), 'url': s.al_url(dilkodu), 'etkin': s.id == self.id})
+                menu.append({'baslik': k.al_baslik(dilkodu), 'url': k.al_url(dilkodu), 'etkin': k.id == self.id,
+                             'ogeler': ogeler})
+            ks.s(menu)
+        return menu
+
+    def yansayfalar(self, dilkodu):
+        ks = kes('yansayfa', dilkodu, self.id)
+        menu = ks.g([])
+        if not menu:
+            for k in self.get_siblings(include_self=True):
                 ogeler = []
                 for s in k.get_children():
                     ogeler.append({'baslik': s.al_baslik(dilkodu), 'url': s.al_url(dilkodu), 'etkin': s.id == self.id})

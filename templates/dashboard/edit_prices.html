@@ -3,20 +3,22 @@
 <div id="genhdr">
 
     <h3>{% cevir "fiyat duzenle baslik" %}</h3>
-    {% cevir "fiyat duzenle altbaslik" %}
 
 </div>
 
 
 
         <div class="wfParts genbdy">
-            <div id="editprices">
+            <div id="litetabs">
             <ul id="pricetabs">
                 <li class="prtab"><a href="#simple">{% trans "Basic Pricing" %}</a></li>
                 <li class="prtab"><a href="#sessional">{% trans "Sessional Pricing" %}</a></li>
 
             </ul>
             <div id="simple">
+                <div>
+                    {% cevir "fiyatlandirma temel yardim" %}
+                </div>
             <form action="." method="post">
             {% csrf_token %}
 <div id="simpleprice">
@@ -63,11 +65,16 @@
             </form>
             </div>
             <div id="sessional">
+            <div>
+                {% cevir "fiyatlandirma donemsel yardim" %}
+            </div><br><br>
             <form action="." method="post">
             {% csrf_token %}
             <div id="sesform">
+                <hr>
                 {{ sform.management_form }}
                    {% for form in sform %}
+                       {% if not form.id.value %}<h6>{% trans "Add a sessional price" %}</h6>{% endif %}
                             {{ form.id }}
 
                            <div>{{ form.price.label_tag }} {{ form.price }} <span class="current_curr"></span>

@@ -37,4 +37,5 @@ button, input.button {position:relative;top:0.25em;}
 .iblock{
     zoom: 1;
     *display: inline;
+    width: 100%;
 }
