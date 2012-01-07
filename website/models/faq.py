@@ -129,3 +129,7 @@ class Answer(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.text,)
+
+    def save(self, *args, **kwargs):
+        self.question._updateCache()
+        super(Answer, self).save(*args, **kwargs)
