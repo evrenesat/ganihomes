@@ -735,15 +735,22 @@ gh = {
         var self = this;
 
         this.ecordion('#menuccordion')
+
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){
-            if(typeof($(this).attr('class'))=='string' && $(this).attr('class').indexOf('btn')>=0)target_div=$(this);
+                if(typeof($(this).attr('class'))=='string' &&
+                    $(this).attr('class').indexOf('btn')>=0){
+                    target_div=$(this);
+                }
             })
             if (target_div){
                 var param = target_div.data('param')
                 $(target_div.attr('class').split(' ')).each(function(){
-                    if(this.indexOf('show_')==0)self.showFrame(this.split('show_')[1])
+                    if(this.indexOf('show_')==0){
+
+                        self.showFrame(this.split('show_')[1])
+                    }
                     if(this.indexOf('do_')==0){
                         if (param)self[this](self,param)
                         else self[this](self)
@@ -939,7 +946,7 @@ gh = {
                 $('#form_'+this.id).show()
             })
             $('#litetabs').tabs()
-//            $('#pt'+current_payment_selection).trigger('click')
+            $('#pt'+current_payment_selection).trigger('click')
         })
     },
     do_showMessages:function(self){
