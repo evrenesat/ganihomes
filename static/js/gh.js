@@ -749,7 +749,7 @@ gh = {
             });
         self.loadTemplate('dashboard_place_listing.tpl')
             //FIXME: preload
-        this.editPrices(2)
+//        this.editPrices(2)
     },
     TEMPLATES:{},
     loadTemplate:function(tpl_file){
@@ -951,7 +951,7 @@ gh = {
             $('.datef input').datepicker({dateFormat: 'yy-mm-dd', minDate: '0',
                             changeMonth: true  ,changeYear: true  });
             $('#editprices').tabs()
-            $('.helptext:empty').remove()
+            $('.helptext:emptyform.id.value').remove()
             $('#id_currency').change(function(){
                 cr = gh_crc[$(this).val()]
                     console.log(cr)

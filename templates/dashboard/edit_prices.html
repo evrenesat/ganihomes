@@ -69,15 +69,16 @@
                 {{ sform.management_form }}
                    {% for form in sform %}
                             {{ form.id }}
+
                            <div>{{ form.price.label_tag }} {{ form.price }} <span class="current_curr"></span>
-                               <span class="errortext">{{ bform.price.errors }}</span></div>
+                               <span class="errortext">{{ form.price.errors }}</span></div>
                            <div>{{ form.weekend_price.label_tag }} {{ form.weekend_price }} <span class="current_curr"></span>
-                               <span class="errortext">{{ bform.weekend_price.errors }}</span></div>
+                               <span class="errortext">{{ form.weekend_price.errors }}</span></div>
                        <div class="datef">{{ form.start.label_tag }} {{ form.start }}
-                           <span class="errortext">{{ bform.start.errors }}</span></div>
+                           <span class="errortext">{{ form.start.errors }}</span></div>
                        <div class="datef">{{ form.end.label_tag }} {{ form.end }}
-                           <span class="errortext">{{ bform.end.errors }}</span></div>
-                       <div><label style="display:inline" for="{{ form.DELETE.auto_id }}">{% trans "Delete Session" %}</label>{{ form.DELETE }}</div>
+                           <span class="errortext">{{ form.end.errors }}</span></div>
+                       {% if form.id.value %}<div><label style="display:inline" for="{{ form.DELETE.auto_id }}">{% trans "Delete Session" %}</label>{{ form.DELETE }}</div>{% endif %}
                        <hr>
                    {% endfor %}
             </div>
