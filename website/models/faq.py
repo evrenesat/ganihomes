@@ -71,7 +71,7 @@ class Question(models.Model):
             for a in Answer.objects.select_related().order_by('question__order').filter(lang=code, active=True):
                 di[cat_names.get(a.question.category_id,'---')].append({'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
             di = di.items()
-            kes(code,'faqs').s(di,999999)
+            kes(code,'faqs').s(di,99)
             if lang == code:
                 lang = di
         return lang
