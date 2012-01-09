@@ -19,3 +19,11 @@
          </div>
 
         </div>
+
+
+<div id="un-avail" title="{% trans "What do these dates?" %}" class="gizli">
+    <button onclick="gh.selectAvailDates('avail')" class="minidugme">{% trans "Make Available" %}</button>
+
+    <button onclick="gh.selectAvailDates('unavail')" class="minidugme">{% trans "Make Unavailable" %}</button>
+</div>
+<script>gh.cal.reserved_dates = {{ reserved_dates }};</script>

@@ -47,8 +47,9 @@ def list_places(request):
 
 
 def calendar(request, id):
+    place = get_object_or_404(Place, owner=request.user, pk=id)
     return render_to_response('dashboard/calendar.html',
-            {'reserved_dates':[]},
+            {'reserved_dates':place.getReservedDates(), 'place':place},
         context_instance=RequestContext(request))
 
 

@@ -89,10 +89,10 @@ class BookingAdmin(admin.ModelAdmin):
 
 
 class ReservedDatesAdmin(admin.ModelAdmin):
-    list_display = ('place', 'start','end')
+    list_display = ('place', 'start','end','type')
     raw_id_fields = ['place']
 #    search_fields = ['', ]
-#    list_filter = ['', ]
+    list_filter = ['type', ]
     save_on_top = True
     date_hierarchy = 'start'
 

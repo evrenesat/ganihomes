@@ -143,6 +143,11 @@ INFORM_TYPES = (
     (2, _('Wrong price')),
     (3, _('Malicous activity')),
 )
+UNAVAIL_REASON = (
+    (1, _('Unavailable')),
+    (2, _('Reserved')),
+    (3, _('Booked')),
+)
 
 MESSAGE_STATUS = (
     (1, _('Waiting for confirmation')),

@@ -968,25 +968,39 @@ gh = {
         })
         })
     },
-    cal : {start : '', end : '', obj:'#takvim', temp_selection : [], selected_dates : []},
-    initCal:function(selector){
+    cal : {
+        start : '', end : '',
+        obj:'#takvim',
+        requested_dates : [],
+        booked_dates : [],
+        reserved_dates : [],
+        selected_dates : []
+    },
+    initCal:function(){
         for(i=0;i<12;i++)$("#takvim").calendarWidget({ month: i, year: 2012 });
         $(this.cal.obj).find('td.current-month').click(function(){
-        var tid = this.id
-        if(!self.cal.start) self.cal.start = tid
+        if(!self.cal.start) self.cal.start = this.id
         else{
-            if(!self.cal.end) self.cal.end = tid
+            if(!self.cal.end) self.cal.end = this.id
             else {
-                self.cal.start = tid
+                self.cal.start = this.id
                 self.cal.end = ''
             }
         }
         if (self.cal.start && self.cal.end){
-            self.selectAvailDates()
+            self.askWhatToDo()
         }
     }).hover(function(){
-                if (self.cal.start && !self.cal.end) self.tempSelect(this.id)
+                if (self.cal.start && !self.cal.end){
+                    self.tempSelect(this.id)
+                }
             })
+
+      for (i in this.cal.reserved_dates){
+          this.cal.start = '20' + this.cal.reserved_dates[i][0]
+          this.cal.end = '20' + this.cal.reserved_dates[i][1]
+          this.selectAvailDates('unavail')
+      }
     },
     tempSelect:function(end){
         end = parseInt(end.replace('i',''));
@@ -995,13 +1009,35 @@ gh = {
         $(this.cal.obj).find('td.calhvr').removeClass('calhvr')
         for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i).addClass('calhvr')
     },
-    selectAvailDates:function(){
+    askWhatToDo:function(){
+        $('#un-avail').dialog({modal:true, minWidth: 400, minHeight: 150})
+    },
+    selectAvailDates:function(availability){
+        $('#un-avail').dialog('close')
         $(this.cal.obj).find('td.calhvr').removeClass('calhvr')
-        end = parseInt(this.cal.end.replace('i',''));
-        start = parseInt(this.cal.start.replace('i',''))
+        var end = this.cal.end, start = this.cal.start
+        end = parseInt(end.replace('i',''));
+        start = parseInt(start.replace('i',''))
+//        console.log(start,end)
         if (start>end) {var e = end; end = start; start = e }
-        for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i).addClass('calsel')
-        this.cal.selected_dates.push([start,end])
+        for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i).addClass(availability).removeClass(availability=='avail' ? 'unavail' : 'avail')
+        this.pickUnavailableDates()
+    },
+    pickUnavailableDates:function(){
+        var start =0, end=0; self=this, seldates = []
+        $('#takvim td.current-month').each(function(){
+            if($(this).hasClass('unavail')){
+                if(!start)start = this.id
+                end= this.id
+            }
+            else if(end){
+                seldates.push([parseInt(start.replace('i','')),parseInt(end.replace('i','')) ])
+                start=0, end=0
+            }
+
+        })
+        self.cal.selected_dates = seldates
+        console.log(this.cal.selected_dates)
     },
     editPrices:function(id){
         this.genericEdit('/dashboard/edit_prices/'+id,function(){
@@ -1013,9 +1049,7 @@ gh = {
                 cr = gh_crc[$(this).val()]
                     console.log(cr)
                 $('.current_curr').html(cr[1])
-
             }).trigger('change')
-
         })
     },
     genericEdit:function(url,fn){

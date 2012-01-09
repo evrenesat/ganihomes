@@ -441,6 +441,13 @@ class Place(models.Model):
         self.reserved_dates = json.dumps(ard)
         self.save()
 
+    def getReservedDates(self):
+        ard = []
+        for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
+            ard.append([int(rd.start.strftime('%y%m%d')),int(rd.end.strftime('%y%m%d'))] )
+        return json.dumps(ard)
+
+
     def calculateTotalPrice(self, currency_id, start, end, guests):
         factor = self.currency.get_factor(currency_id)
         r = (end + datetime.timedelta(days=1) - start).days
@@ -569,9 +576,10 @@ class ReservedDates(models.Model):
     start = models.DateField(_('Reservation Start'))
     end = models.DateField(_('Reservation End'))
     place = models.ForeignKey(Place, verbose_name=_('Place'))
+    type = models.SmallIntegerField(_('Reason'), choices=UNAVAIL_REASON)
     # = models.CharField(_(''))
     # = models.IntegerField(_(''))
-    # = models.SmallIntegerField(_(''))
+
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:

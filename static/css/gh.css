@@ -3539,9 +3539,21 @@ ul.messages li{
 .calhvr{
     background-color: #F2F2F2 !important;
 }
-.calsel{
+.avail{
+    background-color: #ffffff;
+}
+.unavail{
     background-color: #E4AB93;
 }
+
+.requested{
+    background-color: #e3d52e;
+}
+
+.booked{
+    background-color: #bf5117;
+}
+
 
 .dasblok h5{
     margin: 9px 3px;
@@ -3580,4 +3592,10 @@ ul.messages li{
 
 #dash{
     width: 710px;
+}
+
+#un-avail button{
+    margin:40px 10px;
+    width: 160px;
+
 }
