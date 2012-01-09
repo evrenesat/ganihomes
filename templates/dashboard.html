@@ -70,6 +70,18 @@
 
                 <div class="dbcontent" id="loading"></div>
                 <div class="dbcontent" id="dash">
+
+                <div class="dasblok wx">
+                <h5>{% trans "Inbox" %}</h5>
+                </div>
+
+                <div class="dasblok wx">
+                <h5>{% trans "Booking Requests" %}</h5>
+                </div>
+
+
+                <div class="dasblok w2x">
+                <h5>Places</h5>
                     <ul class="dugmul">
                         <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png">
                             <h6>{% trans "Add New Place" %} </h6></li>
@@ -80,6 +92,7 @@
                             </li>
                         {% endfor %}
                     </ul>
+                </div>
                 </div>
 
                 <div class="dbcontent gizli " id="addplace_wizard"></div>
