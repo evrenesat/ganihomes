@@ -3536,6 +3536,12 @@ ul.messages li{
     font-size: medium;
     color:#633c1e;
 }
+.calhvr{
+    background-color: #F2F2F2 !important;
+}
+.calsel{
+    background-color: #E4AB93;
+}
 
 .dasblok h5{
     margin: 9px 3px;

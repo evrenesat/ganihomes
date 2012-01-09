@@ -761,7 +761,7 @@ gh = {
         self.loadTemplate('dashboard_place_listing.tpl')
             //FIXME: preload
 //        this.editPrices(2)
-//        this.editAvailability(2)
+        this.editAvailability(2)
     },
     TEMPLATES:{},
     loadTemplate:function(tpl_file){
@@ -964,14 +964,44 @@ gh = {
         this.genericEdit('/dashboard/calendar/'+place_id,function(){
             $.getScript(self.STATIC_URL + 'js/jquery.calendar-widget.js',function(){
 //          $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){})
-                for(i=0;i<12;i++){
-                    $("#takvim").calendarWidget({ month: i, year: 2012 });
-
-
-                }
-
+            self.initCal()
         })
         })
+    },
+    cal : {start : '', end : '', obj:'#takvim', temp_selection : [], selected_dates : []},
+    initCal:function(selector){
+        for(i=0;i<12;i++)$("#takvim").calendarWidget({ month: i, year: 2012 });
+        $(this.cal.obj).find('td.current-month').click(function(){
+        var tid = this.id
+        if(!self.cal.start) self.cal.start = tid
+        else{
+            if(!self.cal.end) self.cal.end = tid
+            else {
+                self.cal.start = tid
+                self.cal.end = ''
+            }
+        }
+        if (self.cal.start && self.cal.end){
+            self.selectAvailDates()
+        }
+    }).hover(function(){
+                if (self.cal.start && !self.cal.end) self.tempSelect(this.id)
+            })
+    },
+    tempSelect:function(end){
+        end = parseInt(end.replace('i',''));
+        var start = parseInt(this.cal.start.replace('i',''))
+        if (start>end) {var e = end; end = start; start = e }
+        $(this.cal.obj).find('td.calhvr').removeClass('calhvr')
+        for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i).addClass('calhvr')
+    },
+    selectAvailDates:function(){
+        $(this.cal.obj).find('td.calhvr').removeClass('calhvr')
+        end = parseInt(this.cal.end.replace('i',''));
+        start = parseInt(this.cal.start.replace('i',''))
+        if (start>end) {var e = end; end = start; start = e }
+        for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i).addClass('calsel')
+        this.cal.selected_dates.push([start,end])
     },
     editPrices:function(id){
         this.genericEdit('/dashboard/edit_prices/'+id,function(){
@@ -987,7 +1017,7 @@ gh = {
             }).trigger('change')
 
         })
-        },
+    },
     genericEdit:function(url,fn){
         self = this
         var url = '/'+self.LANGUAGE_CODE+url

@@ -70,7 +70,12 @@
 				i = i+1;
                 table += ('<td class="other-month"><span class="day">'+ i +'</span></td>');
               }else{
-                table += ('<td class="current-month day'+(j-firstDay+1)+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
+                dy = (j-firstDay+1)
+                dy = dy<10 ? '0'+dy : dy
+                mn = month + 1
+                mn = mn<10 ? '0'+mn : mn
+
+                table += ('<td class="current-month day'+dy+'" id="i'+year+''+mn+''+dy+'"><span class="day">'+dy+'</span></td>');
               }
               if (j%7==6)  table += ('</tr>');
             }
@@ -92,7 +97,9 @@
 
 	// jQuery plugin initialisation
 	$.fn.calendarWidget = function(params) {
+
 		calendarWidget(this, params);
+
 		return this;
 	};
 
