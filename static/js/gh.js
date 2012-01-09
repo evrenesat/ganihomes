@@ -523,13 +523,13 @@ gh = {
     makeAvailabilityTab:function(destroy){
         var self = this
         if(typeof(destroy)!='undefined')$('#pcalendar').datepick('destroy')
-        $('#pcalendar').datepick({monthsToShow:2,minDate:0,  rangeSelect: true,
-            onSelect: function(dates) { self.checkReservationDates(dates)},
-            onDate: function(date, current){
-                return self.isUnAvailable(date) ?
-                    {selectable:false, dateClass:'datepick-reserved'} : { content:
-                date.getDate() + '<br><sub>' + self.dayPrice(date) + '</sub>'}
-            }
+        $('#pcalendar').datepick({monthsToShow:12,multiSelect: 999, minDate:0,  rangeSelect: false,
+//            onSelect: function(dates) { self.checkReservationDates(dates)},
+//            onDate: function(date, current){
+//                return self.isUnAvailable(date) ?
+//                    {selectable:false, dateClass:'datepick-reserved'} : { content:
+//                date.getDate() + '<br><sub>' + self.dayPrice(date) + '</sub>'}
+//            }
 
         });
 
@@ -761,6 +761,7 @@ gh = {
         self.loadTemplate('dashboard_place_listing.tpl')
             //FIXME: preload
 //        this.editPrices(2)
+//        this.editAvailability(2)
     },
     TEMPLATES:{},
     loadTemplate:function(tpl_file){
@@ -956,6 +957,20 @@ gh = {
         self = this
         this.genericEdit('/dashboard/show_faq/',function(){
             self.init_faq()
+        })
+    },
+    editAvailability:function(place_id){
+        self = this
+        this.genericEdit('/dashboard/calendar/'+place_id,function(){
+            $.getScript(self.STATIC_URL + 'js/jquery.calendar-widget.js',function(){
+//          $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){})
+                for(i=0;i<12;i++){
+                    $("#takvim").calendarWidget({ month: i, year: 2012 });
+
+
+                }
+
+        })
         })
     },
     editPrices:function(id){

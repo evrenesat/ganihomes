@@ -46,6 +46,13 @@ def list_places(request):
 
 
 
+def calendar(request, id):
+    return render_to_response('dashboard/calendar.html',
+            {'reserved_dates':[]},
+        context_instance=RequestContext(request))
+
+
+
 def show_faq(request, type=None):
     return render_to_response('dashboard/dash_faq.html',
             {'faq':Question.getFaqs(request.LANGUAGE_CODE)},
