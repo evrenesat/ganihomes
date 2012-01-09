@@ -761,7 +761,7 @@ gh = {
         self.loadTemplate('dashboard_place_listing.tpl')
             //FIXME: preload
 //        this.editPrices(2)
-        this.editAvailability(2)
+//        this.editAvailability(2)
     },
     TEMPLATES:{},
     loadTemplate:function(tpl_file){
