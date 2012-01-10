@@ -640,7 +640,7 @@ gh = {
                url: '/upload_photo/'+place_id,
                done: function (e, data) {
                    console.log(data)
-                   self.uploaded.push(data.result.id)
+                   self.uploadeds.push(data.result[0].id)
                    self.renderUpPlacePhotos()
 //                   $.each(data.result, function (index, file) {
 //                       $('<img />').attr('src',(file.turl)).attr('id','img_'+file.id).dblclick(function(){
