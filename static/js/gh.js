@@ -759,7 +759,7 @@ gh = {
                 }
             });
         self.loadTemplate('dashboard_place_listing.tpl')
-            //FIXME: preload
+            //FIXME: tpl olayindan kurtulsak iyi olur
 //        this.editPrices(2)
 //        this.editAvailability(2)
     },
@@ -961,10 +961,14 @@ gh = {
     },
     editAvailability:function(place_id){
         self = this
+        $.datepick = {regional:{},setDefaults:function(lang){self.cal.lang = lang}}
         this.genericEdit('/dashboard/calendar/'+place_id,function(){
             $.getScript(self.STATIC_URL + 'js/jquery.calendar-widget.js',function(){
-//          $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){})
-            self.initCal()
+          $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){
+              self.initCal()
+          })
+//            $.each($.datepick.regional,function(e,v){self.cal.lang=v})
+
         })
         })
     },
@@ -977,7 +981,10 @@ gh = {
         selected_dates : []
     },
     initCal:function(){
-        for(i=0;i<12;i++)$("#takvim").calendarWidget({ month: i, year: 2012 });
+        for(i=0;i<12;i++)$("#takvim").calendarWidget({ month: i, year: 2012 ,
+            monthNames: this.cal.lang.monthNames,
+            dayNames: this.cal.lang.dayNamesShort
+        });
         $(this.cal.obj).find('td.current-month').click(function(){
         if(!self.cal.start) self.cal.start = this.id
         else{
@@ -997,9 +1004,13 @@ gh = {
             })
 
       for (i in this.cal.reserved_dates){
-          this.cal.start = '20' + this.cal.reserved_dates[i][0]
-          this.cal.end = '20' + this.cal.reserved_dates[i][1]
-          this.selectAvailDates('unavail')
+          d = this.cal.reserved_dates[i]
+          this.cal.start = '20' + d[0]
+          this.cal.end = '20' + d[1]
+          if(d[2]==1)typ = 'unavail'
+          else if(d[2]==2)typ = 'requested'
+          else if(d[2]==3)typ = 'booked'
+          this.selectAvailDates(typ)
       }
     },
     tempSelect:function(end){
@@ -1020,7 +1031,7 @@ gh = {
         start = parseInt(start.replace('i',''))
 //        console.log(start,end)
         if (start>end) {var e = end; end = start; start = e }
-        for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i).addClass(availability).removeClass(availability=='avail' ? 'unavail' : 'avail')
+        for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i+':not(.booked)').addClass(availability).removeClass(availability=='avail' ? 'unavail' : 'avail')
         this.pickUnavailableDates()
     },
     pickUnavailableDates:function(){

@@ -8,13 +8,17 @@
 
 		var opts = {
 			month: thismonth,
-			year: thisyear
+			year: thisyear,
+            monthNames : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            dayNames : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 		};
 
 		$.extend(opts, params);
 
-		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+//		var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+//		var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var monthNames = opts.monthNames
+        var dayNames = opts.dayNames
 		month = i = parseInt(opts.month);
 		year = parseInt(opts.year);
 		var m = 0;

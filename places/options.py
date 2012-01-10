@@ -145,7 +145,7 @@ INFORM_TYPES = (
 )
 UNAVAIL_REASON = (
     (1, _('Unavailable')),
-    (2, _('Reserved')),
+    (2, _('Requested')),
     (3, _('Booked')),
 )
 

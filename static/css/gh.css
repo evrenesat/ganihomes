@@ -3541,8 +3541,8 @@ ul.messages li{
 }
 
 #takvim td.current-month{
-    border-left: 1px solid #C9DBED;
-    border-top: 1px solid #C9DBED;
+    border-left: 1px solid #D7CEC3;
+    border-top: 1px solid #D7CEC3;
 }
 #takvim td.other-month{
     color:#ccc;
@@ -3568,7 +3568,34 @@ ul.messages li{
 .booked{
     background-color: #bf5117;
 }
+#legend div{
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    border: 1px solid #DED8D8;
+}
+#legend span{
+    padding-left:5px;
+    width: 99px;
+    display: inline-block;
+    margin-bottom: 4px;
+    padding: 4px;
+    padding-bottom: -11px;
+    position: relative;
+    color: #592F1B;
+    top: -6px;
 
+}
+#legend {
+    width: 265px;
+    height: 45px;
+    border: 1px solid #BEB188;
+    float: right;
+    display: inline-block;
+    padding: 10px;
+    margin-bottom: 15px;
+
+}
 
 .dasblok h5{
     margin: 9px 3px;

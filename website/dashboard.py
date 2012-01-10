@@ -45,6 +45,11 @@ def list_places(request):
     return HttpResponse(result, mimetype='application/json')
 
 
+@csrf_exempt
+def save_calendar(request):
+    place = get_object_or_404(Place, owner=request.user, pk=id)
+    if request.method == 'POST':
+        return HttpResponse('[1]', mimetype='application/json')
 
 def calendar(request, id):
     place = get_object_or_404(Place, owner=request.user, pk=id)

@@ -444,6 +444,12 @@ class Place(models.Model):
     def getReservedDates(self):
         ard = []
         for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
+            ard.append([int(rd.start.strftime('%y%m%d')),int(rd.end.strftime('%y%m%d')), rd.type] )
+        return json.dumps(ard)
+
+    def setReservedDates(self, json):
+        ard = []
+        for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
             ard.append([int(rd.start.strftime('%y%m%d')),int(rd.end.strftime('%y%m%d'))] )
         return json.dumps(ard)
 

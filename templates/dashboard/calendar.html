@@ -7,12 +7,18 @@
 
 
         <div  class="wfParts genbdy">
-            <p>
+            <div class="fl">
             {% cevir "takvim yardim metin" %}
-            </p><br><br>
+            </div>
 
             <div style="display:inline-block;">
-
+                <div id="legend">
+                    <div class="unavail"></div> <span>{% trans "Unavailable" %}</span>
+                    <div class="avail"></div> <span>{% trans "Available" %}</span>
+                    <div class="booked"></div> <span>{% trans "Booked" %}</span>
+                    <div class="requested"></div> <span>{% trans "Requested" %}</span>
+                </div>
+                <hr>
                 <div id="takvim" style='width:650px'></div>
 
 
