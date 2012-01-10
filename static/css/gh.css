@@ -3511,6 +3511,7 @@ ul.messages li{
 #litetabs{
     border:0;
     background:none;
+    width: 97%;
 }
 #litetabs .ui-widget-header{
     border:0;
