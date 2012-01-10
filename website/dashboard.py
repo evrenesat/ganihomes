@@ -46,10 +46,13 @@ def list_places(request):
 
 
 @csrf_exempt
-def save_calendar(request):
+def save_calendar(request, id):
     place = get_object_or_404(Place, owner=request.user, pk=id)
     if request.method == 'POST':
-        return HttpResponse('[1]', mimetype='application/json')
+        unavails = request.POST.get('unavails',[])
+#        log.info('unv: %s'%request.POST.get('unavails'))
+        place.setUnavailDates(unavails)
+        return HttpResponse([1], mimetype='application/json')
 
 def calendar(request, id):
     place = get_object_or_404(Place, owner=request.user, pk=id)

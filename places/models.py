@@ -447,11 +447,16 @@ class Place(models.Model):
             ard.append([int(rd.start.strftime('%y%m%d')),int(rd.end.strftime('%y%m%d')), rd.type] )
         return json.dumps(ard)
 
-    def setReservedDates(self, json):
-        ard = []
-        for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
-            ard.append([int(rd.start.strftime('%y%m%d')),int(rd.end.strftime('%y%m%d'))] )
-        return json.dumps(ard)
+    def setUnavailDates(self, jsdata, type=1):
+        self.reserveddates_set.filter(end__gte=datetime.datetime.today(), type=type).delete()
+        for dt in json.loads(jsdata):
+            st=str(dt[0])
+            en=str(dt[1])
+            st = '%s-%s-%s' %(st[:4], st[4:6], st[6:8])
+            en = '%s-%s-%s' %(en[:4], en[4:6], en[6:8])
+            self.reserveddates_set.create(type=1, start=st, end=en)
+        return True
+
 
 
     def calculateTotalPrice(self, currency_id, start, end, guests):

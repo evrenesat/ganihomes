@@ -735,7 +735,11 @@ gh = {
         var self = this;
 
         this.ecordion('#menuccordion')
-
+        var meco =$('#menuccordion')
+        $(window).scroll(function(){
+            if($('html').scrollTop()>170 && !meco.hasClass('fixmenu'))meco.addClass('fixmenu')
+            else if($('html').scrollTop()<170 && meco.hasClass('fixmenu'))meco.removeClass('fixmenu')
+        })
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){
@@ -961,6 +965,7 @@ gh = {
     },
     editAvailability:function(place_id){
         self = this
+        $('#un-avail').remove() //FIXME: bu gecicicozum
         $.datepick = {regional:{},setDefaults:function(lang){self.cal.lang = lang}}
         this.genericEdit('/dashboard/calendar/'+place_id,function(){
             $.getScript(self.STATIC_URL + 'js/jquery.calendar-widget.js',function(){
@@ -1023,7 +1028,7 @@ gh = {
     askWhatToDo:function(){
         $('#un-avail').dialog({modal:true, minWidth: 400, minHeight: 150})
     },
-    selectAvailDates:function(availability){
+    selectAvailDates:function(availability, save){
         $('#un-avail').dialog('close')
         $(this.cal.obj).find('td.calhvr').removeClass('calhvr')
         var end = this.cal.end, start = this.cal.start
@@ -1032,9 +1037,9 @@ gh = {
 //        console.log(start,end)
         if (start>end) {var e = end; end = start; start = e }
         for(i=start;i<=end;i++)$(this.cal.obj).find('#i'+i+':not(.booked)').addClass(availability).removeClass(availability=='avail' ? 'unavail' : 'avail')
-        this.pickUnavailableDates()
+        if(save)this.saveUnavailableDates()
     },
-    pickUnavailableDates:function(){
+    saveUnavailableDates:function(){
         var start =0, end=0; self=this, seldates = []
         $('#takvim td.current-month').each(function(){
             if($(this).hasClass('unavail')){
@@ -1047,9 +1052,11 @@ gh = {
             }
 
         })
-        self.cal.selected_dates = seldates
-        console.log(this.cal.selected_dates)
+        var url = '/'+self.LANGUAGE_CODE+url
+
+        $.post('/'+self.LANGUAGE_CODE+'/dashboard/save_calendar/'+this.cal.place_id, {unavails:JSON.stringify(seldates)})
     },
+
     editPrices:function(id){
         this.genericEdit('/dashboard/edit_prices/'+id,function(){
             $('.datef input').datepicker({dateFormat: 'yy-mm-dd', minDate: '0',

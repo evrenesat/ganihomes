@@ -2347,12 +2347,20 @@ li.g-plus-one {
     background: url("/images/icon/help.png") no-repeat scroll 8px 50% transparent;
     padding-left: 43px;
 }
-
+#menublok{
+    width:209px;
+    float: left;
+    height: 400px;
+}
+#menuccordion.fixmenu{
+    position:fixed;
+    top:20px;
+}
 #menuccordion {
     list-style: none;
     padding: 0 0 0 0;
     width: 209px;
-    float: left;
+    /*float: left;*/
     margin:0 0 0 0;
 }
 #menuccordion div {
