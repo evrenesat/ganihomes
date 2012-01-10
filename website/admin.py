@@ -40,11 +40,26 @@ class CategoryTranslationInline(admin.StackedInline):
 
 class CategoryAdmin(admin.ModelAdmin):
     formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+    list_display = ('text', 'main_category','active')
+    search_fields = ['text', ]
+    list_filter = ['active','main_category']
+    save_on_top = True
+    inlines = [CategoryTranslationInline, ]
+    save_as = True
+
+
+class MainCategoryTranslationInline(admin.StackedInline):
+    model = MainCategoryTranslation
+    save_on_top = True
+    save_as = True
+    extra = 3
+
+class MainCategoryAdmin(admin.ModelAdmin):
     list_display = ('text', 'active')
     search_fields = ['text', ]
     list_filter = ['active']
     save_on_top = True
-    inlines = [CategoryTranslationInline, QuestionInline, ]
+    inlines = [MainCategoryTranslationInline, ]
     save_as = True
 
 

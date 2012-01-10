@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms.fields import ChoiceField
 from website.models.faq import Question
+from website.views import addPlaceForm
 
 __author__ = 'Evren Esat Ozkan'
 
@@ -68,11 +69,18 @@ def show_faq(request, type=None):
         context_instance=RequestContext(request))
 
 
-def show_messages(request, type=None):
+@login_required
+def dashboard(request):
+    rms = request.user.received_messages.all()
+    sms = request.user.sent_messages.all()
+    context = {'places':request.user.place_set.all(),'form' : addPlaceForm(), 'rms':rms,'sms':sms}
+    return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
+
+def show_messages(request, type=None, template='dashboard/user_messages.html'):
     rms = request.user.received_messages.all()
     sms = request.user.sent_messages.all()
     context = {'rms':rms,'sms':sms}
-    return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
+    return render_to_response(template, context, context_instance=RequestContext(request))
 
 
 class ProfileForm(ModelForm):

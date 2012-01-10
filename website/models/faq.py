@@ -8,9 +8,45 @@ from django.conf import settings
 #log = logging.getLogger('genel')
 from utils.cache import kes
 
-class Category(models.Model):
+class MainCategory(models.Model):
     """Tag category"""
 
+    text = models.CharField(_('Name'), max_length=100)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        app_label = 'website'
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('FAQ Main Category')
+        verbose_name_plural = _('FAQ Main Categories')
+
+    def __unicode__(self):
+        return '%s' % (self.text,)
+
+class MainCategoryTranslation(models.Model):
+    """Place description"""
+
+    category = models.ForeignKey('MainCategory')
+    lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
+    text = models.CharField(_('Translation'), max_length=100)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        app_label = 'website'
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('FAQ Main Category Name Translation')
+        verbose_name_plural = _('FAQ Main Category Name Translations')
+
+    def __unicode__(self):
+        return 'Place #%s Lang:%s' % (self.category_id, self.lang)
+
+class Category(models.Model):
+    """Tag category"""
+    main_category = models.ForeignKey('MainCategory',  null=True, blank=True)
     text = models.CharField(_('Name'), max_length=100)
 #    lang = models.CharField(_('Category'), max_length=2, db_index=True, choices=settings.LANGUAGES)
     active = models.BooleanField(_('Active'), default=True)
@@ -66,14 +102,20 @@ class Question(models.Model):
     @classmethod
     def _updateCache(cls, lang=None):
         for code,name in settings.LANGUAGES:
-            di = defaultdict(list)
+
+            mi = defaultdict(list)
             cat_names = dict(CategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
-            for a in Answer.objects.select_related().order_by('question__order').filter(lang=code, active=True):
-                di[cat_names.get(a.question.category_id,'---')].append({'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
-            di = di.items()
-            kes(code,'faqs').s(di,99)
+#            mcat_names = dict(MainCategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
+            for mc in MainCategory.objects.filter(active=True):
+                di = defaultdict(list)
+                for a in Answer.objects.select_related().order_by('question__order').filter(lang=code, active=True, question__category__main_category=mc):
+                    di[cat_names.get(a.question.category_id,'---')].append({'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
+                di = di.items()
+                mi[mc.maincategorytranslation_set.filter(lang=code).values_list('text',flat=True)[0]] = di
+            mi = mi.items()
+            kes(code,'faqs').s(mi,99)
             if lang == code:
-                lang = di
+                lang = mi
         return lang
 
 

@@ -377,7 +377,8 @@ def login(request):
                 if not request.POST.get('remember_me', None):
                     request.session.set_expiry(0)
                 auth.login(request, user)
-                return HttpResponseRedirect(request.POST.get('next',reverse('dashboard')))
+#                log.debug('login redir "%s"'%request.POST.get('next', reverse('dashboard')))
+                return HttpResponseRedirect(request.POST.get('next') or reverse('dashboard') )
             else:
                 messages.error(request, _('Wrong email or password.'))
     else:
@@ -414,10 +415,6 @@ def register(request,template='register.html'):
     context = {'form':form, 'lform':lform, 'next': request.GET.get('next','/')}
     return render_to_response(template, context, context_instance=RequestContext(request))
 
-@login_required
-def dashboard(request):
-    context = {'places':request.user.place_set.all(),'form' : addPlaceForm()}
-    return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
 def registeration_thanks(request):
     context = {}

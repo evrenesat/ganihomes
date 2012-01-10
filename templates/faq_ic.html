@@ -1,24 +1,36 @@
 {% load thumbnail i18n currency cevir %}
 
-<a class="expclp fr" href="#">[ <span class="ea">+ {% trans "Expand All" %}</span><span class="ca">- {% trans "Collapse All" %}</span> ]</a>
-<ul class="faqcats">
-    {% for cat_name,questions  in faq%}
-    <li>
-        <div><a href="#">{{ cat_name }}</a></div>
-        <ul class="faqcat">
-            {% for q in questions %}
-                        <li>
-                            <div><a href="#">{{ q.question }}</a></div>
-                            <ul>
-                                <li class="">{{ q.answer|linebreaksbr }}</li>
-                            </ul>
-                        </li>
 
-                {% endfor %}
+
+<div id="litetabs">
+    <ul id="pricetabs">
+        {% for main_cat_name, sub_cats in faq %}
+        <li class="prtab"><a href="#{{ main_cat_name|slugify }}">{{ main_cat_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% for main_cat_name, sub_cats in faq %}
+        <div id="{{ main_cat_name|slugify }}">
+            <a class="expclp fr" href="#">[ <span class="ea">+ {% trans "Expand All" %}</span><span class="ca">- {% trans "Collapse All" %}</span> ]</a>
+        <ul class="faqcats">
+            {% for cat_name,questions  in sub_cats%}
+            <li>
+                <div><a href="#">{{ cat_name }}</a></div>
+                <ul class="faqcat">
+                    {% for q in questions %}
+                                <li>
+                                    <div><a href="#">{{ q.question }}</a></div>
+                                    <ul>
+                                        <li class="">{{ q.answer|linebreaksbr }}</li>
+                                    </ul>
+                                </li>
+
+                        {% endfor %}
+                </ul>
+                <div style="width:100%;height:1px;display:inline-block;"></div>
+            </li>
+
+            {% endfor %}
         </ul>
-        <div style="width:100%;height:1px;display:inline-block;"></div>
-    </li>
-
+        </div>
     {% endfor %}
-</ul>
-
+    </div>

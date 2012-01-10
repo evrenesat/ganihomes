@@ -75,27 +75,47 @@
 
                 <div class="dasblok wx">
                 <h5>{% trans "Inbox" %}</h5>
+                    <div id="overview_inbox">
+                        {% if rms %}
+                            <table>
+                                {% for m in rms %}
+                                <tr><td>{{ m }}</td></tr>
+                                {% endfor %}
+                            </table>
+                        {% else %}{% trans "No new messages" %}<br><br><br>{% endif %}
+
+                    </div>
                 </div>
 
                 <div class="dasblok wx">
                 <h5>{% trans "Booking Requests" %}</h5>
+                    <div id="overview_requests"></div>
                 </div>
 
+                {% if places %}
+                    <div class="dasblok w2x">
+                    <h5>Places</h5>
+                    <div id="overview_places">
+                        <ul class="dugmul">
+                            <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png">
+                                <h6>{% trans "Add New Place" %} </h6></li>
+                            {% for p in places %}
+                                <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
+                                    <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                                    <h6>{{ p.title|slice:":40" }}</h6>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    </div>
 
-                <div class="dasblok w2x">
-                <h5>Places</h5>
-                    <ul class="dugmul">
-                        <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png">
-                            <h6>{% trans "Add New Place" %} </h6></li>
-                        {% for p in places %}
-                            <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
-                                <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
-                                <h6>{{ p.title|slice:":40" }}</h6>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                {% endif %}
+                    <div class="dasblok w2x">
+                        <h5>{% trans "Bookmarked Places" %}</h5>
+                        <div id="overview_bookmarks"></div>
+                     </div>
                 </div>
-                </div>
+
 
                 <div class="dbcontent gizli " id="addplace_wizard"></div>
                 <div class="dbcontent gizli " id="results"></div>

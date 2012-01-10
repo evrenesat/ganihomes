@@ -9,16 +9,39 @@
 
 
         <div  class="wfParts genbdy">
-            {% if rms %}
-            <table>
-                {% for m in rms %}
-                <tr><td>{{ m }}</td></tr>
-                {% endfor %}
-            </table>
-            {% else %}
-                <h4>{% trans "No new messages" %}</h4><br><br><br>
-            {% endif %}
 
+            <div id="litetabs">
+            <ul id="pricetabs">
+                <li class="prtab"><a href="#received">{% trans "Inbox" %}</a></li>
+                <li class="prtab"><a href="#sent">{% trans "Sent Messages" %}</a></li>
+
+            </ul>
+            <div id="received">
+
+                {% if rms %}
+                <table>
+                    {% for m in rms %}
+                    <tr><td>{{ m }}</td></tr>
+                    {% endfor %}
+
+                </table>
+                {% else %}
+                    <h4>{% trans "No messages" %}</h4>
+                {% endif %}
+            </div>
+                <div id="sent">
+
+                    {% if sms %}
+                    <table>
+                        {% for m in sms %}
+                        <tr><td>{{ m }}</td></tr>
+                        {% endfor %}
+
+                    </table>
+                    {% else %}
+                        <h4>{% trans "No messages" %}</h4><br><br><br>
+                    {% endif %}
+                </div>
 
          </div>
 

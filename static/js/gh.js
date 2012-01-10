@@ -723,6 +723,7 @@ gh = {
 
     },
     init_faq:function(){
+        $('#litetabs').tabs()
         var fn2 = this.ecordion('.faqcats')
         var fn1 = this.ecordion('.faqcat')
             $('.expclp').click(function(){
@@ -737,8 +738,9 @@ gh = {
         this.ecordion('#menuccordion')
         var meco =$('#menuccordion')
         $(window).scroll(function(){
-            if($('html').scrollTop()>170 && !meco.hasClass('fixmenu'))meco.addClass('fixmenu')
-            else if($('html').scrollTop()<170 && meco.hasClass('fixmenu'))meco.removeClass('fixmenu')
+//            console.log($(document).scrollTop(), meco.hasClass('fixmenu'))
+            if($(document).scrollTop()>170 && !meco.hasClass('fixmenu')){meco.addClass('fixmenu')}
+            else if($(document).scrollTop()<170 && meco.hasClass('fixmenu')){meco.removeClass('fixmenu')}
         })
         $('.btn').click(function(data){
             var target_div=''
@@ -950,7 +952,6 @@ gh = {
                 $('.ptforms').hide()
                 $('#form_'+this.id).show()
             })
-            $('#litetabs').tabs()
             $('#pt'+current_payment_selection).trigger('click')
         })
     },
@@ -1078,6 +1079,7 @@ gh = {
             self.form_submit_handler(frame,url,function(){
                 self.profile_upload_init()
                 if(typeof(fn)!='undefined')fn()
+                $('#litetabs').tabs()
 
             })
 

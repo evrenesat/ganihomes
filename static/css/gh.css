@@ -3447,6 +3447,10 @@ ul.messages li{
 }
 .expclp {text-decoration:none;
     margin-right: 50px;
+    position: relative;
+    left: 59px;
+    top: -95px;
+    font-size: 10px;
 }
 .expclp  span.ea{ display:inline;}
 .expclp  span.ca{ display:none;}
@@ -3610,7 +3614,7 @@ ul.messages li{
     display:inline;
     background-color:#fff;
     position:relative;
-    top: -9px;
+    top: -20px;
     left:10px;
     padding: 3px 6px;
     color: #854E1E;
@@ -3619,14 +3623,17 @@ ul.messages li{
     font-size: 13px;
 }
 .wx{
-    width: 341px;
+    width: 318px;
 }
 .w2x{
-    width: 700px;
+    width: 670px;
+}
+.dasblok div{
+    overflow:hidden;
 }
 .dasblok{
     float:left;
-    min-height:100px;
+    min-height: 120px;
     border: 1px solid #F2D5A4;
     display:inline-block;
     -webkit-box-shadow: #666 0px 1px 1px;
@@ -3638,6 +3645,9 @@ ul.messages li{
     border-radius: 3px;
     margin-top: 14px;
     margin: 14px 6px 10px;
+    padding: 10px;
+    color: #9D7C3B;
+    font-size: 12px;
 }
 
 #dash{
