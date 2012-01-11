@@ -901,10 +901,14 @@ ul.messages {
 
 }
 
-.pricebar {
+#pricebar {
     width: 240px;
+    margin-left:21px;
 }
 
+#searchbox{
+    min-height:800px;
+}
 /*.pricebar label{*/
 /*position: relative;*/
 /*top:-10px;*/
@@ -1462,7 +1466,7 @@ li.g-plus-one {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    height: 550px;
+    height: 580px;
     /*margin-left: 20px;*/
     overflow: hidden;
     position: relative;
@@ -1472,7 +1476,7 @@ li.g-plus-one {
 }
 
 #wf {
-    height: 550px;
+    height: 580px;
     width: 3000px;
     position: absolute;
     overflow: auto;
@@ -2453,19 +2457,21 @@ li.g-plus-one {
     margin-left: 100px;
     margin-right: 100px;
 }
-.ssp{
-    margin:10px 3px;
-    float:left;
-    width:190px;
-    display: inline-block;
-}
+/*.k{*/
+    /*float: left;*/
+    /*display: inline-block;*/
+    /*height: auto;*/
+/*}*/
 #sidesearch pricebar{
     height:100px;
 }
+#sidesearch{
+    background-color:#fff;
+}
 .sstitle{
-    padding-left:8px;
+    padding-left: 8px;
     float:left;
-    height:25px;
+    height: 25px;
     width:230px;
     font-size:16px;
     font-weight:bold;
@@ -2474,7 +2480,7 @@ li.g-plus-one {
     -webkit-box-shadow: #ccc 1px 1px 4px;
     -moz-box-shadow: #ccc 1px 1px 4px;
     box-shadow: #ccc 1px 1px 4px;
-
+    display: inline-block;
 
 }
 #amens{
@@ -2483,36 +2489,72 @@ li.g-plus-one {
     padding: 1em 0 !important;
 }
 #amensearch{
+    height: 78px;
+    width: 245px;
+}
+#ptypes{
+    height: 48px;
+    width: 245px;
+}
+#searchbar{
+    height:800px;
+}
+#sidesearch{
+    width:210px;
+}
+#sidesearch.fixmenu{
+    position: fixed;
+    top:20px;
 
-    margin-top:30px;
-    height:30px;
-    /*overflow:hidden;*/
 }
-#amenulsr{
-margin-top:20px !important;
+#searchbar .kapsar{
+    overflow: hidden;
+    font-size:10px;
+    float: left;
+    padding:10px;
+    display: inline-block;
 }
-#amenulsr li{
+#searchbar div.acik{
+    height:auto;
+    overflow:visible;
+    background-color:#fff;
+    width: 245px;
+    -webkit-box-shadow: 0px 0px 11px 5px #A7A39B;
+    -moz-box-shadow: 0px 0px 11px 5px #A7A39B;
+    box-shadow: 0px 0px 11px 5px #A7A39B;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+
+}
+#searchbar ul{
+margin-top: 30px !important;
+    display: block;
+    width: 213px;
+}
+#searchbar li{
     cursor:pointer;
     list-style: none;
-    padding-left:20px;
+    padding-left: 20px;
     float:left;
-    width:190px;
-    margin-left:10px;
-    margin-top:5px;
+    width: 84px;
+    margin-left: -14px;
+    margin-top: 4px;
     height:20px;
     display:block;
-    color:#6e4f4f;
-    text-shadow: 1px 1px 1px #ffb76c;
-    background: url(/images/unchecked.png) 0 0px no-repeat;
+    color: #7A7474;
+    text-shadow: 1px 1px 1px #E1BD99;
+    background: url("/images/unchecked.png") no-repeat scroll 4px 0 transparent;
+    padding-right: 14px;
+    line-height: 9px;
+    padding-top: 2px;
 
 }
 
-#amenulsr li.hit{
+#searchbar li.hit{
     background-position: 0 -20px;
 }
-#amenul{
-    pardding:0;
-}
+
 #amenul li{
     list-style: none;
     padding-left:20px;

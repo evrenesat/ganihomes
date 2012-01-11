@@ -207,9 +207,15 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.name,)
-    @classmethod
-    def _updateCache(cls):
 
+
+    @classmethod
+    def getTags(cls, lang=None):
+        return kes(lang,'tags').g(cls._updateCache(lang))
+
+
+    @classmethod
+    def _updateCache(cls, lang=None):
         for code,name in settings.LANGUAGES:
             tags = []
 #            if code == 'en': #assuming en as the default language
@@ -219,6 +225,9 @@ class Tag(models.Model):
             for d in TagTranslation.objects.filter(tag__active=True,lang=code).values('tag_id','translation','help'):
                 tags.append({'id':d['tag_id'],'help':d['help'],'name':d['translation']})
             kes(code,'tags').s(tags,999999)
+            if lang:
+                lang = tags
+        return lang
 
     def save(self, *args, **kwargs):
         self._updateCache()
@@ -330,7 +339,7 @@ class Place(models.Model):
     currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
     primary_photo = models.ImageField(_('Primay photo'), upload_to='place_photos', null=True, blank=True)
     price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
-    capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS, default=2)
+    capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS, default=6)
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES, default=1)
     space = models.SmallIntegerField(_('Space offered'), choices=SPACE_TYPES, default=1)
     bedroom = models.SmallIntegerField(_('Number of bedrooms'), choices=NO_OF_ROOMS, default=1)
@@ -415,12 +424,10 @@ class Place(models.Model):
     def getTags(self, lang):
         tag_ids = self.tags.values_list('id',flat=True)
         tags = []
-        for t in kes(lang,'tags').g([]):
+        for t in Tag.getTags(lang):
             if t['id'] in tag_ids:
                 t['class']='hit'
             tags.append(t)
-        if not tags and tag_ids:
-            Tag._updateCache()
         return tags
 
 

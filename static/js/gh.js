@@ -176,6 +176,14 @@ gh = {
     },
     init_search:function () {
         self = this
+        var sbar = $('#sidesearch')
+        var sbardis = $('#searchbar')
+        var sbox = $('#searchbox')
+        $(window).scroll(function(){
+            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
+            if($(document).scrollTop()>170 && !sbar.hasClass('fixmenu')){sbar.addClass('fixmenu');sbardis.height(sbox.height())}
+            else if($(document).scrollTop()<170 && sbar.hasClass('fixmenu')){sbar.removeClass('fixmenu')}
+        })
         $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
             change: function(event, ui) {
                 var values = $( this ).slider( "option", "values" );
@@ -183,6 +191,8 @@ gh = {
                 $('#pmax').val(values[1]);
             }
         });
+        $('#searchbar .ackapa').mouseenter(function(){$(this).addClass('acik',100)}).mouseleave(function(){$(this).removeClass('acik')})
+//        $('#searchbar').mouseleave(function(){$('#searchbar .acik').removeClass('acik')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
         $("#id_query").autocomplete({minLength: 1,
             source:function(request, response){
@@ -192,7 +202,7 @@ gh = {
         $('#id_query').keydown(function(event){if(event.keyCode == '13')self.jsearch()})
         $('#submit').click(function(){self.jsearch()})
         this.jsearch()
-        $('#amenulsr li').click(function(){$(this).toggleClass('hit')})
+        $('#searchbar li').click(function(){$(this).toggleClass('hit');self.jsearch()}).disableSelection()
     },
     init_index:function () {
 
@@ -736,8 +746,8 @@ gh = {
         $('#litetabs').tabs()
         var fn2 = this.ecordion('.faqcats')
         var fn1 = this.ecordion('.faqcat')
-            $('.expclp').click(function(){
-                $(this).toggleClass('expanded')
+            $('#litetabs .expclp').click(function(){
+                $('#litetabs .expclp').toggleClass('expanded')
               if(fn1()==1)fn2(0)
             })
 
@@ -851,6 +861,11 @@ gh = {
     },
     jsearch:function(){
         self=this
+        $('#searchbar .kapsar').each(function(){
+                var keys = []
+                $(this).find('li.hit').each(function(){keys.push($(this).data('ids'))})
+                $('#ids_'+$(this).data('key')).val('['+keys.join(',')+']')
+        })
         $.post('/jsearch/', $("#search_form").serialize(),function(data){
         data =self.setSearchPrices(data)
 //        console.log(data)

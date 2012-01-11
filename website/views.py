@@ -424,24 +424,42 @@ def registeration_thanks(request):
 def search(request):
     sresults = Place.objects.filter(active=True)
     form = SearchForm(request.REQUEST)
-    amens = kes(request.LANGUAGE_CODE,'tags').g()
-    context = {'form':form, 'amens':amens }
+    lang = request.LANGUAGE_CODE
+    amens = Tag.getTags(lang)
+    context = {'form':form, 'amens':amens, 'place_types':PLACE_TYPES }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-@csrf_exempt
 
+def parseJSData(request, key):
+    data = request.POST.get(key)
+    if data:
+        return json.loads(data)
+#        return [data] if type(data) not in (list, dict)  else data
+    else:
+        return []
+
+@csrf_exempt
 def search_ajax(request):
     form = SearchForm(request.REQUEST)
-    pls = Place.objects.filter(active=True)
+    pls = Place.objects.filter(active=True).distinct()
     page = request.GET.get('page',1)
     log.debug('search view')
 #    pls = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
     if form.is_valid():
         log.debug('search valid')
         query = form.cleaned_data['query']
-#        query = request.GET.get('query')
-
+        cin = form.cleaned_data['checkin']
+        cout = form.cleaned_data['checkout']
+        nog = form.cleaned_data['no_of_guests']
+        pls = pls.filter(capacity__gte=nog)
+        amens = parseJSData(request,'ids_amens')
+        if amens:
+            for a in amens:
+                pls = pls.filter(tags=a)
+        ptypes = parseJSData(request,'ids_ptypes')
+        if ptypes:
+            pls = pls.filter(type__in=ptypes)
         if query:
             query = [q.strip() for q in query.split(',')[:2]]
             log.debug('query: %s'%query)
@@ -449,6 +467,9 @@ def search_ajax(request):
             for qp in query:
                 q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
             pls = pls.filter(q)
+        if cin and cout:
+            pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
+                              ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
 #    paginator = Paginator(contact_list, 25)
     return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
         mimetype='application/json')
