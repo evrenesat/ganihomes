@@ -47,6 +47,14 @@ def list_places(request):
 
 
 @csrf_exempt
+def save_photo_order(request, id):
+    place = get_object_or_404(Place, owner=request.user, pk=id)
+    if request.method == 'POST':
+        iids = request.POST.get('iids',[])
+        place.reorderPhotos(iids)
+        return HttpResponse([1], mimetype='application/json')
+
+@csrf_exempt
 def save_calendar(request, id):
     place = get_object_or_404(Place, owner=request.user, pk=id)
     if request.method == 'POST':

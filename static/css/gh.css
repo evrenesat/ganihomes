@@ -1576,7 +1576,9 @@ li.g-plus-one {
     -khtml-opacity: 0;
     opacity: 0;
 }
-
+#paccordion{
+    font-size:11px;
+}
 #paccordion textarea {
     height: 100px;
     width: 100%;
@@ -1587,7 +1589,7 @@ li.g-plus-one {
 }
 
 .wfParts li {
-    list-style: none;
+    list-style: none outside none;
 }
 
 .wfParts p {
@@ -1754,13 +1756,14 @@ li.g-plus-one {
 
 #paccordion h3 a {
     padding-left: 60px;
+    font-size: 14px;
 }
 
 #paccordion h3 .nums {
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 3px;
+    top: 6px;
     left: 24px;
     background-color: #fff;
     -moz-border-radius: 4px;
@@ -2172,18 +2175,29 @@ li.g-plus-one {
 }
 
 #uploaded {
-    width: 100%;
-    border: #bbccdd 1px solid;
-    height: 186px;
+    width: 94%;
+    border: 1px solid #F5E57D;
+    height: 145px;
     margin-top: 10px mheight: 125px;
     min-height: 125px;
     overflow: auto;
-    padding: 10px;
+    padding: 20px;
 }
+#uploaded div:first-child {
+    -webkit-box-shadow: 0 0 7px 4px  orange;
+    -moz-box-shadow: 0 0 7px 4px  orange;
+    box-shadow: 0 0 7px 4px  orange;
 
-#uploaded img {
+}
+#uploaded div {
+    width:55px;
+    height:55px;
     float: left;
     margin: 5px;
+}
+#uploaded img {
+
+
     border: 2px solid #fff;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
@@ -2191,8 +2205,8 @@ li.g-plus-one {
 }
 #uploaded .delete{
     position: relative;
-    top: 44px;
-    left: -69px;
+    top: -5px;
+    left: -3px;
     background-color: #fff;
 
 }
@@ -2264,6 +2278,7 @@ li.g-plus-one {
     margin-left: 10px;
     min-height: 667px;
     width: 710px;
+    padding-bottom: 41px;
 
 }
 
@@ -3658,5 +3673,13 @@ ul.messages li{
 #un-avail button{
     margin:40px 10px;
     width: 160px;
+
+}
+#fotouploadtips{
+    color:green;
+}
+#fotouploadtips li{
+    list-style:disc ;
+
 
 }

@@ -102,14 +102,14 @@ class Question(models.Model):
     @classmethod
     def _updateCache(cls, lang=None):
         for code,name in settings.LANGUAGES:
-
             mi = defaultdict(list)
             cat_names = dict(CategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
-#            mcat_names = dict(MainCategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
             for mc in MainCategory.objects.filter(active=True):
                 di = defaultdict(list)
-                for a in Answer.objects.select_related().order_by('question__order').filter(lang=code, active=True, question__category__main_category=mc):
-                    di[cat_names.get(a.question.category_id,'---')].append({'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
+                for a in Answer.objects.select_related().order_by('question__order').filter(lang=code,
+                    active=True, question__category__main_category=mc):
+                    di[cat_names.get(a.question.category_id,'---')].append({
+                        'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
                 di = di.items()
                 main_cat_name = mc.maincategorytranslation_set.filter(lang=code).values_list('text',flat=True)
                 mi[main_cat_name[0] if main_cat_name else '---' ] = di

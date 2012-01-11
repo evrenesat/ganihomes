@@ -457,6 +457,16 @@ class Place(models.Model):
             self.reserveddates_set.create(type=1, start=st, end=en)
         return True
 
+    def reorderPhotos(self, jsdata):
+        order = 0
+        ids = json.loads(jsdata)
+        self.primary_photo = self.photo_set.get(pk=ids[0]).image
+        self.save()
+        for id in ids:
+            order +=1
+            self.photo_set.filter(pk=id).update(order=order)
+        return True
+
 
 
     def calculateTotalPrice(self, currency_id, start, end, guests):
@@ -620,7 +630,7 @@ class Photo(models.Model):
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['order']
         get_latest_by = "timestamp"
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')

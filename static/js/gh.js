@@ -632,6 +632,11 @@ gh = {
         var self = this;
         self.uploadeds = place_photos
         if(typeof(place_id)=='undefined')place_id=''
+        $('#uploaded').sortable({update: function(event, ui) {
+            var iids = []
+            $('#uploaded div').each(function(index) {iids[index] = this.id.replace('img_','');});
+            $.post('/'+self.LANGUAGE_CODE+'/dashboard/save_photo_order/'+place_id, {iids:JSON.stringify(iids)})
+        }})
         self.renderUpPlacePhotos()
         $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
 

@@ -17,6 +17,7 @@ urlpatterns = patterns('',
         url(r'^edit_prices/(?P<id>\d+)$', db.edit_prices, name='edit_prices'),
         url(r'^calendar/(?P<id>\d+)$', db.calendar, name='calendar'),
         url(r'^save_calendar/(?P<id>\d+)$', db.save_calendar, name='save_calendar'),
+        url(r'^save_photo_order/(?P<id>\d+)$', db.save_photo_order, name='save_photo_order'),
 
     )
 
