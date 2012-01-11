@@ -1,11 +1,6 @@
 {% load  thumbnail i18n cevir%}
 {% include "show_messages.html" %}
 <div id="genhdr">
-    <div style="float:right">
-        <img id="pfotoimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ user.id }}_m.jpg"><br>
-        <button onclick="$('#pfoto').trigger('click');" class="minidugme" style="width:100px;">{% trans "Change Photo" %}</button>
-        <input id="pfoto" type="file" name="pfoto" style="position:fixed;top:-1000px;">
-    </div>
     <h3>{% cevir "profile duzenle baslik" %}</h3>
     {% cevir "profile duzenle altbaslik" %}
 
@@ -14,6 +9,11 @@
 
 
         <div  class="wfParts genbdy">
+            <div style="margin-top:-90px;float:right">
+                    <img id="pfotoimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ user.id }}_m.jpg"><br>
+                    <button onclick="$('#pfoto').trigger('click');" class="minidugme" style="width:100px;">{% trans "Change Photo" %}</button>
+                    <input id="pfoto" type="file" name="pfoto" style="position:fixed;top:-1000px;">
+                </div>
             <form action="." method="post" id="editprofile">
             {% csrf_token %}
             {{ uform.as_p }}
