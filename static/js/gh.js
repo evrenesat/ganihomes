@@ -675,10 +675,14 @@ gh = {
         })
     },
     renderUpPlacePhotos:function(){
+        self = this
         $("#uploaded").html($("#upPlacePhotosTpl").jqote(this.uploadeds))
         $('#uploaded .delete').click(function(){
             imgid = $(this).data('imgid')
-           $.post('/delete_photo/'+imgid,function(data){$('#img_'+imgid).hide('slow')})
+           $.post('/delete_photo/'+imgid,function(data){
+               $('#img_'+imgid).hide('slow')
+               self.uploadeds.splice(self.uploadeds.indexOf(imgid),1)
+           })
         })
     },
     init_login: function(){
