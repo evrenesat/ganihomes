@@ -635,6 +635,7 @@ gh = {
         $('#uploaded').sortable({update: function(event, ui) {
             var iids = []
             $('#uploaded div').each(function(index) {iids[index] = this.id.replace('img_','');});
+            self.uploadeds = iids
             $.post('/'+self.LANGUAGE_CODE+'/dashboard/save_photo_order/'+place_id, {iids:JSON.stringify(iids)})
         }})
         self.renderUpPlacePhotos()
