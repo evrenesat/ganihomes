@@ -448,7 +448,7 @@ gh = {
         for (i in acs){
             var ac = acs[i]
             var typ = ac.types[0]
-            console.log(ac.long_name, typ)
+//            console.log(ac.long_name, typ)
             if(typ=='country')$('#id_country').val(ac.short_name)
             if(typ=='route')$('#id_street').val(ac.long_name)
             if(typ=='neighborhood')$('#id_neighborhood').val(ac.long_name)
@@ -658,7 +658,7 @@ gh = {
                dataType: 'json',
                url: '/upload_photo/'+place_id,
                done: function (e, data) {
-                   console.log(data)
+//                   console.log(data)
                    self.uploadeds.push(data.result[0].id)
                    self.renderUpPlacePhotos()
 //                   $.each(data.result, function (index, file) {
@@ -730,7 +730,7 @@ gh = {
         //expand/collapse all
         this.ecordion_state[cnt]=0
         return function(state){
-            console.log(self.ecordion_state)
+//            console.log(self.ecordion_state)
             var sel = $(cnt+' li > ul')
             if (typeof(state)!='undefined')self.ecordion_state[cnt] = state
             if (!self.ecordion_state[cnt]){
@@ -1096,7 +1096,7 @@ gh = {
             $('.helptext:empty').remove()
             $('#id_currency').change(function(){
                 cr = gh_crc[$(this).val()]
-                    console.log(cr)
+//                    console.log(cr)
                 $('.current_curr').html(cr[1])
             }).trigger('change')
         })
