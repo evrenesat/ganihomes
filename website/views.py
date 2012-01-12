@@ -18,7 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
 from places.models import Place, Tag, Photo, Currency
 from django.db import DatabaseError
-from places.options import n_tuple, PLACE_TYPES
+from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES
 from utils.cache import kes
 from website.models import Sayfa, Haber, Vitrin, Question
 
@@ -426,7 +426,7 @@ def search(request):
     form = SearchForm(request.REQUEST)
     lang = request.LANGUAGE_CODE
     amens = Tag.getTags(lang)
-    context = {'form':form, 'amens':amens, 'place_types':PLACE_TYPES }
+    context = {'form':form, 'amens':amens, 'place_types':PLACE_TYPES, 'space_types':SPACE_TYPES }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -454,16 +454,23 @@ def search_ajax(request):
         nog = form.cleaned_data['no_of_guests']
         pls = pls.filter(capacity__gte=nog)
 
+    selected_currency = int(request.POST.get('scurrency'))
     min = int(request.POST.get('pmin'))
     max = int(request.POST.get('pmax'))
+    convert_factor = Currency.objects.get(pk=selected_currency).get_factor()
     if max < 500:
-        pls = pls.filter(price__lte=max)
+        max = max * convert_factor
+        pls = pls.filter(gprice__lte=max)
     if min > 20:
-        pls = pls.filter(price__gte=20)
+        min = min * convert_factor
+        pls = pls.filter(gprice__gte=min)
     amens = parseJSData(request,'ids_amens')
     if amens:
         for a in amens:
             pls = pls.filter(tags=a)
+    stypes = parseJSData(request,'ids_stypes')
+    if stypes:
+        pls = pls.filter(space__in=stypes)
     ptypes = parseJSData(request,'ids_ptypes')
     if ptypes:
         pls = pls.filter(type__in=ptypes)

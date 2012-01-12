@@ -189,9 +189,12 @@ gh = {
                 var values = $( this ).slider( "option", "values" );
                 $('#pmin').val(values[0]);
                 $('#pmax').val(values[1]);
+                self.jsearch()
             }
         });
-//        $('#searchbar .ackapa').mouseenter(function(){$(this).addClass('acik',100)}).mouseleave(function(){$(this).removeClass('acik')})
+        if(window.PIE){
+            $('#searchbar .ackapa').mouseenter(function(){PIE.attach(this);})//$(this).css('padding-bottom','50px')}).mouseleave(function(){$(this).removeClass('acik')})
+        }
 //        $('#searchbar').mouseleave(function(){$('#searchbar .acik').removeClass('acik')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
         $("#id_query").autocomplete({minLength: 1,
@@ -860,12 +863,13 @@ gh = {
         return data
     },
     jsearch:function(){
-        self=this
+        var self=this
         $('#searchbar .kapsar').each(function(){
                 var keys = []
                 $(this).find('li.hit').each(function(){keys.push($(this).data('ids'))})
                 $('#ids_'+$(this).data('key')).val('['+keys.join(',')+']')
         })
+        $('#scurrency').val(this.selected_currency)
         $.post('/jsearch/', $("#search_form").serialize(),function(data){
         data =self.setSearchPrices(data)
 //        console.log(data)
@@ -1012,6 +1016,7 @@ gh = {
         selected_dates : []
     },
     initCal:function(){
+        var self = this
         for(i=0;i<12;i++)$("#takvim").calendarWidget({ month: i, year: 2012 ,
             monthNames: this.cal.lang.monthNames,
             dayNames: this.cal.lang.dayNamesShort
@@ -1066,7 +1071,7 @@ gh = {
         if(save)this.saveUnavailableDates()
     },
     saveUnavailableDates:function(){
-        var start =0, end=0; self=this, seldates = []
+        var start =0, end=0, self=this, seldates = []
         $('#takvim td.current-month').each(function(){
             if($(this).hasClass('unavail')){
                 if(!start)start = this.id

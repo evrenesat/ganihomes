@@ -82,7 +82,7 @@
 
         <div class="ikikutu" id="searchbar">
 
-            <div class="iblock" id="sidesearch">
+            <div  id="sidesearch">
 
                     <div id="ptypes" class="kapsar ackapa" data-key="ptypes">
                         <input type="hidden" name="ids_ptypes" id="ids_ptypes">
@@ -96,10 +96,11 @@
                     </div>
 
 
+
         <div id="pricekapsar" class="kapsar">
                 <div class="sstitle"> ::. {% trans "Nightly Price" %}</div>
                 <div id="pricebar" class="foge ssp">
-
+                    <input type="hidden" name="scurrency" id="scurrency">
                     <input type="hidden" name=pricerange id=pricerange>
 
                     <div id="pricediv"></div>
@@ -117,6 +118,20 @@
                       {% endfor %}
                     </ul>
                 </div>
+
+
+
+                <div id="stypes" class="kapsar ackapa" data-key="stypes">
+                    <input type="hidden" name="ids_stypes" id="ids_stypes">
+            <div class="sstitle"> ::. {% trans "Space Offered" %}</div>
+
+                    <ul id="stypeulsr">
+                      {% for k,v in space_types %}
+                      <li data-ids="{{ k }}">{{ v }}</li>
+                      {% endfor %}
+                    </ul>
+                </div>
+
 
 
             </div></div>

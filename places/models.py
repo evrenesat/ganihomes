@@ -95,8 +95,9 @@ class Currency(models.Model):
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
-    def get_factor(self, target_currency_id):
-        return Currency.objects.filter(pk=target_currency_id).values_list('factor')[0][0] / self.factor
+    def get_factor(self, target_currency_id=None):
+        c =  Currency.objects.filter(pk=target_currency_id) if target_currency_id else Currency.objects.filter(main=True)
+        return c.values_list('factor')[0][0] / self.factor
 
     class Meta:
         ordering = ['timestamp']
@@ -339,6 +340,7 @@ class Place(models.Model):
     currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
     primary_photo = models.ImageField(_('Primay photo'), upload_to='place_photos', null=True, blank=True)
     price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
+    gprice = models.DecimalField(_('Converted Price'), help_text=_('Price in main site currency (eg:euro)'), null=True, blank=True, decimal_places=2, max_digits=6)
     capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS, default=6)
     type = models.SmallIntegerField(_('Place type'), choices=PLACE_TYPES, default=1)
     space = models.SmallIntegerField(_('Space offered'), choices=SPACE_TYPES, default=1)
@@ -492,7 +494,12 @@ class Place(models.Model):
         self._updatePrices()
         self._updateSummary()
         self.createThumbnails()
+        self.calculateGPrice()
         super(Place, self).save(*args, **kwargs)
+
+    def calculateGPrice(self):
+        factor = self.currency.get_factor()
+        self.gprice = self.price * factor
 
     class Meta:
         ordering = ['timestamp']

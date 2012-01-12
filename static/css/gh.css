@@ -826,7 +826,7 @@ ul.messages {
 
 .input, select {
     background-color: Transparent;
-    background-image: url("http://static.gh/images/sayfa-tepe-gri-grd.png");
+        /*background-image: url("http://static.gh/images/sayfa-tepe-gri-grd.png");*/
 }
 
 .foge input {
@@ -989,9 +989,10 @@ ul.messages {
     min-height: 575px;
 
 }
-.ieg{
-    behavior: url(ie-css3.htc);
-}
+/*.ieg{*/
+    /*behavior: url(ie-css3.htc);*/
+    /**/
+/*}*/
 .dokuzkutu {
     width: 960px;
     -moz-border-radius: 6px;
@@ -1000,9 +1001,10 @@ ul.messages {
     -webkit-box-shadow: 2px 2px 10px 2px #cccccc;
     -moz-box-shadow: 2px 2px 10px 2px #cccccc;
     box-shadow: 2px 2px 10px 2px #cccccc;
+    background-color:#fff;
     float: left;
     margin-top: 20px;
-
+    behavior: url(/templates/PIE.htc);
 }
 
 .altikutu {
@@ -1017,6 +1019,8 @@ ul.messages {
     -moz-box-shadow: 2px 2px 10px 2px #cccccc;
     box-shadow: 2px 2px 10px 2px #cccccc;
     float: left;
+    background-color:#fff;
+    behavior: url(/templates/PIE.htc);
 
 }
 
@@ -1448,7 +1452,7 @@ li.g-plus-one {
     -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
     -moz-box-shadow: 1px 1px 10px 1px #cccccc;
     box-shadow: 1px 1px 10px 1px #cccccc;
-
+    behavior: url(/templates/PIE.htc);
 }
 
 .ikikutu h3 {
@@ -2520,7 +2524,6 @@ li.g-plus-one {
 #searchbar div.ackapa:hover{
     height:auto;
     overflow:visible;
-    background-color:#fff;
     width: 245px;
     -webkit-box-shadow: 0px 0px 11px 5px #A7A39B;
     -moz-box-shadow: 0px 0px 11px 5px #A7A39B;
@@ -2528,7 +2531,8 @@ li.g-plus-one {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
-
+    background-color:#fff;
+    behavior: url(/templates/PIE.htc);
 }
 #searchbar ul{
 margin-top: 30px !important;
@@ -2721,14 +2725,14 @@ ul.messages li{
     text-shadow: 1px 1px 0.4px #fff;
 
 }
-#placelist .plist:hover  .buttons{
+/*#placelist .plist:hover  .buttons{*/
     /*display:block;*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
-    filter: alpha(opacity = 1);
-    -moz-opacity: 1;
-    -khtml-opacity: 1;
-    opacity: 1;
-}
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";*/
+    /*filter: alpha(opacity = 1);*/
+    /*-moz-opacity: 1;*/
+    /*-khtml-opacity: 1;*/
+    /*opacity: 1;*/
+/*}*/
 #placelistic{
     display:inline-block;
 }
@@ -2737,11 +2741,11 @@ ul.messages li{
     width: 169px;
     /*display:none;*/
     text-align: right;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.3)";
-    filter: alpha(opacity = 0.3);
-    -moz-opacity: 0.3;
-    -khtml-opacity: 0.3;
-    opacity: 0.8;
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.3)";*/
+    /*filter: alpha(opacity = 0.3);*/
+    /*-moz-opacity: 0.3;*/
+    /*-khtml-opacity: 0.3;*/
+    /*opacity: 0.8;*/
 }
 #placelist .title{
     font-size: 14px;
@@ -2771,6 +2775,8 @@ ul.messages li{
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
     height: 144px;
+    background-color:#fff;
+    behavior: url(/templates/PIE.htc);
 }
 
 
@@ -3335,7 +3341,7 @@ ul.messages li{
     width: 666px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #ccc;
+    /*background-color: #ccc;*/
     border: 1px solid #ccc;
     border-bottom: 0px;
     -moz-border-radius-topleft: 8px;
@@ -3346,15 +3352,15 @@ ul.messages li{
     border-radius: 8px 8px 0px 0px;
 
 
-    background: -moz-linear-gradient(center top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -webkit-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -o-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: -ms-linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    background: linear-gradient(top, #F5D7B5 0%, #F5E7D6 28%, #FCF8F4 82%, #FFFFFF 100%) repeat scroll 0 0 transparent;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#F5D7B5', endColorstr = '#ffffff', GradientType = 0);
+    background: -moz-linear-gradient(#F5D7B5, #FFFFFF);
+    background: -webkit-linear-gradient(#F5D7B5, #FFFFFF);
+    background: -o-linear-gradient(#F5D7B5, #FFFFFF);
+    background: -ms-linear-gradient(#F5D7B5, #FFFFFF);
+    background: linear-gradient(#F5D7B5, #FFFFFF);
     padding: 20px;
     border-color: #DEB291;
-
+    -pie-background: linear-gradient(#F5D7B5, #FFFFFF);
+    behavior: url(/templates/PIE.htc);
 }
 .genbdy form{
     display:inline-block;
