@@ -990,7 +990,7 @@ ul.messages {
 
 }
 .ieg{
-    behavior: url(http://static.ganihomes.com/css/ie-css3.htc);
+    behavior: url(ie-css3.htc);
 }
 .dokuzkutu {
     width: 960px;
@@ -1436,7 +1436,7 @@ li.g-plus-one {
 }
 
 .ikikutu {
-
+    behavior: url(ie-css3.htc);
     float: left;
     width: 240px;
     /*min-height:500px;*/
