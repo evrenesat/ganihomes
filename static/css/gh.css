@@ -997,6 +997,11 @@ ul.messages {
     -webkit-box-shadow: 2px 2px 10px 2px #cccccc;
     -moz-box-shadow: 2px 2px 10px 2px #cccccc;
     box-shadow: 2px 2px 10px 2px #cccccc;
+    filter:
+        progid:DXImageTransform.Microsoft.DropShadow(color=#969696, offx=1, offy=1)
+        progid:DXImageTransform.Microsoft.DropShadow(color=#C2C2C2, offx=1, offy=1)
+        progid:DXImageTransform.Microsoft.DropShadow(color=#EFEFEF, offx=1, offy=1);
+
     float: left;
     margin-top: 20px;
 
@@ -2514,7 +2519,7 @@ li.g-plus-one {
     padding:10px;
     display: inline-block;
 }
-#searchbar div.acik{
+#searchbar div.ackapa:hover{
     height:auto;
     overflow:visible;
     background-color:#fff;
@@ -2817,14 +2822,14 @@ ul.messages li{
 }
 .sresults .detail{
     float:left;
-    width:400px;
+    width:380px;
     color:#7f6161;
     font-size:14px;
 }
 .sresults .price{
 
     float:right;
-    width:105px;
+    width:120px;
     text-align:center;
     height:53px;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
@@ -2835,9 +2840,9 @@ ul.messages li{
 }
 
 .sresults .ratingdiv{
-    padding:5px 5px 5px 12px;
+    padding: 5px 5px 5px 18px;
     float:right;
-    width:88px;
+    width: 97px;
     text-align:center;
     /*height:53px;*/
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;

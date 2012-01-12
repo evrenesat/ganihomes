@@ -453,23 +453,30 @@ def search_ajax(request):
         cout = form.cleaned_data['checkout']
         nog = form.cleaned_data['no_of_guests']
         pls = pls.filter(capacity__gte=nog)
-        amens = parseJSData(request,'ids_amens')
-        if amens:
-            for a in amens:
-                pls = pls.filter(tags=a)
-        ptypes = parseJSData(request,'ids_ptypes')
-        if ptypes:
-            pls = pls.filter(type__in=ptypes)
-        if query:
-            query = [q.strip() for q in query.split(',')[:2]]
-            log.debug('query: %s'%query)
-            q = Q()
-            for qp in query:
-                q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
-            pls = pls.filter(q)
-        if cin and cout:
-            pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
-                              ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
+
+    min = int(request.POST.get('pmin'))
+    max = int(request.POST.get('pmax'))
+    if max < 500:
+        pls = pls.filter(price__lte=max)
+    if min > 20:
+        pls = pls.filter(price__gte=20)
+    amens = parseJSData(request,'ids_amens')
+    if amens:
+        for a in amens:
+            pls = pls.filter(tags=a)
+    ptypes = parseJSData(request,'ids_ptypes')
+    if ptypes:
+        pls = pls.filter(type__in=ptypes)
+    if query:
+        query = [q.strip() for q in query.split(',')[:2]]
+        log.debug('query: %s'%query)
+        q = Q()
+        for qp in query:
+            q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
+        pls = pls.filter(q)
+    if cin and cout:
+        pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
+                          ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
 #    paginator = Paginator(contact_list, 25)
     return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
         mimetype='application/json')

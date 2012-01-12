@@ -175,12 +175,12 @@ gh = {
 
     },
     init_search:function () {
-        self = this
+        var self = this
         var sbar = $('#sidesearch')
         var sbardis = $('#searchbar')
         var sbox = $('#searchbox')
         $(window).scroll(function(){
-            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
+//            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
             if($(document).scrollTop()>170 && !sbar.hasClass('fixmenu')){sbar.addClass('fixmenu');sbardis.height(sbox.height())}
             else if($(document).scrollTop()<170 && sbar.hasClass('fixmenu')){sbar.removeClass('fixmenu')}
         })
@@ -191,7 +191,7 @@ gh = {
                 $('#pmax').val(values[1]);
             }
         });
-        $('#searchbar .ackapa').mouseenter(function(){$(this).addClass('acik',100)}).mouseleave(function(){$(this).removeClass('acik')})
+//        $('#searchbar .ackapa').mouseenter(function(){$(this).addClass('acik',100)}).mouseleave(function(){$(this).removeClass('acik')})
 //        $('#searchbar').mouseleave(function(){$('#searchbar .acik').removeClass('acik')})
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
         $("#id_query").autocomplete({minLength: 1,
@@ -686,7 +686,7 @@ gh = {
         })
     },
     renderUpPlacePhotos:function(){
-        self = this
+        var self = this
         $("#uploaded").html($("#upPlacePhotosTpl").jqote(this.uploadeds))
         $('#uploaded .delete').click(function(){
             imgid = $(this).data('imgid')
@@ -712,7 +712,7 @@ gh = {
     },
     ecordion_state:{},
     ecordion:function(cont){
-        self = this
+        var self = this
         $(cont+" > li > div").click(function(){
 
             if(false == $(this).next().is(':visible')) {
@@ -791,7 +791,7 @@ gh = {
     },
     TEMPLATES:{},
     loadTemplate:function(tpl_file){
-        self = this
+        var self = this
         if(!this.TEMPLATES[tpl_file]){
             $.get('/templates/'+tpl_file, function(doc) {
                     self.TEMPLATES[tpl_file] = $.jqotec(doc);
@@ -984,13 +984,13 @@ gh = {
         this.genericEdit('/dashboard/show_messages/')
     },
     do_showFaq:function(self){
-        self = this
+        var self = this
         this.genericEdit('/dashboard/show_faq/',function(){
             self.init_faq()
         })
     },
     editAvailability:function(place_id){
-        self = this
+        var self = this
         $('#un-avail').remove() //FIXME: bu gecicicozum
         $.datepick = {regional:{},setDefaults:function(lang){self.cal.lang = lang}}
         this.genericEdit('/dashboard/calendar/'+place_id,function(){
@@ -1097,7 +1097,7 @@ gh = {
         })
     },
     genericEdit:function(url,fn){
-        self = this
+        var self = this
         var url = '/'+self.LANGUAGE_CODE+url
         $.get(url, function(data){
             frame = self.showFrame('generic',data)
@@ -1112,7 +1112,7 @@ gh = {
 
     },
     form_submit_handler:function(frame,url,fn){
-        self = this
+        var self = this
         var form = frame.find('form')
 //        console.log(form)
         if(typeof(fn)!='undefined')fn()

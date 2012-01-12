@@ -2,7 +2,7 @@
 {% load i18n cevir thumbnail %}
 {% block content %}
     <form action="." method=get id='search_form'>
-        <div class="altikutu" id="searchbox" style="height:1400px">
+        <div class="altikutu" id="searchbox">
 
             <div id="place-conatiner" class="sresults">
                 <div id="araust">
@@ -103,8 +103,8 @@
                     <input type="hidden" name=pricerange id=pricerange>
 
                     <div id="pricediv"></div>
-                    <input type="text" id="pmin" class="pRangeBox" value="20">
-                    <input type="text" id="pmax" class="pRangeBox" value="500">
+                    <input type="text" name="pmin" id="pmin" class="pRangeBox" value="20">
+                    <input type="text" id="pmax" name="pmax" class="pRangeBox" value="500">
                 </div>
         </div>
                 <div id="amensearch" class="kapsar ackapa" data-key="amens">
