@@ -48,6 +48,7 @@
 
                                         <input type="hidden" id="next" name="next" value="{{ next    }}">
                                         </div>
+
                     </div>
 
 
@@ -96,8 +97,10 @@
                         {{ lform.login_pass }}
                     </div>
                 <div class="float-left yuzz txtcnt">
-                <button class="yesildugme fo11">{% trans "Login" %}</button>
+                <button class="yesildugme fo11">{% trans "Login" %}</button> <a class="fr" href="{% url password_reset %}">{% trans "Forgot password?" %}</a>
                     </div>
+
+
         </form>
                 <div class="orline" ></div>
                 <div class="or">yada</div>

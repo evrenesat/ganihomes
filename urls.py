@@ -5,6 +5,7 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.i18n import i18n_patterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 admin.autodiscover()
 from django.conf.urls.defaults import *
 handler500 = 'website.views.server_error'
@@ -35,6 +36,7 @@ urlpatterns += patterns('website.views',
     (r'^505/$', 'server_error', {}, 'server_error'),
     (r'^404/$', 'server_error', {'template_name':'404.html'}, 'not_found'),
     (r'^ZXE/SDS/FSSS/SKTR/', include('paypal.standard.ipn.urls')),
+    (r'^password_reset/$', auth_views.password_reset, {}, 'password_reset'),
     (r'^logout/$', 'logout', {}, 'logout'),
     (r'^localeurl/', include('localeurl.urls')),
     (r'^login_or_register/$', 'register', {'template':'loginorregister.html'}, 'lregister'),

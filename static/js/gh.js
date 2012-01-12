@@ -699,20 +699,20 @@ gh = {
            })
         })
     },
-    init_login: function(){
-        $('html').click(function (data) {
-            $('#uyekapsar').addClass('silik');
-        });
-        $('#uyekapsar').click(function (event) {
-            event.stopPropagation();
-        })
-        $('#uyeol input').focus(function(){
-            $('#uyekapsar').removeClass('silik');
-        })
-        $('#uyeol').mouseenter(function(){
-            $('#uyekapsar').removeClass('silik');
-        })
-    },
+//    init_login: function(){
+//        $('html').click(function (data) {
+//            $('#uyekapsar').addClass('silik');
+//        });
+//        $('#uyekapsar').click(function (event) {
+//            event.stopPropagation();
+//        })
+//        $('#uyeol input').focus(function(){
+//            $('#uyekapsar').removeClass('silik');
+//        })
+//        $('#uyeol').mouseenter(function(){
+//            $('#uyekapsar').removeClass('silik');
+//        })
+//    },
     ecordion_state:{},
     ecordion:function(cont){
         var self = this

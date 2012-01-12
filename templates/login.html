@@ -21,6 +21,7 @@
                     <label class="ramlabel normallabel" for="remember_me">{% trans "Remember  Me" %}</label>
                     <input type="checkbox" id="remember_me" name="remember_me">
                     <input type="hidden" id="next" name="next" value="{{ next }}">
+                    <br><a class="fr" href="{% url password_reset %}">{% trans "Forgot password?" %}</a>
 
 
                 </div>

@@ -1,7 +1,4 @@
 {% extends "base.html" %}
-{% load  thumbnail %}
-
-
 {% block hdrclass %}hdrbg{% endblock %}
 
     {% if messages %}
@@ -17,6 +14,8 @@
     {% endif %}
 {% block outercontent %}
 <div class="dortkutu">
+    <div class="kutuici">
 {% block content %}{%  endblock  %}
+</div>
 </div>
 {%  endblock  %}
