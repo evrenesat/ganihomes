@@ -997,10 +997,7 @@ ul.messages {
     -webkit-box-shadow: 2px 2px 10px 2px #cccccc;
     -moz-box-shadow: 2px 2px 10px 2px #cccccc;
     box-shadow: 2px 2px 10px 2px #cccccc;
-    filter:
-        progid:DXImageTransform.Microsoft.DropShadow(color=#969696, offx=1, offy=1)
-        progid:DXImageTransform.Microsoft.DropShadow(color=#C2C2C2, offx=1, offy=1)
-        progid:DXImageTransform.Microsoft.DropShadow(color=#EFEFEF, offx=1, offy=1);
+    behavior: url(ie-css3.htc);
 
     float: left;
     margin-top: 20px;
