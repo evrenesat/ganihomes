@@ -989,6 +989,9 @@ ul.messages {
     min-height: 575px;
 
 }
+.ieg{
+    behavior: url(http://static.ganihomes.com/css/ie-css3.htc);
+}
 .dokuzkutu {
     width: 960px;
     -moz-border-radius: 6px;
@@ -997,8 +1000,6 @@ ul.messages {
     -webkit-box-shadow: 2px 2px 10px 2px #cccccc;
     -moz-box-shadow: 2px 2px 10px 2px #cccccc;
     box-shadow: 2px 2px 10px 2px #cccccc;
-    behavior: url(http://static.ganihomes.com/css/ie-css3.htc);
-
     float: left;
     margin-top: 20px;
 
