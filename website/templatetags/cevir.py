@@ -7,6 +7,9 @@ __author__ = 'Evren Esat Ozkan'
 def cevir(context, kelime):
     return Ceviriler.cevir(kelime,context['LANGUAGE_CODE'])
 
+#def sayfa(context, kelime):
+#    return Ceviriler.cevir(kelime,context['LANGUAGE_CODE'])
+
 def urlcevir(context, url):
     return ('%s/%s' % (context['LANGUAGE_CODE'],url)).replace('//','/')
 

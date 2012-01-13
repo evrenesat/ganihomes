@@ -6,7 +6,9 @@
     {{ block.super }}
     {% wysiwyg_setup %}
 {% endblock %}
-
+{#{% block form_top %}#}
+{#  <p>Insert meaningful help message here...</p>#}
+{#{% endblock %}#}
 {% block content %}
     {{ block.super }}
     {% wysiwyg_editor "id_icerik_set-0-metin" %}
@@ -19,5 +21,5 @@
     {% wysiwyg_editor "id_icerik_set-9-metin" %}
     {% wysiwyg_editor "id_icerik_set-10-metin" %}
     {% wysiwyg_editor "id_icerik_set-11-metin" %}
-	
+
 {% endblock %}

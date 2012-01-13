@@ -19,6 +19,9 @@
     <form action="." method="post" id="addplaceform">
         <div id="wf">
             <div id="form1" class="wfParts">
+                {% if form.errors %}
+                    {% for er in form.errors %} {{ err }}{% endfor %}
+                {% endif %}
                 <p>{{ form.title.label_tag }} {{ form.title }}</p>
 
                 <p>{{ form.type.label_tag }} {{ form.type }}</p>

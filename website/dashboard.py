@@ -41,7 +41,7 @@ log = logging.getLogger('genel')
 
 
 def list_places(request):
-    pls = request.user.place_set.all()
+    pls = request.user.place_set.all().order_by('-id')
     result = u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)])
     return HttpResponse(result, mimetype='application/json')
 
@@ -89,6 +89,49 @@ def show_messages(request, type=None, template='dashboard/user_messages.html'):
     sms = request.user.sent_messages.all()
     context = {'rms':rms,'sms':sms}
     return render_to_response(template, context, context_instance=RequestContext(request))
+
+class PasswordForm(forms.Form):
+    old = forms.CharField(widget=forms.PasswordInput(),label=_('Old password'))
+    new1 = forms.CharField(widget=forms.PasswordInput(),label=_('New password'))
+    new2 = forms.CharField(widget=forms.PasswordInput(),label=_('New password (again)'))
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            if user.check_password(form.cleaned_data['old']):
+                if form.cleaned_data['new1']==form.cleaned_data['new2']:
+                    user.set_password(form.cleaned_data['new1'])
+                    messages.success(request, _('Your password successfully changed.'))
+                else:
+                    messages.error(request, _('The two password fields didn\'t match.'))
+            else:
+                messages.error(request, _('Your old password was entered incorrectly. Please enter it again.'))
+    else:
+        form = PasswordForm()
+    context = {'form':form,}
+    return render_to_response('dashboard/change_password.html', context, context_instance=RequestContext(request))
+
+
+@login_required
+def edit_profile(request):
+    lang = request.LANGUAGE_CODE
+    user = request.user
+    profile = user.get_profile()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST,instance=profile)
+        uform = UserForm(request.POST,instance=user)
+        if form.is_valid() and uform.is_valid():
+            profile = form.save()
+            user = uform.save()
+            messages.success(request, _('Your profile successfully updated.'))
+    else:
+        form = ProfileForm(instance=profile)
+        uform = UserForm(instance=user)
+    context = {'form':form,'profile':profile,'user':user,'uform':uform}
+    return render_to_response('dashboard/edit_profile.html', context, context_instance=RequestContext(request))
 
 
 class ProfileForm(ModelForm):

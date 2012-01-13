@@ -388,8 +388,8 @@ gh = {
         if($('#id_lon').val()!='0.0')this.lon = $('#id_lon').val().replace(',','.')
     },
     getLatLon:function(l){
-            $('#id_lat').val(l.Qa)
-            $('#id_lon').val(l.Ra)
+            $('#id_lat').val(l.lat())
+            $('#id_lon').val(l.lng())
     },
     markerMaps:function(){
         var self = this;
@@ -787,17 +787,28 @@ gh = {
                 })
                 }
             });
-        self.loadTemplate('dashboard_place_listing.tpl')
+        self.loadTemplate('dashboard_place_listing.tpl',function(){self.hashCall()})
+
             //FIXME: tpl olayindan kurtulsak iyi olur
 //        this.editPrices(2)
 //        this.editAvailability(2)
     },
+    hashCall:function(){
+        if(document.location.hash){
+            var hs = document.location.hash.replace('#','').split(',') //a paramter can be added with a comma
+            console.log(hs[0])
+            this[hs[0]](this)
+//            if (typeof(hs[1])!='undefined')this[hs[0]](this,hs[1])
+//            else this[hs[0]](this)
+        }
+    },
     TEMPLATES:{},
-    loadTemplate:function(tpl_file){
+    loadTemplate:function(tpl_file,fn){
         var self = this
         if(!this.TEMPLATES[tpl_file]){
             $.get('/templates/'+tpl_file, function(doc) {
                     self.TEMPLATES[tpl_file] = $.jqotec(doc);
+                    if(fn)fn()
             });
         }
         return this.TEMPLATES[tpl_file]
@@ -928,8 +939,9 @@ gh = {
         if(typeof(place_id)=='undefined')place_id=''
         var self=this
         $('#addplaceform').submit(function(){
-            $.post(self.add_place_url(place_id), $("#addplaceform").serialize(),function(){
-                self.showFrame('results','<div class="success">İşlem başarılı</div>')
+            $.post(self.add_place_url(place_id), $("#addplaceform").serialize(),function(data){
+                if(data.new_place_id>0)self.do_listPlaces(self)
+                else self.showFrame('results','<div class="error">Error occured. Code : '+data.errors+'</div>')
                 $("#addplaceform").html()
             });
             return false;
@@ -986,6 +998,9 @@ gh = {
     },
     do_showMessages:function(self){
         this.genericEdit('/dashboard/show_messages/')
+    },
+    do_changePassword:function(self){
+        this.genericEdit('/dashboard/change_password/')
     },
     do_showFaq:function(self){
         var self = this

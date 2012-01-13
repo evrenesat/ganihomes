@@ -1,0 +1,7 @@
+{% extends "content_boxed_plain.html" %}
+{% load thumbnail i18n currency cevir %}
+{% block content %}
+    <h3>{{ icerik.baslik }}</h3>
+
+    {{ icerik.metin|safe }}
+{% endblock %}

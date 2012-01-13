@@ -993,6 +993,14 @@ ul.messages {
     /*behavior: url(ie-css3.htc);*/
     /**/
 /*}*/
+
+.ortala{
+    float:none !important;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 20px;
+}
+
 .dokuzkutu {
     width: 960px;
     -moz-border-radius: 6px;
@@ -1630,17 +1638,17 @@ li.g-plus-one {
 }
 
 #yourpayout{
-    width: 207px;
+    width: 200px;
     height: 73px;
     position: absolute;
-    top: 217px;
+    top: 244px;
     background-color:#fdf5ce;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
     unicode-bidi: 145px;
     display: inline-block;
-    left: 446px;
+    left: 459px;
     text-shadow: 1px 1px 0.4px #ccc;
 
 }
@@ -1663,8 +1671,8 @@ li.g-plus-one {
 
 }
 #ypservicefee{
-    font-size: 12px;
-    padding-right: 6px;
+    font-size: 11px;
+    padding-right: 2px;
 }
 
 .wfParts input, .wfParts select {
@@ -2273,15 +2281,18 @@ li.g-plus-one {
 
 .dugmul li {
     text-align: center;
-    width: 93px;
+    width: 130px;
     list-style: none outside none;
-    margin: 3px;
+    margin: 9px;
     float: left;
+    height: 123px;
 }
 
 .dugmul h6 {
-    font-size: 9px;
+    font-size: 12px;
     color: #4d4d4d;
+    text-shadow: 1px 1px 3px #ADADAA;
+    font-weight: normal;
 }
 
 #addplace_wizard {
@@ -2306,9 +2317,9 @@ li.g-plus-one {
 .dugmul li {
     list-style: none outside none;
     float: left;
-    width: 93px;
-    margin: 3px;
-    height: 90px;
+    width: 130px;
+    margin: 9px;
+    height: 123px;
     padding: 5px 5px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -3334,7 +3345,7 @@ ul.messages li{
     /*font-family: Cardo;*/
     /*font-size: 2em;*/
 /*}*/
-#genhdr h3, .wfhdr h3, .altikutu h3{
+#genhdr h3, .wfhdr h3, .altikutu h3, .ortala h3, .dortkutu h3{
     color: #2F1B0B;
     font-family: Cardo;
     text-shadow: 1px 1px 1px #AEAB8D;

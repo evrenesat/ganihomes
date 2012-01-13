@@ -32,7 +32,7 @@ from django.contrib import auth
 from django.contrib import messages
 import logging
 log = logging.getLogger('genel')
-noOfBeds=n_tuple(7, first=[(0,u'--')])
+noOfBeds=n_tuple(7)
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
 from datetime import datetime
 from paypal.pro.views import PayPalPro
@@ -159,14 +159,17 @@ def addPlace(request, ajax=False, id=None):
                     Photo.objects.get(pk=tmp_photos[0]).save()
                     request.session['tmp_photos']=[]
                 if not ajax:
-                    return HttpResponseRedirect(reverse('show_place', args=[new_place.id]))
+                    return HttpResponseRedirect('%s#do_listPlaces'%reverse('dashboard'))
+        else:
+            for e in form.errors:
+                messages.error(request, e)
         if ajax:
             response = {
                 'user':getattr(user,'username'),
                 'loged_in':loged_in,
 #                'new_place':repr(new_place),
                 'errors':form.errors,
-                'new_place_id':getattr(new_place,'id','yok!'),
+                'new_place_id':getattr(new_place,'id',0),
             }
             return HttpResponse(json.dumps(response), mimetype='application/json')
 

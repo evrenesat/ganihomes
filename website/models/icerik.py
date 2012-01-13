@@ -3,12 +3,13 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from datetime import datetime
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from managers import ActiveManager
 from mptt.models import MPTTModel, TreeForeignKey
 #from dil import Dil
 from medya import Medya
-from tinymce import models as tinymce_models
+#from tinymce import models as tinymce_models
 from south.modelsinspector import add_introspection_rules
 from places.models import Photo, Place
 from places.options import LOCALES, ORDER, PHOTO_TYPES
@@ -17,7 +18,7 @@ from website.models.dil import Ceviriler
 from django.conf import settings
 import logging
 log = logging.getLogger('genel')
-add_introspection_rules([], ["^tinymce.models.HTMLField"])
+#add_introspection_rules([], ["^tinymce.models.HTMLField"])
 
 from glob import iglob
 
@@ -134,12 +135,11 @@ class Icerik(models.Model):
 #    dil = models.ForeignKey(Dil, verbose_name=_('Dil'))
     dil_kodu = models.CharField(max_length=5,  db_index=True, choices=settings.LANGUAGES)
     #    sablon = models.CharField(max_length=200, null=True, blank=True,choices=[('',u'Seçiniz'),],help_text=u'Bu içeriği standart dışı bir şablonla göstermek istiyorsanız buradan seçebilirsiniz. <br><b>!!! Lütfen emin değilseniz bu ayarı değiştirmeyiniz !!!</b>', editable=False)
-    metin = tinymce_models.HTMLField(_(u"İçerik Gövdesi"), blank=True, null=True)
+    metin = models.TextField(_(u"İçerik Gövdesi"), blank=True, null=True)
     baslik = models.CharField(_(u"başlık"), max_length=255)
     menu_baslik = models.CharField(_(u"menü başlık"), max_length=255, blank=True, null=True,
                                    help_text=_(u"Menüde başlığın üzerine yazmak için"))
-    slug = models.SlugField(_("slug"), max_length=255, db_index=True, unique=False,
-                            help_text='Sayfa adresi. (otomatik üretilir)')
+    slug = models.SlugField(_("slug"), max_length=255,  null=True, blank=True)
     url = models.CharField(_(u"URL'ye Yönlen"), max_length=255, db_index=True, null=True, blank=True)
     #    redirect = models.CharField(_("yönlen"), max_length=255, blank=True, null=True)
     tanim = models.TextField(_(u"meta tanım"), max_length=255, blank=True, null=True)
@@ -169,9 +169,10 @@ class Icerik(models.Model):
         return "%s (%s)" % (self.baslik, self.slug)
 
 #
-#    def save(self, *args, **kwargs):
-##        self.dil_kodu = self.dil.kodu
-#        super(Icerik, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.slug=='':
+            self.slug = slugify(self.baslik)
+        super(Icerik, self).save(*args, **kwargs)
 
 #    @property
 #    def overwrite_url(self):
@@ -199,7 +200,7 @@ class Haber(models.Model):
     tanim = models.CharField(u'Anasayfa Özeti', max_length=100,
                              help_text=u"Haberin 100 karakteri geçmeyecek, anasayfada görnecek kısa bir özetini giriniz."
                              , null=True, blank=True)
-    icerik = tinymce_models.HTMLField(u'Haber İçeriği')
+    icerik = models.TextField(u'Haber İçeriği')
     pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
     son_guncelleme = models.DateTimeField(null=True, blank=True, auto_now=True)
     etkin = models.BooleanField(u"Yayında", default=True, help_text=u"Sayfa yayında mı?")
