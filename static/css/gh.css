@@ -1683,6 +1683,19 @@ li.g-plus-one {
 
 }
 
+.wfParts #id_currency{
+    width: 94px;
+    font-size:11px;
+    padding-top: -14px;
+    margin-top: -1px;
+    padding-bottom: 0px;
+    margin-bottom: 6px;
+    ps: 6px;
+    position: relative;
+    height: 27px;
+    top: -3px;
+}
+
 .wfParts #id_price {
     width: 75px;
 }
