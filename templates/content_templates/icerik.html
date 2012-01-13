@@ -1,9 +1,11 @@
 {% extends "content_boxed.html" %}
 {% load thumbnail i18n currency cevir %}
 {% block content %}
+    <div id="inwrapper">
     <h3>{{ icerik.baslik }}</h3>
 
     {{ icerik.metin|safe }}
+    </div>
 {% endblock %}
 {% block sidebar %}
     <h3>{{ ust_baslik }}</h3>

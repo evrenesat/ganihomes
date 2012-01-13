@@ -17,15 +17,24 @@
             <div id="menublok">
                 <ul id="menuccordion">
                 <li>
-                    <div class="btn show_dash" id="mcoverview"><a href="#">{% trans "Overview" %}</a></div>
+                    <div class="btn show_dash focused" id="mcoverview"><a href="#">{% trans "My Wall" %}</a></div>
                 </li>
 
                 <li>
-                    <div id="mcpref"><a href="#">{% trans "Preferences" %}</a></div>
+                    <div id="mcpref"><a href="#">{% trans "My Account" %}</a></div>
                     <ul>
                         <li class="btn do_editProfile">{% trans "Edit Profile" %}</li>
+                        <li class="btn do_editPayment">{% trans "Payout Options" %}</li>
                         <li class="btn do_changePassword">{% trans "Change Password" %}</li>
-                        <li class="btn do_editPayment">{% trans "Payment Preferences" %}</li>
+
+                    </ul>
+                </li>
+                <li>
+                    <div id="mcpref"><a href="#">{% trans "Reviews" %}</a></div>
+                    <ul>
+                        <li data-param="1" class="btn do_showReviews">{% trans "Reviews By You" %}</li>
+                        <li data-param="2" class="btn do_showReviews">{% trans "Reviews About You" %}</li>
+
                     </ul>
                 </li>
                 <li>
@@ -61,7 +70,7 @@
                     <div id="mchelp"><a href="#">{% trans "Help & Support" %}</a></div>
                     <ul>
                         <li class="btn do_showFaq">{% trans "FAQ" %}</li>
-                        <li class="">{% trans "Ask a Question" %}</li>
+                        <li class="">{% trans "I have a question!" %}</li>
                     </ul>
                 </li>
 

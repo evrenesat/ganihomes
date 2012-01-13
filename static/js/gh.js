@@ -717,7 +717,7 @@ gh = {
     ecordion:function(cont){
         var self = this
         $(cont+" > li > div").click(function(){
-
+            $(this).addClass('focused').parent().siblings().find('div').removeClass('focused')
             if(false == $(this).next().is(':visible')) {
                 $(cont+" ul").slideUp(300);
             }
