@@ -665,7 +665,7 @@ class Booking(models.Model):
     """Booking"""
 
     host = models.ForeignKey(User, verbose_name=_('Host'), related_name='host')
-    guest = models.ForeignKey(User, verbose_name=_('Guest'), related_name='guest')
+    guest = models.ForeignKey(User, verbose_name=_('Guest'), related_name='guestings')
     place = models.ForeignKey(Place, verbose_name=_('Place'))
     reservation = models.ForeignKey(ReservedDates, verbose_name=_('Reservation Dates'))
 
@@ -745,6 +745,7 @@ class Message(models.Model):
 
     sender = models.ForeignKey(User, verbose_name=_('Sender'), related_name='sent_messages')
     receiver = models.ForeignKey(User, verbose_name=_('Receiver'), related_name='received_messages')
+    place = models.ForeignKey(Place, verbose_name=_('Place'),  null=True, blank=True)
     text = models.TextField(_('Message'))
     read = models.BooleanField(_('Message was read'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
@@ -757,7 +758,7 @@ class Message(models.Model):
         verbose_name_plural = _('Messages')
 
     def __unicode__(self):
-        return 'Message from user #%s' % (self.sender_id,)
+        return 'Message from user #%s' % (self.sender,)
 
 
 class UserReview(models.Model):
@@ -777,7 +778,7 @@ class UserReview(models.Model):
         verbose_name_plural = _('User Reviews')
 
     def __unicode__(self):
-        return 'Message from user #%s' % (self.writer,)
+        return 'Review from user #%s' % (self.writer,)
 
 
 class PlaceReview(models.Model):
@@ -802,6 +803,6 @@ class PlaceReview(models.Model):
         verbose_name_plural = _('Place Reviews')
 
     def __unicode__(self):
-        return 'Message from user #%s' % (self.writer,)
+        return 'Review from user #%s' % (self.writer,)
 
 

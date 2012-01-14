@@ -1,0 +1,24 @@
+{% load cevir thumbnail i18n%}
+<table style="width:700px">
+    <tr>
+        <td style="color:#ccc;width:200px;text-align:center;"><img src="http://static.ganihomes.com/images/logo.png"><br>
+        {% trans "World is yours" %}</td>
+        <td></td>
+        <td></td>
+    </tr>
+<tr><td colspan=3 style="background-color:#ccc; height:1px; margin:1; padding:1;"></td></tr>
+    <tr>
+        <td colspan=3>
+            {% block title %}<h4>{{ title }}</h4>{% endblock %}
+<br>
+            {% block content %}{{ content }}{% endblock %}
+
+            <br><br><br>
+{% trans "Thanks for using GaniHomes!" %}
+            <br><br>
+{% trans "The GaniHomes team." %}
+
+
+        </td>
+
+    </tr>

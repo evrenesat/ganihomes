@@ -1,0 +1,60 @@
+{% load  thumbnail i18n cevir%}
+{% include "show_messages.html" %}
+<div id="genhdr">
+    <h3>{% cevir "gezilerim baslik" %}</h3>
+{#    {% cevir "profile duzenle altbaslik" %}#}
+
+</div>
+
+
+
+        <div  class="wfParts genbdy">
+
+            <div id="litetabs">
+            <ul id="pricetabs">
+                <li class="prtab"><a href="#current">{% trans "Current" %}</a></li>
+                <li class="prtab"><a href="#upcoming">{% trans "Upcoming" %}</a></li>
+                <li class="prtab"><a href="#past">{% trans "Past" %}</a></li>
+                <li class="prtab"><a href="#bookmarks">{% trans "Bookmarks" %}</a></li>
+
+            </ul>
+
+            <div id="current">
+            <table>
+                <tr>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Dates" %}</th>
+                    <th>{% trans "Host" %}</th>
+                    <th>{% trans "Place" %}</th>
+                    <th>{% trans "Extras" %}</th>
+                </tr>
+                {% for r in bookings %}
+                    <td>{{ r.get_status_display }}</td>
+                    <td>{{ r.start }} - {{ r.end }}</td>
+                    <td>{{ r.host }}</td>
+                    <td><img src="{% thumbnail r.place.primary_photo 80x80 crop=smart %}">
+                        <h6>{{ r.place.title|slice:":40" }}</h6>
+                    </td>
+                    <td>{% trans "Show Details" %}</td>
+                {% endfor %}
+            </table>
+
+            </div>
+
+            <div id="bookmarks">
+<div class="iblock">
+                {% if bookmarks %}
+                    <ul class="dugmul">
+                        {% for p in bookmarks %}
+                            <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                                <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                                <h6>{{ p.title|slice:":40" }}</h6>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}{% trans "You haven't bookmarked any place yet." %}<br><br><br>{% endif %}
+</div>
+            </div>
+
+         </div>
+

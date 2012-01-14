@@ -15,6 +15,7 @@ LOCALE_INDEPENDENT_PATHS = [re.compile(p) for p in
                                 r'^/jsearch',
                                 r'^/facebook/connect',
                                 r'^/delete_photo',
+                                r'^/bookmark',
 #                                r'nolocale=1$'
                             ])]
 

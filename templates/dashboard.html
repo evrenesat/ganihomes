@@ -53,10 +53,10 @@
                 <li>
                     <div id="mctrips"><a href="#">{% trans "My Trips" %}</a></div>
                     <ul>
-                        <li class="">{% trans "Current" %}</li>
-                        <li class="">{% trans "Upcoming" %}</li>
-                        <li class="">{% trans "Past" %}</li>
-                        <li class="">{% trans "Bookmarked Places" %}</li>
+                        <li data-param="0" class="btn do_trips">{% trans "Current" %}</li>
+                        <li data-param="1" class="btn do_trips">{% trans "Upcoming" %}</li>
+                        <li data-param="2" class="btn do_trips">{% trans "Past" %}</li>
+                        <li data-param="3" class="btn do_trips">{% trans "Bookmarked Places" %}</li>
                     </ul>
                 </li>
                 <li>
@@ -82,13 +82,13 @@
                 <div class="dbcontent" id="loading"></div>
                 <div class="dbcontent" id="dash">
 
-                <div class="dasblok wx">
+                <div class="dasblok wx hx">
                 <h5>{% trans "Inbox" %}</h5>
                     <div id="overview_inbox">
                         {% if rms %}
                             <table>
                                 {% for m in rms %}
-                                <tr><td>{{ m }}</td></tr>
+                                <tr><td>{% blocktrans with m.sender.get_profile.private_name as username%}Message from user: {{ username }}{% endblocktrans %} </td></tr>
                                 {% endfor %}
                             </table>
                         {% else %}{% trans "No new messages" %}<br><br><br>{% endif %}
@@ -121,7 +121,20 @@
                 {% endif %}
                     <div class="dasblok w2x">
                         <h5>{% trans "Bookmarked Places" %}</h5>
-                        <div id="overview_bookmarks"></div>
+                        <div id="overview_bookmarks">
+
+                            {% if bookmarks %}
+                                <ul class="dugmul">
+                                    {% for p in bookmarks %}
+                                        <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                                            <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                                            <h6>{{ p.title|slice:":40" }}</h6>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}{% trans "You haven't bookmarked any place yet." %}<br><br><br>{% endif %}
+
+                        </div>
                      </div>
                 </div>
 

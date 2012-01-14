@@ -1,0 +1,13 @@
+{% extends "mail/mail_base.html" %}
+{% load cevir thumbnail i18n%}
+
+{% block content %}
+    <h5>
+        {% blocktrans %} Dear {{ surname }},{% endblocktrans %}
+    </h5>
+    <br>
+    {% trans "A GaniHomes user sent you a message. Please click the above link to see it;" %}
+<br><br>
+    <a href="http://{{ domain}}/{{ link }}">http://{{ domain}}/{{ link }}</a>
+
+{% endblock %}

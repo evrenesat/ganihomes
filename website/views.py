@@ -16,12 +16,14 @@ from django import http
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency
+from places.models import Place, Tag, Photo, Currency, Profile
 from django.db import DatabaseError
-from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES
+from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, JSTRANS, DJSTRANS
 from utils.cache import kes
+from utils.htmlmail import send_html_mail
+from utils.kabuk import sonarzu
 from website.models import Sayfa, Haber, Vitrin, Question
-
+from django.contrib.sites.models import get_current_site
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from website.models.medya import Medya
 from django.contrib import messages
@@ -352,6 +354,50 @@ def multiuploader(request, place_id=None):
         response_data = json.dumps(result)
         return HttpResponse(response_data, mimetype='application/json')
 
+@csrf_exempt
+def bookmark(request):
+    if request.method == 'POST':
+        place =Place.objects.get(pk=request.POST.get('pid'))
+        profile = request.user.get_profile()
+        if request.POST.get('remove'):
+            profile.favorites.remove(place)
+            result = 'removed'
+        else:
+            profile.favorites.add(place)
+            result = 'added'
+        profile.save()
+        return HttpResponse([result], mimetype='application/json')
+
+@csrf_exempt
+def send_message_to_host(request):
+    if request.method == 'POST' and request.POST.get('message'):
+
+        place =Place.objects.get(pk=request.POST.get('pid'))
+        owner = place.owner
+        user = request.user
+        msg = request.POST.get('message')
+        msg = user.sent_messages.create(receiver=owner, text=msg, place=place)
+        current_site = get_current_site(request)
+        message = {
+            'link': u'/dashboard/#do_showMessage,%s'% msg.id,
+            'surname':owner.last_name,
+            'domain':current_site.domain,
+            'name':current_site.name
+        }
+        send_html_mail(_('You have a message'),
+            owner.email,
+            message,
+            template='mail/new_message.html',
+            recipient_name=owner.get_full_name())
+        result = json.dumps({'message':force_unicode(_('Your message successfully sent.'))}, ensure_ascii=False)
+        return HttpResponse(result, mimetype='application/json')
+
+@csrf_exempt
+def set_message(request,msg):
+    if request.method == 'POST':
+        messages.info(request, DJSTRANS['login_for_bookmark'])
+    return HttpResponse([1], mimetype='application/json')
+
 
 def image_view(request):
     items = Photo.objects.all()
@@ -380,8 +426,14 @@ def login(request):
                 if not request.POST.get('remember_me', None):
                     request.session.set_expiry(0)
                 auth.login(request, user)
-#                log.debug('login redir "%s"'%request.POST.get('next', reverse('dashboard')))
-                return HttpResponseRedirect(request.POST.get('next') or reverse('dashboard') )
+#                log.debug('login user "%s"'%user.get_profile().favorites.all())
+#                profile = user.get_profile()
+#                xxxxxxxxx=list(profile.favorites.values_list('id',flat=True))
+#                assert 0,user.get_profile().favorites.values_list('id',flat=True)
+                response =  HttpResponseRedirect(request.POST.get('next') or reverse('dashboard') )
+                response.set_cookie('ganibookmarks',
+                    str(user.get_profile().favorites.values_list('id',flat=True) ))
+                return response
             else:
                 messages.error(request, _('Wrong email or password.'))
     else:

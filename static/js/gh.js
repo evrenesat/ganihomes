@@ -556,6 +556,64 @@ gh = {
         }
         $(e.target).parents('form').submit()
     },
+    get_bookmarks:function(){
+        return $.cookie('ganibookmarks').split(',')
+    },
+    is_bookmarked:function(id){
+      return this.get_bookmarks().indexOf(id)>-1
+    },
+    bookmark:function(caller){
+        var self = this
+        if(!AUTH){
+            this.setMessage('login_for_bookmark',function(){self.gotoLogin()})
+            return
+        }
+
+        var pid = $('#placeid').val()
+        var data ={'pid':pid}
+        var caller = $(caller)
+        var bookmark_array = this.get_bookmarks()
+        if (bookmark_array.indexOf(pid)>-1 ){
+            data['remove']=1
+            caller.removeClass('bookmarked')
+            bookmark_array.splice(bookmark_array.indexOf(pid),1)
+        }else {
+            caller.addClass('bookmarked')
+            bookmark_array.push(pid)
+        }
+        $.cookie('ganibookmarks', bookmark_array.join(','), {expires:1234});
+        $.post('/bookmark/',data)
+    },
+    sendMessageToHost:function(){
+        var self = this
+        var pid = $('#placeid').val()
+        var msgbox = $('#hostmsg')
+        if (!msgbox.val())return
+        var sendbutton = $('#sendhostmessage')
+        var data ={'pid':pid, 'message': msgbox.val()}
+        sendbutton.prop('disabled', true)
+        $.post('/'+this.LANGUAGE_CODE+'/send_message_to_host/',data,function(result){
+            if(result.message){
+                msgbox.addClass('sent','slow').val(result.message).prop('disabled', true)
+                sendbutton.fadeOut(500)
+
+            }
+        })
+        if(!AUTH){
+            this.setMessage('login_for_sendmessage',function(){self.gotoLogin()})
+            return
+        }
+
+    },
+    setMessage:function(msg,fn){
+        $.post('/'+this.LANGUAGE_CODE+'/set_message/'+msg,function(data){
+            if(fn)fn(data)
+        })
+    },
+    gotoLogin:function(next){
+        if(typeof(next)=='undefined')next = document.location.pathname
+        document.location = '/'+this.LANGUAGE_CODE+'/login/?next='+next
+    },
     init_places:function(){
         var self = this;
         x={}
@@ -567,11 +625,18 @@ gh = {
 
 
 
-        $('#uygtab').click(function(){
-//            console.log('hmmhs')
-//            $('#calendar').DatePickerShow()
 
+//        $('#uygtab').click(function(){})
+
+        $('#addbookmark').click(function(){self.bookmark(this)}).addClass(
+        this.is_bookmarked($('#placeid').val()) ? 'bookmarked' : ''
+        )
+        $('#contacthost').click(function(){
+            $('#hostbox').addClass('write')
         })
+        $('#sendhostmessage').click(function(){self.sendMessageToHost()})
+
+
         this.setLatLon()
         this.currentImg = $('.pthumb').first()
         $('#bookitbutton').click(function(e){return self.bookPlace(e)})
@@ -985,6 +1050,11 @@ gh = {
         this.genericEdit('/dashboard/edit_profile/',function(){
             $('#id_brithdate').datepicker({dateFormat: 'yy-mm-dd', maxDate: '0',
                             changeMonth: true  ,changeYear: true , yearRange: '1910:2012' });
+        })
+    },
+    do_trips:function(self, tab_id){
+        this.genericEdit('/dashboard/trips/',function(){
+            $('#litetabs').tabs({ selected: tab_id })
         })
     },
     do_editPayment:function(self){

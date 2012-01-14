@@ -78,10 +78,25 @@ def show_faq(request, type=None):
 
 
 @login_required
+def trips(request):
+    user = request.user
+    profile = user.get_profile()
+    context = {
+                'bookings':user.guestings.all(),
+               'bookmarks':profile.favorites.all()
+    }
+    return render_to_response('dashboard/trips.html', context, context_instance=RequestContext(request))
+
+@login_required
 def dashboard(request):
-    rms = request.user.received_messages.all()
-    sms = request.user.sent_messages.all()
-    context = {'places':request.user.place_set.all(),'form' : addPlaceForm(), 'rms':rms,'sms':sms}
+    user = request.user
+    profile = user.get_profile()
+    context = {'places':user.place_set.all(),
+               'form' : addPlaceForm(),
+               'rms':user.received_messages.all()[:4],
+               'sms':user.sent_messages.all()[:4],
+               'bookmarks':profile.favorites.all()
+    }
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
 def show_messages(request, type=None, template='dashboard/user_messages.html'):

@@ -196,9 +196,11 @@ JSTRANS = (
     ('manage_photos',_('Manage Photos')),
     ('successfully_complete',_('Operation succesfully completed.')),
     ('profile_saved',_('Your profile successfully updated.')),
+    ('login_for_bookmark',_('Please login or register to bookmark this place.')),
 #    ('',_('')),
 #    ('',_('')),
 #    ('',_('')),
 )
+DJSTRANS= dict(JSTRANS)
 
 from countries import *

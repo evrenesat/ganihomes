@@ -20,7 +20,7 @@
                     <button class="yesildugme fo16">{% trans "Login" %}</button>
                     <label class="ramlabel normallabel" for="remember_me">{% trans "Remember  Me" %}</label>
                     <input type="checkbox" id="remember_me" name="remember_me">
-                    <input type="hidden" id="next" name="next" value="{{ next }}">
+                    <input type="hidden" id="next" name="next" value="{{ request.REQUEST.next }}">
                     <br><a class="fr" href="{% url password_reset %}">{% trans "Forgot password?" %}</a>
 
 
@@ -94,7 +94,7 @@
         <div class="yuzz float-left" style="text-align:center;">
             <form action="{% url facebook_connect %}?facebook_login=1" method="post">
             <input type="submit" onclick="F.connect(this.parentNode); return false;" class="minifbbutton" value="{% trans "Connect with Facebook" %}">
-<input type="hidden"  name="next" value="{{ next }}">
+                <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
             </form>
             </div>
 

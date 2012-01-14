@@ -180,7 +180,9 @@
 
 
     <div class="ikikutu">
-            <button id="addbookmark" class="minidugme">{% trans "Bookmark Place" %}</button>
+            <button title="{% trans "Add or delete this place from your bookmarks" %}" id="addbookmark" class="minidugme">
+                <span class="bm">{% trans "Bookmark Place" %}</span><span class="bmd">{% trans "Bookmarked" %}</span>
+                </button>
             <div class="sepline"></div>
 
             <ul class="like-buttons">
@@ -203,13 +205,17 @@
     <div class="ikikutu">
 
     <h3>{% trans "Host" %}</h3>
-    <hr><div class="photobig">
-        <img src="{% thumbnail profile.photo 200x300 upscale crop=scale %}">
-        <br>
-        <span>{{ profile.private_name }}</span>
-    </div>
+    <hr><div id="hostbox">
+        <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><img id="hostimg" src="{% thumbnail profile.photo 200x300 upscale crop=scale %}">
+        <div id="hostname">{{ profile.private_name }}</div></div>
+        <textarea id="hostmsg"></textarea>
 
-        <div class="align-center"><input type="button" class="dugme2" id="contacthost" value="{% trans "Contact with Host" %}"></div>
+
+        <div class="align-center">
+            <input type="button" class="dugme2" id="contacthost" value="{% trans "Contact with Host" %}">
+            <input type="button" class="dugme2" id="sendhostmessage" value="{% trans "Send" %}">
+        </div>
+    </div>
     </div>
 <script>$('#subtabs').tabs();</script>
 

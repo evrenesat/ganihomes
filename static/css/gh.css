@@ -1003,6 +1003,7 @@ ul.messages {
 #inwrapper{
     padding:20px 40px;
 }
+
 .dokuzkutu {
     width: 960px;
     -moz-border-radius: 6px;
@@ -3082,7 +3083,7 @@ ul.messages li{
     width: 430px;
 }
 
-.photobig img {
+#hostbox img {
     margin: 10px 0;
     -webkit-box-shadow: 1px 1px 5px 1px #ccc;
     -moz-box-shadow: 1px 1px 5px 1px #ccc;
@@ -3092,13 +3093,84 @@ ul.messages li{
     border-radius: 4px;
 }
 
-.photobig {
+
+#hostbox.write img {
+    margin: 4px;
+    height:40px;
+    float: right;
+    -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+    -moz-box-shadow: 0px 0px 1px 1px #ccc;
+    box-shadow: 0px 0px 1px 1px #ccc;
+}
+#tohost{
+    display:none;
+}
+
+#hostbox {
     text-align: center;
     margin-bottom: 10px;
     font-size: 30px;
     font-family: Montez;
 }
-
+#hostbox.write #receiverdiv{
+    position:relative;
+    top: 7px;
+    -webkit-box-shadow: 1px 1px 5px 1px #ccc;
+    -moz-box-shadow: 1px 1px 5px 1px #ccc;
+    box-shadow: 1px 1px 5px 1px #ccc;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #fff;
+    display: block;
+    height: 48px;
+}
+#hostbox.write #hostmsg{
+    display:block;
+}
+#hostbox.write #sendhostmessage{
+    display:block;
+}
+#sendhostmessage{
+    display:none;
+}
+#hostbox.write #contacthost{
+    display:none;
+}
+#hostbox.write #tohost{
+    display:inline;
+    margin-right: 9px;
+}
+#hostbox.write #hostname{
+    display:inline;
+    /*font-size:14px;*/
+}
+#hostmsg.sent{
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    height: 46px;
+    padding: 10px;
+    text-align: center;
+}
+#hostmsg{
+    width:200px;
+    margin-left:auto;
+    margin-right:auto;
+    height: 193px;
+    display:none;
+    background: -moz-linear-gradient(top, #FCFCFC 0%, #FEFAC8 100%);
+    background: -webkit-gradient(linear, #FCFCFC 0%, #FEFAC8 100%);
+    background: -webkit-linear-gradient(top, #FCFCFC 0%, #FEFAC8 100%);
+    background: -o-linear-gradient(top, #FCFCFC 0%, #FEFAC8 100%);
+    background: -ms-linear-gradient(top, #FCFCFC 0%, #FEFAC8 100%);
+    background: linear-gradient(top, #FCFCFC 0%, #FEFAC8 100%);
+    color: #51270E;
+    border: 1px solid #EED0B9;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
 .yemyesildugme {
     border: 1px solid #b2ff61;
     background-color: #baff96 !important;
@@ -3564,6 +3636,14 @@ ul.messages li{
 .expclp.expanded  span.ea{ display:none;}
 .expclp.expanded  span.ca{ display:inline;}
 
+#addbookmark span.bm{ display:inline;}
+#addbookmark span.bmd{ display:none;}
+#addbookmark.bookmarked span.bm{ display:none;}
+#addbookmark.bookmarked span.bmd{ display:inline;}
+#addbookmark.bookmarked {
+    color: green !important;
+    font-weight:bold;
+}
 .faqcat a {
     text-decoration: none;
     /*color: #818181;*/
@@ -3736,6 +3816,14 @@ ul.messages li{
 .w2x{
     width: 670px;
 }
+.hx{
+    height: 100px;
+
+}
+.h2x{
+    height: 400px;
+
+}
 .dasblok div{
     overflow:hidden;
 }
@@ -3775,3 +3863,5 @@ ul.messages li{
 
 
 }
+
+
