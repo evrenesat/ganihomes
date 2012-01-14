@@ -1,0 +1,15 @@
+{% include "show_messages.html" %}
+<div id="genhdr">
+    {% block hdr %}<h3>{% block title %}{% endblock %}</h3>{% endblock %}
+</div>
+
+
+
+        <div  class="wfParts genbdy">
+            <div style="display:inline-block;">
+            {% block content %}
+            {% endblock %}
+
+         </div>
+
+        </div>

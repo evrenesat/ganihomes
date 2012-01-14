@@ -6,34 +6,18 @@ from website.views import addPlaceForm
 __author__ = 'Evren Esat Ozkan'
 
 from django import forms
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
 from django.db.models.query_utils import Q
-from django.db.utils import IntegrityError
-from django.utils import simplejson as json
 from django.forms.models import ModelForm, ModelChoiceField
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from django import http
-#from personel.models import Personel, Ileti
-#from urun.models import Urun
-from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
-from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency, Profile, PaymentSelection, SessionalPrice
-from django.db import DatabaseError
-from places.options import n_tuple, PLACE_TYPES, NO_OF_BEDS
-from utils.cache import kes
-from website.models.icerik import Sayfa, Haber, Vitrin
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-from website.models.medya import Medya
-from django.contrib import messages
+from places.models import *
+from places.options import   NO_OF_BEDS
+from django.http import  HttpResponse, HttpResponseBadRequest
 from django.utils.translation import ugettext_lazy as _
-from  django.core.urlresolvers import reverse
-from easy_thumbnails.files import get_thumbnailer
-from django.contrib import auth
 from django.contrib import messages
 import logging
 log = logging.getLogger('genel')
@@ -91,19 +75,34 @@ def trips(request):
 def dashboard(request):
     user = request.user
     profile = user.get_profile()
+    messages = []
+    for m in Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user),
+                       replyto__isnull=True).order_by('read','newreply','timestamp')[:4]:
+        m.participant = m.sender_name if m.sender != user else m.receiver_name()
+        messages.append(m)
     context = {'places':user.place_set.all(),
                'form' : addPlaceForm(),
-               'rms':user.received_messages.all()[:4],
-               'sms':user.sent_messages.all()[:4],
+               'msgs':messages,
+
                'bookmarks':profile.favorites.all()
     }
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
 def show_messages(request, type=None, template='dashboard/user_messages.html'):
-    rms = request.user.received_messages.all()
-    sms = request.user.sent_messages.all()
+    rms = request.user.received_messages.filter(replyto__isnull=True).order_by('read','newreply','timestamp')
+    sms = request.user.sent_messages.filter(replyto__isnull=True).order_by('read','newreply','timestamp')
     context = {'rms':rms,'sms':sms}
     return render_to_response(template, context, context_instance=RequestContext(request))
+
+
+def show_message(request, id):
+    user = request.user
+    msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id)
+    participant = msg.sender_name if msg.sender != user else msg.receiver_name()
+    replies = list(Message.objects.select_related().filter(replyto=msg).order_by('read','newreply','timestamp'))
+    replies.append(msg)
+    context = {'msg':msg,'replies':replies, 'participant':participant}
+    return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
 
 class PasswordForm(forms.Form):
     old = forms.CharField(widget=forms.PasswordInput(),label=_('Old password'))

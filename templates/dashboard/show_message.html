@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "faq baslik" %} {% endblock %}
+{% block content %}
+    {% blocktrans %}Write a reply to {{ participant }}{% endblocktrans %}
+    <div class="iblock" style="margin-bottom:10px;">
+    <textarea id="msgarea"></textarea>
+    <br>
+    <input type="submit" class="fr yesildugme" value="{% trans "Send message" %}">
+    </div>
+
+   {% for m in replies %}
+       <div class="replyblock">
+           <hr>
+           <img class="ownimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ m.sender_id }}_s.jpg">
+           <div class="replydiv">
+               <span class="sendername">{{ m.sender_name }}</span> <span class="datelite">{{ m.timestamp }}</span>
+               <div class="message-text">{{ m.text|linebreaksbr }}</div>
+           </div>
+       </div>
+    {% endfor %}
+
+
+
+
+
+{% endblock %}
+
+

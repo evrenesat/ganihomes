@@ -861,10 +861,11 @@ gh = {
     hashCall:function(){
         if(document.location.hash){
             var hs = document.location.hash.replace('#','').split(',') //a paramter can be added with a comma
-            console.log(hs[0])
-            this[hs[0]](this)
-//            if (typeof(hs[1])!='undefined')this[hs[0]](this,hs[1])
-//            else this[hs[0]](this)
+            if (typeof(hs[1])!='undefined'){
+                if(hs[1]=='this')hs[1] = this
+                this[hs[0]](hs[1])
+            }
+            else this[hs[0]]()
         }
     },
     TEMPLATES:{},
@@ -1041,11 +1042,11 @@ gh = {
         });
 
     },
-    show_message:function(m){
-        md = $('#message')
-        md.find('span').html(m)
-        md.fadeTo(300,0.0).fadeTo(800,1).fadeTo(300,0.3).fadeTo(300,1)
-    },
+//    show_message:function(m){
+//        md = $('#message')
+//        md.find('span').html(m)
+//        md.fadeTo(300,0.0).fadeTo(800,1).fadeTo(300,0.3).fadeTo(300,1)
+//    },
     do_editProfile:function(self){
         this.genericEdit('/dashboard/edit_profile/',function(){
             $('#id_brithdate').datepicker({dateFormat: 'yy-mm-dd', maxDate: '0',
@@ -1056,6 +1057,9 @@ gh = {
         this.genericEdit('/dashboard/trips/',function(){
             $('#litetabs').tabs({ selected: tab_id })
         })
+    },
+    showMessage:function(id){
+        this.genericEdit('/dashboard/show_message/'+id)
     },
     do_editPayment:function(self){
         this.genericEdit('/dashboard/edit_payment/',function(){

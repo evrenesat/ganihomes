@@ -2515,18 +2515,29 @@ li.g-plus-one {
     background-color:#fff;
 }
 .sstitle{
+    border-top-right-radius: 2px;
+    -moz-border-radius-topright: 2px;
+    -webkit-border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    -moz-border-radius-bottomright: 2px;
+    -webkit-border-bottom-right-radius: 2px;
+
     padding-left: 8px;
     float:left;
     height: 25px;
     width:230px;
     font-size:16px;
     font-weight:bold;
-    background-color:#ececd8;
+    background-color: #FFFFC8;
     color: #a69e9e;
     -webkit-box-shadow: #ccc 1px 1px 4px;
     -moz-box-shadow: #ccc 1px 1px 4px;
     box-shadow: #ccc 1px 1px 4px;
     display: inline-block;
+    margin-right: 3px;
+    oi: 3px;
+    position: relative;
+    right: -5px;
 
 }
 #amens{
@@ -2564,9 +2575,9 @@ li.g-plus-one {
     height:auto;
     overflow:visible;
     width: 245px;
-    -webkit-box-shadow: 0px 0px 11px 5px #A7A39B;
-    -moz-box-shadow: 0px 0px 11px 5px #A7A39B;
-    box-shadow: 0px 0px 11px 5px #A7A39B;
+    -webkit-box-shadow: 0 0 3px     3px #A7A39B;
+    -moz-box-shadow: 0 0 3px 3px #A7A39B;
+    box-shadow: 0 0 3px 3px #A7A39B;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -2588,8 +2599,8 @@ margin-top: 30px !important;
     margin-top: 4px;
     height:20px;
     display:block;
-    color: #7A7474;
-    text-shadow: 1px 1px 1px #E1BD99;
+    color: #454242;
+    text-shadow: 1px 1px 1px #F2F2F2;
     background: url("/images/unchecked.png") no-repeat scroll 4px 0 transparent;
     padding-right: 14px;
     line-height: 9px;
@@ -2599,6 +2610,7 @@ margin-top: 30px !important;
 
 #searchbar li.hit{
     background-position: 0 -20px;
+    color: #060505;
 }
 
 #amenul li{
@@ -3798,11 +3810,11 @@ ul.messages li{
 }
 
 .dasblok h5{
-    margin: 9px 3px;
+    margin: 0px 3px;
     display:inline;
     background-color:#fff;
     position:relative;
-    top: -20px;
+    top: -12px;
     left:10px;
     padding: 3px 6px;
     color: #854E1E;
@@ -3817,7 +3829,7 @@ ul.messages li{
     width: 670px;
 }
 .hx{
-    height: 100px;
+    height: 150px;
 
 }
 .h2x{
@@ -3829,7 +3841,7 @@ ul.messages li{
 }
 .dasblok{
     float:left;
-    min-height: 120px;
+    min-height: 150px;
     border: 1px solid #F2D5A4;
     display:inline-block;
     -webkit-box-shadow: #666 0px 1px 1px;
@@ -3841,7 +3853,7 @@ ul.messages li{
     border-radius: 3px;
     margin-top: 14px;
     margin: 14px 6px 10px;
-    padding: 10px;
+    padding: 1px 10px;
     color: #9D7C3B;
     font-size: 12px;
 }
@@ -3863,5 +3875,87 @@ ul.messages li{
 
 
 }
+.overline{
+    /*float:left;*/
+    width:%90;
+    height: 24px;
+    border-bottom: 1px solid #EED0AF;
+    margin-top: 3px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.messageicon{
+    background-image:url(/images/icon/new_message_24.png);
+    background-repeat: no-repeat;
+    display:inline-block;
+    width: 26px;
+    height: 21px;
+    margin-bottom: -3px;
+}
+.messageicon .readmsg{
+    background-image:url(/images/icon/read_message_24.png);
+}
+
+#inbox-legend #lnew{
+    background-image:url(/images/icon/new_message_24.png);
+}
+#inbox-legend #lread{
+    background-image:url(/images/icon/read_message_24.png);
+}
+#inbox-legend #lreplied{
+    background-image:url(/images/icon/replied_message_24.png);
+}
+
+#inbox-legend span{
+    margin-left: 19px;
+    font-size:9px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 26px;
+    p-left: 19px;
+    padding-left: 24px;
+    width: 33px;
+    color: #ccc;
+    background-position: 0 -5px;
+    padding: 2px 0 0 24px;
+}
+
+#inbox-legend{
+    position: relative;
+    top: -5px;
+    margin: -12px;
+    right: -19px;
+    left: 83px;
+
+}
+
+.replyblock .ownimg{
+    border: 2px solid #FFFFFF;
+    box-shadow: 1px 1px 4px 1px #CCCCCC;
+    float:left;
+}
+.replyblock .replydiv{
+    width:500px;
+    float:left;
+    margin:0 0 20px 20px;
 
 
+}
+.replyblock .sendername{
+    color: #BA7F58;
+    font-size: 15px;
+    font-weight: bold;
+}
+.replyblock .datelite{
+    color: #928D8D;
+    margin-left: 10px;
+}
+.replyblock .message-text{
+    color:#432E05;
+    font-size:12px;
+}
+#msgarea{
+    width: 539px;
+    height: 147px;
+}

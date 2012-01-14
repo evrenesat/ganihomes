@@ -1,15 +1,5 @@
-{% load  thumbnail i18n cevir%}
-{% include "show_messages.html" %}
-<div id="genhdr">
-    <h3>{% cevir "faq baslik" %}</h3>
-</div>
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "faq baslik" %} {% endblock %}
+{% block content %} {% include "faq_ic.html" %} {% endblock %}
 
-
-
-        <div  class="wfParts genbdy">
-            <div style="display:inline-block;">
-            {% include "faq_ic.html" %}
-
-         </div>
-
-        </div>

@@ -1,14 +1,8 @@
-{% load  thumbnail i18n cevir%}
-{% include "show_messages.html" %}
-<div id="genhdr">
-    <h3>{% cevir "mesajlar baslik" %}</h3>
-{#    {% cevir "profile duzenle altbaslik" %}#}
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "mesajlar baslik" %} {% endblock %}
+{% block content %}
 
-</div>
-
-
-
-        <div  class="wfParts genbdy">
 
             <div id="litetabs">
             <ul id="pricetabs">
@@ -45,3 +39,4 @@
 
          </div>
 
+{% endblock %}

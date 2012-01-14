@@ -150,11 +150,11 @@ UNAVAIL_REASON = (
 )
 
 MESSAGE_STATUS = (
-    (1, _('Waiting for confirmation')),
-    (2, _('Confirmed')),
-    (3, _('Deactived by staff')),
-    (4, _('Deleted')),
-    (5, _('Archived')),
+    (10, _('Waiting for confirmation')),
+    (20, _('Sent')),
+    (30, _('Deactived by staff')),
+    (40, _('Deleted')),
+    (50, _('Archived')),
 )
 
 LOCALES = (
@@ -197,6 +197,7 @@ JSTRANS = (
     ('successfully_complete',_('Operation succesfully completed.')),
     ('profile_saved',_('Your profile successfully updated.')),
     ('login_for_bookmark',_('Please login or register to bookmark this place.')),
+    ('login_for_sendmessage',_('Your message has been temporarily saved. Please login or register to send your message.')),
 #    ('',_('')),
 #    ('',_('')),
 #    ('',_('')),

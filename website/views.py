@@ -161,7 +161,7 @@ def addPlace(request, ajax=False, id=None):
                     Photo.objects.get(pk=tmp_photos[0]).save()
                     request.session['tmp_photos']=[]
                 if not ajax:
-                    return HttpResponseRedirect('%s#do_listPlaces'%reverse('dashboard'))
+                    return HttpResponseRedirect('%s#do_listPlaces,this'%reverse('dashboard'))
         else:
             for e in form.errors:
                 messages.error(request, e)
@@ -369,33 +369,38 @@ def bookmark(request):
         return HttpResponse([result], mimetype='application/json')
 
 @csrf_exempt
-def send_message_to_host(request):
-    if request.method == 'POST' and request.POST.get('message'):
-
-        place =Place.objects.get(pk=request.POST.get('pid'))
-        owner = place.owner
-        user = request.user
-        msg = request.POST.get('message')
-        msg = user.sent_messages.create(receiver=owner, text=msg, place=place)
-        current_site = get_current_site(request)
-        message = {
-            'link': u'/dashboard/#do_showMessage,%s'% msg.id,
-            'surname':owner.last_name,
-            'domain':current_site.domain,
-            'name':current_site.name
-        }
-        send_html_mail(_('You have a message'),
-            owner.email,
-            message,
-            template='mail/new_message.html',
-            recipient_name=owner.get_full_name())
-        result = json.dumps({'message':force_unicode(_('Your message successfully sent.'))}, ensure_ascii=False)
-        return HttpResponse(result, mimetype='application/json')
+def send_message_to_host(request, data=None):
+    if data is None:
+        data = request.POST.copy()
+    if data.get('message'):
+        if not request.user.is_authenticated():
+            request.session['message_to_host'] = request.POST.copy()
+            result = {'message':_('Your message has saved.')}
+        else:
+            place =Place.objects.get(pk=data['pid'])
+            owner = place.owner
+            user = request.user
+            msg = data['message']
+            msg = user.sent_messages.create(receiver=owner, text=msg, place=place)
+            current_site = get_current_site(request)
+            message = {
+                'link': u'/dashboard/#showMessage,%s'% msg.id,
+                'surname':owner.last_name,
+                'domain':current_site.domain,
+                'name':current_site.name
+            }
+            send_html_mail(_('You have a message'),
+                owner.email,
+                message,
+                template='mail/new_message.html',
+                recipient_name=owner.get_full_name())
+            result = {'message':force_unicode(_('Your message successfully sent.'))}
+        return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
 @csrf_exempt
 def set_message(request,msg):
     if request.method == 'POST':
-        messages.info(request, DJSTRANS['login_for_bookmark'])
+        messages.info(request, DJSTRANS[msg])
     return HttpResponse([1], mimetype='application/json')
 
 
@@ -426,10 +431,8 @@ def login(request):
                 if not request.POST.get('remember_me', None):
                     request.session.set_expiry(0)
                 auth.login(request, user)
-#                log.debug('login user "%s"'%user.get_profile().favorites.all())
-#                profile = user.get_profile()
-#                xxxxxxxxx=list(profile.favorites.values_list('id',flat=True))
-#                assert 0,user.get_profile().favorites.values_list('id',flat=True)
+                request.user = user
+                _do_post_login_jobs(request)
                 response =  HttpResponseRedirect(request.POST.get('next') or reverse('dashboard') )
                 response.set_cookie('ganibookmarks',
                     str(user.get_profile().favorites.values_list('id',flat=True) ))
@@ -441,6 +444,12 @@ def login(request):
         rform = RegisterForm()
     context = {'form':form, 'rform':rform}
     return render_to_response('login.html', context, context_instance=RequestContext(request))
+
+def _do_post_login_jobs(request):
+    if request.session.get('message_to_host'):
+        send_message_to_host(request, request.session.get('message_to_host'))
+        messages.success(request, _('Your message successfully sent.'))
+        del request.session['message_to_host']
 
 def register(request,template='register.html'):
     sayfa = Sayfa.al_anasayfa()

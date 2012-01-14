@@ -2,11 +2,11 @@
 {% load cevir thumbnail i18n%}
 
 {% block content %}
-    <h5>
+    <h4>
         {% blocktrans %} Dear {{ surname }},{% endblocktrans %}
-    </h5>
+    </h4>
     <br>
-    {% trans "A GaniHomes user sent you a message. Please click the above link to see it;" %}
+    {% trans "A GaniHomes user sent you a message. Please click the link below to see it;" %}
 <br><br>
     <a href="http://{{ domain}}/{{ link }}">http://{{ domain}}/{{ link }}</a>
 

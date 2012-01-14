@@ -743,13 +743,25 @@ class Description(models.Model):
 class Message(models.Model):
     """user messaging system"""
 
+    replyto = models.ForeignKey('self', verbose_name=_('First message'),  null=True, blank=True)
     sender = models.ForeignKey(User, verbose_name=_('Sender'), related_name='sent_messages')
     receiver = models.ForeignKey(User, verbose_name=_('Receiver'), related_name='received_messages')
     place = models.ForeignKey(Place, verbose_name=_('Place'),  null=True, blank=True)
     text = models.TextField(_('Message'))
-    read = models.BooleanField(_('Message was read'), default=False)
+    read = models.BooleanField(_('Was read'), default=False)
+    newreply = models.BooleanField(_('Has a new reply'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    @property
+    def sender_name(self):
+        return self.sender.get_profile().private_name
+
+    def receiver_name(self):
+        return self.receiver.get_profile().private_name
+
+    def isnew(self):
+        return (not self.read or self.hasnewrepy)
 
     class Meta:
         ordering = ['timestamp']

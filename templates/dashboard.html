@@ -84,13 +84,21 @@
 
                 <div class="dasblok wx hx">
                 <h5>{% trans "Inbox" %}</h5>
+                <div id="inbox-legend">
+                    <span id="lnew">{% trans "News" %}</span>
+                    <span id="lread">{% trans "Read" %}</span>
+                    <span id="lreplied">{% trans "Replied" %}</span>
+                </div>
                     <div id="overview_inbox">
-                        {% if rms %}
-                            <table>
-                                {% for m in rms %}
-                                <tr><td>{% blocktrans with m.sender.get_profile.private_name as username%}Message from user: {{ username }}{% endblocktrans %} </td></tr>
+                        {% if msgs %}
+                                {% for m in msgs %}
+                                <div class="overline" onclick="gh.showMessage({{ m.id }})">
+                                    <span class="{% if not m.isnew %}readmsg{% endif %} messageicon"></span>
+                                    {% blocktrans with m.participant as username%}
+                                        Conversation with  {{ username }}
+                                    {% endblocktrans %}
+                                </div>
                                 {% endfor %}
-                            </table>
                         {% else %}{% trans "No new messages" %}<br><br><br>{% endif %}
 
                     </div>
