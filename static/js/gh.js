@@ -557,7 +557,7 @@ gh = {
         $(e.target).parents('form').submit()
     },
     get_bookmarks:function(){
-        return $.cookie('ganibookmarks').split(',')
+        return ($.cookie('ganibookmarks') || '').split(',')
     },
     is_bookmarked:function(id){
       return this.get_bookmarks().indexOf(id)>-1
