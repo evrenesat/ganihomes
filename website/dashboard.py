@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse
 from django.forms.fields import ChoiceField
 from website.models.faq import Question
-from website.views import addPlaceForm
+from website.views import addPlaceForm, send_message
 
 __author__ = 'Evren Esat Ozkan'
 
@@ -16,14 +17,27 @@ from django.template.context import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from places.models import *
 from places.options import   NO_OF_BEDS
-from django.http import  HttpResponse, HttpResponseBadRequest
+from django.http import  HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
+from datetime import datetime
 import logging
 log = logging.getLogger('genel')
 
-
-
+#yap: ask a question, login/anonim
+#yap: rezervasyon
+#yap: paypal capture
+#yap: arkadas ekle, cikar
+#yap: iletisim
+#yap: sozlesme popup
+#yap: yorum yaz, duzenle
+#yap: yorum goster!!!!!!!!!
+#yap: komisyon
+#yap: donemsel fiyat
+#yap: IE kontrolu
+#yap: arkadasini davet et
+#yap: facebook twitter ikonlari
+#yap: COKDiLLi:: profile description || Place description || messages || reviews
 def list_places(request):
     pls = request.user.place_set.all().order_by('-id')
     result = u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)])
@@ -37,6 +51,42 @@ def save_photo_order(request, id):
         iids = request.POST.get('iids',[])
         place.reorderPhotos(iids)
         return HttpResponse([1], mimetype='application/json')
+
+@csrf_exempt
+def add_friend(request, id):
+    user = request.user
+    friend = User.objects.get(pk=id)
+    if request.method == 'POST':
+        f = Friendship(profile=user.get_profile(), user_id=id)
+        f.save()
+        result = {'message':force_unicode(_('Friendship request successfully sent.'))}
+        send_message(request, force_unicode(_('%s wants to be friends with you.')) % user.profile.private_name, receiver=friend, typ=20)
+    return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
+
+@csrf_exempt
+def confirm_friendship(request):
+    user = request.user
+    id = int(request.POST.get('id'))
+    mid = request.POST.get('mid')
+    confirmed =  id>0
+    id = abs(id)
+    friend = User.objects.get(pk=abs(id))
+    if request.method == 'POST':
+        f = user.friendship_set.filter(profile=friend.get_profile())
+        if f:
+            f = f[0]
+            if confirmed:
+                f.confirmed =  True
+                f.save()
+                result = _('Friendship request accepted.')
+            else:
+                f.delete()
+                result = _('Friendship request declined.')
+            send_message(request, force_unicode(result), receiver=friend, replyto=Message.objects.get(pk=mid))
+        else:
+            result = _('Can\'t find the request. Could be canceled by the other side.')
+        result = {'message':force_unicode(result)}
+    return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
 @csrf_exempt
 def save_calendar(request, id):
@@ -72,36 +122,95 @@ def trips(request):
     return render_to_response('dashboard/trips.html', context, context_instance=RequestContext(request))
 
 @login_required
+def friends(request):
+    user = request.user
+    profile = user.get_profile()
+    context = {
+               'friends':profile.friendship_set.filter(confirmed=True)
+    }
+    return render_to_response('dashboard/friends.html', context, context_instance=RequestContext(request))
+
+def list_messages(rq):
+    user = rq.user
+    msgs = []
+    for m in Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user),
+                       replyto__isnull=True).order_by('-last_message_time')[:4]:
+        m.icon = 'read'
+        m.line = m.get_type_display()
+        if m.sender != user:
+            m.participant = m.get_sender_name()
+            if not m.read: m.icon = 'new'
+        else:
+            m.participant = m.get_receiver_name()
+        if m.type in [10,20]:
+            obj = m.participant
+        elif m.type == 30:
+            obj = m.place.title
+        else:
+            obj = None
+        if obj:
+            m.line = m.line % obj
+        if m.replied:
+            latest  = m.message_set.latest()
+            if not latest.read and latest.sender!=user:
+                m.icon = 'replied'
+        msgs.append(m)
+    return msgs
+
+@login_required
 def dashboard(request):
     user = request.user
     profile = user.get_profile()
-    messages = []
-    for m in Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user),
-                       replyto__isnull=True).order_by('read','newreply','timestamp')[:4]:
-        m.participant = m.sender_name if m.sender != user else m.receiver_name()
-        messages.append(m)
     context = {'places':user.place_set.all(),
                'form' : addPlaceForm(),
-               'msgs':messages,
-
+               'msgs':list_messages(request),
                'bookmarks':profile.favorites.all()
     }
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
-def show_messages(request, type=None, template='dashboard/user_messages.html'):
-    rms = request.user.received_messages.filter(replyto__isnull=True).order_by('read','newreply','timestamp')
-    sms = request.user.sent_messages.filter(replyto__isnull=True).order_by('read','newreply','timestamp')
-    context = {'rms':rms,'sms':sms}
-    return render_to_response(template, context, context_instance=RequestContext(request))
+def show_messages(request):
+    context = {'msgs':list_messages(request),}
+    return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
+
 
 
 def show_message(request, id):
     user = request.user
     msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id)
-    participant = msg.sender_name if msg.sender != user else msg.receiver_name()
-    replies = list(Message.objects.select_related().filter(replyto=msg).order_by('read','newreply','timestamp'))
-    replies.append(msg)
-    context = {'msg':msg,'replies':replies, 'participant':participant}
+    msg.message_set.filter(read=False, receiver=user).update(read=True)
+    if msg.receiver == user:
+        participant = msg.sender
+        receiver = msg.sender
+        if not msg.read:
+            msg.read = True
+            msg.save()
+    else:
+        participant = msg.receiver
+        receiver = msg.receiver
+    if request.method == 'POST':
+        send_message(request, request.POST['message'], receiver=receiver, replyto=msg)
+        msg.last_message_time = datetime.now()
+        msg.replied = True
+        msg.save()
+        messages.success(request, _('Your message successfully sent.'))
+    msgs = list(Message.objects.select_related().filter(replyto=msg))
+    msgs.append(msg)
+    msgslist = []
+    for m in msgs:
+        m.sender_name =  m.sender.get_full_name() if m.sender == user else m.get_sender_name()
+        msgslist.append(m)
+    context = {'msg':msg,'msgs':msgslist, 'participant':participant, 'toname':participant.get_profile().private_name}
+    return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
+
+#@csrf_exempt
+def new_message(request, id):
+    user = request.user
+    receiver = User.objects.get(pk=id)
+    if request.method == 'POST':
+        msg = send_message(request, request.POST['message'], receiver=receiver)
+        messages.success(request, _('Your message successfully sent.'))
+        return HttpResponseRedirect(reverse('show_message', args=[msg.id]))
+    context = {'participant':receiver, 'toname':receiver.get_profile().private_name}
     return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
 
 class PasswordForm(forms.Form):

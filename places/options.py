@@ -156,6 +156,13 @@ MESSAGE_STATUS = (
     (40, _('Deleted')),
     (50, _('Archived')),
 )
+MESSAGE_TYPES = (
+    (10, _('Conversation with %s')),
+    (20, _('Friend request from %s')),
+    (30, _('Reservation request for %s')),
+    (40, _('Message from GaniHomes staff')),
+#    (50, _('Archived')),
+)
 
 LOCALES = (
 #('ar_SA', _('Arabic')),
@@ -198,6 +205,7 @@ JSTRANS = (
     ('profile_saved',_('Your profile successfully updated.')),
     ('login_for_bookmark',_('Please login or register to bookmark this place.')),
     ('login_for_sendmessage',_('Your message has been temporarily saved. Please login or register to send your message.')),
+    ('confirm_friendship_request',_('Please confirm your friendship request for the person listed below.')),
 #    ('',_('')),
 #    ('',_('')),
 #    ('',_('')),

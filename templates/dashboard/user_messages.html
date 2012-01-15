@@ -4,39 +4,21 @@
 {% block content %}
 
 
-            <div id="litetabs">
-            <ul id="pricetabs">
-                <li class="prtab"><a href="#received">{% trans "Inbox" %}</a></li>
-                <li class="prtab"><a href="#sent">{% trans "Sent Messages" %}</a></li>
-
-            </ul>
-            <div id="received">
-
-                {% if rms %}
-                <table>
-                    {% for m in rms %}
-                    <tr><td>{{ m }}</td></tr>
+    <div id="inbox-legend" class="full">
+        <span class="lnew">{% trans "New" %}</span>
+        <span class="lread">{% trans "Read" %}</span>
+        <span class="lreplied">{% trans "Replied" %}</span>
+    </div>
+        <div id="fullinbox">
+            {% if msgs %}
+                    {% for m in msgs %}
+                    <div class="overline" onclick="gh.showMessage({{ m.id }})">
+                        <span class="l{{ m.icon }} messageicon"></span>
+                        {{ m.line }}
+                    </div>
                     {% endfor %}
+            {% else %}{% trans "No messages" %}<br><br><br>{% endif %}
 
-                </table>
-                {% else %}
-                    <h4>{% trans "No messages" %}</h4>
-                {% endif %}
-            </div>
-                <div id="sent">
-
-                    {% if sms %}
-                    <table>
-                        {% for m in sms %}
-                        <tr><td>{{ m }}</td></tr>
-                        {% endfor %}
-
-                    </table>
-                    {% else %}
-                        <h4>{% trans "No messages" %}</h4><br><br><br>
-                    {% endif %}
-                </div>
-
-         </div>
+        </div>
 
 {% endblock %}

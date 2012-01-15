@@ -1,0 +1,21 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "faq baslik" %} {% endblock %}
+{% block content %}
+
+
+    {% if friends %}
+                        <ul class="dugmul">
+                            {% for f in friends %}
+                                <div class="fl" style="text-align:center;">
+                                    <h4>{{ f.user.get_profile.private_name }}</h4>
+                                                    <img id="pfotoimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ f.user_id }}_m.jpg"><br>
+                                                    <button onclick="gh.sendMessage({{ f.user_id }})" class="minidugme" style="width:100px;">{% trans "Send message" %}</button>
+
+                                                </div>
+                            {% endfor %}
+                        </ul>
+                    {% else %}{% trans "You don't have any friends yet." %}<br><br><br>{% endif %}
+
+ {% endblock %}
+

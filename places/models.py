@@ -446,7 +446,7 @@ class Place(models.Model):
         ard = []
         for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
             r = (rd.end + datetime.timedelta(days=1) - rd.start).days
-            ard.extend([int((rd.start + datetime.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
+            ard.extend([int((rd.start + f.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
         self.reserved_dates = json.dumps(ard)
         self.save()
 
@@ -749,22 +749,24 @@ class Message(models.Model):
     place = models.ForeignKey(Place, verbose_name=_('Place'),  null=True, blank=True)
     text = models.TextField(_('Message'))
     read = models.BooleanField(_('Was read'), default=False)
-    newreply = models.BooleanField(_('Has a new reply'), default=False)
+    replied = models.BooleanField(_('Replied'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
+    type = models.SmallIntegerField(_('Status'), choices=MESSAGE_TYPES, default=0)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    last_message_time = models.DateTimeField(_('Last message time'), default=datetime.datetime.now())
 
-    @property
-    def sender_name(self):
+
+    def get_sender_name(self):
         return self.sender.get_profile().private_name
 
-    def receiver_name(self):
+    def get_receiver_name(self):
         return self.receiver.get_profile().private_name
 
     def isnew(self):
         return (not self.read or self.hasnewrepy)
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['-last_message_time']
         get_latest_by = "timestamp"
         verbose_name = _('Message')
         verbose_name_plural = _('Messages')

@@ -62,7 +62,7 @@
                 <li>
                     <div id="mcfriends"><a href="#">{% trans "Friends" %}</a></div>
                     <ul>
-                        <li class="">{% trans "My Friends" %}</li>
+                        <li class="btn do_showFriends">{% trans "My Friends" %}</li>
                         <li class="">{% trans "Invite a Friend" %}</li>
                     </ul>
                 </li>
@@ -85,18 +85,16 @@
                 <div class="dasblok wx hx">
                 <h5>{% trans "Inbox" %}</h5>
                 <div id="inbox-legend">
-                    <span id="lnew">{% trans "News" %}</span>
-                    <span id="lread">{% trans "Read" %}</span>
-                    <span id="lreplied">{% trans "Replied" %}</span>
+                    <span class="lnew">{% trans "New" %}</span>
+                    <span class="lread">{% trans "Read" %}</span>
+                    <span class="lreplied">{% trans "Replied" %}</span>
                 </div>
                     <div id="overview_inbox">
                         {% if msgs %}
                                 {% for m in msgs %}
                                 <div class="overline" onclick="gh.showMessage({{ m.id }})">
-                                    <span class="{% if not m.isnew %}readmsg{% endif %} messageicon"></span>
-                                    {% blocktrans with m.participant as username%}
-                                        Conversation with  {{ username }}
-                                    {% endblocktrans %}
+                                    <span class="l{{ m.icon }} messageicon"></span>
+                                    {{ m.line }}
                                 </div>
                                 {% endfor %}
                         {% else %}{% trans "No new messages" %}<br><br><br>{% endif %}
@@ -154,7 +152,7 @@
                     <div id="genhdr"><h3>{% cevir "mekanlarim baslik" %}</h3></div>
                     <div  class="wfParts genbdy"><div id="placelistic"></div></div>
                 </div>
-
+                <div id="dlg" class="gizli"></div>
 
             </div>
         </div>

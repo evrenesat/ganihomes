@@ -368,6 +368,31 @@ def bookmark(request):
         profile.save()
         return HttpResponse([result], mimetype='application/json')
 
+def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, typ=10):
+    """
+    at least receiver or place should be given
+    """
+    if type(place) == int:
+        place = Place.objects.get(pk=place)
+    else:
+        place = place
+    if receiver is None:receiver = place.owner
+    if sender is None: sender = rq.user
+    msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ)
+    current_site = get_current_site(rq)
+    message = {
+        'link': u'/dashboard/?showMessage,%s'% msg.id,
+        'surname':receiver.last_name,
+        'domain':current_site.domain,
+        'name':current_site.name
+    }
+    send_html_mail(_('You have a message'),
+        receiver.email,
+        message,
+        template='mail/new_message.html',
+        recipient_name=receiver.get_full_name())
+    return msg
+
 @csrf_exempt
 def send_message_to_host(request, data=None):
     if data is None:
@@ -377,23 +402,7 @@ def send_message_to_host(request, data=None):
             request.session['message_to_host'] = request.POST.copy()
             result = {'message':_('Your message has saved.')}
         else:
-            place =Place.objects.get(pk=data['pid'])
-            owner = place.owner
-            user = request.user
-            msg = data['message']
-            msg = user.sent_messages.create(receiver=owner, text=msg, place=place)
-            current_site = get_current_site(request)
-            message = {
-                'link': u'/dashboard/#showMessage,%s'% msg.id,
-                'surname':owner.last_name,
-                'domain':current_site.domain,
-                'name':current_site.name
-            }
-            send_html_mail(_('You have a message'),
-                owner.email,
-                message,
-                template='mail/new_message.html',
-                recipient_name=owner.get_full_name())
+            send_message(request, data['message'], place=data['pid'])
             result = {'message':force_unicode(_('Your message successfully sent.'))}
         return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 

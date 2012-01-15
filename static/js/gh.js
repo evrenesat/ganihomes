@@ -820,6 +820,9 @@ gh = {
             })
 
     },
+    dialog:function(id){
+        return $(id).dialog({ position: 'center', modal: true  })
+    },
     init_dashboard: function(){
         var self = this;
 
@@ -830,6 +833,7 @@ gh = {
             if($(document).scrollTop()>170 && !meco.hasClass('fixmenu')){meco.addClass('fixmenu')}
             else if($(document).scrollTop()<170 && meco.hasClass('fixmenu')){meco.removeClass('fixmenu')}
         })
+//        this.box = $('#dlg').dialog({ position: 'center', autoOpen:false, modal: true  })
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){
@@ -859,8 +863,14 @@ gh = {
 //        this.editAvailability(2)
     },
     hashCall:function(){
+        var hs = []
         if(document.location.hash){
-            var hs = document.location.hash.replace('#','').split(',') //a paramter can be added with a comma
+            var hs = document.location.hash.replace('#','').split(',')
+        }
+        else if(document.location.search){
+            var hs = document.location.search.replace('?','').split(',')
+        }
+        if(typeof(hs[0])!='undefined'){
             if (typeof(hs[1])!='undefined'){
                 if(hs[1]=='this')hs[1] = this
                 this[hs[0]](hs[1])
@@ -1061,6 +1071,20 @@ gh = {
     showMessage:function(id){
         this.genericEdit('/dashboard/show_message/'+id)
     },
+    addFriend:function(id){
+        $.post('/'+this.LANGUAGE_CODE+'/dashboard/add_friend/'+id,function(data){
+            $('#friendshipbox').html(data.message)
+        })
+    },
+    confirmFriendship:function(id){
+        message_id = $('#mid').val()
+        $.post('/'+this.LANGUAGE_CODE+'/dashboard/confirm_friendship/',{'id':id, 'mid':message_id},function(data){
+            $('#accdecfriend').html(data.message)
+        })
+    },
+    sendMessage:function(id){
+        this.genericEdit('/dashboard/new_message/'+id)
+    },
     do_editPayment:function(self){
         this.genericEdit('/dashboard/edit_payment/',function(){
             $('#generic input:radio').click(function(){
@@ -1072,6 +1096,9 @@ gh = {
     },
     do_showMessages:function(self){
         this.genericEdit('/dashboard/show_messages/')
+    },
+    do_showFriends:function(self){
+        this.genericEdit('/dashboard/friends/')
     },
     do_changePassword:function(self){
         this.genericEdit('/dashboard/change_password/')

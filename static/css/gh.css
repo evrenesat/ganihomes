@@ -1269,11 +1269,12 @@ li.g-plus-one {
 }
 
 .minidugme {
+    white-space:nowrap;
     border: 1px solid #f0dbc6;
-    background-color: #fff !important;
+    background-color: #FFFFFF !important;
     cursor: pointer;
     padding: 3px !important;
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1281,10 +1282,11 @@ li.g-plus-one {
     -webkit-box-shadow: 0px 0px 5px 1px #fae4ce;
     -moz-box-shadow: 0px 0px 5px 1px #fae4ce;
     box-shadow: 0px 0px 5px 1px #fae4ce;
-    color: #54373f !important;
+    color: #69270F !important;
     background: url(/images/grd-krm-22px.png);
 
     text-shadow: 1px 1px 0.4px #fff;
+    font-weight: bold;
 }
 
 .or {
@@ -3886,7 +3888,6 @@ ul.messages li{
 }
 
 .messageicon{
-    background-image:url(/images/icon/new_message_24.png);
     background-repeat: no-repeat;
     display:inline-block;
     width: 26px;
@@ -3897,13 +3898,13 @@ ul.messages li{
     background-image:url(/images/icon/read_message_24.png);
 }
 
-#inbox-legend #lnew{
+.lnew{
     background-image:url(/images/icon/new_message_24.png);
 }
-#inbox-legend #lread{
+.lread{
     background-image:url(/images/icon/read_message_24.png);
 }
-#inbox-legend #lreplied{
+.lreplied{
     background-image:url(/images/icon/replied_message_24.png);
 }
 
@@ -3921,6 +3922,10 @@ ul.messages li{
     padding: 2px 0 0 24px;
 }
 
+#inbox-legend.full {
+    float:right;
+    position: inherit;
+}
 #inbox-legend{
     position: relative;
     top: -5px;
@@ -3929,7 +3934,17 @@ ul.messages li{
     left: 83px;
 
 }
-
+#fullinbox{
+    width: 650px;
+    display:inline-block;
+    margin-bottom:30px;
+}
+#fullinbox .overline{
+    height: 24px;
+    font-size: 17px;
+    color: #9A6B26;
+    padding-top: 11px;
+}
 .replyblock .ownimg{
     border: 2px solid #FFFFFF;
     box-shadow: 1px 1px 4px 1px #CCCCCC;

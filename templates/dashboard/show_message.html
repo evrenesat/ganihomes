@@ -1,26 +1,50 @@
 {% extends "dashboard/base.html" %}
 {% load  cevir i18n%}
-{% block title %} {% cevir "faq baslik" %} {% endblock %}
+{% block title %} {% cevir "mesajlar baslik" %} {% endblock %}
 {% block content %}
-    {% blocktrans %}Write a reply to {{ participant }}{% endblocktrans %}
-    <div class="iblock" style="margin-bottom:10px;">
-    <textarea id="msgarea"></textarea>
+    <div class="iblock"  style="width:590px; margin-bottom:10px;">
+    <span class="fl">
+
+
+        {% if msgs %}
+
+    {% blocktrans %}Write a reply to {{ toname }}{% endblocktrans %}
+    {% else %}
+        {% blocktrans %}Write a message to {{ toname }}{% endblocktrans %}
+    {% endif %}</span>
+    <span class="fr minidugme" id="addfriendbutton" onclick="$('#friendshipbox').dialog({modal:true, width:'400px', position:'center'})">{% blocktrans %}Send a friendship request to {{ toname }}{% endblocktrans %} </span>
+
+    <form>{% csrf_token %}
+
+    <textarea name="message" id="msgarea"></textarea>
+    <input type="hidden" value="{{ msg.id }}" name="mid" id="mid">
     <br>
     <input type="submit" class="fr yesildugme" value="{% trans "Send message" %}">
-    </div>
 
-   {% for m in replies %}
+    </form>
+    </div>
+   {% for m in msgs %}
        <div class="replyblock">
            <hr>
            <img class="ownimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ m.sender_id }}_s.jpg">
            <div class="replydiv">
                <span class="sendername">{{ m.sender_name }}</span> <span class="datelite">{{ m.timestamp }}</span>
-               <div class="message-text">{{ m.text|linebreaksbr }}</div>
+               <div class="message-text">{{ m.text|linebreaksbr }}
+               {% if m.type == 20 %}
+                   <div style="text-align:center;width:500px;padding:10px;" id="accdecfriend">
+                       <button style="margin-right:20px;" class="iblock minidugme" id="addfriendbutton" onclick="gh.confirmFriendship({{ m.sender.id }})">{% trans "Accept" %} </button>
+                       <button class="iblock minidugme" id="addfriendbutton" onclick="gh.confirmFriendship(-{{ m.sender.id }})">{% trans "Decline" %} </button>
+                   </div>
+                   {% endif %}
+
+               </div>
            </div>
        </div>
     {% endfor %}
 
-
+<div id="friendshipbox" class="gizli" style="text-align:center;"  title="{% trans "Please confirm your friendship request." %}">
+    <button style="margin:40px;" class="iblock minidugme" id="addfriendbutton" onclick="gh.addFriend({{ participant.id }})">{% blocktrans %}Add {{ toname }} to my friends.{% endblocktrans %} </button>
+</div>
 
 
 
