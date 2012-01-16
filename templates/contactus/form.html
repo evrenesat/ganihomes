@@ -1,90 +1,60 @@
-{% extends "content_pro.html" %}
+{% extends "content_bigboxed.html" %}
 {% block content %}
-    {% load cb %}{% cbl 'contactus' %}
+    {% load cevir %}
     {% load i18n %}
-
-    <table width="871" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td valign="top">
-                <div align="left" style="margin:30px 0 30px 36px"><img src="/static/grafik/iletisim_baslik.jpg"
-                                                                       width="396" height="37"/></div>
-                <table style="margin-left:71px" width="470" border="0" cellspacing="0" cellpadding="0">
+<div class="iblock" style="padding:40px;">
+                                <table style="margin-left:71px" width="470" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td height="88" colspan="3" valign="top"><span
-                                style="font-size:18px; font-weight:bold; color:#999999">ADRES:</span><br/>
+                        <td height="88" colspan="2" valign="top"><span
+                                style="font-size:18px; font-weight:bold; color:#999999">{% trans "Address" %}:</span><br/>
 
-                            <div align="justify" style="font-size:16px; font-weight:bold">Berin-Reşat AKSOY Plaza
-                                Atatürk Bulvarı No:384<br>Kat:1 Daire:1 Alsancak (Liman) - İZMİR
+                            <div align="justify" style="font-size:16px; font-weight:bold">Ganioglu Center<br>
+                                Bornova, 286. Sk, 2, 35030 Mansuroğlu<br> IZMIR - TURKEY
                             </div>
                         </td>
                         <!--                <div align="justify" style="font-size:16px; font-weight:bold">Şair Eşref Bulvarı Numara 81/B-C Alsancak - İZMİR</div></td>-->
                     </tr>
                     <tr>
                         <td width="160" height="88" valign="top"><span
-                                style="font-size:18px; font-weight:bold; color:#999999">TELEFON:</span><br/>
+                                style="font-size:18px; font-weight:bold; color:#999999">{% trans "PHONE" %}:</span><br/>
 
-                            <div style="font-size:16px; font-weight:bold">0232 464 44 86<br/>
-                                0232 464 44 87
+                            <div style="font-size:16px; font-weight:bold">+90232 462 72 78<br/>
+                                +90232 462 72 79
                             </div>
                         </td>
-                        <td width="160" valign="top"><span
-                                style="font-size:18px; font-weight:bold; color:#999999">FAKS:</span><br/>
 
-                            <div style="font-size:16px; font-weight:bold">0232 464 44 89</div>
-                        </td>
-                        <td width="150" valign="top"><span style="font-size:18px; font-weight:bold; color:#999999">E-POSTA:</span><br/>
+                        <td width="150" valign="top"><span style="font-size:18px; font-weight:bold; color:#999999">{% trans "E-MAIL" %}:</span><br/>
 
-                            <div style="font-size:16px; font-weight:bold">bilgi@taft.com.tr</div>
+                            <div style="font-size:16px; font-weight:bold">info@ganihomes.com</div>
                         </td>
                     </tr>
                 </table>
-            </td>
-            <td width="291" height="297" background="/static/grafik/iletisim_h.jpg">&nbsp;</td>
-        </tr>
-    </table><br/>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div style="width:871px; background:url(/static/grafik/iletisim_arka.jpg); background-position:top; background-repeat:repeat-x">
-            <br/><br/>
-            <table width="681" border="0" align="center" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td>
-                        <div align="justify"
-                             style="width:681px; border-bottom:3px solid #333333; height:70px; font-size:14px; font-weight:bold">
-                            Bizimle aşağıda iletişim formunu kullanarak ya da irtibat bilgilerimizden herhangi biri
-                            vasıtasıyla iletişim kurabilirsiniz.
-                            <div style="font-family:Arial, Helvetica, sans-serif; font-size:12px; margin-top:8px; font-weight:normal">
-                                <b>Not:</b> Bayilik başvurularınızı lütfen sitemizin "<a
-                                    href="/bayilik_basvurusu/basvuru_al/" class="tumhaberler">Bayilik Başvuru</a>"
-                                bölümünden yapınız.
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
             <br/>
-            <table width="681" border="0" align="center" cellpadding="0" cellspacing="0">
+    <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+        <div style="font-size:14px; font-weight:bold; width:471px;margin:20px auto;">
+            <table  border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="311" valign="top"><br/>
                         <table style="margin-top:15px" width="281" border="0" align="center" cellpadding="0"
                                cellspacing="0">
                             <tr>
-                                <td height="71" valign="top"><p class="formbaslik">Adınız:</p>
+                                <td height="71" valign="top"><p class="formbaslik">{% trans "Name" %}</p>
                                     {{ form.first_name.errors }}{{ form.first_name }}</td>
                             </tr>
                             <tr>
-                                <td height="71" valign="top"><p class="formbaslik">Soyadınız:</p>
+                                <td height="71" valign="top"><p class="formbaslik">{% trans "Surname" %}:</p>
                                     {{ form.last_name.errors }}{{ form.last_name }}</td>
                             </tr>
                             <tr>
-                                <td height="71" valign="top"><p class="formbaslik">E-Posta Adresiniz:</p>
+                                <td height="71" valign="top"><p class="formbaslik">{% trans "E-mail" %}:</p>
                                     {{ form.email.errors }}{{ form.email }}</td>
                             </tr>
                             <tr>
-                                <td height="71" valign="top"><p class="formbaslik">Telefonunuz:</p>
+                                <td height="71" valign="top"><p class="formbaslik">{% trans "Phone" %}:</p>
                                     {{ form.phone.errors }}{{ form.phone }}</td>
                             </tr>
                             <tr>
-                                <td height="71" valign="top"><p class="formbaslik">Şehir:</p>
+                                    <td height="71" valign="top"><p class="formbaslik">{% trans "Location" %}:</p>
                                     {{ form.city.errors }}{{ form.city }}</td>
                             </tr>
                         </table>
@@ -95,11 +65,11 @@
                         <table style="margin-top:15px" width="281" border="0" align="center" cellpadding="0"
                                cellspacing="0">
                             <tr>
-                                <td height="71" valign="top"><p class="formbaslik">Konu:</p>
+                                <td height="71" valign="top"><p class="formbaslik">{% trans "Subject" %}:</p>
                                     {{ form.subject.errors }}{{ form.subject }}</td>
                             </tr>
                             <tr>
-                                <td height="284" valign="top"><p class="formbaslik">Mesajınız:</p>
+                                <td height="284" valign="top"><p class="formbaslik">{% trans "Your message" %}:</p>
                                     {{ form.message.errors }}{{ form.message }}
                                 </td>
                             </tr>
@@ -108,32 +78,15 @@
                 </tr>
             </table>
             <div style="width:681px; margin-left:auto; margin-right:auto; text-align:right">
-                Not: Gönder düğmesine basmanız, <a href="/gizlilik-bildirimi" target="_blank">gizlilik bildirimini</a> kabul ettiğinizi gösterir.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <label>
-                    <input style="height:25px; width:150px; margin-top:15px; font:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; padding:3px; margin-right:15px"
-                           type="submit" name="save" value="Gönder"/>
-                </label>
+
+
+                    <input class="gridugme" type="submit" name="save" value="{% trans "Send" %}">
+
             </div>
         </div>
     </form>
-    <br/><br/>
 
     </div>
 
-    <div style="clear: both;"></div>
 
-    <br/>
-    <table align="center" style="border: 1px solid #39A5A2; padding; 2px; width:auto">
-        <tr>
-            <td>
-                <iframe width="800" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                        src="http://www.google.com/maps/ms?hl=tr&amp;ptab=2&amp;ie=UTF8&amp;oe=UTF8&amp;msa=0&amp;msid=100553424016865373336.000465deff2aa734882a4&amp;ll=38.4388,27.16258&amp;spn=0.020169,0.057936&amp;z=14&amp;output=embed"></iframe>
-            </td>
-        </tr>
-    </table><br/>
-    <center>
-        <small><a
-                href="http://www.google.com/maps/ms?hl=tr&amp;ptab=2&amp;ie=UTF8&amp;oe=UTF8&amp;msa=0&amp;msid=100553424016865373336.000465deff2aa734882a4&amp;ll=38.4388,27.16258&amp;spn=0.020169,0.057936&amp;z=14&amp;source=embed"
-                style="color:#0000FF;text-align:left">:: Haritayı Büyüt ::</a></small>
-    </center><br/><br/>
 {% endblock content %}

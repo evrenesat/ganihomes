@@ -29,7 +29,7 @@ log = logging.getLogger('genel')
 
 #yapildi: sozlesme popup
 #yapildi: rezervasyon
-#yap: paypal capture
+#yapil: paypal capture
 #yap: iletisim
 #yap: ask a question, login/anonim
 #yap: komisyon
@@ -40,7 +40,7 @@ log = logging.getLogger('genel')
 #yap: IE kontrolu
 #yap: arkadasini davet et
 #yap: facebook twitter ikonlari
-#yap: register thanks >> dashboard
+#yapild: register thanks >> dashboard
 #yapıldı: arkadas ekle, cikar
 
 

@@ -84,9 +84,9 @@
     </div>
     <div class="footdiv">
         <h4>{% trans "Corporate" %}</h4>
-            <a href="#">{% trans "Imprint" %}</a><br>
-            <a href="#">{% trans "Terms and Conditions" %}</a><br>
-            <a href="#">{% trans "Privacy policy" %}</a>
+            <a href="/{{ LANGUAGE_CODE }}/3/imprint">{% trans "Imprint" %}</a><br>
+            <a href="/{{ LANGUAGE_CODE }}/4/tos">{% trans "Terms and Conditions" %}</a><br>
+            <a href="/{{ LANGUAGE_CODE }}/5/pricacy">{% trans "Privacy policy" %}</a>
         </div>
 </div>
 <div id="f2">
@@ -96,8 +96,8 @@
 <div id="f3">
     <div class="footdiv">
         <h4>{% trans "Contact" %}</h4>
-            <a href="#">{% trans "Send us an email " %}</a><br>
-            <a href="#">{% trans "Press" %}</a><br>
+            <a href="/{{ LANGUAGE_CODE }}/iletisim/">{% trans "Send us an email " %}</a><br>
+{#            <a href="#">{% trans "Press" %}</a><br>#}
         </div>
     <a class="fr" href="#"><img src="{{ STATIC_URL }}/images/icon/facebook.png"></a>
     <a class="fr" href="#"><img src="{{ STATIC_URL }}/images/icon/twitter.png"></a>
