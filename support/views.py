@@ -57,7 +57,7 @@ def Post(request):
             obj.status = 10
             obj.user = request.user
             obj.save()
-            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
+#            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
             return HttpResponseRedirect(reverse('support_thanks'))
     else:
         form = TicketForm()

@@ -11,6 +11,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.utils import simplejson as json
 from django.db.models.signals import post_save
+from paypal.pro.models import PayPalNVP
+from paypal.pro.helpers import PayPalWPP
 from utils.cache import kes
 from random import randint
 from easy_thumbnails.files import get_thumbnailer
@@ -691,11 +693,27 @@ class Booking(models.Model):
     rejection_date = models.DateTimeField(null=True, blank=True)
     guest_ok_date = models.DateTimeField(null=True, blank=True)
 
-    def capturePayment(self):
-        pass
+    def getPaypalAuthTransaction(self):
+        return PayPalNVP.objects.filter(custom=self.id,method='DoExpressCheckoutPayment')[0]
 
-    def voidPayment(self):
-        pass
+    def capturePayment(self,request):
+        if self.payment_type==2: #paypal
+            auth_transaction = self.getPaypalAuthTransaction()
+            wpp = PayPalWPP(request)
+            capture_transaction = wpp.doCapture({
+                'AUTHORIZATIONID':auth_transaction.transactionid,
+                'CURRENCYCODE':auth_transaction.currencycode,
+                'AMT':auth_transaction.amt,
+            })
+            return auth_transaction.transactionid == capture_transaction.transactionid
+
+
+    def voidPayment(self, request):
+        if self.payment_type==2: #paypal
+            wpp = PayPalWPP(request)
+            auth_transaction = self.getPaypalAuthTransaction()
+            void_transaction = wpp.doVoid({'AUTHORIZATIONID':auth_transaction.transactionid,})
+            return auth_transaction.transactionid == void_transaction.transactionid
 
     def refundPayment(self):
         #TODO: implement paypal refund

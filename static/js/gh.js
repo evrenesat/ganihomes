@@ -1146,6 +1146,9 @@ gh = {
     do_showFriends:function(self){
         this.genericEdit('/dashboard/friends/')
     },
+    do_supportCreate:function(self){
+        this.genericEdit('/dashboard/support_create/')
+    },
     do_changePassword:function(self){
         this.genericEdit('/dashboard/change_password/')
     },

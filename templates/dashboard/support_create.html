@@ -1,0 +1,23 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "destek mesaji yaz baslik" %} {% endblock %}
+{% block content %}
+
+
+    <form name="form1" method="post" action="">
+        {% cevir "destek mesaji altmetin" %}
+        <br><br>
+    <table style="width:400px; !important">
+    {{form}}
+    <tr>
+        <th colspan=2>
+            <p align="right">
+              <input type="submit" class="gridugme" name="Submit" value="{% trans "Send" %}">
+            </p>
+        </th>
+        </tr>
+    </table>
+    </form>
+
+ {% endblock %}
+

@@ -2,6 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
+from support.models import SubjectCategory, Ticket
 from website.models.faq import Question
 from website.views import addPlaceForm, send_message
 
@@ -241,7 +242,7 @@ def show_booking(request, id):
     context={
         'user_is_guest':booking.guest == user,
         'user_is_host':booking.host == user,
-        'total_price': booking.host_earning if booking.host == user else booking.guest_payment,
+        'total_price': booking.guest_payment,
         'booking':booking,
         'place':booking.place,
     }
@@ -249,12 +250,12 @@ def show_booking(request, id):
         if request.POST.get('confirmation')=='confirm':
             booking.status = 20
             booking.confirmation_date = datetime.today()
-            booking.capturePayment()
+            booking.capturePayment(request)
             messages.success(request, _('Booking request confirmed.'))
         elif request.POST.get('confirmation')=='reject':
-            booking.satus = 40
+            booking.status = 40
             booking.rejection_date = datetime.today()
-            booking.voidPayment()
+            booking.voidPayment(request)
             messages.success(request, _('Booking request rejected.'))
         booking.save()
         #yap: send_message to guest
@@ -490,3 +491,34 @@ def edit_prices(request, id):
     context = {'bform':form,'sform':spset,}
     return render_to_response('dashboard/edit_prices.html', context, context_instance=RequestContext(request))
 
+
+
+class TicketForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(attrs={'cols': '30', 'rows': '4'}), label=_(u'Your message'))
+    subject = forms.CharField(widget=forms.TextInput(attrs={'size': '30'}), label=_(u'Subject'))
+    #    tip = forms.ChoiceField(label='Değerlendirme',  choices=Mesaj.TIP)
+    category = forms.ModelChoiceField(queryset=SubjectCategory.objects.exclude(hidden=True), label=_(u'Category'))
+
+    class Meta:
+        model = Ticket
+        exclude = ('user', 'status')
+
+
+@login_required
+def support_create(request):
+    if request.POST:
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.status = 10
+            obj.user = request.user
+            obj.save()
+#            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
+            messages.success(request, _('Your message successfully saved.'))
+#            return HttpResponseRedirect(reverse('support_thanks'))
+    else:
+        form = TicketForm()
+        form.fields['subject'].initial = request.GET.get('subject', '')
+        form.fields['category'].initial = int(request.GET.get('category', 0))
+    return render_to_response('dashboard/support_create.html', {'form': form, },
+                              context_instance=RequestContext(request, {}))

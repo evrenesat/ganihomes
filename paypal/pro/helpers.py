@@ -91,7 +91,7 @@ class PayPalWPP(object):
             params = self._recurring_setExpressCheckout_adapter(params)
 
         defaults = {"method": "SetExpressCheckout", "noshipping": 1,
-                    "paymentaction":'Authorization',
+                    "PAYMENTREQUEST_0_PAYMENTACTION":'Authorization',
 #                    'PAYMENTREQUEST_0_CURRENCYCODE':'EUR',
 #                    'CURRENCYCODE':'EUR',
                     'HDRIMG':'https://static.e-junkie.com/sslpic/64123.1c8bb1d04a97bc111163dcfaa2c5f109.jpg',
@@ -108,7 +108,7 @@ class PayPalWPP(object):
         Check the dude out:
         """
         defaults = {"method": "DoExpressCheckoutPayment",
-                    "paymentaction": "Authorization",
+                    "PAYMENTREQUEST_0_PAYMENTACTION": "Authorization",
 #                    "paymentaction": "Sale",
         }
         required = L("returnurl cancelurl token payerid")
@@ -129,7 +129,17 @@ class PayPalWPP(object):
         nvp_obj = self._fetch(params, required, defaults)
         if nvp_obj.flag:
             raise PayPalFailure(nvp_obj.flag_info)
-        payment_was_successful.send(params)
+        return nvp_obj
+
+    def doVoid(self, params):
+        """
+        Check the dude out:
+        """
+        defaults = {"method": "DoVoid"}
+        required = L("AUTHORIZATIONID")
+        nvp_obj = self._fetch(params, required, defaults)
+        if nvp_obj.flag:
+            raise PayPalFailure(nvp_obj.flag_info)
         return nvp_obj
 
     def createRecurringPaymentsProfile(self, params, direct=False):
@@ -262,7 +272,7 @@ class PayPalWPP(object):
         nvp_obj = PayPalNVP(**nvp_params)
 
         nvp_obj.init(self.request, params, response_params)
-        nvp_obj.custom = params['PAYMENTREQUEST_0_CUSTOM']
+        nvp_obj.custom = params.get('PAYMENTREQUEST_0_CUSTOM','')
         nvp_obj.save()
         return nvp_obj
 
@@ -288,6 +298,6 @@ class PayPalWPP(object):
         response_tokens = {}
         for kv in response.split('&'):
             key, value = kv.split("=")
-            key = key.lower().replace('paymentinfo_0_','').replace('paymentrequest_0_','')
+            key = key.lower().replace('paymentinfo_0_','').replace('paymentrequest_0_','').replace('authorizationid','transactionid')
             response_tokens[key] = urllib.unquote(value)
         return response_tokens
