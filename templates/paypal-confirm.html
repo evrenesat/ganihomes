@@ -30,7 +30,7 @@
                 <h3>{% trans "Confirmation" %}</h3>
                 Please confirm your reservation request by clicking the button bellow;
                 <form action="" method="post">
-
+                    {% csrf_token %}
                             {{ form }}
                     <div style="width:100%;text-align:center;margin-top:20px;">
                 <input type="submit" class="yemyesildugme fo16" value="{% trans "Confirm My Reservation" %}" />

@@ -1,0 +1,36 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "faq baslik" %} {% endblock %}
+{% block content %}
+    <div id="placelist">
+    {% for p in places %}
+
+        <li class=plist>
+                <div class="detail">
+                    <span class="title" title="{% trans "Preview place" %}"><a href="{% url show_place p.id %}">{{ p.title }}</a></span>
+                    <img align=left class="pimg" src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plxs.jpg">
+                    <br>{{ p.city }} - {{ p.district }}, {{ p.get_country_dislay }}<br>
+                    {{ p.get_type_display }} / {{ p.get_space_display }}
+                    <br><br>
+                    <br>
+                    {% if p.published %}
+                        <button class="gridugme kck" onclick="gh.publishPlace(-{{ p.id }})">{% trans "Unpublish" %}</button>
+                    {% else %}
+                        <button class="yemyesildugme kck" onclick="gh.publishPlace({{ p.id }})">{% trans "Publish" %}</button>
+                    {% endif %}
+                    <button class="kizildugme kck" onclick="gh.deletePlace({{ p.id }})">{% trans "Delete" %}</button>
+                </div>
+                <div class="buttons">
+                    <button onclick="gh.editPrices({{ p.id }})">{% trans "Edit prices" %}</button><br>
+                    <button onclick="gh.editPlaceWizzard({{ p.id }})">{% trans "Edit details" %}</button><br>
+                    <button onclick="gh.editAvailability({{ p.id }})" >{% trans "Set availability" %}</button>
+                    <!--br><button class="photos"><%=JSTRANS.manage_photos%></button-->
+                    <!--a href="/<%= gh.LANGUAGE_CODE %>/places/<%= this.id %>"></a-->
+                </div>
+            </li>
+    {% endfor %}
+    <div>
+
+
+{% endblock %}
+

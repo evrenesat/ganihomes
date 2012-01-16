@@ -1,32 +1,23 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
 from django.db.models.query_utils import Q
-from django.db.utils import IntegrityError
 from django.utils import simplejson as json
 from django.forms.models import ModelForm, ModelChoiceField
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from django import http
-#from personel.models import Personel, Ileti
-#from urun.models import Urun
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
-from places.countries import OFFICIAL_COUNTRIES_DICT, COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency, Profile
+from places.countries import  COUNTRIES_DICT
+from places.models import Place, Tag, Photo, Currency
 from django.db import DatabaseError
-from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, JSTRANS, DJSTRANS
-from utils.cache import kes
+from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
-from utils.kabuk import sonarzu
 from website.models import Sayfa, Haber, Vitrin, Question
 from django.contrib.sites.models import get_current_site
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
-from website.models.medya import Medya
-from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
 from easy_thumbnails.files import get_thumbnailer
@@ -36,9 +27,8 @@ import logging
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7)
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
-from datetime import datetime
-from paypal.pro.views import PayPalPro
-from paypal.standard.forms import PayPalPaymentsForm
+from appsettings import app
+ghs = app.settings.gh
 
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
@@ -115,8 +105,6 @@ class addPlaceForm(ModelForm):
             'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
             )
 
-from appsettings import app
-ghs = app.settings.gh
 
 @login_required
 def addPlace(request, ajax=False, id=None):
@@ -381,16 +369,17 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ)
     current_site = get_current_site(rq)
     message = {
-        'link': u'/dashboard/?showMessage,%s'% msg.id,
+        'link': u'/dashboard/?showMessage=%s'% msg.id,
         'surname':receiver.last_name,
         'domain':current_site.domain,
         'name':current_site.name
     }
-    send_html_mail(_('You have a message'),
-        receiver.email,
-        message,
-        template='mail/new_message.html',
-        recipient_name=receiver.get_full_name())
+    subject = msg.get_type_display()
+    if typ in [10,20]:
+        subject = subject % sender
+    elif typ == 30:
+        subject = subject % place
+    send_html_mail(subject, receiver.email, message, template='mail/new_message.html', recipient_name=receiver.get_full_name())
     return msg
 
 @csrf_exempt
@@ -495,14 +484,13 @@ def registeration_thanks(request):
 
 @csrf_exempt
 def search(request):
-    sresults = Place.objects.filter(active=True)
+    sresults = Place.objects.filter(published=True)
     form = SearchForm(request.REQUEST)
     lang = request.LANGUAGE_CODE
     amens = Tag.getTags(lang)
     context = {'form':form, 'amens':amens, 'place_types':PLACE_TYPES, 'space_types':SPACE_TYPES }
     return render_to_response('search.html', context, context_instance=RequestContext(request))
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def parseJSData(request, key):
     data = request.POST.get(key)
@@ -515,7 +503,7 @@ def parseJSData(request, key):
 @csrf_exempt
 def search_ajax(request):
     form = SearchForm(request.REQUEST)
-    pls = Place.objects.filter(active=True).distinct()
+    pls = Place.objects.filter(published=True).distinct()
     page = request.GET.get('page',1)
     log.debug('search view')
 #    pls = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
@@ -560,6 +548,7 @@ def search_ajax(request):
 #    paginator = Paginator(contact_list, 25)
     return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
         mimetype='application/json')
+
 def cleandict(d):
      if not isinstance(d, dict):
          return d
@@ -585,64 +574,6 @@ def search_autocomplete(request):
     return HttpResponse(json.dumps(nplaces,  ensure_ascii=False), mimetype='application/json')
 
 
-def paypal_complete(request):
-    return render_to_response('paypal-compelete.html',{}, context_instance=RequestContext(request))
-
-def paypal_cancel(request):
-    return render_to_response('paypal-cancel.html',{}, context_instance=RequestContext(request))
-
-@csrf_exempt
-def book_place(request):
-
-
-    if request.POST.get('placeid'):
-        bi = request.POST.copy()
-        request.session['booking_selection']=bi
-    else:
-        bi = request.session.get('booking_selection',{})
-
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('%s?next=%s?express=1'% (reverse('lregister'),reverse('book_place')))
-
-
-    place = Place.objects.get(pk=bi['placeid'])
-    ci = datetime.strptime(bi['checkin'],'%Y-%m-%d')
-    co = datetime.strptime(bi['checkout'],'%Y-%m-%d')
-    guests = bi['no_of_guests']
-    crrid = bi['currencyid']
-    crr,crrposition = Currency.objects.filter(pk=crrid).values_list('name','code_position')[0]
-    prices = place.calculateTotalPrice(crrid,ci, co, guests)
-    item = {"amt": str(prices['paypal']),             # amount to charge for item
-              "inv": "AAAAAA",         # unique tracking variable paypal
-              "custom": "BBBBBBBB",       # custom tracking variable for you
-              "cancelurl": "%s%s" %(settings.SITE_NAME, reverse('paypal_cancel')),  # Express checkout cancel url
-              "returnurl": "%s%s" %(settings.SITE_NAME, reverse('book_place')),}  # Express checkout return url
-
-    kw = {"item": item,                            # what you're selling
-        "payment_template": "book_place.html",      # template name for payment
-        "confirm_template": "paypal-confirm.html", # template name for confirmation
-        "success_url": reverse('paypal_complete')}              # redirect location after success
-#paypal_dict = {
-#        "business": settings.PAYPAL_RECEIVER_EMAIL,
-#        "amount": prices['paypal'],
-#        "item_name": "name of the item",
-#        "invoice": "unique-invoice-id",
-#        "notify_url": "%s%s" %(settings.SITE_NAME, reverse('paypal-ipn')),
-#        "return_url": "%s%s" %(settings.SITE_NAME, reverse('paypal_complete')),
-#        "cancel_return": "%s%s" %(settings.SITE_NAME, reverse('paypal_  cancel')),
-#
-#    }
-
-#    form = PayPalPaymentsForm(initial=paypal_dict)
-    #'form':form.sandbox()
-    context ={'place':place, 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
-              'crr':crr,'crrpos':crrposition,}
-    kw['context'] = context
-#    return render_to_response('book_place.html',context, context_instance=RequestContext(request))
-    ppp = PayPalPro(**kw)
-    return ppp(request)
-
-
 def server_error(request, template_name='500.html'):
     """
     500 error handler.
@@ -654,7 +585,7 @@ def server_error(request, template_name='500.html'):
         context_instance = RequestContext(request)
     )
 
-from collections import defaultdict
+
 def show_faqs(request):
     return render_to_response('faq.html',
             {'faq':Question.getFaqs(request.LANGUAGE_CODE)},

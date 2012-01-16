@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse
 from django.forms.fields import ChoiceField
+from django.utils.html import strip_tags
 from website.models.faq import Question
 from website.views import addPlaceForm, send_message
 
@@ -24,24 +25,27 @@ from datetime import datetime
 import logging
 log = logging.getLogger('genel')
 
-#yap: ask a question, login/anonim
+
+#yap: sozlesme popup
 #yap: rezervasyon
 #yap: paypal capture
-#yap: arkadas ekle, cikar
 #yap: iletisim
-#yap: sozlesme popup
-#yap: yorum yaz, duzenle
-#yap: yorum goster!!!!!!!!!
+#yap: ask a question, login/anonim
 #yap: komisyon
 #yap: donemsel fiyat
+#yap: COKDiLLi:: profile description || Place description || messages || reviews
+#yap: yorum yaz, duzenle
+#yap: yorum goster!!!!!!!!!
 #yap: IE kontrolu
 #yap: arkadasini davet et
 #yap: facebook twitter ikonlari
-#yap: COKDiLLi:: profile description || Place description || messages || reviews
+#yapıldı: arkadas ekle, cikar
+
+
+
 def list_places(request):
-    pls = request.user.place_set.all().order_by('-id')
-    result = u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)])
-    return HttpResponse(result, mimetype='application/json')
+    pls = request.user.place_set.filter(active=True).order_by('-id')
+    return render_to_response('dashboard/place_list.html', {"places":pls}, context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -61,6 +65,29 @@ def add_friend(request, id):
         f.save()
         result = {'message':force_unicode(_('Friendship request successfully sent.'))}
         send_message(request, force_unicode(_('%s wants to be friends with you.')) % user.profile.private_name, receiver=friend, typ=20)
+    return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
+
+@csrf_exempt
+def publish_place(request):
+    user = request.user
+    if request.method == 'POST':
+        id = int(request.POST['id'])
+        published = id > 0
+        Place.objects.filter(pk=abs(id), owner = user).update(published=published)
+        if not published:
+            result = {'message':force_unicode(_('Place successfully unlisted from site.'))}
+        else:
+            result = {'url':reverse('show_place', args=[id]) }
+            messages.success(request, _('This place is now published!'))
+    return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
+
+@csrf_exempt
+def delete_place(request):
+    user = request.user
+    if request.method == 'POST':
+        id = int(request.POST['id'])
+        Place.objects.filter(pk=id, owner = user).update(active=False, published=False)
+        result = {'message':force_unicode(_('Place is deleted.'))}
     return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
 @csrf_exempt
@@ -116,7 +143,9 @@ def trips(request):
     user = request.user
     profile = user.get_profile()
     context = {
-                'bookings':user.guestings.all(),
+                'current':user.guestings.filter(start__lte=datetime.today(), end__gte=datetime.today()),
+                'upcoming':user.guestings.filter(status__in=[10,20]),
+                'previous':user.guestings.filter(end__lte=datetime.today()),
                'bookmarks':profile.favorites.all()
     }
     return render_to_response('dashboard/trips.html', context, context_instance=RequestContext(request))
@@ -130,11 +159,14 @@ def friends(request):
     }
     return render_to_response('dashboard/friends.html', context, context_instance=RequestContext(request))
 
-def list_messages(rq):
+def list_messages(rq, count=None):
     user = rq.user
     msgs = []
-    for m in Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user),
-                       replyto__isnull=True).order_by('-last_message_time')[:4]:
+    mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user),
+                           replyto__isnull=True).order_by('-last_message_time')
+    if count:
+        mesajlar = mesajlar[:count]
+    for m in mesajlar:
         m.icon = 'read'
         m.line = m.get_type_display()
         if m.sender != user:
@@ -142,14 +174,17 @@ def list_messages(rq):
             if not m.read: m.icon = 'new'
         else:
             m.participant = m.get_receiver_name()
+
         if m.type in [10,20]:
             obj = m.participant
         elif m.type == 30:
             obj = m.place.title
         else:
             obj = None
+
         if obj:
             m.line = m.line % obj
+
         if m.replied:
             latest  = m.message_set.latest()
             if not latest.read and latest.sender!=user:
@@ -161,10 +196,15 @@ def list_messages(rq):
 def dashboard(request):
     user = request.user
     profile = user.get_profile()
+    bookings = []
+    bookings.extend(Booking.objects.filter(status__in=[10,20,30], valid=True, host=user)[:2])
+    bookings.extend(Booking.objects.filter(status__in=[10,20,30], valid=True, guest=user)[:2])
     context = {'places':user.place_set.all(),
                'form' : addPlaceForm(),
-               'msgs':list_messages(request),
-               'bookmarks':profile.favorites.all()
+               'msgs':list_messages(request, 4),
+               'bookmarks':profile.favorites.all(),
+               'bookings':bookings,
+
     }
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
@@ -188,7 +228,7 @@ def show_message(request, id):
         participant = msg.receiver
         receiver = msg.receiver
     if request.method == 'POST':
-        send_message(request, request.POST['message'], receiver=receiver, replyto=msg)
+        send_message(request, strip_tags(request.POST['message']), receiver=receiver, replyto=msg)
         msg.last_message_time = datetime.now()
         msg.replied = True
         msg.save()
@@ -207,7 +247,7 @@ def new_message(request, id):
     user = request.user
     receiver = User.objects.get(pk=id)
     if request.method == 'POST':
-        msg = send_message(request, request.POST['message'], receiver=receiver)
+        msg = send_message(request, strip_tags(request.POST['message']), receiver=receiver)
         messages.success(request, _('Your message successfully sent.'))
         return HttpResponseRedirect(reverse('show_message', args=[msg.id]))
     context = {'participant':receiver, 'toname':receiver.get_profile().private_name}

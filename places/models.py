@@ -20,6 +20,8 @@ log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
 import options
+from appsettings import app
+ghs = app.settings.gh
 
 for code,name in settings.LANGUAGES:
     activate(code)
@@ -379,7 +381,8 @@ class Place(models.Model):
     cleaning_fee = models.DecimalField(_('Cleaning fee'), decimal_places=2, max_digits=8, null=True, blank=True)
     street_view = models.BooleanField(_('Street view'), default=False)
 
-    active = models.BooleanField(_('Place is online'), default=True)
+    active = models.BooleanField(_('Place is visible'), default=True)
+    published = models.BooleanField(_('Place is published'), default=False)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
 
@@ -446,7 +449,7 @@ class Place(models.Model):
         ard = []
         for rd in self.reserveddates_set.filter(end__gte=datetime.datetime.today()):
             r = (rd.end + datetime.timedelta(days=1) - rd.start).days
-            ard.extend([int((rd.start + f.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
+            ard.extend([int((rd.start + datetime.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
         self.reserved_dates = json.dumps(ard)
         self.save()
 
@@ -484,8 +487,7 @@ class Place(models.Model):
         #FIXME: sezonlu fiyatlar, indirimler ve haftasonlarini yoksaydik
         days = [start + datetime.timedelta(days=i) for i in range(r)]
         total= len(days) * self.price * factor
-        paypal_price = round(total,2)
-        return {'total': total, 'paypal':paypal_price}
+        return {'total': total, }
 
     def createThumbnails(self):
         customThumbnailer(self.primary_photo, self.id, [(120, 100, 'pls'), (60, 50, 'plxs')])
@@ -668,12 +670,13 @@ class Booking(models.Model):
     guest = models.ForeignKey(User, verbose_name=_('Guest'), related_name='guestings')
     place = models.ForeignKey(Place, verbose_name=_('Place'))
     reservation = models.ForeignKey(ReservedDates, verbose_name=_('Reservation Dates'))
-
+    nguests = models.SmallIntegerField(_('Number of guests'))
+    currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
     start = models.DateField(_('Booking start'))
     end = models.DateField(_('Booking end'))
     summary = models.CharField(_('Summary'), max_length=100, null=True, blank=True)
-    valid = models.BooleanField(_('Valid'))
-    status = models.SmallIntegerField(_('Status'), choices=BOOKING_STATUS, default=1)
+    valid = models.BooleanField(_('Valid'), default=True)
+    status = models.SmallIntegerField(_('Status'), choices=BOOKING_STATUS, default=5)
     payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES, null=True, blank=True)
 
     guest_payment = models.DecimalField(_('Total payment for guest'), decimal_places=2, max_digits=8)
@@ -684,6 +687,17 @@ class Booking(models.Model):
     # = models.IntegerField(_(''))
     # = models.SmallIntegerField(_(''))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+
+
+    def set_reservation(self):
+        self.reservation = ReservedDates.objects.create(place = self.place, start= self.start, end=self.end, type=2)
+
+    def save(self, *args, **kwargs):
+        if not self.host_earning:
+            self.host_earning =  self.place.price * ((100-ghs.host_fee)/100)
+        super(Booking, self).save(*args, **kwargs)
+
 
     class Meta:
         ordering = ['timestamp']

@@ -14,7 +14,7 @@ log = logging.getLogger('genel')
 
 # PayPal Edit IPN URL:
 # https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_profile-ipn-notify
-EXPRESS_ENDPOINT = "https://www.paypal.com/webscr?cmd=_express-checkout&%s"
+EXPRESS_ENDPOINT = "https://www.paypal.com/webscr?cmd=_express-checkout&useraction=commit&%s"
 SANDBOX_EXPRESS_ENDPOINT = "https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&%s"
 
 
@@ -91,6 +91,8 @@ class PayPalPro(object):
         self.fail_url = fail_url
         self.context = context or {}
         self.form_context_name = form_context_name
+        self.fallback_currency = 'EUR'
+        self.valid_currencies = ['EUR','AUD','CZK','DKK','HUF','JPY','NOK','NZD','PLN','GBP','SGD','CHF','USD']
 
     def __call__(self, request):
         """Return the appropriate response for the state of the transaction."""
@@ -153,7 +155,8 @@ class PayPalPro(object):
             return SANDBOX_EXPRESS_ENDPOINT
         else:
             return EXPRESS_ENDPOINT
-
+    def select_valid_currency(self):
+        return self.item.get('currency') if self.item.get('currency') in self.valid_currencies else self.fallback_currency
     def redirect_to_express(self):
         """
         First step of ExpressCheckout. Redirect the request to PayPal using the
@@ -167,10 +170,16 @@ class PayPalPro(object):
             self.context['errors'] = self.errors['paypal']
             return self.render_payment_form()
         else:
-            pp_params = dict(token=nvp_obj.token, AMT=self.item['amt'],
+            pp_params = dict(token=nvp_obj.token,
+                L_PAYMENTREQUEST_0_AMTm=self.item['PAYMENTREQUEST_0_AMT'],
+                PAYMENTREQUEST_0_ITEMAMT=self.item['PAYMENTREQUEST_0_AMT'],
+                PAYMENTREQUEST_0_AMT=self.item['PAYMENTREQUEST_0_AMT'],
+                PAYMENTREQUEST_0_DESC=self.item['PAYMENTREQUEST_0_DESC'],
+                PAYMENTREQUEST_0_CURRENCYCODE=self.item['PAYMENTREQUEST_0_CURRENCYCODE'],
                              RETURNURL=self.item['returnurl'],
                              CANCELURL=self.item['cancelurl'])
             pp_url = self.get_endpoint() % urlencode(pp_params)
+            log.info('redirect data: %s'% pp_url)
             return HttpResponseRedirect(pp_url)
 
     def render_confirm_form(self):

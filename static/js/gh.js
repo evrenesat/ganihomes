@@ -868,7 +868,7 @@ gh = {
             var hs = document.location.hash.replace('#','').split(',')
         }
         else if(document.location.search){
-            var hs = document.location.search.replace('?','').split(',')
+            var hs = document.location.search.replace('?','').split('=')
         }
         if(typeof(hs[0])!='undefined'){
             if (typeof(hs[1])!='undefined'){
@@ -1043,14 +1043,30 @@ gh = {
             t.html(JSTRANS[t.data('trans')])
         })
     },
-    do_listPlaces:function(self, typ){
-        typ = (typeof(typ)!='undefined')? '?type='+typ : ''
-        var tpl = self.loadTemplate('dashboard_place_listing.tpl')
-        $.get('/'+self.LANGUAGE_CODE+'/dashboard/list_places/'+typ, function(data){
-            $('#placelistic').html($.jqote(tpl, data))
-            self.showFrame('placelist')
-        });
+    do_listPlaces:function(self){
+        this.genericEdit('/dashboard/list_places/')
 
+
+    },
+    durl:function(cmd){
+        return ('/'+this.LANGUAGE_CODE + '/dashboard/' + cmd + '/').replace('//','/')
+    },
+    publishPlace:function(id){
+        var self = this;
+        $.post(this.durl('publish_place'),{'id':id},function(data){
+            if(data.url)document.location = data.url
+            else if(data.message){
+                self.do_listPlaces()
+                alert(data.message)
+            }
+        })
+    },
+    deletePlace:function(id){
+        var self = this;
+        $.post(this.durl('delete_place'),{'id':id},function(data){
+            self.do_listPlaces()
+            if(data.message)alert(data.message)
+        })
     },
 //    show_message:function(m){
 //        md = $('#message')

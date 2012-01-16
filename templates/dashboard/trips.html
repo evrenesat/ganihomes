@@ -14,33 +14,80 @@
             <ul id="pricetabs">
                 <li class="prtab"><a href="#current">{% trans "Current" %}</a></li>
                 <li class="prtab"><a href="#upcoming">{% trans "Upcoming" %}</a></li>
-                <li class="prtab"><a href="#past">{% trans "Past" %}</a></li>
-                <li class="prtab"><a href="#bookmarks">{% trans "Bookmarks" %}</a></li>
+                <li class="prtab"><a href="#previous">{% trans "Previous" %}</a></li>
+                <li class="prtab"><a href="#bookmarks">{% trans "Bookmarked Places" %}</a></li>
 
             </ul>
 
-            <div id="current">
-            <table>
-                <tr>
-                    <th>{% trans "Status" %}</th>
-                    <th>{% trans "Dates" %}</th>
-                    <th>{% trans "Host" %}</th>
-                    <th>{% trans "Place" %}</th>
-                    <th>{% trans "Extras" %}</th>
-                </tr>
-                {% for r in bookings %}
-                    <td>{{ r.get_status_display }}</td>
-                    <td>{{ r.start }} - {{ r.end }}</td>
-                    <td>{{ r.host }}</td>
-                    <td><img src="{% thumbnail r.place.primary_photo 80x80 crop=smart %}">
-                        <h6>{{ r.place.title|slice:":40" }}</h6>
-                    </td>
-                    <td>{% trans "Show Details" %}</td>
-                {% endfor %}
-            </table>
+                <div id="current">
+                <table>
+                    <tr>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Dates" %}</th>
+                        <th>{% trans "Host" %}</th>
+                        <th>{% trans "Place" %}</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    {% for r in current %}
+                        <tr>
+                        <td>{{ r.get_status_display }}</td>
+                        <td>{{ r.start }} <br> {{ r.end }}</td>
+                        <td>{{ r.host.get_profile.private_name }}</td>
+                        <td><img src="{% thumbnail r.place.primary_photo 80x80 crop=smart %}">
+                            <h6>{{ r.place.title|slice:":40" }}</h6>
+                        </td>
+                            <td><button class="minidugme" onclick="gh.showBookingRequest({{ r.id }})">{% trans "Show Details" %}</button></td>
+                        </tr>
+                    {% endfor %}
+                </table>
 
-            </div>
+                </div>
+                <div id="upcoming">
+                <table>
+                    <tr>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Dates" %}</th>
+                        <th>{% trans "Host" %}</th>
+                        <th>{% trans "Place" %}</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    {% for r in upcoming %}
+                        <tr>
+                        <td>{{ r.get_status_display }}</td>
+                        <td>{{ r.start }} <br> {{ r.end }}</td>
+                        <td>{{ r.host.get_profile.private_name }}</td>
+                        <td><img src="{% thumbnail r.place.primary_photo 80x80 crop=smart %}">
+                            <h6>{{ r.place.title|slice:":40" }}</h6>
+                        </td>
+                        <td><button class="minidugme" onclick="gh.showBookingRequest({{ r.id }})">{% trans "Show Details" %}</button></td>
+                        </tr>
+                    {% endfor %}
+                </table>
 
+                </div>
+                <div id="previous">
+                <table>
+                    <tr>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Dates" %}</th>
+                        <th>{% trans "Host" %}</th>
+                        <th>{% trans "Place" %}</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    {% for r in previous %}
+                        <tr>
+                        <td>{{ r.get_status_display }}</td>
+                        <td>{{ r.start }} <br> {{ r.end }}</td>
+                        <td>{{ r.host.get_profile.private_name }}</td>
+                        <td><img src="{% thumbnail r.place.primary_photo 80x80 crop=smart %}">
+                            <h6>{{ r.place.title|slice:":40" }}</h6>
+                        </td>
+                            <td><button class="minidugme" onclick="gh.showBookingRequest({{ r.id }})">{% trans "Show Details" %}</button></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                </div>
             <div id="bookmarks">
 <div class="iblock">
                 {% if bookmarks %}

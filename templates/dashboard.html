@@ -41,19 +41,19 @@
                     <div class="btn do_showMessages" id="mcmess"><a href="#">{% trans "Messages" %} </a></div>
 
                 <li>
-                    <div id="mcmyplace"><a href="#">{% trans "My Places" %}</a></div>
+                    <div class="btn do_listPlaces" id="mcmyplace"><a href="#">{% trans "My Places" %}</a></div>
                     <ul>
                         <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
                         <li class="btn do_listPlaces">{% trans "Listings" %}</li>
 {#                        <li data-param="2" class="btn do_listPlaces">{% trans "Archived" %}</li>#}
-                        <li class="">{% trans "Requests" %} <span style="font-size:smaller;font-weight:normal;">(0)</span></li>
+                        <li class="">{% trans "Requests" %} <span style="font-size:smaller;font-weight:normal;"></span></li>
 
                     </ul>
                 </li>
                 <li>
                     <div id="mctrips"><a href="#">{% trans "My Trips" %}</a></div>
                     <ul>
-                        <li data-param="0" class="btn do_trips">{% trans "Current" %}</li>
+                        <li data-param="current" class="btn do_trips">{% trans "Current" %}</li>
                         <li data-param="1" class="btn do_trips">{% trans "Upcoming" %}</li>
                         <li data-param="2" class="btn do_trips">{% trans "Past" %}</li>
                         <li data-param="3" class="btn do_trips">{% trans "Bookmarked Places" %}</li>
@@ -104,7 +104,17 @@
 
                 <div class="dasblok wx">
                 <h5>{% trans "Booking Requests" %}</h5>
-                    <div id="overview_requests"></div>
+                        <div id="overview_inbox">
+                            {% if bookings %}
+                                    {% for b in bookings %}
+                                    <div class="overline" onclick="gh.showBookingRequest({{ b.id }})">
+                                        <span class="{% if b.host == user %}youhost{% endif %} bookingicon"></span>
+                                        {{ b.place.title }}
+                                    </div>
+                                    {% endfor %}
+                            {% else %}{% trans "You dont have any booking requests." %}<br><br><br>{% endif %}
+
+                        </div>
                 </div>
 
                 {% if places %}
@@ -148,14 +158,11 @@
                 <div class="dbcontent gizli " id="addplace_wizard"></div>
                 <div class="dbcontent gizli " id="results"></div>
                 <div class="dbcontent gizli " id="generic"></div>
-                <div class="dbcontent gizli " id="placelist">
-                    <div id="genhdr"><h3>{% cevir "mekanlarim baslik" %}</h3></div>
-                    <div  class="wfParts genbdy"><div id="placelistic"></div></div>
-                </div>
                 <div id="dlg" class="gizli"></div>
 
             </div>
         </div>
     </div>
+    {{ request.session.booking.id }}
 
 {% endblock %}

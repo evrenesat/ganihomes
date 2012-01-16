@@ -121,12 +121,14 @@ PAYMENT_TYPES = (
 
 
 BOOKING_STATUS = (
-    (1, _('Requested')),
-    (2, _('Confirmed')),
-    (3, _('Payed')),
-    (4, _('Canceled by host')),
-    (5, _('Canceled by guest')),
-    (6, _('Canceled by staff')),
+    (5, _('Prepared')),
+    (10, _('Requested')),
+    (20, _('Confirmed')),
+    (30, _('Payed')),
+    (35, _('Payed')),
+    (40, _('Canceled by host')),
+    (50, _('Canceled by guest')),
+    (60, _('Canceled by staff')),
 )
 
 
@@ -160,7 +162,7 @@ MESSAGE_TYPES = (
     (10, _('Conversation with %s')),
     (20, _('Friend request from %s')),
     (30, _('Reservation request for %s')),
-    (40, _('Message from GaniHomes staff')),
+    (40, _('Message from GaniHomes')),
 #    (50, _('Archived')),
 )
 

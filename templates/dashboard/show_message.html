@@ -29,7 +29,7 @@
            <img class="ownimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ m.sender_id }}_s.jpg">
            <div class="replydiv">
                <span class="sendername">{{ m.sender_name }}</span> <span class="datelite">{{ m.timestamp }}</span>
-               <div class="message-text">{{ m.text|linebreaksbr }}
+               <div class="message-text">{{ m.text|safe|linebreaksbr }}
                {% if m.type == 20 %}
                    <div style="text-align:center;width:500px;padding:10px;" id="accdecfriend">
                        <button style="margin-right:20px;" class="iblock minidugme" id="addfriendbutton" onclick="gh.confirmFriendship({{ m.sender.id }})">{% trans "Accept" %} </button>

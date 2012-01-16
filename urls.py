@@ -36,16 +36,16 @@ urlpatterns += patterns('website.views',
     (r'^login/$', 'login', {}, 'login'),
     (r'^505/$', 'server_error', {}, 'server_error'),
     (r'^404/$', 'server_error', {'template_name':'404.html'}, 'not_found'),
-    (r'^ZXE/SDS/FSSS/SKTR/', include('paypal.standard.ipn.urls')),
+
     (r'^password_reset/$', auth_views.password_reset, {}, 'password_reset'),
     (r'^logout/$', 'logout', {}, 'logout'),
     (r'^localeurl/', include('localeurl.urls')),
     (r'^login_or_register/$', 'register', {'template':'loginorregister.html'}, 'lregister'),
     (r'^register/$', 'register', {}, 'register'),
     (r'^faq/$', 'show_faqs', {}, 'faq'),
-    (r'^book_place/$', 'book_place', {}, 'book_place'),
-    (r'^ppreturn/$', 'paypal_complete', {}, 'paypal_complete'),
-    (r'^ppcancel/$', 'paypal_cancel', {}, 'paypal_cancel'),
+
+    (r'^ZXE/SDS/FSSS/SKTR/', include('paypal.standard.ipn.urls')),
+
     (r'^facebook/', include('django_facebook.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
     url(r'^appsettings/', include('appsettings.urls')),
@@ -72,6 +72,15 @@ urlpatterns += patterns('website.views',
 
 
 
+
+
+urlpatterns += patterns('website.booking',
+    (r'^book_place/$', 'book_place', {}, 'book_place'),
+    (r'^paypal_checkout/$', 'paypal_checkout', {}, 'paypal_checkout'),
+    (r'^ppreturn/$', 'paypal_complete', {}, 'paypal_complete'),
+    (r'^ppcancel/$', 'paypal_cancel', {}, 'paypal_cancel'),
+
+)
 
 
 urlpatterns += patterns('support.views',

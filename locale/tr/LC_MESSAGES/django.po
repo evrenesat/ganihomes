@@ -2,229 +2,1187 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-09 12:55+0200\n"
+"POT-Creation-Date: 2012-01-16 02:37+0200\n"
 "PO-Revision-Date: 2011-12-09 12:55\n"
 "Last-Translator: Evren Esat Ozkan <esat@elipsis.com.tr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.6.2\n"
 
-#: settings.local.py:44 settings.py:44 places/options.py:135
+#: settings.local.py:44 settings.py:53 places/options.py:175
 msgid "English"
 msgstr "İngilizce"
 
-#: settings.local.py:45 settings.py:45 places/options.py:155
+#: settings.local.py:45 settings.py:54 places/options.py:195
 msgid "Turkish"
 msgstr "Türkçe"
 
-#: places/countries.py:5 places/countries.py:256
+#: settings.py:55
+msgid "French"
+msgstr "Fransızca"
+
+#: settings.py:56
+msgid "Deutsch"
+msgstr ""
+
+#: appsettings/templates/appsettings/settings.html:9
+#: templates/admin/base.html:49 templates/admin/change_form.html:21
+#: templates/admin/change_list.html:43
+msgid "Home"
+msgstr "Ev"
+
+#: appsettings/templates/appsettings/settings.html:10
+msgid "Settings"
+msgstr ""
+
+#: django_facebook/views.py:109
+#, python-format
+msgid "You have connected your account to %s's facebook profile"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:56
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:20
+msgid "Font Name and Size"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:81
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:45
+msgid "Font Style"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:83
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:47
+msgid "Bold CTRL + SHIFT + B"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:84
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:48
+msgid "Italic CTRL + SHIFT + I"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:85
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:49
+msgid "Underline CTRL + SHIFT + U"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:87
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:54
+msgid "Font Color"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:88
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:55
+msgid "Background Color"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:96
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:91
+msgid "Lists"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:98
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:95
+msgid "Create an Unordered List"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:99
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:96
+msgid "Create an Ordered List"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:107
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:104
+msgid "Insert Item"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:109
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:106
+msgid "HTML Link CTRL + SHIFT + L"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:110
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:107
+msgid "Insert Image"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:51
+#, fuzzy
+msgid "Subscript"
+msgstr "Açıklama"
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:52
+#, fuzzy
+msgid "Superscript"
+msgstr "Açıklama"
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:57
+msgid "Remove Formatting"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:58
+msgid "Show/Hide Hidden Elements"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:64
+msgid "Align Left CTRL + SHIFT + ["
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:65
+msgid "Align Center CTRL + SHIFT + |"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:66
+msgid "Align Right CTRL + SHIFT + ]"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:67
+msgid "Justify"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:71
+#, fuzzy
+msgid "Paragraph Style"
+msgstr "Paraguay"
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:73
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:75
+msgid "Normal"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:76
+msgid "Header 1"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:77
+msgid "Header 2"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:78
+msgid "Header 3"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:79
+msgid "Header 4"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:80
+msgid "Header 5"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:81
+msgid "Header 6"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:93
+msgid "Indent"
+msgstr ""
+
+#: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:94
+msgid "Outdent"
+msgstr ""
+
+#: paypal/pro/fields.py:99
+#, fuzzy
+msgid "United States of America"
+msgstr "Amerika Birleşik Devletleri"
+
+#: paypal/pro/fields.py:100 places/countries.py:43 places/countries.py:296
+msgid "Canada"
+msgstr "Kanada"
+
+#: paypal/pro/fields.py:101 places/countries.py:5 places/countries.py:256
 msgid "Afghanistan"
 msgstr "Afganistan"
+
+#: paypal/pro/fields.py:102 places/countries.py:7 places/countries.py:258
+msgid "Albania"
+msgstr "Arnavutluk"
+
+#: paypal/pro/fields.py:103 places/countries.py:8 places/countries.py:259
+msgid "Algeria"
+msgstr "Cezayir"
+
+#: paypal/pro/fields.py:104 places/countries.py:9 places/countries.py:260
+msgid "American Samoa"
+msgstr "Amerikan Samoası"
+
+#: paypal/pro/fields.py:105 places/countries.py:10 places/countries.py:261
+msgid "Andorra"
+msgstr "Andorra"
+
+#: paypal/pro/fields.py:106 places/countries.py:11 places/countries.py:262
+msgid "Angola"
+msgstr "Angora"
+
+#: paypal/pro/fields.py:107 places/countries.py:12 places/countries.py:263
+msgid "Anguilla"
+msgstr "Anguilla"
+
+#: paypal/pro/fields.py:108 places/countries.py:13 places/countries.py:264
+msgid "Antarctica"
+msgstr "Antarktika"
+
+#: paypal/pro/fields.py:109
+#, fuzzy
+msgid "Antigua & Barbuda"
+msgstr "Antigua ve Barbuda"
+
+#: paypal/pro/fields.py:110 places/countries.py:15 places/countries.py:266
+msgid "Argentina"
+msgstr "Arjantin"
+
+#: paypal/pro/fields.py:111 places/countries.py:16 places/countries.py:267
+msgid "Armenia"
+msgstr "Ermenistan"
+
+#: paypal/pro/fields.py:112 places/countries.py:17 places/countries.py:268
+msgid "Aruba"
+msgstr "Aruba"
+
+#: paypal/pro/fields.py:113 places/countries.py:18 places/countries.py:269
+msgid "Australia"
+msgstr "Avustralya"
+
+#: paypal/pro/fields.py:114 places/countries.py:19 places/countries.py:270
+msgid "Austria"
+msgstr "Avusturya"
+
+#: paypal/pro/fields.py:115 places/countries.py:20 places/countries.py:271
+msgid "Azerbaijan"
+msgstr "Azerbeycan"
+
+#: paypal/pro/fields.py:116
+#, fuzzy
+msgid "Bahama"
+msgstr "Bahamalar"
+
+#: paypal/pro/fields.py:117 places/countries.py:22 places/countries.py:273
+msgid "Bahrain"
+msgstr "Bahreyn"
+
+#: paypal/pro/fields.py:118 places/countries.py:23 places/countries.py:274
+msgid "Bangladesh"
+msgstr "Bangladeş"
+
+#: paypal/pro/fields.py:119 places/countries.py:24 places/countries.py:275
+msgid "Barbados"
+msgstr "Barbados"
+
+#: paypal/pro/fields.py:120 places/countries.py:25 places/countries.py:276
+msgid "Belarus"
+msgstr "Beyaz rusya"
+
+#: paypal/pro/fields.py:121 places/countries.py:26 places/countries.py:277
+msgid "Belgium"
+msgstr "Belçika"
+
+#: paypal/pro/fields.py:122 places/countries.py:27 places/countries.py:278
+msgid "Belize"
+msgstr "Belize"
+
+#: paypal/pro/fields.py:123 places/countries.py:28 places/countries.py:279
+msgid "Benin"
+msgstr "Benin"
+
+#: paypal/pro/fields.py:124 places/countries.py:29 places/countries.py:280
+msgid "Bermuda"
+msgstr "Bermuda"
+
+#: paypal/pro/fields.py:125 places/countries.py:30 places/countries.py:281
+msgid "Bhutan"
+msgstr "Butan"
+
+#: paypal/pro/fields.py:126
+msgid "Bolivia"
+msgstr ""
+
+#: paypal/pro/fields.py:127 places/countries.py:32 places/countries.py:284
+msgid "Bosnia and Herzegovina"
+msgstr "Bosna-Hersek"
+
+#: paypal/pro/fields.py:128 places/countries.py:33 places/countries.py:285
+msgid "Botswana"
+msgstr "Botsvana"
+
+#: paypal/pro/fields.py:129 places/countries.py:34 places/countries.py:286
+msgid "Bouvet Island"
+msgstr "Bouvet Adası"
+
+#: paypal/pro/fields.py:130 places/countries.py:35 places/countries.py:287
+msgid "Brazil"
+msgstr "Brezilya"
+
+#: paypal/pro/fields.py:131 places/countries.py:36 places/countries.py:288
+msgid "British Indian Ocean Territory"
+msgstr "İngiliz Hint Okyanusu Toprakları"
+
+#: paypal/pro/fields.py:132 places/countries.py:289
+msgid "British Virgin Islands"
+msgstr "İngiliz Virgin Adaları"
+
+#: paypal/pro/fields.py:133 places/countries.py:37 places/countries.py:290
+msgid "Brunei Darussalam"
+msgstr "Brunei Sultanlığı"
+
+#: paypal/pro/fields.py:134 places/countries.py:38 places/countries.py:291
+msgid "Bulgaria"
+msgstr "Bulgaristan"
+
+#: paypal/pro/fields.py:135 places/countries.py:39 places/countries.py:292
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+#: paypal/pro/fields.py:136 places/countries.py:40 places/countries.py:293
+msgid "Burundi"
+msgstr "Burundi"
+
+#: paypal/pro/fields.py:137 places/countries.py:41 places/countries.py:294
+msgid "Cambodia"
+msgstr "Kamboçya"
+
+#: paypal/pro/fields.py:138 places/countries.py:42 places/countries.py:295
+msgid "Cameroon"
+msgstr "Kamerun"
+
+#: paypal/pro/fields.py:139 places/countries.py:44 places/countries.py:297
+msgid "Cape Verde"
+msgstr "Cape Verde"
+
+#: paypal/pro/fields.py:140 places/countries.py:45 places/countries.py:298
+msgid "Cayman Islands"
+msgstr "Cayman Adaları"
+
+#: paypal/pro/fields.py:141 places/countries.py:46 places/countries.py:299
+msgid "Central African Republic"
+msgstr "Orta Afrika Cumhuriyeti"
+
+#: paypal/pro/fields.py:142 places/countries.py:47 places/countries.py:300
+msgid "Chad"
+msgstr "Çad"
+
+#: paypal/pro/fields.py:143 places/countries.py:48 places/countries.py:301
+msgid "Chile"
+msgstr "Şili"
+
+#: paypal/pro/fields.py:144 places/countries.py:49 places/countries.py:302
+msgid "China"
+msgstr "Çin"
+
+#: paypal/pro/fields.py:145 places/countries.py:50 places/countries.py:303
+msgid "Christmas Island"
+msgstr "Christmas Adası"
+
+#: paypal/pro/fields.py:146 places/countries.py:51 places/countries.py:304
+msgid "Cocos (Keeling) Islands"
+msgstr "Cocos (Keeling) Islands"
+
+#: paypal/pro/fields.py:147 places/countries.py:52 places/countries.py:305
+msgid "Colombia"
+msgstr "Kolombiya"
+
+#: paypal/pro/fields.py:148 places/countries.py:53 places/countries.py:306
+msgid "Comoros"
+msgstr "Komorlar"
+
+#: paypal/pro/fields.py:149 places/countries.py:54 places/countries.py:307
+msgid "Congo"
+msgstr "Kongo"
+
+#: paypal/pro/fields.py:150
+#, fuzzy
+msgid "Cook Iislands"
+msgstr "Cook Adaları"
+
+#: paypal/pro/fields.py:151 places/countries.py:57 places/countries.py:310
+msgid "Costa Rica"
+msgstr "Kostarika"
+
+#: paypal/pro/fields.py:152 places/countries.py:59 places/countries.py:312
+msgid "Croatia"
+msgstr "Hırvatistan"
+
+#: paypal/pro/fields.py:153 places/countries.py:60 places/countries.py:313
+msgid "Cuba"
+msgstr "Küba"
+
+#: paypal/pro/fields.py:154 places/countries.py:61 places/countries.py:314
+msgid "Cyprus"
+msgstr "Kıbrıs"
+
+#: paypal/pro/fields.py:155 places/countries.py:62 places/countries.py:315
+msgid "Czech Republic"
+msgstr "Çek Cumhuriyeti"
+
+#: paypal/pro/fields.py:156 places/countries.py:63 places/countries.py:317
+msgid "Denmark"
+msgstr "Danimarka"
+
+#: paypal/pro/fields.py:157 places/countries.py:64 places/countries.py:318
+msgid "Djibouti"
+msgstr "Cibuti"
+
+#: paypal/pro/fields.py:158 places/countries.py:65 places/countries.py:319
+msgid "Dominica"
+msgstr "Dominika"
+
+#: paypal/pro/fields.py:159 places/countries.py:66 places/countries.py:320
+msgid "Dominican Republic"
+msgstr "Dominik Cumhuriyeti"
+
+#: paypal/pro/fields.py:160
+msgid "East Timor"
+msgstr ""
+
+#: paypal/pro/fields.py:161 places/countries.py:67 places/countries.py:321
+msgid "Ecuador"
+msgstr "Ekvador"
+
+#: paypal/pro/fields.py:162 places/countries.py:68 places/countries.py:322
+msgid "Egypt"
+msgstr "Mısır"
+
+#: paypal/pro/fields.py:163 places/countries.py:69 places/countries.py:323
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: paypal/pro/fields.py:164 places/countries.py:70 places/countries.py:324
+msgid "Equatorial Guinea"
+msgstr "Ekvator Ginesi"
+
+#: paypal/pro/fields.py:165 places/countries.py:71 places/countries.py:325
+msgid "Eritrea"
+msgstr "Eritre"
+
+#: paypal/pro/fields.py:166 places/countries.py:72 places/countries.py:326
+msgid "Estonia"
+msgstr "Estonya"
+
+#: paypal/pro/fields.py:167 places/countries.py:73 places/countries.py:327
+msgid "Ethiopia"
+msgstr "Etiyopya"
+
+#: paypal/pro/fields.py:168 places/countries.py:74 places/countries.py:328
+msgid "Falkland Islands (Malvinas)"
+msgstr "Falkland Adaları (Malvinas)"
+
+#: paypal/pro/fields.py:169 places/countries.py:75 places/countries.py:329
+msgid "Faroe Islands"
+msgstr "Faroe Adaları"
+
+#: paypal/pro/fields.py:170 places/countries.py:76 places/countries.py:331
+msgid "Fiji"
+msgstr "Fiji"
+
+#: paypal/pro/fields.py:171 places/countries.py:77 places/countries.py:332
+msgid "Finland"
+msgstr "Finlandiya"
+
+#: paypal/pro/fields.py:172 places/countries.py:78 places/countries.py:333
+msgid "France"
+msgstr "Fransa"
+
+#: paypal/pro/fields.py:173
+msgid "France, Metropolitan"
+msgstr ""
+
+#: paypal/pro/fields.py:174 places/countries.py:79 places/countries.py:334
+msgid "French Guiana"
+msgstr "Fransız Guyanası"
+
+#: paypal/pro/fields.py:175 places/countries.py:80 places/countries.py:335
+msgid "French Polynesia"
+msgstr "Fransız Polinezyası"
+
+#: paypal/pro/fields.py:176 places/countries.py:81 places/countries.py:336
+msgid "French Southern Territories"
+msgstr "Fransız Güney Toprakları"
+
+#: paypal/pro/fields.py:177 places/countries.py:82 places/countries.py:337
+msgid "Gabon"
+msgstr "Gabon"
+
+#: paypal/pro/fields.py:178 places/countries.py:83 places/countries.py:338
+msgid "Gambia"
+msgstr "Gambiya"
+
+#: paypal/pro/fields.py:179 places/countries.py:84 places/countries.py:339
+msgid "Georgia"
+msgstr "Georgia"
+
+#: paypal/pro/fields.py:180 places/countries.py:85 places/countries.py:340
+msgid "Germany"
+msgstr "Almanya"
+
+#: paypal/pro/fields.py:181 places/countries.py:86 places/countries.py:341
+msgid "Ghana"
+msgstr "Gana"
+
+#: paypal/pro/fields.py:182 places/countries.py:87 places/countries.py:342
+msgid "Gibraltar"
+msgstr "Cebelitarık"
+
+#: paypal/pro/fields.py:183 places/countries.py:88 places/countries.py:343
+msgid "Greece"
+msgstr "Yunanistan"
+
+#: paypal/pro/fields.py:184 places/countries.py:89 places/countries.py:344
+msgid "Greenland"
+msgstr "Grönland"
+
+#: paypal/pro/fields.py:185 places/countries.py:90 places/countries.py:345
+msgid "Grenada"
+msgstr "Grenada"
+
+#: paypal/pro/fields.py:186 places/countries.py:91 places/countries.py:346
+msgid "Guadeloupe"
+msgstr "Guadeloupe"
+
+#: paypal/pro/fields.py:187 places/countries.py:92 places/countries.py:347
+msgid "Guam"
+msgstr "Guam"
+
+#: paypal/pro/fields.py:188 places/countries.py:93 places/countries.py:348
+msgid "Guatemala"
+msgstr "Guatemala"
+
+#: paypal/pro/fields.py:189 places/countries.py:95 places/countries.py:350
+msgid "Guinea"
+msgstr "Gine"
+
+#: paypal/pro/fields.py:190
+#, fuzzy
+msgid "Guinea-Bissau"
+msgstr "Gine-Bissau"
+
+#: paypal/pro/fields.py:191 places/countries.py:97 places/countries.py:352
+msgid "Guyana"
+msgstr "Guyana"
+
+#: paypal/pro/fields.py:192 places/countries.py:98 places/countries.py:353
+msgid "Haiti"
+msgstr "Haiti"
+
+#: paypal/pro/fields.py:193
+#, fuzzy
+msgid "Heard & McDonald Islands"
+msgstr "Heard Adası ve McDonald Adaları"
+
+#: paypal/pro/fields.py:194 places/countries.py:101 places/countries.py:356
+msgid "Honduras"
+msgstr "Honduras"
+
+#: paypal/pro/fields.py:195 places/countries.py:102 places/countries.py:357
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+#: paypal/pro/fields.py:196 places/countries.py:103 places/countries.py:358
+msgid "Hungary"
+msgstr "Macaristan"
+
+#: paypal/pro/fields.py:197 places/countries.py:104 places/countries.py:359
+msgid "Iceland"
+msgstr "İzlanda"
+
+#: paypal/pro/fields.py:198 places/countries.py:105 places/countries.py:360
+msgid "India"
+msgstr "Hindistan"
+
+#: paypal/pro/fields.py:199 places/countries.py:106 places/countries.py:361
+msgid "Indonesia"
+msgstr "Endonezya"
+
+#: paypal/pro/fields.py:200 places/countries.py:108 places/countries.py:363
+msgid "Iraq"
+msgstr "Irak"
+
+#: paypal/pro/fields.py:201 places/countries.py:109 places/countries.py:364
+msgid "Ireland"
+msgstr "İrlanda"
+
+#: paypal/pro/fields.py:202 places/countries.py:365
+msgid "Islamic Republic of Iran"
+msgstr "İran İslam Cumhuriyeti"
+
+#: paypal/pro/fields.py:203 places/countries.py:111 places/countries.py:367
+msgid "Israel"
+msgstr "İsrail"
+
+#: paypal/pro/fields.py:204 places/countries.py:112 places/countries.py:368
+msgid "Italy"
+msgstr "İtalya"
+
+#: paypal/pro/fields.py:205
+msgid "Ivory Coast"
+msgstr ""
+
+#: paypal/pro/fields.py:206 places/countries.py:113 places/countries.py:369
+msgid "Jamaica"
+msgstr "Jamaika"
+
+#: paypal/pro/fields.py:207 places/countries.py:114 places/countries.py:370
+msgid "Japan"
+msgstr "Japonya"
+
+#: paypal/pro/fields.py:208 places/countries.py:116 places/countries.py:372
+msgid "Jordan"
+msgstr "Ürdün"
+
+#: paypal/pro/fields.py:209 places/countries.py:117 places/countries.py:373
+msgid "Kazakhstan"
+msgstr "Kazakistan"
+
+#: paypal/pro/fields.py:210 places/countries.py:118 places/countries.py:374
+msgid "Kenya"
+msgstr "Kenya"
+
+#: paypal/pro/fields.py:211 places/countries.py:119 places/countries.py:375
+msgid "Kiribati"
+msgstr "Kiribati"
+
+#: paypal/pro/fields.py:212 places/countries.py:120 places/countries.py:376
+msgid "Korea, Democratic People's Republic of"
+msgstr "Kore Demokratik Halk Cumhuriyeti"
+
+#: paypal/pro/fields.py:213 places/countries.py:121 places/countries.py:377
+msgid "Korea, Republic of"
+msgstr "Kore Cumhuriyeti"
+
+#: paypal/pro/fields.py:214 places/countries.py:122 places/countries.py:378
+msgid "Kuwait"
+msgstr "Kuveyt"
+
+#: paypal/pro/fields.py:215 places/countries.py:123 places/countries.py:379
+msgid "Kyrgyzstan"
+msgstr "Kırgızistan"
+
+#: paypal/pro/fields.py:216 places/countries.py:124 places/countries.py:380
+msgid "Lao People's Democratic Republic"
+msgstr "Lao Demokratik Halk Cumhuriyeti"
+
+#: paypal/pro/fields.py:217 places/countries.py:125 places/countries.py:381
+msgid "Latvia"
+msgstr "Letonya"
+
+#: paypal/pro/fields.py:218 places/countries.py:126 places/countries.py:382
+msgid "Lebanon"
+msgstr "Lübnan"
+
+#: paypal/pro/fields.py:219 places/countries.py:127 places/countries.py:383
+msgid "Lesotho"
+msgstr "Lesoto"
+
+#: paypal/pro/fields.py:220 places/countries.py:128 places/countries.py:384
+msgid "Liberia"
+msgstr "Liberya"
+
+#: paypal/pro/fields.py:221 places/countries.py:129 places/countries.py:385
+msgid "Libyan Arab Jamahiriya"
+msgstr "Libya Arap Halk Sosyalist Cemahiriyesi"
+
+#: paypal/pro/fields.py:222 places/countries.py:130 places/countries.py:386
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+#: paypal/pro/fields.py:223 places/countries.py:131 places/countries.py:387
+msgid "Lithuania"
+msgstr "Litvanya"
+
+#: paypal/pro/fields.py:224 places/countries.py:132 places/countries.py:388
+msgid "Luxembourg"
+msgstr "Lüksemburg"
+
+#: paypal/pro/fields.py:225
+#, fuzzy
+msgid "Macau"
+msgstr "Makao"
+
+#: paypal/pro/fields.py:226 places/countries.py:135 places/countries.py:391
+msgid "Madagascar"
+msgstr "Madagaskar"
+
+#: paypal/pro/fields.py:227 places/countries.py:136 places/countries.py:392
+msgid "Malawi"
+msgstr "Malawi"
+
+#: paypal/pro/fields.py:228 places/countries.py:137 places/countries.py:393
+msgid "Malaysia"
+msgstr "Malezya"
+
+#: paypal/pro/fields.py:229 places/countries.py:138 places/countries.py:394
+msgid "Maldives"
+msgstr "Maldivler"
+
+#: paypal/pro/fields.py:230 places/countries.py:139 places/countries.py:395
+msgid "Mali"
+msgstr "Mali"
+
+#: paypal/pro/fields.py:231 places/countries.py:140 places/countries.py:396
+msgid "Malta"
+msgstr "Malta"
+
+#: paypal/pro/fields.py:232 places/countries.py:141 places/countries.py:397
+msgid "Marshall Islands"
+msgstr "Marshall Adaları"
+
+#: paypal/pro/fields.py:233 places/countries.py:142 places/countries.py:398
+msgid "Martinique"
+msgstr "Martinik"
+
+#: paypal/pro/fields.py:234 places/countries.py:143 places/countries.py:399
+msgid "Mauritania"
+msgstr "Moritanya"
+
+#: paypal/pro/fields.py:235 places/countries.py:144 places/countries.py:400
+msgid "Mauritius"
+msgstr "Mauritius"
+
+#: paypal/pro/fields.py:236 places/countries.py:145 places/countries.py:401
+msgid "Mayotte"
+msgstr "Mayotte"
+
+#: paypal/pro/fields.py:237 places/countries.py:146 places/countries.py:402
+msgid "Mexico"
+msgstr "Meksika"
+
+#: paypal/pro/fields.py:238
+#, fuzzy
+msgid "Micronesia"
+msgstr "Endonezya"
+
+#: paypal/pro/fields.py:239 places/countries.py:148 places/countries.py:404
+msgid "Moldova, Republic of"
+msgstr "Moldova, Cumhuriyeti"
+
+#: paypal/pro/fields.py:240 places/countries.py:149 places/countries.py:405
+msgid "Monaco"
+msgstr "Monako"
+
+#: paypal/pro/fields.py:241 places/countries.py:150 places/countries.py:406
+msgid "Mongolia"
+msgstr "Moğolistan"
+
+#: paypal/pro/fields.py:242
+#, fuzzy
+msgid "Monserrat"
+msgstr "Montserrat"
+
+#: paypal/pro/fields.py:243 places/countries.py:153 places/countries.py:409
+msgid "Morocco"
+msgstr "Fas"
+
+#: paypal/pro/fields.py:244 places/countries.py:154 places/countries.py:410
+msgid "Mozambique"
+msgstr "Mozambik"
+
+#: paypal/pro/fields.py:245 places/countries.py:155 places/countries.py:411
+msgid "Myanmar"
+msgstr "Myanmar"
+
+#: paypal/pro/fields.py:246 places/countries.py:156 places/countries.py:412
+msgid "Namibia"
+msgstr "Namibya"
+
+#: paypal/pro/fields.py:247 places/countries.py:157 places/countries.py:413
+msgid "Nauru"
+msgstr "Nauru"
+
+#: paypal/pro/fields.py:248 places/countries.py:158 places/countries.py:414
+msgid "Nepal"
+msgstr "Nepal"
+
+#: paypal/pro/fields.py:249 places/countries.py:159 places/countries.py:415
+msgid "Netherlands"
+msgstr "Hollanda"
+
+#: paypal/pro/fields.py:250 places/countries.py:160 places/countries.py:416
+msgid "Netherlands Antilles"
+msgstr "Hollanda Antilleri"
+
+#: paypal/pro/fields.py:251 places/countries.py:161 places/countries.py:417
+msgid "New Caledonia"
+msgstr "Yeni Kaledonya"
+
+#: paypal/pro/fields.py:252 places/countries.py:162 places/countries.py:418
+msgid "New Zealand"
+msgstr "Yeni Zelanda"
+
+#: paypal/pro/fields.py:253 places/countries.py:163 places/countries.py:419
+msgid "Nicaragua"
+msgstr "Nikaragua"
+
+#: paypal/pro/fields.py:254 places/countries.py:164 places/countries.py:420
+msgid "Niger"
+msgstr "Nijer"
+
+#: paypal/pro/fields.py:255 places/countries.py:165 places/countries.py:421
+msgid "Nigeria"
+msgstr "Nijerya"
+
+#: paypal/pro/fields.py:256 places/countries.py:166 places/countries.py:422
+msgid "Niue"
+msgstr "Niue"
+
+#: paypal/pro/fields.py:257 places/countries.py:167 places/countries.py:423
+msgid "Norfolk Island"
+msgstr "Norfolk Adası"
+
+#: paypal/pro/fields.py:258 places/countries.py:168 places/countries.py:424
+msgid "Northern Mariana Islands"
+msgstr "Kuzey Mariana Adaları"
+
+#: paypal/pro/fields.py:259 places/countries.py:169 places/countries.py:425
+msgid "Norway"
+msgstr "Norveç"
+
+#: paypal/pro/fields.py:260 places/countries.py:170 places/countries.py:427
+msgid "Oman"
+msgstr "Umman"
+
+#: paypal/pro/fields.py:261 places/countries.py:171 places/countries.py:428
+msgid "Pakistan"
+msgstr "Pakistan"
+
+#: paypal/pro/fields.py:262 places/countries.py:172 places/countries.py:429
+msgid "Palau"
+msgstr "Palau"
+
+#: paypal/pro/fields.py:263 places/countries.py:174 places/countries.py:431
+msgid "Panama"
+msgstr "Panama"
+
+#: paypal/pro/fields.py:264 places/countries.py:175 places/countries.py:432
+msgid "Papua New Guinea"
+msgstr "Papua Yeni Gine"
+
+#: paypal/pro/fields.py:265 places/countries.py:176 places/countries.py:433
+msgid "Paraguay"
+msgstr "Paraguay"
+
+#: paypal/pro/fields.py:266 places/countries.py:177 places/countries.py:434
+msgid "Peru"
+msgstr "Peru"
+
+#: paypal/pro/fields.py:267 places/countries.py:178 places/countries.py:435
+msgid "Philippines"
+msgstr "Filipinler"
+
+#: paypal/pro/fields.py:268 places/countries.py:179 places/countries.py:436
+msgid "Pitcairn"
+msgstr "Pitcairn"
+
+#: paypal/pro/fields.py:269 places/countries.py:180 places/countries.py:438
+msgid "Poland"
+msgstr "Polonya"
+
+#: paypal/pro/fields.py:270 places/countries.py:181 places/countries.py:439
+msgid "Portugal"
+msgstr "Portekiz"
+
+#: paypal/pro/fields.py:271 places/countries.py:182 places/countries.py:441
+msgid "Puerto Rico"
+msgstr "Porto Riko"
+
+#: paypal/pro/fields.py:272 places/countries.py:183 places/countries.py:442
+msgid "Qatar"
+msgstr "Katar"
+
+#: paypal/pro/fields.py:273
+#, fuzzy
+msgid "Reunion"
+msgstr "Réunion"
+
+#: paypal/pro/fields.py:274 places/countries.py:185 places/countries.py:446
+msgid "Romania"
+msgstr "Romanya"
+
+#: paypal/pro/fields.py:275 places/countries.py:186 places/countries.py:447
+msgid "Russian Federation"
+msgstr "Rusya Federasyonu"
+
+#: paypal/pro/fields.py:276 places/countries.py:187 places/countries.py:448
+msgid "Rwanda"
+msgstr "Ruanda"
+
+#: paypal/pro/fields.py:277 places/countries.py:191 places/countries.py:452
+msgid "Saint Lucia"
+msgstr "Saint Lucia"
+
+#: paypal/pro/fields.py:278 places/countries.py:195 places/countries.py:456
+msgid "Samoa"
+msgstr "Samoa"
+
+#: paypal/pro/fields.py:279 places/countries.py:196 places/countries.py:457
+msgid "San Marino"
+msgstr "San Marino"
+
+#: paypal/pro/fields.py:280
+#, fuzzy
+msgid "Sao Tome & Principe"
+msgstr "Sao Tome ve Principe"
+
+#: paypal/pro/fields.py:281 places/countries.py:198 places/countries.py:459
+msgid "Saudi Arabia"
+msgstr "Suudi Arabistan"
+
+#: paypal/pro/fields.py:282 places/countries.py:199 places/countries.py:460
+msgid "Senegal"
+msgstr "Senegal"
+
+#: paypal/pro/fields.py:283 places/countries.py:201 places/countries.py:462
+msgid "Seychelles"
+msgstr "Seyşeller"
+
+#: paypal/pro/fields.py:284 places/countries.py:202 places/countries.py:463
+msgid "Sierra Leone"
+msgstr "Sierra Leone"
+
+#: paypal/pro/fields.py:285 places/countries.py:203 places/countries.py:464
+msgid "Singapore"
+msgstr "Singapur"
+
+#: paypal/pro/fields.py:286 places/countries.py:204 places/countries.py:465
+msgid "Slovakia"
+msgstr "Slovakya"
+
+#: paypal/pro/fields.py:287 places/countries.py:205 places/countries.py:466
+msgid "Slovenia"
+msgstr "Slovenya"
+
+#: paypal/pro/fields.py:288 places/countries.py:206 places/countries.py:467
+msgid "Solomon Islands"
+msgstr "Solomon Adaları"
+
+#: paypal/pro/fields.py:289 places/countries.py:207 places/countries.py:468
+msgid "Somalia"
+msgstr "Somali"
+
+#: paypal/pro/fields.py:290 places/countries.py:208 places/countries.py:469
+msgid "South Africa"
+msgstr "Güney Afrika"
+
+#: paypal/pro/fields.py:291 places/countries.py:209 places/countries.py:470
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Güney Georgia ve Güney Sandwich Adaları"
+
+#: paypal/pro/fields.py:292 places/countries.py:210 places/countries.py:471
+msgid "Spain"
+msgstr "İspanya"
+
+#: paypal/pro/fields.py:293 places/countries.py:211 places/countries.py:472
+msgid "Sri Lanka"
+msgstr "Sri Lanka"
+
+#: paypal/pro/fields.py:294
+#, fuzzy
+msgid "St. Helena"
+msgstr "Saint Helena"
+
+#: paypal/pro/fields.py:295
+#, fuzzy
+msgid "St. Kitts and Nevis"
+msgstr "Saint Kitts ve Nevis"
+
+#: paypal/pro/fields.py:296
+#, fuzzy
+msgid "St. Pierre & Miquelon"
+msgstr "Saint Pierre ve Miquelon"
+
+#: paypal/pro/fields.py:297
+#, fuzzy
+msgid "St. Vincent & the Grenadines"
+msgstr "Saint Vincent ve Grenadinler"
+
+#: paypal/pro/fields.py:298 places/countries.py:212 places/countries.py:473
+msgid "Sudan"
+msgstr "Sudan"
+
+#: paypal/pro/fields.py:299 places/countries.py:213 places/countries.py:474
+msgid "Suriname"
+msgstr "Surinam"
+
+#: paypal/pro/fields.py:300
+#, fuzzy
+msgid "Svalbard & Jan Mayen Islands"
+msgstr "Svalbard ve Jan Mayen"
+
+#: paypal/pro/fields.py:301 places/countries.py:215 places/countries.py:476
+msgid "Swaziland"
+msgstr "Svaziland"
+
+#: paypal/pro/fields.py:302 places/countries.py:216 places/countries.py:477
+msgid "Sweden"
+msgstr "İsveç"
+
+#: paypal/pro/fields.py:303 places/countries.py:217 places/countries.py:478
+msgid "Switzerland"
+msgstr "İsviçre"
+
+#: paypal/pro/fields.py:304 places/countries.py:218 places/countries.py:479
+msgid "Syrian Arab Republic"
+msgstr "Suriye Arap Cumhuriyeti"
+
+#: paypal/pro/fields.py:305 places/countries.py:219 places/countries.py:480
+msgid "Taiwan, Province of China"
+msgstr "Çin, Tayvan, İl"
+
+#: paypal/pro/fields.py:306 places/countries.py:220 places/countries.py:481
+msgid "Tajikistan"
+msgstr "Tacikistan"
+
+#: paypal/pro/fields.py:307 places/countries.py:221 places/countries.py:482
+msgid "Tanzania, United Republic of"
+msgstr "Tanzanya, Birleşik Cumhuriyeti"
+
+#: paypal/pro/fields.py:308 places/countries.py:222 places/countries.py:483
+msgid "Thailand"
+msgstr "Tayland"
+
+#: paypal/pro/fields.py:309 places/countries.py:224 places/countries.py:487
+msgid "Togo"
+msgstr "Togo"
+
+#: paypal/pro/fields.py:310 places/countries.py:225 places/countries.py:488
+msgid "Tokelau"
+msgstr "Tokelau"
+
+#: paypal/pro/fields.py:311 places/countries.py:226 places/countries.py:489
+msgid "Tonga"
+msgstr "Tonga"
+
+#: paypal/pro/fields.py:312
+#, fuzzy
+msgid "Trinidad & Tobago"
+msgstr "Trinidad ve Tobago"
+
+#: paypal/pro/fields.py:313 places/countries.py:228 places/countries.py:491
+msgid "Tunisia"
+msgstr "Tunus"
+
+#: paypal/pro/fields.py:314 places/countries.py:229 places/countries.py:492
+msgid "Turkey"
+msgstr "Türkiye"
+
+#: paypal/pro/fields.py:315 places/countries.py:230 places/countries.py:493
+msgid "Turkmenistan"
+msgstr "Türkmenistan"
+
+#: paypal/pro/fields.py:316
+#, fuzzy
+msgid "Turks & Caicos Islands"
+msgstr "Turks ve Caicos Adaları"
+
+#: paypal/pro/fields.py:317 places/countries.py:232 places/countries.py:495
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+#: paypal/pro/fields.py:318 places/countries.py:233 places/countries.py:497
+msgid "Uganda"
+msgstr "Uganda"
+
+#: paypal/pro/fields.py:319 places/countries.py:234 places/countries.py:498
+msgid "Ukraine"
+msgstr "Ukrayna"
+
+#: paypal/pro/fields.py:320 places/countries.py:235 places/countries.py:499
+msgid "United Arab Emirates"
+msgstr "Birleşik Arap Emirlikleri"
+
+#: paypal/pro/fields.py:321
+#, fuzzy
+msgid "United Kingdom (Great Britain)"
+msgstr "Büyük Britanya"
+
+#: paypal/pro/fields.py:322 places/countries.py:238 places/countries.py:503
+msgid "United States Minor Outlying Islands"
+msgstr "Amerika Birleşik Devletleri Küçük Dış Adaları"
+
+#: paypal/pro/fields.py:323
+#, fuzzy
+msgid "United States Virgin Islands"
+msgstr "Amerika Birleşik Devletleri Küçük Dış Adaları"
+
+#: paypal/pro/fields.py:324
+msgid "Unknown or unspecified country"
+msgstr ""
+
+#: paypal/pro/fields.py:325 places/countries.py:239 places/countries.py:504
+msgid "Uruguay"
+msgstr "Uruguay"
+
+#: paypal/pro/fields.py:326 places/countries.py:240 places/countries.py:505
+msgid "Uzbekistan"
+msgstr "Özbekistan"
+
+#: paypal/pro/fields.py:327 places/countries.py:241 places/countries.py:506
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+#: paypal/pro/fields.py:328
+#, fuzzy
+msgid "Vatican City State (Holy See)"
+msgstr "Holy See (Vatikan Şehir Devleti)"
+
+#: paypal/pro/fields.py:329
+msgid "Venezuela"
+msgstr ""
+
+#: paypal/pro/fields.py:330 places/countries.py:243 places/countries.py:508
+msgid "Viet Nam"
+msgstr "Viet Nam"
+
+#: paypal/pro/fields.py:331
+#, fuzzy
+msgid "Wallis & Futuna Islands"
+msgstr "Wallis ve Futuna"
+
+#: paypal/pro/fields.py:332 places/countries.py:247 places/countries.py:512
+msgid "Western Sahara"
+msgstr "Batı Sahara"
+
+#: paypal/pro/fields.py:333 places/countries.py:248 places/countries.py:513
+msgid "Yemen"
+msgstr "Yemen"
+
+#: paypal/pro/fields.py:334
+msgid "Yugoslavia"
+msgstr ""
+
+#: paypal/pro/fields.py:335
+msgid "Zaire"
+msgstr ""
+
+#: paypal/pro/fields.py:336 places/countries.py:249 places/countries.py:514
+msgid "Zambia"
+msgstr "Zambiya"
+
+#: paypal/pro/fields.py:337 places/countries.py:250 places/countries.py:515
+msgid "Zimbabwe"
+msgstr "Zimbabve"
 
 #: places/countries.py:6 places/countries.py:257
 msgid "Åland Islands"
 msgstr "Åland Adaları"
 
-#: places/countries.py:7 places/countries.py:258
-msgid "Albania"
-msgstr "Arnavutluk"
-
-#: places/countries.py:8 places/countries.py:259
-msgid "Algeria"
-msgstr "Cezayir"
-
-#: places/countries.py:9 places/countries.py:260
-msgid "American Samoa"
-msgstr "Amerikan Samoası"
-
-#: places/countries.py:10 places/countries.py:261
-msgid "Andorra"
-msgstr "Andorra"
-
-#: places/countries.py:11 places/countries.py:262
-msgid "Angola"
-msgstr "Angora"
-
-#: places/countries.py:12 places/countries.py:263
-msgid "Anguilla"
-msgstr "Anguilla"
-
-#: places/countries.py:13 places/countries.py:264
-msgid "Antarctica"
-msgstr "Antarktika"
-
 #: places/countries.py:14 places/countries.py:265
 msgid "Antigua and Barbuda"
 msgstr "Antigua ve Barbuda"
-
-#: places/countries.py:15 places/countries.py:266
-msgid "Argentina"
-msgstr "Arjantin"
-
-#: places/countries.py:16 places/countries.py:267
-msgid "Armenia"
-msgstr "Ermenistan"
-
-#: places/countries.py:17 places/countries.py:268
-msgid "Aruba"
-msgstr "Aruba"
-
-#: places/countries.py:18 places/countries.py:269
-msgid "Australia"
-msgstr "Avustralya"
-
-#: places/countries.py:19 places/countries.py:270
-msgid "Austria"
-msgstr "Avusturya"
-
-#: places/countries.py:20 places/countries.py:271
-msgid "Azerbaijan"
-msgstr "Azerbeycan"
 
 #: places/countries.py:21 places/countries.py:272
 msgid "Bahamas"
 msgstr "Bahamalar"
 
-#: places/countries.py:22 places/countries.py:273
-msgid "Bahrain"
-msgstr "Bahreyn"
-
-#: places/countries.py:23 places/countries.py:274
-msgid "Bangladesh"
-msgstr "Bangladeş"
-
-#: places/countries.py:24 places/countries.py:275
-msgid "Barbados"
-msgstr "Barbados"
-
-#: places/countries.py:25 places/countries.py:276
-msgid "Belarus"
-msgstr "Beyaz rusya"
-
-#: places/countries.py:26 places/countries.py:277
-msgid "Belgium"
-msgstr "Belçika"
-
-#: places/countries.py:27 places/countries.py:278
-msgid "Belize"
-msgstr "Belize"
-
-#: places/countries.py:28 places/countries.py:279
-msgid "Benin"
-msgstr "Benin"
-
-#: places/countries.py:29 places/countries.py:280
-msgid "Bermuda"
-msgstr "Bermuda"
-
-#: places/countries.py:30 places/countries.py:281
-msgid "Bhutan"
-msgstr "Butan"
-
 #: places/countries.py:31 places/countries.py:283
 msgid "Bolivia, Plurinational State of"
 msgstr "Bolivya, Çokuluslu Devlet"
-
-#: places/countries.py:32 places/countries.py:284
-msgid "Bosnia and Herzegovina"
-msgstr "Bosna-Hersek"
-
-#: places/countries.py:33 places/countries.py:285
-msgid "Botswana"
-msgstr "Botsvana"
-
-#: places/countries.py:34 places/countries.py:286
-msgid "Bouvet Island"
-msgstr "Bouvet Adası"
-
-#: places/countries.py:35 places/countries.py:287
-msgid "Brazil"
-msgstr "Brezilya"
-
-#: places/countries.py:36 places/countries.py:288
-msgid "British Indian Ocean Territory"
-msgstr "İngiliz Hint Okyanusu Toprakları"
-
-#: places/countries.py:37 places/countries.py:290
-msgid "Brunei Darussalam"
-msgstr "Brunei Sultanlığı"
-
-#: places/countries.py:38 places/countries.py:291
-msgid "Bulgaria"
-msgstr "Bulgaristan"
-
-#: places/countries.py:39 places/countries.py:292
-msgid "Burkina Faso"
-msgstr "Burkina Faso"
-
-#: places/countries.py:40 places/countries.py:293
-msgid "Burundi"
-msgstr "Burundi"
-
-#: places/countries.py:41 places/countries.py:294
-msgid "Cambodia"
-msgstr "Kamboçya"
-
-#: places/countries.py:42 places/countries.py:295
-msgid "Cameroon"
-msgstr "Kamerun"
-
-#: places/countries.py:43 places/countries.py:296
-msgid "Canada"
-msgstr "Kanada"
-
-#: places/countries.py:44 places/countries.py:297
-msgid "Cape Verde"
-msgstr "Cape Verde"
-
-#: places/countries.py:45 places/countries.py:298
-msgid "Cayman Islands"
-msgstr "Cayman Adaları"
-
-#: places/countries.py:46 places/countries.py:299
-msgid "Central African Republic"
-msgstr "Orta Afrika Cumhuriyeti"
-
-#: places/countries.py:47 places/countries.py:300
-msgid "Chad"
-msgstr "Çad"
-
-#: places/countries.py:48 places/countries.py:301
-msgid "Chile"
-msgstr "Şili"
-
-#: places/countries.py:49 places/countries.py:302
-msgid "China"
-msgstr "Çin"
-
-#: places/countries.py:50 places/countries.py:303
-msgid "Christmas Island"
-msgstr "Christmas Adası"
-
-#: places/countries.py:51 places/countries.py:304
-msgid "Cocos (Keeling) Islands"
-msgstr "Cocos (Keeling) Islands"
-
-#: places/countries.py:52 places/countries.py:305
-msgid "Colombia"
-msgstr "Kolombiya"
-
-#: places/countries.py:53 places/countries.py:306
-msgid "Comoros"
-msgstr "Komorlar"
-
-#: places/countries.py:54 places/countries.py:307
-msgid "Congo"
-msgstr "Kongo"
 
 #: places/countries.py:55 places/countries.py:308
 msgid "Congo, The Democratic Republic of the"
@@ -234,173 +1192,17 @@ msgstr "Kongo Demokratik Cumhuriyeti"
 msgid "Cook Islands"
 msgstr "Cook Adaları"
 
-#: places/countries.py:57 places/countries.py:310
-msgid "Costa Rica"
-msgstr "Kostarika"
-
 #: places/countries.py:58 places/countries.py:311
 msgid "Côte D'ivoire"
 msgstr "Côte d'Ivoire"
-
-#: places/countries.py:59 places/countries.py:312
-msgid "Croatia"
-msgstr "Hırvatistan"
-
-#: places/countries.py:60 places/countries.py:313
-msgid "Cuba"
-msgstr "Küba"
-
-#: places/countries.py:61 places/countries.py:314
-msgid "Cyprus"
-msgstr "Kıbrıs"
-
-#: places/countries.py:62 places/countries.py:315
-msgid "Czech Republic"
-msgstr "Çek Cumhuriyeti"
-
-#: places/countries.py:63 places/countries.py:317
-msgid "Denmark"
-msgstr "Danimarka"
-
-#: places/countries.py:64 places/countries.py:318
-msgid "Djibouti"
-msgstr "Cibuti"
-
-#: places/countries.py:65 places/countries.py:319
-msgid "Dominica"
-msgstr "Dominika"
-
-#: places/countries.py:66 places/countries.py:320
-msgid "Dominican Republic"
-msgstr "Dominik Cumhuriyeti"
-
-#: places/countries.py:67 places/countries.py:321
-msgid "Ecuador"
-msgstr "Ekvador"
-
-#: places/countries.py:68 places/countries.py:322
-msgid "Egypt"
-msgstr "Mısır"
-
-#: places/countries.py:69 places/countries.py:323
-msgid "El Salvador"
-msgstr "El Salvador"
-
-#: places/countries.py:70 places/countries.py:324
-msgid "Equatorial Guinea"
-msgstr "Ekvator Ginesi"
-
-#: places/countries.py:71 places/countries.py:325
-msgid "Eritrea"
-msgstr "Eritre"
-
-#: places/countries.py:72 places/countries.py:326
-msgid "Estonia"
-msgstr "Estonya"
-
-#: places/countries.py:73 places/countries.py:327
-msgid "Ethiopia"
-msgstr "Etiyopya"
-
-#: places/countries.py:74 places/countries.py:328
-msgid "Falkland Islands (Malvinas)"
-msgstr "Falkland Adaları (Malvinas)"
-
-#: places/countries.py:75 places/countries.py:329
-msgid "Faroe Islands"
-msgstr "Faroe Adaları"
-
-#: places/countries.py:76 places/countries.py:331
-msgid "Fiji"
-msgstr "Fiji"
-
-#: places/countries.py:77 places/countries.py:332
-msgid "Finland"
-msgstr "Finlandiya"
-
-#: places/countries.py:78 places/countries.py:333
-msgid "France"
-msgstr "Fransa"
-
-#: places/countries.py:79 places/countries.py:334
-msgid "French Guiana"
-msgstr "Fransız Guyanası"
-
-#: places/countries.py:80 places/countries.py:335
-msgid "French Polynesia"
-msgstr "Fransız Polinezyası"
-
-#: places/countries.py:81 places/countries.py:336
-msgid "French Southern Territories"
-msgstr "Fransız Güney Toprakları"
-
-#: places/countries.py:82 places/countries.py:337
-msgid "Gabon"
-msgstr "Gabon"
-
-#: places/countries.py:83 places/countries.py:338
-msgid "Gambia"
-msgstr "Gambiya"
-
-#: places/countries.py:84 places/countries.py:339
-msgid "Georgia"
-msgstr "Georgia"
-
-#: places/countries.py:85 places/countries.py:340
-msgid "Germany"
-msgstr "Almanya"
-
-#: places/countries.py:86 places/countries.py:341
-msgid "Ghana"
-msgstr "Gana"
-
-#: places/countries.py:87 places/countries.py:342
-msgid "Gibraltar"
-msgstr "Cebelitarık"
-
-#: places/countries.py:88 places/countries.py:343
-msgid "Greece"
-msgstr "Yunanistan"
-
-#: places/countries.py:89 places/countries.py:344
-msgid "Greenland"
-msgstr "Grönland"
-
-#: places/countries.py:90 places/countries.py:345
-msgid "Grenada"
-msgstr "Grenada"
-
-#: places/countries.py:91 places/countries.py:346
-msgid "Guadeloupe"
-msgstr "Guadeloupe"
-
-#: places/countries.py:92 places/countries.py:347
-msgid "Guam"
-msgstr "Guam"
-
-#: places/countries.py:93 places/countries.py:348
-msgid "Guatemala"
-msgstr "Guatemala"
 
 #: places/countries.py:94 places/countries.py:349
 msgid "Guernsey"
 msgstr "Bir tür inek"
 
-#: places/countries.py:95 places/countries.py:350
-msgid "Guinea"
-msgstr "Gine"
-
 #: places/countries.py:96 places/countries.py:351
 msgid "Guinea-bissau"
 msgstr "Gine-Bissau"
-
-#: places/countries.py:97 places/countries.py:352
-msgid "Guyana"
-msgstr "Guyana"
-
-#: places/countries.py:98 places/countries.py:353
-msgid "Haiti"
-msgstr "Haiti"
 
 #: places/countries.py:99 places/countries.py:354
 msgid "Heard Island and McDonald Islands"
@@ -410,133 +1212,17 @@ msgstr "Heard Adası ve McDonald Adaları"
 msgid "Holy See (Vatican City State)"
 msgstr "Holy See (Vatikan Şehir Devleti)"
 
-#: places/countries.py:101 places/countries.py:356
-msgid "Honduras"
-msgstr "Honduras"
-
-#: places/countries.py:102 places/countries.py:357
-msgid "Hong Kong"
-msgstr "Hong Kong"
-
-#: places/countries.py:103 places/countries.py:358
-msgid "Hungary"
-msgstr "Macaristan"
-
-#: places/countries.py:104 places/countries.py:359
-msgid "Iceland"
-msgstr "İzlanda"
-
-#: places/countries.py:105 places/countries.py:360
-msgid "India"
-msgstr "Hindistan"
-
-#: places/countries.py:106 places/countries.py:361
-msgid "Indonesia"
-msgstr "Endonezya"
-
 #: places/countries.py:107 places/countries.py:362
 msgid "Iran, Islamic Republic of"
 msgstr "İran İslam Cumhuriyeti"
-
-#: places/countries.py:108 places/countries.py:363
-msgid "Iraq"
-msgstr "Irak"
-
-#: places/countries.py:109 places/countries.py:364
-msgid "Ireland"
-msgstr "İrlanda"
 
 #: places/countries.py:110 places/countries.py:366
 msgid "Isle of Man"
 msgstr "Isle of Man"
 
-#: places/countries.py:111 places/countries.py:367
-msgid "Israel"
-msgstr "İsrail"
-
-#: places/countries.py:112 places/countries.py:368
-msgid "Italy"
-msgstr "İtalya"
-
-#: places/countries.py:113 places/countries.py:369
-msgid "Jamaica"
-msgstr "Jamaika"
-
-#: places/countries.py:114 places/countries.py:370
-msgid "Japan"
-msgstr "Japonya"
-
 #: places/countries.py:115 places/countries.py:371
 msgid "Jersey"
 msgstr "Jersey"
-
-#: places/countries.py:116 places/countries.py:372
-msgid "Jordan"
-msgstr "Ürdün"
-
-#: places/countries.py:117 places/countries.py:373
-msgid "Kazakhstan"
-msgstr "Kazakistan"
-
-#: places/countries.py:118 places/countries.py:374
-msgid "Kenya"
-msgstr "Kenya"
-
-#: places/countries.py:119 places/countries.py:375
-msgid "Kiribati"
-msgstr "Kiribati"
-
-#: places/countries.py:120 places/countries.py:376
-msgid "Korea, Democratic People's Republic of"
-msgstr "Kore Demokratik Halk Cumhuriyeti"
-
-#: places/countries.py:121 places/countries.py:377
-msgid "Korea, Republic of"
-msgstr "Kore Cumhuriyeti"
-
-#: places/countries.py:122 places/countries.py:378
-msgid "Kuwait"
-msgstr "Kuveyt"
-
-#: places/countries.py:123 places/countries.py:379
-msgid "Kyrgyzstan"
-msgstr "Kırgızistan"
-
-#: places/countries.py:124 places/countries.py:380
-msgid "Lao People's Democratic Republic"
-msgstr "Lao Demokratik Halk Cumhuriyeti"
-
-#: places/countries.py:125 places/countries.py:381
-msgid "Latvia"
-msgstr "Letonya"
-
-#: places/countries.py:126 places/countries.py:382
-msgid "Lebanon"
-msgstr "Lübnan"
-
-#: places/countries.py:127 places/countries.py:383
-msgid "Lesotho"
-msgstr "Lesoto"
-
-#: places/countries.py:128 places/countries.py:384
-msgid "Liberia"
-msgstr "Liberya"
-
-#: places/countries.py:129 places/countries.py:385
-msgid "Libyan Arab Jamahiriya"
-msgstr "Libya Arap Halk Sosyalist Cemahiriyesi"
-
-#: places/countries.py:130 places/countries.py:386
-msgid "Liechtenstein"
-msgstr "Liechtenstein"
-
-#: places/countries.py:131 places/countries.py:387
-msgid "Lithuania"
-msgstr "Litvanya"
-
-#: places/countries.py:132 places/countries.py:388
-msgid "Luxembourg"
-msgstr "Lüksemburg"
 
 #: places/countries.py:133 places/countries.py:389
 msgid "Macao"
@@ -546,69 +1232,9 @@ msgstr "Makao"
 msgid "Macedonia, The Former Yugoslav Republic of"
 msgstr "Makedonya, Eski Yugoslav Cumhuriyeti"
 
-#: places/countries.py:135 places/countries.py:391
-msgid "Madagascar"
-msgstr "Madagaskar"
-
-#: places/countries.py:136 places/countries.py:392
-msgid "Malawi"
-msgstr "Malawi"
-
-#: places/countries.py:137 places/countries.py:393
-msgid "Malaysia"
-msgstr "Malezya"
-
-#: places/countries.py:138 places/countries.py:394
-msgid "Maldives"
-msgstr "Maldivler"
-
-#: places/countries.py:139 places/countries.py:395
-msgid "Mali"
-msgstr "Mali"
-
-#: places/countries.py:140 places/countries.py:396
-msgid "Malta"
-msgstr "Malta"
-
-#: places/countries.py:141 places/countries.py:397
-msgid "Marshall Islands"
-msgstr "Marshall Adaları"
-
-#: places/countries.py:142 places/countries.py:398
-msgid "Martinique"
-msgstr "Martinik"
-
-#: places/countries.py:143 places/countries.py:399
-msgid "Mauritania"
-msgstr "Moritanya"
-
-#: places/countries.py:144 places/countries.py:400
-msgid "Mauritius"
-msgstr "Mauritius"
-
-#: places/countries.py:145 places/countries.py:401
-msgid "Mayotte"
-msgstr "Mayotte"
-
-#: places/countries.py:146 places/countries.py:402
-msgid "Mexico"
-msgstr "Meksika"
-
 #: places/countries.py:147 places/countries.py:403
 msgid "Micronesia, Federated States of"
 msgstr "Mikronezya, Federe Devletleri"
-
-#: places/countries.py:148 places/countries.py:404
-msgid "Moldova, Republic of"
-msgstr "Moldova, Cumhuriyeti"
-
-#: places/countries.py:149 places/countries.py:405
-msgid "Monaco"
-msgstr "Monako"
-
-#: places/countries.py:150 places/countries.py:406
-msgid "Mongolia"
-msgstr "Moğolistan"
 
 #: places/countries.py:151 places/countries.py:407
 msgid "Montenegro"
@@ -618,145 +1244,13 @@ msgstr "Karadağ"
 msgid "Montserrat"
 msgstr "Montserrat"
 
-#: places/countries.py:153 places/countries.py:409
-msgid "Morocco"
-msgstr "Fas"
-
-#: places/countries.py:154 places/countries.py:410
-msgid "Mozambique"
-msgstr "Mozambik"
-
-#: places/countries.py:155 places/countries.py:411
-msgid "Myanmar"
-msgstr "Myanmar"
-
-#: places/countries.py:156 places/countries.py:412
-msgid "Namibia"
-msgstr "Namibya"
-
-#: places/countries.py:157 places/countries.py:413
-msgid "Nauru"
-msgstr "Nauru"
-
-#: places/countries.py:158 places/countries.py:414
-msgid "Nepal"
-msgstr "Nepal"
-
-#: places/countries.py:159 places/countries.py:415
-msgid "Netherlands"
-msgstr "Hollanda"
-
-#: places/countries.py:160 places/countries.py:416
-msgid "Netherlands Antilles"
-msgstr "Hollanda Antilleri"
-
-#: places/countries.py:161 places/countries.py:417
-msgid "New Caledonia"
-msgstr "Yeni Kaledonya"
-
-#: places/countries.py:162 places/countries.py:418
-msgid "New Zealand"
-msgstr "Yeni Zelanda"
-
-#: places/countries.py:163 places/countries.py:419
-msgid "Nicaragua"
-msgstr "Nikaragua"
-
-#: places/countries.py:164 places/countries.py:420
-msgid "Niger"
-msgstr "Nijer"
-
-#: places/countries.py:165 places/countries.py:421
-msgid "Nigeria"
-msgstr "Nijerya"
-
-#: places/countries.py:166 places/countries.py:422
-msgid "Niue"
-msgstr "Niue"
-
-#: places/countries.py:167 places/countries.py:423
-msgid "Norfolk Island"
-msgstr "Norfolk Adası"
-
-#: places/countries.py:168 places/countries.py:424
-msgid "Northern Mariana Islands"
-msgstr "Kuzey Mariana Adaları"
-
-#: places/countries.py:169 places/countries.py:425
-msgid "Norway"
-msgstr "Norveç"
-
-#: places/countries.py:170 places/countries.py:427
-msgid "Oman"
-msgstr "Umman"
-
-#: places/countries.py:171 places/countries.py:428
-msgid "Pakistan"
-msgstr "Pakistan"
-
-#: places/countries.py:172 places/countries.py:429
-msgid "Palau"
-msgstr "Palau"
-
 #: places/countries.py:173 places/countries.py:430
 msgid "Palestinian Territory, Occupied"
 msgstr "Filistin Toprakları, İşgal Altındaki"
 
-#: places/countries.py:174 places/countries.py:431
-msgid "Panama"
-msgstr "Panama"
-
-#: places/countries.py:175 places/countries.py:432
-msgid "Papua New Guinea"
-msgstr "Papua Yeni Gine"
-
-#: places/countries.py:176 places/countries.py:433
-msgid "Paraguay"
-msgstr "Paraguay"
-
-#: places/countries.py:177 places/countries.py:434
-msgid "Peru"
-msgstr "Peru"
-
-#: places/countries.py:178 places/countries.py:435
-msgid "Philippines"
-msgstr "Filipinler"
-
-#: places/countries.py:179 places/countries.py:436
-msgid "Pitcairn"
-msgstr "Pitcairn"
-
-#: places/countries.py:180 places/countries.py:438
-msgid "Poland"
-msgstr "Polonya"
-
-#: places/countries.py:181 places/countries.py:439
-msgid "Portugal"
-msgstr "Portekiz"
-
-#: places/countries.py:182 places/countries.py:441
-msgid "Puerto Rico"
-msgstr "Porto Riko"
-
-#: places/countries.py:183 places/countries.py:442
-msgid "Qatar"
-msgstr "Katar"
-
 #: places/countries.py:184 places/countries.py:445
 msgid "Réunion"
 msgstr "Réunion"
-
-#: places/countries.py:185 places/countries.py:446
-msgid "Romania"
-msgstr "Romanya"
-
-#: places/countries.py:186 places/countries.py:447
-msgid "Russian Federation"
-msgstr "Rusya Federasyonu"
-
-#: places/countries.py:187 places/countries.py:448
-msgid "Rwanda"
-msgstr "Ruanda"
 
 #: places/countries.py:188 places/countries.py:449
 msgid "Saint Barthélemy"
@@ -770,10 +1264,6 @@ msgstr "Saint Helena"
 msgid "Saint Kitts and Nevis"
 msgstr "Saint Kitts ve Nevis"
 
-#: places/countries.py:191 places/countries.py:452
-msgid "Saint Lucia"
-msgstr "Saint Lucia"
-
 #: places/countries.py:192 places/countries.py:453
 msgid "Saint Martin"
 msgstr "Saint Martin"
@@ -786,169 +1276,29 @@ msgstr "Saint Pierre ve Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent ve Grenadinler"
 
-#: places/countries.py:195 places/countries.py:456
-msgid "Samoa"
-msgstr "Samoa"
-
-#: places/countries.py:196 places/countries.py:457
-msgid "San Marino"
-msgstr "San Marino"
-
 #: places/countries.py:197 places/countries.py:458
 msgid "Sao Tome and Principe"
 msgstr "Sao Tome ve Principe"
-
-#: places/countries.py:198 places/countries.py:459
-msgid "Saudi Arabia"
-msgstr "Suudi Arabistan"
-
-#: places/countries.py:199 places/countries.py:460
-msgid "Senegal"
-msgstr "Senegal"
 
 #: places/countries.py:200 places/countries.py:461
 msgid "Serbia"
 msgstr "Sırbistan"
 
-#: places/countries.py:201 places/countries.py:462
-msgid "Seychelles"
-msgstr "Seyşeller"
-
-#: places/countries.py:202 places/countries.py:463
-msgid "Sierra Leone"
-msgstr "Sierra Leone"
-
-#: places/countries.py:203 places/countries.py:464
-msgid "Singapore"
-msgstr "Singapur"
-
-#: places/countries.py:204 places/countries.py:465
-msgid "Slovakia"
-msgstr "Slovakya"
-
-#: places/countries.py:205 places/countries.py:466
-msgid "Slovenia"
-msgstr "Slovenya"
-
-#: places/countries.py:206 places/countries.py:467
-msgid "Solomon Islands"
-msgstr "Solomon Adaları"
-
-#: places/countries.py:207 places/countries.py:468
-msgid "Somalia"
-msgstr "Somali"
-
-#: places/countries.py:208 places/countries.py:469
-msgid "South Africa"
-msgstr "Güney Afrika"
-
-#: places/countries.py:209 places/countries.py:470
-msgid "South Georgia and the South Sandwich Islands"
-msgstr "Güney Georgia ve Güney Sandwich Adaları"
-
-#: places/countries.py:210 places/countries.py:471
-msgid "Spain"
-msgstr "İspanya"
-
-#: places/countries.py:211 places/countries.py:472
-msgid "Sri Lanka"
-msgstr "Sri Lanka"
-
-#: places/countries.py:212 places/countries.py:473
-msgid "Sudan"
-msgstr "Sudan"
-
-#: places/countries.py:213 places/countries.py:474
-msgid "Suriname"
-msgstr "Surinam"
-
 #: places/countries.py:214 places/countries.py:475
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard ve Jan Mayen"
-
-#: places/countries.py:215 places/countries.py:476
-msgid "Swaziland"
-msgstr "Svaziland"
-
-#: places/countries.py:216 places/countries.py:477
-msgid "Sweden"
-msgstr "İsveç"
-
-#: places/countries.py:217 places/countries.py:478
-msgid "Switzerland"
-msgstr "İsviçre"
-
-#: places/countries.py:218 places/countries.py:479
-msgid "Syrian Arab Republic"
-msgstr "Suriye Arap Cumhuriyeti"
-
-#: places/countries.py:219 places/countries.py:480
-msgid "Taiwan, Province of China"
-msgstr "Çin, Tayvan, İl"
-
-#: places/countries.py:220 places/countries.py:481
-msgid "Tajikistan"
-msgstr "Tacikistan"
-
-#: places/countries.py:221 places/countries.py:482
-msgid "Tanzania, United Republic of"
-msgstr "Tanzanya, Birleşik Cumhuriyeti"
-
-#: places/countries.py:222 places/countries.py:483
-msgid "Thailand"
-msgstr "Tayland"
 
 #: places/countries.py:223 places/countries.py:486
 msgid "Timor-leste"
 msgstr "Timor-Leste"
 
-#: places/countries.py:224 places/countries.py:487
-msgid "Togo"
-msgstr "Togo"
-
-#: places/countries.py:225 places/countries.py:488
-msgid "Tokelau"
-msgstr "Tokelau"
-
-#: places/countries.py:226 places/countries.py:489
-msgid "Tonga"
-msgstr "Tonga"
-
 #: places/countries.py:227 places/countries.py:490
 msgid "Trinidad and Tobago"
 msgstr "Trinidad ve Tobago"
 
-#: places/countries.py:228 places/countries.py:491
-msgid "Tunisia"
-msgstr "Tunus"
-
-#: places/countries.py:229 places/countries.py:492
-msgid "Turkey"
-msgstr "Türkiye"
-
-#: places/countries.py:230 places/countries.py:493
-msgid "Turkmenistan"
-msgstr "Türkmenistan"
-
 #: places/countries.py:231 places/countries.py:494
 msgid "Turks and Caicos Islands"
 msgstr "Turks ve Caicos Adaları"
-
-#: places/countries.py:232 places/countries.py:495
-msgid "Tuvalu"
-msgstr "Tuvalu"
-
-#: places/countries.py:233 places/countries.py:497
-msgid "Uganda"
-msgstr "Uganda"
-
-#: places/countries.py:234 places/countries.py:498
-msgid "Ukraine"
-msgstr "Ukrayna"
-
-#: places/countries.py:235 places/countries.py:499
-msgid "United Arab Emirates"
-msgstr "Birleşik Arap Emirlikleri"
 
 #: places/countries.py:236 places/countries.py:500
 msgid "United Kingdom"
@@ -958,29 +1308,9 @@ msgstr "Büyük Britanya"
 msgid "United States"
 msgstr "Amerika Birleşik Devletleri"
 
-#: places/countries.py:238 places/countries.py:503
-msgid "United States Minor Outlying Islands"
-msgstr "Amerika Birleşik Devletleri Küçük Dış Adaları"
-
-#: places/countries.py:239 places/countries.py:504
-msgid "Uruguay"
-msgstr "Uruguay"
-
-#: places/countries.py:240 places/countries.py:505
-msgid "Uzbekistan"
-msgstr "Özbekistan"
-
-#: places/countries.py:241 places/countries.py:506
-msgid "Vanuatu"
-msgstr "Vanuatu"
-
 #: places/countries.py:242 places/countries.py:507
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Bolivar Cumhuriyeti"
-
-#: places/countries.py:243 places/countries.py:508
-msgid "Viet Nam"
-msgstr "Viet Nam"
 
 #: places/countries.py:244 places/countries.py:509
 msgid "Virgin Islands, British"
@@ -994,29 +1324,9 @@ msgstr "Virgin Adaları Bize"
 msgid "Wallis and Futuna"
 msgstr "Wallis ve Futuna"
 
-#: places/countries.py:247 places/countries.py:512
-msgid "Western Sahara"
-msgstr "Batı Sahara"
-
-#: places/countries.py:248 places/countries.py:513
-msgid "Yemen"
-msgstr "Yemen"
-
-#: places/countries.py:249 places/countries.py:514
-msgid "Zambia"
-msgstr "Zambiya"
-
-#: places/countries.py:250 places/countries.py:515
-msgid "Zimbabwe"
-msgstr "Zimbabve"
-
 #: places/countries.py:282
 msgid "Bolivarian Republic of Venezuela"
 msgstr "Bolivarcı Venezuela Cumhuriyeti"
-
-#: places/countries.py:289
-msgid "British Virgin Islands"
-msgstr "İngiliz Virgin Adaları"
 
 #: places/countries.py:316
 msgid "Democratic People's Republic of Korea"
@@ -1025,10 +1335,6 @@ msgstr "Kore Demokratik Halk Cumhuriyeti"
 #: places/countries.py:330
 msgid "Federated States of Micronesia"
 msgstr "Mikronezya Federe Devletleri"
-
-#: places/countries.py:365
-msgid "Islamic Republic of Iran"
-msgstr "İran İslam Cumhuriyeti"
 
 #: places/countries.py:426
 msgid "Occupied Palestinian Territory"
@@ -1066,602 +1372,752 @@ msgstr "Bize Virgin Adaları"
 msgid "United Republic of Tanzania"
 msgstr "Tanzanya Birleşik Cumhuriyeti"
 
-#: places/models.py:23
+#: places/models.py:58
 msgid "Support"
 msgstr "Destek"
 
-#: places/models.py:24
+#: places/models.py:59
 msgid "Website"
 msgstr "Web sitesi"
 
-#: places/models.py:25
+#: places/models.py:60
 msgid "Auth"
 msgstr "Yetkilendirme"
 
-#: places/models.py:30 places/models.py:118 places/models.py:347
-#: support/models.py:20 support/models.py:124
+#: places/models.py:70 places/models.py:199 places/models.py:269
+#: support/models.py:20 support/models.py:124 website/models/faq.py:14
+#: website/models/faq.py:50
 msgid "Name"
 msgstr "Isim"
 
-#: places/models.py:31 places/models.py:51 places/models.py:100
-#: places/models.py:120 places/models.py:348
+#: places/models.py:71 places/models.py:97 places/models.py:180
+#: places/models.py:201 places/models.py:580 places/models.py:718
+#: website/models/faq.py:15 website/models/faq.py:34 website/models/faq.py:52
+#: website/models/faq.py:71 website/models/faq.py:92 website/models/faq.py:144
+#: website/models/faq.py:163
 msgid "Active"
 msgstr "Etkin"
 
-#: places/models.py:32 places/models.py:52 places/models.py:76
-#: places/models.py:97 places/models.py:121 places/models.py:139
-#: places/models.py:238 places/models.py:266 places/models.py:287
-#: places/models.py:330 places/models.py:351 places/models.py:371
-#: places/models.py:392 places/models.py:412 places/models.py:437
-#: support/models.py:90 website/models/dil.py:59 website/models/dil.py:83
+#: places/models.py:72 places/models.py:98 places/models.py:156
+#: places/models.py:177 places/models.py:203 places/models.py:246
+#: places/models.py:546 places/models.py:579 places/models.py:620
+#: places/models.py:646 places/models.py:689 places/models.py:721
+#: places/models.py:745 places/models.py:769 places/models.py:800
+#: places/models.py:825 support/models.py:90 website/models/dil.py:63
+#: website/models/dil.py:93 website/models/faq.py:16 website/models/faq.py:35
+#: website/models/faq.py:53 website/models/faq.py:72 website/models/faq.py:93
+#: website/models/faq.py:145 website/models/faq.py:164
 msgid "timestamp"
 msgstr "zaman damgası"
 
-#: places/models.py:37
+#: places/models.py:77
 msgid "Tag Category"
 msgstr "Etiket Kategorisi"
 
-#: places/models.py:38
+#: places/models.py:78
 msgid "Tag Categories"
 msgstr "Etiket Kategorileri"
 
-#: places/models.py:46
+#: places/models.py:90
 msgid "Currency name"
 msgstr "Para birimi adı"
 
-#: places/models.py:47
+#: places/models.py:91
 msgid "Currency code"
 msgstr "Para birimi kodu"
 
-#: places/models.py:48
+#: places/models.py:92
+#, fuzzy
+msgid "Currency placement"
+msgstr "Para birimi adı"
+
+#: places/models.py:93
+msgid "Prefix"
+msgstr ""
+
+#: places/models.py:93
+msgid "Suffix"
+msgstr ""
+
+#: places/models.py:94
 msgid "Conversation factor"
 msgstr "Çevrim faktörü"
 
-#: places/models.py:49
+#: places/models.py:95
 msgid "Main site currency?"
 msgstr "Ana para birimi"
 
-#: places/models.py:49
+#: places/models.py:95
 msgid "Main currency is the     conversation bridge between other currencies."
 msgstr ""
-"Ana para birimi para birimlerinin bir birlerine çevriminde de "
-"kullanılır."
+"Ana para birimi para birimlerinin bir birlerine çevriminde de kullanılır."
 
-#: places/models.py:57 places/models.py:168 places/models.py:228
+#: places/models.py:107 places/models.py:342 places/models.py:536
+#: places/models.py:674
 msgid "Currency"
 msgstr "Para birimi"
 
-#: places/models.py:58
+#: places/models.py:108
 msgid "Currencies"
 msgstr "Para birimleri"
 
-#: places/models.py:67
+#: places/models.py:147
 #, fuzzy
 msgid "Promotion code"
 msgstr "Posta kodu"
 
-#: places/models.py:68 places/models.py:94 support/models.py:89
+#: places/models.py:148 places/models.py:174 places/models.py:270
+#: support/models.py:89
 msgid "Type"
 msgstr "Tip"
 
-#: places/models.py:69
+#: places/models.py:149
 msgid "Who used this code"
 msgstr ""
 
-#: places/models.py:70
+#: places/models.py:150
 #, fuzzy
 msgid "Sender/Inviter"
 msgstr "Gönderici tipi"
 
-#: places/models.py:71
+#: places/models.py:151
 msgid "Percentage"
 msgstr ""
 
-#: places/models.py:72
+#: places/models.py:152
 msgid "Promotion Amount"
 msgstr ""
 
-#: places/models.py:72
+#: places/models.py:152
 msgid "Discount amount"
 msgstr ""
 
-#: places/models.py:73
+#: places/models.py:153
 msgid "Used"
 msgstr ""
 
-#: places/models.py:74
+#: places/models.py:154
 #, fuzzy
 msgid "Active/Valid"
 msgstr "Etkin"
 
-#: places/models.py:75
+#: places/models.py:155
 msgid "Expiry date"
 msgstr ""
 
-#: places/models.py:81
+#: places/models.py:161
 msgid "Promotion Code"
 msgstr ""
 
-#: places/models.py:82
+#: places/models.py:162
 msgid "Promotion Codes"
 msgstr ""
 
-#: places/models.py:92 places/models.py:387 support/models.py:88
+#: places/models.py:172 places/models.py:761 support/models.py:88
 msgid "Sender"
 msgstr "Gönderici"
 
-#: places/models.py:93
+#: places/models.py:173
 msgid "Amount"
 msgstr "Miktar"
 
-#: places/models.py:95
+#: places/models.py:175
 msgid "Receiver type"
 msgstr "Alıcı tipi"
 
-#: places/models.py:96
+#: places/models.py:176
 msgid "Sender type"
 msgstr "Gönderici tipi"
 
-#: places/models.py:102
+#: places/models.py:182
 msgid "Transection details (json serialized dict)"
 msgstr "İşlem detayları (json verisi)"
 
-#: places/models.py:107
+#: places/models.py:187
 msgid "Transaction"
 msgstr "İşlem"
 
-#: places/models.py:108
+#: places/models.py:188
 msgid "Transactions"
 msgstr "İşlemler"
 
-#: places/models.py:119 places/models.py:138
+#: places/models.py:200 places/models.py:245
 msgid "Help Text"
 msgstr ""
 
-#: places/models.py:126 places/models.py:135
+#: places/models.py:202 website/models/faq.py:90
+msgid "Order"
+msgstr ""
+
+#: places/models.py:208 places/models.py:242
 msgid "Tag"
 msgstr "Etiket"
 
-#: places/models.py:127 places/models.py:156
+#: places/models.py:209 places/models.py:327
 msgid "Tags"
 msgstr "Etiketler"
 
-#: places/models.py:136 places/models.py:192 places/models.py:368
+#: places/models.py:243 places/models.py:367 places/models.py:742
 msgid "Language"
 msgstr "Dil"
 
-#: places/models.py:137
+#: places/models.py:244 website/models/faq.py:33 website/models/faq.py:70
 #, fuzzy
 msgid "Translation"
 msgstr "İşlem"
 
-#: places/models.py:144
+#: places/models.py:251
 #, fuzzy
 msgid "Tag Translation"
 msgstr "İşlem"
 
-#: places/models.py:145
+#: places/models.py:252
 #, fuzzy
 msgid "Tag Translations"
 msgstr "İşlemler"
 
-#: places/models.py:155 places/models.py:310 places/models.py:311
-#: places/options.py:67
-msgid "Host"
-msgstr "Ev Sahibi"
-
-#: places/models.py:157
-msgid "Place title"
-msgstr "Mekan adı"
-
-#: places/models.py:158
-msgid "URL Name"
-msgstr "URL başlık"
-
-#: places/models.py:159
-msgid "Address Line"
-msgstr ""
-
-#: places/models.py:160 support/models.py:109
+#: places/models.py:268 places/models.py:331 support/models.py:109
 msgid "Country"
 msgstr "Ülke"
 
-#: places/models.py:161
+#: places/models.py:303
+#, fuzzy
+msgid "GeoLocation Data"
+msgstr "Meslek"
+
+#: places/models.py:304
+#, fuzzy
+msgid "GeoLocation Datas"
+msgstr "Rezervasyon Tarihleri"
+
+#: places/models.py:326 places/models.py:669 places/options.py:94
+#: templates/show_place.html:207 templates/dashboard/trips.html:27
+msgid "Host"
+msgstr "Ev Sahibi"
+
+#: places/models.py:328
+msgid "Place title"
+msgstr "Mekan adı"
+
+#: places/models.py:329
+msgid "URL Name"
+msgstr "URL başlık"
+
+#: places/models.py:330
+msgid "Address Line"
+msgstr ""
+
+#: places/models.py:332 places/models.py:584
 msgid "Street"
 msgstr "Sokak"
 
-#: places/models.py:162
+#: places/models.py:333 places/models.py:585
 msgid "Postcode"
 msgstr "Posta kodu"
 
-#: places/models.py:163 places/models.py:229
+#: places/models.py:334 places/models.py:537 places/models.py:586
 msgid "City"
 msgstr "Şehir"
 
-#: places/models.py:164
+#: places/models.py:335
 msgid "District"
 msgstr "Ilçe"
 
-#: places/models.py:165
+#: places/models.py:337
+msgid "Geographic Location"
+msgstr ""
+
+#: places/models.py:338
+msgid "Neighborhood"
+msgstr ""
+
+#: places/models.py:339
 msgid "State/Region"
 msgstr "Devlet / Bölge"
 
-#: places/models.py:166
+#: places/models.py:340
 msgid "Emergency phone"
 msgstr "Acil durum telefonu"
 
-#: places/models.py:169
+#: places/models.py:343
 msgid "Primay photo"
 msgstr ""
 
-#: places/models.py:170
+#: places/models.py:344
 msgid "Price per night"
 msgstr "Gecelik fiyat"
 
-#: places/models.py:170
+#: places/models.py:344 places/models.py:374
 msgid "Price for guest"
 msgstr "Konuk için fiyatlar"
 
-#: places/models.py:171 website/views.py:48
+#: places/models.py:345
+msgid "Converted Price"
+msgstr ""
+
+#: places/models.py:345
+#, fuzzy
+msgid "Price in main site currency (eg:euro)"
+msgstr "Ana para birimi"
+
+#: places/models.py:346 website/views.py:53
 msgid "Accommodates"
 msgstr "Barındırma kapasitesi"
 
-#: places/models.py:172 website/views.py:46
+#: places/models.py:347 website/views.py:51
 msgid "Place type"
 msgstr "Mekan tipi"
 
-#: places/models.py:173 website/views.py:47
+#: places/models.py:348 website/views.py:52
 msgid "Space offered"
 msgstr "Verilen alan"
 
-#: places/models.py:174
+#: places/models.py:349
 msgid "Number of bedrooms"
 msgstr "Yatak odası sayısı"
 
-#: places/models.py:175 website/views.py:51
+#: places/models.py:350 website/views.py:56
 msgid "Bed type"
 msgstr "Oda tipi"
 
-#: places/models.py:176
+#: places/models.py:351
 msgid "Number of bathrooms"
 msgstr "Banyo sayısı"
 
-#: places/models.py:177 website/views.py:49
+#: places/models.py:352 website/views.py:54
 msgid "Size"
 msgstr "Boyut"
 
-#: places/models.py:178
+#: places/models.py:353
 #, fuzzy
 msgid "Measurement type"
 msgstr "Ödeme Şekli"
 
-#: places/models.py:179
-msgid "Cancellation rules"
+#: places/models.py:354
+#, fuzzy
+msgid "Cancellation policy"
 msgstr "İptal kuralları"
 
-#: places/models.py:180
+#: places/models.py:355
 msgid "Minimum number of nights"
 msgstr "Minimum sayıda gece"
 
-#: places/models.py:181
+#: places/models.py:356
 msgid "Maximum number of nights"
 msgstr "Maksimum sayıda gece"
 
-#: places/models.py:182
+#: places/models.py:357
 msgid "House manual"
 msgstr "Mekan kılavuzu"
 
-#: places/models.py:183
+#: places/models.py:358
 msgid "House rules"
 msgstr "Ev kuralları"
 
-#: places/models.py:185
+#: places/models.py:360
 #, fuzzy
 msgid "Favorite counter"
 msgstr "Favori mekanlar"
 
-#: places/models.py:186
+#: places/models.py:361
 msgid "Overall rating"
 msgstr ""
 
-#: places/models.py:187
+#: places/models.py:362
 #, fuzzy
 msgid "Cleaness"
 msgstr "Temizlik ücreti"
 
-#: places/models.py:188
+#: places/models.py:363
 msgid "Comfort"
 msgstr ""
 
-#: places/models.py:189
+#: places/models.py:364
 #, fuzzy
 msgid "Location"
 msgstr "Meslek"
 
-#: places/models.py:190
+#: places/models.py:365
 msgid "Value/Money Rating"
 msgstr ""
 
-#: places/models.py:191 places/models.py:369 places/models.py:376
+#: places/models.py:366 places/models.py:743 places/models.py:750
+#: templates/show_place.html:83
 msgid "Description"
 msgstr "Açıklama"
 
-#: places/models.py:193
-msgid "Geographical Location"
+#: places/models.py:369
+msgid "Latitude"
 msgstr ""
 
-#: places/models.py:196
+#: places/models.py:370
+msgid "Longitude"
+msgstr ""
+
+#: places/models.py:372
 msgid "Weekly discount (%)"
 msgstr "Haftalık indirim (%)"
 
-#: places/models.py:197
+#: places/models.py:373
 msgid "Monthly discount (%)"
 msgstr "Aylık indirim (%)"
 
-#: places/models.py:199
+#: places/models.py:374 places/models.py:717
+#, fuzzy
+msgid "Weekend price"
+msgstr "Haftalık fiyat"
+
+#: places/models.py:376
 msgid "Extra charge for more guests than"
 msgstr "Ekstra ücret istenecek misafir sayısı sınırı"
 
-#: places/models.py:200
+#: places/models.py:378
 msgid "Extra charge per person"
 msgstr "Kişi başına ekstra ücret"
 
-#: places/models.py:201
+#: places/models.py:380
 msgid ""
-"Each extra person exceeding the number you specified, must pay this "
-"extra charge."
+"Each extra person exceeding the number you specified, must pay this extra "
+"charge."
 msgstr "Belirtilen sayıyı aşan her ekstra kişi, bu ekstra ücreti ödemelidir."
 
-#: places/models.py:202
+#: places/models.py:381
 msgid "Cleaning fee"
 msgstr "Temizlik ücreti"
 
-#: places/models.py:203
+#: places/models.py:382
 msgid "Street view"
 msgstr "Sokak görünümü"
 
-#: places/models.py:205
-msgid "Place is online"
+#: places/models.py:384
+#, fuzzy
+msgid "Place is visible"
 msgstr "Mekan sitede listeleniyor"
 
-#: places/models.py:206 support/models.py:39 support/models.py:72
+#: places/models.py:385
+#, fuzzy
+msgid "Place is published"
+msgstr "Mekan sitede listeleniyor"
+
+#: places/models.py:386 support/models.py:39 support/models.py:72
 msgid "Creatation"
 msgstr "Oluşturulma"
 
-#: places/models.py:207
+#: places/models.py:387
 msgid "Last modified"
 msgstr "Son güncelleme"
 
-#: places/models.py:215 places/models.py:262 places/models.py:282
-#: places/models.py:312 places/models.py:344 places/models.py:367
-#: places/models.py:428
+#: places/models.py:509 places/models.py:615 places/models.py:641
+#: places/models.py:671 places/models.py:714 places/models.py:741
+#: places/models.py:763 places/models.py:816 templates/dashboard/trips.html:28
 msgid "Place"
 msgstr "Mekan"
 
-#: places/models.py:216
+#: places/models.py:510
 msgid "Places"
 msgstr "Mekanlar"
 
-#: places/models.py:225
+#: places/models.py:532 places/models.py:576
 msgid "User"
 msgstr "Kullanıcı"
 
-#: places/models.py:226
+#: places/models.py:533 places/models.py:651
+msgid "Photo"
+msgstr "Fotoğraf"
+
+#: places/models.py:534
 msgid "Favorite places"
 msgstr "Favori mekanlar"
 
-#: places/models.py:230 support/models.py:111
+#: places/models.py:538 support/models.py:111
 msgid "Phone"
 msgstr "Telefon"
 
-#: places/models.py:231
+#: places/models.py:539
 msgid "Cellular Phone"
 msgstr "Cep telefonu"
 
-#: places/models.py:232
+#: places/models.py:540
 msgid "Occupation"
 msgstr "Meslek"
 
-#: places/models.py:233
+#: places/models.py:541
 msgid "Twitter"
 msgstr "Twitter"
 
-#: places/models.py:234
+#: places/models.py:542
 msgid "Facebook"
 msgstr "Facebook"
 
-#: places/models.py:235
+#: places/models.py:543
 msgid "Brithdate"
 msgstr "Brithdate"
 
-#: places/models.py:236
+#: places/models.py:544
 msgid "Last login time"
 msgstr "Son giriş zamanı"
 
-#: places/models.py:237
+#: places/models.py:545
 msgid "Default Language"
 msgstr "Varsayılan Dil"
 
-#: places/models.py:243
+#: places/models.py:547
+#, fuzzy
+msgid "Private Name"
+msgstr "Özel Oda"
+
+#: places/models.py:548
+#, fuzzy
+msgid "Full Name"
+msgstr "Ad"
+
+#: places/models.py:566
 msgid "Profile"
 msgstr "Profil"
 
-#: places/models.py:244
+#: places/models.py:567
 msgid "Profiles"
 msgstr "Profiller"
 
-#: places/models.py:254 places/options.py:98 places/options.py:122
+#: places/models.py:577 places/models.py:680
+msgid "Payment type"
+msgstr "Ödeme Şekli"
+
+#: places/models.py:578
+#, fuzzy
+msgid "PayPal email"
+msgstr "PayPal > System"
+
+#: places/models.py:581
+msgid "Account Owner"
+msgstr ""
+
+#: places/models.py:582
+msgid "IBAN/Account No"
+msgstr ""
+
+#: places/models.py:583
+msgid "SWIFT/BIC Code"
+msgstr ""
+
+#: places/models.py:587
+#, fuzzy
+msgid "Bank name"
+msgstr "Banka Havalesi"
+
+#: places/models.py:588
+msgid "Bank street"
+msgstr ""
+
+#: places/models.py:589
+#, fuzzy
+msgid "Bank postcode"
+msgstr "Posta kodu"
+
+#: places/models.py:590
+#, fuzzy
+msgid "Bank city"
+msgstr "Banka"
+
+#: places/models.py:595
+#, fuzzy
+msgid "Payment Selection"
+msgstr "Ödeme Şekli"
+
+#: places/models.py:596
+#, fuzzy
+msgid "Payment Selections"
+msgstr "Son İşlemler"
+
+#: places/models.py:607 places/options.py:126
 msgid "Confirmed"
 msgstr "Onaylandı"
 
-#: places/models.py:260
+#: places/models.py:613
 msgid "Reservation Start"
 msgstr "Rezervasyon başlangıcı"
 
-#: places/models.py:261
+#: places/models.py:614
 msgid "Reservation End"
 msgstr "Rezervasyon sonu"
 
-#: places/models.py:271
+#: places/models.py:616
+msgid "Reason"
+msgstr ""
+
+#: places/models.py:625
 msgid "Reserved Date"
 msgstr "Rezerve Edilmiş Tarih"
 
-#: places/models.py:272
+#: places/models.py:626
 msgid "Reserved Dates"
 msgstr "Rezerve Edilmiş Tarihler"
 
-#: places/models.py:283
+#: places/models.py:642
 msgid "Image name"
 msgstr "Görüntü adı"
 
-#: places/models.py:284
+#: places/models.py:643
 msgid "Image File"
 msgstr "Görüntü Dosyası"
 
-#: places/models.py:285 website/models/icerik.py:259
+#: places/models.py:644 website/models/icerik.py:274
 #, fuzzy
 msgid "Photo type"
 msgstr "Fotoğraf"
 
-#: places/models.py:286
+#: places/models.py:645
 msgid "Display order"
 msgstr ""
 
-#: places/models.py:292
-msgid "Photo"
-msgstr "Fotoğraf"
-
-#: places/models.py:293
+#: places/models.py:652 templates/show_place.html:29
 msgid "Photos"
 msgstr "Fotoğraflar"
 
-#: places/models.py:313
+#: places/models.py:670 places/options.py:93
+msgid "Guest"
+msgstr "Konuk"
+
+#: places/models.py:672
 msgid "Reservation Dates"
 msgstr "Rezervasyon Tarihleri"
 
-#: places/models.py:316
+#: places/models.py:673
+#, fuzzy
+msgid "Number of guests"
+msgstr "Yatak odası sayısı"
+
+#: places/models.py:675
 msgid "Booking start"
 msgstr "Rezervasyon başlangıç"
 
-#: places/models.py:317
+#: places/models.py:676
 msgid "Booking end"
 msgstr "Rezervasyon sonu"
 
-#: places/models.py:318
+#: places/models.py:677
 msgid "Summary"
 msgstr "Özet"
 
-#: places/models.py:319
+#: places/models.py:678
 msgid "Valid"
 msgstr "Geçerli"
 
-#: places/models.py:320 places/models.py:391 places/models.py:411
-#: places/models.py:436 support/models.py:36
+#: places/models.py:679 places/models.py:767 places/models.py:768
+#: places/models.py:799 places/models.py:824 support/models.py:36
+#: templates/dashboard/trips.html:25
 msgid "Status"
 msgstr "Durum"
 
-#: places/models.py:321
-msgid "Payment type"
-msgstr "Ödeme Şekli"
-
-#: places/models.py:323
+#: places/models.py:682
 msgid "Total payment for guest"
 msgstr "Konuk için toplam ödeme"
 
-#: places/models.py:324
+#: places/models.py:683
 msgid "Host's earning"
 msgstr "Ev sahibinin kazancı"
 
-#: places/models.py:335
+#: places/models.py:705
 msgid "Booking"
 msgstr "Rezervasyon"
 
-#: places/models.py:336
+#: places/models.py:706
 msgid "Bookings"
 msgstr "Rezervasyonlar"
 
-#: places/models.py:345
+#: places/models.py:716
 msgid "Price"
 msgstr "Fiyat"
 
-#: places/models.py:346
-msgid "Weekly price"
-msgstr "Haftalık fiyat"
-
-#: places/models.py:349
+#: places/models.py:719
 msgid "Session start"
 msgstr "Sezon başı"
 
-#: places/models.py:350
+#: places/models.py:720
 msgid "Session end"
 msgstr "Sezon sonu"
 
-#: places/models.py:356
+#: places/models.py:726
 msgid "Sessional Price"
 msgstr "Sezonluk Fiyat"
 
-#: places/models.py:357
+#: places/models.py:727
 msgid "Sessional Prices"
 msgstr "Sezonluk Fiyatlar"
 
-#: places/models.py:370
+#: places/models.py:744
 msgid "Auto translation"
 msgstr "Otomatik çeviri"
 
-#: places/models.py:377
+#: places/models.py:751
 msgid "Descriptions"
 msgstr "Açıklamalar"
 
-#: places/models.py:388
+#: places/models.py:760
+#, fuzzy
+msgid "First message"
+msgstr "Ad"
+
+#: places/models.py:762
 msgid "Receiver"
 msgstr "Alıcı"
 
-#: places/models.py:389 places/models.py:397 support/models.py:113
+#: places/models.py:764 places/models.py:785 support/models.py:113
 msgid "Message"
 msgstr "Mesajlar"
 
-#: places/models.py:390
-msgid "Message was read"
-msgstr "Mesaj okundu"
+#: places/models.py:765
+msgid "Was read"
+msgstr ""
 
-#: places/models.py:398
+#: places/models.py:766 support/models.py:31 templates/dashboard.html:90
+#: templates/dashboard/user_messages.html:10
+msgid "Replied"
+msgstr "Cevap verildi"
+
+#: places/models.py:770
+#, fuzzy
+msgid "Last message time"
+msgstr "Son giriş zamanı"
+
+#: places/models.py:786 templates/dashboard.html:41
 msgid "Messages"
 msgstr "Mesaj"
 
-#: places/models.py:407 places/models.py:427
+#: places/models.py:795 places/models.py:815
 msgid "Reviewer"
 msgstr "Değerlendirmeyi"
 
-#: places/models.py:408
+#: places/models.py:796
 msgid "Person"
 msgstr "Kişi"
 
-#: places/models.py:409 places/models.py:429
+#: places/models.py:797 places/models.py:817
 msgid "Review"
 msgstr "Eleştiri"
 
-#: places/models.py:410 places/models.py:435
+#: places/models.py:798 places/models.py:823
 msgid "Review visible on the site"
 msgstr "İnceleme sitede sitede görünür durumda"
 
-#: places/models.py:417
+#: places/models.py:805
 msgid "User Review"
 msgstr "Kullanıcı İncelemesi"
 
-#: places/models.py:418
+#: places/models.py:806
 msgid "User Reviews"
 msgstr "Kullanıcı İncelemeleri"
 
-#: places/models.py:430 places/models.py:431 places/models.py:432
-#: places/models.py:433 places/models.py:434
+#: places/models.py:818 places/models.py:819 places/models.py:820
+#: places/models.py:821 places/models.py:822
 msgid "Rating"
 msgstr "Değerlendirme"
 
-#: places/models.py:442
+#: places/models.py:830
 msgid "Place Review"
 msgstr "Mekan incelemesi"
 
-#: places/models.py:443
+#: places/models.py:831
 msgid "Place Reviews"
 msgstr "Mekan incelemeleri"
 
@@ -1693,202 +2149,360 @@ msgstr "Karavan"
 msgid "Office"
 msgstr ""
 
-#: places/options.py:18
+#: places/options.py:45
 msgid "Amount (positive balance)"
 msgstr ""
 
-#: places/options.py:19
+#: places/options.py:46
 msgid "Percentage of bookings which cheaper then ...."
 msgstr ""
 
-#: places/options.py:24
+#: places/options.py:51
 msgid "Inside of the place"
 msgstr ""
 
-#: places/options.py:25
+#: places/options.py:52
 #, fuzzy
 msgid "View of the place"
 msgstr "Sitede göster"
 
-#: places/options.py:26
+#: places/options.py:53
 msgid "External appearance of the place"
 msgstr ""
 
-#: places/options.py:27
+#: places/options.py:54
 msgid "Around the place"
 msgstr ""
 
-#: places/options.py:28
+#: places/options.py:55
 msgid "Other"
 msgstr ""
 
-#: places/options.py:32
+#: places/options.py:59
 msgid "Entire Place"
 msgstr "Tüm Mekan"
 
-#: places/options.py:33
+#: places/options.py:60
 msgid "Private Room"
 msgstr "Özel Oda"
 
-#: places/options.py:34
+#: places/options.py:61
 msgid "Shared Room"
 msgstr "Paylaşımlı oda"
 
-#: places/options.py:37
+#: places/options.py:64
 msgid "ft"
 msgstr ""
 
-#: places/options.py:38
+#: places/options.py:65
 msgid "mt"
 msgstr ""
 
-#: places/options.py:53
+#: places/options.py:80
 msgid "PayPal > System"
 msgstr "PayPal > System"
 
-#: places/options.py:54
+#: places/options.py:81
 msgid "Credit Card > System"
 msgstr "Kredi Kartı > Sistem"
 
-#: places/options.py:55
+#: places/options.py:82
 msgid "Bank Transfer > System"
 msgstr "Banka Havalesi > Sistem"
 
-#: places/options.py:56
+#: places/options.py:83
 msgid "Guest Account > Host Account"
 msgstr "Misafir Hesap > Host Hesabı"
 
-#: places/options.py:57
+#: places/options.py:84
 msgid "System > PayPal"
 msgstr "Sistem > PayPal"
 
-#: places/options.py:58
+#: places/options.py:85
 msgid "System > Credit Card"
 msgstr "Sistem > Kredi Kartı"
 
-#: places/options.py:59
+#: places/options.py:86
 msgid "System > Bank Account"
 msgstr "Sistem > Banka Hesap"
 
-#: places/options.py:63 places/options.py:91
+#: places/options.py:90 places/options.py:118
+#: templates/dashboard/edit_payment.html:24
 msgid "PayPal"
 msgstr "PayPal"
 
-#: places/options.py:64 places/options.py:90
+#: places/options.py:91 places/options.py:117
 msgid "Credit Card"
 msgstr "Kredi kartı"
 
-#: places/options.py:65
+#: places/options.py:92
 msgid "Bank"
 msgstr "Banka"
 
-#: places/options.py:66
-msgid "Guest"
-msgstr "Konuk"
-
-#: places/options.py:68
+#: places/options.py:95
 msgid "System Account"
 msgstr "Sistem Hesabı"
 
-#: places/options.py:72
+#: places/options.py:99
 msgid "Real bed"
 msgstr "Gerçek yatak"
 
-#: places/options.py:73
+#: places/options.py:100
 msgid "Bunk beds"
 msgstr "Ranza"
 
-#: places/options.py:74
+#: places/options.py:101
 msgid "Waterbed"
 msgstr "Su yatağı"
 
-#: places/options.py:75
+#: places/options.py:102
 msgid "Hammock"
 msgstr "Hamak"
 
-#: places/options.py:76
+#: places/options.py:103
 msgid "Couch"
 msgstr "Kanepe"
 
-#: places/options.py:80
+#: places/options.py:107
 msgid "Private"
 msgstr "Özel"
 
-#: places/options.py:81
+#: places/options.py:108
 msgid "Shared"
 msgstr "Paylaşılan"
 
-#: places/options.py:85
+#: places/options.py:112
 msgid "Flexible"
 msgstr "Esnek"
 
-#: places/options.py:86
+#: places/options.py:113
 msgid "Semi-flexible"
 msgstr "Yarı esnek"
 
-#: places/options.py:87
+#: places/options.py:114
 msgid "Strict"
 msgstr "Sıkı"
 
-#: places/options.py:92
-msgid "Bank Transfer"
+#: places/options.py:119
+#, fuzzy
+msgid "Bank Transfer (IBAN)"
 msgstr "Banka Havalesi"
 
-#: places/options.py:97
+#: places/options.py:124
+msgid "Prepared"
+msgstr ""
+
+#: places/options.py:125 places/options.py:149
+#: templates/dashboard/calendar.html:19
 msgid "Requested"
 msgstr "Talep"
 
-#: places/options.py:99
+#: places/options.py:127
 msgid "Payed"
 msgstr "Ödenir"
 
-#: places/options.py:100
+#: places/options.py:128
 msgid "Canceled by host"
 msgstr "Ev sahibi tarafından iptal edildi"
 
-#: places/options.py:101
+#: places/options.py:129
 msgid "Canceled by guest"
 msgstr "Konuk tarafından iptal edildi"
 
-#: places/options.py:102
+#: places/options.py:130
 msgid "Canceled by staff"
 msgstr "Personel tarafından iptal edildi"
 
-#: places/options.py:107 places/options.py:121
+#: places/options.py:135 places/options.py:154
 msgid "Waiting for confirmation"
 msgstr "Onay için bekliyor"
 
-#: places/options.py:108
+#: places/options.py:136
 msgid "Confirmed, active"
 msgstr "Onaylandı, etkin"
 
-#: places/options.py:109 places/options.py:123
+#: places/options.py:137 places/options.py:156
 msgid "Deactived by staff"
 msgstr "Personel tarafından durduruldu"
 
-#: places/options.py:110
+#: places/options.py:138
 msgid "Deleted by reviewer"
 msgstr "Yazar tarafından silinmiş"
 
-#: places/options.py:111 places/options.py:125 support/models.py:116
+#: places/options.py:139 places/options.py:158 support/models.py:116
 msgid "Archived"
 msgstr "Arşivlenmiş"
 
-#: places/options.py:115
+#: places/options.py:143
 msgid "Wrong house details"
 msgstr "Yanlış ev bilgisi"
 
-#: places/options.py:116
+#: places/options.py:144
 msgid "Wrong price"
 msgstr "Yanlış fiyat"
 
-#: places/options.py:117
+#: places/options.py:145
 msgid "Malicous activity"
 msgstr "Kötü niyetli faaliyet"
 
-#: places/options.py:124
+#: places/options.py:148 templates/dashboard/calendar.html:16
+#, fuzzy
+msgid "Unavailable"
+msgstr "Yok"
+
+#: places/options.py:150 templates/dashboard/calendar.html:18
+#, fuzzy
+msgid "Booked"
+msgstr "Rezervasyon sonu"
+
+#: places/options.py:155
+msgid "Sent"
+msgstr ""
+
+#: places/options.py:157
 msgid "Deleted"
 msgstr "Silinmiş"
+
+#: places/options.py:161
+#, fuzzy, python-format
+msgid "Conversation with %s"
+msgstr "Çevrim faktörü"
+
+#: places/options.py:162
+#, python-format
+msgid "Friend request from %s"
+msgstr ""
+
+#: places/options.py:163
+#, fuzzy, python-format
+msgid "Reservation request for %s"
+msgstr "Rezervasyon başlangıcı"
+
+#: places/options.py:164
+msgid "Message from GaniHomes"
+msgstr ""
+
+#: places/options.py:201
+#, fuzzy
+msgid "Edit Prices"
+msgstr "Fiyat"
+
+#: places/options.py:202
+#, fuzzy
+msgid "Edit Place Details"
+msgstr "Mekan adı"
+
+#: places/options.py:203
+#, fuzzy
+msgid "Set Availability"
+msgstr "Yok"
+
+#: places/options.py:204
+#, fuzzy
+msgid "Manage Photos"
+msgstr "Fotoğraflar"
+
+#: places/options.py:205
+msgid "Operation succesfully completed."
+msgstr ""
+
+#: places/options.py:206 website/dashboard.py:285 website/dashboard.py:327
+msgid "Your profile successfully updated."
+msgstr ""
+
+#: places/options.py:207
+msgid "Please login or register to bookmark this place."
+msgstr ""
+
+#: places/options.py:208
+msgid ""
+"Your message has been temporarily saved. Please login or register to send "
+"your message."
+msgstr ""
+
+#: places/options.py:209
+msgid "Please confirm your friendship request for the person listed below."
+msgstr ""
+
+#: registration/admin.py:23
+#, fuzzy
+msgid "Activate users"
+msgstr "Etkin"
+
+#: registration/admin.py:43
+#, fuzzy
+msgid "Re-send activation emails"
+msgstr "Rezervasyon Tarihleri"
+
+#: registration/forms.py:35
+#, fuzzy
+msgid "Username"
+msgstr "Kullanıcı"
+
+#: registration/forms.py:36
+msgid "This value must contain only letters, numbers and underscores."
+msgstr ""
+
+#: registration/forms.py:39
+#, fuzzy
+msgid "E-mail"
+msgstr "E-posta"
+
+#: registration/forms.py:41 templates/registration/login.html:38
+#: website/views.py:69 website/views.py:72
+#, fuzzy
+msgid "Password"
+msgstr "Şifre değiştir"
+
+#: registration/forms.py:43
+#: templates/registration/password_change_form.html:33
+#, fuzzy
+msgid "Password (again)"
+msgstr "Şifre değiştir"
+
+#: registration/forms.py:55
+msgid "A user with that username already exists."
+msgstr ""
+
+#: registration/forms.py:67 website/dashboard.py:265
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: registration/forms.py:78
+msgid "I have read and agree to the Terms of Service"
+msgstr ""
+
+#: registration/forms.py:79
+msgid "You must agree to the terms to register"
+msgstr ""
+
+#: registration/forms.py:95
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr ""
+
+#: registration/forms.py:122
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr ""
+
+#: registration/models.py:184
+msgid "user"
+msgstr ""
+
+#: registration/models.py:185
+msgid "activation key"
+msgstr ""
+
+#: registration/models.py:190
+msgid "registration profile"
+msgstr ""
+
+#: registration/models.py:191
+msgid "registration profiles"
+msgstr ""
 
 #: support/models.py:21
 msgid "Hidden"
@@ -1909,10 +2523,6 @@ msgstr "Konu Kategorileri"
 #: support/models.py:31
 msgid "Waiting Reply"
 msgstr "Yanıt bekleniyor"
-
-#: support/models.py:31
-msgid "Replied"
-msgstr "Cevap verildi"
 
 #: support/models.py:31
 msgid "On going request"
@@ -2024,7 +2634,7 @@ msgstr "Daha önce açmış oldugunuz destek İstekleriniz Aşağıda listelenme
 msgid "Yeni Destek İsteği"
 msgstr "Yeni Destek İsteği"
 
-#: support/templates/support/list.html:11 website/models/dil.py:56
+#: support/templates/support/list.html:11 website/models/dil.py:60
 msgid "Durum"
 msgstr "Durum"
 
@@ -2044,11 +2654,11 @@ msgstr "Cevapla"
 
 #: support/templates/support/ticket_replied_body.html:2
 msgid ""
-"Destek sorunuza cevap verildi. Cevabı görmek için lütfen aşağıdaki "
-"linke tıklayın."
+"Destek sorunuza cevap verildi. Cevabı görmek için lütfen aşağıdaki linke "
+"tıklayın."
 msgstr ""
-"Destek sorunuza cevap verildi. Cevabı görmek için lütfen aşağıdaki "
-"linke tıklayın."
+"Destek sorunuza cevap verildi. Cevabı görmek için lütfen aşağıdaki linke "
+"tıklayın."
 
 #: support/templates/support/ticket_replied_subject.txt:1
 msgid "Your support ticket has been replied"
@@ -2066,6 +2676,474 @@ msgstr "Konuyu kapatmak istediğinizden emin misiniz?"
 msgid "Delete Ticket"
 msgstr "Bileti Sil"
 
+#: templates/404.html:16
+msgid "Page not found!"
+msgstr ""
+
+#: templates/404.html:18
+msgid ""
+"Sorry, but we can't find the page you are looking for. Our team is informed "
+"about the broken link. "
+msgstr ""
+
+#: templates/404.html:20
+msgid "Go to back"
+msgstr ""
+
+#: templates/500.html:15
+msgid "Oops! That should not happen"
+msgstr ""
+
+#: templates/500.html:17
+msgid ""
+"An unexpected error occured. Our team is informed and problem should be "
+"fixed soon."
+msgstr ""
+
+#: templates/500.html:19
+msgid "Sorry for the inconvenience."
+msgstr ""
+
+#: templates/add_place_wizard.html:36
+msgid "Your Total Payout"
+msgstr ""
+
+#: templates/add_place_wizard.html:48
+msgid "Save & Continue"
+msgstr ""
+
+#: templates/add_place_wizard.html:55
+msgid " :: Show Map :: "
+msgstr ""
+
+#: templates/add_place_wizard.html:72
+msgid "2/3 Save & Continue"
+msgstr ""
+
+#: templates/add_place_wizard.html:84 templates/add_place_wizard.html:136
+msgid "Go Back"
+msgstr ""
+
+#: templates/add_place_wizard.html:118
+#, fuzzy
+msgid "Upload a new photo"
+msgstr "Mekan tipi"
+
+#: templates/add_place_wizard.html:131
+msgid "You can reorder your photos via dragging with mouse."
+msgstr ""
+
+#: templates/add_place_wizard.html:132
+msgid "Located in the first place photo will be used as the primary photo."
+msgstr ""
+
+#: templates/add_place_wizard.html:138
+#: templates/dashboard/change_password.html:15
+#: templates/dashboard/edit_payment.html:40
+#: templates/dashboard/edit_profile.html:21
+msgid "Save"
+msgstr ""
+
+#: templates/base.html:37
+msgid "World is yours..."
+msgstr ""
+
+#: templates/base.html:42 templates/admin/base.html:40
+msgid "Log out"
+msgstr "Çıkış yap"
+
+#: templates/base.html:44 templates/dashboard.html:11
+msgid "My Page"
+msgstr ""
+
+#: templates/base.html:46
+msgid "Sign Up"
+msgstr ""
+
+#: templates/base.html:47
+#: templates/registration/password_reset_complete.html:11
+#, fuzzy
+msgid "Log in"
+msgstr "Çıkış yap"
+
+#: templates/base.html:51
+msgid "Add your place"
+msgstr ""
+
+#: templates/base.html:80 templates/dashboard.html:70
+#, fuzzy
+msgid "Help & Support"
+msgstr "Destek"
+
+#: templates/base.html:81 templates/dashboard.html:72
+msgid "FAQ"
+msgstr ""
+
+#: templates/base.html:82
+msgid "Help Desk"
+msgstr ""
+
+#: templates/base.html:83
+#, fuzzy
+msgid "Phone Support"
+msgstr "Destek"
+
+#: templates/base.html:86
+msgid "Corporate"
+msgstr ""
+
+#: templates/base.html:87
+msgid "Imprint"
+msgstr ""
+
+#: templates/base.html:88
+msgid "Terms and Conditions"
+msgstr ""
+
+#: templates/base.html:89
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/base.html:98
+msgid "Contact"
+msgstr ""
+
+#: templates/base.html:99
+msgid "Send us an email "
+msgstr ""
+
+#: templates/base.html:100
+msgid "Press"
+msgstr ""
+
+#: templates/book_place.html:14
+msgid "How it works"
+msgstr ""
+
+#: templates/book_place.html:22
+#, fuzzy
+msgid "Property details"
+msgstr "Yanlış ev bilgisi"
+
+#: templates/book_place.html:38 templates/paypal-confirm.html:11
+msgid "Travel Details & Pricing"
+msgstr ""
+
+#: templates/book_place.html:42 templates/paypal-confirm.html:15
+#: templates/show_place.html:148
+msgid "Check-in"
+msgstr ""
+
+#: templates/book_place.html:43 templates/paypal-confirm.html:16
+#: templates/show_place.html:152
+msgid "Check-out"
+msgstr ""
+
+#: templates/book_place.html:44 templates/paypal-confirm.html:17
+msgid "Nights"
+msgstr ""
+
+#: templates/book_place.html:45 templates/paypal-confirm.html:18
+#: templates/show_place.html:156 website/views.py:37
+#, fuzzy
+msgid "Guests"
+msgstr "Konuk"
+
+#: templates/book_place.html:46 templates/paypal-confirm.html:19
+#, fuzzy
+msgid "Total price"
+msgstr "Yanlış fiyat"
+
+#: templates/book_place.html:57
+#, fuzzy
+msgid "Payment"
+msgstr "Ödeme Şekli"
+
+#: templates/book_place.html:63
+msgid "Book It using PayPal"
+msgstr ""
+
+#: templates/dashboard.html:20
+msgid "My Wall"
+msgstr ""
+
+#: templates/dashboard.html:24
+#, fuzzy
+msgid "My Account"
+msgstr "Sistem Hesabı"
+
+#: templates/dashboard.html:26
+#, fuzzy
+msgid "Edit Profile"
+msgstr "Profil"
+
+#: templates/dashboard.html:27
+msgid "Payout Options"
+msgstr ""
+
+#: templates/dashboard.html:28
+#, fuzzy
+msgid "Change Password"
+msgstr "Şifre değiştir"
+
+#: templates/dashboard.html:33
+#, fuzzy
+msgid "Reviews"
+msgstr "Eleştiri"
+
+#: templates/dashboard.html:35
+#, fuzzy
+msgid "Reviews By You"
+msgstr "Eleştiri"
+
+#: templates/dashboard.html:36
+msgid "Reviews About You"
+msgstr ""
+
+#: templates/dashboard.html:44
+#, fuzzy
+msgid "My Places"
+msgstr "Mekanlar"
+
+#: templates/dashboard.html:46 templates/dashboard.html.py:116
+msgid "Add New Place"
+msgstr ""
+
+#: templates/dashboard.html:47
+msgid "Listings"
+msgstr ""
+
+#: templates/dashboard.html:49
+#, fuzzy
+msgid "Requests"
+msgstr "Talep"
+
+#: templates/dashboard.html:54
+msgid "My Trips"
+msgstr ""
+
+#: templates/dashboard.html:56 templates/dashboard/trips.html:15
+#, fuzzy
+msgid "Current"
+msgstr "Para birimi"
+
+#: templates/dashboard.html:57 templates/dashboard/trips.html:16
+msgid "Upcoming"
+msgstr ""
+
+#: templates/dashboard.html:58 templates/dashboard/trips.html:17
+msgid "Past"
+msgstr ""
+
+#: templates/dashboard.html:59 templates/dashboard.html.py:129
+msgid "Bookmarked Places"
+msgstr ""
+
+#: templates/dashboard.html:63
+msgid "Friends"
+msgstr ""
+
+#: templates/dashboard.html:65
+msgid "My Friends"
+msgstr ""
+
+#: templates/dashboard.html:66
+msgid "Invite a Friend"
+msgstr ""
+
+#: templates/dashboard.html:73
+msgid "I have a question!"
+msgstr ""
+
+#: templates/dashboard.html:86
+msgid "Inbox"
+msgstr ""
+
+#: templates/dashboard.html:88 templates/dashboard/user_messages.html:8
+msgid "New"
+msgstr ""
+
+#: templates/dashboard.html:89 templates/dashboard/user_messages.html:9
+msgid "Read"
+msgstr ""
+
+#: templates/dashboard.html:100
+#, fuzzy
+msgid "No new messages"
+msgstr "Mesaj"
+
+#: templates/dashboard.html:106
+#, fuzzy
+msgid "Booking Requests"
+msgstr "Rezervasyon başlangıç"
+
+#: templates/dashboard.html:141 templates/dashboard/trips.html:55
+msgid "You haven't bookmarked any place yet."
+msgstr ""
+
+#: templates/faq_ic.html:13
+msgid "Expand All"
+msgstr ""
+
+#: templates/faq_ic.html:13
+msgid "Collapse All"
+msgstr ""
+
+#: templates/login.html:20 templates/loginorregister.html:19
+#: templates/register.html:100 templates/registration/login.html:41
+msgid "Login"
+msgstr ""
+
+#: templates/login.html:21 templates/loginorregister.html:20
+msgid "Remember  Me"
+msgstr ""
+
+#: templates/login.html:24 templates/register.html:100
+#, fuzzy
+msgid "Forgot password?"
+msgstr "Şifre değiştir"
+
+#: templates/login.html:30 templates/login.html.py:91
+msgid "or"
+msgstr ""
+
+#: templates/login.html:37 templates/loginorregister.html:79
+#: templates/register.html:111
+msgid "Login with Facebook"
+msgstr ""
+
+#: templates/login.html:82 templates/loginorregister.html:66
+#: templates/register.html:44
+msgid "Register"
+msgstr ""
+
+#: templates/login.html:83 templates/loginorregister.html:67
+#: templates/register.html:45
+msgid "I accept the Terms of service"
+msgstr ""
+
+#: templates/login.html:96 templates/loginorregister.html:83
+#: templates/register.html:65
+msgid "Connect with Facebook"
+msgstr ""
+
+#: templates/loginorregister.html:6
+msgid "Please login or register to complete your booking request."
+msgstr ""
+
+#: templates/loginorregister.html:16
+msgid "Login to your account"
+msgstr ""
+
+#: templates/loginorregister.html:34
+msgid "Join Us"
+msgstr ""
+
+#: templates/paypal-cancel.html:13
+msgid "Process canceled"
+msgstr ""
+
+#: templates/paypal-confirm.html:30
+#, fuzzy
+msgid "Confirmation"
+msgstr "Onaylandı, etkin"
+
+#: templates/paypal-confirm.html:36
+msgid "Confirm My Reservation"
+msgstr ""
+
+#: templates/paypal-payment.html:13
+msgid "Confirm your order"
+msgstr ""
+
+#: templates/register.html:80
+msgid "Already registered?"
+msgstr ""
+
+#: templates/search.html:21
+msgid "Search"
+msgstr ""
+
+#: templates/search.html:89
+#, fuzzy
+msgid "Place Type"
+msgstr "Mekan tipi"
+
+#: templates/search.html:101
+msgid "Nightly Price"
+msgstr ""
+
+#: templates/search.html:113 templates/show_place.html:84
+#, fuzzy
+msgid "Amenities"
+msgstr "Ermenistan"
+
+#: templates/search.html:126
+#, fuzzy
+msgid "Space Offered"
+msgstr "Verilen alan"
+
+#: templates/show_place.html:30
+msgid "Availablity"
+msgstr ""
+
+#: templates/show_place.html:31
+msgid "Map"
+msgstr ""
+
+#: templates/show_place.html:85
+msgid "Manual & Rules"
+msgstr ""
+
+#: templates/show_place.html:141
+msgid "night"
+msgstr ""
+
+#: templates/show_place.html:162
+msgid "Total"
+msgstr ""
+
+#: templates/show_place.html:168
+#, fuzzy
+msgid "Book"
+msgstr "Rezervasyon"
+
+#: templates/show_place.html:169
+msgid "Please select the check in and check out dates first."
+msgstr ""
+
+#: templates/show_place.html:170
+msgid ""
+"Those dates are unavailable. Select differend dates or <a "
+"href='#looknearby'>look for nearby places</a>."
+msgstr ""
+
+#: templates/show_place.html:183
+msgid "Add or delete this place from your bookmarks"
+msgstr ""
+
+#: templates/show_place.html:184
+msgid "Bookmark Place"
+msgstr ""
+
+#: templates/show_place.html:184
+msgid "Bookmarked"
+msgstr ""
+
+#: templates/show_place.html:209
+msgid "To :"
+msgstr ""
+
+#: templates/show_place.html:215
+#, fuzzy
+msgid "Contact with Host"
+msgstr "İletişim Kayıtları"
+
+#: templates/show_place.html:216
+#, fuzzy
+msgid "Send"
+msgstr "Gönderici"
+
 #: templates/admin/base.html:32
 msgid "Welcome,"
 msgstr "Hoşgeldiniz,"
@@ -2077,15 +3155,6 @@ msgstr "Belgelendirme"
 #: templates/admin/base.html:39
 msgid "Change password"
 msgstr "Şifre değiştir"
-
-#: templates/admin/base.html:40
-msgid "Log out"
-msgstr "Çıkış yap"
-
-#: templates/admin/base.html:49 templates/admin/change_form.html:21
-#: templates/admin/change_list.html:43
-msgid "Home"
-msgstr "Ev"
 
 #: templates/admin/base_site.html:5
 msgid "GaniHome Yönetimi Bölümü"
@@ -2104,6 +3173,7 @@ msgid "View on site"
 msgstr "Sitede göster"
 
 #: templates/admin/change_form.html:46 templates/admin/change_list.html:69
+#: templates/registration/password_change_form.html:11
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Lütfen aşağıdaki hataları düzeltin."
@@ -2131,151 +3201,620 @@ msgstr "Değiştir"
 msgid "You don't have permission to edit anything."
 msgstr "Bir şey düzenlemek için yetkiniz yok."
 
-#: templates/admin/index.html:55
+#: templates/admin/index.html:54
+msgid "Site Ayarları"
+msgstr ""
+
+#: templates/admin/index.html:57
 msgid "Recent Actions"
 msgstr "Son İşlemler"
 
-#: templates/admin/index.html:56
+#: templates/admin/index.html:58
 msgid "My Actions"
 msgstr "Benim işlemlerim"
 
-#: templates/admin/index.html:60
+#: templates/admin/index.html:62
 msgid "None available"
 msgstr "Yok"
 
-#: templates/admin/index.html:74
+#: templates/admin/index.html:76
 msgid "Unknown content"
 msgstr "Bilinmeyen içerik"
 
-#: website/views.py:28
+#: templates/dashboard/calendar.html:17
+#, fuzzy
+msgid "Available"
+msgstr "Yok"
+
+#: templates/dashboard/calendar.html:30
+msgid "What do these dates?"
+msgstr ""
+
+#: templates/dashboard/calendar.html:31
+#, fuzzy
+msgid "Make Available"
+msgstr "Yok"
+
+#: templates/dashboard/calendar.html:33
+#, fuzzy
+msgid "Make Unavailable"
+msgstr "Yok"
+
+#: templates/dashboard/edit_payment.html:25
+msgid "Bank Transfer"
+msgstr "Banka Havalesi"
+
+#: templates/dashboard/edit_prices.html:14
+msgid "Basic Pricing"
+msgstr ""
+
+#: templates/dashboard/edit_prices.html:15
+#, fuzzy
+msgid "Sessional Pricing"
+msgstr "Sezonluk Fiyat"
+
+#: templates/dashboard/edit_prices.html:64
+msgid "Save Pricing"
+msgstr ""
+
+#: templates/dashboard/edit_prices.html:77
+#, fuzzy
+msgid "Add a sessional price"
+msgstr "Sezonluk Fiyat"
+
+#: templates/dashboard/edit_prices.html:88
+msgid "Delete Session"
+msgstr ""
+
+#: templates/dashboard/edit_prices.html:92
+#, fuzzy
+msgid "Save Sessional Pricing"
+msgstr "Sezonluk Fiyat"
+
+#: templates/dashboard/edit_profile.html:14
+#, fuzzy
+msgid "Change Photo"
+msgstr "Değiştir"
+
+#: templates/dashboard/friends.html:13
+#: templates/dashboard/show_message.html:22
+#, fuzzy
+msgid "Send message"
+msgstr "Mesajlar"
+
+#: templates/dashboard/friends.html:18
+#, fuzzy
+msgid "You don't have any friends yet."
+msgstr "Bir şey düzenlemek için yetkiniz yok."
+
+#: templates/dashboard/place_list.html:10
+#, fuzzy
+msgid "Preview place"
+msgstr "Favori mekanlar"
+
+#: templates/dashboard/place_list.html:17
+#, fuzzy
+msgid "Unpublish"
+msgstr "İngilizce"
+
+#: templates/dashboard/place_list.html:19
+#, fuzzy
+msgid "Publish"
+msgstr "Lehçe"
+
+#: templates/dashboard/place_list.html:21
+#, fuzzy
+msgid "Delete"
+msgstr "Silinmiş"
+
+#: templates/dashboard/place_list.html:24
+msgid "Edit prices"
+msgstr ""
+
+#: templates/dashboard/place_list.html:25
+#, fuzzy
+msgid "Edit details"
+msgstr "Ayrıntılar"
+
+#: templates/dashboard/place_list.html:26
+#, fuzzy
+msgid "Set availability"
+msgstr "Yok"
+
+#: templates/dashboard/show_message.html:11
+#, python-format
+msgid "Write a reply to %(toname)s"
+msgstr ""
+
+#: templates/dashboard/show_message.html:13
+#, python-format
+msgid "Write a message to %(toname)s"
+msgstr ""
+
+#: templates/dashboard/show_message.html:15
+#, python-format
+msgid "Send a friendship request to %(toname)s"
+msgstr ""
+
+#: templates/dashboard/show_message.html:35
+msgid "Accept"
+msgstr ""
+
+#: templates/dashboard/show_message.html:36
+msgid "Decline"
+msgstr ""
+
+#: templates/dashboard/show_message.html:45
+msgid "Please confirm your friendship request."
+msgstr ""
+
+#: templates/dashboard/show_message.html:46
+#, python-format
+msgid "Add %(toname)s to my friends."
+msgstr ""
+
+#: templates/dashboard/trips.html:18
+msgid "Bookmarks"
+msgstr ""
+
+#: templates/dashboard/trips.html:26
+msgid "Dates"
+msgstr ""
+
+#: templates/dashboard/trips.html:29
+msgid "Extras"
+msgstr ""
+
+#: templates/dashboard/trips.html:38
+#, fuzzy
+msgid "Show Details"
+msgstr "Ayrıntılar"
+
+#: templates/dashboard/user_messages.html:20
+#, fuzzy
+msgid "No messages"
+msgstr "Mesaj"
+
+#: templates/mail/mail_base.html:5
+msgid "World is yours"
+msgstr ""
+
+#: templates/mail/mail_base.html:17
+#: templates/registration/password_reset_email.html:11
+msgid "Thanks for using GaniHomes!"
+msgstr ""
+
+#: templates/mail/mail_base.html:19
+msgid "The GaniHomes team."
+msgstr ""
+
+#: templates/mail/new_message.html:6
+#, fuzzy, python-format
+msgid " Dear %(surname)s,"
+msgstr "%(name)s"
+
+#: templates/mail/new_message.html:9
+msgid ""
+"A GaniHomes user sent you a message. Please click the link below to see it;"
+msgstr ""
+
+#: templates/registration/login.html:37
+msgid "Email address"
+msgstr ""
+
+#: templates/registration/password_change_done.html:3
+#: templates/registration/password_change_done.html:7
+msgid "Password change successful"
+msgstr ""
+
+#: templates/registration/password_change_done.html:9
+msgid "Your password was changed."
+msgstr ""
+
+#: templates/registration/password_change_form.html:3
+#: templates/registration/password_change_form.html:15
+#, fuzzy
+msgid "Password change"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_change_form.html:17
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: templates/registration/password_change_form.html:23
+#: website/dashboard.py:250
+#, fuzzy
+msgid "Old password"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_change_form.html:28
+#: website/dashboard.py:251
+#, fuzzy
+msgid "New password"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_change_form.html:39
+#: templates/registration/password_reset_confirm.html:18
+#, fuzzy
+msgid "Change my password"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_reset_complete.html:3
+#: templates/registration/password_reset_complete.html:7
+msgid "Password reset complete"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:9
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:3
+#: templates/registration/password_reset_form.html:4
+#: templates/registration/password_reset_form.html:8
+#, fuzzy
+msgid "Password reset"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_reset_confirm.html:9
+#, fuzzy
+msgid "Enter new password"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_reset_confirm.html:11
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:15
+#, fuzzy
+msgid "New password:"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_reset_confirm.html:17
+#, fuzzy
+msgid "Confirm password:"
+msgstr "Şifre değiştir"
+
+#: templates/registration/password_reset_confirm.html:23
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:25
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:4
+#: templates/registration/password_reset_done.html:8
+msgid "Password reset successful"
+msgstr ""
+
+#: templates/registration/password_reset_done.html:10
+msgid ""
+"We've e-mailed you instructions for setting your password to the e-mail "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:2
+msgid "You're receiving this e-mail because you requested a password reset"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:3
+#, python-format
+msgid "for your user account at %(site_name)s"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:5
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:9
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:13
+msgid "The GaniHomes team"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:10
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
+"instructions for setting a new one."
+msgstr ""
+
+#: templates/registration/password_reset_form.html:14
+msgid "E-mail address:"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:14
+#, fuzzy
+msgid "Reset my password"
+msgstr "Şifre değiştir"
+
+#: website/booking.py:29
+#, python-format
+msgid ""
+"%(guest)s would like to stay at your place %(title)s on %(start)s through "
+"%(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> "
+"this  reservation in 24 hours .\n"
+"    Phone, email, and address information will be exchanged between guest/"
+"host after you accept the guest.\n"
+"    "
+msgstr ""
+
+#: website/dashboard.py:66
+msgid "Friendship request successfully sent."
+msgstr ""
+
+#: website/dashboard.py:67
+#, python-format
+msgid "%s wants to be friends with you."
+msgstr ""
+
+#: website/dashboard.py:78
+msgid "Place successfully unlisted from site."
+msgstr ""
+
+#: website/dashboard.py:81
+msgid "This place is now published!"
+msgstr ""
+
+#: website/dashboard.py:90
+#, fuzzy
+msgid "Place is deleted."
+msgstr "Mekan sitede listeleniyor"
+
+#: website/dashboard.py:108
+msgid "Friendship request accepted."
+msgstr ""
+
+#: website/dashboard.py:111
+msgid "Friendship request declined."
+msgstr ""
+
+#: website/dashboard.py:114
+msgid "Can't find the request. Could be canceled by the other side."
+msgstr ""
+
+#: website/dashboard.py:228 website/dashboard.py:244 website/views.py:395
+#: website/views.py:449
+msgid "Your message successfully sent."
+msgstr ""
+
+#: website/dashboard.py:252
+msgid "New password (again)"
+msgstr ""
+
+#: website/dashboard.py:263
+msgid "Your password successfully changed."
+msgstr ""
+
+#: website/dashboard.py:267
+msgid "Your old password was entered incorrectly. Please enter it again."
+msgstr ""
+
+#: website/dashboard.py:385
+msgid "Your payment selection successfully updated."
+msgstr ""
+
+#: website/dashboard.py:431
+msgid "Your pricing successfully updated."
+msgstr ""
+
+#: website/views.py:29
 msgid "All"
 msgstr ""
 
-#: website/views.py:34
-#, fuzzy
-msgid "Guests"
-msgstr "Konuk"
+#: website/views.py:36
+msgid "City or address"
+msgstr ""
 
-#: website/views.py:50
+#: website/views.py:55
 msgid "Bedrooms"
 msgstr ""
 
-#: website/views.py:52
+#: website/views.py:57
 msgid "Bathrooms"
 msgstr ""
 
-#: website/views.py:53
+#: website/views.py:58
 #, fuzzy
 msgid "Cancellation"
 msgstr "İptal kuralları"
 
-#: website/views.py:63 website/views.py:69
+#: website/views.py:68 website/views.py:74
 msgid "E-mail address"
 msgstr ""
 
-#: website/views.py:64 website/views.py:67
-#, fuzzy
-msgid "Password"
-msgstr "Şifre değiştir"
-
-#: website/views.py:68
+#: website/views.py:73
 msgid "Password (Again)"
 msgstr ""
 
-#: website/views.py:350
+#: website/views.py:171
+#, python-format
+msgid "%s%% Service Fee "
+msgstr ""
+
+#: website/views.py:392
+#, fuzzy
+msgid "Your message has saved."
+msgstr "Mesaj okundu"
+
+#: website/views.py:439
 #, fuzzy
 msgid "Wrong email or password."
 msgstr "Şifre değiştir"
 
-#: website/views.py:372
+#: website/views.py:471
 msgid "The passwords you entered do not match."
 msgstr ""
 
-#: website/models/dil.py:55
+#: website/views.py:473
+msgid "This email is already registered, please choose another one."
+msgstr ""
+
+#: website/models/dil.py:59
 msgid "Anahtar Kelime"
 msgstr "Anahtar Kelime"
 
-#: website/models/dil.py:78
+#: website/models/dil.py:88
 msgid "Türkçesi"
 msgstr "Türkçesi"
 
-#: website/models/dil.py:80
+#: website/models/dil.py:90
 msgid "Dil"
 msgstr "Dil"
 
-#: website/models/dil.py:82
+#: website/models/dil.py:92
 msgid "Çevirisi"
 msgstr "Çevirisi"
 
-#: website/models/icerik.py:123
+#: website/models/faq.py:22
+#, fuzzy
+msgid "FAQ Main Category"
+msgstr "Etiket Kategorisi"
+
+#: website/models/faq.py:23
+#, fuzzy
+msgid "FAQ Main Categories"
+msgstr "Etiket Kategorileri"
+
+#: website/models/faq.py:41
+msgid "FAQ Main Category Name Translation"
+msgstr ""
+
+#: website/models/faq.py:42
+msgid "FAQ Main Category Name Translations"
+msgstr ""
+
+#: website/models/faq.py:59
+#, fuzzy
+msgid "FAQ Category"
+msgstr "Etiket Kategorisi"
+
+#: website/models/faq.py:60
+#, fuzzy
+msgid "FAQ Categories"
+msgstr "Etiket Kategorileri"
+
+#: website/models/faq.py:78
+#, fuzzy
+msgid "FAQ Category Name Translation"
+msgstr "İşlem"
+
+#: website/models/faq.py:79
+#, fuzzy
+msgid "FAQ Category Name Translations"
+msgstr "İşlemler"
+
+#: website/models/faq.py:91 website/models/faq.py:143
+#, fuzzy
+msgid "Question"
+msgstr "Açıklama"
+
+#: website/models/faq.py:131
+msgid "FAQ Question"
+msgstr ""
+
+#: website/models/faq.py:132
+msgid "FAQ Questions"
+msgstr ""
+
+#: website/models/faq.py:151
+#, fuzzy
+msgid "FAQ Question Translation"
+msgstr "Otomatik çeviri"
+
+#: website/models/faq.py:152
+#, fuzzy
+msgid "FAQ Question Translations"
+msgstr "Otomatik çeviri"
+
+#: website/models/faq.py:162
+msgid "Answer"
+msgstr ""
+
+#: website/models/faq.py:170
+msgid "FAQ Answer"
+msgstr ""
+
+#: website/models/faq.py:171
+msgid "FAQ Answers"
+msgstr ""
+
+#: website/models/icerik.py:138
 msgid "İçerik Gövdesi"
 msgstr "İçerik Gövdesi"
 
-#: website/models/icerik.py:124
+#: website/models/icerik.py:139
 msgid "başlık"
 msgstr "Başlık"
 
-#: website/models/icerik.py:125
+#: website/models/icerik.py:140
 msgid "menü başlık"
 msgstr "Menü Başlık"
 
-#: website/models/icerik.py:126
+#: website/models/icerik.py:141
 msgid "Menüde başlığın üzerine yazmak için"
 msgstr "Menüde başlığın üzerine yazmak için"
 
-#: website/models/icerik.py:127
+#: website/models/icerik.py:142
 msgid "slug"
 msgstr "slug"
 
-#: website/models/icerik.py:129
+#: website/models/icerik.py:143
 msgid "URL'ye Yönlen"
 msgstr "URL'ye Yönlen"
 
-#: website/models/icerik.py:131
+#: website/models/icerik.py:145
 msgid "meta tanım"
 msgstr "meta Tanim"
 
-#: website/models/icerik.py:132
+#: website/models/icerik.py:146
 msgid "meta anahtar kelimeler"
 msgstr "Meta Anahtar Kelimeler"
 
-#: website/models/icerik.py:133
+#: website/models/icerik.py:147
 msgid "html başlığı"
 msgstr "html Başlığı"
 
-#: website/models/icerik.py:134
+#: website/models/icerik.py:148
 msgid "tarayıcı  başlığının üzerine yaz"
 msgstr "Tarayici başlığının üzerine yaz"
 
-#: website/models/icerik.py:135
+#: website/models/icerik.py:149
 msgid "Sayfa"
 msgstr "Sayfa"
 
-#: website/models/icerik.py:136
+#: website/models/icerik.py:150
 msgid "oluşturulma zamanı"
 msgstr "oluşturulma zamanı"
 
-#: website/models/icerik.py:254
+#: website/models/icerik.py:269
 #, fuzzy
 msgid "Place photo"
 msgstr "Mekan tipi"
 
-#: website/models/icerik.py:255
+#: website/models/icerik.py:270
 msgid "Instead of uploading an image, you can select a place photo"
 msgstr ""
 
-#: website/models/icerik.py:256
+#: website/models/icerik.py:271
 msgid "Place of the photo"
 msgstr ""
 
-#: website/models/icerik.py:257
+#: website/models/icerik.py:272
 msgid ""
-"If you are uploading an image (instead of selecting an existing place "
-"photo) you should manualy select a place for linking. Can be left blank"
-" if you choose a place photo."
+"If you are uploading an image (instead of selecting an existing place photo) "
+"you should manualy select a place for linking. Can be left blank if you "
+"choose a place photo."
 msgstr ""
 
-#: website/models/icerik.py:262
+#: website/models/icerik.py:277
 msgid "Sadece favori olarak seçilen ögeler ana vitrinde gösterilir."
 msgstr ""
 
@@ -2290,6 +3829,9 @@ msgstr "Dosya Adı"
 #: website/models/medya.py:37
 msgid "Dosya"
 msgstr "Dosya"
+
+#~ msgid "Cancellation rules"
+#~ msgstr "İptal kuralları"
 
 #~ msgid "Pets"
 #~ msgstr "Evcil hayvan"
@@ -2327,9 +3869,6 @@ msgstr "Dosya"
 #~ msgid "Finnish"
 #~ msgstr "Fince"
 
-#~ msgid "French"
-#~ msgstr "Fransızca"
-
 #~ msgid "Croatian"
 #~ msgstr "Hırvatca"
 
@@ -2353,9 +3892,6 @@ msgstr "Dosya"
 
 #~ msgid "Norwegian"
 #~ msgstr "Norveçce"
-
-#~ msgid "Polish"
-#~ msgstr "Lehçe"
 
 #~ msgid "Portuguese (Brazil)"
 #~ msgstr "Portekizce (Brezilya)"

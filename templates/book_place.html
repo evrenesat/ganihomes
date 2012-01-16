@@ -4,6 +4,7 @@
 {#<script>$(document).ready(function(){gh.login_init()})</script>#}
 {% endblock %}
 {% block content %}
+    <form action="." method="post">
     <div class="altiOkutu">
         <div class="kutuici">
 
@@ -58,7 +59,8 @@
                     You must complete the process to finalize the booking request. Actual payment will be done after
                     host accepts your request. If the host declines or does not respond in 24h, no charge is made.
                     <div style="width:100%;text-align:center;margin-top:20px;">
-                    <button onclick="document.location='?express'" class="yemyesildugme fo16">{% trans "Book It using PayPal" %}</button>
+
+                    <input name="paypal" type="submit" class="yemyesildugme fo16" value="{% trans "Book It using PayPal" %}">
 
                         {% if errors %}<div class="warn red">{{ errors }}</div>{% endif %}
                     </div>
@@ -84,5 +86,5 @@
     </div>
 
 
-
+</form>
 {% endblock %}

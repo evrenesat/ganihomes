@@ -22,7 +22,7 @@ TEST = settings.PAYPAL_TEST
 USER = settings.PAYPAL_WPP_USER
 PASSWORD = settings.PAYPAL_WPP_PASSWORD
 SIGNATURE = settings.PAYPAL_WPP_SIGNATURE
-VERSION = 54.0
+VERSION = 84.0
 BASE_PARAMS = dict(USER=USER , PWD=PASSWORD, SIGNATURE=SIGNATURE, VERSION=VERSION)
 ENDPOINT = "https://api-3t.paypal.com/nvp"
 SANDBOX_ENDPOINT = "https://api-3t.sandbox.paypal.com/nvp"
@@ -92,9 +92,12 @@ class PayPalWPP(object):
 
         defaults = {"method": "SetExpressCheckout", "noshipping": 1,
                     "paymentaction":'Authorization',
+#                    'PAYMENTREQUEST_0_CURRENCYCODE':'EUR',
+#                    'CURRENCYCODE':'EUR',
+                    'HDRIMG':'https://static.e-junkie.com/sslpic/64123.1c8bb1d04a97bc111163dcfaa2c5f109.jpg',
 #                    "paymentaction":'Sale'
         }
-        required = L("returnurl cancelurl amt")
+        required = L("returnurl cancelurl")
         nvp_obj = self._fetch(params, required, defaults)
         if nvp_obj.flag:
             raise PayPalFailure(nvp_obj.flag_info)
@@ -108,7 +111,7 @@ class PayPalWPP(object):
                     "paymentaction": "Authorization",
 #                    "paymentaction": "Sale",
         }
-        required = L("returnurl cancelurl amt token payerid")
+        required = L("returnurl cancelurl token payerid")
         nvp_obj = self._fetch(params, required, defaults)
         if nvp_obj.flag:
             raise PayPalFailure(nvp_obj.flag_info)
@@ -242,7 +245,7 @@ class PayPalWPP(object):
         response_params = self._parse_response(response)
 
 
-        log.debug( 'PayPal Request:%s\nPayPal Response:%s'%
+        log.info( 'PayPal Request:%s\nPayPal Response:%s'%
             (pprint.pformat(defaults),pprint.pformat(response_params)))
 
         # Gather all NVP parameters to pass to a new instance.
@@ -255,13 +258,17 @@ class PayPalWPP(object):
         if 'timestamp' in nvp_params:
             nvp_params['timestamp'] = paypaltime2datetime(nvp_params['timestamp'])
 
+
         nvp_obj = PayPalNVP(**nvp_params)
+
         nvp_obj.init(self.request, params, response_params)
+        nvp_obj.custom = params['PAYMENTREQUEST_0_CUSTOM']
         nvp_obj.save()
         return nvp_obj
 
     def _request(self, data):
         """Moved out to make testing easier."""
+        log.info('endpoint: %s\n\ndata: %s'% (self.endpoint, data))
         return urllib2.urlopen(self.endpoint, data).read()
 
     def _check_and_update_params(self, required, params):
@@ -281,5 +288,6 @@ class PayPalWPP(object):
         response_tokens = {}
         for kv in response.split('&'):
             key, value = kv.split("=")
-            response_tokens[key.lower()] = urllib.unquote(value)
+            key = key.lower().replace('paymentinfo_0_','').replace('paymentrequest_0_','')
+            response_tokens[key] = urllib.unquote(value)
         return response_tokens
