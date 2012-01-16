@@ -229,7 +229,7 @@ def icerik(request, id, slug):
     lang = request.LANGUAGE_CODE
     context = {'sayfa_id': sayfa.id, 'sayfa': sayfa,
                'icerik': sayfa.al_icerik(lang),
-               'ust_baslik':sayfa.parent.al_baslik(lang),
+               'ust_baslik':sayfa.parent.al_baslik(lang) if sayfa.parent else '',
                'kategoriler': sayfa.yansayfalar(lang)}
     ci = RequestContext(request)
     sablon = 'content_templates/' + (sayfa.sablon or 'icerik.html')

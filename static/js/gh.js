@@ -764,7 +764,11 @@ gh = {
            })
         })
     },
-//    init_login: function(){
+    init_login: function(){this.tosUrl()},
+    init_register: function(){this.tosUrl()},
+    tosUrl:function(){
+        $('#regtoslabel  a').attr('href', this.url('2/tos')).attr('target','new')
+    },
 //        $('html').click(function (data) {
 //            $('#uyekapsar').addClass('silik');
 //        });
@@ -1050,6 +1054,9 @@ gh = {
     },
     durl:function(cmd){
         return ('/'+this.LANGUAGE_CODE + '/dashboard/' + cmd + '/').replace('//','/')
+    },
+    url:function(cmd){
+        return ('/'+this.LANGUAGE_CODE +'/'+ cmd + '/').replace('//','/')
     },
     publishPlace:function(id){
         var self = this;
