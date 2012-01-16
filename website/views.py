@@ -27,8 +27,9 @@ import logging
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7)
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
-from appsettings import app
-ghs = app.settings.gh
+#from appsettings import app
+import dbsettings
+#ghs = app.settings.gh
 
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
@@ -168,9 +169,9 @@ def addPlace(request, ajax=False, id=None):
         form = addPlaceForm(instance=old_place)
         register_form = RegisterForm()
         login_form = LoginForm()
-    str_fee =  _('%s%% Service Fee '% ghs.host_fee)
+    str_fee =  _('%s%% Service Fee '% dbsettings.ghs.host_fee)
     context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
-               'host_fee':ghs.host_fee, 'str_fee':str_fee, 'photos':photos,
+               'host_fee':dbsettings.ghs.host_fee, 'str_fee':str_fee, 'photos':photos,
     }
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 

@@ -39,6 +39,7 @@ log = logging.getLogger('genel')
 #yap: IE kontrolu
 #yap: arkadasini davet et
 #yap: facebook twitter ikonlari
+#yap: register thanks >> dashboard
 #yapıldı: arkadas ekle, cikar
 
 

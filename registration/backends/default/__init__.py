@@ -5,8 +5,9 @@ from django.contrib.sites.models import Site
 from registration import signals
 from registration.forms import RegistrationForm
 from registration.models import RegistrationProfile
-from appsettings import app
-user_settings = app.settings.gh.users
+#from appsettings import app
+from dbsettings import ghs
+user_settings = ghs.usr
 
 class DefaultBackend(object):
     """

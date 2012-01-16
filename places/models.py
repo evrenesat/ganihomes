@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -20,8 +20,7 @@ log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
 import options
-from appsettings import app
-ghs = app.settings.gh
+
 
 for code,name in settings.LANGUAGES:
     activate(code)
@@ -695,7 +694,8 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.host_earning:
-            self.host_earning =  self.place.price * ((100-ghs.host_fee)/100)
+            import dbsettings
+            self.host_earning =  self.place.price * ((100-dbsettings.ghs.host_fee)/100)
         super(Booking, self).save(*args, **kwargs)
 
 
