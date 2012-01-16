@@ -208,6 +208,7 @@ JSTRANS = (
     ('login_for_bookmark',_('Please login or register to bookmark this place.')),
     ('login_for_sendmessage',_('Your message has been temporarily saved. Please login or register to send your message.')),
     ('confirm_friendship_request',_('Please confirm your friendship request for the person listed below.')),
+    ('accept_terms_of_service',_('Please read and accept the Terms of service agreement.')),
 #    ('',_('')),
 #    ('',_('')),
 #    ('',_('')),

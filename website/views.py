@@ -24,6 +24,9 @@ from easy_thumbnails.files import get_thumbnailer
 from django.contrib import auth
 from django.contrib import messages
 import logging
+from website.models.dil import Ceviriler
+from website.templatetags.cevir import cevir
+
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7)
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
@@ -366,7 +369,11 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     else:
         place = place
     if receiver is None:receiver = place.owner
-    if sender is None: sender = rq.user
+    if sender is None:
+        if typ==40:
+            sender = User.objects.filter(is_staff=True, username='GaniHomes')[0]
+        if not sender:
+            sender = rq.user
     msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ)
     current_site = get_current_site(rq)
     message = {
@@ -467,7 +474,11 @@ def register(request,template='register.html'):
                     user.username = user.email
                     user.set_password(form.cleaned_data['pass1'])
                     user.save()
-                    return HttpResponseRedirect(reverse('registeration_thanks'))
+                    request.user = user
+                    messages.success(request, _('Wellcome to GaniHomes.'))
+
+                    send_message(request, Ceviriler.cevir('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
+                    return HttpResponseRedirect(reverse('dashboard'))
                 else:
                     messages.error(request, _('The passwords you entered do not match.'))
             except DatabaseError:

@@ -26,8 +26,8 @@ import logging
 log = logging.getLogger('genel')
 
 
-#yap: sozlesme popup
-#yap: rezervasyon
+#yapildi: sozlesme popup
+#yapildi: rezervasyon
 #yap: paypal capture
 #yap: iletisim
 #yap: ask a question, login/anonim

@@ -54,7 +54,7 @@
 
 {% cevir "giris sag blok mini kayit form ustyazi" %}
             </p>
-            <form action="{% url register %}" method="post">
+            <form action="{% url register %}" class="registerform" method="post">
                 {% csrf_token %}
         <div class="sideform2 separate">
                 <label for="id_first_name">{{ rform.first_name.label }}</label><br>

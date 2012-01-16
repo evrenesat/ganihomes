@@ -11,7 +11,7 @@
 
 
 
-            <form action="." method="post" id="addplaceform">
+            <form action="." method="post" id="addplaceform" class="registerform">
 
 
                 <div class="regform forms autocenter" >
@@ -61,7 +61,7 @@
                 <div class="orline" ></div>
 
                  <div style="width:100%;text-align:center;">
-                     <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+                     <form action="{% url facebook_connect %}?facebook_login=1" class="registerform" method="post">
                                  <input type="submit" onclick="F.connect(this.parentNode); return false;" class="fbbutton" value="{% trans "Connect with Facebook" %}">
                      <input type="hidden"  name="next" value="{{ next }}">
                                  </form>
