@@ -665,11 +665,12 @@ class Photo(models.Model):
 class Booking(models.Model):
     """Booking"""
 
-    host = models.ForeignKey(User, verbose_name=_('Host'), related_name='host')
+    host = models.ForeignKey(User, verbose_name=_('Host'), related_name='hostings')
     guest = models.ForeignKey(User, verbose_name=_('Guest'), related_name='guestings')
     place = models.ForeignKey(Place, verbose_name=_('Place'))
     reservation = models.ForeignKey(ReservedDates, verbose_name=_('Reservation Dates'))
     nguests = models.SmallIntegerField(_('Number of guests'))
+    nights = models.SmallIntegerField(_('Nights'),default=0)
     currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
     start = models.DateField(_('Booking start'))
     end = models.DateField(_('Booking end'))
@@ -686,8 +687,23 @@ class Booking(models.Model):
     # = models.IntegerField(_(''))
     # = models.SmallIntegerField(_(''))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    confirmation_date = models.DateTimeField(null=True, blank=True)
+    rejection_date = models.DateTimeField(null=True, blank=True)
+    guest_ok_date = models.DateTimeField(null=True, blank=True)
 
+    def capturePayment(self):
+        pass
 
+    def voidPayment(self):
+        pass
+
+    def refundPayment(self):
+        #TODO: implement paypal refund
+        pass
+
+    def payoutHost(self):
+        #TODO: implement payout host
+        pass
 
     def set_reservation(self):
         self.reservation = ReservedDates.objects.create(place = self.place, start= self.start, end=self.end, type=2)
@@ -792,11 +808,12 @@ class Message(models.Model):
 class UserReview(models.Model):
     """user reviews"""
 
-    writer = models.ForeignKey(User, verbose_name=_('Reviewer'), related_name='writer')
-    person = models.ForeignKey(User, verbose_name=_('Person'), related_name='person')
+    writer = models.ForeignKey(User, verbose_name=_('Reviewer'), related_name='personal_reviews_by_you')
+    person = models.ForeignKey(User, verbose_name=_('Person'), related_name='personal_reviews_about_you')
     text = models.TextField(_('Review'))
     active = models.BooleanField(_('Review visible on the site'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
+    lang = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:
@@ -812,7 +829,8 @@ class UserReview(models.Model):
 class PlaceReview(models.Model):
     """user reviews"""
 
-    writer = models.ForeignKey(User, verbose_name=_('Reviewer'))
+    writer = models.ForeignKey(User, verbose_name=_('Reviewer'), related_name='place_reviews_by_you')
+    person = models.ForeignKey(User, verbose_name=_('Person'), related_name='place_reviews_about_you')
     place = models.ForeignKey(Place, verbose_name=_('Place'))
     text = models.TextField(_('Review'))
     overall_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
@@ -822,6 +840,7 @@ class PlaceReview(models.Model):
     value_money_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)
     active = models.BooleanField(_('Review visible on the site'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
+    lang = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:

@@ -1,0 +1,63 @@
+{% extends "dashboard/base.html" %}
+{% load  currency cevir i18n thumbnail%}
+{% block title %} {% cevir "rezervasyon detaylari baslik" %} {% endblock %}
+{% block content %}
+
+<form action="." method="post">
+    <div class="bookpart">
+         <h3>{% trans "Property details" %}</h3>
+         <div id="bookinplace">
+             <img  src="{% thumbnail place.primary_photo 0x120 upscale crop=scale %}">
+             <span class="booksubtitle">{{ place.title }}</span><br>
+             {{ place.city}} - {{ place.district }} {{ place.get_country_display }}
+             <br>
+             {{ place.get_type_display }} / {{ place.get_space_display }}
+             <br>
+
+
+         </div>
+         <div id="bookinhost">
+
+         </div>
+     </div>
+
+         <div class="bookpart"><h3>{% trans "Travel Details & Pricing" %}</h3>
+
+
+             <div id="dbookdetail" class="iblock">
+             <span class="ozz_label">{% trans "Check-in" %}</span> <span class="ozz_value">{{ booking.start|date:"d F Y l" }}</span>
+             <span class="ozz_label">{% trans "Check-out" %}</span> <span class="ozz_value">{{ booking.end|date:"d F Y l" }}</span>
+             <span class="ozz_label">{% trans "Nights" %}</span> <span class="ozz_value">{{ booking.nights }}</span>
+             <span class="ozz_label">{% trans "Guests" %}</span> <span class="ozz_value">{{ booking.nguests }}</span>
+             <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
+                 {% if booking.currency.code_position == 1%} {{ booking.currency.name }} {{ total_price|currency }}
+                 {% else %}{{ total_price|currency }} {{ booking.currency.name }}
+                 {% endif %}
+             </span>
+             </div></div>
+             {% csrf_token %}
+
+    <div style="width:460px;margin:10px auto;">
+
+        {% if booking.status == 10 %}
+            {% if user_is_host %}
+            <input type="hidden" name="confirmation" id="confirmation" value="">
+            <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm" class="yemyesildugme kck"  value="{% trans "Confirm booking" %}">
+
+            <input type="submit" onclick="$('#confirmation').val('reject')" name="reject" class="kizildugme kck"  value="{% trans "Reject booking" %}">
+                {% else %}
+                <br><br>
+                <h3>{% trans "Waiting for the confirmation from the host." %}</h3>
+
+                {% endif %}
+        {% else %}
+
+        {% endif %}
+
+
+    </div>
+</form>
+
+
+{% endblock %}
+

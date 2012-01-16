@@ -32,8 +32,8 @@
                 <li>
                     <div id="mcpref"><a href="#">{% trans "Reviews" %}</a></div>
                     <ul>
-                        <li data-param="1" class="btn do_showReviews">{% trans "Reviews By You" %}</li>
-                        <li data-param="2" class="btn do_showReviews">{% trans "Reviews About You" %}</li>
+                        <li data-param="byyou" class="btn do_showReviews">{% trans "Reviews By You" %}</li>
+                        <li data-param="aboutyou" class="btn do_showReviews">{% trans "Reviews About You" %}</li>
 
                     </ul>
                 </li>
@@ -45,8 +45,7 @@
                     <ul>
                         <li class="btn do_dbAddPlaceWizzard">{% trans "Add New Place" %}</li>
                         <li class="btn do_listPlaces">{% trans "Listings" %}</li>
-{#                        <li data-param="2" class="btn do_listPlaces">{% trans "Archived" %}</li>#}
-                        <li class="">{% trans "Requests" %} <span style="font-size:smaller;font-weight:normal;"></span></li>
+                        <li class="btn do_showRequests">{% trans "Requests" %}</li>
 
                     </ul>
                 </li>

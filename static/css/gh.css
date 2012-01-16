@@ -3047,6 +3047,42 @@ ul.messages li{
     width: 430px;
 }
 
+
+
+
+#dbookdetail {
+    width: 100%;
+}
+
+#dbookdetail span {
+    margin-top: 4px;
+    border-bottom: 1px solid #fffccf;
+    -webkit-box-shadow: #ccc 1px 1px 4px;
+    -moz-box-shadow: #ccc 1px 1px 4px;
+    box-shadow: #ccc 1px 1px 4px;
+    padding: 10px;
+    height: 20px;
+    font-size: 14px
+}
+
+#dbookdetail .ozz_label {
+    float: left;
+    color: #444444;
+    display: block;
+    width: 200px;
+
+}
+
+#dbookdetail .ozz_value {
+
+    float: left;
+
+    color: #444444;
+    font-weight: bold;
+    display: block;
+    width: 230px;
+}
+
 #hostbox img {
     margin: 10px 0;
     -webkit-box-shadow: 1px 1px 5px 1px #ccc;
@@ -4041,4 +4077,25 @@ ul.messages li{
 #msgarea{
     width: 539px;
     height: 147px;
+}
+.reviewbox{
+    display: block;
+    position: relative;
+    list-style: none;
+    float: left;
+    width: 600px;
+    margin: 4px;
+    /*height: 140px;*/
+    padding: 5px 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    height: 144px;
+    background-color:#fff;
+    behavior: url(/templates/PIE.htc);
+
+
 }

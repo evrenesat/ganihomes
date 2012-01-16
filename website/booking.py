@@ -25,7 +25,7 @@ def paypal_complete(request):
     booking = request.session['booking']
     paypal_transaction = PayPalNVP.objects.get(method="DoExpressCheckoutPayment",ack='Success',custom=str(booking.id))
     booking.payment_type = 2
-    booking.status = 20
+    booking.status = 10
     booking.save()
 
     msg = _("""%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .
@@ -39,7 +39,7 @@ def paypal_complete(request):
         'bid':booking.id,
     }
     send_message(request, msg, place=booking.place, typ=30)
-    messages.success(request, _('Your reservation request has been successfully sent to the host.'))
+    messages.success(request, _('Your booking request has been successfully sent to the host.'))
     return HttpResponseRedirect(reverse('dashboard'))
 
 def paypal_cancel(request):
@@ -72,6 +72,7 @@ def book_place(request):
             host = place.owner,
             guest = user,
             place = place,
+            nights = bi['ndays'],
             guest_payment = prices['total'],
             start = bi['checkin'],
             end = bi['checkout'],

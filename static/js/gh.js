@@ -1068,6 +1068,15 @@ gh = {
             if(data.message)alert(data.message)
         })
     },
+    showBookingRequest:function(id){
+        this.genericEdit('/dashboard/show_booking/'+id)
+    },
+//    confirmBooking:function(id){
+//        $.post(this.durl('confirm_booking'),{'id':id},function(data){
+//            self.do_listPlaces()
+//            if(data.message)alert(data.message)
+//        })
+//    },
 //    show_message:function(m){
 //        md = $('#message')
 //        md.find('span').html(m)
@@ -1083,6 +1092,14 @@ gh = {
         this.genericEdit('/dashboard/trips/',function(){
             $('#litetabs').tabs({ selected: tab_id })
         })
+    },
+    do_showRequests:function(self, tab_id){
+        this.genericEdit('/dashboard/show_requests/',function(){
+            $('#litetabs').tabs({ selected: tab_id })
+        })
+    },
+    do_showReviews:function(self, tab_id){
+        this.genericEdit('/dashboard/show_reviews/')
     },
     showMessage:function(id){
         this.genericEdit('/dashboard/show_message/'+id)

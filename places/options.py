@@ -125,8 +125,8 @@ BOOKING_STATUS = (
     (10, _('Requested')),
     (20, _('Confirmed')),
     (30, _('Payed')),
-    (35, _('Payed')),
-    (40, _('Canceled by host')),
+#    (35, _('Payed')),
+    (40, _('Rejected by host')),
     (50, _('Canceled by guest')),
     (60, _('Canceled by staff')),
 )
@@ -161,7 +161,7 @@ MESSAGE_STATUS = (
 MESSAGE_TYPES = (
     (10, _('Conversation with %s')),
     (20, _('Friend request from %s')),
-    (30, _('Reservation request for %s')),
+    (30, _('Booking request for %s')),
     (40, _('Message from GaniHomes')),
 #    (50, _('Archived')),
 )

@@ -1,0 +1,47 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "yorumlar baslik" %} {% endblock %}
+{% block content %}
+
+
+
+
+<div id="litetabs">
+          <ul id="pricetabs">
+              <li class="prtab"><a href="#byyou">{% trans "Reviews by you" %}</a></li>
+              <li class="prtab"><a href="#aboutyou">{% trans "Reviews about you" %}</a></li>
+          </ul>
+
+
+          <div id="byyou">
+              {% if byyou %}
+          {% for r in byyou %}
+              <div class="reviewbox">
+                  <h5>{{ r.writer.get_profile.private_name }}</h5>
+                  {{ r.text }}
+              </div>
+          {% endfor %}
+              {% else %}
+                  <div class="reviewbox">
+                            {% trans "You don't write any reviews yet" %}
+                  </div>
+          {% endif %}
+    </div>
+
+          <div id="aboutyou">
+              {% if aboutyou %}
+          {% for r in aboutyou %}
+              <div class="reviewbox">
+                  <h5>{{ r.writer.get_profile.private_name }}</h5>
+                  {{ r.text }}
+              </div>
+          {% endfor %}
+              {% else %}
+                  <div class="reviewbox">
+                            {% trans "You don't get any reviews yet" %}
+                  </div>
+          {% endif %}
+    </div>
+
+
+{% endblock %}

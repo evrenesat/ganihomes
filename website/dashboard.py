@@ -152,6 +152,27 @@ def trips(request):
     return render_to_response('dashboard/trips.html', context, context_instance=RequestContext(request))
 
 @login_required
+def show_requests(request):
+    user = request.user
+    profile = user.get_profile()
+    context = {
+                'requests':user.hostings.filter(status__in=[10,20]),
+    }
+    return render_to_response('dashboard/requests.html', context, context_instance=RequestContext(request))
+
+@login_required
+def show_reviews(request):
+    user = request.user
+    profile = user.get_profile()
+    byyou = list(user.place_reviews_by_you.all()) + list(user.personal_reviews_by_you.all())
+    aboutyou = list(user.place_reviews_about_you.all()) + list(user.personal_reviews_about_you.all())
+    context = {
+                'byyou':byyou,
+                'aboutyou':aboutyou,
+    }
+    return render_to_response('dashboard/reviews.html', context, context_instance=RequestContext(request))
+
+@login_required
 def friends(request):
     user = request.user
     profile = user.get_profile()
@@ -212,6 +233,32 @@ def dashboard(request):
 def show_messages(request):
     context = {'msgs':list_messages(request),}
     return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
+
+
+def show_booking(request, id):
+    user = request.user
+    booking = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
+    context={
+        'user_is_guest':booking.guest == user,
+        'user_is_host':booking.host == user,
+        'total_price': booking.host_earning if booking.host == user else booking.guest_payment,
+        'booking':booking,
+        'place':booking.place,
+    }
+    if request.method =='POST':
+        if request.POST.get('confirmation')=='confirm':
+            booking.status = 20
+            booking.confirmation_date = datetime.today()
+            booking.capturePayment()
+            messages.success(request, _('Booking request confirmed.'))
+        elif request.POST.get('confirmation')=='reject':
+            booking.satus = 40
+            booking.rejection_date = datetime.today()
+            booking.voidPayment()
+            messages.success(request, _('Booking request rejected.'))
+        booking.save()
+        #yap: send_message to guest
+    return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
 
 
 
