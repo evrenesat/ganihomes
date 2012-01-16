@@ -767,7 +767,7 @@ gh = {
     init_login: function(){this.tosUrl()},
     init_register: function(){this.tosUrl()},
     tosUrl:function(){
-        $('#regtoslabel  a').attr('href', this.url('2/tos')).attr('target','new')
+        $('#regtoslabel  a').attr('href', this.url('4/tos')).attr('target','new')
     },
 //        $('html').click(function (data) {
 //            $('#uyekapsar').addClass('silik');
