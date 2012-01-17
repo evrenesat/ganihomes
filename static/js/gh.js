@@ -536,7 +536,7 @@ gh = {
     makeAvailabilityTab:function(destroy){
         var self = this
         if(typeof(destroy)!='undefined')$('#pcalendar').datepick('destroy')
-        $('#pcalendar').datepick({monthsToShow:2,multiSelect: 999, minDate:0,  rangeSelect: true,
+        $('#pcalendar').datepick({monthsToShow:2, minDate:0,  rangeSelect: true,
             onSelect: function(dates) { self.checkReservationDates(dates)},
             onDate: function(date, current){
                 return self.isUnAvailable(date) ?
@@ -866,9 +866,7 @@ gh = {
                 })
                 }
             });
-        self.loadTemplate('dashboard_place_listing.tpl',function(){self.hashCall()})
-
-            //FIXME: tpl olayindan kurtulsak iyi olur
+//        self.loadTemplate('dashboard_place_listing.tpl',function(){self.hashCall()})
 //        this.editPrices(2)
 //        this.editAvailability(2)
     },
