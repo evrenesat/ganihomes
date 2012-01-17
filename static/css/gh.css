@@ -9,6 +9,7 @@
 }
 #wellcome {
     font-size: 13px;
+    color: #666666;
 }
 #supermenu .smekle {
     text-shadow: 1px 0.4px 2px #fff;
@@ -2415,9 +2416,10 @@ li.g-plus-one {
 #menuccordion a {
     text-decoration: none;
     color: #746B6B;
-    font-size: 18px;
+    font-size: 17px;
     padding-top: 5px;
     padding-bottom: 5px;
+    white-space: nowrap;
 }
 #menuccordion a:hover {
     /*text-decoration: underline;*/
