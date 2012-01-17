@@ -40,6 +40,8 @@ log = logging.getLogger('genel')
 #yap: IE kontrolu
 #yap: arkadasini davet et
 #yap: facebook twitter ikonlari
+#fixme: ganishow
+#yap ganishow dynamic
 #yapild: register thanks >> dashboard
 #yapıldı: arkadas ekle, cikar
 
