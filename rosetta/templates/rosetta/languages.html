@@ -3,7 +3,7 @@
 
 {% block pagetitle %}{{block.super}} - {% trans "Language selection" %}{% endblock %}
 
-{% block breadcumbs %}<a href="{% url rosetta-pick-file %}">{% trans "Home" %}</a> &rsaquo; {% trans "Language selection" %}{% endblock %}
+{% block breadcumbs %}<a href="/{{ LANGUAGE_CODE }}/admin/">{% trans "Home" %}</a>  &rsaquo; {% trans "Language selection" %}{% endblock %}
 
 {% block main %}
     <h1>&nbsp;</h1>
@@ -19,7 +19,7 @@
 
     {% for lid,language,pos in languages %}
     {% if pos %}
-        
+
         <div class="module">
             <h2>{{language}}</h2>
             <table cellspacing="0">
@@ -52,7 +52,7 @@
             </table>
         </div>
     {% endif %}
-    {% endfor %}    
+    {% endfor %}
     {% else %}
     <h1>{% trans "Nothing to translate!" %}</h1>
     <p>{% trans "You haven't specified any languages in your settings file, or haven't yet generated a batch of translation catalogs." %}</p>
