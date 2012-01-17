@@ -1,26 +1,15 @@
 #supermenu {
     float: right;
-    /*padding-top: 8px;*/
     margin-top: 10px;
     font-size: 13px;
-    background-color: #fff;
-    border: 1px solid #ccc;
     height: 28px;
-    /*width: 350px;*/
-    /*padding-left: 20px;*/
-    /*padding-right: 20px;*/
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: #666 0px 1px 1px;
-    -moz-box-shadow: #666 0px 1px 1px;
-    box-shadow: #666 0px 1px 1px;
-    /*width: 410px;*/
+
     height: 27px;
     color: #444444;
-    background: url(/images/supermenu.png) no-repeat right center;
 }
-
+#wellcome {
+    font-size: 13px;
+}
 #supermenu .smekle {
     text-shadow: 1px 0.4px 2px #fff;
     float: right;
@@ -36,7 +25,8 @@
 #supermenu .mypage {
     background: url(/images/home_icon-16.png) no-repeat 0 1px;
     padding-left: 20px;
-    display: block;
+    display: inline-block;
+    margin-left: 8px;
 }
 
 #supermenu a, #supermenu a:visited {
@@ -91,7 +81,7 @@
 }
 
 #supermenu .firstitem {
-    border-left: 0;
+    border-left: 0 none;
 }
 
 .showcase {

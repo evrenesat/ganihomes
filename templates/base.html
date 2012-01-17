@@ -38,10 +38,11 @@
               </div>
               <div id="supermenu">
                   {% if user.is_authenticated %}
-{#                  <div class="firstitem">Merhaba {{ user.get_full_name }}</div>#}
-                      <div class="firstitem"><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
+{#                      FIXME: get username frm cookie #}
+                      <div class="firstitem"><span id="wellcome">{% blocktrans with user.get_full_name as name %}Wellcome {{ name }}{% endblocktrans %}</span> <a href="{%  url dashboard %}" class="mypage" >{% trans "My Account" %}</a></div>
+                      <div><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
                       <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
-                  <div><a href="{%  url dashboard %}" class="mypage" >{% trans "My Page" %}</a></div>
+
                   {% else %}
                   <div class="firstitem"><a href="{%  url register %}" class="smkayit">{% trans "Sign Up" %}</a></div>
                   <div><a href="{%  url login %}" class="smgir">{% trans "Log in" %}</a></div>
@@ -84,7 +85,7 @@
     </div>
     <div class="footdiv">
         <h4>{% trans "Corporate" %}</h4>
-            <a href="/{{ LANGUAGE_CODE }}/3/imprint">{% trans "Imprint" %}</a><br>
+            <a href="/{{ LANGUAGE_CODE }}/9/imprint">{% trans "Imprint" %}</a><br>
             <a href="/{{ LANGUAGE_CODE }}/4/tos">{% trans "Terms and Conditions" %}</a><br>
             <a href="/{{ LANGUAGE_CODE }}/5/pricacy">{% trans "Privacy policy" %}</a>
         </div>
