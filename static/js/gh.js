@@ -105,9 +105,9 @@ gh = {
 
         $("#sosicon li").hover(function() {
         var e = this;
-        $(e).find("a").stop().animate({ top: "-10px" }, 300, function(){
+        $(e).find("a").stop().animate({ top: "-10px" }, 200, function(){
         $(e).find("a").animate({ top: "5px" }, 500, function(){
-        $(e).find("a").animate({ top: "0px" }, 500);
+        $(e).find("a").animate({ top: "0px" }, 300);
         });
         });
         });

@@ -3587,6 +3587,7 @@ ul.messages li{
     border-color: #DEB291;
     -pie-background: linear-gradient(#F5D7B5, #FFFFFF);
     behavior: url(/templates/PIE.htc);
+    min-height: 64px;
 }
 .genbdy form{
     display:inline-block;
