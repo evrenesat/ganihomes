@@ -81,13 +81,13 @@ def book_place(request):
         )
         booking.set_reservation()
         booking.save()
-        request.session['booking'] = booking
+#        request.session['booking'] = booking
         if request.POST.get('paypal'):
             return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
 
     context ={ 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
                   'crr':crr,'crrpos':crrposition,}
-#    request.session['booking_context'] = context
+    request.session['booking_context'] = context
     context['place']=place
     return render_to_response('book_place.html',context, context_instance=RequestContext(request))
 
