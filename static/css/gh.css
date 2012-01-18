@@ -1801,6 +1801,8 @@ li.g-plus-one {
     padding-left: 11px !important;
     color: #ba7312;
     font-weight: bold;
+    padding-bottom: 0px;
+    padding-top: 5px;
 
 }
 
