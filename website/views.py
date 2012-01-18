@@ -571,7 +571,7 @@ def search_autocomplete(request):
     q = Q()
     for qp in query:
         q = q | Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
-    places = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
+    places = Place.objects.filter(q).values_list('district','city','state','country')
     nplaces = []
     for place in places:
         place = list(place)
