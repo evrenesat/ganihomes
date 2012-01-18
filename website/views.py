@@ -364,7 +364,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     """
     at least receiver or place should be given
     """
-    if type(place) == int:
+    if not hasattr(place, 'id'):
         place = Place.objects.get(pk=place)
     else:
         place = place
