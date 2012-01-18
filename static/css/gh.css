@@ -2758,8 +2758,9 @@ ul.messages li{
     /*opacity: 0.8;*/
 }
 #placelist .title{
-    font-size: 14px;
+    font-size: 15px;
     color: #4E3838;
+    font-weight: bold;
 }
 #placelist .pimg{
     float: left;
