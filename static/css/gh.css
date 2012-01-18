@@ -2396,7 +2396,6 @@ li.g-plus-one {
     -webkit-border-radius: 10px;
     border-radius: 5px 5px 0 0;
     text-shadow: 1px 2px 1px #DEDBDB;
-    padding-left: 6px;
     background: -moz-linear-gradient(top, #C47D04 0%, #EEB24B 100%);
      background: -webkit-gradient(linear, #C47D04 0%, #EEB24B 100%);
      background: -webkit-linear-gradient(top, #C47D04 0%, #EEB24B 100%);
@@ -4101,4 +4100,20 @@ ul.messages li{
     behavior: url(/templates/PIE.htc);
 
 
+}
+#sosicon{
+    float: left;
+    height: 121px;
+    width: 138px;
+}
+#sosicon a{
+    position:relative;
+}
+#sosicon ul{
+list-style:none;
+    margin: 0;
+
+}
+#sosicon li {
+    display:inline;
 }

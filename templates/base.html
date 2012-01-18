@@ -101,9 +101,10 @@
             <a href="/{{ LANGUAGE_CODE }}/11/">{% trans "Send us an email " %}</a><br>
             <a href="/{{ LANGUAGE_CODE }}/iletisim/">{% trans "Press" %}</a><br>
 {#            <a href="#">{% trans "Press" %}</a><br>#}
-        </div>
-    <a class="fr" href="#"><img src="{{ STATIC_URL }}/images/icon/facebook.png"></a>
-    <a class="fr" href="#"><img src="{{ STATIC_URL }}/images/icon/twitter.png"></a>
+        </div><div class="fr" id="sosicon">
+   <ul><li> <a  href="#"><img src="{{ STATIC_URL }}/images/icon/facebook.png"></a></li>
+    <li><a  href="#"><img src="{{ STATIC_URL }}/images/icon/twitter.png"></a></li>
+</div>
 </div>
 <div id="footmessage">{% block footmessage %}{% endblock %}</div>
 </div>
