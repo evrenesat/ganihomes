@@ -3630,7 +3630,7 @@ ul.messages li{
 }
 #f1{
     float:left;
-    width: 370px;
+    width: 298px;
 
     font-size: 17px;
     color: gray;
@@ -3639,7 +3639,7 @@ ul.messages li{
 #f2{
     float:left;
     text-align:center;
-    width: 152px;
+    width: 257px;
     color: gray;
     font-size: 12px;
     padding-top: 6px;
