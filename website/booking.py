@@ -87,7 +87,7 @@ def book_place(request):
 
     context ={ 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
                   'crr':crr,'crrpos':crrposition,}
-    request.session['booking_context'] = context
+#    request.session['booking_context'] = context
     context['place']=place
     return render_to_response('book_place.html',context, context_instance=RequestContext(request))
 
