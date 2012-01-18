@@ -1783,8 +1783,9 @@ li.g-plus-one {
 }
 
 #paccordion h3 a {
-    padding-left: 60px;
+    padding-left: 66px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 #paccordion h3 .nums {
