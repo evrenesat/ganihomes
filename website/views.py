@@ -364,7 +364,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     """
     at least receiver or place should be given
     """
-    if not hasattr(place, 'id'):
+    if place and not hasattr(place, 'id'):
         place = Place.objects.get(pk=place)
     else:
         place = place
@@ -575,7 +575,7 @@ def search_autocomplete(request):
     nplaces = []
     for place in places:
         place = list(place)
-        place[4] = force_unicode(COUNTRIES_DICT[place[4]])
+        place[3] = force_unicode(COUNTRIES_DICT[place[3]])
         nplace = []
         for p in place:
             if not p: p = u''

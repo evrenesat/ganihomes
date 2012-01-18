@@ -4,7 +4,7 @@
     arka plan dokusu
     dugme efekti
 - turuncu bara gradient
--
+- arama cubugu dokulu arkaplan
 
 */
 
@@ -777,10 +777,10 @@ ul.messages {
 }
 
 #arabg .kbaslik {
-    color: #adadad;
+    color: #2F2C2C;
     font-size: 12px;
     letter-spacing: 2px;
-    border-bottom: #ccc 1px solid;
+    border-bottom: 1px solid #CCCCCC;
     margin-bottom: 6px;
     padding-top: 4px;
 }
