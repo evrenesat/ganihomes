@@ -1630,17 +1630,17 @@ li.g-plus-one {
 }
 
 #yourpayout{
-    width: 200px;
+    width: 204px;
     height: 73px;
     position: absolute;
-    top: 244px;
+    top: 256px;
     background-color:#fdf5ce;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
     unicode-bidi: 145px;
     display: inline-block;
-    left: 459px;
+    left: 453px;
     text-shadow: 1px 1px 0.4px #ccc;
 
 }
@@ -1648,7 +1648,7 @@ li.g-plus-one {
     padding: 9px;
 }
 #yprice{
-    font-size: 17px;
+    font-size: 14px;
     font-weight:bold;
 }
 #yptitle{
