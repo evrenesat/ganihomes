@@ -2390,7 +2390,7 @@ li.g-plus-one {
     font-weight: bold;
     margin: 5px;
     cursor: pointer;
-    padding: 3px;
+    padding: 3px 3px 3px 0px;
     list-style: circle;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
