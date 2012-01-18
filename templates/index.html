@@ -291,7 +291,7 @@
             <form action="/search" method="get">
 
                 <div id="araoneri">
-                    <div class="kbaslik">öneriler</div>
+                    <div class="kbaslik">{% trans "Suggestions" %}</div>
                     {#                <ul>#}
                     {#                    <li>İzmir</li>#}
                     {#                    <li>İstanbul</li>#}
@@ -303,7 +303,7 @@
                 <div id="aradetay">
                     <input type="hidden" name=query id=id_query>
 
-                    <div class="kbaslik">ayrıntılı arama</div>
+                    <div class="kbaslik">{% trans "Detailed Search" %}</div>
                     <div class="foge checkinout">
                         <label for="checkin">{{ srForm.checkin.label }}<br>
                             {{ srForm.checkin }}
@@ -317,7 +317,7 @@
                         {{ srForm.no_of_guests }}
                     </div>
                     <div class="foge placetype">
-                        <label for="fiyat">Mekan Tipi</label><br>
+                        <label for="fiyat">{% trans "Place Type" %}</label><br>
                         {{ srForm.placeType }}
                     </div>
                     <div class="foge pricebar">
