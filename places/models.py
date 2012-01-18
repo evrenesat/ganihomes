@@ -341,7 +341,7 @@ class Place(models.Model):
     emergency_phone = models.CharField(_('Emergency phone'), max_length=20, null=True, blank=True)
     #    phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
-    primary_photo = models.ImageField(_('Primay photo'), upload_to='place_photos', null=True, blank=True)
+    primary_photo = models.ImageField(_('Primary photo'), upload_to='place_photos', null=True, blank=True)
     price = models.DecimalField(_('Price per night'), help_text=_('Price for guest'), decimal_places=2, max_digits=6)
     gprice = models.DecimalField(_('Converted Price'), help_text=_('Price in main site currency (eg:euro)'), null=True, blank=True, decimal_places=2, max_digits=6)
     capacity = models.SmallIntegerField(_('Accommodates'), choices=NO_OF_BEDS, default=6)

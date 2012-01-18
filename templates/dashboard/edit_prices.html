@@ -12,7 +12,7 @@
             <div id="litetabs">
             <ul id="pricetabs">
                 <li class="prtab"><a href="#simple">{% trans "Basic Pricing" %}</a></li>
-                <li class="prtab"><a href="#sessional">{% trans "Sessional Pricing" %}</a></li>
+                <li class="prtab"><a href="#sessional">{% trans "Seasonal Pricing" %}</a></li>
 
             </ul>
             <div id="simple">
@@ -85,11 +85,11 @@
                            <span class="errortext">{{ form.start.errors }}</span></div>
                        <div class="datef">{{ form.end.label_tag }} {{ form.end }}
                            <span class="errortext">{{ form.end.errors }}</span></div>
-                       {% if form.id.value %}<div><label style="display:inline" for="{{ form.DELETE.auto_id }}">{% trans "Delete Session" %}</label>{{ form.DELETE }}</div>{% endif %}
+                       {% if form.id.value %}<div><label style="display:inline" for="{{ form.DELETE.auto_id }}">{% trans "Delete Seasonal" %}</label>{{ form.DELETE }}</div>{% endif %}
                        <hr>
                    {% endfor %}
             </div>
-            <p><input type="submit" class="yesildugme fr" value="{% trans "Save Sessional Pricing" %}"></p>
+            <p><input type="submit" class="yesildugme fr" value="{% trans "Save Seasonal Pricing" %}"></p>
             </form>
             </div>
          </div>

@@ -3577,14 +3577,14 @@ ul.messages li{
     border-radius: 8px 8px 0px 0px;
 
 
-    background: -moz-linear-gradient(#F5D7B5, #FFFFFF);
-    background: -webkit-linear-gradient(#F5D7B5, #FFFFFF);
-    background: -o-linear-gradient(#F5D7B5, #FFFFFF);
-    background: -ms-linear-gradient(#F5D7B5, #FFFFFF);
-    background: linear-gradient(#F5D7B5, #FFFFFF);
+    background: -moz-linear-gradient(#dadada, #FFFFFF);
+    background: -webkit-linear-gradient(#dadada, #FFFFFF);
+    background: -o-linear-gradient(#dadada, #FFFFFF);
+    background: -ms-linear-gradient(#dadada, #FFFFFF);
+    background: linear-gradient(#dadada, #FFFFFF);
     padding: 20px;
-    border-color: #DEB291;
-    -pie-background: linear-gradient(#F5D7B5, #FFFFFF);
+    border-color: #cccccc;
+    -pie-background: linear-gradient(#dadada, #FFFFFF);
     behavior: url(/templates/PIE.htc);
     min-height: 64px;
 }
@@ -3603,7 +3603,7 @@ ul.messages li{
     float:none !important;
     padding: 0 20px !important;
     margin-bottom: 20px;
-    border-color: #DEB291;
+    border-color: #CCCCCC;
 }
 #editpayment label{
     width:170px;
@@ -3855,10 +3855,13 @@ ul.messages li{
     padding-left: 19px;
     height: 238px;
 }
-
+#takvim table
+{
+border-collapse:collapse;
+}
 #takvim td.current-month{
-    border-left: 1px solid #D7CEC3;
-    border-top: 1px solid #D7CEC3;
+    border: 1px solid #D7CEC3;
+
 }
 #takvim td.other-month{
     color:#ccc;
