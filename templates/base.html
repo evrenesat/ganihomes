@@ -39,7 +39,7 @@
               <div id="supermenu">
                   {% if user.is_authenticated %}
 {#                      FIXME: get username frm cookie #}
-                      <div class="firstitem"><span id="wellcome">{% blocktrans with user.get_full_name as name %}Wellcome {{ name }}{% endblocktrans %}</span> <a href="{%  url dashboard %}" class="mypage" >{% trans "My Account" %}</a></div>
+                      <div class="firstitem"><span id="wellcome">{% blocktrans with user.get_full_name as name %}Welcome {{ name }}{% endblocktrans %}</span> <a href="{%  url dashboard %}" class="mypage" >{% trans "My Account" %}</a></div>
                       <div><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
                       <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
 
