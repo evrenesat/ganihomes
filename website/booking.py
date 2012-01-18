@@ -20,9 +20,14 @@ from appsettings import app
 ghs = app.settings.gh
 
 
+def get_booking(rq):
+    return Booking.objects.get(pk=rq.session['booking_id'])
+
+def set_booking(rq, bk):
+    rq.session['booking_id'] = bk.id
 
 def paypal_complete(request):
-    booking = request.session['booking']
+    booking = get_booking(request)
     paypal_transaction = PayPalNVP.objects.get(method="DoExpressCheckoutPayment",ack='Success',custom=str(booking.id))
     booking.payment_type = 2
     booking.status = 10
@@ -81,7 +86,7 @@ def book_place(request):
         )
         booking.set_reservation()
         booking.save()
-#        request.session['booking'] = booking
+        set_booking(request, booking)
         if request.POST.get('paypal'):
             return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
 
@@ -93,7 +98,7 @@ def book_place(request):
 
 def paypal_checkout(request):
 #    if request.method == 'POST':
-    booking = request.session['booking']
+    booking = get_booking(request)
     item = {"PAYMENTREQUEST_0_AMT": str(round(booking.guest_payment,2)),             # amount to charge for item
             'PAYMENTREQUEST_0_DESC':booking.place.title,
             'PAYMENTREQUEST_0_CURRENCYCODE':booking.currency.name,
