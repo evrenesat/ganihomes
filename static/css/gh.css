@@ -2874,26 +2874,31 @@ ul.messages li{
 #langcurr {
 
     list-style: none;
-    width: 230px;
-    height: 90px;
     display: none;
     position: absolute;
     top: -300px;
     z-index: 100;
     left: -300px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #F1F1F1;
     border: 1px solid #ccc;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    -webkit-box-shadow: #666 0px 1px 1px;
-    -moz-box-shadow: #666 0px 1px 1px;
-    box-shadow: #666 0px 1px 1px;
+    -moz-border-radius: 64px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 6px 7px -2px #7B7979;
+    -moz-box-shadow: 0px 6px 7px -2px #7B7979;
+    box-shadow: 0px 6px 7px -2px #7B7979;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    min-height: 90px;
 
 }
 
-#langcurr .langs a {
+#langs a {
     background-repeat: no-repeat;
     background-position: 0 2px;
     padding-left: 20px;
@@ -2902,36 +2907,56 @@ ul.messages li{
 #langcurr a:link, #langcurr a:visited {
     text-decoration: none;
     color: #0b3e6f;
+    text-shadow: 1px 1px 1px #ccc;
 }
 
-.currs span:hover, #langcurr a:hover {
-    color: blue;
+#currs span:hover, #langcurr a:hover {
+    color: #000;
+
 }
 
-.langs {
-    border-right: 1px solid #ccc;
+#langs {
+
     width: 90px;
     min-height: 80px;
     float: left;
+    padding-right: 4px;
 }
-
-.currs {
-    float: right;
-    width: 130px
-}
-
-.currs span {
-    text-align: right;
+#langcurr span{
     float: left;
-    width: 50px;
     display: block;
-    cursor: pointer;
     color: #0b3e6f;
-    margin-left: 10px;
-    padding-top: 2px;
+}
+#currs {
+    float: right;
+    width: 94px;
+    border-left: 1px solid #ccc;
 }
 
-.currs sub {
+#langcurr span:hover {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    /*-webkit-box-shadow: 0px 6px 7px -2px #7B7979;*/
+    /*-moz-box-shadow: 0px 6px 7px -2px #7B7979;*/
+    box-shadow: 1px 1px 3px 1px #C9C9C9;
+    background-color: #E6E6E6;
+}
+#langcurr span:active{
+    box-shadow: 0px 0px 1px 1px #AAA8A8;
+    background-color: #EDEAEA;
+
+}
+#currs span {
+    width: 51px;
+    cursor: pointer;
+    margin: 0 0 2px 10px;
+    padding: 1px 0px 1px 11px;
+}
+#langs span {
+    padding:2px 4px;
+}
+#currs sub {
     vertical-align: -3px;
 }
 
@@ -3566,7 +3591,7 @@ ul.messages li{
     /*font-family: Cardo;*/
     /*font-size: 2em;*/
 /*}*/
-#genhdr h3, .wfhdr h3, .altikutu h3, .ortala h3, .dortkutu h3{
+#genhdr h3, .wfhdr h3, .altikutu > h3, .ortala h3, .dortkutu h3{
     color: #2F1B0B;
     font-family: Cardo;
     text-shadow: 1px 1px 1px #AEAB8D;

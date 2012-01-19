@@ -85,7 +85,16 @@ gh = {
     },
     STATIC_URL : '',
     LANGUAGE_CODE : 'en',
+    popap:function(trigger, popap_id, offset_x, offset_y){
+        var self = this, ptimer = 0, popap = $(popap_id);
+        this.rePlace(trigger, popap_id, offset_x, offset_y);
+        setTimer= function(){if(!ptimer)ptimer = setTimeout(function(){popap.fadeOut()},2000)}
+        clearTimer= function(){clearTimeout(ptimer);ptimer=0;}
+        $(trigger).mouseover(function(){ setTimer(); popap.slideDown().mouseleave(setTimer).mouseenter(clearTimer) })
+    },
     init:function () {
+        var self = this;
+        this.popap('.smdil', '#langcurr', -40, 15)
         this.STATIC_URL = $('#script0').attr('src').split('js/')[0]
         var usableHeight = $(window).height(), hdr_h = 0, logo_pad = 0, sc_pad = 0;
         if (usableHeight > 800)hdr_h = 110, logo_pad = -6, sc_pad = 20;
@@ -96,8 +105,8 @@ gh = {
 //        $('#smekle').click(function(){document.location='/add_place/'})
 //        $('#smkayit').click(function(){document.location='/register/'})
 //        $('#smgir').click(function(){document.location='/login/'})
-        $('.smdil').mouseover(function(){$('#langcurr').show('normal').mouseleave(function(){$(this).hide()})})
-        this.rePlace('.smdil', '#langcurr', -10, 25);
+
+
         if(!this.selected_currency){
             this.selected_currency = $.cookie('gh_curr') || 0}
         this.fillCurrencies()
@@ -116,7 +125,7 @@ gh = {
     },
     fillCurrencies:function(){
         var self = this
-        dv = $('.currs')
+        dv = $('#currs')
         for (c in gh_crc){
             var cc = gh_crc[c]
             if(!this.selected_currency && cc[0]=='1.0')this.selected_currency = c

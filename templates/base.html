@@ -54,14 +54,14 @@
         </div>
 </div>
 <div id="langcurr">
-<div class="langs">
+<div id="langs">
     {% for lang in LANGUAGES %}
         {% ifnotequal lang.0 LANGUAGE_CODE %}
-            <li><a style="background-image: url({{ STATIC_URL }}images/flags/{{ lang.0 }}.png);" href="{{ request.path|chlocale:lang.0 }}">{% trans lang.1 %}</a></li>
+            <span><a style="background-image: url({{ STATIC_URL }}images/flags/{{ lang.0 }}.png);" href="{{ request.path|chlocale:lang.0 }}">{% trans lang.1 %}</a></span>
         {% endifnotequal %}
     {% endfor %}
 </div>
-<div class="currs"></div>
+<div id="currs"></div>
 </div>
 {% block header%}
 {% endblock %}
