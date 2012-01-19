@@ -63,12 +63,16 @@ def save_photo_order(request, id):
 @csrf_exempt
 def add_friend(request, id):
     user = request.user
-    friend = User.objects.get(pk=id)
-    if request.method == 'POST':
-        f = Friendship(profile=user.get_profile(), user_id=id)
+    requester_profile = user.get_profile()
+    other_profile = Profile.objects.get(user_id=id)
+    if request.method == 'POST' and not Friendship.objects.filter(Q(fr1=requester_profile, fr2=other_profile)|
+                                                                  Q(fr2=requester_profile, fr1=other_profile)):
+        f = Friendship(fr1=requester_profile, fr2=other_profile)
         f.save()
         result = {'message':force_unicode(_('Friendship request successfully sent.'))}
-        send_message(request, force_unicode(_('%s wants to be friends with you.')) % user.profile.private_name, receiver=friend, typ=20)
+        send_message(request, force_unicode(_('%s wants to be friends with you.')) % user.profile.private_name, receiver=other_profile.user, typ=20)
+    else:
+        result = {'message':force_unicode(_('Request already exists.'))}
     return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
 @csrf_exempt
@@ -97,13 +101,14 @@ def delete_place(request):
 @csrf_exempt
 def confirm_friendship(request):
     user = request.user
+    profile = user.get_profile()
     id = int(request.POST.get('id'))
     mid = request.POST.get('mid')
     confirmed =  id>0
     id = abs(id)
     friend = User.objects.get(pk=abs(id))
     if request.method == 'POST':
-        f = user.friendship_set.filter(profile=friend.get_profile())
+        f = Friendship.objects.filter(fr2=profile, fr1=friend.get_profile())
         if f:
             f = f[0]
             if confirmed:
@@ -180,7 +185,7 @@ def friends(request):
     user = request.user
     profile = user.get_profile()
     context = {
-               'friends':profile.friendship_set.filter(confirmed=True)
+               'friends':[f.fr1 if f.fr2==profile else f.fr2 for f in Friendship.objects.filter(Q(fr1=profile)|Q(fr2=profile))]
     }
     return render_to_response('dashboard/friends.html', context, context_instance=RequestContext(request))
 

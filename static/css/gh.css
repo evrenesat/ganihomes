@@ -2943,7 +2943,7 @@ ul.messages li{
     background-color: #E6E6E6;
 }
 #langcurr span:active{
-    box-shadow: 0px 0px 1px 1px #AAA8A8;
+    box-shadow: 0 0 1px 1px #DADADA;
     background-color: #EDEAEA;
 
 }

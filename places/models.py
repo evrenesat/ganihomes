@@ -524,6 +524,14 @@ def customThumbnailer(img, id, opts):
         results.append(get_thumbnailer(img).get_thumbnail(thumbnail_options))
     return results
 
+class Friendship(models.Model):
+    """Friendship"""
+
+    fr1 = models.ForeignKey('Profile', related_name='fr1')
+    fr2 = models.ForeignKey('Profile', related_name='fr2')
+    confirmed = models.BooleanField(_('Confirmed'), default=False)
+
+
 from django_facebook.models import FacebookProfileModel
 class Profile(FacebookProfileModel):
     """User profile"""
@@ -533,7 +541,7 @@ class Profile(FacebookProfileModel):
     user = models.OneToOneField(User, verbose_name=_('User'), null=True, blank=True)
     photo = models.ImageField(_('Photo'), upload_to='user_photos', null=True, blank=True)
     favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'), null=True, blank=True)
-    friends = models.ManyToManyField(User, through='Friendship', related_name='friend_profiles')
+    friends = models.ManyToManyField('self', through='Friendship', symmetrical=False)
     currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
     city = models.CharField(_('City'), max_length=30, null=True, blank=True)
     phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
@@ -599,13 +607,6 @@ class PaymentSelection(models.Model):
     def __unicode__(self):
         return '%s %s' % (self.user.username,self.get_payment_type_display())
 
-
-class Friendship(models.Model):
-    """Friendship"""
-
-    profile = models.ForeignKey(Profile)
-    user = models.ForeignKey(User)
-    confirmed = models.BooleanField(_('Confirmed'), default=False)
 
 
 class ReservedDates(models.Model):
