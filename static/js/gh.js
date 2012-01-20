@@ -88,13 +88,14 @@ gh = {
     popap:function(trigger, popap_id, offset_x, offset_y){
         var self = this, ptimer = 0, popap = $(popap_id);
         this.rePlace(trigger, popap_id, offset_x, offset_y);
-        setTimer= function(){if(!ptimer)ptimer = setTimeout(function(){popap.fadeOut()},2000)}
+        setTimer= function(){if(!ptimer)ptimer = setTimeout(function(){popap.fadeOut();ptimer=0;},1500);}
         clearTimer= function(){clearTimeout(ptimer);ptimer=0;}
-        $(trigger).mouseover(function(){ setTimer(); popap.slideDown().mouseleave(setTimer).mouseenter(clearTimer) })
+        popap.mouseleave(setTimer).mouseenter(clearTimer)
+        $(trigger).mouseover(function(){ setTimer(); popap.slideDown() })
     },
     init:function () {
         var self = this;
-        this.popap('.smdil', '#langcurr', -40, 15)
+        this.popap('.smdil', '#langcurr', -40, 20)
         this.STATIC_URL = $('#script0').attr('src').split('js/')[0]
         var usableHeight = $(window).height(), hdr_h = 0, logo_pad = 0, sc_pad = 0;
         if (usableHeight > 800)hdr_h = 110, logo_pad = -6, sc_pad = 20;
