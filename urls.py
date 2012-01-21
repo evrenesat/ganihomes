@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     (r'^crossdomain.xml$', 'django.views.generic.simple.direct_to_template', {'template': 'crossdomain.xml'}),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    (r'^tinymce/', include('tinymce.urls')),
+#    (r'^tinymce/', include('tinymce.urls')),
 )
 
 urlpatterns += patterns('website.views',

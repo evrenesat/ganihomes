@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tinymce.widgets import TinyMCE
+#from tinymce.widgets import TinyMCE
 
 __author__ = 'Evren Esat Ozkan'
 from django.contrib import admin
