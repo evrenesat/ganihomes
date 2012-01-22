@@ -4,15 +4,14 @@
 
 {% block content %}
 
-{% if facebook.is_authenticated %} 
+{% if facebook.is_authenticated %}
 You are authenticated
 {% endif %}
 
 <div id="fb-root">
 </div>
 
-<iframe src="http://www.facebook.com/plugins/facepile.php?app_id={{ FACEBOOK_APP_ID }}&amp;width=500&amp;max_rows=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px;" allowTransparency="true"></iframe>
+<iframe src="https://www.facebook.com/plugins/facepile.php?app_id={{ FACEBOOK_APP_ID }}&amp;width=500&amp;max_rows=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px;" allowTransparency="true"></iframe>
 
-{% endblock %} 
-				 
-				 
+{% endblock %}
+
