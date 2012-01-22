@@ -523,7 +523,7 @@ gh = {
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
         try{
-            var days=0 ,price=0.0;
+            var days=1 ,price=0.0;
             while (loopDate.valueOf() < dates[1].valueOf() + 86400000) {
 //                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
@@ -1312,7 +1312,7 @@ gh = {
             return false;
         });
 
-    },
+    }
 
 
 

@@ -21,7 +21,7 @@ ghs = app.settings.gh
 
 
 def get_booking(rq):
-    return Booking.objects.get(pk=rq.session['booking_id'])
+    return Booking.objects.get(pk=rq.session['booking_id']) if rq.session.get('booking_id') else False
 
 def set_booking(rq, bk):
     rq.session['booking_id'] = bk.id
@@ -73,6 +73,7 @@ def book_place(request):
     prices = place.calculateTotalPrice(crrid,ci, co, guests)
 
     if request.method == 'POST':
+        #FIXME: this is creating lots of stale booking records
         booking = Booking(
             host = place.owner,
             guest = user,
