@@ -31,5 +31,7 @@ class Globals:
     # int, string, and float types are auto-discovered.
     host_fee = forms.IntegerField(label=u'Ev Sahibi Komisyonu (%)', initial = 10,  help_text = u"Mekan sahibinin girdiği tutardan kesilecek varsayılan komisyon oranı")
     guest_fee = forms.IntegerField(label=u'Misafir komisyonu (%)', initial = 10,  help_text = u"Misafirlerden kesilecek komisyon oranı")
+    nasil_slide_zaman = forms.CharField(label=u'Nasıl çalışır slide zamanları', initial='0',  help_text = u"Saniye cinsinden  virgülle ayrılmış olarak giriniz. 1,14,50,90 gibi.")
+
 Globals = register(main=True)(Globals)
 

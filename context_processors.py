@@ -2,7 +2,7 @@ __author__ = 'Evren Esat Ozkan'
 
 #from website.models.dil import Dil, Ceviriler
 #from website.models.icerik import Sayfa
-from places.models import CURR_CACHE
+from places.models import LANG_DROPDOWN
 
 #def website(r):
 #    soz = {'menu': Sayfa.al_menu(r.LANGUAGE_CODE),
@@ -19,5 +19,5 @@ from places.models import CURR_CACHE
 
 def GH(r):
     d = {}
-    d['curr_version'] = CURR_CACHE.g()
+    d['LANG_DROPDOWN'] = LANG_DROPDOWN
     return d

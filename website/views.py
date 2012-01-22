@@ -11,7 +11,7 @@ from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import  COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency
+from places.models import Place, Tag, Photo, Currency, LANG_DROPDOWN
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
@@ -84,8 +84,9 @@ def anasayfa(request):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
     searchForm = SearchForm()
-    context = {'slides': Vitrin.get_slides(), 'slides2': Vitrin.get_slides(type=1),
-               'slides3': Vitrin.get_slides(type=2), 'srForm':searchForm }
+    slides = [Vitrin.get_slides(), Vitrin.get_slides(type=1), Vitrin.get_slides(type=2)]
+    context = {'slides': slides, 'srForm':searchForm, 'nasil_slide_zaman': dbsettings.ghs.nasil_slide_zaman or '0',
+               'LANG_DROPDOWN':LANG_DROPDOWN}
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):

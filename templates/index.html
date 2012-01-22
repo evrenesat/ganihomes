@@ -4,7 +4,9 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
     <script type="text/javascript">$(window).ready(function () {
         gh.init_index()
-    }) </script>
+    })
+    slide_timings=[{{ nasil_slide_zaman }}]
+    </script>
 {% endblock %}
 {% block hdrclass %}krm hdrbgindex{% endblock %}
 {% block header %}
@@ -24,7 +26,7 @@
                 <div class="shdr">{% trans "Mon - Sat" %} 09:00 - 19:00 <span style="font-size:9px">(GMT+2)</span></div>
                 <div class="tkutu tel"> &nbsp; +90232 4627278</div>
                 {#                <div class="tkutu epo">info@</div>#}
-                <div class="tkutu dst"><span>{% trans "I have a question?" %}</span></div>
+                <div id="askquestion" class="tkutu dst"><span>{% trans "I have a question?" %}</span></div>
 
             </div>
         </div>
@@ -38,20 +40,21 @@
 
     <div id="tabs">
     <ul>
-        <li class="gritab krm" id="tabli1"><a href="#tabs-1">&nbsp;</a></li>
-        <li class="gritab alttab krm" id="manztab"><a href="#tabs-2">Manzaralar</a></li>
-        <li class="gritab alttab krm" id="ictab"><a href="#tabs-3">İç Mekanlar</a></li>
+        <li class="gritab krm" id="tabli1" onmousedown="gh.makeScroller('GVS1')"><a href="#tabs-1">&nbsp;</a></li>
+        <li class="gritab alttab krm"  onmousedown="gh.makeScroller('GVS2')"><a href="#tabs-2">{% cevir "ganishow 2" %}</a></li>
+        <li class="gritab alttab krm"  onmousedown="gh.makeScroller('GVS3')"><a href="#tabs-3">{% cevir "ganishow 3" %}</a></li>
         <li id="howitworks"><a href="#tabs-4">
             <div class="inlinelogo logo-ortada">How &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; works?</div>
         </a></li>
     </ul>
-    <div class="tabcontent krm" id="tabs-1">
-        <div class="tabborder krm" id="GVS1">
+    {% for slideset in slides %}
+    <div class="tabcontent krm" id="tabs-{{ forloop.counter }}">
+        <div class="tabborder krm" id="GVS{{ forloop.counter }}">
             <div class="scrollingHotSpotLeft"></div>
             <div class="scrollingHotSpotRight"></div>
             <div class="scrollWrapper">
                 <div class="scrollableArea">
-                    {% for s in slides %}
+                    {% for s in slideset %}
                         {% if not s.thumbs %}
                             <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
                                  style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
@@ -109,140 +112,21 @@
             </div>
         </div>
     </div>
-    <div class="tabcontent" id="tabs-2">
-
-        <div class="tabborder" id="GVS2">
-            <div class="scrollingHotSpotLeft"></div>
-            <div class="scrollingHotSpotRight"></div>
-            <div class="scrollWrapper">
-                <div class="scrollableArea">
-                    {% for s in slides3 %}
-                        {% if not s.thumbs %}
-                            <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
-                                 style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                <div class="sbaner alpha60">
-                                    <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
-
-                                    </div>
-                                    <div class="stardiv">
-                                        <span class="gh-prc crc" data-crc="{{ s.place.currency_id }}"
-                                              data-prc="{{ s.place.price }}"></span>
-                                        <ul class="rating star{{ s.place.overall_rating}}">
-                                            <li class="one"><a href="#" title="1 Star">1</a></li>
-                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
-                        {% else %}
-
-                            <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
-                                {#                                          {{ s.photos }}#}
-                                {% for photo in s.photos %}
-                                    <div class="thumbphoto"
-                                         style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
-                                {% endfor %}
-                                <div class="sbaner alpha60">
-                                    <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
-
-                                    </div>
-                                    <div class="stardiv">
-                                        {{ s.place.price }} {{ s.place.currency }}
-                                        <ul class="rating star{{ s.place.overall_rating}}">
-                                            <li class="one"><a href="#" title="1 Star">1</a></li>
-                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
-                                        </ul>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="tabcontent" id="tabs-3">
-
-        <div class="tabborder" id="GVS3">
-            <div class="scrollingHotSpotLeft"></div>
-            <div class="scrollingHotSpotRight"></div>
-            <div class="scrollWrapper">
-                <div class="scrollableArea">
-                    {% for s in slides2 %}
-                        {% if not s.thumbs %}
-                            <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
-                                 style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                <div class="sbaner alpha60">
-                                    <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
-
-                                    </div>
-                                    <div class="stardiv">
-                                        {{ s.place.price }} {{ s.place.currency }}
-                                        <ul class="rating star{{ s.place.overall_rating}}">
-                                            <li class="one"><a href="#" title="1 Star">1</a></li>
-                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </div>
-                        {% else %}
-
-                            <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
-                                {#                                          {{ s.photos }}#}
-                                {% for photo in s.photos %}
-                                    <div class="thumbphoto"
-                                         style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
-                                {% endfor %}
-                                <div class="sbaner alpha60">
-                                    <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
-
-                                    </div>
-                                    <div class="stardiv">
-                                        {{ s.place.price }} {{ s.place.currency }}
-                                        <ul class="rating star{{ s.place.overall_rating}}">
-                                            <li class="one"><a href="#" title="1 Star">1</a></li>
-                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
-                                        </ul>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {% endfor %}
     <div class="tabcontent" id="tabs-4">
 
 
         <div id="likethat">
-            <div id="nasilsunum"></div>
+            <div id="nasilsunum">
+                <div class="gizli sunumslide">{% cevir "sunum slide1" %}</div>
+                <div class="gizli sunumslide">{% cevir "sunum slide2" %}</div>
+                <div class="gizli sunumslide">{% cevir "sunum slide3" %}</div>
+                <div class="gizli sunumslide">{% cevir "sunum slide4" %}</div>
+                <div class="gizli sunumslide">{% cevir "sunum slide5" %}</div>
+                <div class="gizli sunumslide">{% cevir "sunum slide6" %}</div>
+                <div class="gizli sunumslide">{% cevir "sunum slide7" %}</div>
+
+            </div>
             <div id="nasilvideo">
                 <object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="controls" value="0"></param><embed src="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
@@ -334,6 +218,14 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div id="questbox"><form action="{% url contact_us %}">
+        <h4>{% trans "Feel free to ask any question you have" %}</h4>
+    <input class="innput" id=name value="{% trans "Name" %}">
+    <input class="innput" id=email value="{% trans "E-mail" %}">
+    <textarea class="innput" id="msg">{% trans "Enter your message" %}</textarea>
+    <input type="button" id=email value="Send">
+        </form>
     </div>
 {% endblock %}
 {% block footmessage %}{% cevir "altmetin index" %}{% endblock %}

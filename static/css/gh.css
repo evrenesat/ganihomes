@@ -99,18 +99,13 @@
     padding-top: 10px;
 }
 
-.krm.hdrbgindex {
-
-    background: url(/static/images/sayfa-tepe-krm-grd.png) bottom repeat-x !important;
-}
-
 .hdrbg {
     background: url(/static/images/sayfa-tepe-grd.png) bottom repeat-x !important;
     height: 105px !important;
 }
 
 .hdrbgindex {
-    background: url(/static/images/sayfa-tepe-gri-grd.png) bottom repeat-x !important;
+    background: url(/static/images/sayfa-tepe-krm-grd.png) bottom repeat-x !important;
     height: 105px !important;
 }
 
@@ -221,20 +216,25 @@ div.scrollingHotSpotLeft {
         and if there is room the will grow and occupy 10%
         of the scrollable area (20% combined).
         Adjust it to your own taste. */
-    min-width: 75px;
-    width: 10%;
-    height: 100%;
+    width: 56px;
+    height: 23%;
     /* There is a big background image and it's used to
      solve some problems I experienced in Internet Explorer 6. */
     background-image: url(/static/images/big_transparent.gif);
     background-repeat: repeat;
-    background-position: center center;
+    background-position: 15px center;
     position: absolute;
     z-index: 2;
-    left: 0;
+    left: -10px;
     /*  The first cursor url is for Firefox and other
          browsers, the second is for Internet Explorer */
     cursor: url(/static/images/cursors/cursor_arrow_left.cur), url(/static/images/cursors/cursor_arrow_left.cur), w-resize;
+    top: 136px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-size: 51%;
+
 }
 
 /* Visible left hotspot */
@@ -256,16 +256,20 @@ div.scrollingHotSpotLeftVisible {
 
 /* Invisible right hotspot */
 div.scrollingHotSpotRight {
-    min-width: 75px;
-    width: 10%;
-    height: 100%;
+    width: 54px;
+    height: 23%;
     background-image: url(/static/images/big_transparent.gif);
     background-repeat: repeat;
     background-position: center center;
     position: absolute;
     z-index: 2;
-    right: 0;
+    right: -10px;
     cursor: url(/static/images/cursors/cursor_arrow_right.cur), url(/static/images/cursors/cursor_arrow_right.cur), e-resize;
+    top: 136px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-size: 51%;
 }
 
 /* Visible right hotspot */
@@ -307,7 +311,7 @@ div.scrollableArea {
 /*margin: 0;*/
 /*}*/
 
-#GVS1 {
+#GVS1, #GVS2, #GVS3 {
     /*width: 98%;*/
     /*height: 360px;*/
     position: relative;
@@ -376,29 +380,17 @@ div.scrollableArea {
 
 }
 
-.tabcontent.krm {
-    background-color: #cec1a7 !important;
-}
-
 .tabcontent {
     border-radius: 4px !important;
-    background-color: #6c6c6c !important;
+    background-color: #cec1a7 !important;
     /*border: 2 !important;*/
     padding: 2px !important;
 }
 
 .tabborder {
-    border: 5px solid #6c6c6c;
-}
-
-.tabborder.krm {
     border: 5px solid #cec1a7;
 }
 
-/*#tabs-1 {*/
-/**/
-
-/*}*/
 
 #tabs li {
     border: 0 !important;
@@ -408,59 +400,40 @@ div.scrollableArea {
     margin-bottom: 0.8px !important;
 }
 
-#ictab a, #manztab a {
+.alttab a {
     color: #777777;
 }
 
-#ictab.krm, #manztab.krm {
+.alttab {
+    background-position: -3px -13px;
     background: url(/static/images/tab-ark-silik-krm.png) repeat-x;
 
 }
 
-#ictab, #manztab {
-    background-position: -3px -13px;
-    background: url(/static/images/tab-ark-silik.png) repeat-x;
-
-}
-
-#ictab.ui-state-active a, #manztab.ui-state-active a {
+.alttab.ui-state-active a, {
     color: #fff;
 }
 
-#ictab.ui-state-active.krm, #manztab.ui-state-active.krm {
+
+.ui-state-active {
     background: url(/static/images/tab-ark-krm.png) repeat-x;
     background-position: -3px -13px;
     font-weight: bold;
 }
 
-#ictab.ui-state-active, #manztab.ui-state-active {
-    background: url(/static/images/tab-ark.png) repeat-x;
-    background-position: -3px -13px;
-    font-weight: bold;
-}
-
-#tabli1.ui-state-active {
-    background: url(/static/images/ganishow.png) no-repeat !important;
-    background-position: -3px -13px !important;
-}
 
 #tabli1  a {
     width: 110px;
 }
 
-#tabli1 {
-    background: url(/static/images/ganishow-silik.png) no-repeat;
-    background-position: -3px -13px !important;
-    height: 30px;
-    width: 135px;
-}
 
-#tabli1.ui-state-active.krm {
+
+#tabli1.ui-state-active {
     background: url(/static/images/ganishow-krm.png) no-repeat !important;
     background-position: -3px -13px !important;
 }
 
-#tabli1.krm {
+#tabli1 {
     background: url(/static/images/ganishow-silik-krm.png) no-repeat;
     background-position: -3px -13px !important;
     height: 30px;
@@ -499,13 +472,11 @@ div.scrollableArea {
     text-shadow: 1px 1px 0.5px white;
 }
 
-#arabar.krm {
-    background-color: #EEB24B;
-}
+
 
 #arabar {
 
-    background-color: #b3b3b3;
+    background-color: #EEB24B;
     padding-bottom: 10px;
     /*padding-top: 10px;*/
     width: 100%;
@@ -608,9 +579,6 @@ ul.messages {
     padding-left: 50px;
 }
 
-#mhtabela.krm {
-    color: #000;
-}
 
 #mhtabela {
     /*display: none;*/
@@ -627,16 +595,13 @@ ul.messages {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    color: #fff;
+    color: #000;
     /*-webkit-box-shadow: #666 0px 2px 3px;*/
     /*-moz-box-shadow: #666 0px 2px 3px;*/
     /*box-shadow: #666 0px 2px 3px;*/
     text-align: center;
 }
 
-#mhtabela.krm .hdr {
-    text-shadow: 1px 1px 0.4px #fff;
-}
 
 #mhtabela .hdr {
     margin-left: auto;
@@ -645,7 +610,7 @@ ul.messages {
     width: 140px;
     font-weight: bold;
     font-size: 13px;
-    text-shadow: 1px 1px 0.4px #757575;
+    text-shadow: 1px 1px 0.4px #fff;
 }
 
 /*#mhtabela #epogani {*/
@@ -691,17 +656,9 @@ ul.messages {
 
 }
 
+
+
 #aramsj {
-    font-size: 14px;
-    color: #fff;
-    font-weight: bold;
-    width: 710px;
-    float: left;
-    text-shadow: 1px 1px 0.4px #757575;
-
-}
-
-#aramsj.krm {
     font-size: 14px;
     color: #2D2D2D;
     font-weight: bold;
@@ -2893,6 +2850,72 @@ ul.messages li{
     min-height: 90px;
 
 }
+#askquestion{
+    cursor:pointer;
+}
+.closex{
+    width:20px;
+    height:20px;
+    font-weight:bold;
+    vertical-align: middle;
+    text-align:center;
+    background-color: #fff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: red;
+    border: 1px solid #ccc;
+    cursor:pointer;
+    float: right;
+    margin-top: -6px;
+    margin: -7px;
+}
+#questbox input{
+    height:30px;
+    margin-top:5px;
+}
+#questbox h4 {
+    font-size:14px;
+}
+#questbox textarea {
+    height:100px;
+}
+#questbox input:focus,#questbox textarea:focus {
+    color:#000;
+}
+#questbox input,#questbox textarea {
+    width:100%;
+    border:1px solid #ccc;
+    font-size:14px;
+    color:#ccc;
+}
+#questbox {
+
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: -300px;
+    z-index: 100;
+    left: -300px;
+    padding: 10px;
+    width:300px;
+    background-color: #F1F1F1;
+    border: 1px solid #ccc;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 6px 7px -2px #7B7979;
+    -moz-box-shadow: 0 6px 7px -2px #7B7979;
+    box-shadow: 0 6px 7px -2px #7B7979;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    min-height: 90px;
+
+}
 
 #langs a {
     background-repeat: no-repeat;
@@ -2913,7 +2936,7 @@ ul.messages li{
 
 #langs {
 
-    width: 90px;
+    width: 102px;
     min-height: 80px;
     float: left;
     padding-right: 4px;
@@ -3341,11 +3364,26 @@ ul.messages li{
     box-shadow: 0 0 10px 2px #e0e0e0;
 }
 
+#nasilsunum {
+    float: left;
+    width: 387px;
+    overflow: hidden;
+    height: 360px;
+}
+.sunumslide{
+    /*display:none;*/
+    width: 330px;
+    margin: 10px auto;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 314px;
+}
 #nasilvideo {
     float: right;
 
     height: 315px;
-    margin: 10px 30px;
+    margin: 10px 30px 10px 0;
 
     -webkit-box-shadow: 1px 1px 5px 1px #ccc;
     -moz-box-shadow: 1px 1px 5px 1px #ccc;

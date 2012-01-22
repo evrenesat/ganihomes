@@ -55,7 +55,7 @@
 </div>
 <div id="langcurr">
 <div id="langs">
-    {% for lang in LANGUAGES %}
+    {% for lang in LANG_DROPDOWN %}
         {% ifnotequal lang.0 LANGUAGE_CODE %}
             <span><a style="background-image: url({{ STATIC_URL }}images/flags/{{ lang.0 }}.png);" href="{{ request.path|chlocale:lang.0 }}">{% trans lang.1 %}</a></span>
         {% endifnotequal %}

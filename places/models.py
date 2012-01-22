@@ -23,9 +23,11 @@ from django.utils.translation import activate, force_unicode
 import codecs
 import options
 
+LANG_DROPDOWN = []
 
 for code,name in settings.LANGUAGES:
     activate(code)
+    LANG_DROPDOWN.append((code, force_unicode(_(name))))
     fp = codecs.open('%s/js/gh_%s.js' % (settings.STATIC_ROOT,code), 'w', encoding='utf8')
     for o in ['COUNTRIES','SPACE_TYPES','PLACE_TYPES','JSTRANS']:
         items = {}

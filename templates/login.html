@@ -80,7 +80,8 @@
             </div>
 
             <button class="yesildugme fo11">{% trans "Register" %}</button>
-                                <div id="regtosdiv"><label id="regtoslabel" class="ramlabel normallabel" for="regtoscheck">{% trans "I accept the <a>Terms of service</a>" %} </label>
+                                <div id="regtosdiv"><label id="regtoslabel" class="ramlabel normallabel" for="regtoscheck">
+                                    {% blocktrans with '<a>' as linkstart and '</a>' as linkend %} I accept the {{ linkstart }}Terms of service{{ linkend }} {% endblocktrans %}</label>
 
                                 <input id="regtoscheck" type="checkbox"  name="accepttos">
 
