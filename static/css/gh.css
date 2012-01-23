@@ -3196,10 +3196,11 @@ ul.messages li{
 }
 #hostbox.write #tohost{
     display:inline;
-    margin-right: 9px;
+    font-size: 14px;
 }
 #hostbox.write #hostname{
     display:inline;
+    font-size: 24px;
     /*font-size:14px;*/
 }
 #hostmsg.sent{
