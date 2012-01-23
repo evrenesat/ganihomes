@@ -95,6 +95,12 @@ def book_place(request):
                   'crr':crr,'crrpos':crrposition,}
     request.session['booking_context'] = context
     context['place']=place
+    return HttpResponseRedirect(reverse('secure_booking'))
+
+def secure_booking(request):
+    context= request.session.get('booking_context',{})
+    booking = get_booking(request)
+    context.update({'booking':booking, 'place':booking.place})
     return render_to_response('book_place.html',context, context_instance=RequestContext(request))
 
 def paypal_checkout(request):

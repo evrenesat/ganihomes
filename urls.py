@@ -74,9 +74,10 @@ urlpatterns += patterns('website.views',
 
 urlpatterns += patterns('website.booking',
     (r'^book_place/$', 'book_place', {}, 'book_place'),
+    (r'^secure_booking/$', 'secure_booking', {}, 'secure_booking'),
     (r'^paypal_checkout/$', 'paypal_checkout', {}, 'paypal_checkout'),
-    (r'^ppreturn/$', 'paypal_complete', {}, 'paypal_complete'),
-    (r'^ppcancel/$', 'paypal_cancel', {}, 'paypal_cancel'),
+    (r'^paypal_return/$', 'paypal_complete', {}, 'paypal_complete'),
+    (r'^paypal_cancel/$', 'paypal_cancel', {}, 'paypal_cancel'),
 
 )
 
