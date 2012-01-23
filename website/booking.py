@@ -88,8 +88,6 @@ def book_place(request):
         booking.set_reservation()
         booking.save()
         set_booking(request, booking)
-        if request.POST.get('paypal'):
-            return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
 
     context ={ 'ci':ci, 'co':co,'ndays':bi['ndays'], 'guests':guests, 'prices': prices,
                   'crr':crr,'crrpos':crrposition,}
@@ -98,6 +96,8 @@ def book_place(request):
     return HttpResponseRedirect(reverse('secure_booking'))
 
 def secure_booking(request):
+    if request.POST.get('paypal'):
+        return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
     context= request.session.get('booking_context',{})
     booking = get_booking(request)
     context.update({'booking':booking, 'place':booking.place})

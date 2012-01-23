@@ -66,7 +66,9 @@ class Kelime(models.Model):
     def save(self, *args, **kwargs):
         super(Kelime, self).save(*args, **kwargs)
         for k,n in settings.LANGUAGES:
-            self.ceviriler_set.get_or_create(kod=k)
+            cset = self.ceviriler_set.filter(kod=k)
+            if not cset:
+                self.ceviriler_set.create(kod=k)
 
     class Meta:
         verbose_name = u"İçerik Bloku"

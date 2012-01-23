@@ -24,7 +24,7 @@
 			countOnlyClass: "",
 			scrollStep: 15,
 			scrollInterval: 10,
-			mouseDownSpeedBooster: 3,
+			mouseDownSpeedBooster: 0,
 			autoScroll: "",
 			autoScrollDirection: "right",
 			autoScrollStep: 5,
@@ -111,7 +111,7 @@
 					}
 
 				}, o.scrollInterval));
-
+                console.log('scrollinterval', o.scrollInterval)
 				// Callback
 				self._trigger("mouseOverRightHotSpot");
 
@@ -159,9 +159,10 @@
 
 				el.data("leftScrollInterval", setInterval(function() {
 					if (el.data("scrollXPos") > 0 && el.data("enabled")) {
-						el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() - (el.data("scrollXPos") * el.data("speedBooster")));
+                        var sl = el.data("scrollWrapper").scrollLeft() - (el.data("scrollXPos"));
+						el.data("scrollWrapper").scrollLeft(sl);
 
-						self._showHideHotSpots();
+//						self._showHideHotSpots();
 					}
 
 				}, o.scrollInterval));
@@ -661,13 +662,13 @@
 			clearInterval(el.data("hideHotSpotBackgroundsInterval"));
 
 			// Remove all element specific events
-			el.data("scrollingHotSpotRight").unbind("mouseover");
-			el.data("scrollingHotSpotRight").unbind("mouseout");
-			el.data("scrollingHotSpotRight").unbind("mousedown");
+            $(".scrollingHotSpotRight").unbind("mouseover");
+            $(".scrollingHotSpotRight").unbind("mouseout");
+            $(".scrollingHotSpotRight").unbind("mousedown");
 
-			el.data("scrollingHotSpotLeft").unbind("mouseover");
-			el.data("scrollingHotSpotLeft").unbind("mouseout");
-			el.data("scrollingHotSpotLeft").unbind("mousedown");
+			$(".scrollingHotSpotLeft").unbind("mouseover");
+            $(".scrollingHotSpotLeft").unbind("mouseout");
+            $(".scrollingHotSpotLeft").unbind("mousedown");
 
 			// Restore the original content of the scrollable area
 			el.data("scrollableArea").html(el.data("originalElements"));
