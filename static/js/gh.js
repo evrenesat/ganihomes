@@ -310,37 +310,41 @@ gh = {
             }).mouseleave(function () {
                 $(this).find('.sbaner').animate({height:'28px'})
             });
-        this.makeScroller('GVS1');
+        this.makeScroller(0);
 //        this.makeScroller('GVS2', 0);
 //        this.makeScroller('GVS3',0);
     },
-    makeScroller:function (container_id) {
+    sk:null,
+    makeScroller:function (id) {
 
 //        if (typeof(hidden) == 'undefined') hidden = false;
 //        if (typeof(lft) == 'undefined') lft = false;
-        var sk = $('#' + container_id);
-        sk.parent().siblings().children('.tabborder').smoothDivScroll('destroy')
-//        this.sks[container_id] = sk
-//        direction =  lft ? 'endlessloopright' : 'endlessloopleft';
-        sk.smoothDivScroll({
-//            hiddenOnStart:hidden,
-//            autoScroll:"onstart", //"onstart" ,
-//            autoScrollDirection: "endlessloopleft",
-            autoScrollStep:2,
-            autoScrollInterval:50,
-            visibleHotSpots:"always"
-        });
-        sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
-        sk.find('div.scrollingHotSpotRight').mouseleave( function () {
-            sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
-        })
+        $.get(this.url('slides/'+id), function(data){
+            $('div.grit').html('')
+            $('#tabs-'+id).html(data)
+            this.sk = $('#GVS');
+//            sk.parent().siblings().children('.tabborder').smoothDivScroll('destroy')
 
-        sk.find('div.scrollingHotSpotLeft').mouseleave(function () {
-            sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
-        });
-        sk.find('.scrollableArea .slidiv').mouseenter(function () {
-            sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
-            sk.smoothDivScroll('startAutoScroll')
+            this.sk.smoothDivScroll({
+    //            hiddenOnStart:hidden,
+    //            autoScroll:"onstart", //"onstart" ,
+    //            autoScrollDirection: "endlessloopleft",
+                autoScrollStep:2,
+                autoScrollInterval:50,
+                visibleHotSpots:"always"
+            });
+            this.sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+            this.sk.find('div.scrollingHotSpotRight').mouseleave( function () {
+                this.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
+            })
+
+            this.sk.find('div.scrollingHotSpotLeft').mouseleave(function () {
+                this.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+            });
+            this.sk.find('.scrollableArea .slidiv').mouseenter(function () {
+                this.sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
+                    this.sk.smoothDivScroll('startAutoScroll')
+            })
         })
     },
     akToggle:function (gorunurluk) {

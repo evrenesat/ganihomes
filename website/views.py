@@ -88,6 +88,10 @@ def anasayfa(request):
                'LANG_DROPDOWN':LANG_DROPDOWN}
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
+def slides(request, id):
+    context = {'slides': Vitrin.get_slides(type=int(id) or None) }
+    return render_to_response('slides.html', context, context_instance=RequestContext(request))
+
 class addPlaceForm(ModelForm):
     lat= forms.FloatField(widget=forms.HiddenInput())
     lon= forms.FloatField(widget=forms.HiddenInput())

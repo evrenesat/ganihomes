@@ -40,9 +40,9 @@
 
     <div id="tabs">
     <ul>
-        <li class="gritab krm" id="tabli1" onmousedown="gh.makeScroller('GVS1')"><a href="#tabs-1">&nbsp;</a></li>
-        <li class="gritab alttab krm"  onmousedown="gh.makeScroller('GVS2')"><a href="#tabs-2">{% cevir "ganishow 2" %}</a></li>
-        <li class="gritab alttab krm"  onmousedown="gh.makeScroller('GVS3')"><a href="#tabs-3">{% cevir "ganishow 3" %}</a></li>
+        <li class="gritab krm" id="tabli1" onmousedown="gh.makeScroller(0)"><a href="#tabs-0">&nbsp;</a></li>
+        <li class="gritab alttab krm"  onmousedown="gh.makeScroller(1)"><a href="#tabs-1">{% cevir "ganishow 2" %}</a></li>
+        <li class="gritab alttab krm"  onmousedown="gh.makeScroller(2)"><a href="#tabs-2">{% cevir "ganishow 3" %}</a></li>
         <li id="howitworks">
             <div><a href="#tabs-4">
                 {% blocktrans with '<span></span>' as ganilogo  %}How {{ ganilogo }} works?{% endblocktrans %}
@@ -51,72 +51,11 @@
 
         </li>
     </ul>
-    {% for slideset in slides %}
-    <div class="tabcontent krm" id="tabs-{{ forloop.counter }}">
-        <div class="tabborder krm" id="GVS{{ forloop.counter }}">
-            <div class="scrollingHotSpotLeft"></div>
-            <div class="scrollingHotSpotRight"></div>
-            <div class="scrollWrapper">
-                <div class="scrollableArea">
-                    {% for s in slideset %}
-                        {% if not s.thumbs %}
-                            <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
-                                 style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
-                                <div class="sbaner alpha60">
-                                    <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name}}</span>
 
-                                    </div>
-                                    <div class="stardiv">
-                                        <span class="gh-prc crc" data-prc="{{ s.place.price }}"
-                                              data-crc="{{ s.place.currency_id }}"></span>
-                                        <ul class="rating star{{ s.place.overall_rating}}">
-                                            <li class="one"><a href="#" title="1 Star">1</a></li>
-                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
-                                        </ul>
+    <div class="tabcontent grit" id="tabs-0"> </div>
+    <div class="tabcontent grit" id="tabs-1"> </div>
+    <div class="tabcontent grit" id="tabs-2"> </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        {% else %}
-
-                            <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
-
-                                {% for photo in s.photos %}
-                                    <div class="thumbphoto"
-                                         style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
-                                {% endfor %}
-                                <div class="sbaner alpha60">
-                                    <div class="sbaner-info">{{ s.placeName }}<br>
-                                        <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
-
-                                    </div>
-                                    <div class="stardiv">
-                                        <span class="gh-prc crc" data-prc="{{ s.place.price }}"
-                                              data-crc="{{ s.place.currency_id }}"></span>
-                                        <ul class="rating star{{ s.place.overall_rating}}">
-                                            <li class="one"><a href="#" title="1 Star">1</a></li>
-                                            <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                            <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                            <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                            <li class="five"><a href="#" title="5 Stars">5</a></li>
-                                        </ul>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
     <div class="tabcontent" id="tabs-4">
 
 

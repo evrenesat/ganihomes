@@ -399,7 +399,7 @@ div.scrollableArea {
 
 
 .ui-state-active {
-    background: url(/static/images/tab-ark-krm.png) repeat-x;
+    background: url(/static/images/tab-ark-krm.png) repeat-x !important;
     background-position: -3px -13px;
     font-weight: bold;
 }
