@@ -219,13 +219,16 @@
             </form>
         </div>
     </div>
-    <div id="questbox"><form action="{% url contact_us %}">
+    <div id="questbox">
+        <div id="questboxdiv"><form action="{% url contact_box %}" method="post">
         <h4>{% trans "Feel free to ask any question you have" %}</h4>
-    <input class="innput" id=name value="{% trans "Name" %}">
-    <input class="innput" id=email value="{% trans "E-mail" %}">
-    <textarea class="innput" id="msg">{% trans "Enter your message" %}</textarea>
-    <input type="button" id=email value="Send">
+            {% csrf_token %}
+    <input class="innput" id="fullname" name="fullname" value="{% trans "Name" %}">
+    <input class="innput" id="email" name="email" value="{% trans "E-mail" %}">
+    <textarea class="innput" name='msg' id="msg">{% trans "Enter your message" %}</textarea>
+    <input type="submit" id=email value="Send">
         </form>
+        </div>
     </div>
 {% endblock %}
 {% block footmessage %}{% cevir "altmetin index" %}{% endblock %}

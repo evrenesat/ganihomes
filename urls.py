@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
-from django.conf.urls import patterns, include, url
-from django.conf.urls.i18n import i18n_patterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -84,7 +82,8 @@ urlpatterns += patterns('website.booking',
 
 
 urlpatterns += patterns('support.views',
-    url(r'^iletisim/$', 'contactUs',name='contact_us'),
+    url(r'^contact_us/$', 'contactUs',name='contact_us'),
+    url(r'^contact_box/$', 'contact_box',name='contact_box'),
     #url(r'^iletisim/(?P<subjectid>\d+)$', 'contactUs',name='contact_us'),
 )
 

@@ -2869,7 +2869,7 @@ ul.messages li{
     cursor:pointer;
     float: right;
     margin-top: -6px;
-    margin: -7px;
+    margin: -7px -7px 10px 34px;
 }
 #questbox input{
     height:30px;
@@ -2889,6 +2889,9 @@ ul.messages li{
     border:1px solid #ccc;
     font-size:14px;
     color:#ccc;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
 #questbox {
 

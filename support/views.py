@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
+from django.utils.encoding import force_unicode
 
 from support.models import *
-from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from django.http import  HttpResponseRedirect
-from django import forms
-from django.shortcuts import render_to_response, get_object_or_404
-from utils.mail2perm import mail2perm
+from django.http import  HttpResponseRedirect, HttpResponse
+from django.shortcuts import  get_object_or_404
 from django.contrib.auth.decorators import permission_required
-from django.core.urlresolvers import reverse
 #send_mail(sbj,msg,sender,recips)
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
@@ -176,3 +173,16 @@ def contactUs(request, subjectid=None):
         'title': u'İletişim',
         }
     return render_to_response('contactus/form.html', context, context_instance=RequestContext(request))
+
+
+def contact_box(request):
+    result = ''
+    if request.method=='POST':
+        data = request.POST.copy()
+        if data.get('msg') and data.get('email'):
+            m = Mesaj(message=data['msg'], first_name=data.get('fullname',''), email=data['email'])
+            m.save()
+            mail2perm(m, url='/admin/contactus/mesaj/', sbj=u'Yeni ileti alındı. ')
+            result = force_unicode(_(u'Thank you. Your message has been successfully sent.'))
+
+    return HttpResponse(result)

@@ -3,10 +3,8 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import permalink
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
-from datetime import datetime
 # Create your models here.
 #from kup.middleware.threadlocals import get_current_user
 #from books.models import lng
@@ -105,11 +103,11 @@ class Inform(models.Model):
 
 class Mesaj(models.Model):
     first_name = models.CharField(_(u"First Name"), max_length=50)
-    last_name = models.CharField(_(u"Last Name"), max_length=50)
+    last_name = models.CharField(_(u"Last Name"), max_length=50, default='')
     country=models.SmallIntegerField(_(u"Country"), default=0, choices=COUNTRIES)
     email = models.EmailField(_(u"Email"))
     phone = models.CharField(_(u"Phone"), max_length=30, default="")
-    subject= models.CharField(_(u"Subject"), max_length=200)
+    subject= models.CharField(_(u"Subject"), max_length=200, default='')
     message = models.TextField(_(u"Message"))
     submit_time = models.DateTimeField(_(u"Form Submit Time"), auto_now_add=True)
     called= models.BooleanField(_(u"Called Back?"), default=False)

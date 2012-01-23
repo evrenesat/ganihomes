@@ -262,6 +262,7 @@ gh = {
                 var t=$(this);
                 if(!t.val())t.val(t.data('default'))
             })
+        this.form_submit_handler($('#questboxdiv'))
         $('#arainput').autocomplete({minLength: 1,appendTo:'#araoneri', source:function(request, response){
                         self.otokompliti(request, response)
                     }
@@ -324,18 +325,18 @@ gh = {
         sk.smoothDivScroll({
 //            hiddenOnStart:hidden,
 //            autoScroll:"onstart", //"onstart" ,
-//            autoScrollDirection: "backandforth",
+//            autoScrollDirection: "endlessloopleft",
             autoScrollStep:2,
             autoScrollInterval:50,
             visibleHotSpots:"always"
         });
-        sk.smoothDivScroll('option','startAutoScroll')
+        sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
         sk.find('div.scrollingHotSpotRight').mouseleave( function () {
-            sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
+            sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
         })
 
         sk.find('div.scrollingHotSpotLeft').mouseleave(function () {
-            sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+            sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
         });
         sk.find('.scrollableArea .slidiv').mouseenter(function () {
             sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
@@ -1329,11 +1330,13 @@ gh = {
         });
 
     },
+
     form_submit_handler:function(frame,url,fn){
         var self = this
         var form = frame.find('form')
 //        console.log(form)
         if(typeof(fn)!='undefined')fn()
+        if(typeof(url)=='undefined')url = form.attr('action')
         form.submit(function(){
             $.post(url, form.serialize(),function(data){
                 frame.html(data)
