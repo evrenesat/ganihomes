@@ -548,7 +548,7 @@ def invite_friend(request):
             sender_name = user.get_full_name()
             subject = force_unicode(_('%s has invited you to GaniHomes'))% sender_name
             name = form.cleaned_data['name']
-            msg_context ={'name':name,'note':form.cleaned_data['note'],'sender':sender_name}
+            msg_context ={'name':name,'note':form.cleaned_data['note'],'sender':sender_name, 'LANGUAGE_CODE':request.LANGUAGE_CODE}
             send_html_mail(subject,
                 form.cleaned_data['email'],
                 msg_context,
