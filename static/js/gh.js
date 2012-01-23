@@ -1045,7 +1045,7 @@ gh = {
 
 
         }
-        console.log(lons, lats)
+//        console.log(lons, lats)
         if(!isNaN(lats))$('#id_lat').val(   lats/say)
         if(!isNaN(lons))$('#id_lon').val(lons/say)
         this.search_results = data
