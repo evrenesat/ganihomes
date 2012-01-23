@@ -53,7 +53,7 @@ def paypal_cancel(request):
 @csrf_exempt
 def book_place(request):
 
-    log.info('issecure: %s'% request)
+    log.info('issecure: %s %s'% (request, request.is_secure()))
     if request.POST.get('placeid'):
         bi = request.POST.copy()
         request.session['booking_selection']=bi
