@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 def n_tuple (n, first=[], last=[]):
     return tuple(first + [(i,i) for i in range(1, n)] + last)
 
+from countries import *
+
 PLACE_TYPES = [
     (1, _('Apartment')),
     (2, _('House')),
