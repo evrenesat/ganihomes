@@ -1,13 +1,15 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect, get_host
 import re
+import logging
+log = logging.getLogger('genel')
 
 SSL = 'SSL'
 SSL_URLS = (
- r'../login/',
- r'../register/',
- r'../secure_booking/',
- r'../paypal_*/',
+ r'/../login/',
+ r'/../register/',
+ r'/../secure_booking/',
+ r'/../paypal_\w*?/',
 )
 class SSLRedirect:
     urls = tuple([re.compile(url) for url in SSL_URLS])
@@ -22,6 +24,7 @@ class SSLRedirect:
             return self._redirect(request, secure)
 
     def _is_secure(self, request):
+	log.info('issecure :%s middle url :%s' % (request.is_secure(), request.build_absolute_uri()))
         if request.is_secure():
             return True
 
