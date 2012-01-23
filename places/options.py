@@ -163,6 +163,7 @@ MESSAGE_TYPES = (
     (20, _('Friend request from %s')),
     (30, _('Booking request for %s')),
     (40, _('Message from GaniHomes')),
+    (50, _('%s invites you to GaniHomes')),
 #    (50, _('Archived')),
 )
 
@@ -215,4 +216,3 @@ JSTRANS = (
 )
 DJSTRANS= dict(JSTRANS)
 
-from countries import *

@@ -1,0 +1,18 @@
+{% load  thumbnail i18n cevir%}
+{% include "show_messages.html" %}
+<div id="genhdr">
+    <h3>{% cevir "arkadas davet baslik" %}</h3>
+
+
+</div>
+
+
+
+        <div  class="wfParts genbdy">
+            <form action="." method="post" id="changepass">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p><input type="submit" class="yesildugme fr" value="{% trans "Sent Invite" %}"></p>
+            </form>
+         </div>
+

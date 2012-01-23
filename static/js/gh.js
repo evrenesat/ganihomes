@@ -1201,6 +1201,9 @@ gh = {
     do_changePassword:function(self){
         this.genericEdit('/dashboard/change_password/')
     },
+    do_inviteFriend:function(self){
+        this.genericEdit('/dashboard/invite_friend/')
+    },
     do_showFaq:function(self){
         var self = this
         this.genericEdit('/dashboard/show_faq/',function(){

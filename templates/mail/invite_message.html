@@ -1,0 +1,19 @@
+{% extends "mail/mail_base.html" %}
+{% load cevir thumbnail i18n%}
+
+{% block content %}
+    {% if not note %}
+    {% trans "I've been using GaniHomes and thought you might like to try it out."%}
+    {% else %}{{ note }}{% endif %}
+    <br><br>
+    <a href="http://www.ganihomes.com" style="font-size:24px;color:#2461AA;text-decoration:none;">{% trans "You're Invited to GaniHomes!" %}</a><br><br>
+    {% blocktrans %} {{ sender }} has invited you to GaniHomes,{% endblocktrans %}
+    {% blocktrans %}
+        <p></p>
+        {% cevir "davet eposta tanitim" %}
+
+    {% endblocktrans %}
+<br><br>
+    <a href="http://www.ganihomes.com">http://www.ganihomes.com/</a>
+
+{% endblock %}

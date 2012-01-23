@@ -383,10 +383,13 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
         'name':current_site.name
     }
     subject = msg.get_type_display()
-    if typ in [10,20]:
-        subject = subject % sender.get_profile().private_name
-    elif typ == 30:
-        subject = subject % place
+    obj = None
+    if typ in [10,20]:  obj = sender.get_profile().private_name
+    elif typ == 30:     obj = place.title
+    elif typ in [50]:   obj = sender.get_full_name()
+
+    if obj:
+        subject = subject % obj
     send_html_mail(subject, receiver.email, message, template='mail/new_message.html', recipient_name=receiver.get_full_name())
     return msg
 

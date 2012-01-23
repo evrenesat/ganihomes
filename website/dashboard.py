@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
 from support.models import SubjectCategory, Ticket
+from utils.htmlmail import send_html_mail
 from website.models.faq import Question
 from website.views import addPlaceForm, send_message
 
@@ -10,7 +11,6 @@ __author__ = 'Evren Esat Ozkan'
 
 from django import forms
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
 from django.db.models.query_utils import Q
 from django.forms.models import ModelForm, ModelChoiceField
@@ -529,3 +529,35 @@ def support_create(request):
         form.fields['category'].initial = int(request.GET.get('category', 0))
     return render_to_response('dashboard/support_create.html', {'form': form, },
                               context_instance=RequestContext(request, {}))
+
+
+
+class InviteForm(forms.Form):
+    name = forms.CharField(label=_('Name of your friend'))
+    email = forms.CharField(label=_('Email of your friend'))
+    note = forms.CharField(label=_('Optional note to your friend'), widget=forms.Textarea(attrs={'cols': 30, 'rows': 3}), required=False)
+
+
+@login_required
+def invite_friend(request):
+    if request.method == 'POST':
+        form = InviteForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            messages.success(request, _('Invite message successfully sent.'))
+            sender_name = user.get_full_name()
+            subject = force_unicode(_('%s has invited you to GaniHomes'))% sender_name
+            name = form.cleaned_data['name']
+            msg_context ={'name':name,'note':form.cleaned_data['note'],'sender':sender_name}
+            send_html_mail(subject,
+                form.cleaned_data['email'],
+                msg_context,
+                template='mail/invite_message.html',
+                recipient_name=name)
+        else:
+            messages.error(request, _('Form has errors, please check your input.'))
+    else:
+        form = InviteForm()
+    context = {'form':form,}
+    return render_to_response('dashboard/invite_friend.html', context, context_instance=RequestContext(request))
+
