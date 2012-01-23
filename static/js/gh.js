@@ -307,7 +307,6 @@ gh = {
 //        this.makeScroller('GVS3',0);
     },
     playvideo:function(){
-        console.log('oo')
         $.get('/static/howembed.txt', function(data){$('#nasilvideo').html(data)})
     },
     sk:null,
