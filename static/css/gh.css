@@ -1863,12 +1863,11 @@ li.g-plus-one {
     cursor: pointer;
     text-align: center;
     border: 1px solid #f0dbc6;
-    padding: 5px;
+    padding: 5px 9px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
     text-shadow: 1px 1px 0.4px #ccc;
-    width: 170px;
 
     margin-left: auto;
     margin-right: auto;
