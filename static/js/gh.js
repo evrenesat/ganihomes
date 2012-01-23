@@ -454,7 +454,7 @@ gh = {
         this.gmapsLoad('gh.gcinit')
     },
     searchMap:function(){
-        this.gZoom = 13;
+        this.gZoom = 11;
         this.gcinit(true)
         for(i=0 ;i<this.search_results.length;i++){
             d = this.search_results[i]
@@ -1023,30 +1023,30 @@ gh = {
         return gh_crc[this.selected_currency]
     },
     setSearchPrices:function(data){
-        var lats=0, lons=0, say=0
+        var lats=0.0, lons=0.0, say=0
         for(i in data){
             if(data[i].lt){
-                lats=lats + data[i].lt
-                lons=lons + data[i].ln
+                lats=lats + parseFloat(data[i].lt)
+                lons=lons + parseFloat(data[i].ln)
                 say = say+1
 //                console.log(data[i].ln)
             }
 
-        var prc = this.convertPrice(parseFloat(data[i].prc),data[i].cid)
-        cc = this.getCurrentCurrency()
+            var prc = this.convertPrice(parseFloat(data[i].prc),data[i].cid)
+            cc = this.getCurrentCurrency()
 //        prc = " <span class='gprc'>"+prc+"</span> "
         currency = "<span class='gcrc'>"+cc[2]+"</span>"
-        cprc = prc.split(',')
+            cprc = prc.split(',')
         prc = cprc[0].length<6 ? cprc[0] + " <span class='decimal'>,"+cprc[1]+"</span>" : cprc[0]
         prc = "<span class='gprc'>"+prc+"</span>"
 
         data[i].price = cc[3]==1 ? currency + prc : prc + currency
-        data[i].index = say+1;
+        data[i].index = say;
 
 
         }
-//        console.log(lons/say)
-        if(!isNaN(lats))$('#id_lat').val(lats/say)
+        console.log(lons, lats)
+        if(!isNaN(lats))$('#id_lat').val(   lats/say)
         if(!isNaN(lons))$('#id_lon').val(lons/say)
         this.search_results = data
         return data
