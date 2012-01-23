@@ -43,9 +43,13 @@
         <li class="gritab krm" id="tabli1" onmousedown="gh.makeScroller('GVS1')"><a href="#tabs-1">&nbsp;</a></li>
         <li class="gritab alttab krm"  onmousedown="gh.makeScroller('GVS2')"><a href="#tabs-2">{% cevir "ganishow 2" %}</a></li>
         <li class="gritab alttab krm"  onmousedown="gh.makeScroller('GVS3')"><a href="#tabs-3">{% cevir "ganishow 3" %}</a></li>
-        <li id="howitworks"><a href="#tabs-4">
-            <div class="inlinelogo logo-ortada">How &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; works?</div>
-        </a></li>
+        <li id="howitworks">
+            <div><a href="#tabs-4">
+                {% blocktrans with '<span></span>' as ganilogo  %}How {{ ganilogo }} works?{% endblocktrans %}
+            </a>
+            </div>
+
+        </li>
     </ul>
     {% for slideset in slides %}
     <div class="tabcontent krm" id="tabs-{{ forloop.counter }}">

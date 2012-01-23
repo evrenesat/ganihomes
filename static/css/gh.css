@@ -321,39 +321,19 @@ div.scrollableArea {
     float: right !important;
     background: url(/static/images/grd-trunc-1.png);
     height: 30px;
-    width: 290px;
+    width: 300px;
     top: 1px;
 }
-
-.inlinelogo {
+#howitworks  div{
+    width: 100%;
+}
+#howitworks span {
     background: url(/static/images/logo-inline-sb.png) no-repeat;
-    height: 35px;
+    height: 26px;
+    width: 121px;
+    display:inline-block;
+    margin: 3px 0 -5px 0;
 
-}
-
-.logo-basta {
-    background-position: 2px;
-    padding-left: 135px;
-}
-.logo-ortada {
-    background-position: 70px;
-    padding-left: 10px;
-}
-
-/*#ghlogo{*/
-/*background: url(/static/images/ganihomes-logo-inline.png) no-repeat;*/
-/*width:225px;*/
-/*height: 40px;*/
-/*position: relative;*/
-/*z-index: 1111;*/
-/*}*/
-
-.thetest {
-    border-radius: 14px;
-    /*width: 300px;*/
-    height: 200px;
-    border: 1px #ccc solid;
-    /*margin-top:20px;*/
 }
 
 #howitworks a {
@@ -363,6 +343,9 @@ div.scrollableArea {
     text-shadow: 1px 0.4px 1px #c7430a;
     /*filter: dropshadow(color = #cccccc, offx = 2, offy = 2);*/
     font-size: 20px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
     /*margin-right: 0px;*/
 
 }
@@ -610,7 +593,7 @@ ul.messages {
     width: 140px;
     font-weight: bold;
     font-size: 13px;
-    text-shadow: 1px 1px 0.4px #fff;
+    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 /*#mhtabela #epogani {*/
@@ -664,7 +647,7 @@ ul.messages {
     font-weight: bold;
     width: 710px;
     float: left;
-    text-shadow: 1px 1px 0.4px #fff;
+    text-shadow: 1px 1px 1px #FFFFFF;
 }
 
 #arabg_cont {
