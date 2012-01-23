@@ -111,7 +111,7 @@
 					}
 
 				}, o.scrollInterval));
-                console.log('scrollinterval', o.scrollInterval)
+
 				// Callback
 				self._trigger("mouseOverRightHotSpot");
 
@@ -662,13 +662,13 @@
 			clearInterval(el.data("hideHotSpotBackgroundsInterval"));
 
 			// Remove all element specific events
-            $(".scrollingHotSpotRight").unbind("mouseover");
-            $(".scrollingHotSpotRight").unbind("mouseout");
-            $(".scrollingHotSpotRight").unbind("mousedown");
+			el.data("scrollingHotSpotRight").unbind("mouseover");
+			el.data("scrollingHotSpotRight").unbind("mouseout");
+			el.data("scrollingHotSpotRight").unbind("mousedown");
 
-			$(".scrollingHotSpotLeft").unbind("mouseover");
-            $(".scrollingHotSpotLeft").unbind("mouseout");
-            $(".scrollingHotSpotLeft").unbind("mousedown");
+			el.data(".scrollingHotSpotLeft").unbind("mouseover");
+			el.data("scrollingHotSpotLeft").unbind("mouseout");
+			el.data("scrollingHotSpotLeft").unbind("mousedown");
 
 			// Restore the original content of the scrollable area
 			el.data("scrollableArea").html(el.data("originalElements"));

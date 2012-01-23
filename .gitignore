@@ -1,4 +1,5 @@
 *.pyc
+*.pyo
 log/error_log
 log/access_log
 *.tar.gz
