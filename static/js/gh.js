@@ -818,7 +818,7 @@ gh = {
     init_login: function(){this.tosUrl()},
     init_register: function(){this.tosUrl()},
     tosUrl:function(){
-        $('#regtoslabel  a').attr('href', this.url('4/tos')).attr('target','_blank')
+        $('#regtoslabel  a').attr('href', this.url('13/tos')).attr('target','_blank')
         $('.registerform').submit(function(){
             if(!$('#regtoscheck').prop('checked')){
                 alert(JSTRANS.accept_terms_of_service)
