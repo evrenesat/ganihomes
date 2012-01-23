@@ -4,10 +4,10 @@ import re
 
 SSL = 'SSL'
 SSL_URLS = (
- r'/login/',
- r'/register/',
- r'/secure_booking/',
- r'/paypal_*/',
+ r'../login/',
+ r'../register/',
+ r'../secure_booking/',
+ r'../paypal_*/',
 )
 class SSLRedirect:
     urls = tuple([re.compile(url) for url in SSL_URLS])
