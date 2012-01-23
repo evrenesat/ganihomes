@@ -25,7 +25,6 @@ from django.contrib import auth
 from django.contrib import messages
 import logging
 from website.models.dil import Ceviriler
-from website.templatetags.cevir import cevir
 
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7)
@@ -385,7 +384,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     }
     subject = msg.get_type_display()
     if typ in [10,20]:
-        subject = subject % sender
+        subject = subject % sender.get_profile().private_name
     elif typ == 30:
         subject = subject % place
     send_html_mail(subject, receiver.email, message, template='mail/new_message.html', recipient_name=receiver.get_full_name())

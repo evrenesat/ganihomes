@@ -3196,7 +3196,7 @@ ul.messages li{
 }
 #hostbox.write #tohost{
     display:inline;
-    font-size: 14px;
+    font-size: 16px;
 }
 #hostbox.write #hostname{
     display:inline;
