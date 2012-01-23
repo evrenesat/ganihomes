@@ -301,18 +301,14 @@ gh = {
             }
         });
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
-        $('.slidiv').mouseenter(
-            function () {
-                sld = $(this)
-//            console.log(sld.index()+1)
-//            sld.parents('.tabborder').smoothDivScroll("moveToElement", "number", sld.index()+1);
-                sld.find('.sbaner').animate({height:'50px'});
-            }).mouseleave(function () {
-                $(this).find('.sbaner').animate({height:'28px'})
-            });
+
         this.makeScroller(0);
 //        this.makeScroller('GVS2', 0);
 //        this.makeScroller('GVS3',0);
+    },
+    playvideo:function(){
+        console.log('oo')
+        $.get('/static/howembed.txt', function(data){$('#nasilvideo').html(data)})
     },
     sk:null,
     makeScroller:function (id) {
@@ -321,9 +317,15 @@ gh = {
 //        if (typeof(lft) == 'undefined') lft = false;
         $.get(this.url('slides/'+id), function(data){
             $('div.grit').html('')
+            $('#nasilvideo').html('')
             $('#tabs-'+id).html(data)
             this.sk = $('#GVS');
-//            sk.parent().siblings().children('.tabborder').smoothDivScroll('destroy')
+
+            this.sk.find('.slidiv').mouseenter(
+                function () {sld = $(this); sld.find('.sbaner').animate({height:'50px'});}).mouseleave(function(){
+                    $(this).find('.sbaner').animate({height:'28px'})
+                });
+
 
             this.sk.smoothDivScroll({
     //            hiddenOnStart:hidden,

@@ -43,7 +43,7 @@
         <li class="gritab krm" id="tabli1" onmousedown="gh.makeScroller(0)"><a href="#tabs-0">&nbsp;</a></li>
         <li class="gritab alttab krm"  onmousedown="gh.makeScroller(1)"><a href="#tabs-1">{% cevir "ganishow 2" %}</a></li>
         <li class="gritab alttab krm"  onmousedown="gh.makeScroller(2)"><a href="#tabs-2">{% cevir "ganishow 3" %}</a></li>
-        <li id="howitworks">
+        <li id="howitworks" onmousedown="gh.playvideo()">
             <div><a href="#tabs-4">
                 {% blocktrans with '<span></span>' as ganilogo  %}How {{ ganilogo }} works?{% endblocktrans %}
             </a>
@@ -56,7 +56,7 @@
     <div class="tabcontent grit" id="tabs-1"> </div>
     <div class="tabcontent grit" id="tabs-2"> </div>
 
-    <div class="tabcontent" id="tabs-4">
+    <div class="tabcontent"  id="tabs-4">
 
 
         <div id="likethat">
@@ -71,21 +71,8 @@
 
             </div>
             <div id="nasilvideo">
-                <object width="420" height="315">
-                             <param name="movie" value="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0&autoplay=1"></param>
-                             <param name="allowFullScreen" value="true"></param>
-                             <param name="allowscriptaccess" value="always"></param>
-                             <param name="autoplay" value="1"></param>
-                             <param name="controls" value="0"></param>
-                             <embed src="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0&autoplay=1"
-                                    type="application/x-shockwave-flash"
-                                    width="420"
-                                    height="315"
-                                    allowscriptaccess="always"
-                                    allowfullscreen="true"
-                                    autoplay="1">
-                                    </embed>
-                         </object>
+
+
 
             </div>
 
@@ -203,15 +190,13 @@
              <param name="movie" value="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0"></param>
              <param name="allowFullScreen" value="true"></param>
              <param name="allowscriptaccess" value="always"></param>
-             <param name="autoplay" value="1"></param>
              <param name="controls" value="0"></param>
              <embed src="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0"
                     type="application/x-shockwave-flash"
                     width="420"
                     height="315"
                     allowscriptaccess="always"
-                    allowfullscreen="true"
-                    autoplay="1">
+                    allowfullscreen="true">
                     </embed>
          </object>
 
