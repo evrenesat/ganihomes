@@ -1677,7 +1677,24 @@ li.g-plus-one {
     margin-left: auto;
     margin-right: auto;
 }
+.arasayi{
+    font-weight:bold;
+    background:#fff;
+    borer:2px solid #ccc;
+    width: 21px;
+    height:18px;
+    display:inline-block;
+    float:left;
+    position: absolute;
+    bottom: 7px;
+    text-align: center;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+    color: green;
+    text-shadow: 0px 0px 4px #36FB34;
 
+}
 #adresikullan {
     font-size: 14px;
     color: green;

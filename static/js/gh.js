@@ -205,6 +205,7 @@ gh = {
         var sbar = $('#sidesearch')
         var sbardis = $('#searchbar')
         var sbox = $('#searchbox')
+
         $(window).scroll(function(){
 //            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
             if($(document).scrollTop()>170 && !sbar.hasClass('fixmenu')){sbar.addClass('fixmenu');sbardis.height(sbox.height())}
@@ -451,6 +452,30 @@ gh = {
         var self = this;
 //        console.log(self)
         this.gmapsLoad('gh.gcinit')
+    },
+    searchMap:function(){
+        this.gZoom = 13;
+        this.gcinit(true)
+        for(i=0 ;i<this.search_results.length;i++){
+            d = this.search_results[i]
+
+            var image = new google.maps.MarkerImage('/static/images/markers/marker' + (i+1) + '.png',
+                                  new google.maps.Size(20, 34),
+                                  new google.maps.Point(0, 0),
+                                  new google.maps.Point(10, 34));
+
+
+                      var myLatLng = new google.maps.LatLng(d.lt, d.ln);
+                      var marker = new google.maps.Marker({
+                          position: myLatLng,
+                          map: this.map,
+                          icon: image,
+                          title: d.tt,
+                          zIndex: i+1
+                      });
+
+        }
+
     },
     _circleMaps:function(){
         this.gmapsLoad('gh.drawCircle')
@@ -998,7 +1023,15 @@ gh = {
         return gh_crc[this.selected_currency]
     },
     setSearchPrices:function(data){
+        var lats=0, lons=0, say=0
         for(i in data){
+            if(data[i].lt){
+                lats=lats + data[i].lt
+                lons=lons + data[i].ln
+                say = say+1
+//                console.log(data[i].ln)
+            }
+
         var prc = this.convertPrice(parseFloat(data[i].prc),data[i].cid)
         cc = this.getCurrentCurrency()
 //        prc = " <span class='gprc'>"+prc+"</span> "
@@ -1008,9 +1041,14 @@ gh = {
         prc = "<span class='gprc'>"+prc+"</span>"
 
         data[i].price = cc[3]==1 ? currency + prc : prc + currency
+        data[i].index = say+1;
 
 
         }
+//        console.log(lons/say)
+        if(!isNaN(lats))$('#id_lat').val(lats/say)
+        if(!isNaN(lons))$('#id_lon').val(lons/say)
+        this.search_results = data
         return data
     },
     jsearch:function(){
@@ -1025,6 +1063,8 @@ gh = {
         data =self.setSearchPrices(data)
 //        console.log(data)
         $("#resul").html($("#wideResultsTpl").jqote(data));
+            self.gmapsLoad('gh.searchMap')
+            //FIXME: haritayi tekrar tekrar yukluyor
         });
 
     },

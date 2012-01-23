@@ -29,6 +29,7 @@
                                         <li>
                                             <div class="pimg">
                                                 <img src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=this.id%>_pls.jpg">
+                                                <span class="arasayi"> <%=this.index%> </span>
                                             </div>
                                             <div class="detail">
                                                 <h4><a href="/{{ LANGUAGE_CODE }}/places/<%=this.id%>"><%=this.tt%></a></h4>
@@ -52,28 +53,6 @@
                 <ul id="resul">
 
 
-{#                    {% for s in results %}#}
-{#                        <li>`#}
-{#                            <div class="pimg">#}
-{#                                <img src="{% thumbnail s.primary_photo 120x100 crop %}">#}
-{#                            </div>#}
-{#                            <div class="detail">#}
-{#                                <h4><a href="{% url show_place s.id %}">{{ s.title }}</a></h4>#}
-{#                                {{ s.city }} - {{ s.district }}, {{ s.get_country_display }}<br>#}
-{#                                {{ s.get_type_display }} / {{ s.get_space_display }}<br>#}
-{#                                <img class="ownimg" src="{% thumbnail s.owner.get_profile.photo 0x30 crop=scale %}">#}
-{##}
-{#                            </div>#}
-{##}
-{##}
-{#                            <div class="price">#}
-{#                                {{ s.price }} {{ s.currency }}#}
-{#                                <div class="rating star{{ s.overall_rating}}"></div>#}
-{#                            </div>#}
-{##}
-{#                        </li>#}
-{##}
-{#                    {% endfor %}#}
                 </ul>
 
             </div>
@@ -83,7 +62,9 @@
         <div class="ikikutu" id="searchbar">
 
             <div  id="sidesearch">
-
+                <input type="hidden" value="{{ place.lat }}" id="id_lat">
+                <input type="hidden" value="{{ place.lon }}" id="id_lon">
+                <div id="map_canvas" style="width:240px;height:210px;border:2px solid #ccc;"></div>
                     <div id="ptypes" class="kapsar ackapa" data-key="ptypes">
                         <input type="hidden" name="ids_ptypes" id="ids_ptypes">
                 <div class="sstitle"> ::. {% trans "Place Type" %}</div>
