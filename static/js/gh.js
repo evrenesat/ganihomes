@@ -453,29 +453,33 @@ gh = {
 //        console.log(self)
         this.gmapsLoad('gh.gcinit')
     },
+    placeMarkerGoto:function (marker,id){
+        var self=this;
+        google.maps.event.addListener(marker, 'click', function() {document.location=self.url('places/'+id)});
+    },
     searchMap:function(){
+        var self=this;
         this.gZoom = 11;
         this.gcinit(true)
         for(i=0 ;i<this.search_results.length;i++){
-            d = this.search_results[i]
+            var d = this.search_results[i]
+            if(d.index){
+                var image = new google.maps.MarkerImage('/static/images/markers/marker' + (d.index) + '.png',
+                                      new google.maps.Size(20, 34),
+                                      new google.maps.Point(0, 0),
+                                      new google.maps.Point(10, 34));
+                var myLatLng = new google.maps.LatLng(d.lt, d.ln);
+                var marker = new google.maps.Marker({
+                  position: myLatLng,
+                  map: this.map,
+                  icon: image,
+                  title: d.tt,
+                  zIndex: i+1
+                });
+                this.placeMarkerGoto(marker, d.id)
 
-            var image = new google.maps.MarkerImage('/static/images/markers/marker' + (i+1) + '.png',
-                                  new google.maps.Size(20, 34),
-                                  new google.maps.Point(0, 0),
-                                  new google.maps.Point(10, 34));
-
-
-                      var myLatLng = new google.maps.LatLng(d.lt, d.ln);
-                      var marker = new google.maps.Marker({
-                          position: myLatLng,
-                          map: this.map,
-                          icon: image,
-                          title: d.tt,
-                          zIndex: i+1
-                      });
-
+            }
         }
-
     },
     _circleMaps:function(){
         this.gmapsLoad('gh.drawCircle')
@@ -500,7 +504,7 @@ gh = {
         this.geocoder = new google.maps.Geocoder();
         this.glatlng = new google.maps.LatLng(this.lat,this.lon);
 //        console.log(this.glatlng,this.lat,this.lon)
-        var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+        var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP, mapTypeControl:false, streetViewControl:false }
         this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
         this.infoWindow = new google.maps.InfoWindow()
@@ -1029,23 +1033,16 @@ gh = {
                 lats=lats + parseFloat(data[i].lt)
                 lons=lons + parseFloat(data[i].ln)
                 say = say+1
-//                console.log(data[i].ln)
+                data[i].index = say;
             }
-
             var prc = this.convertPrice(parseFloat(data[i].prc),data[i].cid)
             cc = this.getCurrentCurrency()
-//        prc = " <span class='gprc'>"+prc+"</span> "
-        currency = "<span class='gcrc'>"+cc[2]+"</span>"
+            currency = "<span class='gcrc'>"+cc[2]+"</span>"
             cprc = prc.split(',')
-        prc = cprc[0].length<6 ? cprc[0] + " <span class='decimal'>,"+cprc[1]+"</span>" : cprc[0]
-        prc = "<span class='gprc'>"+prc+"</span>"
-
-        data[i].price = cc[3]==1 ? currency + prc : prc + currency
-        data[i].index = say;
-
-
+            prc = cprc[0].length<6 ? cprc[0] + " <span class='decimal'>,"+cprc[1]+"</span>" : cprc[0]
+            prc = "<span class='gprc'>"+prc+"</span>"
+            data[i].price = cc[3]==1 ? currency + prc : prc + currency
         }
-//        console.log(lons, lats)
         if(!isNaN(lats))$('#id_lat').val(   lats/say)
         if(!isNaN(lons))$('#id_lon').val(lons/say)
         this.search_results = data

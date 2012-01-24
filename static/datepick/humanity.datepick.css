@@ -100,7 +100,7 @@ div a.datepick-cmd-prev.datepick-disabled{
     box-shadow: 0px 0px 10px 2px #fae4ce;
     color:brown !important;
     width:31%;
-    background: url(/images/grd-agc-1.png);
+    background: url(/static/images/grd-agc-1.png);
     text-shadow: 1px 1px 0.4px #ccc;
 }
 
