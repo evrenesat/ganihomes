@@ -24,7 +24,7 @@
 			countOnlyClass: "",
 			scrollStep: 15,
 			scrollInterval: 10,
-			mouseDownSpeedBooster: 0,
+			mouseDownSpeedBooster: 1,
 			autoScroll: "",
 			autoScrollDirection: "right",
 			autoScrollStep: 5,
@@ -83,9 +83,9 @@
 			SET UP EVENTS FOR SCROLLING RIGHT
 			*****************************************/
 			// Check the mouse X position and calculate the relative X position inside the right hotspot
-			el.data("scrollingHotSpotRight").bind("mousemove", function(e) {
-				var x = e.pageX - (this.offsetLeft + el.data("motherElementOffset"));
-				el.data("scrollXPos", Math.round((x / el.data("hotSpotWidth")) * o.scrollStep));
+			el.data("scrollingHotSpotRight").bind("mouseenter", function(e) {
+
+				el.data("scrollXPos", 5);
 				if (el.data("scrollXPos") === Infinity) {
 					el.data("scrollXPos", 0);
 				}
@@ -95,11 +95,11 @@
 			el.data("scrollingHotSpotRight").bind("mouseover", function() {
 
 				// Clear autoscrolling, if it should only run on start
-				if ((o.autoScroll === "onstart" && el.data("autoScrollInterval") !== null)) {
-					clearInterval(el.data("autoScrollInterval"));
-					el.data("autoScrollInterval", null);
-					self._trigger("autoScrollIntervalStopped");
-				}
+//				if ((o.autoScroll === "onstart" && el.data("autoScrollInterval") !== null)) {
+//					clearInterval(el.data("autoScrollInterval"));
+//					el.data("autoScrollInterval", null);
+//					self._trigger("autoScrollIntervalStopped");
+//				}
 
 				// Start the scrolling interval
 				el.data("rightScrollInterval", setInterval(function() {
@@ -137,9 +137,8 @@
 			SET UP EVENTS FOR SCROLLING LEFT
 			*****************************************/
 			// Check the mouse X position and calculate the relative X position inside the left hotspot
-			el.data("scrollingHotSpotLeft").bind("mousemove", function(e) {
-				var x = el.data("scrollingHotSpotLeft").innerWidth() - (e.pageX - el.data("motherElementOffset"));
-				el.data("scrollXPos", Math.round((x / el.data("hotSpotWidth")) * o.scrollStep));
+			el.data("scrollingHotSpotLeft").bind("mouseenter", function(e) {
+				el.data("scrollXPos", 5);
 				if (el.data("scrollXPos") === Infinity) {
 					el.data("scrollXPos", 0);
 				}
@@ -151,18 +150,18 @@
 
 				// Clear autoscrolling, if it should only run on start
 
-				if ((o.autoScroll === "onstart" && el.data("autoScrollInterval") !== null)) {
-					clearInterval(el.data("autoScrollInterval"));
-					el.data("autoScrollInterval", null);
-					self._trigger("autoScrollIntervalStopped");
-				}
+//				if ((o.autoScroll === "onstart" && el.data("autoScrollInterval") !== null)) {
+//					clearInterval(el.data("autoScrollInterval"));
+//					el.data("autoScrollInterval", null);
+//					self._trigger("autoScrollIntervalStopped");
+//				}
 
 				el.data("leftScrollInterval", setInterval(function() {
 					if (el.data("scrollXPos") > 0 && el.data("enabled")) {
                         var sl = el.data("scrollWrapper").scrollLeft() - (el.data("scrollXPos"));
 						el.data("scrollWrapper").scrollLeft(sl);
 
-//						self._showHideHotSpots();
+						self._showHideHotSpots();
 					}
 
 				}, o.scrollInterval));

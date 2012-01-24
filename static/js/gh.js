@@ -313,40 +313,41 @@ gh = {
     sk:null,
     makeScroller:function (id) {
         var self =this;
-
-//        if (typeof(hidden) == 'undefined') hidden = false;
-//        if (typeof(lft) == 'undefined') lft = false;
+        $('#GVS').empty().remove()
         $.get(this.url('slides/'+id), function(data){
             $('div.grit').html('')
             $('#nasilvideo').html('')
             $('#tabs-'+id).html(data)
-            this.sk = $('#GVS');
+            if(self.sk)self.sk.smoothDivScroll('destroy')
+            self.priceScanConvert()
+            var sk = $('#GVS');
 
-            this.sk.find('.slidiv').mouseenter(
+
+            sk.find('.slidiv').mouseenter(
                 function () {sld = $(this); sld.find('.sbaner').animate({height:'50px'});}).mouseleave(function(){
                     $(this).find('.sbaner').animate({height:'28px'})
                 });
 
 
-            this.sk.smoothDivScroll({
+            sk.smoothDivScroll({
     //            hiddenOnStart:hidden,
-    //            autoScroll:"onstart", //"onstart" ,
-    //            autoScrollDirection: "endlessloopleft",
-                autoScrollStep:2,
-                autoScrollInterval:50,
+//                autoScroll:"onstart",
+//                autoScrollDirection: "endlessloopleft",
+                autoScrollStep:3,
+                autoScrollInterval:25,
                 visibleHotSpots:"always"
             });
-            this.sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
-            this.sk.find('div.scrollingHotSpotRight').mouseleave( function () {
-                self.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
+            sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+            sk.find('div.scrollingHotSpotRight').mouseleave( function () {
+                sk.smoothDivScroll("option", "autoScrollDirection", 'endlessloopright').smoothDivScroll("startAutoScroll")
             })
 
-            this.sk.find('div.scrollingHotSpotLeft').mouseleave(function () {
-                self.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+            sk.find('div.scrollingHotSpotLeft').mouseleave(function () {
+                sk.smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft').smoothDivScroll("startAutoScroll")
             });
-            this.sk.find('.scrollableArea .slidiv').mouseenter(function () {
-                self.sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
-                    self.sk.smoothDivScroll('startAutoScroll')
+            sk.find('.scrollableArea .slidiv').mouseenter(function () {
+                sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
+                    sk.smoothDivScroll('startAutoScroll')
             })
         })
     },
