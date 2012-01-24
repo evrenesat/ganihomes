@@ -334,7 +334,7 @@ gh = {
 //                autoScroll:"onstart",
 //                autoScrollDirection: "endlessloopleft",
                 autoScrollStep:3,
-                autoScrollInterval:25,
+                autoScrollInterval:50,
                 visibleHotSpots:"always"
             });
             sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
