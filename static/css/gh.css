@@ -2477,6 +2477,7 @@ li.g-plus-one {
 #sidesearch.fixmenu{
     position: fixed;
     top:20px;
+    z-index: 10;
 
 }
 #searchbar .kapsar{

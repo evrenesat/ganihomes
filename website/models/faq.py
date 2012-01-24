@@ -51,10 +51,11 @@ class Category(models.Model):
 #    lang = models.CharField(_('Category'), max_length=2, db_index=True, choices=settings.LANGUAGES)
     active = models.BooleanField(_('Active'), default=True)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+    order = models.SmallIntegerField(_('Order'),default=100)
 
     class Meta:
         app_label = 'website'
-        ordering = ['timestamp']
+        ordering = ['order']
         get_latest_by = "timestamp"
         verbose_name = _('FAQ Category')
         verbose_name_plural = _('FAQ Categories')

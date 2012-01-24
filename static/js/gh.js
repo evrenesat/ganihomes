@@ -312,6 +312,7 @@ gh = {
     },
     sk:null,
     makeScroller:function (id) {
+        var self =this;
 
 //        if (typeof(hidden) == 'undefined') hidden = false;
 //        if (typeof(lft) == 'undefined') lft = false;
@@ -337,15 +338,15 @@ gh = {
             });
             this.sk.smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
             this.sk.find('div.scrollingHotSpotRight').mouseleave( function () {
-                this.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
+                self.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopright')
             })
 
             this.sk.find('div.scrollingHotSpotLeft').mouseleave(function () {
-                this.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
+                self.sk.smoothDivScroll("stopAutoScroll").smoothDivScroll("startAutoScroll").smoothDivScroll("option", "autoScrollDirection", 'endlessloopleft')
             });
             this.sk.find('.scrollableArea .slidiv').mouseenter(function () {
-                this.sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
-                    this.sk.smoothDivScroll('startAutoScroll')
+                self.sk.smoothDivScroll('stopAutoScroll')}).mouseleave(function () {
+                    self.sk.smoothDivScroll('startAutoScroll')
             })
         })
     },
