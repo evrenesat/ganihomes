@@ -455,7 +455,7 @@ gh = {
     },
     placeMarkerGoto:function (marker,id){
         var self=this;
-        google.maps.event.addListener(marker, 'click', function() {document.location=self.url('places/'+id)});
+        google.maps.event.addListener(marker, 'click', function() {self.gotoplace(id) });
     },
     searchMap:function(){
         var self=this;
@@ -483,6 +483,9 @@ gh = {
     },
     _circleMaps:function(){
         this.gmapsLoad('gh.drawCircle')
+    },
+    gotoplace:function(id){
+        document.location=this.url('places/'+id)
     },
     drawCircle:function(){
         this.gZoom = 14;

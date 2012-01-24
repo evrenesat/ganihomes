@@ -26,13 +26,13 @@
 
 
 
-                                        <li>
+                                        <li onclick="gh.gotoplace(<%=this.id%>)">
                                             <div class="pimg">
                                                 <img src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=this.id%>_pls.jpg">
                                                 <%if(this.index){ %><span class="arasayi"> <%=this.index%> </span><%}%>
                                             </div>
                                             <div class="detail">
-                                                <h4><a href="/{{ LANGUAGE_CODE }}/places/<%=this.id%>"><%=this.tt%></a></h4>
+                                                <h4><%=this.tt%></h4>
                                                 <%=this.ci%> - <%=this.di%>, <%=COUNTRIES[this.co]%><br>
                                                 <%=PLACE_TYPES[this.typ]%> / <%=SPACE_TYPES[this.spc]%><br>
                                                 <img class="ownimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/<%=this.oid%>_s.jpg">
