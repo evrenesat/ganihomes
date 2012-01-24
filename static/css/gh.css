@@ -398,8 +398,8 @@ div.scrollableArea {
 }
 
 
-.ui-state-active {
-    background: url(/static/images/tab-ark-krm.png) repeat-x !important;
+#tabs li.ui-state-active {
+    background: url(/static/images/tab-ark-krm.png) repeat-x;
     background-position: -3px -13px;
     font-weight: bold;
 }
@@ -4191,4 +4191,16 @@ list-style:none;
 }
 #sosicon li {
     display:inline;
+}
+#stabul li, #ttabul li{
+    background:url(/static/images/grd-trn.png) repeat-x 0 -40px;
+    color:#000;
+    height: 38px;
+    font-size: 16px;
+}
+
+#stabul li.ui-state-active , #ttabul li.ui-state-active {
+    background-position: 0 0;
+    font-weight:bold;
+
 }
