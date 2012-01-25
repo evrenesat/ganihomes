@@ -4,8 +4,8 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-#import logging
-#log = logging.getLogger('genel')
+import logging
+log = logging.getLogger('genel')
 from utils.cache import kes
 
 class MainCategory(models.Model):
@@ -104,18 +104,24 @@ class Question(models.Model):
     def _updateCache(cls, lang=None):
         for code,name in settings.LANGUAGES:
             mi = defaultdict(list)
-            cat_names = dict(CategoryTranslation.objects.filter(lang=code).values_list('category_id','text'))
+            cat_name_list = CategoryTranslation.objects.filter(lang=code).order_by('category__order').values_list('category_id','text','category__order')
+            cat_names = dict([a[:2] for a in cat_name_list])
+            cat_order = dict([a[1:] for a in cat_name_list])
             for mc in MainCategory.objects.filter(active=True):
                 di = defaultdict(list)
                 for a in Answer.objects.select_related().order_by('question__order').filter(lang=code,
                     active=True, question__category__main_category=mc):
                     di[cat_names.get(a.question.category_id,'---')].append({
                         'answer':mark_safe(a.text), 'qid':a.question_id, 'question':a.question.getTrans(code)})
-                di = di.items()
+#                log.info('preorder: %s'%di.keys())
+#                log.info(cat_order)
+                di = sorted(di.items(),key=lambda x: cat_order.get(x[0]))
+#                log.info('postorder: %s'%di)
+#                di = di.items()
                 main_cat_name = mc.maincategorytranslation_set.filter(lang=code).values_list('text',flat=True)
                 mi[main_cat_name[0] if main_cat_name else '---' ] = di
             mi = mi.items()
-            kes(code,'faqs').s(mi,99)
+            kes(code,'faqs').s(mi,100)#FIXME: set this to a biger value
             if lang == code:
                 lang = mi
         return lang

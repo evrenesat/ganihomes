@@ -43,6 +43,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('text', 'main_category','active','order')
     search_fields = ['text', ]
     list_filter = ['active','main_category']
+    list_editable = ['order']
     save_on_top = True
     inlines = [CategoryTranslationInline, ]
     save_as = True
@@ -72,8 +73,9 @@ class AnswerInline(admin.StackedInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
-    list_display = ('text','active')
+    list_display = ('text','category','active','order')
     search_fields = ['text', ]
+    list_editable = ['order','active','category']
     list_filter = ['active','category']
     save_on_top = True
     inlines = [QuestionTranslationInline, AnswerInline]

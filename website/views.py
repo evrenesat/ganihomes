@@ -43,14 +43,18 @@ class SearchForm(forms.Form):
 class BookingForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
     checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}))
-    no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1)
+
+
+    def __init__(self, capacity, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+        self.fields['no_of_guests']= forms.ChoiceField(choices=n_tuple(capacity), initial=1)
 
 
 def showPlace(request, id):
     place = Place.objects.select_related().get(pk=id)
     owner = place.owner
     profile = owner.profile
-    properties=(
+    properties=[
         (_(u'Place type'),place.get_type_display()),
         (_(u'Space offered'),place.get_space_display()),
         (_(u'Accommodates'),place.capacity),
@@ -59,8 +63,13 @@ def showPlace(request, id):
         (_(u'Bed type'),place.get_bed_type_display()),
         (_(u'Bathrooms'),place.bathrooms),
         (_(u'Cancellation'),place.get_cancellation_display()),
-    )
-    context = {'place':place,'bform':BookingForm(),'properties':properties , 'owner':owner, 'profile':profile, 'amens':place.getTags(request.LANGUAGE_CODE)}
+    ]
+#    if place.cleaning_fee:
+#        properties.append((_(u'Cleaning Fee'),place.cleaning_fee))
+    context = {'place':place, 'bform':BookingForm(place.capacity),
+               'properties':properties , 'owner':owner,
+               'profile':profile, 'service_fee':dbsettings.ghs.guest_fee,
+               'amens':place.getTags(request.LANGUAGE_CODE)}
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 def searchPlace(request):

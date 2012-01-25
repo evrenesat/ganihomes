@@ -2575,7 +2575,7 @@ margin-top: 30px !important;
     margin: 3px;
 }
 
-#ozellikler span {
+#ozellikler > span {
     margin-top: 2px;
     border-bottom: 1px solid #fffccf;
     -webkit-box-shadow: #ccc 1px 1px 4px;
@@ -3286,7 +3286,7 @@ ul.messages li{
     padding: 4px 8px;
 }
 .yemyesildugme {
-    border: 1px solid #b2ff61;
+    border: 1px solid #8EC853;
     background-color: #baff96 !important;
     cursor: pointer;
     text-align: center;
