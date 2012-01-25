@@ -547,7 +547,7 @@ gh = {
     total:{ndays:0, price:0.0},
     calculateTotalPrice:function(){
         var tprice = this.convertPrice(this.total.price)
-        $('#totalPriceValue').html(tprice)
+        $('#totalPriceValue').html(this.getCurrPrice(tprice))
         $('#displayed_price').val(tprice)
         $('#ndays').val(this.total.ndays)
         $('#currencyid').val(this.selected_currency)
@@ -922,7 +922,8 @@ gh = {
                 })
                 }
             });
-//        self.loadTemplate('dashboard_place_listing.tpl',function(){self.hashCall()})
+        self.hashCall()
+//        self.loadTemplate('dashboard_place_listing.tpl',function(){})
 //        this.editPrices(2)
 //        this.editAvailability(2)
     },
@@ -932,6 +933,7 @@ gh = {
             var hs = document.location.hash.replace('#','').split(',')
         }
         else if(document.location.search){
+//            console.log(document.location.search)
             var hs = document.location.search.replace('?','').split('=')
         }
         if(typeof(hs[0])!='undefined'){

@@ -9,6 +9,7 @@
 		var opts = {
 			month: thismonth,
 			year: thisyear,
+			firstday: 1,
             monthNames : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             dayNames : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 		};
@@ -47,6 +48,7 @@
 			table += '<tr>';
 
 			for (d=0; d<7; d++) {
+
 				table += '<th class="weekday">' + dayNames[d] + '</th>';
 			}
 
