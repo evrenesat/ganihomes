@@ -9,7 +9,7 @@
 		var opts = {
 			month: thismonth,
 			year: thisyear,
-			firstday: 1,
+			firstWeekDay: 0,
             monthNames : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             dayNames : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 		};
@@ -20,6 +20,7 @@
 //		var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         var monthNames = opts.monthNames
         var dayNames = opts.dayNames
+        var firstWeekDay = opts.firstWeekDay
 		month = i = parseInt(opts.month);
 		year = parseInt(opts.year);
 		var m = 0;
@@ -46,10 +47,12 @@
 			table += ('<table class="calendar-month " ' +'id="calendar-month'+i+' " cellspacing="0">');
 
 			table += '<tr>';
-
+//        console.log(firstWeekDay)
 			for (d=0; d<7; d++) {
+                var dy = d+firstWeekDay <7 ? d+firstWeekDay : d+firstWeekDay - 7
 
-				table += '<th class="weekday">' + dayNames[d] + '</th>';
+//                    console.log(dy)
+				table += '<th class="weekday">' + dayNames[dy] + '</th>';
 			}
 
 			table += '</tr>';
@@ -65,8 +68,11 @@
 			var prev_m = month == 0 ? 11 : month-1;
 			var prev_y = prev_m == 11 ? year - 1 : year;
 			var prev_days = getDaysInMonth(prev_m, prev_y);
-			firstDay = (firstDay == 0 && firstDayDate) ? 7 : firstDay;
 
+//            firstDay = firstDay+firstWeekDay >7 ? firstDay+firstWeekDay : firstDay+firstWeekDay - 7
+			firstDay = (firstDay == 0 && firstDayDate) ? 7 : firstDay;
+            firstDay = firstDay-firstWeekDay >0 ? firstDay-firstWeekDay : firstDay-firstWeekDay + 7
+//            console.log(firstDay)
 			var i = 0;
             for (j=0;j<42;j++){
 

@@ -157,12 +157,12 @@ gh = {
             this.currRates[c] = selCrr / parseFloat(cc[0])
         }
     },
-    getCurrPrice:function(p){
+    getCurrPrice:function(p){console.log(p)
         //cc[3] 1 ise para birimi once(usd 1) degilse (1 usd)
       var cc = gh_crc[this.selected_currency]
 //      if (typeof(p)=='undefined')return cc[1]
       p = "<span class='gprc'>"+p+"</span>"
-      c = "<span class='gcrc'>"+cc[2]+"</span>"
+      c = "<span class='gcrc'> "+cc[2]+" </span>"
       return cc[3]==1 ? c + p : p + c
     },
     priceScanConvert:function(){
@@ -546,8 +546,16 @@ gh = {
     },
     total:{ndays:0, price:0.0},
     calculateTotalPrice:function(){
-        var tprice = this.convertPrice(this.total.price)
-        $('#totalPriceValue').html(this.getCurrPrice(tprice))
+        var tprice = this.total.price + cleaning_fee + (this.total.price*service_fee/100)
+        var nog = parseInt($('#id_no_of_guests').val())
+        if(exlimit < nog) tprice = tprice + (exprice * (nog-exlimit))
+        if (cleaning_fee){
+            $('#cleaningfee span').html(this.getCurrPrice(this.convertPrice(cleaning_fee)))
+        }
+        if (service_fee){
+            $('#servicefee span').html(this.getCurrPrice(this.convertPrice(tprice*service_fee/100)))
+        }
+        $('#totalPriceValue').html(this.getCurrPrice(this.convertPrice(tprice)))
         $('#displayed_price').val(tprice)
         $('#ndays').val(this.total.ndays)
         $('#currencyid').val(this.selected_currency)
@@ -555,6 +563,7 @@ gh = {
     checkReservationDates:function(dates){
         var loopDate = new Date();
         loopDate.setTime(dates[0]);
+        $.cookie('selected_dates', $.toJSON(dates))
         $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
@@ -691,6 +700,7 @@ gh = {
             $('#hostbox').addClass('write')
         })
         $('#sendhostmessage').click(function(){self.sendMessageToHost()})
+        $('#id_no_of_guests').change(function(){self.calculateTotalPrice()})
 
 
         this.setLatLon()
@@ -706,6 +716,10 @@ gh = {
             $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){
                 self.makeAvailabilityTab()
                 self.prepareSessionalPrices()
+
+                var dates=$.evalJSON($.cookie('selected_dates'))
+//                console.log(dates[0].substring(0,10))
+                if(dates)$('#pcalendar').datepick('setDate',new Date(dates[0]),new Date(dates[1]))
             })
 
 
@@ -714,7 +728,9 @@ gh = {
                 beforeShowDay: function(date) { return self.isUnAvailable(date) ? [false,'datepick-reserved','']:[true,'',''] },
                 onSelect: function(dateText, inst) {
                     self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
-                    if(self.selected_dates.id_checkin && self.selected_dates.id_checkout){
+                    if(self.selected_dates.id_checkin || self.selected_dates.id_checkout){
+                        if(self.selected_dates.id_checkin && !self.selected_dates.id_checkout)self.selected_dates.id_checkout=self.selected_dates.id_checkin
+                        else if(self.selected_dates.id_checkout && !self.selected_dates.id_checkin)self.selected_dates.id_checkin=self.selected_dates.id_checkout
                         $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
                     }
                 }
@@ -1010,7 +1026,7 @@ gh = {
             }
             var prc = this.convertPrice(parseFloat(data[i].prc),data[i].cid)
             cc = this.getCurrentCurrency()
-            currency = "<span class='gcrc'>"+cc[2]+"</span>"
+            currency = "<span class='gcrc'> "+cc[2]+" </span>"
             cprc = prc.split(',')
             prc = cprc[0].length<6 ? cprc[0] + " <span class='decimal'>,"+cprc[1]+"</span>" : cprc[0]
             prc = "<span class='gprc'>"+prc+"</span>"
@@ -1251,8 +1267,9 @@ gh = {
         var self = this
         for(i=0;i<12;i++)$("#takvim").calendarWidget({ month: i, year: 2012 ,
             monthNames: this.cal.lang.monthNames,
-            dayNames: this.cal.lang.dayNamesShort
-        });
+            dayNames: this.cal.lang.dayNamesShort,
+            firstWeekDay: this.cal.lang.firstDay
+        }).disableSelection();
         $(this.cal.obj).find('td.current-month').click(function(){
         if(!self.cal.start) self.cal.start = this.id
         else{

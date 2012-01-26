@@ -495,7 +495,7 @@ def edit_prices(request, id):
 
     form = PlacePriceForm(instance=place)
     spset = SPFormSet(queryset=SessionalPrice.objects.filter(place=place))
-    context = {'bform':form,'sform':spset,}
+    context = {'bform':form,'sform':spset,'place':place}
     return render_to_response('dashboard/edit_prices.html', context, context_instance=RequestContext(request))
 
 

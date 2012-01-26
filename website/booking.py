@@ -31,6 +31,7 @@ def paypal_complete(request):
     paypal_transaction = PayPalNVP.objects.get(method="DoExpressCheckoutPayment",ack='Success',custom=str(booking.id))
     booking.payment_type = 2
     booking.status = 10
+    booking.set_reservation()
     booking.save()
 
     msg = _("""%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .
@@ -85,7 +86,6 @@ def book_place(request):
             currency_id =crrid,
             nguests = guests,
         )
-        booking.set_reservation()
         booking.save()
         set_booking(request, booking)
 

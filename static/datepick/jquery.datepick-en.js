@@ -10,7 +10,7 @@
 		dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 		dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 		dayNamesMin: ['Su','Mo','Tu','We','Th','Fr','Sa'],
-		dateFormat: 'dd/mm/yyyy', firstDay: 1,
+		dateFormat: 'dd/mm/yyyy', firstDay: 0,
 		renderer: $.datepick.defaultRenderer,
 		prevText: 'Prev', prevStatus: 'Show the previous month',
 		prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: 'Show the previous year',

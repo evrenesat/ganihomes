@@ -673,7 +673,7 @@ class Booking(models.Model):
     host = models.ForeignKey(User, verbose_name=_('Host'), related_name='hostings')
     guest = models.ForeignKey(User, verbose_name=_('Guest'), related_name='guestings')
     place = models.ForeignKey(Place, verbose_name=_('Place'))
-    reservation = models.ForeignKey(ReservedDates, verbose_name=_('Reservation Dates'))
+    reservation = models.ForeignKey(ReservedDates, verbose_name=_('Reservation Dates'), null=True, blank=True)
     nguests = models.SmallIntegerField(_('Number of guests'))
     nights = models.SmallIntegerField(_('Nights'),default=0)
     currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
