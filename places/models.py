@@ -482,7 +482,11 @@ class Place(models.Model):
             self.photo_set.filter(pk=id).update(order=order)
         return True
 
-
+    def calculatePrice(self, start, end ):
+        ard = []
+        for sp in self.sessionalprice_set.filter(end__gte=start):
+            r = (rd.end + datetime.timedelta(days=1) - rd.start).days
+            ard.extend([int((rd.start + datetime.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
 
     def calculateTotalPrice(self, currency_id, start, end, guests):
         factor = self.currency.get_factor(currency_id)
@@ -634,6 +638,10 @@ class ReservedDates(models.Model):
 
     def save(self, *args, **kwargs):
         super(ReservedDates, self).save(*args, **kwargs)
+        self.place.updateReservedDates()
+
+    def delete(self, *args, **kwargs):
+        super(ReservedDates, self).delete(*args, **kwargs)
         self.place.updateReservedDates()
 
 

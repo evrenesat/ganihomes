@@ -2121,6 +2121,9 @@ li.g-plus-one {
     font-size: 16px;
 
 }
+#cleaningfee, #servicefee{
+    display:none;
+}
 .subpriceinfo{
     font-size:9px;
     text-shadow: 0px 0px 2px #F9ED52;
@@ -2878,6 +2881,7 @@ ul.messages li{
     margin-top: -6px;
     margin: -7px -7px 10px 34px;
 }
+
 #questbox input{
     height:30px;
     margin-top:5px;
@@ -2900,6 +2904,7 @@ ul.messages li{
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
+
 #questbox {
 
     list-style: none;
@@ -2926,7 +2931,9 @@ ul.messages li{
     min-height: 90px;
 
 }
-
+#questsend input{
+    color:#000;
+}
 #langs a {
     background-repeat: no-repeat;
     background-position: 0 2px;

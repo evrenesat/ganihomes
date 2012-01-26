@@ -157,7 +157,7 @@ gh = {
             this.currRates[c] = selCrr / parseFloat(cc[0])
         }
     },
-    getCurrPrice:function(p){console.log(p)
+    getCurrPrice:function(p){
         //cc[3] 1 ise para birimi once(usd 1) degilse (1 usd)
       var cc = gh_crc[this.selected_currency]
 //      if (typeof(p)=='undefined')return cc[1]
@@ -546,24 +546,26 @@ gh = {
     },
     total:{ndays:0, price:0.0},
     calculateTotalPrice:function(){
-        var tprice = this.total.price + cleaning_fee + (this.total.price*service_fee/100)
-        var nog = parseInt($('#id_no_of_guests').val())
-        if(exlimit < nog) tprice = tprice + (exprice * (nog-exlimit))
-        if (cleaning_fee){
-            $('#cleaningfee span').html(this.getCurrPrice(this.convertPrice(cleaning_fee)))
+        if(this.total.price){
+            var tprice = this.total.price + cleaning_fee + (this.total.price*service_fee/100)
+            var nog = parseInt($('#id_no_of_guests').val())
+            if(exlimit < nog) tprice = tprice + (exprice * (nog-exlimit))
+            if (cleaning_fee){
+                $('#cleaningfee').show('normal').find('span').html(this.getCurrPrice(this.convertPrice(cleaning_fee)))
+            }
+            if (service_fee){
+                $('#servicefee').show('normal').find('span').html(this.getCurrPrice(this.convertPrice(tprice*service_fee/100)))
+            }
+            $('#totalPriceValue').html(this.getCurrPrice(this.convertPrice(tprice)))
+            $('#displayed_price').val(tprice)
+            $('#ndays').val(this.total.ndays)
+            $('#currencyid').val(this.selected_currency)
         }
-        if (service_fee){
-            $('#servicefee span').html(this.getCurrPrice(this.convertPrice(tprice*service_fee/100)))
-        }
-        $('#totalPriceValue').html(this.getCurrPrice(this.convertPrice(tprice)))
-        $('#displayed_price').val(tprice)
-        $('#ndays').val(this.total.ndays)
-        $('#currencyid').val(this.selected_currency)
     },
     checkReservationDates:function(dates){
         var loopDate = new Date();
         loopDate.setTime(dates[0]);
-        $.cookie('selected_dates', $.toJSON(dates))
+        if(dates[0])$.cookie('selected_dates', $.toJSON(dates))
         $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
@@ -585,7 +587,10 @@ gh = {
                 loopDate.setTime(loopDate.valueOf() + 86400000);
             }
         }catch(er){
-            if(er=='unv_dates'){alert(trns('Those dates are not available') )}
+            if(er=='unv_dates'){
+                alert(trns('dates_not_available') );
+                $.cookie('selected_dates','')
+            }
         }
         this.total.ndays = days-1
         this.total.price = price
@@ -716,10 +721,12 @@ gh = {
             $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){
                 self.makeAvailabilityTab()
                 self.prepareSessionalPrices()
+                var dates = $.cookie('selected_dates')
+                if(dates){
+                    dates=$.evalJSON(dates)
+                    $('#pcalendar').datepick('setDate',new Date(dates[0]),new Date(dates[1]))
 
-                var dates=$.evalJSON($.cookie('selected_dates'))
-//                console.log(dates[0].substring(0,10))
-                if(dates)$('#pcalendar').datepick('setDate',new Date(dates[0]),new Date(dates[1]))
+                }
             })
 
 
@@ -1386,12 +1393,12 @@ gh = {
 
 };
 
-MSGS={
-    'Those dates are not available':'Seçtiğiniz tarihler uygun değil.'
-}
+//MSGS={
+//    'Those dates are not available':'Seçtiğiniz tarihler uygun değil.'
+//}
 
 function trns (msg){
-     return  MSGS[msg] || msg;
+     return  JSTRANS[msg] || msg;
  }
 
 
