@@ -1288,11 +1288,11 @@ gh = {
                   else $('#detailed').show()
               }).trigger('change')
 //            $('#pt'+current_payment_selection).trigger('click')
-//            var options = jQuery.makeArray(optionElements).
-//                                   sort(function(a,b) {
-//                                     return (a.innerHTML > b.innerHTML) ? 1 : -1;
-//                                   });
-//              selectElement.html(options);
+            var options = jQuery.makeArray(optionElements).
+                                   sort(function(a,b) {
+                                     return (a.innerHTML > b.innerHTML) ? 1 : -1;
+                                   });
+              selectElement.html(options);
 
         })
     },

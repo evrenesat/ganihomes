@@ -821,7 +821,7 @@ class SessionalPrice(models.Model):
         verbose_name_plural = _('Sessional Prices')
 
     def __unicode__(self):
-        return '%s' % (self.name,)
+        return '%s' % (self.id,)
 
     def save(self, *args, **kwargs):
         super(SessionalPrice, self).save(*args, **kwargs)
