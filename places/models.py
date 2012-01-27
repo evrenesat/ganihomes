@@ -829,7 +829,7 @@ class Description(models.Model):
     """Place description"""
 
     place = models.ForeignKey(Place, verbose_name=_('Place'), related_name='descriptions')
-    lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
+    lang = models.CharField(_('Language'), max_length=2)
     text = models.TextField(_('Description'))
     title = models.CharField(_('Place title'), max_length=100)
     auto = models.BooleanField(_('Auto translation'),default=False)
