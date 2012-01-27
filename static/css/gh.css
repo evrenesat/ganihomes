@@ -175,7 +175,12 @@
     -o-background-size: cover;
     background-size: cover;
 }
-
+#GVS .where{
+    font-weight:normal;
+    color: #A3A1A1;
+    margin-left: 20px;
+    font-size: 12px;
+}
 .sbaner {
     position: absolute;
     bottom: 0;
@@ -225,11 +230,11 @@ div.scrollingHotSpotLeft {
     background-position: 15px center;
     position: absolute;
     z-index: 2;
-    left: -10px;
+    left: -2px;
     /*  The first cursor url is for Firefox and other
          browsers, the second is for Internet Explorer */
     cursor: url(/static/images/cursors/cursor_arrow_left.cur), url(/static/images/cursors/cursor_arrow_left.cur), w-resize;
-    top: 136px;
+    top: 171px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -263,9 +268,9 @@ div.scrollingHotSpotRight {
     background-position: center center;
     position: absolute;
     z-index: 2;
-    right: -10px;
+    right: -1px;
     cursor: url(/static/images/cursors/cursor_arrow_right.cur), url(/static/images/cursors/cursor_arrow_right.cur), e-resize;
-    top: 136px;
+    top: 165px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -2121,15 +2126,18 @@ li.g-plus-one {
     font-size: 16px;
 
 }
-#cleaningfee, #servicefee{
-    display:none;
+
+#subpriceinfo span.discount{
+    text-shadow: 0 0 2px #22EF20;
+    font-size: 11px;
 }
-.subpriceinfo{
+#subpriceinfo{
     font-size:9px;
     text-shadow: 0px 0px 2px #F9ED52;
     margin: -10px 23px 10px 0;
     text-align: right;
 }
+
 
 #totalPrice {
     float: right;
@@ -3595,7 +3603,9 @@ ul.messages li{
     display:block;
     width:0;
 }
-
+input.reqmissing, select.reqmissing{
+    border:solid red 2px;
+}
 /* creates the smaller  triangle */
 .triangle-border:after {
 	content:"";

@@ -12,6 +12,8 @@
     cleaning_fee={{ place.cleaning_fee|default:0 }};
     exlimit={{ place.extra_limit|default:0 }};
     exprice={{ place.extra_price|default:0 }};
+    wdiscount={{ place.weekly_discount|default:0 }};
+    mdiscount={{ place.monthly_discount|default:0 }};
 </script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
 {#    <script type="text/javascript" src="{{ STATIC_URL }}datepick/jquery.datepick-{{ LANGUAGE_CODE }}.js"></script>#}
@@ -177,14 +179,24 @@
 
 
     <hr>
-<div class="subpriceinfo" >
+<div id="subpriceinfo" >
 
-    <span id="cleaningfee">{% trans "Includes cleaning fee" %}
+    <span class="discount gizli" id="wdiscount">{% trans "Weekly discount" %}
+      <span class="gh-prc crc"> 0</span>
+        <br>
+    </span>
+
+    <span class="discount gizli" id="mdiscount">{% trans "Monthly discount" %}
+      <span class="gh-prc crc"> 0</span>
+        <br>
+    </span>
+
+    <span class="gizli" id="cleaningfee">{% trans "Includes cleaning fee" %}
      ( <span class="gh-prc crc"> 0</span> )
         <br>
     </span>
 
-    <span id="servicefee">{% trans "Includes GaniHomes service fee" %}
+    <span class="gizli" id="servicefee">{% trans "Includes GaniHomes service fee" %}
      ( <span class="gh-prc crc"> 0</span> )
     </span>
 </div>

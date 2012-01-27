@@ -235,18 +235,26 @@ gh = {
         $('#searchbar li').click(function(){$(this).toggleClass('hit');self.jsearch()}).disableSelection()
     },
     stimers : [],
+    playTimedSlides:true,
     setTimedSlides:function(){
-    var self = this;
-    if(this.stimers){$.each(this.stimers, function(i,val){clearTimeout(val)})}
-    var nasisunum = $('#nasilsunum')
-    $.each(slide_timings, function(i,val){
-            if(!val)return
-            var timer = setTimeout(function(){
-            var hdf = nasisunum.find('.sunumslide:eq('+i+')').fadeIn(1000).siblings().fadeOut()
-            self.stimers.push(timer)
-        }, val * 1000)
-
-    })
+        if(!this.playTimedSlides)return
+        var self = this;
+        if(this.stimers){$.each(this.stimers, function(i,val){clearTimeout(val)});this.stimers=[]}
+        var slideset = $('#nasilsunum')
+        var son_slide=false
+        $.each(slide_timings, function(i,val){
+                if(son_slide){
+                    return
+                }
+                if(val<0){son_slide = true; }
+                timer= function (sonmu){
+                    return setTimeout(function(son_slide){
+                        slideset.find('.sunumslide:eq('+i+')').fadeIn(1000).siblings().fadeOut(500)
+                        if(sonmu && slide_timings[i+1])setTimeout(function(){self.setTimedSlides()},slide_timings[i+1]*1000)
+                        },  Math.abs(val)  * 1000)
+                }(son_slide)
+                self.stimers.push(timer)
+        })
     },
     init_index:function () {
         var self = this;
@@ -292,8 +300,10 @@ gh = {
 
         $('#howitworks a').click(function () {
             $('#howitworks').removeClass('ui-state-active');
-            self.setTimedSlides()
+
+
         })
+
         $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
             change: function(event, ui) {
                 var values = $( this ).slider( "option", "values" );
@@ -308,10 +318,17 @@ gh = {
 //        this.makeScroller('GVS3',0);
     },
     playvideo:function(){
-        $.get('/static/howembed.txt', function(data){$('#nasilvideo').html(data)})
+        var self = this;
+        $.get('/static/howembed.txt', function(data){
+            $('#nasilvideo').html(data)
+            self.playTimedSlides = true
+            self.setTimedSlides()
+        })
+
     },
     sk:null,
     makeScroller:function (id) {
+        this.playTimedSlides = false
         var self =this;
         $('#GVS').empty().remove()
         $.get(this.url('slides/'+id), function(data){
@@ -547,7 +564,20 @@ gh = {
     total:{ndays:0, price:0.0},
     calculateTotalPrice:function(){
         if(this.total.price){
-            var tprice = this.total.price + cleaning_fee + (this.total.price*service_fee/100)
+            var tprice = this.total.price
+            if(mdiscount && this.total.ndays >=30) {
+                var mdisc = tprice * mdiscount / 100
+                tprice =tprice -  mdisc
+                $('#mdiscount').show('normal').find('span').html('-'+this.getCurrPrice(this.convertPrice(mdisc)))
+                $('#wdiscount').hide('normal')
+            }
+            else if(wdiscount && this.total.ndays >=7) {
+                var wdisc = tprice * wdiscount / 100
+                tprice =tprice -  wdisc
+                $('#wdiscount').show('normal').find('span').html('-'+this.getCurrPrice(this.convertPrice(wdisc)))
+                $('#mdiscount').hide('normal')
+            }
+            var tprice = tprice + cleaning_fee + (tprice*service_fee/100)
             var nog = parseInt($('#id_no_of_guests').val())
             if(exlimit < nog) tprice = tprice + (exprice * (nog-exlimit))
             if (cleaning_fee){
@@ -1064,25 +1094,52 @@ gh = {
     markReqFields:function(container_id, label_fors){
         if(typeof(label_fors)=='undefined'){
             $("#"+container_id+" label").append('<span class="redstar">*</span>')
+            $("#"+container_id).find('input, select').data('required','1')
         }
         else{
             for(l in label_fors){
                 $("#"+container_id+" label[for=id_"+label_fors[l]+"]").each(function(){
                     $(this).append('<span class="redstar">*</span>')
                 })
+            $("#"+container_id+" #id_"+label_fors[l]).data('required','1')
             }
         }
 
+    },
+    checkReqFields:function(selector){
+        var req_missing = false
+        $(selector).find('input, select').each(function(){
+            var ob = $(this)
+            if(ob.data('required') && !ob.val()){
+                ob.addClass('reqmissing')
+                req_missing = true
+                ob.blur(function(){
+                    if($(this).val())$(this).removeClass('reqmissing')
+                })
+            }
+        })
+        if(req_missing){
+            alert(trns('place_fill_all_req_fields'))
+            $('#form1 .reqmissing').first().focus()
+            return false
+        }
+        return true
     },
     init_add_place:function(place_id){
         var self = this;
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
         $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
-        $('#gotodetails').click(function(){ self.changeForm(3); });
+        $('#gotodetails').click(function(){
+            if(self.checkReqFields('#form2')){
+                self.changeForm(3);
+            }
+        });
         $('#gotomap').click(function(){
-            self.changeForm(2);
-            self.markerMaps();
+            if(self.checkReqFields('#form1')){
+                self.changeForm(2);
+                self.markerMaps();
+            }
             return false
         });
         $('#id_currency').val(this.selected_currency)

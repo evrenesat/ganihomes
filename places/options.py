@@ -213,6 +213,7 @@ JSTRANS = (
     ('confirm_friendship_request',_('Please confirm your friendship request for the person listed below.')),
     ('accept_terms_of_service',_('Please read and accept the Terms of service agreement.')),
     ('dates_not_available',_('This dates are not available.')),
+    ('place_fill_all_req_fields',_('Please fill all required fields.')),
 #    ('',_('')),
 #    ('',_('')),
 #    ('',_('')),

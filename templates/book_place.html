@@ -43,7 +43,40 @@
                     <span class="ozz_label">{% trans "Check-out" %}</span> <span class="ozz_value">{{ co|date:"d F Y l" }}</span>
                     <span class="ozz_label">{% trans "Nights" %}</span> <span class="ozz_value">{{ ndays }}</span>
                     <span class="ozz_label">{% trans "Guests" %}</span> <span class="ozz_value">{{ guests }}</span>
-                    <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
+
+                    {% if prices.mdiscount %}
+                        <span class="ozz_label">{% trans "Monthly discount" %}</span>
+                        <span class="ozz_value">
+                        {% if crrpos == 1%} {{ crr }} {{ prices.mdiscount|currency }}
+                        {% else %}{{ prices.mdiscount|currency }} {{ crr }}{% endif %}
+                        </span>
+                    {% endif %}
+                    {% if prices.wdiscount %}
+                        <span class="ozz_label">{% trans "Weekly discount" %}</span>
+                        <span class="ozz_value">
+                        {% if crrpos == 1%} {{ crr }} {{ prices.wdiscount|currency }}
+                        {% else %}{{ prices.wdiscount|currency }} {{ crr }}{% endif %}
+                        </span>
+                    {% endif %}
+
+                    {% if prices.guest_fee %}
+                        <span class="ozz_label">{% trans "Service fee" %}</span>
+                        <span class="ozz_value">
+                        {% if crrpos == 1%} {{ crr }} {{ prices.guest_fee|currency }}
+                        {% else %}{{ prices.guest_fee|currency }} {{ crr }}{% endif %}
+                        </span>
+                    {% endif %}
+                    {% if prices.cleaning_fee %}
+                        <span class="ozz_label">{% trans "Cleaning fee" %}</span>
+                        <span class="ozz_value">
+                        {% if crrpos == 1%} {{ crr }} {{ prices.cleaning_fee|currency }}
+                        {% else %}{{ prices.cleaning_fee|currency }} {{ crr }}{% endif %}
+                        </span>
+                    {% endif %}
+
+
+
+                        <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
                         {% if crrpos == 1%} {{ crr }} {{ prices.total|currency }}
                         {% else %}{{ prices.total|currency }} {{ crr }}
                         {% endif %}

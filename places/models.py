@@ -483,18 +483,62 @@ class Place(models.Model):
         return True
 
     def calculatePrice(self, start, end ):
-        ard = []
-        for sp in self.sessionalprice_set.filter(end__gte=start):
-            r = (rd.end + datetime.timedelta(days=1) - rd.start).days
-            ard.extend([int((rd.start + datetime.timedelta(days=i)).strftime('%y%m%d')) for i in range(r)])
+        import dbsettings
+        pd = self.getSessionalPriceDict()
+        price = Decimal('0.0')
+        nights = (end + datetime.timedelta(days=1) - start).days
+        log.info('pd %s ' % (pd))
+        log.info('nights %s ' % (nights))
+        mdiscount=0
+        wdiscount=0
+        guest_fee=0
+        for d in range(nights):
+            day = start + datetime.timedelta(days=d)
+            price+=pd.get(int(day.strftime('%y%m%d'))) or (self.weekend_price if (day.weekday() in [6,7] and self.weekend_price) else self.price)
+            log.info(day.strftime('%y-%m-%d'))
+        log.info('after days %s ' % (price))
+        if self.monthly_discount and nights>=30:
+            mdiscount = price * self.monthly_discount / Decimal('100')
+            price = price - mdiscount
+        log.info('after mont %s ' % (price))
+        if self.weekly_discount and nights>=7:
+            wdiscount = price * self.weekly_discount / Decimal('100')
+            price = price - wdiscount
+        log.info('after week %s ' % (price))
+        if dbsettings.ghs.guest_fee:
+            guest_fee = ((Decimal('100')+dbsettings.ghs.guest_fee)/Decimal('100'))
+            price = price * guest_fee
+        log.info('after gfee %s ' % (price))
+#        log.info('gfee %s ' % (dbsettings.ghs.guest_fee))
+        if self.cleaning_fee:
+            price+=self.cleaning_fee
+        log.info('after clean %s ' % (price))
+        return price, guest_fee, wdiscount, mdiscount
+
+
+
+
+    def getSessionalPriceDict(self):
+        price_dict = {}
+        for sp in self.sessionalprice_set.filter(end__gte=datetime.datetime.today()):
+            r = (sp.end + datetime.timedelta(days=1) - sp.start).days
+            for i in range(r):
+                day = sp.start + datetime.timedelta(days=i)
+                price_dict[int(day.strftime('%y%m%d'))]= sp.weekend_price if day.weekday() in [6,7] else sp.price
+        return price_dict
 
     def calculateTotalPrice(self, currency_id, start, end, guests):
         factor = self.currency.get_factor(currency_id)
         r = (end + datetime.timedelta(days=1) - start).days
-        #FIXME: sezonlu fiyatlar, indirimler ve haftasonlarini yoksaydik
-        days = [start + datetime.timedelta(days=i) for i in range(r)]
-        total= len(days) * self.price * factor
-        return {'total': total, }
+        total, guest_fee, wdiscount, mdiscount = [p * factor for p in  self.calculatePrice(start, end)]
+        log.info('total %s ' % (total))
+        if(self.extra_limit < guests):
+            total = total + (self.extra_price * Decimal(str(guests - self.extra_limit) ) * factor )
+        log.info('after extra %s ' % (total))
+        return {'total': total,'guest_fee':guest_fee,
+                'wdiscount':wdiscount, 'mdiscount':mdiscount,
+                'cleaning_fee':self.cleaning_fee,
+        }
 
     def createThumbnails(self):
         customThumbnailer(self.primary_photo, self.id, [(120, 100, 'pls'), (60, 50, 'plxs')])

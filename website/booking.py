@@ -54,7 +54,7 @@ def paypal_cancel(request):
 @csrf_exempt
 def book_place(request):
 
-    log.info('issecure: %s %s'% (request, request.is_secure()))
+#    log.info('issecure: %s %s'% (request, request.is_secure()))
     if request.POST.get('placeid'):
         bi = request.POST.copy()
         request.session['booking_selection']=bi
@@ -68,10 +68,11 @@ def book_place(request):
     place = Place.objects.get(pk=bi['placeid'])
     ci = datetime.strptime(bi['checkin'],'%Y-%m-%d')
     co = datetime.strptime(bi['checkout'],'%Y-%m-%d')
-    guests = bi['no_of_guests']
+    guests = int(bi['no_of_guests'])
     crrid = bi['currencyid']
     crr,crrposition = Currency.objects.filter(pk=crrid).values_list('name','code_position')[0]
     prices = place.calculateTotalPrice(crrid,ci, co, guests)
+#    assert 0,prices
 
     if request.method == 'POST':
         #FIXME: this is creating lots of stale booking records
