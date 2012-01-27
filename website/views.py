@@ -506,7 +506,13 @@ def register(request,template='register.html'):
                     request.user = user
                     messages.success(request, _('Welcome to GaniHomes.'))
 
-                    send_message(request, Ceviriler.cevir('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
+#                    send_message(request, Ceviriler.cevir('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
+                    msg_context = {'user':user,'fullname':user.get_full_name(),'LANGUAGE_CODE':request.LANGUAGE_CODE}
+                    send_html_mail(Ceviriler.cevir('hosgeldin epostasi konu',request.LANGUAGE_CODE),
+                                    user.email,
+                                    msg_context,
+                                    template='mail/welcome_message.html',
+                                    recipient_name=user.get_full_name())
                     return HttpResponseRedirect(reverse('dashboard'))
                 else:
                     messages.error(request, _('The passwords you entered do not match.'))
