@@ -95,7 +95,17 @@
                    </ul>
 
                    <div id="ack">
-                       <div id="aciklama">{{ place.description|linebreaksbr }}</div>
+                       <div id="aciklama">
+                           {{ place.description|linebreaksbr }}
+
+                       {% if langs %}
+                       <hr>
+                           {% trans "Available tranlations" %}
+                           {% for l in langs %}
+                               <img src="/static/images/flags/{{ l }}.png">
+                           {% endfor %}
+                       {% endif %}
+                       </div>
                        <div id="ozellikler">
                            {% for label, value in properties %}
                                <span class="ozz_label">{{ label }}</span>

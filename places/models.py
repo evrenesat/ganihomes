@@ -438,6 +438,10 @@ class Place(models.Model):
             tags.append(t)
         return tags
 
+    def get_translation_list(self):
+        k=kes('descs',self.id)
+        return k.g() or k.s(self.descriptions.values_list('lang', flat=True))
+
 
     def setGeoLocation(self):
         cset = [[l.geolocation_set.count(), l] for l in  GeoLocation.objects.filter(parent_id=1, iso=self.country)]
@@ -605,7 +609,7 @@ class Profile(FacebookProfileModel):
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     private_name = models.CharField(_('Private Name'), max_length=60, null=True, blank=True)
     full_name = models.CharField(_('Full Name'), max_length=60, null=True, blank=True)
-    bio = models.TextField(_('Tell us about yourself'), null=True, blank=True)
+    bio = models.TextField(_('About you'), null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.update_names()

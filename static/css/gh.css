@@ -3340,7 +3340,7 @@ ul.messages li{
 }
 
 .minidugme {
-    white-space:nowrap;
+    white-space: normal;
     border: 1px solid #f0dbc6;
     background-color: #FFFFFF !important;
     cursor: pointer;
@@ -3358,6 +3358,8 @@ ul.messages li{
 
     text-shadow: 1px 1px 0.4px #fff;
     font-weight: bold;
+    background-repeat: repeat-x;
+    background-size: auto 100%;
 }
 .yemyesildugme.kck {
     padding: 4px 8px;
