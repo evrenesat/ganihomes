@@ -98,10 +98,10 @@
                        <div id="aciklama">
                            {{ place.description|linebreaksbr }}
 
-                       {% if langs %}
-                       <hr>
-                           {% trans "Available tranlations" %}
-                           {% for l in langs %}
+                       {% if translations %}
+                           <br><br><hr>
+                           {% trans "Available tranlations" %}<br>
+                           {% for l in translations %}
                                <img src="/static/images/flags/{{ l }}.png">
                            {% endfor %}
                        {% endif %}

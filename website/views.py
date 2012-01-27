@@ -70,6 +70,7 @@ def showPlace(request, id):
                'properties':properties , 'owner':owner,
                'profile':profile, 'service_fee':dbsettings.ghs.guest_fee,
                'amens':place.getTags(request.LANGUAGE_CODE),
+               'translations':place.get_translation_list(),
                'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id)
     }
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
@@ -107,7 +108,7 @@ def anasayfa(request):
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 def slides(request, id):
-    context = {'slides': Vitrin.get_slides(type=int(id) or None) }
+    context = {'slides': Vitrin.get_slides(lang=request.LANGUAGE_CODE, type=int(id) or None) }
     return render_to_response('slides.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):

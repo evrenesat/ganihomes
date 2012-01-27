@@ -3,6 +3,7 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 from datetime import datetime
+from django.db.models.query_utils import Q
 from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from managers import ActiveManager
@@ -306,7 +307,7 @@ class Vitrin(models.Model):
     def get_slides(cls, lang=None, type=None):
         ogeler = cls.actives.select_related()
         if lang:
-            ogeler = ogeler.filter(dil_kodu=lang)
+            ogeler = ogeler.filter(Q(dil_kodu=lang)|Q(dil_kodu__isnull=True))
         if type is None:
             ogeler = ogeler.filter(tops=True)
         elif type in dPHOTO_TYPES:

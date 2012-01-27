@@ -1282,17 +1282,19 @@ gh = {
                 $('.ptforms').hide()
                 $('#form_'+this.id).show()
             })
+//            optionElements= $('#id_country')
+//            var options = jQuery.makeArray(optionElements).
+//                                   sort(function(a,b) {
+//                                     return (a.innerHTML > b.innerHTML) ? 1 : -1;
+//                                   });
+//              selectElement.html(options);
               $('#id_country').change(function(){
                   var ob=$(this)
                   if (iban_countries.indexOf(ob.val())>-1)$('#detailed').hide()
                   else $('#detailed').show()
               }).trigger('change')
 //            $('#pt'+current_payment_selection).trigger('click')
-            var options = jQuery.makeArray(optionElements).
-                                   sort(function(a,b) {
-                                     return (a.innerHTML > b.innerHTML) ? 1 : -1;
-                                   });
-              selectElement.html(options);
+
 
         })
     },

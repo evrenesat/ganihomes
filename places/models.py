@@ -442,6 +442,10 @@ class Place(models.Model):
         k=kes('descs',self.id)
         return k.g() or k.s(self.descriptions.values_list('lang', flat=True))
 
+    def get_translation(self,lang):
+        k=kes('desctitle',self.id)
+        return k.g() or k.s(self.descriptions.filter(lang=lang).values_list('text','title'))
+
 
     def setGeoLocation(self):
         cset = [[l.geolocation_set.count(), l] for l in  GeoLocation.objects.filter(parent_id=1, iso=self.country)]
