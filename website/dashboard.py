@@ -568,3 +568,36 @@ def invite_friend(request):
     context = {'form':form,}
     return render_to_response('dashboard/invite_friend.html', context, context_instance=RequestContext(request))
 
+
+@login_required
+def edit_description(request,pid):
+    import dbsettings
+    place = Place.objects.get(pk=pid, owner=request.user)
+    default_lang = place.lang or request.LANGUAGE_CODE
+    tlangs = dbsettings.ghs.trans_langs.replace(' ','').split(',')
+    if request.method == 'POST':
+        p = request.POST.copy()
+        for lang in tlangs:
+            desc = p.get('des_%s'%lang)
+            if desc:
+                title = p.get('tit_%s'%lang)
+                d, new = Description.objects.get_or_create(place=place, lang=lang)
+                d.text = desc
+                d.title = title
+                d.save()
+                if lang == default_lang:
+                    place.description = desc
+                    place.title = title
+        messages.success(request, _('Your translations successfully saved.'))
+    langs = []
+    descs={}
+    for d in Description.objects.filter(place=place):
+        descs[d.lang]=d
+    for l in tlangs:
+        lan = [l, LANG_DICT[l]]
+        if descs.get(l):
+            lan.extend([descs[l].title,  descs[l].text,  descs[l].auto ])
+        langs.append(lan)
+    context = {'langs':langs}
+    return render_to_response('dashboard/edit_description.html', context, context_instance=RequestContext(request))
+

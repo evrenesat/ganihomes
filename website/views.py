@@ -164,6 +164,7 @@ def addPlace(request, ajax=False, id=None):
                 new_place.owner = user
                 new_place.lat = str(new_place.lat)
                 new_place.lon = str(new_place.lon)
+                new_place.lang = request.LANGUAGE_CODE
                 new_place.save()
                 form.save_m2m()
                 for tag in form.cleaned_data['tags']:

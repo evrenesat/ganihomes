@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -374,10 +374,10 @@ class Place(models.Model):
 
     weekly_discount = models.SmallIntegerField(_('Weekly discount (%)'), null=True, blank=True, default=0)
     monthly_discount = models.SmallIntegerField(_('Monthly discount (%)'), null=True, blank=True, default=0)
-    weekend_price = models.DecimalField(_('Weekend price'), help_text=_('Price for guest'), decimal_places=2,
+    weekend_price = models.DecimalField(_('Weekend price'), help_text=_('Weekend price for guest'), decimal_places=2,
         max_digits=6, default='0.0')
     extra_limit = models.SmallIntegerField(_('Extra charge for more guests than'), choices=NO_OF_BEDS, null=True,
-        blank=True, default=0)
+        blank=True, default=0, help_text=_('Weekend price for guest'))
     extra_price = models.DecimalField(_('Extra charge per person'), null=True, blank=True, decimal_places=2,
         max_digits=6,
         help_text=_('Each extra person exceeding the number you specified, must pay this extra charge.'))
@@ -831,7 +831,8 @@ class Description(models.Model):
     place = models.ForeignKey(Place, verbose_name=_('Place'), related_name='descriptions')
     lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
     text = models.TextField(_('Description'))
-    auto = models.BooleanField(_('Auto translation'))
+    title = models.CharField(_('Place title'), max_length=100)
+    auto = models.BooleanField(_('Auto translation'),default=False)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     class Meta:

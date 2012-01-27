@@ -1325,6 +1325,13 @@ gh = {
         })
         })
     },
+    editDescription:function(id){
+        var self = this
+        this.genericEdit('/dashboard/edit_description/'+id,function(){
+            self.ecordion('#desccordion')
+
+        })
+    },
     cal : {
         start : '', end : '',
         obj:'#takvim',

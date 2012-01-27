@@ -4293,3 +4293,36 @@ list-style:none;
     padding: 20px;
 
 }
+
+#desccordion div {
+    width: 600px;
+    background-color: #FED17B;
+    margin: 3px;
+    font-size: 19px;
+    padding: 5px;
+    background-image: url("/static/images/grd-krm-22px.png") repeat-;
+    background: url("/static/images/grd-krm-50px.png") repeat-x scroll 0 0 transparent;
+    border: 1px solid #D0AFAF;
+    color: #633215;
+    font-weight: bold;
+}
+
+#desccordion input, #desccordion textarea {
+    width: 569px;
+    border:1px solid #ccc;
+    margin: 0;
+    padding: 4px;
+    display: inline-block;
+}
+#desccordion ul{
+    display: none;
+    width:500px;
+    margin:0px;
+
+
+}
+#desccordion > li{
+    background-color: #FFFFFC;
+    border:1px solid #cdcdcd;
+
+}

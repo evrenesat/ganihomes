@@ -1,0 +1,25 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "aciklama baslik" %} {% endblock %}
+{% block content %}
+<form action="." method="post">
+
+
+    <ul id="desccordion">
+{% for code,name,title,text,auto in langs %}
+                 <li>
+                     <div>{{ name }} {% if auto %}{% trans "Automatic translation" %}{% endif %}</div>
+                     <ul>
+                         <li>
+                             {% trans "Title" %}<input name="tit_{{ code }}" value="{{ title }}">
+                             {% trans "Description" %}<textarea name="des_{{ code }}">{{ text }}</textarea>
+
+                         </li>
+                     </ul>
+                 </li>
+    {% endfor %}
+</ul><br><br>
+    <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
+    {% csrf_token %}
+</form>
+{% endblock %}

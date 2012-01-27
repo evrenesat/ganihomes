@@ -40,8 +40,11 @@ class Globals:
      <br> 60 yerine <b>0</b> yazılsaydı sunum orada kesilir, başa dönülmezdi.<br>
      Tek bir slayt göstermek istiyorsanız "-1,0" girmeniz yeterlidir.
     ''')
-    iban_countries = forms.CharField(label=u'IBANin yeterli oldugu ulkeler.', initial='TR,DE,UK',widget=forms.Textarea())
-
+    iban_countries = forms.CharField(label=u'IBAN\'ın yeterli olduğu ülkeler', initial='TR,DE,UK',widget=forms.Textarea())
+    trans_langs = forms.CharField(label=u'Çevirisi yapılabilecek diller', initial='tr,en,es,fr,de',
+        help_text=u'Dil kodlarını 2 harfli ISO standardına göre virgüle ayırarak giriniz. Örn: tr,en,es,fr,de .')
+    auto_trans_langs = forms.CharField(label=u'Otomatik çevirisi yapılacak diller', initial='tr,en,es,fr,de',
+        help_text=u'Dil kodlarını 2 harfli ISO standardına göre virgüle ayırarak giriniz. Örn: tr,en,es,fr,de')
 
 
 Globals = register(main=True)(Globals)
