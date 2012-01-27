@@ -1427,7 +1427,7 @@ gh = {
                                 var pr = $(this).val()
                                 try{ pr =  pr * ((100-host_fee)/100); if (isNaN(pr))throw 'NaN'}
                                 catch(er){ pr = '' }
-                                if(pr)sp.show().html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
+                                if(pr)sp.fadeIn('slow').html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
                                 else sp.hide()
                             }).trigger('keyup')
             })

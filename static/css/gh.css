@@ -1572,14 +1572,13 @@ li.g-plus-one {
 }
 .yourpayout{
     margin-left: 28px;
-    width:80px
     height:30px;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
     font-weight: bold;
     padding: 8px;
-    display: inline-block;
+    display: none;
     color: #806100;
     font-size: 12px;
 }
