@@ -501,8 +501,10 @@ def register(request,template='register.html'):
                     user.username = user.email
                     user.set_password(form.cleaned_data['pass1'])
                     user.save()
+                    user = auth.authenticate(username=user.email, password=form.cleaned_data['pass1'])
+                    auth.login(request, user)
                     request.user = user
-                    messages.success(request, _('Wellcome to GaniHomes.'))
+                    messages.success(request, _('Welcome to GaniHomes.'))
 
                     send_message(request, Ceviriler.cevir('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
                     return HttpResponseRedirect(reverse('dashboard'))

@@ -514,8 +514,8 @@ class Place(models.Model):
             price = price - wdiscount
         log.info('after week %s ' % (price))
         if dbsettings.ghs.guest_fee:
-            guest_fee = ((Decimal('100')+dbsettings.ghs.guest_fee)/Decimal('100'))
-            price = price * guest_fee
+            guest_fee = price * dbsettings.ghs.guest_fee/Decimal('100')
+            price = price + guest_fee
         log.info('after gfee %s ' % (price))
 #        log.info('gfee %s ' % (dbsettings.ghs.guest_fee))
         if self.cleaning_fee:
@@ -540,7 +540,7 @@ class Place(models.Model):
         r = (end + datetime.timedelta(days=1) - start).days
         total, guest_fee, wdiscount, mdiscount = [p * factor for p in  self.calculatePrice(start, end)]
         log.info('total %s ' % (total))
-        if(self.extra_limit < guests):
+        if(self.extra_price and self.extra_limit < guests):
             total = total + (self.extra_price * Decimal(str(guests - self.extra_limit) ) * factor )
         log.info('after extra %s ' % (total))
         return {'total': total,'guest_fee':guest_fee,
