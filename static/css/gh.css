@@ -517,6 +517,11 @@ ul.messages {
     z-index: 5;
 }
 
+#aradugme:hover {
+    -webkit-box-shadow: 0 0 10px 2px #fac9a9;
+    -moz-box-shadow: 0 0 10px 2px #fac9a9;
+    box-shadow: 0 0 10px 2px #fac9a9;
+}
 #aradugme {
     float: right;
     height: 40px;
@@ -4294,12 +4299,16 @@ list-style:none;
 
 }
 
+#desccordion div img{
+    margin-right:10px;
+}
 #desccordion div {
+    cursor:pointer;
     width: 600px;
     background-color: #FED17B;
     margin: 3px;
     font-size: 19px;
-    padding: 5px;
+    padding: 0px 8px;
     background-image: url("/static/images/grd-krm-22px.png") repeat-;
     background: url("/static/images/grd-krm-50px.png") repeat-x scroll 0 0 transparent;
     border: 1px solid #D0AFAF;
@@ -4318,7 +4327,7 @@ list-style:none;
     display: none;
     width:500px;
     margin:0px;
-
+    font-size: 14px;
 
 }
 #desccordion > li{

@@ -8,7 +8,7 @@
     <ul id="desccordion">
 {% for code,name,title,text,auto in langs %}
                  <li>
-                     <div>{{ name }} {% if auto %}{% trans "Automatic translation" %}{% endif %}</div>
+                     <div> <img src="/static/images/flags/{{ code }}.png"> {{ name }} {% if auto %}{% trans "Automatic translation" %}{% endif %}</div>
                      <ul>
                          <li>
                              {% trans "Title" %}<input name="tit_{{ code }}" value="{{ title }}">
