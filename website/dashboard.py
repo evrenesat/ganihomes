@@ -485,6 +485,7 @@ def edit_prices(request, id):
     lang = request.LANGUAGE_CODE
     user = request.user
     place = Place.objects.get(pk=id, owner=user)
+    import dbsettings
     if request.method == 'POST':
         form = PlacePriceForm(request.POST,instance=place)
         spset = SPFormSet(request.POST, queryset=SessionalPrice.objects.filter(place=place))
@@ -501,7 +502,7 @@ def edit_prices(request, id):
 
     form = PlacePriceForm(instance=place)
     spset = SPFormSet(queryset=SessionalPrice.objects.filter(place=place))
-    context = {'bform':form,'sform':spset,'place':place}
+    context = {'bform':form,'sform':spset,'place':place, 'host_fee':dbsettings.ghs.host_fee, }
     return render_to_response('dashboard/edit_prices.html', context, context_instance=RequestContext(request))
 
 

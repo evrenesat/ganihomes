@@ -1570,7 +1570,19 @@ li.g-plus-one {
 #form2 input, #form2 select {
     width: 300px;
 }
-
+.yourpayout{
+    margin-left: 28px;
+    width:80px
+    height:30px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    font-weight: bold;
+    padding: 8px;
+    display: inline-block;
+    color: #806100;
+    font-size: 12px;
+}
 #yourpayout{
     width: 204px;
     height: 73px;

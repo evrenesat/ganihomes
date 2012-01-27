@@ -1,5 +1,13 @@
 {% load  thumbnail i18n cevir%}
 {% include "show_messages.html" %}
+<script>
+    host_fee = {{ host_fee|default:0 }};
+</script>
+<style>
+    .yourpayout:before{
+        content:"{% trans "Your payout" %} : ";
+    }
+</style>
 <div id="genhdr">
 
     <h3>{% cevir "fiyat duzenle baslik" %}</h3>
@@ -26,7 +34,7 @@
                     <span class="helptext">{{ bform.currency.help_text }}</span>
                     <span class="errortext">{{ bform.currency.errors }}</span>
                 </p>
-                <p>{{ bform.price.label_tag }} : {{ bform.price }} <span class="current_curr"></span>
+                <p>{{ bform.price.label_tag }} : {{ bform.price }} <span class="current_curr"></span> <span id="id_price_payout" class="yourpayout"></span>
                     <span class="helptext">{{ bform.price.help_text }}</span>
                     <span class="errortext">{{ bform.price.errors }}</span>
                 </p>
@@ -41,7 +49,7 @@
                     <span class="errortext">{{ bform.monthly_discount.errors }}</span>
                 </p>
 
-                <p>{{ bform.weekend_price.label_tag }} : {{ bform.weekend_price}} <span class="current_curr"></span>
+                <p>{{ bform.weekend_price.label_tag }} : {{ bform.weekend_price}} <span class="current_curr"></span> <span id="id_weekend_price_payout" class="yourpayout"></span>
                     <span class="helptext">{{ bform.weekend_price.help_text }}</span>
                     <span class="errortext">{{ bform.weekend_price.errors }}</span>
                 </p>
@@ -51,11 +59,11 @@
                     <span class="errortext">{{ bform.extra_limit.errors }}</span>
                 </p>
 
-                <p>{{ bform.extra_price.label_tag }} : {{ bform.extra_price}} <span class="current_curr"></span>
+                <p>{{ bform.extra_price.label_tag }} : {{ bform.extra_price}} <span class="current_curr"></span> <span id="id_extra_price_payout" class="yourpayout"></span>
                     <span class="helptext">{{ bform.extra_price.help_text }}</span>
                     <span class="errortext">{{ bform.extra_price.errors }}</span>
                 </p>
-                <p>{{ bform.cleaning_fee.label_tag }} : {{ bform.cleaning_fee}} <span class="current_curr"></span>
+                <p>{{ bform.cleaning_fee.label_tag }} : {{ bform.cleaning_fee}} <span class="current_curr"></span> <span id="id_cleaning_fee_payout" class="yourpayout"></span>
                     <span class="helptext">{{ bform.cleaning_fee.help_text }}</span>
                     <span class="errortext">{{ bform.cleaning_fee.errors }}</span>
                 </p>

@@ -1408,6 +1408,7 @@ gh = {
     },
 
     editPrices:function(id){
+        var self = this
         this.genericEdit('/dashboard/edit_prices/'+id,function(){
             $('.datef input').datepicker({dateFormat: 'yy-mm-dd', minDate: '0',
                             changeMonth: true  ,changeYear: true  });
@@ -1418,6 +1419,22 @@ gh = {
 //                    console.log(cr)
                 $('.current_curr').html(cr[1])
             }).trigger('change')
+
+            $('.yourpayout').each(function(){
+                var sp = $(this)
+
+                $('#'+sp.attr('id').replace('_payout','')).keyup(function(){
+                                var pr = $(this).val()
+                                try{ pr =  pr * ((100-host_fee)/100); if (isNaN(pr))throw 'NaN'}
+                                catch(er){ pr = '' }
+                                if(pr)sp.show().html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
+                                else sp.hide()
+                            }).trigger('keyup')
+            })
+
+
+
+
         })
     },
     genericEdit:function(url,fn){
