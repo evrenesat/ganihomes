@@ -254,7 +254,7 @@
                 <img class="pimg" src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
                 <span class=title>{{ p.title|slice:":40" }}</span><br>
                 <span class=detail>{{ place.city}} - {{ place.district }}</span><br>
-                <span data-prc="{{ p.cleaning_fee }}" data-crc="{{ p.currency_id }}" class="gh-prc crc price">{{ p.price }}</span>
+                <span data-prc="{{ p.price }}" data-crc="{{ p.currency_id }}" class="gh-prc crc price">{{ p.price }}</span>
             </li>
         {% endfor %}
     </ul>
