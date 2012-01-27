@@ -588,6 +588,7 @@ def edit_description(request,pid):
                 if lang == default_lang:
                     place.description = desc
                     place.title = title
+                    place.save()
         messages.success(request, _('Your translations successfully saved.'))
     langs = []
     descs={}
