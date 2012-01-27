@@ -2274,6 +2274,32 @@ li.g-plus-one {
     font-weight: normal;
 }
 
+#other_places li {
+    text-align: right;
+    width: 223px;
+    list-style: none outside none;
+    margin: 0px 4px 19px;
+    float: left;
+}
+
+#other_places .price {
+    width:80px
+    height:30px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    font-weight:bold;
+    padding:3px;
+    display: inline-block;
+    margin-top: 3px;
+}
+#other_places .title {
+    font-size: 12px;
+    color: #CF5900;
+    text-shadow: 1px 1px 3px #898982;
+    font-weight: normal;
+}
+
 #addplace_wizard {
     width: 660px;
 }
@@ -2286,7 +2312,20 @@ li.g-plus-one {
     padding-bottom: 41px;
 
 }
+#other_places .pimg{
+    border: 2px solid #fff;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    float: left;
+}
 
+#other_places{
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
 .dugmul {
     display: inline-block;
     float: left;

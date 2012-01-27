@@ -245,6 +245,24 @@
             <input type="button" class="dugme2" id="sendhostmessage" value="{% trans "Send" %}">
         </div>
     </div>
+
+        {% if other_places%}<br><br>
+        <h3>{% blocktrans with profile.private_name as profile_name %}{{ profile_name }}'s other places;{% endblocktrans %}</h3>
+    <hr><ul id="other_places">
+        {% for p in other_places%}
+            <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                <img class="pimg" src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                <span class=title>{{ p.title|slice:":40" }}</span><br>
+                <span class=detail>{{ place.city}} - {{ place.district }}</span><br>
+                <span data-prc="{{ p.cleaning_fee }}" data-crc="{{ p.currency_id }}" class="gh-prc crc price">{{ p.price }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+
+
     </div>
 <script>$('#subtabs').tabs();</script>
 

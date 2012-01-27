@@ -69,7 +69,9 @@ def showPlace(request, id):
     context = {'place':place, 'bform':BookingForm(place.capacity),
                'properties':properties , 'owner':owner,
                'profile':profile, 'service_fee':dbsettings.ghs.guest_fee,
-               'amens':place.getTags(request.LANGUAGE_CODE)}
+               'amens':place.getTags(request.LANGUAGE_CODE),
+               'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id)
+    }
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 
