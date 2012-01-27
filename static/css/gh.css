@@ -2130,6 +2130,7 @@ li.g-plus-one {
 #subpriceinfo span.discount{
     text-shadow: 0 0 2px #22EF20;
     font-size: 11px;
+    color: #114A10;
 }
 #subpriceinfo{
     font-size:9px;
@@ -3687,7 +3688,6 @@ input.reqmissing, select.reqmissing{
 .genbdy form{
     display:inline-block;
     padding-bottom: 20px;
-    margin-left: 40px;
 }
 .genbdy {
     width: 666px;

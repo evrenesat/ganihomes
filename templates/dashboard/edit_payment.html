@@ -1,5 +1,8 @@
 {% load  thumbnail i18n cevir%}
 {% include "show_messages.html" %}
+<script>
+    iban_countries = {{ iban_countries|safe }};
+</script>
 <div id="genhdr">
 <div class="iblock">
     <h3>{% cevir "odeme sekli sec baslik" %}</h3>
@@ -35,7 +38,28 @@
             </div>
             <div class="ptforms gizli" id="form_pt3">
                 {% cevir "odeme sekli banka bilgi" %}
-                {{ bform.as_p }}
+<br><br>
+
+                <p>{{ bform.country.label_tag }} {{ bform.country }}</p>
+                <h3>{% trans "Account owner details" %}</h3>
+                <hr>
+                <p>{{ bform.acc_owner.label_tag }} {{ bform.acc_owner }}</p>
+                <p>{{ bform.iban.label_tag }} {{ bform.iban }}</p>
+                <p>{{ bform.bic.label_tag }} {{ bform.bic }}</p>
+                <div id="detailed">
+                <p>{{ bform.street.label_tag }} {{ bform.street }}</p>
+                <p>{{ bform.postcode.label_tag }} {{ bform.postcode }}</p>
+                <p>{{ bform.city.label_tag }} {{ bform.city }}</p>
+
+                <h3>{% trans "Bank details" %}</h3>
+                <hr>
+
+                <p>{{ bform.bank_name.label_tag }} {{ bform.bank_name }}</p>
+                <p>{{ bform.bank_street.label_tag }} {{ bform.bank_street }}</p>
+                <p>{{ bform.bank_postcode.label_tag }} {{ bform.bank_postcode }}</p>
+                <p>{{ bform.bank_city.label_tag }} {{ bform.bank_city }}</p>
+                </div>
+
             </div>
                     <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
                 </form>

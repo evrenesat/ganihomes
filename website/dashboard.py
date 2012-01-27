@@ -151,10 +151,11 @@ def show_faq(request, type=None):
 def trips(request):
     user = request.user
     profile = user.get_profile()
+    g = user.guestings.filter(status__gt=5)
     context = {
-                'current':user.guestings.filter(start__lte=datetime.today(), end__gte=datetime.today()),
-                'upcoming':user.guestings.filter(status__in=[10,20]),
-                'previous':user.guestings.filter(end__lte=datetime.today()),
+                'current':g.filter(start__lte=datetime.today(), end__gte=datetime.today()),
+                'upcoming':g.filter(status__in=[10,20]),
+                'previous':g.filter(end__lte=datetime.today()),
                'bookmarks':profile.favorites.all()
     }
     return render_to_response('dashboard/trips.html', context, context_instance=RequestContext(request))
@@ -369,7 +370,7 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model=Profile
-        fields = ('city','phone','occupation','brithdate')
+        fields = ('city','phone','occupation','brithdate','bio')
 
 class UserForm(ModelForm):
     class Meta:
@@ -391,7 +392,9 @@ def edit_profile(request):
     else:
         form = ProfileForm(instance=profile)
         uform = UserForm(instance=user)
-    context = {'form':form,'profile':profile,'user':user,'uform':uform}
+    context = {'form':form,'profile':profile,
+               'user':user,'uform':uform,
+    }
     return render_to_response('dashboard/edit_profile.html', context, context_instance=RequestContext(request))
 
 
@@ -449,7 +452,10 @@ def edit_payment(request):
     else:
         bform = PaymentSelectionBankForm(instance=ps)
         pform = PaymentSelectionPaypalForm(instance=ps)
-    context = {'bform':bform,'pform':pform, 'ps':ps}
+    import dbsettings
+    context = {'bform':bform,'pform':pform, 'ps':ps,
+               'iban_countries':json.dumps(dbsettings.ghs.iban_countries.upper().split(','), ensure_ascii=False)
+    }
     return render_to_response('dashboard/edit_payment.html', context, context_instance=RequestContext(request))
 
 

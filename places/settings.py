@@ -40,6 +40,9 @@ class Globals:
      <br> 60 yerine <b>0</b> yazılsaydı sunum orada kesilir, başa dönülmezdi.<br>
      Tek bir slayt göstermek istiyorsanız "-1,0" girmeniz yeterlidir.
     ''')
+    iban_countries = forms.CharField(label=u'IBANin yeterli oldugu ulkeler.', initial='TR,DE,UK',widget=forms.Textarea())
+
+
 
 Globals = register(main=True)(Globals)
 

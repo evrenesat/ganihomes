@@ -1281,7 +1281,13 @@ gh = {
                 $('.ptforms').hide()
                 $('#form_'+this.id).show()
             })
-            $('#pt'+current_payment_selection).trigger('click')
+              $('#id_country').change(function(){
+                  var ob=$(this)
+                      console.log(ob.val())
+                  if (iban_countries.indexOf(ob.val())>-1)$('#detailed').hide()
+                  else $('#detailed').show()
+              }).trigger('change')
+//            $('#pt'+current_payment_selection).trigger('click')
         })
     },
     do_showMessages:function(self){

@@ -101,8 +101,8 @@
                                <span class="ozz_label">{{ label }}</span>
                                <span class="ozz_value">{{ value|default:'-' }}</span>
                            {% endfor %}
-                           <span class="ozz_label">{% trans "Cleaning fee" %}</span>
-                           {% if place.cleaning_fee %}<span data-prc="{{ place.cleaning_fee }}" data-crc="{{ place.currency_id }}" class="gh-prc crc ozz_value">{{ place.cleaning_fee }}</span>{% endif %}
+                           {% if place.cleaning_fee %}<span class="ozz_label">{% trans "Cleaning fee" %}</span>
+                           <span data-prc="{{ place.cleaning_fee }}" data-crc="{{ place.currency_id }}" class="gh-prc crc ozz_value">{{ place.cleaning_fee }}</span>{% endif %}
                        </div>
                    </div>
                    <div id="amens">

@@ -605,6 +605,7 @@ class Profile(FacebookProfileModel):
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     private_name = models.CharField(_('Private Name'), max_length=60, null=True, blank=True)
     full_name = models.CharField(_('Full Name'), max_length=60, null=True, blank=True)
+    bio = models.TextField(_('Tell us about yourself'), null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.update_names()
@@ -631,7 +632,7 @@ class Profile(FacebookProfileModel):
 class PaymentSelection(models.Model):
     '''Payment Selections'''
 
-
+    country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
     user = models.OneToOneField(User, verbose_name=_('User'), null=True, blank=True)
     payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES, default=2, blank=True)
     email = models.EmailField(_('PayPal email'), null=True, blank=True)
