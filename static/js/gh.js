@@ -262,7 +262,7 @@ gh = {
 //        this.sks = {}
         $('#arabg').fadeTo('fast', .5)
         this.doRePlacements();
-        this.popmodal('#askquestion', '#questbox', -60, 0)
+        this.popmodal('#askquestion', '#questbox', -45, 30)
         $('#questbox .innput').focus(function(){
             var t=$(this);
             if(!t.data('default'))t.data('default',t.val())
@@ -937,6 +937,7 @@ gh = {
                 $('#litetabs .expclp').toggleClass('expanded')
               if(fn1()==1)fn2(0)
             })
+        this.form_submit_handler($('#questboxdiv'))
 
     },
     dialog:function(id){
@@ -1283,7 +1284,6 @@ gh = {
             })
               $('#id_country').change(function(){
                   var ob=$(this)
-                      console.log(ob.val())
                   if (iban_countries.indexOf(ob.val())>-1)$('#detailed').hide()
                   else $('#detailed').show()
               }).trigger('change')

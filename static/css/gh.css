@@ -993,11 +993,12 @@ ul.messages {
     float: left;
     margin-top: 20px;
     behavior: url(/templates/PIE.htc);
+    padding: 22px;
 }
 
 .altikutu {
     width: 660px;
-    min-height:500px;
+    min-height: 500px;
     padding: 15px;
     margin-top: 20px;
     -moz-border-radius: 6px;
@@ -2289,7 +2290,6 @@ li.g-plus-one {
 .dugmul {
     display: inline-block;
     float: left;
-    width: 673px;
 }
 
 .dugmul li {
@@ -2891,20 +2891,20 @@ ul.messages li{
     margin: -7px -7px 10px 34px;
 }
 
-#questbox input{
+#questboxdiv input{
     height:30px;
     margin-top:5px;
 }
-#questbox h4 {
+#questboxdiv h4 {
     font-size:14px;
 }
-#questbox textarea {
+#questboxdiv textarea {
     height:100px;
 }
-#questbox input:focus,#questbox textarea:focus {
+#questboxdiv input:focus,#questboxdiv textarea:focus {
     color:#000;
 }
-#questbox input,#questbox textarea {
+#questboxdiv input,#questboxdiv textarea {
     width:100%;
     border:1px solid #ccc;
     font-size:14px;
@@ -2923,7 +2923,7 @@ ul.messages li{
     z-index: 100;
     left: -300px;
     padding: 10px;
-    width:300px;
+    width: 246px;
     background-color: #F1F1F1;
     border: 1px solid #ccc;
     -moz-border-radius: 6px;
@@ -4225,5 +4225,21 @@ list-style:none;
 #stabul li.ui-state-active , #ttabul li.ui-state-active {
     background-position: 0 0;
     font-weight:bold;
+
+}
+#profile #sidebar{
+    width: 222px;
+
+}
+#profile #orta{
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    width: 625px;
+    margin: -20px 10px 40px;
+    padding: 20px;
 
 }

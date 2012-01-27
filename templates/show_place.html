@@ -235,7 +235,7 @@
 
     <h3>{% trans "Host" %}</h3>
     <hr><div id="hostbox">
-        <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><img id="hostimg" src="{% thumbnail profile.photo 200x300 upscale crop=scale %}">
+        <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><a href="{% url show_profile profile.id  %}"><img id="hostimg" src="{% thumbnail profile.photo 200x300 upscale crop=scale %}"></a>
         <div id="hostname">{{ profile.private_name }}</div></div>
         <textarea id="hostmsg"></textarea>
 

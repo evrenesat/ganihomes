@@ -1,0 +1,54 @@
+{% extends "content_bigboxed.html" %}
+{% load thumbnail i18n currency cevir %}
+{% block content %}
+
+    <div id="dokuzic">
+        <h3>{% blocktrans with profile.private_name as profile_name %}About {{ profile_name }}{% endblocktrans %}</h3>
+<div id="profile" class="iblock">
+    <div id="sidebar" class="fl">
+
+
+        <div id="hostbox">
+                <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><img id="hostimg" src="{% thumbnail profile.photo 200x300 upscale crop=scale %}">
+                <div id="hostname">{{ profile.private_name }}</div></div>
+                <textarea id="hostmsg"></textarea>
+
+
+                <div class="align-center"><br><br>
+
+                    <input type="button" class="dugme2" id="contacthost" onclick="document.location='/{{ LANGUAGE_CODE }}/dashboard/?sendMessage={{ user.id }}'" value="{% trans "Send message" %}"><br><br>
+                    <input type="button" class="dugme2" id="contacthost" onclick="$('#friendshipbox').dialog({modal:true, width:'400px', position:'center'})" value="{% trans "Add as friend" %}">
+                </div>
+            </div>
+
+    </div>
+    <div id="orta" class="fl">
+        {% if profile.bio %}{{ profile.bio|linebreaksbr }}{% else %}{% trans "The user hasn't added a profile description yet." %}{% endif %}
+<br><br><br>
+    <hr>
+        <h4>{% blocktrans with profile.private_name as profile_name %}{{ profile_name }}'s places:{% endblocktrans %}</h4>
+        <div id="overview_bookmarks">
+        <ul class="dugmul">
+            {% if places%}
+                    {% for p in places %}
+                        <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                            <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                            <h6>{{ p.title|slice:":40" }}</h6>
+                        </li>
+                    {% endfor %}
+            {% else %}
+                {% trans "The user hasn't listed any place yet." %}
+            {% endif %}
+        </ul    >
+        </div>
+
+
+    </div>
+
+</div>
+</div>
+    <div id="friendshipbox" class="gizli" style="text-align:center;"  title="{% trans "Please confirm your friendship request." %}">
+        <button style="margin:40px;" class="iblock minidugme" id="addfriendbutton" onclick="gh.addFriend({{ user.id }})">{% blocktrans %}Add {{ toname }} to my friends.{% endblocktrans %} </button>
+    </div>
+{% endblock %}
+

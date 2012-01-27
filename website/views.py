@@ -11,7 +11,7 @@ from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import  COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency, LANG_DROPDOWN
+from places.models import Place, Tag, Photo, Currency, LANG_DROPDOWN, Profile
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
@@ -71,6 +71,13 @@ def showPlace(request, id):
                'profile':profile, 'service_fee':dbsettings.ghs.guest_fee,
                'amens':place.getTags(request.LANGUAGE_CODE)}
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
+
+
+def show_profile(request, id):
+    profile = get_object_or_404(Profile,pk=id)
+    places = Place.objects.filter(active=True, published=True, owner=profile.user)
+    context = {'profile':profile, 'usr':profile.user,'places':places}
+    return render_to_response('profile_page.html', context, context_instance=RequestContext(request))
 
 def searchPlace(request):
     context = {}
