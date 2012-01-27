@@ -10,6 +10,7 @@ SSL_URLS = (
  r'/../register/',
  r'/../secure_booking/',
  r'/../paypal_\w*?/',
+ r'/facebook/connect/',
 )
 class SSLRedirect:
     urls = tuple([re.compile(url) for url in SSL_URLS])
