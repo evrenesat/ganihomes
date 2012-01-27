@@ -142,13 +142,16 @@ gh = {
         this.priceScanConvert()
     },
     setCurrency:function(ob){
-        var cid = $(ob).data('crr')
+
+        var cid = (typeof(ob)!='number') ? $(ob).data('crr') : ob
         $.cookie('gh_curr', cid, { expires: 365, path: '/' });
         this.selected_currency = cid
         this.setCurrRates()
         this.priceScanConvert()
-        this.makeAvailabilityTab(1)
+        if($("#pcalendar").length)this.makeAvailabilityTab(1)
         this.calculateTotalPrice()
+        $('#id_price').trigger('keyup')
+        $('#id_currency').val(cid)
     },
     setCurrRates:function(){
         var selCrr = parseFloat(gh_crc[this.selected_currency][0])
@@ -1176,7 +1179,10 @@ gh = {
                 $("#addplaceform").html()
             });
             return false;
-        });
+        })
+        $('#id_currency').change(function(){
+            self.setCurrency(parseInt($(this).val()))
+        })
         this.init_add_place(place_id)
     },
     editPlaceWizzard:function(id){

@@ -21,7 +21,7 @@ class TicketAdmin(admin.ModelAdmin):
         #ordering = ['','']
         #list_per_page=20
         #list_select_related=False
-        list_display = ('editLink', 'username','category','creatation','status')
+        list_display = ( 'username','category','creatation','status')
         list_filter = ['status', 'creatation','category']
         search_fields = ['subject','body']
         list_per_page=20

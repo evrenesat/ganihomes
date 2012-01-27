@@ -49,11 +49,11 @@ class Ticket(models.Model):
    #get_absolute_url = permalink(get_absolute_url)
 
 
-
-   def editLink(self):
-        return "<a href='%s'>%s</a>" % (reverse('support_admin_show_ticket', args=(self.id, )) ,  self.subject)
-   editLink.short_description = _(u'Show Ticket')
-   editLink.allow_tags=True
+#
+#   def editLink(self):
+#        return "<a href='%s'>%s</a>" % (reverse('support_admin_show_ticket', args=(self.id, )) ,  self.subject)
+#   editLink.short_description = _(u'Show Ticket')
+#   editLink.allow_tags=True
 
    class Meta:
       verbose_name = _(u'Support Ticket')
