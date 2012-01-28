@@ -105,8 +105,7 @@ def anasayfa(request):
     lang = request.LANGUAGE_CODE
     searchForm = SearchForm()
     slides = [Vitrin.get_slides(), Vitrin.get_slides(type=1), Vitrin.get_slides(type=2)]
-    context = {'slides': slides, 'srForm':searchForm, 'nasil_slide_zaman': dbsettings.ghs.nasil_slide_zaman or '0',
-               'LANG_DROPDOWN':LANG_DROPDOWN}
+    context = {'slides': slides, 'srForm':searchForm, 'nasil_slide_zaman': dbsettings.ghs.nasil_slide_zaman or '0',               }
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 def slides(request, id):
