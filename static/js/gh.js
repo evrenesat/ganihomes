@@ -141,6 +141,7 @@ gh = {
         this.setCurrRates()
         this.priceScanConvert()
     },
+    currency_change_trigger_onkeyup:'',
     setCurrency:function(ob){
 
         var cid = (typeof(ob)!='number') ? $(ob).data('crr') : ob
@@ -150,7 +151,7 @@ gh = {
         this.priceScanConvert()
         if($("#pcalendar").length)this.makeAvailabilityTab(1)
         this.calculateTotalPrice()
-        $('#id_price').trigger('keyup')
+        $(this.currency_change_trigger_onkeyup).trigger('keyup')
         $('#id_currency').val(cid)
     },
     setCurrRates:function(){
@@ -566,7 +567,9 @@ gh = {
     },
     total:{ndays:0, price:0.0},
     calculateTotalPrice:function(){
+//        console.log(this.total.price)
         if(this.total.price){
+
             var tprice = this.total.price
             if(mdiscount && this.total.ndays >=30) {
                 var mdisc = tprice * mdiscount / 100
@@ -655,6 +658,14 @@ gh = {
         cout = $('#id_checkout').val()
         if(!cin || !cout){
             $('#info-select-dates').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
+            return false
+        }
+        if(this.total['ndays']<min_stay){
+            $('#info-stay-more').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
+            return false
+        }
+        if(max_stay>0 && this.total['ndays']>max_stay){
+            $('#info-stay-less').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
             return false
         }
         $(e.target).parents('form').submit()
@@ -1439,7 +1450,9 @@ gh = {
                 cr = gh_crc[$(this).val()]
 //                    console.log(cr)
                 $('.current_curr').html(cr[1])
+                self.setCurrency(parseInt($(this).val()))
             }).trigger('change')
+            self.currency_change_trigger_onkeyup = '#id_price, #id_weekend_price, #id_extra_price, #id_cleaning_fee'
 
             $('.yourpayout').each(function(){
                 var sp = $(this)

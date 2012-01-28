@@ -12,6 +12,8 @@
     cleaning_fee={{ place.cleaning_fee|default:0 }};
     exlimit={{ place.extra_limit|default:0 }};
     exprice={{ place.extra_price|default:0 }};
+    min_stay={{ place.min_stay }};
+    max_stay={{ place.max_stay }};
     wdiscount={{ place.weekly_discount|default:0 }};
     mdiscount={{ place.monthly_discount|default:0 }};
 </script>
@@ -212,6 +214,8 @@
 </div>
     <div class="align-center"><input type="button" class="yemyesildugme fo20" id="bookitbutton" value="{% trans "Book it" %}"></div>
     <div id="info-select-dates" class="warn gizli">{% trans "Please select the check in and check out dates first."%}</div>
+    <div id="info-stay-more" class="warn gizli">{% blocktrans with place.min_stay as min_stay%}Duration of minimum accommodation for this place is {{ minstay }} nights.{% endblocktrans %}%}</div>
+    <div id="info-stay-less" class="warn gizli">{% blocktrans with place.min_stay as min_stay%}Duration of minimum accommodation for this place is {{ maxstay }} nights.{% endblocktrans %}%}</div>
     <div id="info-select-valid-dates" class="warn  gizli">{% trans "Those dates are unavailable. Select differend dates or <a href='#looknearby'>look for nearby places</a>."%}</div>
 </div>
 </form>

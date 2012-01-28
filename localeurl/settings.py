@@ -1,7 +1,20 @@
+# -*- coding: utf-8 -*-
 import re
 from django.conf import settings
 
-SUPPORTED_LOCALES = dict(settings.LANGUAGES)
+#def get_enabled_locales():
+#    locales = []
+#    try:
+#        import dbsettings
+#        for l in dbsettings.ghs.enabled_langs.split('\n'):
+#            locales.append(l.split(','))
+#        return locales
+#    except:
+#        return [('en','English'),('tr','Türkçe')]
+#
+
+
+SUPPORTED_LOCALES = dict(settings.ENABLED_LOCALES)
 # Issue #15. Sort locale codes to avoid matching e.g. 'pt' before 'pt-br'
 LOCALES_RE = '|'.join(
     sorted(SUPPORTED_LOCALES.keys(), key=lambda i: len(i), reverse=True))

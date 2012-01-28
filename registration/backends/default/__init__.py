@@ -6,8 +6,6 @@ from registration import signals
 from registration.forms import RegistrationForm
 from registration.models import RegistrationProfile
 #from appsettings import app
-from dbsettings import ghs
-user_settings = ghs.usr
 
 class DefaultBackend(object):
     """
@@ -72,12 +70,14 @@ class DefaultBackend(object):
         class of this backend as the sender.
 
         """
+        import dbsettings
+
         username, email, password = kwargs['username'], kwargs['email'], kwargs['password1']
         if Site._meta.installed:
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)
-        create_active =  not user_settings.email_activation or hasattr(request,'via_facebook')
+        create_active =  not dbsettings.ghs.email_activation or hasattr(request,'via_facebook')
         fnc = getattr(RegistrationProfile.objects, 'create_active_user' if create_active else 'create_inactive_user')
         new_user = fnc(username, email, password, site)
 

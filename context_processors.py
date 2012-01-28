@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 __author__ = 'Evren Esat Ozkan'
 
 #from website.models.dil import Dil, Ceviriler
 #from website.models.icerik import Sayfa
-from places.models import LANG_DROPDOWN
+#from places.models import LANG_DROPDOWN
 
 #def website(r):
 #    soz = {'menu': Sayfa.al_menu(r.LANGUAGE_CODE),
@@ -12,12 +13,9 @@ from places.models import LANG_DROPDOWN
 ##TODO: dogrusu contexti guncelleyen bir template tag yazmak.
 #
 #    }
-#    if r.GET.get('sayfa_id'):
-#        soz['sayfa_id']= int(r.GET.get('sayfa_id'))
-#    return soz
-#
 
+from django.conf import settings
 def GH(r):
     d = {}
-    d['LANG_DROPDOWN'] = LANG_DROPDOWN
+    d['LISTED_LOCALES'] = settings.LISTED_LOCALES
     return d

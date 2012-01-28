@@ -18,16 +18,18 @@ from random import randint
 from easy_thumbnails.files import get_thumbnailer
 import codecs
 import logging
+from utils.thumbnailer import customThumbnailer
+
 log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
 import options
 
-LANG_DROPDOWN = []
+#LANG_DROPDOWN = []
 
 for code,name in settings.LANGUAGES:
     activate(code)
-    LANG_DROPDOWN.append((code, force_unicode(_(name))))
+#    LANG_DROPDOWN.append((code, force_unicode(_(name))))
     fp = codecs.open('%s/js/gh_%s.js' % (settings.STATIC_ROOT,code), 'w', encoding='utf8')
     for o in ['COUNTRIES','SPACE_TYPES','PLACE_TYPES','JSTRANS']:
         items = {}
@@ -367,7 +369,7 @@ class Place(models.Model):
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
-    lang = models.CharField(_('Language'), max_length=5, choices=LOCALES)
+    lang = models.CharField(_('Language'), max_length=5, choices=LANGUAGES)
     #    geocode = models.CharField(_('Geographical Location'), max_length=40, null=True, blank=True)
     lat = models.FloatField(_('Latitude'), default=0.0)
     lon = models.FloatField(_('Longitude'), default=0.0)
@@ -572,15 +574,6 @@ class Place(models.Model):
         return '%s' % (self.title,)
 
 
-def customThumbnailer(img, id, opts):
-    results = []
-    if not img:
-        return
-    for opt in opts:
-        size, name = opt[:2], '%s_%s' % (id, opt[2])
-        thumbnail_options = dict(size=size, upscale=True, crop='smart', custom_name=name)
-        results.append(get_thumbnailer(img).get_thumbnail(thumbnail_options))
-    return results
 
 class Friendship(models.Model):
     """Friendship"""

@@ -26,7 +26,7 @@ from glob import iglob
 def sablonListesi():
     dizin = settings.TEMPLATE_DIRS[0] + '/content_templates/'
     #    assert 0, dizin
-    log.info(dizin)
+#    log.info(dizin)
     return [('', u'Varsayılan')] + [[t.replace(dizin, '')] * 2 for t in iglob(dizin + '*.html') if not t.endswith('/icerik.html')]
 
 

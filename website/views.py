@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
@@ -11,10 +12,11 @@ from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import  COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency, LANG_DROPDOWN, Profile
+from places.models import Place, Tag, Photo, Currency,  Profile
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
+from utils.thumbnailer import *
 from website.models import Sayfa, Haber, Vitrin, Question
 from django.contrib.sites.models import get_current_site
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
@@ -166,6 +168,7 @@ def addPlace(request, ajax=False, id=None):
                 new_place.lat = str(new_place.lat)
                 new_place.lon = str(new_place.lon)
                 new_place.lang = request.LANGUAGE_CODE
+                log.info('%s %s '% (new_place.lang, request.LANGUAGE_CODE))
                 new_place.save()
                 form.save_m2m()
                 for tag in form.cleaned_data['tags']:
@@ -308,7 +311,6 @@ def multiuploader_delete(request, pk):
         return HttpResponseBadRequest('Only POST accepted')
 
 
-
 def square_thumbnail(source, size=(50, 50)):
     thumbnail_options = dict(size=size, crop=True)
     return get_thumbnailer(source).get_thumbnail(thumbnail_options)
@@ -327,19 +329,26 @@ def multiuploader(request, place_id=None):
         filename = wrapped_file.name
         file_size = wrapped_file.file.size
         log.info (u'Got file: %s'%filename)
-
         #writing file manually into model
         #because we don't need form of any type.
 
         image = Photo()
         image.name=str(filename)
         image.image=file
+
         if place_id:
             place = get_object_or_404(Place, pk=place_id)
             if place.owner != request.user:
                 return HttpResponseForbidden()
             image.place = place
         image.save()
+        im = Image.open(image.image)
+#        im.thumbnail((500, 500), Image.ANTIALIAS)
+        mark = Image.open('%s/images/klise.png'% settings.STATIC_ROOT)
+        #    watermark(im, mark, 'tile', 0.5)
+        #    watermark(im, mark, 'scale', 1.0)
+        watermark(im, mark, (0, 0), 0.5).save(image.image.path, "JPEG", quality=95)
+
         if not place_id:
             tmp_photos = request.session.get('tmp_photos',[])
             tmp_photos.append(image.id)
