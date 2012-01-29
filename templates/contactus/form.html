@@ -1,89 +1,41 @@
 {% extends "content_bigboxed.html" %}
+{% load cevir i18n %}
 {% block content %}
-    {% load cevir %}
-    {% load i18n %}
+
+    <h3>{% trans "Contact Us" %}</h3>
 <div class="iblock" style="padding:40px;">
-                                <table style="margin-left:71px" width="470" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td height="88" colspan="2" valign="top"><span
-                                style="font-size:18px; font-weight:bold; color:#999999">{% trans "Address" %}:</span><br/>
+<div>
 
-                            <div align="justify" style="font-size:16px; font-weight:bold">Ganioglu Center<br>
-                                Bornova, 286. Sk, 2, 35030 Mansuroğlu<br> IZMIR - TURKEY
-                            </div>
-                        </td>
-                        <!--                <div align="justify" style="font-size:16px; font-weight:bold">Şair Eşref Bulvarı Numara 81/B-C Alsancak - İZMİR</div></td>-->
-                    </tr>
-                    <tr>
-                        <td width="160" height="88" valign="top"><span
-                                style="font-size:18px; font-weight:bold; color:#999999">{% trans "PHONE" %}:</span><br/>
+    {% cevir "iletisim form ustyazi" %}
 
-                            <div style="font-size:16px; font-weight:bold">+90232 462 72 78<br/>
-                                +90232 462 72 79
-                            </div>
-                        </td>
+</div>
 
-                        <td width="150" valign="top"><span style="font-size:18px; font-weight:bold; color:#999999">{% trans "E-MAIL" %}:</span><br/>
-
-                            <div style="font-size:16px; font-weight:bold">info@ganihomes.com</div>
-                        </td>
-                    </tr>
-                </table>
             <br/>
     <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
-        <div style="font-size:14px; font-weight:bold; width:471px;margin:20px auto;">
-            <table  border="0" align="center" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td width="311" valign="top"><br/>
-                        <table style="margin-top:15px" width="281" border="0" align="center" cellpadding="0"
-                               cellspacing="0">
-                            <tr>
-                                <td height="71" valign="top"><p class="formbaslik">{% trans "Name" %}</p>
-                                    {{ form.first_name.errors }}{{ form.first_name }}</td>
-                            </tr>
-                            <tr>
-                                <td height="71" valign="top"><p class="formbaslik">{% trans "Surname" %}:</p>
-                                    {{ form.last_name.errors }}{{ form.last_name }}</td>
-                            </tr>
-                            <tr>
-                                <td height="71" valign="top"><p class="formbaslik">{% trans "E-mail" %}:</p>
-                                    {{ form.email.errors }}{{ form.email }}</td>
-                            </tr>
-                            <tr>
-                                <td height="71" valign="top"><p class="formbaslik">{% trans "Phone" %}:</p>
-                                    {{ form.phone.errors }}{{ form.phone }}</td>
-                            </tr>
-                            <tr>
-                                    <td height="71" valign="top"><p class="formbaslik">{% trans "Location" %}:</p>
-                                    {{ form.city.errors }}{{ form.city }}</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td width="59" valign="top" background="/static/grafik/cizik.jpg"
-                        style="background-position:center; background-repeat:repeat-y">&nbsp;</td>
-                    <td width="311" valign="top"><br/>
-                        <table style="margin-top:15px" width="281" border="0" align="center" cellpadding="0"
-                               cellspacing="0">
-                            <tr>
-                                <td height="71" valign="top"><p class="formbaslik">{% trans "Subject" %}:</p>
-                                    {{ form.subject.errors }}{{ form.subject }}</td>
-                            </tr>
-                            <tr>
-                                <td height="284" valign="top"><p class="formbaslik">{% trans "Your message" %}:</p>
-                                    {{ form.message.errors }}{{ form.message }}
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <div style="width:681px; margin-left:auto; margin-right:auto; text-align:right">
+        <div id="contform">
 
-
-                    <input class="gridugme" type="submit" name="save" value="{% trans "Send" %}">
+            <div><label for="">{% trans "Name" %}</label>
+                                    {{ form.first_name.errors }}{{ form.first_name }}
 
             </div>
+            <div><label for="">{% trans "E-mail" %}</label>
+                                    {{ form.email.errors }}{{ form.email }}
+            </div>
+                <div><label for="">{% trans "Phone" %}</label>
+                                    {{ form.phone.errors }}{{ form.phone }}
+
+                </div>
+
+                        <div><label for="">{% trans "Subject" %}</label>
+                                    {{ form.subject.errors }}{{ form.subject }}
+                        </div>
+
+                            <div><label for="">{% trans "Your message" %}</label>
+                                    {{ form.message.errors }}{{ form.message }}</div>
+
+            <input id="contactsubmit" class="gridugme" type="submit" name="save" value="{% trans "Send" %}">
         </div>
+
     </form>
 
     </div>

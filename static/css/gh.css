@@ -4337,3 +4337,51 @@ list-style:none;
     border:1px solid #cdcdcd;
 
 }
+#contform div{
+    -webkit-box-shadow: 2px 3px 9px -2px #E8E8E8;
+    -moz-box-shadow: 2px 3px 9px -2px #E8E8E8;
+    box-shadow: 2px 3px 9px -2px #E8E8E8;
+    float: left;
+    width: 322px;
+    margin: 17px;
+    padding: 16px;
+    position: relative;
+    border: 1px solid #F5F5F5;
+}
+#contform label{
+    ois: 100px;
+    margin-left: 20px;
+    left: 5px;
+    background: #FFFFFF;
+    text-align: center;
+    position: absolute;
+    margin: 3px 8px;
+    padding: 0 11px;
+    top: -13px;
+    background-color: #fff;
+    color: #91653F;
+    font-size: 13px;
+    background-size: none repeat scroll 0 0 #FFFFFF;
+}
+#conform {
+    font-size:14px; font-weight:bold; width:471px;margin:20px auto;
+}
+#contactsubmit{
+    margin:50px;
+    float: right;
+    margin-top: 50px;
+    margin-right: 135px;
+}
+#contform div textarea{
+    width: 314px;
+    background: none;
+    font-size: 13px;
+    border: 1px solid #EAD9CD;
+}
+#contform div input {
+    height:24px;
+    background: none;
+    font-size: 13px;
+    width: 316px;
+    border: 1px solid #EAD9CD;
+}
