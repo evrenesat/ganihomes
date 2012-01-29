@@ -1159,7 +1159,9 @@ gh = {
             }
             return false
         });
-        $('#id_currency').val(this.selected_currency)
+        $('#id_currency').val(this.selected_currency).change(function(){
+            self.setCurrency(parseInt($(this).val()))
+        })
         $('#id_price').keyup(function(){
             var pr = $(this).val()
             try{
