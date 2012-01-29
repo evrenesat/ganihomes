@@ -101,7 +101,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 class SayfaAdmin(admin.ModelAdmin):
     change_form_template = 'admin/wysiwyg/website_sayfa.html'
-    list_display = ('baslik', 'id','order','pul', 'menude', 'etkin')
+    list_display = ('baslik', 'id','order','parent','pul', 'menude', 'etkin')
     mptt_indent_field = "baslik"
     #    search_fields = ['', ]
     list_filter = ['menude', 'etkin', 'parent']

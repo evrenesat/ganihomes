@@ -104,7 +104,7 @@ class Sayfa(MPTTModel):
         ks = kes('yansayfa', dilkodu, self.id)
         menu = ks.g([])
         if not menu:
-            for k in self.get_siblings(include_self=True):
+            for k in self.get_siblings(include_self=True).order_by('order'):
                 ogeler = []
                 for s in k.get_children():
                     ogeler.append({'baslik': s.al_baslik(dilkodu), 'url': s.al_url(dilkodu), 'etkin': s.id == self.id})
@@ -120,7 +120,7 @@ class Sayfa(MPTTModel):
         if not menu:
             ana = cls.al_anasayfa()
             if ana:
-                for k in ana.get_children().filter(menude=True):
+                for k in ana.get_children().filter(menude=True).order_by('order'):
                     menu.append({'id': k.id, 'baslik': k.al_baslik(dilkodu), 'url': k.al_url(dilkodu), })
                 ks.s(menu)
         return menu
