@@ -44,8 +44,12 @@ class Sayfa(MPTTModel):
     etkin = models.BooleanField(u"Yayında", default=True, help_text=u"Sayfa yayında mı?")
     sadece_uyeler = models.BooleanField(u"Sadece üyeler görebilir", help_text=u"Bu sayfayı sadece üyeler görebilir.")
     medya = models.ManyToManyField(Medya, null=True, blank=True)
+    order = models.SmallIntegerField(_('Order'),default=100)
     #    objects = models.Manager()
     #    etkinler = EtkinManager()
+
+    class MPTTMeta:
+        order_insertion_by = ['order']
 
     def __unicode__(self):
         return  '%s' % (self.baslik(),)
