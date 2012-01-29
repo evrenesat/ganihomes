@@ -93,8 +93,8 @@
     <div class="footdiv">
     <h4>{% trans "Help & Support" %}</h4>
         <a href="{% url faq %}">{% trans "FAQ" %}</a><br>
-        <a href="#">{% trans "Help Desk" %}</a><br>
-        <a href="#">{% trans "Call Center" %}</a>
+{#        <a href="#">{% trans "Help Desk" %}</a><br>#}
+{#        <a href="#">{% trans "Call Center" %}</a>#}
     </div>
     <div class="footdiv">
         <h4>{% trans "Corporate" %}</h4>
@@ -110,7 +110,7 @@
 <div id="f3">
     <div class="footdiv">
         <h4>{% trans "About Us" %}</h4>
-            <a href="/{{ LANGUAGE_CODE }}/10/">{% trans "How it works" %}</a><br>
+{#            <a href="/{{ LANGUAGE_CODE }}/10/">{% trans "How it works" %}</a><br>#}
         <a href="{% url contact_us %}">{% trans "Send us an email" %}</a><br>
         <a href="/{{ LANGUAGE_CODE }}/11/">{% trans "Press" %}</a><br>
 {#            <a href="#">{% trans "Press" %}</a><br>#}
