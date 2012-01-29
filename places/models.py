@@ -551,7 +551,14 @@ class Place(models.Model):
         }
 
     def createThumbnails(self):
-        customThumbnailer(self.primary_photo, self.id, [(120, 100, 'pls'), (60, 50, 'plxs')])
+        customThumbnailer(self.primary_photo, self.id, [
+            (60, 50, 'plxs'),
+            (0, 80, 'plks'),
+            (120, 100, 'pls'),
+            (284,180, 'plm'),
+            (568,360, 'pll')
+            (615,400, 'plxl')
+        ])
 
     def save(self, *args, **kwargs):
         self._updatePrices()

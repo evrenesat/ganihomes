@@ -1,4 +1,6 @@
 # -*-  coding: utf-8 -*-
+from django.conf import settings
+
 __author__ = 'Evren Esat Ozkan'
 
 from easy_thumbnails.files import get_thumbnailer
@@ -16,6 +18,14 @@ def customThumbnailer(img, id, opts):
         results.append(get_thumbnailer(img).get_thumbnail(thumbnail_options))
     return results
 
+def damgala(image):
+    path  = '%s/place_photos/%s'%(settings.MEDIA_ROOT,image_name)
+    im = Image.open(image)
+#        im.thumbnail((500, 500), Image.ANTIALIAS)
+    mark = Image.open('%s/images/klise.png'% settings.STATIC_ROOT)
+    #    watermark(im, mark, 'tile', 0.5)
+    #    watermark(im, mark, 'scale', 1.0)
+    watermark(im, mark, (0, 0), 0.5).save(image.path, "JPEG", quality=95)
 
 def reduce_opacity(im, opacity):
     """Returns an image with reduced opacity."""

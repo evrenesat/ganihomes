@@ -347,12 +347,12 @@ def multiuploader(request, place_id=None):
                 return HttpResponseForbidden()
             image.place = place
         image.save()
-        im = Image.open(image.image)
-#        im.thumbnail((500, 500), Image.ANTIALIAS)
-        mark = Image.open('%s/images/klise.png'% settings.STATIC_ROOT)
-        #    watermark(im, mark, 'tile', 0.5)
-        #    watermark(im, mark, 'scale', 1.0)
-        watermark(im, mark, (0, 0), 0.5).save(image.image.path, "JPEG", quality=95)
+#        im = Image.open(image.image)
+##        im.thumbnail((500, 500), Image.ANTIALIAS)
+#        mark = Image.open('%s/images/klise.png'% settings.STATIC_ROOT)
+#        #    watermark(im, mark, 'tile', 0.5)
+#        #    watermark(im, mark, 'scale', 1.0)
+#        watermark(im, mark, (0, 0), 0.5).save(image.image.path, "JPEG", quality=95)
 
         if not place_id:
             tmp_photos = request.session.get('tmp_photos',[])
