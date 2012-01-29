@@ -101,10 +101,10 @@ class QuestionAdmin(admin.ModelAdmin):
 
 class SayfaAdmin(admin.ModelAdmin):
     change_form_template = 'admin/wysiwyg/website_sayfa.html'
-    list_display = ('baslik', 'id','pul', 'menude', 'etkin')
+    list_display = ('baslik', 'id','order','pul', 'menude', 'etkin')
     mptt_indent_field = "baslik"
     #    search_fields = ['', ]
-    list_filter = ['menude', 'etkin']
+    list_filter = ['menude', 'etkin', 'parent']
     save_on_top = True
     filter_horizontal = ['medya']
     #    exclude = ('medya',)
@@ -120,7 +120,7 @@ class SayfaAdmin(admin.ModelAdmin):
     #list_display_links = ('','')
     date_hierarchy = 'pul'
     #list_select_related=False
-    list_editable = ('menude', 'etkin')
+    list_editable = ('order','etkin', 'etkin')
     save_as = True
 
     #def save_model(self, request, obj, form, change):
