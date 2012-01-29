@@ -141,7 +141,7 @@ gh = {
         this.setCurrRates()
         this.priceScanConvert()
     },
-    currency_change_trigger_onkeyup:'',
+    currency_change_trigger_onkeyup:'#id_price, #id_weekend_price, #id_extra_price, #id_cleaning_fee',
     setCurrency:function(ob){
 
         var cid = (typeof(ob)!='number') ? $(ob).data('crr') : ob
@@ -151,8 +151,10 @@ gh = {
         this.priceScanConvert()
         if($("#pcalendar").length)this.makeAvailabilityTab(1)
         this.calculateTotalPrice()
-        $(this.currency_change_trigger_onkeyup).trigger('keyup')
         $('#id_currency').val(cid)
+        $('.current_curr').html(gh_crc[cid][1])
+        $(this.currency_change_trigger_onkeyup).trigger('keyup')
+
     },
     setCurrRates:function(){
         var selCrr = parseFloat(gh_crc[this.selected_currency][0])
@@ -1452,7 +1454,6 @@ gh = {
                 $('.current_curr').html(cr[1])
                 self.setCurrency(parseInt($(this).val()))
             }).trigger('change')
-            self.currency_change_trigger_onkeyup = '#id_price, #id_weekend_price, #id_extra_price, #id_cleaning_fee'
 
             $('.yourpayout').each(function(){
                 var sp = $(this)

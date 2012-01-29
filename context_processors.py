@@ -16,6 +16,8 @@ __author__ = 'Evren Esat Ozkan'
 
 from django.conf import settings
 def GH(r):
-    d = {}
-    d['LISTED_LOCALES'] = settings.LISTED_LOCALES
-    return d
+
+    return {
+        'LISTED_LOCALES': settings.LISTED_LOCALES,
+       }
+
