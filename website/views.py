@@ -151,6 +151,7 @@ def addPlace(request, ajax=False, id=None):
             return HttpResponseForbidden()
     else:
         old_place = Place()
+
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
         login_form = LoginForm(request.POST)
@@ -179,6 +180,11 @@ def addPlace(request, ajax=False, id=None):
                     Photo.objects.get(pk=tmp_photos[0]).save()
                     request.session['tmp_photos']=[]
                 if not ajax:
+                    if not new_place.published:
+                        messages.success(request, _('Your place succesfully saved but not published yet.'))
+                        messages.info(request, _('You can publish this place by pressing the "Publish" button below.'))
+                    else:
+                        messages.success(request, _('Your changes succesfully saved.'))
                     return HttpResponseRedirect('%s#do_listPlaces,this'%reverse('dashboard'))
         else:
             for e in form.errors:
