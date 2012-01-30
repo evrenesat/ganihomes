@@ -86,14 +86,14 @@
         <div class="span-12 shadoblok" id="howmonitordiv">
             <img id="howmonitorimg" src="{{ STATIC_URL }}images/howmonitor.png">
             <div id="howmonitortext">
-                <h3 class="oh3">Best place rental experience for both hosts and guests!</h3>
+                <h3 class="oh3">{% trans "Best place rental experience for both hosts and guests!"%}</h3>
                 <ul>
-                    <li>Easier</li>
-                    <li>Safer</li>
-                    <li>Faster</li>
+                    <li>{% trans "Easier"%}</li>
+                    <li>{% trans "Safer"%}</li>
+                    <li>{% trans "Faster"%}</li>
 
                 </ul>
-                <span>Learn how it works &raquo;</span>
+{#                <span>{% trans "Learn how it works"%} &raquo;</span>#}
             </div>
         </div>
         <div class="span-9 shadoblok">
@@ -101,8 +101,8 @@
 
 
             <div style="width:178px; float:right;font-size:18px;color:#6a6a6a;">
-                           <h3 class="oh3">Accesible from anywhere</h3>
-                           You can use our site from any mobile device which have a web browser.
+                           <h3 class="oh3">{% trans "Accesible from anywhere"%}</h3>
+                           {% trans "You can use our site from any mobile device which have a web browser."%}
 
                        </div>
 
