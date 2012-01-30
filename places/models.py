@@ -17,9 +17,9 @@ from utils.cache import kes
 from random import randint
 from easy_thumbnails.files import get_thumbnailer
 import codecs
-import logging
-from utils.thumbnailer import customThumbnailer
 
+from utils.thumbnailer import customThumbnailer
+import logging
 log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
@@ -551,14 +551,7 @@ class Place(models.Model):
         }
 
     def createThumbnails(self):
-        customThumbnailer(self.primary_photo, self.id, [
-            (60, 50, 'plxs'),
-            (0, 80, 'plks'),
-            (120, 100, 'pls'),
-            (284,180, 'plm'),
-            (568,360, 'pll')
-            (615,400, 'plxl')
-        ])
+        customThumbnailer(self.primary_photo, self.id, THUMB_SIZES)
 
     def save(self, *args, **kwargs):
         self._updatePrices()
@@ -721,7 +714,8 @@ class Photo(models.Model):
 
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)
-        customThumbnailer(self.image, self.id, [(50, 50, 's')])
+#        customThumbnailer(self.image, self.id, [(50, 50, 's')])
+        customThumbnailer(self.image, self.id, THUMB_SIZES)
         #FIXME: order on save
         if self.place and (self.order == 1 or (self.place and not self.place.primary_photo)):
             self.place.primary_photo = self.image

@@ -7,7 +7,7 @@
         {% for s in slides %}
             {% if not s.thumbs %}
                 <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
-                     style="background-image: url({% thumbnail s.image 568x360 upscale crop=scale %})">
+                     style="background-image: url({{ STATIC_URL }}/yuklemeler/place_photos/{{ s.image.id }}_pll.jpg)">
                     <div class="sbaner alpha60">
                         <div class="sbaner-info">{{ s.placeName }} <span class="where">{{ s.place.city}} - {{ s.place.get_country_display }}</span><br>
                             <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name}}</span>
@@ -33,7 +33,7 @@
 
                     {% for photo in s.photos %}
                         <div class="thumbphoto"
-                             style="background-image: url({% thumbnail photo.image 284x180 upscale crop=scale %})"></div>
+                             style="background-image: url({{ STATIC_URL }}/yuklemeler/place_photos/{{ s.image.id }}_plm.jpg)"></div>
                     {% endfor %}
                     <div class="sbaner alpha60">
                         <div class="sbaner-info">{{ s.placeName }}<br>

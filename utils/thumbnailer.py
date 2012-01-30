@@ -4,9 +4,13 @@ from django.conf import settings
 __author__ = 'Evren Esat Ozkan'
 
 from easy_thumbnails.files import get_thumbnailer
+import logging
+log = logging.getLogger('genel')
 
 #noinspection PyUnresolvedReferences
-import Image, ImageEnhance
+import Image, ImageEnhance, ImageFile
+
+ImageFile.MAXBLOCK = 1024*1024
 
 def customThumbnailer(img, id, opts):
     results = []
@@ -15,17 +19,32 @@ def customThumbnailer(img, id, opts):
     for opt in opts:
         size, name = opt[:2], '%s_%s' % (id, opt[2])
         thumbnail_options = dict(size=size, upscale=True, crop='smart', custom_name=name)
-        results.append(get_thumbnailer(img).get_thumbnail(thumbnail_options))
+        file = get_thumbnailer(img).get_thumbnail(thumbnail_options)
+        results.append(file)
+        damgala(file, size)
+
     return results
 
-def damgala(image):
-    path  = '%s/place_photos/%s'%(settings.MEDIA_ROOT,image_name)
-    im = Image.open(image)
+def damgala(image, size):
+#    path  = '%s/place_photos/%s'%(settings.MEDIA_ROOT,image_name)
+    if size[0]>250 or size[1]>250:
+        klise_en = 'm'
+    elif size[0]>100 or size[1]>100:
+        klise_en = 's'
+    else:
+        klise_en = 'xs'
+    log.info(settings.STATIC_ROOT)
+    klise_path = '%s/images/klise-%s.png'% (settings.STATIC_ROOT, klise_en)
+#    log.info(klise_path)
+    im = Image.open(image.path)
 #        im.thumbnail((500, 500), Image.ANTIALIAS)
-    mark = Image.open('%s/images/klise.png'% settings.STATIC_ROOT)
+
+    mark = Image.open(klise_path)
+
     #    watermark(im, mark, 'tile', 0.5)
     #    watermark(im, mark, 'scale', 1.0)
-    watermark(im, mark, (0, 0), 0.5).save(image.path, "JPEG", quality=95)
+    ImageFile.MAXBLOCK = 1024*1024
+    watermark(im, mark, (0,0), 0.5).save(image.path, "JPEG", quality=95)
 
 def reduce_opacity(im, opacity):
     """Returns an image with reduced opacity."""
