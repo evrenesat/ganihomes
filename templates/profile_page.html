@@ -1,5 +1,5 @@
 {% extends "content_bigboxed.html" %}
-{% load thumbnail i18n currency cevir %}
+{% load i18n currency cevir %}
 {% block content %}
 
     <div id="dokuzic">
@@ -9,7 +9,7 @@
 
 
         <div id="hostbox">
-                <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><img id="hostimg" src="{% thumbnail profile.photo 200x300 upscale crop=scale %}">
+                <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><img id="hostimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ profile.user_id }}_xl.jpg">
                 <div id="hostname">{{ profile.private_name }}</div></div>
                 <textarea id="hostmsg"></textarea>
 
@@ -32,7 +32,7 @@
             {% if places%}
                     {% for p in places %}
                         <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
-                            <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                            <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                             <h6>{{ p.title|slice:":40" }}</h6>
                         </li>
                     {% endfor %}

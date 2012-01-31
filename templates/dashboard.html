@@ -1,5 +1,5 @@
 {% extends "content.html" %}
-{% load thumbnail i18n currency cevir %}
+{% load i18n currency cevir %}
 {% block extrajs %}
     {#<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>#}
     {#<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>#}
@@ -125,7 +125,7 @@
                                 <h6>{% trans "Add New Place" %} </h6></li>
                             {% for p in places %}
                                 <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
-                                    <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                                    <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                                     <h6>{{ p.title|slice:":40" }}</h6>
                                 </li>
                             {% endfor %}
@@ -141,8 +141,8 @@
                             {% if bookmarks %}
                                 <ul class="dugmul">
                                     {% for p in bookmarks %}
-                                        <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
-                                            <img src="{% thumbnail p.primary_photo 80x80 crop=smart %}">
+                                        <li style="cursor:pointer" onclick="document.location='{% url show_place  p.id%}'">
+                                            <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                                             <h6>{{ p.title|slice:":40" }}</h6>
                                         </li>
                                     {% endfor %}

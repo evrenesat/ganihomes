@@ -1,5 +1,5 @@
 {% extends "dashboard/base.html" %}
-{% load  currency cevir i18n thumbnail%}
+{% load  currency cevir i18n%}
 {% block title %} {% cevir "rezervasyon detaylari baslik" %} {% endblock %}
 {% block content %}
 
@@ -7,7 +7,7 @@
     <div class="bookpart">
          <h3>{% trans "Property details" %}</h3>
          <div id="bookinplace">
-             <img  src="{% thumbnail place.primary_photo 0x120 upscale crop=scale %}">
+             <img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_l.jpg">
              <span class="booksubtitle">{{ place.title }}</span><br>
              {{ place.city}} - {{ place.district }} {{ place.get_country_display }}
              <br>

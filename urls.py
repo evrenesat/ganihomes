@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views
 admin.autodiscover()
 from django.conf.urls.defaults import *
 handler500 = 'website.views.server_error'
-
+from django.views.generic.simple import direct_to_template
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'cagani.views.home', name='home'),
@@ -15,7 +15,7 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
 #    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^crossdomain.xml$', 'django.views.generic.simple.direct_to_template', {'template': 'crossdomain.xml'}),
+    (r'^crossdomain.xml$', direct_to_template, {'template': 'crossdomain.xml'}),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 #    (r'^tinymce/', include('tinymce.urls')),
@@ -43,7 +43,7 @@ urlpatterns += patterns('website.views',
     (r'^faq/$', 'show_faqs', {}, 'faq'),
 
     (r'^ZXE/SDS/FSSS/SKTR/', include('paypal.standard.ipn.urls')),
-
+    (r'^howitworks$', direct_to_template, {'template': 'howitworks.html'},'howitworks$'),
     (r'^facebook/', include('django_facebook.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
     url(r'^appsettings/', include('appsettings.urls')),

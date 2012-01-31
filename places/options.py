@@ -220,12 +220,17 @@ JSTRANS = (
 )
 DJSTRANS= dict(JSTRANS)
 
-THUMB_SIZES = [
+PLACE_THUMB_SIZES = [
             (50, 50, 'plxxs'),
             (60, 50, 'plxs'),
-            (0, 80, 'plks'),
+            (80, 80, 'plks'),
+            (0, 120, 'plkks'),
             (120, 100, 'pls'),
-            (284,180, 'plm'),
-            (568,360, 'l'),
             (615,400, 'plxl'),
         ]
+PHOTO_THUMB_SIZES = [
+    (0,80, 'xs'),
+    (284,180, 'sm'),
+    (568,360, 'l'),
+    (615,400, 'xl'),
+]

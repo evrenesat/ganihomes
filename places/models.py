@@ -551,7 +551,7 @@ class Place(models.Model):
         }
 
     def createThumbnails(self):
-        customThumbnailer(self.primary_photo, self.id, THUMB_SIZES)
+        customThumbnailer(self.primary_photo, self.id, PLACE_THUMB_SIZES)
 
     def save(self, *args, **kwargs):
         self._updatePrices()
@@ -619,7 +619,12 @@ class Profile(FacebookProfileModel):
         self.full_name = self.user.get_full_name()
 
     def createThumbnails(self):
-        customThumbnailer(self.photo, self.user.id, [(200, 0, 'l'), (100, 0, 'm'), (0, 30, 's')])
+        customThumbnailer(self.photo, self.user.id,
+            [   (200, 300, 'xl'),
+                (200, 0, 'l'),
+                (100, 0, 'm'),
+                (0, 30, 's')],
+            mark=False, crop='scale')
 
     class Meta:
         ordering = ['timestamp']
@@ -715,7 +720,7 @@ class Photo(models.Model):
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)
 #        customThumbnailer(self.image, self.id, [(50, 50, 's')])
-        customThumbnailer(self.image, self.id, THUMB_SIZES)
+        customThumbnailer(self.image, self.id, PHOTO_THUMB_SIZES)
         #FIXME: order on save
         if self.place and (self.order == 1 or (self.place and not self.place.primary_photo)):
             self.place.primary_photo = self.image

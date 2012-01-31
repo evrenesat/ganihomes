@@ -347,7 +347,7 @@ gh = {
 
 
             sk.find('.slidiv').mouseenter(
-                function () {sld = $(this); sld.find('.sbaner').animate({height:'50px'});}).mouseleave(function(){
+                function () {sld = $(this); sld.find('.sbaner').animate({height:'46px'});}).mouseleave(function(){
                     $(this).find('.sbaner').animate({height:'28px'})
                 });
 

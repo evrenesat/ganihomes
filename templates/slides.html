@@ -1,4 +1,4 @@
-{% load cevir thumbnail i18n%}
+{% load cevir i18n%}
 <div class="tabborder" id="GVS">
     <div class="scrollingHotSpotLeft"></div>
 <div class="scrollingHotSpotRight"></div>
@@ -7,7 +7,7 @@
         {% for s in slides %}
             {% if not s.thumbs %}
                 <div class="slidiv" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'"
-                     style="background-image: url({{ STATIC_URL }}/yuklemeler/place_photos/{{ s.image.id }}_pll.jpg)">
+                     style="background-image: url({% if s.gorsel %}{{ s.gorsel.url }}{% else %}{{ STATIC_URL }}/yuklemeler/place_photos/{{ s.place_photo.id }}_l.jpg{% endif %})">
                     <div class="sbaner alpha60">
                         <div class="sbaner-info">{{ s.placeName }} <span class="where">{{ s.place.city}} - {{ s.place.get_country_display }}</span><br>
                             <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name}}</span>
@@ -16,14 +16,7 @@
                         <div class="stardiv">
                             <span class="gh-prc crc" data-prc="{{ s.place.price }}"
                                   data-crc="{{ s.place.currency_id }}"></span>
-                            <ul class="rating star{{ s.place.overall_rating}}">
-                                <li class="one"><a href="#" title="1 Star">1</a></li>
-                                <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                <li class="five"><a href="#" title="5 Stars">5</a></li>
-                            </ul>
-
+                            {% if s.place.overall_rating %}<div class="stardiv rating star{{ s.place.overall_rating}}" ></div>{% endif %}
                         </div>
                     </div>
                 </div>
@@ -33,7 +26,7 @@
 
                     {% for photo in s.photos %}
                         <div class="thumbphoto"
-                             style="background-image: url({{ STATIC_URL }}/yuklemeler/place_photos/{{ s.image.id }}_plm.jpg)"></div>
+                             style="background-image: url({{ STATIC_URL }}/yuklemeler/place_photos/{{ s.image.id }}_m.jpg)"></div>
                     {% endfor %}
                     <div class="sbaner alpha60">
                         <div class="sbaner-info">{{ s.placeName }}<br>
@@ -43,13 +36,7 @@
                         <div class="stardiv">
                             <span class="gh-prc crc" data-prc="{{ s.place.price }}"
                                   data-crc="{{ s.place.currency_id }}"></span>
-                            <ul class="rating star{{ s.place.overall_rating}}">
-                                <li class="one"><a href="#" title="1 Star">1</a></li>
-                                <li class="two"><a href="#" title="2 Stars">2</a></li>
-                                <li class="three"><a href="#" title="3 Stars">3</a></li>
-                                <li class="four"><a href="#" title="4 Stars">4</a></li>
-                                <li class="five"><a href="#" title="5 Stars">5</a></li>
-                            </ul>
+                            {% if s.place.overall_rating %}<div class="stardiv rating star{{ s.place.overall_rating}}" ></div>{% endif %}
 
                         </div>
 

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load cevir thumbnail i18n%}
+{% load cevir i18n%}
 {% block extrajs %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
     <script type="text/javascript">$(window).ready(function () {
@@ -93,7 +93,7 @@
                     <li>{% trans "Faster"%}</li>
 
                 </ul>
-{#                <span>{% trans "Learn how it works"%} &raquo;</span>#}
+                <span><a href="{% url howitworks$ %}">{% trans "Learn how it works"%} &raquo;</a></span>
             </div>
         </div>
         <div class="span-9 shadoblok">

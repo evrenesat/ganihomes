@@ -1,5 +1,5 @@
 {% extends "content.html" %}
-{% load i18n thumbnail currency%}
+{% load i18n currency%}
 {% block extrajs %}
 {#<script>$(document).ready(function(){gh.login_init()})</script>#}
 {% endblock %}
@@ -21,7 +21,7 @@
             <div class="bookpart">
                 <h3>{% trans "Property details" %}</h3>
                 <div id="bookinplace">
-                    <img  src="{% thumbnail place.primary_photo 0x120 upscale crop=scale %}">
+                    <img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_plkks.jpg">
                     <span class="booksubtitle">{{ place.title }}</span><br>
                     {{ place.city}} - {{ place.district }} {{ place.get_country_display }}
                     <br>

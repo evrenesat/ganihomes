@@ -1,4 +1,4 @@
-{% load  thumbnail i18n cevir%}
+{% load   i18n cevir%}
 {% include "show_messages.html" %}
 <div id="genhdr">
     <h3>{% cevir "rezervasyon istekleri baslik" %}</h3>
@@ -26,7 +26,7 @@
                         <td>{{ r.get_status_display }}</td>
                         <td>{{ r.start }} <br> {{ r.end }}</td>
                         <td>{{ r.host.get_profile.private_name }}</td>
-                        <td><img src="{% thumbnail r.place.primary_photo 80x80 crop=smart %}">
+                        <td><img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ r.place.id }}_l.jpg">
                             <h6>{{ r.place.title|slice:":40" }}</h6>
                         </td>
                             <td><button class="minidugme" onclick="gh.showBookingRequest({{ r.id }})">{% trans "Show Details" %}</button></td>
