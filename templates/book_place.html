@@ -13,8 +13,7 @@
             <div style="background-color:#fff;" class="bookpart">
                 <h3>{% trans "How it works" %}</h3>
 
-                Provide your booking details below. You will not be charged unless the host accepts your request. They'll have 24 hours to reply.<br>
-                If the host declines or does not respond, no charge is made. Then you can try booking those dates with someone else.
+                {% cevir "rezervasyon nasil calisir yardim" %}
 
 
             </div>
@@ -88,9 +87,7 @@
                 </div>
 {#                <div class="bookpart"><h3>{% trans "Additional Information" %}</h3></div>#}
                 <div class="bookpart"><h3>{% trans "Payment" %}</h3>
-                    After clicking "Book it using PayPal" you will be redirected to PayPal to complete payment.
-                    You must complete the process to finalize the booking request. Actual payment will be done after
-                    host accepts your request. If the host declines or does not respond in 24h, no charge is made.
+                    {% cevir "rezervasyon odeme nasil yardim" %}
                     <div style="width:100%;text-align:center;margin-top:20px;">
                         {% csrf_token %}
                     <input name="paypal" type="submit" class="yemyesildugme fo16" value="{% trans "Book It using PayPal" %}">
