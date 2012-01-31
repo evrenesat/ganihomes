@@ -229,6 +229,7 @@ PLACE_THUMB_SIZES = [
             (615,400, 'plxl'),
         ]
 PHOTO_THUMB_SIZES = [
+    (50,50, 'xxs'),
     (0,80, 'xs'),
     (284,180, 'sm'),
     (568,360, 'l'),
