@@ -5,7 +5,7 @@
     <!--
     .kapsar {
         width: 940px;
-        height: 1141px;
+        height: 1287px;
         margin-right: auto;
         margin-left: auto;
         position: relative;
@@ -168,7 +168,7 @@
         left: 434px;
         top: 650px;
         width: 1px;
-        height: 482px;
+        height: 542px;
         z-index: 1;
     }
 
@@ -251,6 +251,23 @@
         z-index: 1;
 
     }
+    #apDiv21 {
+        position: absolute;
+        left: 591px;
+        top: 1195px;
+        height: 78px;
+        z-index: 1;
+
+    }
+        #apDiv22 {
+        position: absolute;
+        left: 94px;
+        top: 1195px;
+            height: 78px;
+        z-index: 1;
+
+    }
+
 #havlu{
     -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
     -moz-box-shadow: 1px 1px 10px 1px #cccccc;
@@ -408,7 +425,16 @@
             </div>
         </div>
 
+        <div id="apDiv21" class="ikodiv">
+            <input type="button" class="mavidugme fo20"  onclick="document.location='/{{ LANGUAGE_CODE}}/search'" value="{% trans "Find your place" %}">
 
+
+        </div>
+        <div id="apDiv22" class="ikodiv">
+            <input type="button" class="yemyesildugme fo20" onclick="document.location='/{{ LANGUAGE_CODE}}/add_place'"  value="{% trans "Add your place" %}">
+
+
+        </div>
     </div>
 
 

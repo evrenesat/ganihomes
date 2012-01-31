@@ -892,13 +892,14 @@ class Message(models.Model):
 
     def save(self, *args, **kwargs):
         super(Message, self).save(*args, **kwargs)
-        self.message_count(self.receiver)
+        kes('mcount',self.receiver_id).d()
 
 
     @classmethod
-    def message_count(cls, user):
-        k = kes('mcount',user.id)
-        return k.g() or k.s(cls.objects.filter(read=False, receiver=user).count())
+    def message_count(cls, user, reset=False):
+        if user.is_authenticated():
+            k = kes('mcount',user.id)
+            return k.g() or k.s(cls.objects.filter(read=False, receiver=user).count())
 
     def get_sender_name(self):
         return self.sender.get_profile().private_name
