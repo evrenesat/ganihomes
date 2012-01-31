@@ -193,11 +193,23 @@ def friends(request):
 def list_messages(rq, count=None):
     user = rq.user
     msgs = []
-    mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user),
-                           replyto__isnull=True).order_by('-last_message_time')
-    if count:
-        mesajlar = mesajlar[:count]
-    for m in mesajlar:
+    anamesajlar = set()
+
+    mesajlar = Message.objects.select_related().filter( receiver=user, read=False).order_by('-id','-last_message_time')
+    if mesajlar:
+        if count: mesajlar = mesajlar[:count]
+        for m in mesajlar:
+            anamesajlar.add(m.replyto if m.replyto else m)
+    if count and len(anamesajlar) < count or not anamesajlar :
+        mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user), replyto__isnull=True).order_by('-last_message_time')
+        if mesajlar:
+            if count: mesajlar = mesajlar[:count]
+            for m in mesajlar:
+                anamesajlar.add(m.replyto if m.replyto else m)
+
+
+
+    for m in anamesajlar:
         m.icon = 'read'
         m.line = m.get_type_display()
         if m.sender != user:

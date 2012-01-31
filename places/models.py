@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from posix import unlink
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -485,11 +486,12 @@ class Place(models.Model):
     def reorderPhotos(self, jsdata):
         order = 0
         ids = json.loads(jsdata)
-        self.primary_photo = self.photo_set.get(pk=ids[0]).image
-        self.save()
+#        self.primary_photo = self.photo_set.get(pk=ids[0]).image
+#        self.save()
         for id in ids:
             order +=1
             self.photo_set.filter(pk=id).update(order=order)
+        self.pick_primary_photo()
         return True
 
     def calculatePrice(self, start, end ):
@@ -552,6 +554,12 @@ class Place(models.Model):
 
     def createThumbnails(self):
         customThumbnailer(self.primary_photo, self.id, PLACE_THUMB_SIZES)
+
+    def pick_primary_photo(self):
+        self.primary_photo = self.photo_set.all()[0].image
+        for s in PLACE_THUMB_SIZES:
+            unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,self.id, s[2] ) )
+        self.save()
 
     def save(self, *args, **kwargs):
         self._updatePrices()
@@ -722,9 +730,24 @@ class Photo(models.Model):
 #        customThumbnailer(self.image, self.id, [(50, 50, 's')])
         customThumbnailer(self.image, self.id, PHOTO_THUMB_SIZES)
         #FIXME: order on save
-        if self.place and (self.order == 1 or (self.place and not self.place.primary_photo)):
-            self.place.primary_photo = self.image
-            self.place.save()
+        if self.place and (self.order == 1 or not self.place.primary_photo):
+            self.place.pick_primary_photo()
+
+    def delete(self, *args, **kwargs):
+        id = self.id
+        order = self.order
+        place = self.place
+        super(Photo, self).delete(*args, **kwargs)
+
+        for s in PHOTO_THUMB_SIZES:
+            try:
+                unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,id, s[2] ) )
+            except:
+                raise
+        if order == 1 and place:
+            place.pick_primary_photo()
+
+
 
 
 class Booking(models.Model):
@@ -867,6 +890,15 @@ class Message(models.Model):
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     last_message_time = models.DateTimeField(_('Last message time'), default=datetime.datetime.now())
 
+    def save(self, *args, **kwargs):
+        super(Message, self).save(*args, **kwargs)
+        self.message_count(self.receiver)
+
+
+    @classmethod
+    def message_count(cls, user):
+        k = kes('mcount',user.id)
+        return k.g() or k.s(cls.objects.filter(read=False, receiver=user).count())
 
     def get_sender_name(self):
         return self.sender.get_profile().private_name

@@ -45,7 +45,7 @@ def damgala(image, size):
     #    watermark(im, mark, 'tile', 0.5)
     #    watermark(im, mark, 'scale', 1.0)
     ImageFile.MAXBLOCK = 1024*1024
-    watermark(im, mark, (0,0), 0.5).save(image.path, "JPEG", quality=95)
+    watermark(im, mark, (0,0), 0.5).save(image.path, "JPEG", quality=85)
 
 def reduce_opacity(im, opacity):
     """Returns an image with reduced opacity."""

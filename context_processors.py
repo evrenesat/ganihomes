@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from places.models import Message
+
+
 __author__ = 'Evren Esat Ozkan'
 
 #from website.models.dil import Dil, Ceviriler
@@ -14,10 +17,16 @@ __author__ = 'Evren Esat Ozkan'
 #
 #    }
 
+
+
 from django.conf import settings
+
+
+
 def GH(r):
 
     return {
         'LISTED_LOCALES': settings.LISTED_LOCALES,
+        'unread_count': Message.message_count(r.user),
        }
 
