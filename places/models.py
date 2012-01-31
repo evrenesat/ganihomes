@@ -557,9 +557,15 @@ class Place(models.Model):
 
     def pick_primary_photo(self):
         self.primary_photo = self.photo_set.all()[0].image
-        for s in PLACE_THUMB_SIZES:
-            unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,self.id, s[2] ) )
+        self.cleanup_photos()
         self.save()
+
+    def cleanup_photos(self):
+        for s in PLACE_THUMB_SIZES:
+            try:
+                unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,self.id, s[2] ) )
+            except OSError:
+                log.exception('gorsel silinirken hata')
 
     def save(self, *args, **kwargs):
         self._updatePrices()
