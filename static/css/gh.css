@@ -2735,7 +2735,7 @@ ul.messages li{
 
 #placelist .detail{
     float:left;
-    width: 432px;
+    width: 396px;
     color: gray;
     font-size: 13px;
 }
@@ -2753,7 +2753,7 @@ ul.messages li{
     padding: 3px !important;
     font-size: 12px;
     text-align: center;
-    width: 150px;
+    width: 195px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -2777,7 +2777,7 @@ ul.messages li{
 
 #placelist .buttons{
     float:right;
-    width: 169px;
+    width: 201px;
     /*display:none;*/
     text-align: right;
     /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.3)";*/
