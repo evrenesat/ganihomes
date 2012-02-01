@@ -26,7 +26,7 @@
 
     <div id="place-conatiner">
         <div id="place-title">
-            <div id="titlediv">{{ place.title }}</div>
+            <div id="titlediv">{% if title %}{{ title }}{% else %}{{ place.title }}{% endif %}</div>
             <div id="subtitlediv">{{ place.city}} - {{ place.district }}, {{ place.get_country_display }}</div>
 
         </div>
@@ -98,14 +98,18 @@
 
                    <div id="ack">
                        <div id="aciklama">
-                           {{ place.description|linebreaksbr }}
+                       <div id="descdiv">
+                           {% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}
+                       </div>
 
                        {% if translations %}
                            <br><br><hr>
                            {% trans "Available tranlations" %}<br>
+                           <div id="availtrans">
                            {% for l in translations %}
-                               <img src="/static/images/flags/{{ l }}.png">
+                               <img data-lang="{{ l }}" src="/static/images/flags/{{ l }}.png">
                            {% endfor %}
+                           </div>
                        {% endif %}
                        </div>
                        <div id="ozellikler">

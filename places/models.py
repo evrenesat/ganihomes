@@ -442,12 +442,19 @@ class Place(models.Model):
         return tags
 
     def get_translation_list(self):
-        k=kes('descs',self.id)
+        k=kes('ptranslist',self.id)
         return k.g() or k.s(self.descriptions.values_list('lang', flat=True))
 
+    @classmethod
+    def c_get_translation(cls,place_id, lang):
+        k=kes('ptrans',place_id,lang)
+        try:
+            return k.g() or k.s(Description.objects.filter(place_id=place_id, lang=lang).values_list('text','title')[0])
+        except:
+            return ['','']
+
     def get_translation(self,lang):
-        k=kes('desctitle',self.id)
-        return k.g() or k.s(self.descriptions.filter(lang=lang).values_list('text','title'))
+        return self.c_get_translation(self.id, lang)
 
 
     def setGeoLocation(self):

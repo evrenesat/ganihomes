@@ -52,6 +52,9 @@ class BookingForm(forms.Form):
         self.fields['no_of_guests']= forms.ChoiceField(choices=n_tuple(capacity), initial=1)
 
 
+def place_translation(request, id, lang):
+    return HttpResponse(json.dumps(Place.c_get_translation(id, lang)), mimetype='application/json')
+
 def showPlace(request, id):
     place = Place.objects.select_related().get(pk=id)
     owner = place.owner
@@ -75,6 +78,10 @@ def showPlace(request, id):
                'translations':place.get_translation_list(),
                'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id)
     }
+    if request.LANGUAGE_CODE in place.get_translation_list():
+#        assert 0, [place.get_translation(request.LANGUAGE_CODE)]
+        context['title'], context['description'] =place.get_translation(request.LANGUAGE_CODE)
+
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 

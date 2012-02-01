@@ -739,7 +739,13 @@ gh = {
 
         $('#toptabs').tabs();
 
-
+        $('#availtrans img').click(function(){
+            var pid = $('#placeid').val()
+            $.get('/place_translation/'+pid + '/' + $(this).data('lang') + '/', function(data){
+                $('#descdiv').html(data[0])
+                $('#titlediv').html(data[1])
+            }  )
+        })
 
 
 //        $('#uygtab').click(function(){})

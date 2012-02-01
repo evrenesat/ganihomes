@@ -3782,8 +3782,9 @@ input.reqmissing, select.reqmissing{
     border-top: 0;
     position: relative;
     float:none !important;
-    padding: 0 20px !important;
+    padding: 0 20px 30px !important;
     margin-bottom: 20px;
+    min-height: 310px;
 }
 #editpayment label{
     width:170px;
