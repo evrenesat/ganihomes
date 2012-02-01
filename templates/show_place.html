@@ -218,8 +218,8 @@
 </div>
     <div class="align-center"><input type="button" class="yemyesildugme fo20" id="bookitbutton" value="{% trans "Book it" %}"></div>
     <div id="info-select-dates" class="warn gizli">{% trans "Please select the check in and check out dates first."%}</div>
-    <div id="info-stay-more" class="warn gizli">{% blocktrans with place.min_stay as min_stay%}Duration of minimum accommodation for this place is {{ place.min_stay }} nights.{% endblocktrans %}</div>
-    <div id="info-stay-less" class="warn gizli">{% blocktrans with place.min_stay as min_stay%}Duration of minimum accommodation for this place is {{ place.max_stay }} nights.{% endblocktrans %}</div>
+    <div id="info-stay-more" class="warn gizli">{% blocktrans with place.min_stay as minstay%}Duration of minimum accommodation for this place is {{ minstay }} nights.{% endblocktrans %}</div>
+    <div id="info-stay-less" class="warn gizli">{% blocktrans with place.min_stay as maxstay%}Duration of maximum accommodation for this place is {{ maxstay }} nights.{% endblocktrans %}</div>
     <div id="info-select-valid-dates" class="warn  gizli">{% trans "Those dates are unavailable. Select differend dates or <a href='#looknearby'>look for nearby places</a>."%}</div>
 </div>
 </form>
