@@ -451,7 +451,7 @@ class Place(models.Model):
         try:
             return k.g() or k.s(Description.objects.filter(place_id=place_id, lang=lang).values_list('text','title')[0])
         except:
-            return ['','']
+            return '',''
 
     def get_translation(self,lang):
         return self.c_get_translation(self.id, lang)
