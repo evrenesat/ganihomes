@@ -52,7 +52,7 @@
               <div id="supermenu">
                   {% if user.is_authenticated %}
 {#                      FIXME: get username frm cookie #}
-                      <div class="firstitem"><span id="wellcome">{% blocktrans with user.get_full_name as name %}Welcome {{ name }}{% endblocktrans %}</span> <a href="{%  url dashboard %}" class="mypage" >{% trans "My Account" %}</a>
+                      <div class="firstitem"><span id="wellcome"><a href="{%  url dashboard %}">{% blocktrans with user.get_full_name as name %}Welcome {{ name }}{% endblocktrans %}</a></span> <a href="{%  url dashboard %}" class="mypage" >{% trans "My Account" %}</a>
                       {% if unread_count %}<a title="{% blocktrans %}You have {{ unread_count }} unread message(s).{% endblocktrans %}" href="{%  url dashboard %}#do_showMessages">({{ unread_count }})</a>{% endif %}
                       </div>
                       <div><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
@@ -95,8 +95,8 @@
     <div class="footdiv">
     <h4>{% trans "Help & Support" %}</h4>
         <a href="{% url faq %}">{% trans "FAQ" %}</a><br>
-{#        <a href="#">{% trans "Help Desk" %}</a><br>#}
-{#        <a href="#">{% trans "Call Center" %}</a>#}
+        <a href="{%  url dashboard %}#do_supportCreate">{% trans "Help Desk" %}</a><br>
+        <a href="{%  url tips %}">{% trans "Tips for Hosts" %}</a>
     </div>
     <div class="footdiv">
         <h4>{% trans "Corporate" %}</h4>
