@@ -1150,6 +1150,7 @@ gh = {
     },
     init_add_place:function(place_id){
         var self = this;
+        $('#amenul .mhelp').easyTooltip()
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
         $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});

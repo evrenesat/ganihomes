@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
 from django.db.models.query_utils import Q
+from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson as json
 from django.forms.models import ModelForm, ModelChoiceField
 from django.shortcuts import render_to_response, get_object_or_404
@@ -12,7 +13,7 @@ from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import  COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency,  Profile
+from places.models import Place, Tag, Photo, Currency,  Profile, Description, TagTranslation
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
@@ -53,7 +54,8 @@ class BookingForm(forms.Form):
 
 
 def place_translation(request, id, lang):
-    return HttpResponse(json.dumps(Place.c_get_translation(id, lang)), mimetype='application/json')
+    trans = Place.c_get_translation(id, lang)
+    return HttpResponse(json.dumps((linebreaksbr(trans[0],True),trans[1])), mimetype='application/json')
 
 def showPlace(request, id):
     place = Place.objects.select_related().get(pk=id)
@@ -169,34 +171,39 @@ def addPlace(request, ajax=False, id=None):
         form = addPlaceForm(request.POST, instance=old_place)
         if form.is_valid():
             new_place=form.save(commit=False)
-            if register_form.is_valid() or loged_in:
-                if not loged_in:
-                    user = register_form.save(commit=False)
-                    user.username = user.email
-                    user.set_password(register_form.cleaned_data['pass1'])
-                    user.save()
-                new_place.owner = user
-                new_place.lat = str(new_place.lat)
-                new_place.lon = str(new_place.lon)
-                new_place.lang = request.LANGUAGE_CODE
-                log.info('%s %s '% (new_place.lang, request.LANGUAGE_CODE))
-                new_place.save()
-                form.save_m2m()
-                for tag in form.cleaned_data['tags']:
-                    new_place.tags.add(tag)
-                new_place.save()
-                tmp_photos = request.session.get('tmp_photos')
-                if tmp_photos:
-                    Photo.objects.filter(id__in=tmp_photos).update(place=new_place)
-                    Photo.objects.get(pk=tmp_photos[-1]).save()
-                    request.session['tmp_photos']=[]
-                if not ajax:
-                    if not new_place.published:
-                        messages.success(request, _('Your place succesfully saved but not published yet.'))
-                        messages.info(request, _('You can publish this place by pressing the "Publish" button below.'))
-                    else:
-                        messages.success(request, _('Your changes succesfully saved.'))
-                    return HttpResponseRedirect('%s#do_listPlaces,this'%reverse('dashboard'))
+#            if register_form.is_valid() or loged_in:
+#                if not loged_in:
+#                    user = register_form.save(commit=False)
+#                    user.username = user.email
+#                    user.set_password(register_form.cleaned_data['pass1'])
+#                    user.save()
+            new_place.owner = user
+            new_place.lat = str(new_place.lat)
+            new_place.lon = str(new_place.lon)
+            new_place.lang = request.LANGUAGE_CODE
+            log.info('%s %s '% (new_place.lang, request.LANGUAGE_CODE))
+            new_place.save()
+            form.save_m2m()
+            for tag in form.cleaned_data['tags']:
+                new_place.tags.add(tag)
+            log.info(form.cleaned_data['tags'])
+            new_place.save()
+            d, new = Description.objects.get_or_create(place=new_place, lang=new_place.lang)
+            d.text = new_place.description
+            d.title = new_place.title
+            d.save()
+            tmp_photos = request.session.get('tmp_photos')
+            if tmp_photos:
+                Photo.objects.filter(id__in=tmp_photos).update(place=new_place)
+                Photo.objects.get(pk=tmp_photos[-1]).save()
+                request.session['tmp_photos']=[]
+            if not ajax:
+                if not new_place.published:
+                    messages.success(request, _('Your place succesfully saved but not published yet.'))
+                    messages.info(request, _('You can publish this place by pressing the "Publish" button below.'))
+                else:
+                    messages.success(request, _('Your changes succesfully saved.'))
+                return HttpResponseRedirect('%s#do_listPlaces,this'%reverse('dashboard'))
         else:
             for e in form.errors:
                 messages.error(request, e)
@@ -218,7 +225,12 @@ def addPlace(request, ajax=False, id=None):
     str_fee =  _('%s%% Service Fee '% dbsettings.ghs.host_fee)
     context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
                'host_fee':dbsettings.ghs.host_fee, 'str_fee':str_fee, 'photos':photos,
+               'tags':TagTranslation.objects.filter(lang=request.LANGUAGE_CODE),
+               'existing_tags':[],
+
     }
+    if id:
+        context['existing_tags'] = old_place.tags.values_list('id',flat=True)
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 

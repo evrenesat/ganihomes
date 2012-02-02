@@ -30,11 +30,11 @@ def damgala(image, size):
 #    path  = '%s/place_photos/%s'%(settings.MEDIA_ROOT,image_name)
     if size[0]>250 or size[1]>250:
         klise_en = 'm'
-    elif size[0]>100 or size[1]>100:
-        klise_en = 's'
+#    elif size[0]>100 or size[1]>100:
+#        klise_en = 's'
     else:
         klise_en = 'xs'
-    log.info(settings.STATIC_ROOT)
+#    log.info(settings.STATIC_ROOT)
     klise_path = '%s/images/klise-%s.png'% (settings.STATIC_ROOT, klise_en)
 #    log.info(klise_path)
     im = Image.open(image.path)
