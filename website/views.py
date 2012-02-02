@@ -83,9 +83,9 @@ def showPlace(request, id):
     }
     if request.LANGUAGE_CODE in place.get_translation_list():
         trns = place.get_translation(request.LANGUAGE_CODE)
-        context['title'], context['description'] = trns
-        context['meta_desc'] = trns[1]
-        context['page_title'] = context['meta_keywords'] = trns[0]
+        context['description'], context['title']  = trns
+        context['meta_desc'] = trns[0]
+        context['page_title'] = context['meta_keywords'] = trns[1]
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 
