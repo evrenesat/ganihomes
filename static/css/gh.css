@@ -1934,12 +1934,11 @@ li.g-plus-one {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #bd9a61;
-    height: 55px;
     margin-bottom: 10px;
     color: #0d0402;
     padding-left: 15px;
     background-color: #ffce81;
-    background: url(/static/images/tahta2.jpg) no-repeat 0 -4px;
+    background: url("/static/images/tahta2.jpg") 0 0px;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
@@ -1966,7 +1965,6 @@ li.g-plus-one {
 #titlediv {
     font-size: 26px;
     font-weight: 200;
-    height: 30px;
     text-shadow: 0 0 2px rgb(163, 42, 42);
 }
 
