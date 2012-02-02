@@ -1966,6 +1966,8 @@ li.g-plus-one {
     font-size: 26px;
     font-weight: 200;
     text-shadow: 0 0 2px rgb(163, 42, 42);
+    line-height: 25px;
+    padding: 3px 15px 0 0;
 }
 
 #subtitlediv {
