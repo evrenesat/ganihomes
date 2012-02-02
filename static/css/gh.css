@@ -1963,11 +1963,11 @@ li.g-plus-one {
 }
 
 #titlediv {
-    font-size: 26px;
+    font-size: 25px;
     font-weight: 200;
     text-shadow: 0 0 2px rgb(163, 42, 42);
     line-height: 25px;
-    padding: 3px 15px 0 0;
+    padding: 3px 22px 0 0;
 }
 
 #subtitlediv {
@@ -2842,7 +2842,7 @@ ul.messages li{
     margin: 0;
     padding: 0;
 }
-.sresults .pimg img, .sresults .ownimg{
+.sresults .pimg .img, .sresults .ownimg{
     border: 2px solid #fff;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
@@ -2851,6 +2851,10 @@ ul.messages li{
 .sresults .pimg{
     float:left;
     padding-right:20px;
+    width:120px;
+}
+.sresults .pimg div.img{
+    height:100px;
     width:120px;
 }
 .sresults .price .rating{

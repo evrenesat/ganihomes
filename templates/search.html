@@ -28,8 +28,9 @@
 
                                         <li onclick="gh.gotoplace(<%=this.id%>)">
                                             <div class="pimg">
-                                                <img src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=this.id%>_pls.jpg">
+                                                <div class="img" style="background:url({{ STATIC_URL }}/yuklemeler/place_photos/<%=this.id%>_pls.jpg)">
                                                 <%if(this.index){ %><span class="arasayi"> <%=this.index%> </span><%}%>
+                                                </div>
                                             </div>
                                             <div class="detail">
                                                 <h4><%=this.tt%></h4>
