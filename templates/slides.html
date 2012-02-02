@@ -21,9 +21,7 @@
                     </div>
                 </div>
             {% else %}
-
                 <div class="slidiv slidiv-thumb" onclick="document.location='/{{LANGUAGE_CODE}}{{ s.getUrl }}'">
-
                     {% for photo in s.photos %}
                         <div class="thumbphoto"
                              style="background-image: url({{ STATIC_URL }}/yuklemeler/place_photos/{{ s.image.id }}_m.jpg)"></div>
@@ -31,16 +29,12 @@
                     <div class="sbaner alpha60">
                         <div class="sbaner-info">{{ s.placeName }}<br>
                             <span style="font-size:smaller">{{ s.place.owner.get_profile.private_name }}</span>
-
                         </div>
                         <div class="stardiv">
                             <span class="gh-prc crc" data-prc="{{ s.place.price }}"
                                   data-crc="{{ s.place.currency_id }}"></span>
                             {% if s.place.overall_rating %}<div class="stardiv rating star{{ s.place.overall_rating}}" ></div>{% endif %}
-
                         </div>
-
-
                     </div>
                 </div>
             {% endif %}

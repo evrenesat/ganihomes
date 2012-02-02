@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load cevir i18n%}
+{% block title%}{% cevir "anasayfa baslik" %}{% endblock %}
+{% block metadesc%}{% cevir "anasayfa meta tanim" %}{% endblock %}
+{% block metakeywords%}{% cevir "anasayfa meta etiketler" %}{% endblock %}
 {% block extrajs %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>
-    <script type="text/javascript">$(window).ready(function () {
-        gh.init_index()
-    })
+    <script type="text/javascript">$(window).ready(function () {gh.init_index()})
     slide_timings=[{{ nasil_slide_zaman }}]
     </script>
 {% endblock %}
@@ -20,17 +21,13 @@
                     <div id="aradugme"><span>&nbsp; {% trans "Search" %} &nbsp;</span></div>
                 </div>
             </div>
-
             <div id="mhtabela" class='krm'>
                 <div class="hdr"><b>{% trans "Help Desk" %}</b></div>
                 <div class="shdr">{% trans "Mon - Sat" %} 09:00 - 18:00 <span style="font-size:9px">(GMT+2)</span></div>
                 <div class="tkutu tel"> &nbsp; +90232 4627278</div>
-                {#                <div class="tkutu epo">info@</div>#}
                 <div id="askquestion" class="tkutu dst"><span>{% trans "I have a question?" %}</span></div>
-
             </div>
         </div>
-
     </div>
 {% endblock %}
 {% block content %}
@@ -51,14 +48,10 @@
 
         </li>
     </ul>
-
     <div class="tabcontent grit" id="tabs-0"> </div>
     <div class="tabcontent grit" id="tabs-1"> </div>
     <div class="tabcontent grit" id="tabs-2"> </div>
-
     <div class="tabcontent"  id="tabs-4">
-
-
         <div id="likethat">
             <div id="nasilsunum">
                 <div class="gizli sunumslide">{% cevir "sunum slide1" %}</div>
@@ -68,20 +61,12 @@
                 <div class="gizli sunumslide">{% cevir "sunum slide5" %}</div>
                 <div class="gizli sunumslide">{% cevir "sunum slide6" %}</div>
                 <div class="gizli sunumslide">{% cevir "sunum slide7" %}</div>
-
             </div>
             <div id="nasilvideo">
-
-
-
             </div>
-
-
         </div>
     </div>
     </div>
-
-
     </div>
         <div class="span-12 shadoblok" id="howmonitordiv">
             <img id="howmonitorimg" src="{{ STATIC_URL }}images/howmonitor.png">
@@ -105,13 +90,7 @@
                            {% trans "You can use our site from any mobile device which have a web browser."%}
 
                        </div>
-
-
-
         </div>
-
-
-
     </div>
 
     <div id="arabg_cont">
@@ -168,63 +147,6 @@
         </form>
         </div>
     </div>
-
-
-
-
-
-
-{#{% if not request.user.is_authenticated %}#}
-{#    <div id="fillpage" style="position:fixed; top:0; left:0; width:100%; z-index:100; background-color:#fff ; display:none; text-align:left;">#}
-{#    <div style="width:960px;margin-left:auto;margin-right:auto;font-size:20px;color:#ccc;padding-top:24px;font-family:Verdana">#}
-{#    	<div style="text-align:center;padding-bottom:50px;float:left;width:900px;"><img src="http://www.ganihomes.com/static/images/logo.png"></div>#}
-{#    	<div style="text-align:center;padding-bottom:50px;float:left;width:900px;">#}
-{##}
-{#    	 <object width="420" height="315">#}
-{#             <param name="movie" value="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0"></param>#}
-{#             <param name="allowFullScreen" value="true"></param>#}
-{#             <param name="allowscriptaccess" value="always"></param>#}
-{#             <param name="controls" value="0"></param>#}
-{#             <embed src="http://www.youtube.com/v/QNL7aimk9h8?version=3&amp;hl=en_US&amp;rel=0"#}
-{#                    type="application/x-shockwave-flash"#}
-{#                    width="420"#}
-{#                    height="315"#}
-{#                    allowscriptaccess="always"#}
-{#                    allowfullscreen="true">#}
-{#                    </embed>#}
-{#         </object>#}
-{##}
-{#    	</div>#}
-{#    	<div style="float:left;width:40%;height:200px;text-align:center;padding-right:40px;border-right:1px solid #ccc;">#}
-{#    		Türkiye'nin en kapsamlı günlük ev, oda ve ofis kiralama portalı GaniHomes çok yakında hizmete giriyor...#}
-{#    		<br><br>#}
-{#    		Daha fazla bilgi için lütfen bizimle iletişim kurun;#}
-{#    	</div>#}
-{#    	<div style="float:left; width:40%;text-align:center;padding-left:40px;">#}
-{#    		GaniHomes the most comprehensive rental service of daily houses, rooms and offices is opening soon.#}
-{#    		<br><br><br>#}
-{#    		Please contact us for more info;#}
-{#    	</div>#}
-{#    	<div style="float:left;width:862px;text-align:center;padding-top:30px;">#}
-{#    		<a style="text-decoration:none;color:gray" href="mailto:info@ganihomes.com"> info@ganihomes.com </a>#}
-{#    	</div>#}
-{#    </div>#}
-{#    </div>#}
-{#    <script>#}
-{#        $(document).ready(function(){#}
-{#            if(!$.cookie('ganibookmarks')){#}
-{#               $("#fillpage").fadeIn().css("height", $(document).height());#}
-{#              $('#GVS1').smoothDivScroll('destroy')#}
-{#              $(window).bind("resize", function(){$("#fuzz").css("height", $(window).height());});#}
-{#            }#}
-{#        })#}
-{#    </script>#}
-{##}
-{#{% endif %}#}
-
-
-
-
 
 {% endblock %}
 {% block footmessage %}{% cevir "altmetin index" %}{% endblock %}

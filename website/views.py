@@ -76,12 +76,16 @@ def showPlace(request, id):
                'profile':profile, 'service_fee':dbsettings.ghs.guest_fee,
                'amens':place.getTags(request.LANGUAGE_CODE),
                'translations':place.get_translation_list(),
-               'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id)
+               'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id),
+               'meta_keywords':place.title,
+               'meta_desc':place.description,
+               'page_title':place.title,
     }
     if request.LANGUAGE_CODE in place.get_translation_list():
-#        assert 0, [place.get_translation(request.LANGUAGE_CODE)]
-        context['title'], context['description'] =place.get_translation(request.LANGUAGE_CODE)
-
+        trns = place.get_translation(request.LANGUAGE_CODE)
+        context['title'], context['description'] = trns
+        context['meta_desc'] = trns[1]
+        context['page_title'] = context['meta_keywords'] = trns[0]
     return render_to_response('show_place.html', context, context_instance=RequestContext(request))
 
 
@@ -269,10 +273,15 @@ def addPlace(request, ajax=False, id=None):
 def icerik(request, id, slug):
     sayfa = get_object_or_404(Sayfa, pk=id)
     lang = request.LANGUAGE_CODE
+    icerik = sayfa.al_icerik(lang)
     context = {'sayfa_id': sayfa.id, 'sayfa': sayfa,
-               'icerik': sayfa.al_icerik(lang),
+               'icerik': icerik,
                'ust_baslik':sayfa.parent.al_baslik(lang) if sayfa.parent else '',
-               'kategoriler': sayfa.yansayfalar(lang)}
+               'kategoriler': sayfa.yansayfalar(lang),
+               'meta_keywords':icerik.tanim,
+               'meta_desc':icerik.anahtar,
+               'page_title':icerik.html_baslik,
+               }
     ci = RequestContext(request)
     sablon = 'content_templates/' + (sayfa.sablon or 'icerik.html')
     return render_to_response(sablon, context, context_instance=ci)

@@ -160,6 +160,11 @@ MESSAGE_STATUS = (
     (40, _('Deleted')),
     (50, _('Archived')),
 )
+TRANSLATION_STATUS = (
+    (10, _('Untranslated')),
+    (20, _('Partly translated')),
+    (30, _('Fully translated')),
+)
 MESSAGE_TYPES = (
     (10, _('Conversation with %s')),
     (20, _('Friend request from %s')),

@@ -391,6 +391,7 @@ class Place(models.Model):
     published = models.BooleanField(_('Place is published'), default=False)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
+    translation_status = models.SmallIntegerField(_('Translation status'), choices=TRANSLATION_STATUS, default=10)
 
     #####JSON CACHES######
     reserved_dates = models.TextField(editable=False, default='')
@@ -886,6 +887,11 @@ class Description(models.Model):
 
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.place_id, self.lang)
+
+    def save(self, *args, **kwargs):
+        super(Description, self).save(*args, **kwargs)
+        kes('ptranslist',self.place_id).d()
+
 
 
 class Message(models.Model):

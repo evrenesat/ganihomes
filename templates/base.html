@@ -4,7 +4,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html><head>
 <script>AUTH='{% if user.is_authenticated %}1{% endif %}'</script>
-<title>{% block title %}GaniHomes {{ title }}{% endblock %}</title>
+<title>{% block title %}GaniHomes {{ page_title }}{% endblock %}</title>
 <link rel="icon" type="image/png" href="{{ STATIC_URL }}images/favicon.png">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
@@ -25,6 +25,12 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={{ curr_version }}"></script>
 <script type="text/javascript" id="script1" src="{{ STATIC_URL }}js/gh.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
+<META NAME="keywords" CONTENT="{% block metakeywords %}{{ meta_keywords }}{% endblock %}">
+<META NAME="description" CONTENT="{% block metadesc %}{{ meta_desc }}{% endblock %}">
+<META HTTP-EQUIV="Copyright" CONTENT="GaniHomes Ltd.">
+<META NAME="RATING" CONTENT="General">
+<META NAME="ROBOTS" CONTENT="index,follow">
+<META NAME="ROBOTS" CONTENT="ALL">
 {% block extrahead %} {% endblock %}
 {% block extracss %} {% endblock %}
 {% block extrajs %} {% endblock %}
