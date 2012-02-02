@@ -98,7 +98,7 @@
 
                     <div id="place_tags">
                         {% cevir "mes3 tesisler metin" %}
-                        <ul id="amenul">
+                        <ul id="editamenul">
                             {% for t in tags %}
                             <li><label for="id_tags_{{ forloop.counter0 }}"><input type="checkbox" name="tags" value="{{ t.tag_id }}" id="id_tags_{{ forloop.counter0 }}" {% if t.tag_id in existing_tags %}checked=1{% endif %}/> {{ t.translation }} {% if t.help %}<span class="mhelp" title="{{ t.help }}"></span>{% endif %}</label></li>
                             {% endfor %}
