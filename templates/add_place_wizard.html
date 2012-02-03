@@ -120,8 +120,8 @@
                     <h3><span class="nums">5</span><a href="#">{% cevir "mes3 fotoekle baslik" %}</a></h3>
                     <div>
                         {% cevir "mes3 fotoekle metin" %}
-                        <button onclick="$('#fileupload').trigger('click');return false;" class="yemyesildugme fr" style="margin-bottom:5px">{% trans "Upload a new photo" %}</button>
-                        <input id="fileupload" style="position:fixed;top:-1000px;" type="file" name="files[]" multiple>
+                        <button id="fileuploadbutton" onclick="$('#fileupload').trigger('click');return false;" class="yemyesildugme fr" style="margin-bottom:5px">{% trans "Upload a new photo" %}</button>
+                        <input id="fileupload"  type="file" name="files[]" multiple>
                         <script type="text/x-jqote-template" id="upPlacePhotosTpl">
                                                 <![CDATA[
                                         <div id="img_<%=this%>"><img src="{{ STATIC_URL }}/yuklemeler/place_photos/<%=this%>_xxs.jpg">

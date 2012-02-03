@@ -1151,6 +1151,11 @@ gh = {
     init_add_place:function(place_id){
         var self = this;
         $('#editamenul .mhelp').easyTooltip()
+        if ( $.browser.msie ) {
+            $("#fileuploadbutton").hide();
+         } else {
+            $("#fileupload").css({position:'absolute',top:'-1000px'});
+         }
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
         $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
