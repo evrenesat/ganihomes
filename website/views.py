@@ -408,9 +408,9 @@ def multiuploader(request, place_id=None):
                        "turl":thumb_url,
                        "id":str(image.pk),
                        "delete_url":file_delete_url+str(image.pk),
-                       "delete_type":"POST",})
+                       "delete_type":"POST"})
         response_data = json.dumps(result)
-        return HttpResponse(response_data, mimetype='application/json')
+        return HttpResponse(response_data, mimetype='text/html')
 
 @csrf_exempt
 def bookmark(request):
