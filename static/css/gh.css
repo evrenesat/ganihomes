@@ -909,7 +909,7 @@ ul.messages {
      background: -o-linear-gradient(top, #C47D04 0%, #EEB24B 100%);
      background: -ms-linear-gradient(top, #C47D04 0%, #EEB24B 100%);
      background: linear-gradient(top, #C47D04 0%, #EEB24B 100%);
-     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FCF8F4', endColorstr = '#F5DFC5', GradientType = 0);
+     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#C47D04', endColorstr = '#EEB24B', GradientType = 0);
 
 
 }
@@ -933,6 +933,7 @@ ul.messages {
      background: -o-linear-gradient(top, #F4E3C7 0%, #FFAA18 100%);
      background: -ms-linear-gradient(top, #F4E3C7 0%, #FFAA18 100%);
      background: linear-gradient(top, #F4E3C7 0%, #FFAA18 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#F4E3C7', endColorstr = '#FFAA18', GradientType = 0);
 }
 
 #dokuzbar{
@@ -997,7 +998,7 @@ ul.messages {
     background-color:#fff;
     float: left;
     margin-top: 20px;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
     padding: 22px;
 }
 
@@ -1014,7 +1015,7 @@ ul.messages {
     box-shadow: 2px 2px 10px 2px #cccccc;
     float: left;
     background-color:#fff;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
 
 }
 
@@ -1272,7 +1273,7 @@ li.g-plus-one {
     -moz-box-shadow: 2px 2px 10px 2px #cccccc;
     box-shadow: 2px 2px 10px 2px #cccccc;
     float: left;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
 
 }
 
@@ -1402,7 +1403,7 @@ li.g-plus-one {
     -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
     -moz-box-shadow: 1px 1px 10px 1px #cccccc;
     box-shadow: 1px 1px 10px 1px #cccccc;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
 }
 
 .ikikutu h3 {
@@ -1703,18 +1704,18 @@ li.g-plus-one {
     font-weight:bold;
     background:#fff;
     borer:2px solid #ccc;
-    width: 20px;
+    width: 21px;
     height:18px;
     display:inline-block;
+    float:left;
     position: absolute;
-    bottom: 0px;
+    bottom: 7px;
     text-align: center;
     -webkit-border-top-right-radius: 3px;
     -moz-border-radius-topright: 3px;
     border-top-right-radius: 3px;
     color: green;
     text-shadow: 0px 0px 4px #36FB34;
-    padding: 0 3px 0 0;
 
 }
 #adresikullan {
@@ -2571,7 +2572,7 @@ li.g-plus-one {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     background-color:#fff;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
 }
 #searchbar ul{
 margin-top: 30px !important;
@@ -2816,7 +2817,7 @@ ul.messages li{
     box-shadow: 1px 1px 4px 1px #cccccc;
     height: 144px;
     background-color:#fff;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
 }
 
 
@@ -2856,7 +2857,6 @@ ul.messages li{
 .sresults .pimg div.img{
     height:100px;
     width:120px;
-    position: relative;
 }
 .sresults .price .rating{
     margin:0 auto;
@@ -3772,7 +3772,7 @@ input.reqmissing, select.reqmissing{
     padding: 20px;
     border-color: #D3AE93;
     -pie-background: linear-gradient(#ffffc8, #FFFFFF);
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
     min-height: 64px;
 }
 .genbdy form{
@@ -4287,7 +4287,7 @@ border-collapse:collapse;
     box-shadow: 1px 1px 4px 1px #cccccc;
     height: 144px;
     background-color:#fff;
-    behavior: url(/templates/PIE.htc);
+    behavior: url(/static/js/PIE.htc);
 
 
 }
