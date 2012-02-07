@@ -14,16 +14,18 @@ ImageFile.MAXBLOCK = 1024*1024
 
 def customThumbnailer(img, id, opts, mark=True, crop='smart'):
     results = []
-    if not img:
-        return
-    for opt in opts:
-        size, name = opt[:2], '%s_%s' % (id, opt[2])
-        thumbnail_options = dict(size=size, upscale=True, crop=crop, custom_name=name)
-        file = get_thumbnailer(img).get_thumbnail(thumbnail_options)
-        results.append(file)
-        if mark:
-            damgala(file, size)
-
+    try:
+        if not img:
+            return
+        for opt in opts:
+            size, name = opt[:2], '%s_%s' % (id, opt[2])
+            thumbnail_options = dict(size=size, upscale=True, crop=crop, custom_name=name)
+            file = get_thumbnailer(img).get_thumbnail(thumbnail_options)
+            results.append(file)
+            if mark:
+                damgala(file, size)
+    except:
+        log.exception('beklenmeyen hata, img %s' % repr(img))
     return results
 
 def damgala(image, size):
