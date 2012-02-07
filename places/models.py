@@ -128,8 +128,7 @@ class Currency(models.Model):
                     c.active = False
                 c.save()
             except:
-                print r
-                raise
+                log.exception('currency update rate : %s'% repr(r))
 
     @classmethod
     def generateJSON(cls):
