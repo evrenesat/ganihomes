@@ -103,7 +103,7 @@ class Ceviriler(models.Model):
         verbose_name_plural = u"Karşılıklar"
 
     def __unicode__(self):
-        return '%s' % (self.kelime,)
+        return '%s' % (self.asil,)
 
 
     #    @classmethod
