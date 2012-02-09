@@ -58,7 +58,7 @@ def place_translation(request, id, lang):
     return HttpResponse(json.dumps((linebreaksbr(trans[0],True),trans[1])), mimetype='application/json')
 
 def showPlace(request, id):
-    place = Place.objects.select_related().get(pk=id)
+    place = Place.objects.select_related().get(pk=id,active=True)
     owner = place.owner
     profile = owner.profile
     properties=[
@@ -466,7 +466,7 @@ def send_message_to_host(request, data=None):
     if data.get('message'):
         if not request.user.is_authenticated():
             request.session['message_to_host'] = request.POST.copy()
-            result = {'message':_('Your message has saved.')}
+            result = {'message':force_unicode(_('Your message has saved.'))}
         else:
             send_message(request, data['message'], place=data['pid'])
             result = {'message':force_unicode(_('Your message successfully sent.'))}
