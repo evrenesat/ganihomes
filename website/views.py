@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+
 from django import forms
+from django.http import Http404
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -58,7 +60,10 @@ def place_translation(request, id, lang):
     return HttpResponse(json.dumps((linebreaksbr(trans[0],True),trans[1])), mimetype='application/json')
 
 def showPlace(request, id):
-    place = Place.objects.select_related().get(pk=id,active=True)
+    try:
+        place = Place.objects.select_related().get(pk=id,active=True)
+    except Place.DoesNotExist:
+        raise Http404
     owner = place.owner
     profile = owner.profile
     properties=[
