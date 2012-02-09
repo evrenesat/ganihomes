@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.core.paginator import Paginator
 from django.http import Http404
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -371,7 +372,7 @@ def multiuploader(request, place_id=None):
         #because we don't need form of any type.
 
         image = Photo()
-        image.name=str(filename)
+        image.name=filename
         image.image=file
 
         if place_id:
@@ -598,7 +599,7 @@ def parseJSData(request, key):
 def search_ajax(request):
     form = SearchForm(request.REQUEST)
     pls = Place.objects.filter(published=True).distinct()
-    page = request.GET.get('page',1)
+    page = request.REQUEST.get('page',1)
     log.debug('search view')
 #    pls = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
     if form.is_valid():
@@ -610,8 +611,8 @@ def search_ajax(request):
         pls = pls.filter(capacity__gte=nog)
 
     selected_currency = int(request.POST.get('scurrency'))
-    min = int(request.POST.get('pmin'))
-    max = int(request.POST.get('pmax'))
+    min = int(request.REQUEST.get('pmin',0))
+    max = int(request.REQUEST.get('pmax',1000))
     convert_factor = Currency.objects.get(pk=selected_currency).get_factor()
     if max < 500:
         max = max * convert_factor
@@ -639,7 +640,7 @@ def search_ajax(request):
     if cin and cout:
         pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
                           ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
-#    paginator = Paginator(contact_list, 25)
+    paginator = Paginator(pls, 20)
     return HttpResponse(u'[%s]' % u','.join([p for p in pls.values_list('summary', flat=True)]),
         mimetype='application/json')
 
