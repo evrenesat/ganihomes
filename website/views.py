@@ -607,8 +607,10 @@ def search_ajax(request):
         query = form.cleaned_data['query']
         cin = form.cleaned_data['checkin']
         cout = form.cleaned_data['checkout']
-        nog = form.cleaned_data['no_of_guests']
+        nog = form.cleaned_data['no_of_guests'] or 1
         pls = pls.filter(capacity__gte=nog)
+    else:
+        return HttpResponse(u'[]', mimetype='application/json')
 
     selected_currency = int(request.POST.get('scurrency'))
     min = int(request.REQUEST.get('pmin',0))
