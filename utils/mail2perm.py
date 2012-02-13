@@ -15,7 +15,8 @@ def mail2perm(obj, url='', pre=None, msg=None, perm='change', sender=settings.EM
       if url:url=u'\n\nDetayları görmek için linke tıklayın:\n\n http://%s%s' % (domain,url)
       msg='%s%s'  % ( (pre or sbj) , url )
 
-   perm=Permission.objects.filter(codename='%s_%s'%(perm,obj._meta.module_name), content_type__app_label=obj._meta.app_label).get()
+   codename = '%s_%s' % (perm, obj._meta.module_name)
+   perm=Permission.objects.filter(codename=codename, content_type__app_label=obj._meta.app_label).get()
 
    recips=[]
    for user in perm.user_set.all():

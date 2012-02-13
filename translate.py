@@ -2,16 +2,17 @@
 # -*-  coding: utf-8 -*-
 import sys
 import os
-from applicationinstance import ApplicationInstance
-
-from apiclient.discovery import build
-from places.models import Place, Description
-from utils.cache import kes
-
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
 sys.path.append(os.path.normpath(os.path.join(os.path.abspath(pathname), '../')))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from applicationinstance import ApplicationInstance
+
+from apiclient.discovery import build
+from places.models import Place, Description
+#from utils.cache import kes
+
+
 
 import logging
 log = logging.getLogger('genel')
@@ -29,6 +30,7 @@ class TranslationMachine:
 
     def translate(self, input, target, source=None):
         try:
+#            print target,input
             if source:
                 tr = self.service.translations().list(source=source, target=target, q=input).execute()
             else:
@@ -38,12 +40,15 @@ class TranslationMachine:
             log.exception('unexpected error')
 
     def run(self):
+        print self.auto_langs
         for p in Place.objects.filter(translation_status__lt=30):
             already_translated_langs = p.get_translation_list()
             for l in self.auto_langs:
                 if l not in already_translated_langs:
                     translation = self.translate([p.title,p.description],l)
                     if translation:
+#                        print 'laaaaaaaaaaaaaaan',p.title,l
+#                        print translation[0]
                         d, new = Description.objects.get_or_create(place=p, lang=l)
                         d.text = translation[1]['translatedText']
                         d.title = translation[0]['translatedText']

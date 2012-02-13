@@ -128,8 +128,7 @@ class Currency(models.Model):
                     c.active = False
                 c.save()
             except:
-                print r
-                raise
+                log.exception('currency update rate : %s'% repr(r))
 
     @classmethod
     def generateJSON(cls):
@@ -387,7 +386,7 @@ class Place(models.Model):
     cleaning_fee = models.DecimalField(_('Cleaning fee'), decimal_places=2, max_digits=8, null=True, blank=True)
     street_view = models.BooleanField(_('Street view'), default=False)
 
-    active = models.BooleanField(_('Place is visible'), default=True)
+    active = models.BooleanField(_('Etkin'), default=True, help_text=u'Etkin olmayan mekanlar kendi sahibine bile gösterilmez. Ev sahibi için "silinmiş" gibi görünür. ')
     published = models.BooleanField(_('Place is published'), default=False)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)

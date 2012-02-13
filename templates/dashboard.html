@@ -3,10 +3,11 @@
 {% block extrajs %}
     {#<script src="{{ STATIC_URL }}/js/jquery.iframe-transport.js"></script>#}
     {#<script src="{{ STATIC_URL }}/js/jquery.fileupload.js"></script>#}
+    <script>place_photos = [];</script>
 {% endblock %}
 {% block content %}
 
-    <div class="dokuzkutu ieg">
+    <div class="dokuzkutu ieg" style="padding:0">
         <div id="dokuzbar">
             <div id=message><span>{% trans "My Account" %}</span>
             </div>

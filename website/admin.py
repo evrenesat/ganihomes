@@ -156,7 +156,7 @@ class KelimeAdmin(admin.ModelAdmin):
     list_display = ('kelime', 'durum')
     #    search_fields = ['', ]
     #    list_filter = ['', ]
-    readonly_fields = ['durum']
+    readonly_fields = ['kelime','durum']
     change_form_template = 'admin/wysiwyg/website_kelime.html'
     save_on_top = True
     inlines = [CeviriInline, ]
