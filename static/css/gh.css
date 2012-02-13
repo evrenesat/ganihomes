@@ -2402,6 +2402,10 @@ li.g-plus-one {
     background: url("/static/images/icon/preferences.png") no-repeat scroll 8px 50% transparent;
     padding-left: 43px;
 }
+#mcreview a{
+    background: url("/static/images/icon/review.png") no-repeat scroll 8px 50% transparent;
+    padding-left: 43px;
+}
 #mcmess a{
     background: url("/static/images/icon/messages.png") no-repeat scroll 8px 50% transparent;
     padding-left: 43px;

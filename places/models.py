@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from posix import unlink
+import random
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
@@ -717,6 +718,10 @@ class ReservedDates(models.Model):
         self.place.updateReservedDates()
 
 
+def update_filename(instance, filename):
+    format = '%s_%s%s' % (instance.place_id, random.randrange(99999), os.path.splitext(filename)[1])
+    return os.path.join('place_photos', format)
+
 class Photo(models.Model):
     """Photos"""
 
@@ -724,7 +729,7 @@ class Photo(models.Model):
 
     place = models.ForeignKey(Place, verbose_name=_('Place'), null=True, blank=True)
     name = models.CharField(_('Image name'), max_length=60, null=True, blank=True)
-    image = models.ImageField(_('Image File'), upload_to='place_photos')
+    image = models.ImageField(_('Image File'), upload_to=update_filename)
     type = models.SmallIntegerField(_('Photo type'), choices=PHOTO_TYPES, null=True, blank=True)
     order = models.SmallIntegerField(_('Display order'), default=60)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
@@ -750,13 +755,17 @@ class Photo(models.Model):
         id = self.id
         order = self.order
         place = self.place
+        try:
+            unlink(self.image.path)
+        except:
+            log.exception('ana img silinirken hata')
         super(Photo, self).delete(*args, **kwargs)
 
         for s in PHOTO_THUMB_SIZES:
             try:
                 unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,id, s[2] ) )
             except:
-                raise
+                log.exception('thumb %s silinirken hata' % s)
         if order == 1 and place:
             place.pick_primary_photo()
 

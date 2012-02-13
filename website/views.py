@@ -401,8 +401,8 @@ def multiuploader(request, place_id=None):
         file_url = image.image.url
 
         #getting thumbnail url using sorl-thumbnail
-        im = square_thumbnail(image.image)
-        thumb_url = im.url
+#        im = square_thumbnail(image.image)
+#        thumb_url = im.url
 #        thumb_tag = im.tag()
 
         #generating json response array
@@ -411,7 +411,7 @@ def multiuploader(request, place_id=None):
                        "size":file_size,
                        "url":file_url,
 #                       "tag":thumb_tag,
-                       "turl":thumb_url,
+#                       "turl":thumb_url,
                        "id":str(image.pk),
                        "delete_url":file_delete_url+str(image.pk),
                        "delete_type":"POST"})
