@@ -15,7 +15,7 @@ CHARSET = 'utf-8'
 
 email.Charset.add_charset(CHARSET, email.Charset.SHORTEST, None, None)
 
-named = lambda email, name: ('%s <%s>' % (email, name)) if name else email
+named = lambda email, name: ('%s <%s>' % (name, email)) if name else email
 
 def image_finder(tag):
     return (tag.name == u'img' or
