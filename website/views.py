@@ -452,7 +452,8 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
         'link': u'/dashboard/?showMessage=%s'% msg.id,
         'surname':receiver.last_name,
         'domain':current_site.domain,
-        'name':current_site.name
+        'name':current_site.name,
+        'LANGUAGE_CODE':rq.LANGUAGE_CODE
     }
     subject = msg.get_type_display()
     obj = None
@@ -555,7 +556,9 @@ def register(request,template='register.html'):
                     messages.success(request, _('Welcome to GaniHomes.'))
 
 #                    send_message(request, Ceviriler.cevir('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
-                    msg_context = {'user':user,'fullname':user.get_full_name(),'LANGUAGE_CODE':request.LANGUAGE_CODE}
+                    msg_context = {'user':user,
+                                   'fullname':user.get_full_name(),
+                                   'LANGUAGE_CODE':request.LANGUAGE_CODE}
                     send_html_mail(Ceviriler.cevir('hosgeldin epostasi konu',request.LANGUAGE_CODE),
                                     user.email,
                                     msg_context,
