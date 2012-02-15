@@ -2192,7 +2192,17 @@ li.g-plus-one {
     height: 500px;
 
 }
-
+#fileupload-progress{
+    background-color:#fff6bf;
+    border:1px solid #facc5e;
+    width: 149px;
+    float: right;
+    padding: 5px;
+    margin: 6px;
+    font-size: 9px;
+    display:none;
+    text-align: center;
+}
 #uploaded {
     width: 94%;
     border: 1px solid #F5E57D;

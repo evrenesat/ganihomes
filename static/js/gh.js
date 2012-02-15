@@ -921,8 +921,7 @@ gh = {
                     },
                     updateProgressElement = function (loaded, total, bps) {
                         progressElement.html(
-                            formatBytes(bps) + 'ps | ' +
-                                formatTime((total - loaded) / bps) + ' | ' +
+
                                 formatPercentage(loaded / total) + ' | ' +
                                 formatBytes(loaded) + ' / ' + formatBytes(total)
                         );
