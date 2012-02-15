@@ -1105,9 +1105,11 @@ gh = {
                 $('#ids_'+$(this).data('key')).val('['+keys.join(',')+']')
         })
         $('#scurrency').val(this.selected_currency)
-        $.post('/jsearch/', $("#search_form").serialize(),function(data){
-        data =self.setSearchPrices(data)
-//        console.log(data)
+//        console.log($("#search_form").serialize())
+        $.post('/jsearch/', $("#search_form").serialize(), function(data){
+            console.log(data)
+        data =self.setSearchPrices(data.results)
+
         $("#resul").html($("#wideResultsTpl").jqote(data));
             self.gmapsLoad('gh.searchMap')
             //FIXME: haritayi tekrar tekrar yukluyor
