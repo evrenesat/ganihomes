@@ -649,8 +649,8 @@ def search_ajax(request, current_page=1):
 
     resdict = json.dumps({
         'total':paginator.count,
-        'next':page.next_page_number(),
-        'previous':page.previous_page_number(),
+        'has_next':page.has_next(),
+        'has_previous':page.has_previous(),
         'numpages':paginator.num_pages,
         'current_page':current_page,
         'results':["PLACEHOLDER"],

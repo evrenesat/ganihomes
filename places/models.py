@@ -765,7 +765,7 @@ class Photo(models.Model):
             try:
                 unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,id, s[2] ) )
             except:
-                log.exception('thumb %s silinirken hata' % s)
+                log.exception('thumb %s silinirken hata' % repr(s))
         if order == 1 and place:
             place.pick_primary_photo()
 
