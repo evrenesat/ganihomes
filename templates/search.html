@@ -21,6 +21,7 @@
                     <button type="button" id="submit">{% trans "Search" %}</button>
                     </div>
                 </div>
+
                 <script type="text/x-jqote-template" id="wideResultsTpl">
                                         <![CDATA[
 
@@ -51,10 +52,22 @@
                                         </li>
                                         ]]>
                                     </script>
+    <script type="text/x-jqote-template" id="paginationTpl">
+        <![CDATA[
+        <div id="paginator">
+            &nbsp; &nbsp; <%if(this.total){ %><span id="pagination-total"> ( <%=this.total%> )</span><%}%> &nbsp; &nbsp;
+            <%if(this.next){ %><span id="pagination-next"  class="yemyesildugme fo16" onclick="gh.jsearch(<%=this.next%>)"> {% trans "Next" %} &raquo; </span><%}%>
+            <%if(this.previous){ %><span id="pagination-prev" class="yemyesildugme fo16" onclick="gh.jsearch(<%=this.previous%>)"> &laquo; </span><%}%>
+
+
+        </div>
+        ]]>
+    </script>
                 <ul id="resul">
 
 
                 </ul>
+                <div id="pagination"></div>
 
             </div>
         </div>

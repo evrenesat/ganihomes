@@ -2546,6 +2546,16 @@ li.g-plus-one {
     height: 48px;
     width: 245px;
 }
+#paginator span{
+    float:right;
+    margin-left:10px;
+}
+#pagination-total{
+    font-size: 25px;
+    color:green;
+    text-shadow: 1px 1px 1px #5F5B5B;
+}
+
 #searchbar{
     height:800px;
 }

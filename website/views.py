@@ -599,10 +599,9 @@ def parseJSData(request, key):
         return []
 
 @csrf_exempt
-def search_ajax(request):
+def search_ajax(request, current_page=1):
     form = SearchForm(request.REQUEST)
     pls = Place.objects.filter(published=True).distinct()
-    current_page = request.REQUEST.get('page',1)
     log.debug('search view')
 #    pls = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
     if form.is_valid():
@@ -647,15 +646,18 @@ def search_ajax(request):
                           ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
     paginator = Paginator(pls, 3)
     page = paginator.page(current_page)
-    return HttpResponse(
-#        "[[{'a':'3'},{'a':'44'}]]"
-        u'{"results":[%s], "next":%s, "previous":%s, "numpages":%s}' % (
-        u','.join(page.object_list.values_list('summary', flat=True)),
-        page.next_page_number(),
-        page.previous_page_number(),
-        paginator.num_pages,
-        )
-        , mimetype='application/json')
+
+    resdict = json.dumps({
+        'total':paginator.count,
+        'next':page.next_page_number(),
+        'previous':page.previous_page_number(),
+        'numpages':paginator.num_pages,
+        'current_page':current_page,
+        'results':["PLACEHOLDER"],
+    }, ensure_ascii=False)
+    #adding our prepared/handcrafted search results
+    resdict = resdict.replace('"PLACEHOLDER"', (u','.join(page.object_list.values_list('summary', flat=True))) )
+    return HttpResponse(resdict, mimetype='application/json')
 
 def cleandict(d):
      if not isinstance(d, dict):

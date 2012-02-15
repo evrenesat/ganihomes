@@ -1097,7 +1097,10 @@ gh = {
         this.search_results = data
         return data
     },
-    jsearch:function(){
+    searchPage:1,
+    jsearch:function(page){
+        if(typeof(page)=='undefined') page = this.searchPage
+        else this.searchPage = page
         var self=this
         $('#searchbar .kapsar').each(function(){
                 var keys = []
@@ -1106,11 +1109,10 @@ gh = {
         })
         $('#scurrency').val(this.selected_currency)
 //        console.log($("#search_form").serialize())
-        $.post('/jsearch/', $("#search_form").serialize(), function(data){
-            console.log(data)
-        data =self.setSearchPrices(data.results)
-
-        $("#resul").html($("#wideResultsTpl").jqote(data));
+        $.post('/jsearch/'+page, $("#search_form").serialize(), function(data){
+            results =self.setSearchPrices(data.results)
+            $("#resul").html($("#wideResultsTpl").jqote(results));
+            $("#pagination").html($("#paginationTpl").jqote(data));
             self.gmapsLoad('gh.searchMap')
             //FIXME: haritayi tekrar tekrar yukluyor
         });
