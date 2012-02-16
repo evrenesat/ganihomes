@@ -644,7 +644,7 @@ def search_ajax(request, current_page=1):
     if cin and cout:
         pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
                           ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
-    paginator = Paginator(pls, 15)
+    paginator = Paginator(pls, 2)
     page = paginator.page(current_page)
 
     resdict = json.dumps({
