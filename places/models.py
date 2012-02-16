@@ -913,7 +913,7 @@ class Message(models.Model):
     read = models.BooleanField(_('Was read'), default=False)
     replied = models.BooleanField(_('Replied'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
-    type = models.SmallIntegerField(_('Status'), choices=MESSAGE_TYPES, default=0)
+    type = models.SmallIntegerField(_('Type'), choices=MESSAGE_TYPES, default=0)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     last_message_time = models.DateTimeField(_('Last message time'), default=datetime.datetime.now())
 

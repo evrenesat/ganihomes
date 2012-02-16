@@ -195,7 +195,7 @@ def list_messages(rq, count=None):
     msgs = []
     anamesajlar = set()
 
-    mesajlar = Message.objects.select_related().filter( receiver=user, read=False).order_by('-id','-last_message_time')
+    mesajlar = Message.objects.select_related().filter( receiver=user, read=False, status=20).order_by('-id','-last_message_time')
     if mesajlar:
         if count: mesajlar = mesajlar[:count]
         for m in mesajlar:
