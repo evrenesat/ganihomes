@@ -56,7 +56,7 @@
         <![CDATA[
         <div id="paginator">
             &nbsp; &nbsp; <%if(this.total){ %><span id="pagination-total"> ( <%=this.total%> )</span><%}%> &nbsp; &nbsp;
-            <%if(this.has_next){ %><span id="pagination-next"  class="yemyesildugme fo16" onclick="gh.jsearch(<%=parseInt(this.current_page)ssh gano+1%>)"> {% trans "Next" %} &raquo; </span><%}%>
+            <%if(this.has_next){ %><span id="pagination-next"  class="yemyesildugme fo16" onclick="gh.jsearch(<%=parseInt(this.current_page)+1%>)"> {% trans "Next" %} &raquo; </span><%}%>
             <%if(this.has_previous){ %><span id="pagination-prev" class="yemyesildugme fo16" onclick="gh.jsearch(<%=parseInt(this.current_page) - 1 %>)"> &laquo; </span><%}%>
 
 
