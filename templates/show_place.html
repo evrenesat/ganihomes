@@ -11,7 +11,7 @@
 {#    			<meta property="og:postal-code" content="00149" />#}
 {#    			<meta property="og:url" content="http://www.airbnb.com/rooms/17099" />#}
     			<meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ place.title }}{% endif %}" />
-    			<meta property="og:image" content="http://www.ganihomes.com/static/yuklemeler/place_photos{{ place.id }}_plkks.jpg" />
+    			<meta property="og:image" content="http://www.ganihomes.com/static/yuklemeler/place_photos/{{ place.id }}_plkks.jpg" />
     			<meta property="og:country-name" content="{{ place.get_country_display }}" />
     			<meta property="og:description" content="{% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}" />
     			<meta property="og:locality" content="{{ place.city}}" />
