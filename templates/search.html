@@ -56,8 +56,18 @@
         <![CDATA[
         <div id="paginator">
             &nbsp; &nbsp; <%if(this.total){ %><span id="pagination-total"> ( <%=this.total%> )</span><%}%> &nbsp; &nbsp;
-            <%if(this.has_next){ %><span id="pagination-next"  class="yemyesildugme fo16" onclick="gh.jsearch(<%=parseInt(this.current_page)+1%>)"> {% trans "Next" %} &raquo; </span><%}%>
-            <%if(this.has_previous){ %><span id="pagination-prev" class="yemyesildugme fo16" onclick="gh.jsearch(<%=parseInt(this.current_page) - 1 %>)"> &laquo; </span><%}%>
+            <%if(this.has_next){ %><span id="pagination-next"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)+1%>)"> {% trans "Next" %} &raquo; </span><%}%>
+            <%if(parseInt(this.current_page)+3<=this.numpages){ %><span id="n3"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)+3%>)"> <%=parseInt(this.current_page)+3%> </span><%}%>
+            <%if(parseInt(this.current_page)+2<=this.numpages){ %><span id="n2"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)+2%>)"> <%=parseInt(this.current_page)+2%> </span><%}%>
+            <%if(parseInt(this.current_page)+1<=this.numpages){ %><span id="n1"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)+1%>)"> <%=parseInt(this.current_page)+1%> </span><%}%>
+
+
+            <span id="current"   class="yemyesildugme fo14"> <%=this.current_page%> </span>
+            <%if(parseInt(this.current_page)-1>0){ %><span id="p1"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)-1%>)"> <%=parseInt(this.current_page)-1%> </span><%}%>
+            <%if(parseInt(this.current_page)-2>0){ %><span id="p2"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)-2%>)"> <%=parseInt(this.current_page)-2%> </span><%}%>
+            <%if(parseInt(this.current_page)-3>0){ %><span id="p3"  class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page)-3%>)"> <%=parseInt(this.current_page)-3%> </span><%}%>
+{#            <%if(this.has_previous){ %><span id="pagination-prev" class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this#}
+            <%if(this.has_previous){ %><span id="pagination-prev" class="yemyesildugme fo14" onclick="gh.jsearch(<%=parseInt(this.current_page) - 1 %>)"> &laquo; </span><%}%>
 
 
         </div>

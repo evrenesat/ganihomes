@@ -1157,6 +1157,9 @@ li.g-plus-one {
 .fo16 {
     font-size: 16px;
 }
+.fo14 {
+    font-size: 14px;
+}
 
 .ml10 {
     margin-left: 10px
@@ -2555,6 +2558,12 @@ li.g-plus-one {
 #ptypes{
     height: 48px;
     width: 245px;
+}
+
+#paginator #current{
+    background-color:green;
+    background-image:none;
+    cursor: default;
 }
 #paginator span{
     float:right;
