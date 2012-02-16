@@ -463,7 +463,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
 
     if obj:
         subject = subject % obj
-    send_html_mail(subject, receiver.email, message, template='mail/new_message.html', recipient_name=receiver.get_full_name())
+#    send_html_mail(subject, receiver.email, message, template='mail/new_message.html', recipient_name=receiver.get_full_name())
     return msg
 
 @csrf_exempt
