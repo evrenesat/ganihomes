@@ -40,8 +40,8 @@ import dbsettings
 #ghs = app.settings.gh
 
 class SearchForm(forms.Form):
-    checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
-    checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False)
+    checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False, label=_('Check-in'))
+    checkout = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False, label=_('Check-out'))
     query = forms.CharField(widget=forms.TextInput(), label=_(u'City or address'),required=False)
     no_of_guests = forms.ChoiceField(choices=noOfBeds, initial=1, label=_(u'Guests'),required=False)
     placeType = forms.ChoiceField(choices=placeTypes,required=False)
