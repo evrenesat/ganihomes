@@ -228,7 +228,7 @@ def addPlace(request, ajax=False, id=None):
         form = addPlaceForm(instance=old_place)
         register_form = RegisterForm()
         login_form = LoginForm()
-    str_fee =  _('%s%% Service Fee '% dbsettings.ghs.host_fee)
+    str_fee =  _('%s Service Fee '% dbsettings.ghs.host_fee)
     context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
                'host_fee':dbsettings.ghs.host_fee, 'str_fee':str_fee, 'photos':photos,
                'tags':TagTranslation.objects.filter(lang=request.LANGUAGE_CODE),
@@ -446,7 +446,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
             sender = User.objects.filter(is_staff=True, username='GaniHomes')[0]
         if not sender:
             sender = rq.user
-    msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ)
+    msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
     current_site = get_current_site(rq)
     message = {
         'link': u'/dashboard/?showMessage=%s'% msg.id,

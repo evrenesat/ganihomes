@@ -27,23 +27,28 @@ import logging
 log = logging.getLogger('genel')
 
 
-#yapildi: sozlesme popup
-#yapildi: rezervasyon
-#yapil: paypal capture
-#yap: iletisim
-#yap: ask a question, login/anonim
-#yap: komisyon
-#yap: donemsel fiyat
-#yap: COKDiLLi:: profile description || Place description || messages || reviews
-#yap: yorum yaz, duzenle
-#yap: yorum goster!!!!!!!!!
+#yap: google translate
+#FIXME: mail2perm bozuk
+#FIXME: upload donergeci
+#FIXME: gecici kaydedilen mesajı login sonrası göndermiyor
+#FIXME: yorum yaz, duzenle
+#FIXME: yorum goster!!!!!!!!!
 #yap: IE kontrolu
-#yap: arkadasini davet et
-#yap: facebook twitter ikonlari
-#fixme: ganishow
-#yap ganishow dynamic
-#yapild: register thanks >> dashboard
-#yapıldı: arkadas ekle, cikar
+#yap: arkadasliktan cikar
+#yap: para birimi ratio/nonautomatic
+#yap: anasayfa slider (garanti gibi)
+#yap: filebrowser
+#yap: yorum placeholder
+#yap: yorumlu mekan aramada oncelikli
+#yap: mail adminden degil ganihomes'tan gitmeli
+#yap: admin arama (içerik blokları...)
+#yap: fiyatlandırma kaydedildiği sekmede açılmalı
+#yap: haftalık ve aylık indirimi günlükten önizle
+#yap: indirimi tersten hespalamaca
+#yap: koyu resim sorunu.(sapanca)
+#yap: ajax history api
+#yap: istatisikler
+
 
 
 
@@ -285,7 +290,7 @@ def show_booking(request, id):
 
 def show_message(request, id):
     user = request.user
-    msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id)
+    msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id, status=20)
     msg.message_set.filter(read=False, receiver=user).update(read=True)
     if msg.receiver == user:
         participant = msg.sender
@@ -483,8 +488,8 @@ def edit_payment(request):
 
 
 class PlacePriceForm(ModelForm):
-    currency = ModelChoiceField(Currency.objects.filter(active=True), empty_label=None)
-    extra_limit = ChoiceField(choices=NO_OF_BEDS)
+    currency = ModelChoiceField(Currency.objects.filter(active=True), empty_label=None, label=_('Currency'))
+    extra_limit = ChoiceField(choices=NO_OF_BEDS,label=_('Extra charge for more guests than'))
     class Meta:
         model=Place
         fields = ('price','currency','weekend_price','weekly_discount','monthly_discount','extra_limit','extra_price','cleaning_fee')

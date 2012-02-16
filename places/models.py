@@ -19,6 +19,7 @@ from utils.cache import kes
 from random import randint
 from easy_thumbnails.files import get_thumbnailer
 import codecs
+from utils.htmlmail import send_html_mail
 
 from utils.thumbnailer import customThumbnailer
 import logging
@@ -912,14 +913,40 @@ class Message(models.Model):
     text = models.TextField(_('Message'))
     read = models.BooleanField(_('Was read'), default=False)
     replied = models.BooleanField(_('Replied'), default=False)
-    status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=1)
+    status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=10)
     type = models.SmallIntegerField(_('Type'), choices=MESSAGE_TYPES, default=0)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     last_message_time = models.DateTimeField(_('Last message time'), default=datetime.datetime.now())
+    lang = models.CharField(_('Language'), max_length=2, choices=LANGUAGES)
+
+    def __init__(self, *args, **kwargs):
+       super(Message, self).__init__(*args, **kwargs)
+       self.old_status = self.status
 
     def save(self, *args, **kwargs):
+        if self.status == 20 and self.old_status == 10:
+            self.send_message()
         super(Message, self).save(*args, **kwargs)
         kes('mcount',self.receiver_id).d()
+
+    def send_message(self):
+        """
+        send a notification email to the receiver
+        """
+        mail_context = {
+            'link': u'/dashboard/?showMessage=%s'% self.id,
+            'surname':self.receiver.last_name,
+            'LANGUAGE_CODE':self.lang
+        }
+        subject = self.get_type_display()
+        obj = None
+        if self.type in [10,20]:  obj = self.sender.get_profile().private_name
+        elif self.type == 30:     obj = self.place.title
+        elif self.type in [50]:   obj = self.sender.get_full_name()
+
+        if obj:
+            subject = subject % obj
+        send_html_mail(subject, self.receiver.email, mail_context, template='mail/new_message.html', recipient_name=self.receiver.get_full_name())
 
 
     @classmethod

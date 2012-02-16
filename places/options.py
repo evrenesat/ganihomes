@@ -154,8 +154,8 @@ UNAVAIL_REASON = (
 )
 
 MESSAGE_STATUS = (
-    (1, _('Waiting for confirmation')),
-    (20, _('Visible')),
+    (10, _('Waiting for confirmation')),
+    (20, _('Confirmed, visible')),
     (30, _('Deactived by staff')),
     (40, _('Deleted')),
     (50, _('Archived')),
