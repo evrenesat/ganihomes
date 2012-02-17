@@ -9,7 +9,7 @@ log = logging.getLogger('genel')
 
 domain=Site.objects.filter(pk=1).values('domain')[0]['domain']
 
-def mail2perm(obj, url='', pre=None, msg=None, perm='change', sender=settings.EMAIL_HOST_USER, sbj=None):
+def mail2perm(obj, url='', pre=None, msg=None, perm='change', sender=settings.DEFAULT_FROM_EMAIL, sbj=None):
    if not msg:
       if not url:
          try: url=obj.get_absolute_url()
