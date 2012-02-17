@@ -178,7 +178,7 @@ def contact_box(request):
         if data.get('msg') and data.get('email'):
             m = Mesaj(message=data['msg'], first_name=data.get('fullname',''), email=data['email'], subject='Kutu Mesaj')
             m.save()
-            mail2perm(m, url='/admin/contactus/mesaj/%s'%m.id, sbj=u'Yeni ileti alındı. ')
+            mail2perm(m, url='/admin/support/mesaj/%s'%m.id, sbj=u'Yeni ileti alındı.')
             result = force_unicode(_(u'Thank you. Your message has been successfully sent.'))
 
     return HttpResponse(result)
