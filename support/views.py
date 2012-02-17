@@ -153,7 +153,7 @@ class contactUsForm(forms.ModelForm):
 
     class Meta:
         model = Mesaj
-        exclude = ('notes', 'called', 'archived')
+        exclude = ('notes', 'called', 'archived','country')
 
 
 def contactUs(request, subjectid=None):

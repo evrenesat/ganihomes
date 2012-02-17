@@ -102,9 +102,9 @@ class Inform(models.Model):
 
 
 class Mesaj(models.Model):
-    first_name = models.CharField(_(u"First Name"), max_length=50)
-    last_name = models.CharField(_(u"Last Name"), max_length=50, default='')
-    country=models.SmallIntegerField(_(u"Country"), default=0, choices=COUNTRIES)
+    first_name = models.CharField(_(u"Name"), max_length=50)
+#    last_name = models.CharField(_(u"Last Name"), max_length=50, default='')
+    country=models.SmallIntegerField(_(u"Country"), default=0, choices=COUNTRIES, blank=True)
     email = models.EmailField(_(u"Email"))
     phone = models.CharField(_(u"Phone"), max_length=30, default="")
     subject= models.CharField(_(u"Subject"), max_length=200, default='')
