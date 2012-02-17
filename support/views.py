@@ -160,7 +160,7 @@ def contactUs(request, subjectid=None):
         if aform.is_valid():
             obj = aform.save(commit=False)
             obj.save()
-            mail2perm(obj, url='/admin/contactus/mesaj/%s'%obj.id, sbj=u'Yeni ileti alındı. ')
+            mail2perm(obj, url='/admin/support/mesaj/%s'%obj.id, sbj=u'Yeni ileti alındı. ')
             return http.HttpResponseRedirect(reverse('contact_us_thanks'))
     else:
         aform = contactUsForm()
