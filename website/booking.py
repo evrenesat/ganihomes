@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from  django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 import logging
+from utils.mail2perm import mail2perm
 from website.views import send_message
 
 log = logging.getLogger('genel')
@@ -33,6 +34,7 @@ def paypal_complete(request):
     booking.status = 10
     booking.set_reservation()
     booking.save()
+    mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )))
 
     msg = _("""%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .
     Phone, email, and address information will be exchanged between guest/host after you accept the guest.

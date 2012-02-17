@@ -4,6 +4,7 @@ from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
 from support.models import SubjectCategory, Ticket
 from utils.htmlmail import send_html_mail
+from utils.mail2perm import mail2perm
 from website.models.faq import Question
 from website.views import addPlaceForm, send_message
 
@@ -544,7 +545,7 @@ def support_create(request):
             obj.status = 10
             obj.user = request.user
             obj.save()
-#            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
+            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
             messages.success(request, _('Your message successfully saved.'))
 #            return HttpResponseRedirect(reverse('support_thanks'))
     else:

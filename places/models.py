@@ -100,9 +100,12 @@ class Currency(models.Model):
     code_position = models.SmallIntegerField(_('Currency placement'), default=1,
         choices=((1, _('Prefix')), (2, _('Suffix'))))
     factor = models.DecimalField(_('Conversation factor'), decimal_places=4, max_digits=12, default='0')
+    modify_factor = models.DecimalField(_('Modify updated factor'), decimal_places=4, max_digits=12, default='0',
+    help_text=_('Enter a positive or negative decimal value to modify auto-updated conversation ratio.'))
     main = models.BooleanField(_('Main site currency?'), default=False, help_text=_('Main currency is the \
     conversation bridge between other currencies.'))
-    active = models.BooleanField(_('Active'), default=True)
+    auto_update = models.BooleanField(_('Auto update'), default=True)
+    active = models.BooleanField(_('Active'), default=False)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
     def get_factor(self, target_currency_id=None):
@@ -125,10 +128,9 @@ class Currency(models.Model):
         for r in ecb_forex_xml_regex.findall(rates):
             try:
                 c, new = Currency.objects.get_or_create(name=r[0])
-                c.factor = str(r[1])
-                if new:
-                    c.active = False
-                c.save()
+                if c.auto_update:
+                    c.factor = Decimal(str(r[1])) + c.modify_factor
+                    c.save()
             except:
                 log.exception('currency update rate : %s'% repr(r))
 
