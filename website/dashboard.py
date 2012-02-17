@@ -29,7 +29,7 @@ log = logging.getLogger('genel')
 
 #yap: google translate
 #FIXED: mail2perm bozuk
-#FIXME: upload donergeci
+#FIXED: upload donergeci
 #FIXME: gecici kaydedilen mesajı login sonrası göndermiyor
 #FIXME: yorum yaz, duzenle
 #FIXME: yorum goster!!!!!!!!!
