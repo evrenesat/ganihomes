@@ -96,7 +96,7 @@ class Currency(models.Model):
     """Currencies """
 
     name = models.CharField(_('Currency name'), max_length=20)
-    code = models.CharField(_('Currency code'), max_length=3)
+    code = models.CharField(_('Currency code'), max_length=3, unique=True)
     code_position = models.SmallIntegerField(_('Currency placement'), default=1,
         choices=((1, _('Prefix')), (2, _('Suffix'))))
     factor = models.DecimalField(_('Conversation factor'), decimal_places=4, max_digits=12, default='0')

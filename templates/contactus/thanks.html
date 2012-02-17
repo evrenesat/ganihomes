@@ -1,9 +1,9 @@
-{% extends "content_pro.html" %}
+{% extends "content_templates/menusuz_600.html" %}
 {% load i18n %}
 {%block content%}
 <br /><br />
 <br />
-<div align="center"><img src="/static/grafik/onay.png" /><div style="font-size:30px; font-weight:bold">Teşekkürler</div>
-<div style="font-size:14px; font-weight:bold; margin:10px">Mesajınız başarılı bir şekilde gönderildi.</div>
+<div align="center"><img src="/static/grafik/onay.png" /><div style="font-size:30px; font-weight:bold">{% trans "Thank you" %}</div>
+<div style="font-size:14px; font-weight:bold; margin:10px">{% trans "Your message has been successfully sent." %}</div>
 </div>
 {%endblock%}

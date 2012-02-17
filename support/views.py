@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
+from django.contrib import messages
 from django.utils.encoding import force_unicode
 
 from support.models import *
@@ -20,6 +21,7 @@ from django.core.urlresolvers import reverse
 #from django.contrib.auth.decorators import login_required
 #from django.utils.translation import ugettext
 from django import http
+from utils.htmlmail import send_html_mail
 
 from utils.mail2perm import mail2perm
 #from django.contrib.auth import logout, login, authenticate,  REDIRECT_FIELD_NAME
@@ -104,31 +106,27 @@ class ReplyForm(forms.ModelForm):
 def Show(request, id=None, is_admin=False):
     if id is None: id = request.GET.get('id', request.session.get('ticket_id'))
     request.session['ticket_id'] = id
-    if is_admin:
-        ticket = get_object_or_404(Ticket, pk=id)
-        status = 20
-        temple = 'support/admin/show.html'
-        redir = '/admin/support/ticket/?status__lt=40'
-    else:
-        redir = reverse('support_thanks')
-        temple = 'support/show.html'
-        status = 30
-        ticket = get_object_or_404(Ticket, user=request.user, pk=id)
-        #   kullanici = UserProfile.objects.get(user=mesaj.kullanici)
+    ticket = get_object_or_404(Ticket, pk=id)
+    status = 20
+    temple = 'support/admin/show.html'
+    redir = '/admin/support/ticket/?status__lt=40'
     if request.POST:
         form = ReplyForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
             ticket.status = status
             ticket.save()
-            request.user.message_set.create(message=ugettext(u'Mesajınız başarılı bir şekilde alındı.'))
+            messages.success(request, _('Your message successfully saved.'))
             obj.user = request.user
             obj.ticket = ticket
             obj.save()
-            #         if request.user.is_staff:
-            #             htmlmail('Destek sorunuza cevap verildi', ticket.user.email, {'ticket':ticket,'domain':domain,'url':ticket.get_absolute_url()}, 'support/ticket_replied_body.html', )
-            #         else:
-            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(ticket.id, )))
+            msg_context = {'name':ticket.user.last_name,
+                           'link':"/?showSupportTicket=%s"% obj.id}
+            send_html_mail(force_unicode(_('Support ticket has been replied')),
+                ticket.user.email,
+                msg_context,
+                template='mail/ticket_replied.html',
+                recipient_name=obj.user.get_full_name())
             return HttpResponseRedirect(redir)
     else:
         form = ReplyForm()
@@ -158,13 +156,11 @@ class contactUsForm(forms.ModelForm):
 
 def contactUs(request, subjectid=None):
     if request.POST:
-        if "http://" in request.POST.get('message'):
-            return http.HttpResponse(u'Lütfen yolladığınız mesaj içerisinde HTML kodları kullanmayınız.', 'text/plain')
         aform = contactUsForm(request.POST)
         if aform.is_valid():
             obj = aform.save(commit=False)
             obj.save()
-            mail2perm(obj, url='/admin/contactus/mesaj/', sbj=u'Yeni ileti alındı. ')
+            mail2perm(obj, url='/admin/contactus/mesaj/%s'%obj.id, sbj=u'Yeni ileti alındı. ')
             return http.HttpResponseRedirect(reverse('contact_us_thanks'))
     else:
         aform = contactUsForm()
@@ -180,9 +176,9 @@ def contact_box(request):
     if request.method=='POST':
         data = request.POST.copy()
         if data.get('msg') and data.get('email'):
-            m = Mesaj(message=data['msg'], first_name=data.get('fullname',''), email=data['email'])
+            m = Mesaj(message=data['msg'], first_name=data.get('fullname',''), email=data['email'], subject='Kutu Mesaj')
             m.save()
-            mail2perm(m, url='/admin/contactus/mesaj/', sbj=u'Yeni ileti alındı. ')
+            mail2perm(m, url='/admin/contactus/mesaj/%s'%m.id, sbj=u'Yeni ileti alındı. ')
             result = force_unicode(_(u'Thank you. Your message has been successfully sent.'))
 
     return HttpResponse(result)

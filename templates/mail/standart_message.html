@@ -18,7 +18,10 @@
        <td align="center" style="font-size:14px; color:#666666; padding:40px; text-align:left;">
 
 
-           {% block content %}{{ content }}{% endblock %}
+           {% block content %}
+               <h3>{{ title|safe }}</h3>
+               <p>{{ content|safe }}</p>
+           {% endblock %}
 
        </td>
 

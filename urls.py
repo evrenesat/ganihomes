@@ -90,6 +90,8 @@ urlpatterns += patterns('website.booking',
 urlpatterns += patterns('support.views',
     url(r'^contact_us/$', 'contactUs',name='contact_us'),
     url(r'^contact_box/$', 'contact_box',name='contact_box'),
+    (r'^close/(?P<id>\d+)$', 'AdminClose',{},'support_admin_close'),
+    (r'^ticket/(?P<id>\d+)/$','AdminShow',{},'support_admin_show_ticket'),
     #url(r'^iletisim/(?P<subjectid>\d+)$', 'contactUs',name='contact_us'),
 )
 

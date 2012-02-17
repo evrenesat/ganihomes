@@ -447,23 +447,6 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
         if not sender:
             sender = rq.user
     msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
-    current_site = get_current_site(rq)
-    message = {
-        'link': u'/dashboard/?showMessage=%s'% msg.id,
-        'surname':receiver.last_name,
-        'domain':current_site.domain,
-        'name':current_site.name,
-        'LANGUAGE_CODE':rq.LANGUAGE_CODE
-    }
-    subject = msg.get_type_display()
-    obj = None
-    if typ in [10,20]:  obj = sender.get_profile().private_name
-    elif typ == 30:     obj = place.title
-    elif typ in [50]:   obj = sender.get_full_name()
-
-    if obj:
-        subject = subject % obj
-#    send_html_mail(subject, receiver.email, message, template='mail/new_message.html', recipient_name=receiver.get_full_name())
     return msg
 
 @csrf_exempt

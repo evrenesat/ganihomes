@@ -21,7 +21,7 @@ class TicketAdmin(admin.ModelAdmin):
         #ordering = ['','']
         #list_per_page=20
         #list_select_related=False
-        list_display = ( 'username','category','creatation','status')
+        list_display = ( 'editLink','category','creatation','status')
         list_filter = ['status', 'creatation','category']
         search_fields = ['subject','body']
         list_per_page=20
@@ -31,10 +31,10 @@ class MesajAdmin(admin.ModelAdmin):
     list_display = ('fullname', 'subject', 'submit_time','email', 'called',  'archived' )
     list_filter=('called', 'archived')
     date_hierarchy = 'submit_time'
-    search_fields = ['first_name','last_name', 'subject', 'message']
+    search_fields = ['first_name','subject', 'message']
     fieldsets = (
     (u'Personal Information', {
-        'fields': ('first_name', 'last_name', 'country',  'email', 'phone', )
+        'fields': ('first_name', 'country',  'email', 'phone', )
     }),
     (u'Message', {
         'fields': ('subject', 'message', )

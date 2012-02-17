@@ -1,0 +1,14 @@
+{% extends "mail/standart_message.html" %}
+{% load cevir i18n%}
+
+{% block content %}
+    <h4>
+        {% blocktrans %} Dear {{ name }},{% endblocktrans %}
+    </h4>
+    <br>
+    {% trans "Your support ticket has been replied. Please click the link below to see it;" %}
+<br><br>
+    <a href="http://www.ganihomes.com/{{ LANGUAGE_CODE }}{{ link }}">http://www.ganihomes.com/{{ LANGUAGE_CODE }}{{ link }}</a>
+    <br><br><br>
+{% trans "Thanks for using GaniHomes!" %}
+{% endblock %}

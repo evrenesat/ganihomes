@@ -14,7 +14,8 @@ def mail2perm(obj, url='', pre=None, msg=None, perm='change', sender=settings.EM
       if not url:
          try: url=obj.get_absolute_url()
          except: pass
-      if url:url=u'\n\nDetayları görmek için linke tıklayın:\n\n http://%s%s' % (domain,url)
+      if url:
+          url=u'\n\nDetayları görmek için linke tıklayın:\n\n http://%s%s' % (domain,url)
       msg='%s%s'  % ( (pre or sbj) , url )
 
    codename = '%s_%s' % (perm, obj._meta.module_name)
