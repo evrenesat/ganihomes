@@ -118,7 +118,7 @@ class Mesaj(models.Model):
         '/admin/support/message/%s' % self.id
 
     def fullname(self):
-        return u'%s %s' % (self.first_name, self.last_name)
+        return u'%s %s' % (self.first_name, self.subject)
     fullname.short_description = _(u'Name')
 
     def __unicode__(self):
