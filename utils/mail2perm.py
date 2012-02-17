@@ -22,8 +22,10 @@ def mail2perm(obj, url='', pre=None, msg=None, perm='change', sender=settings.EM
    perm=Permission.objects.filter(codename=codename, content_type__app_label=obj._meta.app_label).get()
 
    recips=[]
+   log.info('perm for obj : %s %s'% (obj, perm))
    for user in perm.user_set.all():
       if user.email: recips.append(user.email)
+   log.info('recips : %s'% recips)
 
    try:
        send_mail((sbj or 'Yeni %s'% obj._meta.verbose_name.title()), msg, sender, recips)
