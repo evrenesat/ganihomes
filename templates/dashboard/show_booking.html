@@ -37,39 +37,37 @@
              </div></div>
              {% csrf_token %}
 
-    <div style="width:560px;margin:10px auto;">
 
-        {% if booking.status == 10 %}
-            {% if user_is_host %}
-            <input type="hidden" name="confirmation" id="confirmation" value="">
-            <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm" class="yemyesildugme kck"  value="{% trans "Confirm booking" %}">
-
-            <input type="submit" onclick="$('#confirmation').val('reject')" name="reject" class="kizildugme kck"  value="{% trans "Reject booking" %}">
+<div class="bookpart"><h3>{% trans "Booking Status" %}</h3>
 
 
-            {% else %}
-            <br><br>
-            <h3>{% trans "Waiting for the confirmation from the host." %}</h3>
-
-            {% endif %}
-    {% endif %}
-            {% if booking.status == 40 %}
-            <br><br>
-            <h3>{% trans "Booking request canceled by the host." %}</h3>
-
-            {% endif %}
-            {% if booking.status == 20 %}
-            <br><br>
-            <h3>{% trans "Booking request confirmed." %} <button onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme">{% trans "Send a message to host" %}</button></h3>
-
-            {% endif %}
-
-
-
+                <div id="dbookstats" class="iblock">
+                <span class="ozz_label">{% trans "Status" %}</span>
+                    <span class="ozz_value"> {{ status }}</span>
+                <span class="ozz_label">{% trans "Actions" %}</span>
+                    <span class="ozz_value">
+                    {% if user_is_host %}
+                    {% if booking.status == 10 %}
+                                <input type="hidden" name="confirmation" id="confirmation" value="">
+                                <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm" class="yemyesildugme kck"  value="{% trans "Confirm booking" %}"> <br>
+                                <input type="submit" onclick="$('#confirmation').val('reject')" name="reject" class="kizildugme kck"  value="{% trans "Reject booking" %}"><br>
+                    {% endif  %}
+                    <button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme">{% trans "Send a message to guest" %}</button>
+                    {% else %}
+                    {% if booking.status == 10 %}
+                    <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject" class="kizildugme kck"  value="{% trans "Cancel booking request" %}"><br>
+                    {% endif %}
+                    <button onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme">{% trans "Send a message to host" %}</button>
 
 
-    </div>
+                {% endif %}
+
+                </span>
+                </div>
+</div>
+
+
+
 </form>
 
 {% endblock %}
-

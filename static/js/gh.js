@@ -1396,6 +1396,7 @@ gh = {
     },
     sendMessage:function(id){
         this.genericEdit('/dashboard/new_message/'+id)
+            return false
     },
     do_editPayment:function(self){
         this.genericEdit('/dashboard/edit_payment/',function(){

@@ -3257,6 +3257,42 @@ ul.messages li{
     width: 230px;
 }
 
+
+
+
+#dbookstats span {
+    margin-top: 4px;
+    border-bottom: 1px solid #fffccf;
+    -webkit-box-shadow: #ccc 1px 1px 4px;
+    -moz-box-shadow: #ccc 1px 1px 4px;
+    box-shadow: #ccc 1px 1px 4px;
+    padding: 10px;
+    font-size: 14px
+}
+
+#dbookstats .ozz_label {
+    float: left;
+    color: #444444;
+    display: block;
+    width: 196px;
+
+}
+
+#dbookstats .ozz_value button, #dbookstats .ozz_value input  {
+ width:90%;
+    margin-top:10px;
+}
+#dbookstats .ozz_value {
+
+    float: left;
+
+    color: #444444;
+    font-weight: bold;
+    display: block;
+    width: 364px;
+    margin-left: 7px;
+}
+
 #hostbox img {
     margin: 10px 0;
     -webkit-box-shadow: 1px 1px 5px 1px #ccc;

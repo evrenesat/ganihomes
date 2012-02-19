@@ -271,7 +271,10 @@ def show_booking(request, id):
         'total_price': booking.guest_payment,
         'booking':booking,
         'place':booking.place,
+        'status' : BOOKING_STATUS_FOR_GUEST[booking.status] if booking.guest == user
+              else BOOKING_STATUS_FOR_HOST[booking.status]
     }
+
     if request.method =='POST':
         if request.POST.get('confirmation')=='confirm':
             booking.status = 20

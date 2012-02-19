@@ -134,6 +134,24 @@ BOOKING_STATUS = (
 )
 
 
+BOOKING_STATUS_FOR_HOST = {
+    10: _('Your action required'),
+    20: _('Confirmed by you'),
+    30: _('Accommodation confirmed by the guest'),
+    40: _('Rejected by you'),
+    50: _('Canceled by guest'),
+    60: _('Canceled by staff'),
+}
+BOOKING_STATUS_FOR_GUEST = {
+    10: _('Waiting for the confirmation from the host'),
+    20: _('Confirmed by host'),
+    30: _('Accommodation confirmed by you'),
+    40: _('Rejected by host'),
+    50: _('Canceled by you'),
+    60: _('Canceled by staff'),
+}
+
+
 REVIEW_STATUS = (
     (1, _('Waiting for confirmation')),
     (2, _('Confirmed, active')),
