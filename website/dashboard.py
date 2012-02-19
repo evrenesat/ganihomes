@@ -207,7 +207,7 @@ def list_messages(rq, count=None):
         for m in mesajlar:
             anamesajlar.add(m.replyto if m.replyto else m)
     if count and len(anamesajlar) < count or not anamesajlar :
-        mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user), replyto__isnull=True).order_by('-last_message_time')
+        mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user), replyto__isnull=True,  status=20).order_by('-last_message_time')
         if mesajlar:
             if count: mesajlar = mesajlar[:count]
             for m in mesajlar:
@@ -291,7 +291,7 @@ def show_booking(request, id):
 
 def show_message(request, id):
     user = request.user
-    msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id, status=20)
+    msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id)
     msg.message_set.filter(read=False, receiver=user).update(read=True)
     if msg.receiver == user:
         participant = msg.sender
