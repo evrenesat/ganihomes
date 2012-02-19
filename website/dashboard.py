@@ -34,6 +34,7 @@ log = logging.getLogger('genel')
 #FIXME: gecici kaydedilen mesajı login sonrası göndermiyor
 #FIXME: yorum yaz, duzenle
 #FIXME: yorum goster!!!!!!!!!
+#FIXME: onaylanmamis mesajlar gonderene gosterilmeli!!
 #yap: IE kontrolu
 #yap: arkadasliktan cikar
 #yap: para birimi ratio/nonautomatic

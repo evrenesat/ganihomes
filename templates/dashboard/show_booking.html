@@ -52,12 +52,12 @@
                                 <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm" class="yemyesildugme kck"  value="{% trans "Confirm booking" %}"> <br>
                                 <input type="submit" onclick="$('#confirmation').val('reject')" name="reject" class="kizildugme kck"  value="{% trans "Reject booking" %}"><br>
                     {% endif  %}
-                    <button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme">{% trans "Send a message to guest" %}</button>
+                    <input type=button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme" value="{% trans "Send a message to guest" %}">
                     {% else %}
                     {% if booking.status == 10 %}
                     <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject" class="kizildugme kck"  value="{% trans "Cancel booking request" %}"><br>
                     {% endif %}
-                    <button onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme">{% trans "Send a message to host" %}</button>
+                    <button onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme" value="{% trans "Send a message to host" %}">
 
 
                 {% endif %}
