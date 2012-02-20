@@ -878,7 +878,7 @@ gh = {
 
 
             $('#fileupload').bind('fileuploadstart', function () {
-                $('#uploaded').append('<div><img src="/static/images/loading2.gif" width="50"></div>')
+                $('#uploaded').append('<div><img src="/static/images/loading.gif" width="50"></div>')
                 var widget = $(this),
                     progressElement = $('#fileupload-progress').fadeIn(),
                     interval = 500,

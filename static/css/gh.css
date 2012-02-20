@@ -1897,7 +1897,7 @@ li.g-plus-one {
 
     margin-left: auto;
     margin-right: auto;
-    font-size: 14px;
+    font-size: 11px;
 
     -webkit-box-shadow: 0 0 10px 2px #fae4ce;
     -moz-box-shadow: 0 0 10px 2px #fae4ce;
@@ -3281,6 +3281,9 @@ ul.messages li{
 #dbookstats .ozz_value button, #dbookstats .ozz_value input  {
  width:90%;
     margin-top:10px;
+}
+.bgyellow{
+    background-color: #FFFE92;
 }
 #dbookstats .ozz_value {
 

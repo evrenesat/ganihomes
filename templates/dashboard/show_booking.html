@@ -7,7 +7,7 @@
     <div class="bookpart">
          <h3>{% trans "Property details" %}</h3>
          <div id="bookinplace">
-             <img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_l.jpg">
+             <img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_pls.jpg">
              <span class="booksubtitle">{{ place.title }}</span><br>
              {{ place.city}} - {{ place.district }} {{ place.get_country_display }}
              <br>
@@ -43,12 +43,13 @@
 
                 <div id="dbookstats" class="iblock">
                 <span class="ozz_label">{% trans "Status" %}</span>
-                    <span class="ozz_value"> {{ status }}</span>
+                    <span class="ozz_value bgyellow"> {{ status }}</span>
                 <span class="ozz_label">{% trans "Actions" %}</span>
                     <span class="ozz_value">
+                        <input type="hidden" name="confirmation" id="confirmation" value="">
                     {% if user_is_host %}
                     {% if booking.status == 10 %}
-                                <input type="hidden" name="confirmation" id="confirmation" value="">
+
                                 <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm" class="yemyesildugme kck"  value="{% trans "Confirm booking" %}"> <br>
                                 <input type="submit" onclick="$('#confirmation').val('reject')" name="reject" class="kizildugme kck"  value="{% trans "Reject booking" %}"><br>
                     {% endif  %}
@@ -57,7 +58,7 @@
                     {% if booking.status == 10 %}
                     <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject" class="kizildugme kck"  value="{% trans "Cancel booking request" %}"><br>
                     {% endif %}
-                    <button onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme" value="{% trans "Send a message to host" %}">
+                    <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme" value="{% trans "Send a message to host" %}">
 
 
                 {% endif %}

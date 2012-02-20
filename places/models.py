@@ -5,6 +5,7 @@ import random
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.query_utils import Q
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
 from options import *
@@ -633,6 +634,14 @@ class Profile(FacebookProfileModel):
     full_name = models.CharField(_('Full Name'), max_length=60, null=True, blank=True)
     bio = models.TextField(_('About you'), null=True, blank=True)
 
+    #FIXME: rename profile photo
+
+    def get_friends(self):
+        return [f.fr1 if f.fr2==self else f.fr2 for f in Friendship.objects.filter(Q(fr1=self)|Q(fr2=self)).exclude(pk=self.id)]
+
+    def is_friend(self, profile):
+        return profile in self.get_friends()
+
     def save(self, *args, **kwargs):
         self.update_names()
         super(Profile, self).save(*args, **kwargs)
@@ -658,7 +667,7 @@ class Profile(FacebookProfileModel):
         verbose_name_plural = _('Profiles')
 
     def __unicode__(self):
-        return 'User #%s' % (self.user_id,)
+        return '%s #%s' % (self.full_name, self.user_id,)
 
 class PaymentSelection(models.Model):
     '''Payment Selections'''

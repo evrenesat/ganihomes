@@ -125,8 +125,8 @@ PAYMENT_TYPES = (
 BOOKING_STATUS = (
     (5, _('Prepared')),
     (10, _('Requested')),
-    (20, _('Confirmed')),
-    (30, _('Payed')),
+    (20, _('Confirmed by host')),
+    (30, _('Confirmed by guest')),
 #    (35, _('Payed')),
     (40, _('Rejected by host')),
     (50, _('Canceled by guest')),
@@ -174,6 +174,7 @@ UNAVAIL_REASON = (
 MESSAGE_STATUS = (
     (10, _('Waiting for confirmation')),
     (20, _('Confirmed, visible')),
+    (25, _('Directly send')),
     (30, _('Deactived by staff')),
     (40, _('Deleted')),
     (50, _('Archived')),

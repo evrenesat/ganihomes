@@ -12,7 +12,7 @@
     {% else %}
         {% blocktrans %}Write a message to {{ toname }}{% endblocktrans %}
     {% endif %}</span>
-    <span class="fr minidugme" id="addfriendbutton" onclick="$('#friendshipbox').dialog({modal:true, width:'400px', position:'center'})">{% blocktrans %}Send a friendship request to {{ toname }}{% endblocktrans %} </span>
+        {% if not friends %}<span class="fr minidugme" id="addfriendbutton" onclick="$('#friendshipbox').dialog({modal:true, width:'400px', position:'center'})">{% blocktrans %}Send a friendship request to {{ toname }}{% endblocktrans %} </span>{% endif %}
 
     <form>{% csrf_token %}
 
@@ -23,6 +23,7 @@
 
     </form>
     </div>
+    <br>{{ friends }} <br>{{ msg.sender.get_profile}} {{ msg.receiver.get_profile }} {{ participant.get_profile }}
    {% for m in msgs %}
        <div class="replyblock">
            <hr>
@@ -30,7 +31,8 @@
            <div class="replydiv">
                <span class="sendername">{{ m.sender_name }}</span> <span class="datelite">{{ m.timestamp }}</span>
                <div class="message-text">{{ m.text|safe|linebreaksbr }}
-               {% if m.type == 20 %}
+
+               {% if m.type == 20 and not friends %}
                    <div style="text-align:center;width:500px;padding:10px;" id="accdecfriend">
                        <button style="margin-right:20px;" class="iblock minidugme" id="addfriendbutton" onclick="gh.confirmFriendship({{ m.sender.id }})">{% trans "Accept" %} </button>
                        <button class="iblock minidugme" id="addfriendbutton" onclick="gh.confirmFriendship(-{{ m.sender.id }})">{% trans "Decline" %} </button>

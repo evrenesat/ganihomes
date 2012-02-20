@@ -44,12 +44,15 @@ log = logging.getLogger('genel')
 #yap: yorumlu mekan aramada oncelikli
 #yap: mail adminden degil ganihomes'tan gitmeli
 #yap: admin arama (içerik blokları...)
+#yap: ganishow alt sekmeleri koyulastir
+#yap: faq html editoru.
 #yap: fiyatlandırma kaydedildiği sekmede açılmalı
 #yap: haftalık ve aylık indirimi günlükten önizle
 #yap: indirimi tersten hespalamaca
 #yap: koyu resim sorunu.(sapanca)
 #yap: ajax history api
 #yap: istatisikler
+#yap: destek yanit views
 
 
 
@@ -72,12 +75,14 @@ def add_friend(request, id):
     user = request.user
     requester_profile = user.get_profile()
     other_profile = Profile.objects.get(user_id=id)
-    if request.method == 'POST' and not Friendship.objects.filter(Q(fr1=requester_profile, fr2=other_profile)|
-                                                                  Q(fr2=requester_profile, fr1=other_profile)):
+    if request.method == 'POST' and not requester_profile.is_friend(other_profile):
         f = Friendship(fr1=requester_profile, fr2=other_profile)
         f.save()
         result = {'message':force_unicode(_('Friendship request successfully sent.'))}
-        send_message(request, force_unicode(_('%s wants to be friends with you.')) % user.profile.private_name, receiver=other_profile.user, typ=20)
+        msg = send_message(request, force_unicode(_('%s wants to be friends with you.')) % user.profile.private_name, receiver=other_profile.user, typ=20)
+        msg.status=25
+        msg.send_message()
+        msg.save()
     else:
         result = {'message':force_unicode(_('Request already exists.'))}
     return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
@@ -193,7 +198,7 @@ def friends(request):
     user = request.user
     profile = user.get_profile()
     context = {
-               'friends':[f.fr1 if f.fr2==profile else f.fr2 for f in Friendship.objects.filter(Q(fr1=profile)|Q(fr2=profile))]
+               'friends' : profile.get_friends()
     }
     return render_to_response('dashboard/friends.html', context, context_instance=RequestContext(request))
 
@@ -202,13 +207,13 @@ def list_messages(rq, count=None):
     msgs = []
     anamesajlar = set()
 
-    mesajlar = Message.objects.select_related().filter( receiver=user, read=False, status=20).order_by('-id','-last_message_time')
+    mesajlar = Message.objects.select_related().filter( receiver=user, read=False, status__in=[20,25]).order_by('-id','-last_message_time')
     if mesajlar:
         if count: mesajlar = mesajlar[:count]
         for m in mesajlar:
             anamesajlar.add(m.replyto if m.replyto else m)
     if count and len(anamesajlar) < count or not anamesajlar :
-        mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user), replyto__isnull=True,  status=20).order_by('-last_message_time')
+        mesajlar = Message.objects.select_related().filter( Q(sender=user)|Q(receiver=user), replyto__isnull=True,  status__in=[20,25]).order_by('-last_message_time')
         if mesajlar:
             if count: mesajlar = mesajlar[:count]
             for m in mesajlar:
@@ -266,17 +271,14 @@ def show_messages(request):
 def show_booking(request, id):
     user = request.user
     booking = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
-    context={
-        'user_is_guest':booking.guest == user,
-        'user_is_host':booking.host == user,
-        'total_price': booking.guest_payment,
-        'booking':booking,
-        'place':booking.place,
-        'status' : BOOKING_STATUS_FOR_GUEST[booking.status] if booking.guest == user
-              else BOOKING_STATUS_FOR_HOST[booking.status]
-    }
+
 
     if request.method =='POST':
+        if request.POST.get('confirmation')=='cancel':
+            booking.status = 50
+            booking.rejection_date = datetime.today()
+            booking.voidPayment(request)
+            messages.info(request, _('Booking request canceled.'))
         if request.POST.get('confirmation')=='confirm':
             booking.status = 20
             booking.confirmation_date = datetime.today()
@@ -286,8 +288,17 @@ def show_booking(request, id):
             booking.status = 40
             booking.rejection_date = datetime.today()
             booking.voidPayment(request)
-            messages.success(request, _('Booking request rejected.'))
+            messages.info(request, _('Booking request rejected.'))
         booking.save()
+    context={
+        'user_is_guest':booking.guest == user,
+        'user_is_host':booking.host == user,
+        'total_price': booking.guest_payment,
+        'booking':booking,
+        'place':booking.place,
+        'status' : BOOKING_STATUS_FOR_GUEST[booking.status] if booking.guest == user
+              else BOOKING_STATUS_FOR_HOST[booking.status]
+    }
         #yap: send_message to guest
     return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
 
@@ -295,6 +306,7 @@ def show_booking(request, id):
 
 def show_message(request, id):
     user = request.user
+    profile = user.get_profile()
     msg = Message.objects.get(Q(sender=user)|Q(receiver=user), pk=id)
     msg.message_set.filter(read=False, receiver=user).update(read=True)
     if msg.receiver == user:
@@ -306,30 +318,42 @@ def show_message(request, id):
     else:
         participant = msg.receiver
         receiver = msg.receiver
+    participant_profile = participant.get_profile()
     if request.method == 'POST':
         send_message(request, strip_tags(request.POST['message']), receiver=receiver, replyto=msg)
         msg.last_message_time = datetime.now()
         msg.replied = True
         msg.save()
         messages.success(request, _('Your message successfully sent.'))
+
     msgs = list(Message.objects.select_related().filter(replyto=msg))
     msgs.append(msg)
     msgslist = []
     for m in msgs:
         m.sender_name =  m.sender.get_full_name() if m.sender == user else m.get_sender_name()
         msgslist.append(m)
-    context = {'msg':msg,'msgs':msgslist, 'participant':participant, 'toname':participant.get_profile().private_name}
+    context = {'msg':msg,
+               'msgs':msgslist,
+               'participant':participant,
+               'toname':participant.get_profile().private_name,
+               'friends':profile.is_friend(participant_profile),
+    }
     return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
 
 #@csrf_exempt
 def new_message(request, id):
     user = request.user
     receiver = User.objects.get(pk=id)
+    profile = user.get_profile()
+    receiver_profile = receiver.get_profile()
     if request.method == 'POST':
         msg = send_message(request, strip_tags(request.POST['message']), receiver=receiver)
         messages.success(request, _('Your message successfully sent.'))
         return HttpResponseRedirect(reverse('show_message', args=[msg.id]))
-    context = {'participant':receiver, 'toname':receiver.get_profile().private_name}
+    context = {'participant':receiver,
+               'toname':receiver.get_profile().private_name,
+               'friends':profile.is_friend(receiver_profile),
+    }
     return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
 
 class PasswordForm(forms.Form):

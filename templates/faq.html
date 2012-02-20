@@ -12,7 +12,6 @@
 <p></p>
 <p></p>
     <div id="questboxdiv"><form action="{% url contact_box %}" method="post">
-    <h4>{% trans "Feel free to ask any question you have" %}</h4>
         {% csrf_token %}
 <input class="innput" id="fullname" name="fullname" value="{% trans "Name" %}">
 <input class="innput" id="email" name="email" value="{% trans "E-mail" %}">
