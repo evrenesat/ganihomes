@@ -1,4 +1,4 @@
-{% extends "dashboard/base.html" %}
+    {% extends "dashboard/base.html" %}
 {% load  cevir i18n%}
 {% block title %} {% cevir "mesajlar baslik" %} {% endblock %}
 {% block content %}
@@ -23,7 +23,10 @@
 
     </form>
     </div>
-    <br>{{ friends }} <br>{{ msg.sender.get_profile}} {{ msg.receiver.get_profile }} {{ participant.get_profile }}
+{#    <br>#}
+{#    {{ friends }} <br>#}
+{#    {{ msg.sender.get_profile}} {{ msg.receiver.get_profile }}#}
+{#    <br>{{ participant.id }} {{ user.id }}#}
    {% for m in msgs %}
        <div class="replyblock">
            <hr>

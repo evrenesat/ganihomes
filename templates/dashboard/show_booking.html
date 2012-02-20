@@ -57,6 +57,8 @@
                     {% else %}
                     {% if booking.status == 10 %}
                     <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject" class="kizildugme kck"  value="{% trans "Cancel booking request" %}"><br>
+                        {% elif booking.status == 20 %}
+                            <input type="submit" onclick="$('#confirmation').val('confirmpayment')" name="reject" class="kizildugme kck"  value="{% trans "Confirm accommodation" %}">
                     {% endif %}
                     <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme" value="{% trans "Send a message to host" %}">
 

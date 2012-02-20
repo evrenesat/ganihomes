@@ -636,8 +636,11 @@ class Profile(FacebookProfileModel):
 
     #FIXME: rename profile photo
 
-    def get_friends(self):
-        return [f.fr1 if f.fr2==self else f.fr2 for f in Friendship.objects.filter(Q(fr1=self)|Q(fr2=self)).exclude(pk=self.id)]
+    def get_friends(self, confirmed=False):
+        friendship = Friendship.objects.filter(Q(fr1=self)|Q(fr2=self))
+        if confirmed:
+            friendship = friendship.exclude(confirmed=False)
+        return [f.fr1 if f.fr2==self else f.fr2 for f in friendship]
 
     def is_friend(self, profile):
         return profile in self.get_friends()

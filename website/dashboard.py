@@ -226,8 +226,11 @@ def list_messages(rq, count=None):
         m.line = m.get_type_display()
         if m.sender != user:
             m.participant = m.get_sender_name()
-            if not m.read: m.icon = 'new'
+            if not m.read:
+                m.icon = 'new'
         else:
+            if m.type==20:
+                m.line = force_unicode(_('Friend request to %s'))
             m.participant = m.get_receiver_name()
 
         if m.type in [10,20]:
@@ -271,25 +274,36 @@ def show_messages(request):
 def show_booking(request, id):
     user = request.user
     booking = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
-
-
     if request.method =='POST':
-        if request.POST.get('confirmation')=='cancel':
-            booking.status = 50
-            booking.rejection_date = datetime.today()
-            booking.voidPayment(request)
-            messages.info(request, _('Booking request canceled.'))
-        if request.POST.get('confirmation')=='confirm':
-            booking.status = 20
-            booking.confirmation_date = datetime.today()
-            booking.capturePayment(request)
-            messages.success(request, _('Booking request confirmed.'))
-        elif request.POST.get('confirmation')=='reject':
-            booking.status = 40
-            booking.rejection_date = datetime.today()
-            booking.voidPayment(request)
-            messages.info(request, _('Booking request rejected.'))
+        #FIXME: durum degisikliginden misafiri/ev sahibini haberdar etmek gerek
+        admin_warn='Tanimsiz rezervasyon islemi'
+        if booking.guest == user:
+            if request.POST.get('confirmation')=='cancel' and booking.status==10:
+                booking.status = 50
+                booking.rejection_date = datetime.today()
+                booking.voidPayment(request)
+                messages.info(request, _('Booking request canceled.'))
+                admin_warn='Rezervasyon istegi misafir tarafindan iptal edildi.'
+            elif request.POST.get('confirmation')=='confirmpayment'  and booking.status==20:
+                booking.status = 30
+                booking.guest_ok_date = datetime.today()
+                messages.success(request, _('Booking request confirmed.'))
+                admin_warn='Konaklama misafir tarfindan onaylandi. Ucret aktarimi gerekli!!!'
+        elif booking.host == user and booking.status==10:
+            if request.POST.get('confirmation')=='confirm':
+                booking.status = 20
+                booking.confirmation_date = datetime.today()
+                booking.capturePayment(request)
+                messages.success(request, _('Booking request confirmed.'))
+                admin_warn='Rezervasyon istegi ev sahibi tarafindan onaylandi.'
+            elif request.POST.get('confirmation')=='reject':
+                booking.status = 40
+                booking.rejection_date = datetime.today()
+                booking.voidPayment(request)
+                messages.info(request, _('Booking request rejected.'))
+                admin_warn='Rezervasyon istegi ev sahibi tarafindan reddedildi.'
         booking.save()
+        mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )), pre=admin_warn)
     context={
         'user_is_guest':booking.guest == user,
         'user_is_host':booking.host == user,
@@ -351,7 +365,7 @@ def new_message(request, id):
         messages.success(request, _('Your message successfully sent.'))
         return HttpResponseRedirect(reverse('show_message', args=[msg.id]))
     context = {'participant':receiver,
-               'toname':receiver.get_profile().private_name,
+               'toname':receiver_profile.private_name,
                'friends':profile.is_friend(receiver_profile),
     }
     return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
