@@ -4,6 +4,7 @@
     <div class="altiOkutu">
         <div class="kutuici">
             <div class="ginfo">{% trans "Please login or register to complete your booking request." %}</div>
+            <br><br>
             <div class="iblock" >
 
                 <div class="fl" style="width:380px">
@@ -13,7 +14,7 @@
                          <input type="hidden" name="next" value="{{ request.GET.next }}">
 
                          <div class="loginform forms autocenter" >
-                             <h3>{% trans "Login to your account" %}</h3>
+                             <h3 style="text-align:center;">{% trans "Login to your account" %}</h3>
 
                              {{ lform.as_p }}
                              <button class="yesildugme fo16">{% trans "Login" %}</button>
@@ -31,7 +32,7 @@
             <div class="form3 fl forms">
                 <form action="{% url register %}" method="post">
                 {% csrf_token %}
-                        <h3>{% trans "Join Us" %}</h3>
+                        <h3 style="text-align:center;">{% trans "Join Us" %}</h3>
                     <div class="hlfrm">
                             <label for="id_first_name">{{ form.first_name.label }}</label>
                             {{ form.first_name }}
@@ -70,16 +71,17 @@
 
                     <input type="hidden" id="next" name="next" value="{{ request.GET.next    }}">
                     </div>
+
             </form></div>
 
 
-<div class="iblock" style="width:100%">
+<div class="iblock" style="width:100%;margin-top:45px;">
             <div class="fbdv">
-                <div class="orline" ></div><div class="or">yada</div><div class="orline" ></div>
+                <div class="orline" ></div><div class="or">{% trans "or" %}</div><div class="orline" ></div>
                 <input class="fbbutton" type="button" value="{% trans "Login with Facebook" %}">
             </div>
             <div class="fbdv">
-                <div class="orline" ></div><div class="or">yada</div><div class="orline" ></div>
+                <div class="orline" ></div><div class="or">{% trans "or" %}</div><div class="orline" ></div>
                 <input class="fbbutton" type="button" value="{% trans "Connect with Facebook" %}">
             </div>
 </div>

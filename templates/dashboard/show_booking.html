@@ -1,76 +1,89 @@
 {% extends "dashboard/base.html" %}
-{% load  currency cevir i18n%}
+{% load  currency cevir i18n %}
 {% block title %} {% cevir "rezervasyon detaylari baslik" %} {% endblock %}
 {% block content %}
 
-<form action="." method="post">
-    <div class="bookpart">
-         <h3>{% trans "Property details" %}</h3>
-         <div id="bookinplace">
-             <img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_pls.jpg">
-             <span class="booksubtitle">{{ place.title }}</span><br>
-             {{ place.city}} - {{ place.district }} {{ place.get_country_display }}
-             <br>
-             {{ place.get_type_display }} / {{ place.get_space_display }}
-             <br>
+    <form action="." method="post">
+        <div class="bookpart">
+            <h3>{% trans "Property details" %}</h3>
+
+            <div id="bookinplace">
+                <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_pls.jpg">
+                <span class="booksubtitle">{{ place.title }}</span><br>
+                {{ place.city }} - {{ place.district }} {{ place.get_country_display }}
+                <br>
+                {{ place.get_type_display }} / {{ place.get_space_display }}
+                <br>
 
 
-         </div>
-         <div id="bookinhost">
+            </div>
+            <div id="bookinhost">
 
-         </div>
-     </div>
+            </div>
+        </div>
 
-         <div class="bookpart"><h3>{% trans "Travel Details & Pricing" %}</h3>
+        <div class="bookpart"><h3>{% trans "Travel Details & Pricing" %}</h3>
 
 
-             <div id="dbookdetail" class="iblock">
-             <span class="ozz_label">{% trans "Check-in" %}</span> <span class="ozz_value">{{ booking.start|date:"d F Y l" }}</span>
-             <span class="ozz_label">{% trans "Check-out" %}</span> <span class="ozz_value">{{ booking.end|date:"d F Y l" }}</span>
-             <span class="ozz_label">{% trans "Nights" %}</span> <span class="ozz_value">{{ booking.nights }}</span>
-             <span class="ozz_label">{% trans "Guests" %}</span> <span class="ozz_value">{{ booking.nguests }}</span>
-             <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
-                 {% if booking.currency.code_position == 1%} {{ booking.currency.name }} {{ total_price|currency }}
-                 {% else %}{{ total_price|currency }} {{ booking.currency.name }}
+            <div id="dbookdetail" class="iblock">
+                <span class="ozz_label">{% trans "Check-in" %}</span> <span
+                    class="ozz_value">{{ booking.start|date:"d F Y l" }}</span>
+                <span class="ozz_label">{% trans "Check-out" %}</span> <span
+                    class="ozz_value">{{ booking.end|date:"d F Y l" }}</span>
+                <span class="ozz_label">{% trans "Nights" %}</span> <span class="ozz_value">{{ booking.nights }}</span>
+                <span class="ozz_label">{% trans "Guests" %}</span> <span class="ozz_value">{{ booking.nguests }}</span>
+                <span class="ozz_label">{% trans "Total price" %}</span> <span class="ozz_value">
+                 {% if booking.currency.code_position == 1 %} {{ booking.currency.name }} {{ total_price|currency }}
+                     {% else %}{{ total_price|currency }} {{ booking.currency.name }}
                  {% endif %}
              </span>
-             </div></div>
-             {% csrf_token %}
+            </div>
+        </div>
+        {% csrf_token %}
 
 
-<div class="bookpart"><h3>{% trans "Booking Status" %}</h3>
+        <div class="bookpart"><h3>{% trans "Booking Status" %}</h3>
 
 
-                <div id="dbookstats" class="iblock">
+            <div id="dbookstats" class="iblock">
                 <span class="ozz_label">{% trans "Status" %}</span>
-                    <span class="ozz_value bgyellow"> {{ status }}</span>
+                <span class="ozz_value bgyellow"> {{ status }}</span>
                 <span class="ozz_label">{% trans "Actions" %}</span>
                     <span class="ozz_value">
                         <input type="hidden" name="confirmation" id="confirmation" value="">
-                    {% if user_is_host %}
-                    {% if booking.status == 10 %}
+                        {% if user_is_host %}
+                            {% if booking.status == 10 %}
 
-                                <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm" class="yemyesildugme kck"  value="{% trans "Confirm booking" %}"> <br>
-                                <input type="submit" onclick="$('#confirmation').val('reject')" name="reject" class="kizildugme kck"  value="{% trans "Reject booking" %}"><br>
-                    {% endif  %}
-                    <input type=button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme" value="{% trans "Send a message to guest" %}">
-                    {% else %}
-                    {% if booking.status == 10 %}
-                    <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject" class="kizildugme kck"  value="{% trans "Cancel booking request" %}"><br>
-                        {% elif booking.status == 20 %}
-                            <input type="submit" onclick="$('#confirmation').val('confirmpayment')" name="reject" class="kizildugme kck"  value="{% trans "Confirm accommodation" %}">
-                    {% endif %}
-                    <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme" value="{% trans "Send a message to host" %}">
+                                <input type="submit" onclick="$('#confirmation').val('confirm')" name="confirm"
+                                       class="yemyesildugme kck" value="{% trans "Confirm booking" %}"> <br>
+                                <input type="submit" onclick="$('#confirmation').val('reject')" name="reject"
+                                       class="kizildugme kck" value="{% trans "Reject booking" %}"><br>
+
+                            {% endif %}
+                            <input type=button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme"
+                                   value="{% trans "Send a message to guest" %}">
+                        {% else %}
+                            {% if booking.status == 10 %}
+                                <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject"
+                                       class="kizildugme kck" value="{% trans "Cancel booking request" %}"><br>
+                                {% elif booking.status == 20 %}
+                                <input type="submit" onclick="$('#confirmation').val('confirmpayment')" name="reject"
+                                       class="kizildugme kck" value="{% trans "Confirm accommodation" %}">
+                                {% elif booking.status > 20 %}
+                                        <input type="button" onclick="gh.reviewPlace({{ booking.place_id }})"
+                                               class="yemyesildugme kck" value="{% trans "Write a review for this place" %}"> <br>
+                            {% endif %}
+                            <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme"
+                                   value="{% trans "Send a message to host" %}">
 
 
-                {% endif %}
+                        {% endif %}
 
                 </span>
-                </div>
-</div>
+            </div>
+        </div>
 
 
-
-</form>
+    </form>
 
 {% endblock %}
