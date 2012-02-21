@@ -503,7 +503,7 @@ gh = {
         if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
         this.infoWindow = new google.maps.InfoWindow()
     },
-    popup_html:'<a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">Bu adresi kullan</a>',
+    popup_html:'<a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">'+trns('user_this_address')+'</a>',
     geocodeAddress: function () {
         var self = this;
         this.geocoder.geocode( { 'address': $('#id_address').val()}, function(results, status) {
@@ -676,7 +676,7 @@ gh = {
         return ($.cookie('ganibookmarks') || '').split(',')
     },
     is_bookmarked:function(id){
-      return this.get_bookmarks().indexOf(id)>-1
+      return ( id in this.get_bookmarks() )
     },
     bookmark:function(caller){
         var self = this
@@ -764,7 +764,7 @@ gh = {
         this.currentImg = $('.pthumb').first()
         $('#bookitbutton').click(function(e){return self.bookPlace(e)})
         $('.pthumb').click(function(){return self._gotoNextPhoto(this)})
-        $('#phimg').click(function(){self._changePlacePhoto(ez)})
+        $('#phimg').click(function(){self._changePlacePhoto()})
         $('#openmap').click(function(){self._circleMaps()})
         $('#photoslider-right').click(function(){self._changePlacePhoto()})
         $('#photoslider-left').click(function(){self._changePlacePhoto('prev')})
@@ -822,8 +822,7 @@ gh = {
         if($("#photoslider_container li").length > current_photo.index() + 1){
             next = '+='+ current_photo.find('img').width() +'px';
         }else next = $('#photoslider_container li').first()
-
-        $('#photoslider_container').scrollTo(next, 800);
+        $('#photoslider_container').scrollTo({top:0,left:next}, 800);
         return false
     },
     _changePlacePhoto:function(ob){

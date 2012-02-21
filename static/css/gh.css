@@ -2040,7 +2040,7 @@ li.g-plus-one {
 #photoslider_container {
     float: left;
     overflow: hidden;
-    height: 75px;
+    height: 79px;
     width: 590px;
     border: 1px solid #ece2e2;
     padding-bottom: 10px;
@@ -2048,6 +2048,7 @@ li.g-plus-one {
     padding-right: 3px;
     padding-top: 3px;
     width: 582px;
+    padding: 0;
 }
 
 .pthumb {

@@ -238,6 +238,7 @@ JSTRANS = (
     ('accept_terms_of_service',_('Please read and accept the Terms of service agreement.')),
     ('dates_not_available',_('This dates are not available.')),
     ('place_fill_all_req_fields',_('Please fill all required fields.')),
+    ('user_this_address',_('Use this address.')),
 #    ('',_('')),
 #    ('',_('')),
 #    ('',_('')),
