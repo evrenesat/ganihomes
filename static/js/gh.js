@@ -735,6 +735,9 @@ gh = {
         if(typeof(next)=='undefined')next = document.location.pathname
         document.location = '/'+this.LANGUAGE_CODE+'/login/?next='+next
     },
+    init_secure_booking:function(){
+        $('#paymentoptions').tabs();
+    },
     init_places:function(){
         var self = this;
         x={}

@@ -88,12 +88,23 @@
 {#                <div class="bookpart"><h3>{% trans "Additional Information" %}</h3></div>#}
                 <div class="bookpart"><h3>{% trans "Payment" %}</h3>
                     {% cevir "rezervasyon odeme nasil yardim" %}
+                <div id="paymentoptions">
+                    <ul id="ttabul">
+                                        <li class="ptab"><a href="#odepaypal">{% trans "PayPal" %}</a></li>
+                                        <li class="ptab"><a href="#odecc">{% trans "Kredi Kartı" %}</a></li>
+                                        <li class="ptab"><a href="#odehavale">{% trans "Banka Havalesi" %}</a></li>
+                                    </ul>
+                <div id="odecc"></div>
+                <div id="odehavale"></div>
+                <div id="odepaypal">
                     <div style="width:100%;text-align:center;margin-top:20px;">
                         {% csrf_token %}
                     <input name="paypal" type="submit" class="yemyesildugme fo16" value="{% trans "Book It using PayPal" %}">
 
                         {% if errors %}<div class="warn red">{{ errors }}</div>{% endif %}
                     </div>
+                </div>
+                </div>
 
 
 
