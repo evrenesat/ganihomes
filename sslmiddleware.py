@@ -7,7 +7,7 @@ log = logging.getLogger('genel')
 SSL = 'SSL'
 SSL_URLS = (
  r'/../login/',
- r'/../loginorregister/',
+ r'/../login_or_register/',
  r'/../register/',
  r'/../secure_booking/',
  r'/../paypal_\w*?/',
