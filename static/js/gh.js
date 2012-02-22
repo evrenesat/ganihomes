@@ -667,11 +667,11 @@ gh = {
             $('#info-select-dates').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
             return false
         }
-        if(this.total['ndays']<min_stay){
+        if(this.total['ndays']<min_stay-1){
             $('#info-stay-more').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
             return false
         }
-        if(max_stay>0 && this.total['ndays']>max_stay){
+        if(max_stay>0 && this.total['ndays']>max_stay-1){
             $('#info-stay-less').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
             return false
         }
