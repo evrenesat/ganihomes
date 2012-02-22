@@ -96,6 +96,7 @@ def book_place(request):
                   'crr':crr,'crrpos':crrposition,}
     request.session['booking_context'] = context
     context['place']=place
+    log.info('')
     return HttpResponseRedirect(reverse('secure_booking'))
 
 def secure_booking(request):

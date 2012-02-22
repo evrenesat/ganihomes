@@ -599,6 +599,11 @@ gh = {
             $('#ndays').val(this.total.ndays)
             $('#currencyid').val(this.selected_currency)
         }
+        else{
+            $('#totalPriceValue').html('')
+            $('#displayed_price').val('')
+            $('#ndays').val(0)
+        }
     },
     checkReservationDates:function(dates){
         var loopDate = new Date();
@@ -608,8 +613,8 @@ gh = {
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
         try{
-            var days=1 ,price=0.0;
-            while (loopDate.valueOf() < dates[1].valueOf() + 86400000) {
+            var days=-1 ,price=0.0;
+            while (loopDate.valueOf() < dates[1].valueOf()) {
 //                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
                 if (this.isUnAvailable(loopDate)){
@@ -630,7 +635,7 @@ gh = {
                 $.cookie('selected_dates','')
             }
         }
-        this.total.ndays = days-1
+        this.total.ndays = days
         this.total.price = price
         this.calculateTotalPrice()
     },
@@ -789,7 +794,7 @@ gh = {
                     self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
                     if(self.selected_dates.id_checkin || self.selected_dates.id_checkout){
                         if(self.selected_dates.id_checkin && !self.selected_dates.id_checkout)self.selected_dates.id_checkout=self.selected_dates.id_checkin
-                        else if(self.selected_dates.id_checkout && !self.selected_dates.id_checkin)self.selected_dates.id_checkin=self.selected_dates.id_checkout
+//                        else if(self.selected_dates.id_checkout && !self.selected_dates.id_checkin)self.selected_dates.id_checkin=self.selected_dates.id_checkout
                         $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
                     }
                 }
