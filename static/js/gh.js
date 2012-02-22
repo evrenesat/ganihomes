@@ -613,7 +613,7 @@ gh = {
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
         try{
-            var days=-1 ,price=0.0;
+            var days=0 ,price=0.0;
             while (loopDate.valueOf() < dates[1].valueOf()) {
 //                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
@@ -782,12 +782,9 @@ gh = {
                 if(dates){
                     dates=$.evalJSON(dates)
                     $('#pcalendar').datepick('setDate',new Date(dates[0]),new Date(dates[1]))
-
                 }
             })
-
-
-
+            $.datepicker.setDefaults($.datepicker.regional[self.LANGUAGE_CODE=='en'?'en-GB':self.LANGUAGE_CODE]);
             $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true ,
                 beforeShowDay: function(date) { return self.isUnAvailable(date) ? [false,'datepick-reserved','']:[true,'',''] },
                 onSelect: function(dateText, inst) {
@@ -852,7 +849,7 @@ gh = {
             $.post('/'+self.LANGUAGE_CODE+'/dashboard/save_photo_order/'+place_id, {iids:JSON.stringify(iids)})
         }})
         self.renderUpPlacePhotos()
-        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
+//        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function() {
 
         $('#fileupload').fileupload({
                dataType: 'json',
@@ -953,12 +950,12 @@ gh = {
 
 
 
-        })
+//        })
     },
     profile_upload_init:function(){
         var self = this;
 
-        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
+//        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
 
         $('#pfoto').fileupload({
                dataType: 'json',
@@ -970,7 +967,7 @@ gh = {
 
                }
            });
-        })
+//        })
     },
     renderUpPlacePhotos:function(){
         var self = this

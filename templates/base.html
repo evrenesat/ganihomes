@@ -18,13 +18,16 @@
 <!--[if lt IE 8]>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection">
 <![endif]-->
-<script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqote2.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript"  src="https://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js"></script>
+{#<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqote2.min.js"></script>#}
+{#<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo-min.js"></script>#}
 <script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={{ curr_version }}"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
-<script type="text/javascript" id="script1" src="{{ STATIC_URL }}js/gh.js"></script>
+<script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js"></script>
 <META NAME="keywords" CONTENT="{% block metakeywords %}{{ meta_keywords }}{% endblock %}">
 <META NAME="description" CONTENT="{% block metadesc %}{{ meta_desc }}{% endblock %}">
 <META HTTP-EQUIV="Copyright" CONTENT="GaniHomes Ltd.">

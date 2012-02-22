@@ -1,9 +1,6 @@
 {% extends "content.html" %}
 {% load cevir i18n%}
-{#{% load localeurl_tags %}#}
-1{% block extracss %}
-<style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>
-{% endblock %}
+1{% block extracss %}<style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>{% endblock %}
 {% block extrajs %}
 <meta property="fb:app_id" content="118771108245844" />
 <meta property="og:site_name" content="GaniHomes" />
@@ -12,22 +9,7 @@
 <meta property="og:country-name" content="{{ place.get_country_display }}" />
 <meta property="og:description" content="{% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}" />
 <meta property="og:locality" content="{{ place.city}}" />
-
-<script>
-    gh_rdts={{ place.reserved_dates|default:"[]" }};
-    gh_prcs={{ place.prices|default:"{}" }};
-    service_fee={{ service_fee|default:0 }};
-    cleaning_fee={{ place.cleaning_fee|default:0 }};
-    exlimit={{ place.extra_limit|default:0 }};
-    exprice={{ place.extra_price|default:0 }};
-    min_stay={{ place.min_stay }};
-    max_stay={{ place.max_stay }};
-    wdiscount={{ place.weekly_discount|default:0 }};
-    mdiscount={{ place.monthly_discount|default:0 }};
-</script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
-{#    <script type="text/javascript" src="{{ STATIC_URL }}datepick/jquery.datepick-{{ LANGUAGE_CODE }}.js"></script>#}
-{#<script>$(document).ready(function(){gh.showPlaceInit()})</script>#}
+<script>gh_rdts={{ place.reserved_dates|default:"[]" }};gh_prcs={{ place.prices|default:"{}" }};service_fee={{ service_fee|default:0 }};cleaning_fee={{ place.cleaning_fee|default:0 }};exlimit={{ place.extra_limit|default:0 }};exprice={{ place.extra_price|default:0 }};min_stay={{ place.min_stay }};max_stay={{ place.max_stay }};wdiscount={{ place.weekly_discount|default:0 }};mdiscount={{ place.monthly_discount|default:0 }};</script>
 {% endblock %}
 {% block content %}
     <div class="altikutu">
@@ -168,7 +150,7 @@
 <div class="ikikutu" id="pricebox">
 <form action="{% url book_place %}?express" method="post">
     {% csrf_token %}
-    <input type="hidden" name="currencyid" id="currencyid">
+    <input type="hidden" name="currencyid" id="currencyid" value="">
     <input type="hidden" name="placeid" id="placeid" value="{{ place.id }}">
     <input type="hidden" name="displayed_price" id="displayed_price">
     <input type="hidden" name="ndays" id="ndays">

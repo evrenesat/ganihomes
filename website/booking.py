@@ -76,7 +76,7 @@ def book_place(request):
     prices = place.calculateTotalPrice(crrid,ci, co, guests)
 #    assert 0,prices
 
-    if request.method == 'POST':
+    if bi:
         #FIXME: this is creating lots of stale booking records
         booking = Booking(
             host = place.owner,
@@ -96,7 +96,6 @@ def book_place(request):
                   'crr':crr,'crrpos':crrposition,}
     request.session['booking_context'] = context
     context['place']=place
-    log.info('')
     return HttpResponseRedirect(reverse('secure_booking'))
 
 def secure_booking(request):

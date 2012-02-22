@@ -286,53 +286,7 @@
 		},
 		// Function for showing and hiding hotspots depending on the
 		// offset of the scrolling
-		_showHideHotSpots: function() {
-            return
-			var self = this, el = this.element, o = this.options;
-
-			// If autoscrolling is set to always, there should be no hotspots
-			if (o.autoScroll !== "always") {
-				// If the scrollable area is shorter than the scroll wrapper, both hotspots
-				// should be hidden
-				if (el.data("scrollableAreaWidth") <= (el.data("scrollWrapper").innerWidth())) {
-					el.data("scrollingHotSpotLeft").hide();
-					el.data("scrollingHotSpotRight").hide();
-				}
-				// When you can't scroll further left the left scroll hotspot should be hidden
-				// and the right hotspot visible.
-				else if (el.data("scrollWrapper").scrollLeft() === 0) {
-					el.data("scrollingHotSpotLeft").hide();
-					el.data("scrollingHotSpotRight").show();
-					// Callback
-					self._trigger("scrollLeftLimitReached");
-					// Clear interval
-					clearInterval(el.data("leftScrollInterval"));
-					el.data("leftScrollInterval", null);
-				}
-				// When you can't scroll further right
-				// the right scroll hotspot should be hidden
-				// and the left hotspot visible
-				else if (el.data("scrollableAreaWidth") <= (el.data("scrollWrapper").innerWidth() + el.data("scrollWrapper").scrollLeft())) {
-					el.data("scrollingHotSpotLeft").show();
-					el.data("scrollingHotSpotRight").hide();
-					// Callback
-					self._trigger("scrollRightLimitReached");
-					// Clear interval
-					clearInterval(el.data("rightScrollInterval"));
-					el.data("rightScrollInterval", null);
-				}
-				// If you are somewhere in the middle of your
-				// scrolling, both hotspots should be visible
-				else {
-					el.data("scrollingHotSpotLeft").show();
-					el.data("scrollingHotSpotRight").show();
-				}
-			}
-			else {
-				el.data("scrollingHotSpotLeft").hide();
-				el.data("scrollingHotSpotRight").hide();
-			}
-		},
+		_showHideHotSpots: function() {return false;},
 		/**********************************************************
 		Moving to a certain element
 		**********************************************************/
