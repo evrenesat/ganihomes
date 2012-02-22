@@ -4035,6 +4035,20 @@ input.reqmissing, select.reqmissing{
     padding-bottom: 5px;
 }
 .ptforms{width:100%}
+#bookingid span{
+    font-weight:bolder;
+}
+#bookingid{
+    width: 150px;
+    border:dotted 2px #ccc;
+    background-color:#fff6bf;
+    font-size: 15px;
+    float:right;
+    text-align:center;
+}
+#paymentoptions{
+    border:0;
+}
 #litetabs{
     border:0;
     background:none;
@@ -4044,6 +4058,24 @@ input.reqmissing, select.reqmissing{
     border:0;
     background:none;
     border-bottom: 1px solid #ccc;
+}
+#liteturunc{
+    border: 0;
+    background:none;
+    width: 97%;
+
+    border-bottom: 1px solid #ccc;
+}
+#liteturunc .ui-widget-header{
+    border:0;
+    background:none;
+    border-bottom: 1px solid #ccc;
+}
+#liteturunc li{
+    background:url(/static/images/grd-trn.png) repeat-x 0 -40px;
+    color:#000;
+    height: 38px;
+    font-size: 16px;
 }
 .helptext{
     font-size:9px;

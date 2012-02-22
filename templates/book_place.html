@@ -88,15 +88,52 @@
 {#                <div class="bookpart"><h3>{% trans "Additional Information" %}</h3></div>#}
                 <div class="bookpart"><h3>{% trans "Payment" %}</h3>
                     {% cevir "rezervasyon odeme nasil yardim" %}
+
                 <div id="paymentoptions">
-                    <ul id="ttabul">
+                    <ul id="liteturunc">
                                         <li class="ptab"><a href="#odepaypal">{% trans "PayPal" %}</a></li>
                                         <li class="ptab"><a href="#odecc">{% trans "Kredi Kartı" %}</a></li>
                                         <li class="ptab"><a href="#odehavale">{% trans "Banka Havalesi" %}</a></li>
                                     </ul>
-                <div id="odecc"></div>
-                <div id="odehavale"></div>
+                <div id="odecc">
+                    {% cevir "rezervasyon odeme cc yardim" %}
+                    <br><br>
+
+                    <table>
+                        <tr>
+                            <th>{% trans "Name on card" %}</th><td><input type="text" size=40></td>
+                        </tr>
+
+                        <tr>
+                            <th>{% trans "Card number" %}</th><td><input type="text" size=40></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan=2>
+                                <table><tr>
+                                    <th width=30%>{% trans "Expire date" %}</th><td  width=20%><input type="text" size="6"></td>
+                                    <th width=30%>{% trans "Security code (CCV)" %}</th><td  width=20%><input type="text" size="3"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><td colspan=2 style="text-align:center;">
+                                                        <input name="cc" type="submit" class="yemyesildugme fo16" value="{% trans "Book It" %}"></td></tr>
+
+                    </table>
+
+                </div>
+                <div id="odehavale">
+                    <div style="float: left; width: 460px;">
+                        {% cevir "rezervasyon odeme havale yardim" %}
+                        </div>
+                    <div id="bookingid">{% trans "Your booking ID" %}<br><span>{{ booking.id }}</span></div>
+                    <div style="width:100%;text-align:center;margin-top:20px;">
+                    <br><br><input name="havale" type="submit" class="yemyesildugme fo16" value="{% trans "Book It via Bank Transfer" %}"></div>
+
+                </div>
                 <div id="odepaypal">
+                    {% cevir "rezervasyon odeme paypal yardim" %}
                     <div style="width:100%;text-align:center;margin-top:20px;">
                         {% csrf_token %}
                     <input name="paypal" type="submit" class="yemyesildugme fo16" value="{% trans "Book It using PayPal" %}">
