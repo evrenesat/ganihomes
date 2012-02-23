@@ -4,10 +4,30 @@ from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.sitemaps import Sitemap
+from places.models import Place
+
 admin.autodiscover()
 from django.conf.urls.defaults import *
 handler500 = 'website.views.server_error'
 from django.views.generic.simple import direct_to_template
+
+class PlaceSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return Place.objects.filter(published=True)
+
+    def lastmod(self, obj):
+        return obj.last_modified
+
+sitemaps = {
+    'places': PlaceSitemap(),
+}
+
+
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'cagani.views.home', name='home'),
@@ -16,6 +36,7 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
 #    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^crossdomain.xml$', direct_to_template, {'template': 'crossdomain.xml'}),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 #    (r'^tinymce/', include('tinymce.urls')),

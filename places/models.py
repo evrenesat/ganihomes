@@ -4,6 +4,7 @@ from posix import unlink
 import random
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.query_utils import Q
 from django.utils.translation import ugettext_lazy as _
@@ -408,6 +409,9 @@ class Place(models.Model):
               'favorite_counter': 'fc', 'overall_rating': 'or',
               'type':'typ', 'space':'spc','price':'prc'
     }
+
+    def get_absolute_url(self):
+        return '/%s%s' % (self.lang[:2] or 'en', reverse('show_place', args=(self.id, )) )
 
     def _updateSummary(self):
         di = {}
