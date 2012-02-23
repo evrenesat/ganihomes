@@ -4046,6 +4046,11 @@ input.reqmissing, select.reqmissing{
     float:right;
     text-align:center;
 }
+#odecc table input{
+    height:30px;
+    font-size:16px;
+}
+
 #paymentoptions{
     border:0;
 }

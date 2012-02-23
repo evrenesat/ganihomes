@@ -737,6 +737,9 @@ gh = {
     },
     init_secure_booking:function(){
         $('#paymentoptions').tabs();
+        $('#ccno').mask("9999-9999-9999-9999");
+        $('#ccv').mask("999");
+        $('#ccexp').mask("99/99");
     },
     init_places:function(){
         var self = this;
