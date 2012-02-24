@@ -13,6 +13,7 @@
 <div id="content-main">
 
 {% if app_list %}
+    {% include 'filebrowser/append.html' %}
     {% for app in app_list %}
         {% if app.name not in 'Sites Appsettings' %}
         <div class="module">

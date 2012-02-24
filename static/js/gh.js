@@ -141,7 +141,7 @@ gh = {
         this.setCurrRates()
         this.priceScanConvert()
     },
-    currency_change_trigger_onkeyup:'#id_price, #id_weekend_price, #id_extra_price, #id_cleaning_fee',
+    currency_change_trigger_onkeyup:'#id_price, #id_weekend_price, #id_extra_price, #id_cleaning_fee, #id_weekly_discount, #id_monthly_discount',
     setCurrency:function(ob){
 
         var cid = (typeof(ob)!='number') ? $(ob).data('crr') : ob
@@ -1572,17 +1572,34 @@ gh = {
                 $('.current_curr').html(cr[1])
                 self.setCurrency(parseInt($(this).val()))
             }).trigger('change')
-
+            $('#id_price').keyup(function(){
+                $('#id_weekly_discount').trigger('keyup')
+                $('#id_monthly_discount').trigger('keyup')
+            })
             $('.yourpayout').each(function(){
                 var sp = $(this)
-
-                $('#'+sp.attr('id').replace('_payout','')).keyup(function(){
-                                var pr = $(this).val()
-                                try{ pr =  pr * ((100-host_fee)/100); if (isNaN(pr))throw 'NaN'}
-                                catch(er){ pr = '' }
-                                if(pr)sp.fadeIn('slow').html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
-                                else sp.hide()
-                            }).trigger('keyup')
+                if(sp.attr('id').indexOf('discount')>0){
+                    $('#'+sp.attr('id').replace('_pout','')).keyup(function(){
+                        var pr = $('#id_price').val()
+                        var discount = $(this).val()
+                        try{
+                            pr =  pr * ((100-discount)/100);
+                            pr =  pr * ((100-host_fee)/100);
+                            if (isNaN(pr))throw 'NaN'
+                        }
+                        catch(er){ pr = '' }
+                        if(discount)sp.fadeIn('slow').html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
+                        else sp.hide()
+                    }).trigger('keyup')
+                }else{
+                    $('#'+sp.attr('id').replace('_payout','')).keyup(function(){
+                        var pr = $(this).val()
+                        try{ pr =  pr * ((100-host_fee)/100); if (isNaN(pr))throw 'NaN'}
+                        catch(er){ pr = '' }
+                        if(pr)sp.fadeIn('slow').html(self.getCurrPrice(pr.formatMoney(2, ',', '.')))
+                        else sp.hide()
+                    }).trigger('keyup')
+                }
             })
 
 
