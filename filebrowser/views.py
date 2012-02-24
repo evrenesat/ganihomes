@@ -29,7 +29,7 @@ except:
 from django.contrib import messages
 
 # filebrowser imports
-from filebrowser.settings import *
+from filebrowser.conf import *
 from filebrowser.functions import path_to_url, sort_by_attr, get_path, get_file, get_version_path, get_breadcrumbs, get_filterdate, get_settings_var, handle_file_upload, convert_filename
 from filebrowser.templatetags.fb_tags import query_helper
 from filebrowser.base import FileObject

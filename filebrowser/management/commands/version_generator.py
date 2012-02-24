@@ -5,8 +5,8 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         import os, re
-        from filebrowser.settings import EXTENSION_LIST, EXCLUDE, MEDIA_ROOT, DIRECTORY, VERSIONS, EXTENSIONS
-        
+        from filebrowser.conf import EXTENSION_LIST, EXCLUDE, MEDIA_ROOT, DIRECTORY, VERSIONS, EXTENSIONS
+
         # Precompile regular expressions
         filter_re = []
         for exp in EXCLUDE:
@@ -14,9 +14,9 @@ class Command(NoArgsCommand):
         for k,v in VERSIONS.iteritems():
             exp = (r'_%s.(%s)') % (k, '|'.join(EXTENSION_LIST))
             filter_re.append(re.compile(exp))
-            
+
         path = os.path.join(MEDIA_ROOT, DIRECTORY)
-        
+
         # walkt throu the filebrowser directory
         # for all/new files (except file versions itself and excludes)
         for dirpath,dirnames,filenames in os.walk(path):
@@ -34,10 +34,10 @@ class Command(NoArgsCommand):
                 (tmp, extension) = os.path.splitext(filename)
                 if extension in EXTENSIONS["Image"]:
                     self.createVersions(os.path.join(dirpath, filename))
-    
+
     def createVersions(self, path):
         print "generating versions for: ", path
-        from filebrowser.settings import VERSIONS
+        from filebrowser.conf import VERSIONS
         from filebrowser.functions import version_generator
         for version in VERSIONS:
             #print "                          ", version

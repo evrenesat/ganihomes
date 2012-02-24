@@ -13,7 +13,7 @@ from django.core.files.storage import default_storage
 from django.utils.encoding import smart_str
 
 # filebrowser imports
-from filebrowser.settings import *
+from filebrowser.conf import *
 
 # PIL import
 if STRICT_PIL:
@@ -29,10 +29,10 @@ def url_to_path(value):
     """
     Change URL to PATH.
     Value has to be an URL relative to MEDIA URL or a full URL (including MEDIA_URL).
-    
+
     Returns a PATH relative to MEDIA_ROOT.
     """
-    
+
     mediaurl_re = re.compile(r'^(%s)' % (MEDIA_URL))
     value = mediaurl_re.sub('', value)
     return value
@@ -42,10 +42,10 @@ def path_to_url(value):
     """
     Change PATH to URL.
     Value has to be a PATH relative to MEDIA_ROOT.
-    
+
     Return an URL relative to MEDIA_ROOT.
     """
-    
+
     mediaroot_re = re.compile(r'^(%s)' % (MEDIA_ROOT))
     value = mediaroot_re.sub('', value)
     return url_join(MEDIA_URL, value)
@@ -57,7 +57,7 @@ def dir_from_url(value):
     URL has to be an absolute URL including MEDIA_URL or
     an URL relative to MEDIA_URL.
     """
-    
+
     mediaurl_re = re.compile(r'^(%s)' % (MEDIA_URL))
     value = mediaurl_re.sub('', value)
     directory_re = re.compile(r'^(%s)' % (DIRECTORY))
@@ -69,15 +69,15 @@ def get_version_path(value, version_prefix):
     """
     Construct the PATH to an Image version.
     Value has to be server-path, relative to MEDIA_ROOT.
-    
+
     version_filename = filename + version_prefix + ext
     Returns a path relative to MEDIA_ROOT.
     """
-    
+
     if os.path.isfile(smart_str(os.path.join(MEDIA_ROOT, value))):
         path, filename = os.path.split(value)
         filename, ext = os.path.splitext(filename)
-        
+
         # check if this file is a version of an other file
         # to return filename_<version>.ext instead of filename_<version>_<version>.ext
         tmp = filename.split("_")
@@ -94,7 +94,7 @@ def get_version_path(value, version_prefix):
                 # or we get a <VERSIONS_BASEDIR>/<VERSIONS_BASEDIR>/... construct
                 if VERSIONS_BASEDIR != "":
                         path = path.replace(VERSIONS_BASEDIR + "/", "")
-        
+
         version_filename = filename + "_" + version_prefix + ext
         return os.path.join(VERSIONS_BASEDIR, path, version_filename)
     else:
@@ -104,16 +104,16 @@ def get_version_path(value, version_prefix):
 def sort_by_attr(seq, attr):
     """
     Sort the sequence of objects by object's attribute
-    
+
     Arguments:
     seq  - the list or any sequence (including immutable one) of objects to sort.
     attr - the name of attribute to sort by
-    
+
     Returns:
     the sorted list of objects.
     """
     import operator
-    
+
     # Use the "Schwartzian transform"
     # Create the auxiliary list of tuples where every i-th tuple has form
     # (seq[i].attr, i, seq[i]) and sort it. The second item of tuple is needed not
@@ -128,7 +128,7 @@ def url_join(*args):
     """
     URL join routine.
     """
-    
+
     if args[0].startswith("http://"):
         url = "http://"
     else:
@@ -149,7 +149,7 @@ def get_path(path):
     """
     Get Path.
     """
-    
+
     if path.startswith('.') or os.path.isabs(path) or not os.path.isdir(os.path.join(MEDIA_ROOT, DIRECTORY, path)):
         return None
     return path
@@ -159,9 +159,9 @@ def get_file(path, filename):
     """
     Get File.
     """
-    
+
     converted_path = smart_str(os.path.join(MEDIA_ROOT, DIRECTORY, path, filename))
-    
+
     if not os.path.isfile(converted_path) and not os.path.isdir(converted_path):
         return None
     return filename
@@ -171,7 +171,7 @@ def get_breadcrumbs(query, path):
     """
     Get breadcrumbs.
     """
-    
+
     breadcrumbs = []
     dir_query = ""
     if path:
@@ -185,7 +185,7 @@ def get_filterdate(filterDate, dateTime):
     """
     Get filterdate.
     """
-    
+
     returnvalue = ''
     dateYear = strftime("%Y", gmtime(dateTime))
     dateMonth = strftime("%m", gmtime(dateTime))
@@ -202,7 +202,7 @@ def get_settings_var():
     """
     Get settings variables used for FileBrowser listing.
     """
-    
+
     settings_var = {}
     # Main
     settings_var['DEBUG'] = DEBUG
@@ -235,7 +235,7 @@ def handle_file_upload(path, file):
     """
     Handle File Upload.
     """
-    
+
     file_path = os.path.join(path, file.name)
     uploadedfile = default_storage.save(file_path, file)
     return uploadedfile
@@ -245,7 +245,7 @@ def get_file_type(filename):
     """
     Get file type as defined in EXTENSIONS.
     """
-    
+
     file_extension = os.path.splitext(filename)[1].lower()
     file_type = ''
     for k,v in EXTENSIONS.iteritems():
@@ -259,7 +259,7 @@ def is_selectable(filename, selecttype):
     """
     Get select type as defined in FORMATS.
     """
-    
+
     file_extension = os.path.splitext(filename)[1].lower()
     select_types = []
     for k,v in SELECT_FORMATS.iteritems():
@@ -274,7 +274,7 @@ def version_generator(value, version_prefix, force=None):
     Generate Version for an Image.
     value has to be a serverpath relative to MEDIA_ROOT.
     """
-    
+
     # PIL's Error "Suspension not allowed here" work around:
     # s. http://mail.python.org/pipermail/image-sig/1999-August/000816.html
     if STRICT_PIL:
@@ -285,7 +285,7 @@ def version_generator(value, version_prefix, force=None):
         except ImportError:
             import ImageFile
     ImageFile.MAXBLOCK = IMAGE_MAXBLOCK # default is 64k
-    
+
     try:
         im = Image.open(smart_str(os.path.join(MEDIA_ROOT, value)))
         version_path = get_version_path(value, version_prefix)
@@ -308,7 +308,7 @@ def scale_and_crop(im, width, height, opts):
     """
     Scale and Crop.
     """
-    
+
     x, y   = [float(v) for v in im.size]
     if width:
         xr = float(width)
@@ -318,22 +318,22 @@ def scale_and_crop(im, width, height, opts):
         yr = float(height)
     else:
         yr = float(y*width/x)
-    
+
     if 'crop' in opts:
         r = max(xr/x, yr/y)
     else:
         r = min(xr/x, yr/y)
-    
+
     if r < 1.0 or (r > 1.0 and 'upscale' in opts):
         im = im.resize((int(x*r), int(y*r)), resample=Image.ANTIALIAS)
-    
+
     if 'crop' in opts:
         x, y   = [float(v) for v in im.size]
         ex, ey = (x-min(x, xr))/2, (y-min(y, yr))/2
         if ex or ey:
             im = im.crop((int(ex), int(ey), int(x-ex), int(y-ey)))
     return im
-    
+
     # if 'crop' in opts:
     #     if 'top_left' in opts:
     #         #draw cropping box from upper left corner of image
@@ -357,7 +357,7 @@ def scale_and_crop(im, width, height, opts):
     #             box = (int(ex), int(ey), int(x-ex), int(y-ey))
     #             im = im.resize((int(x), int(y)), resample=Image.ANTIALIAS).crop(box)
     # return im
-    
+
 scale_and_crop.valid_options = ('crop', 'upscale')
 
 
@@ -365,7 +365,7 @@ def convert_filename(value):
     """
     Convert Filename.
     """
-    
+
     if CONVERT_FILENAME:
         return value.replace(" ", "_").lower()
     else:

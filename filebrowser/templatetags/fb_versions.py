@@ -10,7 +10,7 @@ from django.conf import settings
 from django.utils.encoding import force_unicode, smart_str
 
 # filebrowser imports
-from filebrowser.settings import MEDIA_ROOT, MEDIA_URL, VERSIONS
+from filebrowser.conf import MEDIA_ROOT, MEDIA_URL, VERSIONS
 from filebrowser.functions import url_to_path, path_to_url, get_version_path, version_generator
 from filebrowser.base import FileObject
 
@@ -25,7 +25,7 @@ class VersionNode(Node):
         else:
             self.version_prefix = None
             self.version_prefix_var = Variable(version_prefix)
-        
+
     def render(self, context):
         try:
             source = self.src.resolve(context)
@@ -56,13 +56,13 @@ def version(parser, token):
     """
     Displaying a version of an existing Image according to the predefined VERSIONS settings (see filebrowser settings).
     {% version field_name version_prefix %}
-    
+
     Use {% version my_image 'medium' %} in order to display the medium-size
     version of an Image stored in a field name my_image.
-    
+
     version_prefix can be a string or a variable. if version_prefix is a string, use quotes.
     """
-    
+
     try:
         tag, src, version_prefix = token.split_contents()
     except:
@@ -81,7 +81,7 @@ class VersionObjectNode(Node):
         else:
             self.version_prefix = None
             self.version_prefix_var = Variable(version_prefix)
-    
+
     def render(self, context):
         try:
             source = self.src.resolve(context)
@@ -113,15 +113,15 @@ def version_object(parser, token):
     """
     Returns a context variable 'version_object'.
     {% version_object field_name version_prefix %}
-    
+
     Use {% version_object my_image 'medium' %} in order to retrieve the medium
     version of an Image stored in a field name my_image.
     Use {% version_object my_image 'medium' as var %} in order to use 'var' as
     your context variable.
-    
+
     version_prefix can be a string or a variable. if version_prefix is a string, use quotes.
     """
-    
+
     try:
         #tag, src, version_prefix = token.split_contents()
         tag, arg = token.contents.split(None, 1)
@@ -143,7 +143,7 @@ class VersionSettingNode(Node):
         else:
             self.version_prefix = None
             self.version_prefix_var = Variable(version_prefix)
-    
+
     def render(self, context):
         if self.version_prefix:
             version_prefix = self.version_prefix
@@ -160,7 +160,7 @@ def version_setting(parser, token):
     """
     Get Information about a version setting.
     """
-    
+
     try:
         tag, version_prefix = token.split_contents()
     except:
