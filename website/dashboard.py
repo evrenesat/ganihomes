@@ -6,7 +6,7 @@ from support.models import SubjectCategory, Ticket
 from utils.htmlmail import send_html_mail
 from utils.mail2perm import mail2perm
 from website.models.faq import Question
-from website.views import addPlaceForm, send_message
+from website.views import addPlaceForm
 
 __author__ = 'Evren Esat Ozkan'
 
@@ -277,28 +277,35 @@ def show_booking(request, id):
     if request.method =='POST':
         #FIXME: durum degisikliginden misafiri/ev sahibini haberdar etmek gerek
         admin_warn='Tanimsiz rezervasyon islemi'
+        job = request.POST.get('confirmation')
         if booking.guest == user:
-            if request.POST.get('confirmation')=='cancel' and booking.status==10:
+            if job == 'cancel' and booking.status==10:
                 booking.status = 50
-                booking.rejection_date = datetime.today()
+                booking.rejection_date = datetime.now()
                 booking.voidPayment(request)
                 messages.info(request, _('Booking request canceled.'))
                 admin_warn='Rezervasyon istegi misafir tarafindan iptal edildi.'
-            elif request.POST.get('confirmation')=='confirmpayment'  and booking.status==20:
+            if job == 'banktransfer' and booking.status==8:
+                booking.status = 9
+                booking.payment_notification_date = datetime.now()
+                booking.rejection_date = datetime.now()
+                messages.info(request, _('Thank you. Your booking request will be processed after your payment reviewed by our staff.'))
+                admin_warn='Rezervasyon odemesi yapıldı!!!'
+            elif job =='confirmpayment'  and booking.status==20:
                 booking.status = 30
-                booking.guest_ok_date = datetime.today()
+                booking.guest_ok_date = datetime.now()
                 messages.success(request, _('Booking request confirmed.'))
                 admin_warn='Konaklama misafir tarfindan onaylandi. Ucret aktarimi gerekli!!!'
         elif booking.host == user and booking.status==10:
-            if request.POST.get('confirmation')=='confirm':
+            if job =='confirm':
                 booking.status = 20
-                booking.confirmation_date = datetime.today()
+                booking.confirmation_date = datetime.now()
                 booking.capturePayment(request)
                 messages.success(request, _('Booking request confirmed.'))
                 admin_warn='Rezervasyon istegi ev sahibi tarafindan onaylandi.'
-            elif request.POST.get('confirmation')=='reject':
+            elif job =='reject':
                 booking.status = 40
-                booking.rejection_date = datetime.today()
+                booking.rejection_date = datetime.now()
                 booking.voidPayment(request)
                 messages.info(request, _('Booking request rejected.'))
                 admin_warn='Rezervasyon istegi ev sahibi tarafindan reddedildi.'
@@ -310,6 +317,7 @@ def show_booking(request, id):
         'total_price': booking.guest_payment,
         'booking':booking,
         'place':booking.place,
+        'active_reservation_status_codes': (8, 9, 10),
         'status' : BOOKING_STATUS_FOR_GUEST[booking.status] if booking.guest == user
               else BOOKING_STATUS_FOR_HOST[booking.status]
     }

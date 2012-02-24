@@ -16,7 +16,7 @@ from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import  COUNTRIES_DICT
-from places.models import Place, Tag, Photo, Currency,  Profile, Description, TagTranslation
+from places.models import *
 from django.db import DatabaseError
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
@@ -432,22 +432,6 @@ def bookmark(request):
         profile.save()
         return HttpResponse([result], mimetype='application/json')
 
-def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, typ=10):
-    """
-    at least receiver or place should be given
-    """
-    if place and not hasattr(place, 'id'):
-        place = Place.objects.get(pk=place)
-    else:
-        place = place
-    if receiver is None:receiver = place.owner
-    if sender is None:
-        if typ==40:
-            sender = User.objects.filter(is_staff=True, username='GaniHomes')[0]
-        if not sender:
-            sender = rq.user
-    msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
-    return msg
 
 @csrf_exempt
 def send_message_to_host(request, data=None):

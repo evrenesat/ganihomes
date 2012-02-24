@@ -2,6 +2,7 @@
 from django.contrib import admin
 from support.models import *
 from utils.admin import *
+from django.utils.translation import ugettext_lazy as _
 
 class SubjectCategoryAdmin(admin.ModelAdmin):
         pass
@@ -28,13 +29,19 @@ class TicketAdmin(admin.ModelAdmin):
 
 
 class MesajAdmin(admin.ModelAdmin):
-    list_display = ('fullname', 'subject', 'submit_time','email', 'called',  'archived' )
-    list_filter=('called', 'archived')
+    list_display = ('safe', 'fullname', 'subject', 'submit_time','email', 'called',  'archived' )
+    list_display_links = ('fullname',)
+    list_filter=('called', 'archived','safe')
     date_hierarchy = 'submit_time'
     search_fields = ['first_name','subject', 'message']
+    readonly_fields = ('safe',)
     fieldsets = (
+
+        (_(u'Content safety'), {
+            'fields': ('safe', )
+        }),
     (u'Personal Information', {
-        'fields': ('first_name', 'country',  'email', 'phone', )
+        'fields': ('first_name', 'email', 'phone', )
     }),
     (u'Message', {
         'fields': ('subject', 'message', )

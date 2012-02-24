@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 __author__ = 'Evren Esat Ozkan'
 
 from django.contrib import admin
 from utils.admin import admin_register
 from models import *
+from datetime import datetime
 
 class PromotionCodeAdmin(admin.ModelAdmin):
     list_display = ('id','code', 'puser', 'sender','price','percentage','expiry_date','timestamp','type','used','active')
@@ -81,11 +83,21 @@ class PlaceReviewAdmin(admin.ModelAdmin):
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('host', 'guest', 'place', 'valid', 'status')
+    list_display = ('id', 'host', 'guest', 'place', 'valid', 'status')
     search_fields = ['summary', ]
     list_filter = ['status','valid', ]
     raw_id_fields = ['host','guest']
+    actions = ['odeme_onayla',]
     save_on_top = True
+    readonly_fields=['timestamp','confirmation_date','rejection_date','guest_ok_date','payment_notification_date','payment_notification_date','payment_confirmation_date','payment_transfer_date']
+    def odeme_onayla(self, request, queryset):
+        booking = queryset[0]
+        booking.status = 10
+        booking.payment_confirmation_date = datetime.now()
+        booking.save()
+        booking.send_booking_request(request)
+        self.message_user(request, "Rezervasyon başarıyla güncellendi. İstek ev sahibine bildirildi.")
+    odeme_onayla.short_description = u'İşaretli rezervasyonun banka transferi ile yapılan ödemesini onayla.'
 
 
 class ReservedDatesAdmin(admin.ModelAdmin):

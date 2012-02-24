@@ -63,15 +63,20 @@
                             <input type=button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme"
                                    value="{% trans "Send a message to guest" %}">
                         {% else %}
-                            {% if booking.status == 10 %}
+
+                            {% if booking.status in active_reservation_status_codes %}
                                 <input type="submit" onclick="$('#confirmation').val('cancel')" name="reject"
                                        class="kizildugme kck" value="{% trans "Cancel booking request" %}"><br>
+                                {% if booking.status == 8 %}
+                                <input type="submit" onclick="$('#confirmation').val('banktransfer')" name="reject"
+                                       class="yemyesildugme kck" value="{% trans "Notify bank transfer" %}"><br>
                                 {% elif booking.status == 20 %}
                                 <input type="submit" onclick="$('#confirmation').val('confirmpayment')" name="reject"
-                                       class="kizildugme kck" value="{% trans "Confirm accommodation" %}">
+                                       class="yemyesildugme kck" value="{% trans "Confirm accommodation" %}">
                                 {% elif booking.status > 20 %}
                                         <input type="button" onclick="gh.reviewPlace({{ booking.place_id }})"
                                                class="yemyesildugme kck" value="{% trans "Write a review for this place" %}"> <br>
+                                {% endif %}
                             {% endif %}
                             <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme"
                                    value="{% trans "Send a message to host" %}">

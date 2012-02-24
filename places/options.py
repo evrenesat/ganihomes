@@ -124,6 +124,8 @@ PAYMENT_TYPES = (
 
 BOOKING_STATUS = (
     (5, _('Prepared')),
+    (8, _('Pre Requested - Waiting for payment')),
+    (9, _('Pre Requested - Waiting for confirmation of payment')),
     (10, _('Requested')),
     (20, _('Confirmed by host')),
     (30, _('Confirmed by guest')),
@@ -143,6 +145,8 @@ BOOKING_STATUS_FOR_HOST = {
     60: _('Canceled by staff'),
 }
 BOOKING_STATUS_FOR_GUEST = {
+    8: _('Waiting for payment'),
+    9: _('Waiting for confirmation of payment by GaniHomes Staff'),
     10: _('Waiting for the confirmation from the host'),
     20: _('Confirmed by host'),
     30: _('Accommodation confirmed by you'),

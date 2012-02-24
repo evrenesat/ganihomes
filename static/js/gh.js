@@ -584,6 +584,9 @@ gh = {
                 tprice =tprice -  wdisc
                 $('#wdiscount').show('normal').find('span').html('-'+this.getCurrPrice(this.convertPrice(wdisc)))
                 $('#mdiscount').hide('normal')
+            }else{
+                $('#wdiscount').hide('normal')
+                $('#mdiscount').hide('normal')
             }
             var tprice = tprice + cleaning_fee + (tprice*service_fee/100)
             var nog = parseInt($('#id_no_of_guests').val())
@@ -597,22 +600,27 @@ gh = {
             $('#totalPriceValue').html(this.getCurrPrice(this.convertPrice(tprice)))
             $('#displayed_price').val(tprice)
             $('#ndays').val(this.total.ndays)
-            $('#currencyid').val(this.selected_currency)
         }
         else{
             $('#totalPriceValue').html('')
             $('#displayed_price').val('')
             $('#ndays').val(0)
+
         }
+        $('#currencyid').val(this.selected_currency)
     },
     checkReservationDates:function(dates){
-        var loopDate = new Date();
-        loopDate.setTime(dates[0]);
         if(dates[0])$.cookie('selected_dates', $.toJSON(dates))
         $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
+        if(dates[0]==dates[1]){
+            dates[1].setTime(dates[0].valueOf() +  86400000)
+        }
+
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
         try{
+            var loopDate = new Date();
+            loopDate.setTime(dates[0]);
             var days=0 ,price=0.0;
             while (loopDate.valueOf() < dates[1].valueOf()) {
 //                console.log(loopDate.getDay())
@@ -681,7 +689,7 @@ gh = {
         return ($.cookie('ganibookmarks') || '').split(',')
     },
     is_bookmarked:function(id){
-      return ( id in this.get_bookmarks() )
+      return $.inArray( id, this.get_bookmarks() ) > -1
     },
     bookmark:function(caller){
         var self = this
@@ -702,7 +710,7 @@ gh = {
             caller.addClass('bookmarked')
             bookmark_array.push(pid)
         }
-        $.cookie('ganibookmarks', bookmark_array.join(','), {expires:1234});
+        $.cookie('ganibookmarks', bookmark_array.join(','), {expires:1234, path: '/'});
         $.post('/bookmark/',data)
     },
     sendMessageToHost:function(){
@@ -796,7 +804,7 @@ gh = {
                 onSelect: function(dateText, inst) {
                     self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
                     if(self.selected_dates.id_checkin || self.selected_dates.id_checkout){
-                        if(self.selected_dates.id_checkin && !self.selected_dates.id_checkout)self.selected_dates.id_checkout=self.selected_dates.id_checkin
+//                        if(self.selected_dates.id_checkin && !self.selected_dates.id_checkout)self.selected_dates.id_checkout=self.selected_dates.id_checkin
 //                        else if(self.selected_dates.id_checkout && !self.selected_dates.id_checkin)self.selected_dates.id_checkin=self.selected_dates.id_checkout
                         $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
                     }

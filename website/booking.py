@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 import logging
 from utils.mail2perm import mail2perm
 from website.views import send_message
-
+from website.models.dil import Ceviriler
 log = logging.getLogger('genel')
 from datetime import datetime
 from paypal.pro.views import PayPalPro
@@ -27,6 +27,23 @@ def get_booking(rq):
 def set_booking(rq, bk):
     rq.session['booking_id'] = bk.id
 
+goto_booking = lambda b: HttpResponseRedirect('%s?showBookingRequest=%s'% (reverse('dashboard'), b.id))
+
+
+
+
+
+
+def bank_transfer_complete(request):
+    booking = get_booking(request)
+    booking.payment_type = 3
+    booking.status = 8
+    booking.set_reservation() #TODO: should we set dates for unpaid booking request???
+    booking.save()
+    mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )), pre="[BANK TRANSFER]")
+    messages.success(request, Ceviriler.cevir( 'rezervasyon kaydedildi.evsahibi odemeden sonra haberdar edilecek', request.LANGUAGE_CODE) )
+    return goto_booking(booking)
+
 def paypal_complete(request):
     booking = get_booking(request)
     paypal_transaction = PayPalNVP.objects.get(method="DoExpressCheckoutPayment",ack='Success',custom=str(booking.id))
@@ -35,20 +52,9 @@ def paypal_complete(request):
     booking.set_reservation()
     booking.save()
     mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )))
-
-    msg = _("""%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .
-    Phone, email, and address information will be exchanged between guest/host after you accept the guest.
-    """)
-    msg = force_unicode(msg) % {
-        'guest':booking.guest.get_profile().private_name,
-        'title':booking.place.title,
-        'start':booking.start,
-        'end':booking.end,
-        'bid':booking.id,
-    }
-    send_message(request, msg, place=booking.place, typ=30)
+    booking.send_booking_request(request)
     messages.success(request, _('Your booking request has been successfully sent to the host.'))
-    return HttpResponseRedirect(reverse('dashboard'))
+    return goto_booking(booking)
 
 def paypal_cancel(request):
     return render_to_response('paypal-cancel.html',{}, context_instance=RequestContext(request))
@@ -101,6 +107,9 @@ def book_place(request):
 def secure_booking(request):
     if request.POST.get('paypal'):
         return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
+    if request.POST.get('banktransfer'):
+        return HttpResponseRedirect(reverse('bank_transfer_complete'))
+
     context= request.session.get('booking_context',{})
     booking = get_booking(request)
     context.update({'booking':booking, 'place':booking.place})

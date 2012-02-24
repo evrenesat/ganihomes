@@ -102,23 +102,31 @@ class Inform(models.Model):
 
 
 class Mesaj(models.Model):
+    safe= models.BooleanField(_(u"Safe"), default=True)
     first_name = models.CharField(_(u"Name"), max_length=50)
-#    last_name = models.CharField(_(u"Last Name"), max_length=50, default='')
-    country=models.SmallIntegerField(_(u"Country"), default=0, choices=COUNTRIES, blank=True)
     email = models.EmailField(_(u"Email"))
     phone = models.CharField(_(u"Phone"), max_length=30, default="")
     subject= models.CharField(_(u"Subject"), max_length=200, default='')
     message = models.TextField(_(u"Message"))
     submit_time = models.DateTimeField(_(u"Form Submit Time"), auto_now_add=True)
-    called= models.BooleanField(_(u"Called Back?"), default=False)
+    called= models.BooleanField(_(u"Replied"), default=False)
     archived= models.BooleanField(_(u"Archived"), default=False)
+
     notes = models.TextField(_(u"Notes"), null=True,  blank=True )
 
     def get_absolute_url(self):
         '/admin/support/message/%s' % self.id
 
+    def save(self, *args, **kwargs):
+        if 'href=' in self.message:
+            self.safe=False
+        if not self.subject:
+            self.subject =  '%s...' % self.message[:30]
+        super(Mesaj, self).save(*args, **kwargs)
+
+
     def fullname(self):
-        return u'%s %s' % (self.first_name, self.subject)
+        return u'%s' % (self.first_name,)
     fullname.short_description = _(u'Name')
 
     def __unicode__(self):

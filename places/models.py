@@ -22,15 +22,37 @@ from random import randint
 from easy_thumbnails.files import get_thumbnailer
 import codecs
 from utils.htmlmail import send_html_mail
-
+from datetime import datetime
 from utils.thumbnailer import customThumbnailer
 import logging
+
+
+
 log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
 import options
 
 #LANG_DROPDOWN = []
+
+def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, typ=10):
+    """
+    at least receiver or place should be given
+    """
+    if place and not hasattr(place, 'id'):
+        place = Place.objects.get(pk=place)
+    else:
+        place = place
+    if receiver is None:receiver = place.owner
+    if sender is None:
+        if typ==40:
+            sender = User.objects.filter(is_staff=True, username='GaniHomes')[0]
+        if not sender:
+            sender = rq.user
+    msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
+    return msg
+
+
 
 for code,name in settings.LANGUAGES:
     activate(code)
@@ -807,18 +829,15 @@ class Booking(models.Model):
     valid = models.BooleanField(_('Valid'), default=True)
     status = models.SmallIntegerField(_('Status'), choices=BOOKING_STATUS, default=5)
     payment_type = models.SmallIntegerField(_('Payment type'), choices=PAYMENT_TYPES, null=True, blank=True)
-
     guest_payment = models.DecimalField(_('Total payment for guest'), decimal_places=2, max_digits=8)
     host_earning = models.DecimalField(_('Host\'s earning'), decimal_places=2, max_digits=8)
-
-    # = models.ForeignKey(, verbose_name=_(''))
-    # = models.CharField(_(''))
-    # = models.IntegerField(_(''))
-    # = models.SmallIntegerField(_(''))
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     confirmation_date = models.DateTimeField(null=True, blank=True)
     rejection_date = models.DateTimeField(null=True, blank=True)
     guest_ok_date = models.DateTimeField(null=True, blank=True)
+    payment_notification_date = models.DateTimeField(null=True, blank=True)
+    payment_confirmation_date = models.DateTimeField(null=True, blank=True)
+    payment_transfer_date = models.DateTimeField(null=True, blank=True)
 
     def getPaypalAuthTransaction(self):
         return PayPalNVP.objects.filter(custom=self.id,method='DoExpressCheckoutPayment')[0]
@@ -836,6 +855,18 @@ class Booking(models.Model):
             })
             return auth_transaction.transactionid == capture_transaction.transactionid
 
+    def send_booking_request(self, rq):
+        msg = _("""%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .
+        Phone, email, and address information will be exchanged between guest/host after you accept the guest.
+        """)
+        msg = force_unicode(msg) % {
+            'guest':self.guest.get_profile().private_name,
+            'title':self.place.title,
+            'start':self.start,
+            'end':self.end,
+            'bid':self.id,
+        }
+        send_message(rq, msg, place=self.place, typ=30, sender=self.guest)
 
     def voidPayment(self, request):
         if self.payment_type==2: #paypal
