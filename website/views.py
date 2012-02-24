@@ -3,7 +3,6 @@
 from django import forms
 from django.core.paginator import Paginator
 from django.http import Http404
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import UploadedFile
@@ -16,13 +15,12 @@ from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from places.countries import  COUNTRIES_DICT
-from places.models import *
+#from places.models import *
 from django.db import DatabaseError
+from places.models import Place, Profile, Currency, Tag, Description, Photo, TagTranslation, send_message
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
-from utils.thumbnailer import *
 from website.models import Sayfa, Haber, Vitrin, Question
-from django.contrib.sites.models import get_current_site
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
