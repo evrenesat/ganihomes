@@ -3,7 +3,7 @@ from configuration.modelbase import ConfigBase, models
 
 
 class Config(ConfigBase):
-    email_activation = models.BooleanField(u'Eposta Onayı', help_text = u"Üyelik için eposta onayı gereksin mi?",  null=True, blank=True)
+    email_activation = models.BooleanField(u'Eposta Onayı', help_text = u"Üyelik için eposta onayı gereksin mi?",  default=False)
     host_fee = models.IntegerField(u'Ev Sahibi Komisyonu (%)', default = 10,  help_text = u"Mekan sahibinin girdiği tutardan kesilecek varsayılan komisyon oranı",  null=True, blank=True)
     guest_fee = models.IntegerField(u'Misafir komisyonu (%)', default = 2,  help_text = u"Misafirlerden kesilecek komisyon oranı",  null=True, blank=True)
     nasil_slide_zaman = models.CharField(u'Nasıl çalışır slide zamanları', default='1,4,10,20,30,-40,45', max_length=200,  null=True, blank=True,
@@ -29,5 +29,4 @@ class Config(ConfigBase):
 
 
 configuration = Config()
-
 
