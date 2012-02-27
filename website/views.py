@@ -14,6 +14,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
+from configuration.models import configuration
 from places.countries import  COUNTRIES_DICT
 #from places.models import *
 from django.db import DatabaseError
@@ -33,9 +34,6 @@ from website.models.dil import Ceviriler
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7)
 placeTypes = [(0,_(u'All'))] + PLACE_TYPES
-#from appsettings import app
-import dbsettings
-#ghs = app.settings.gh
 
 class SearchForm(forms.Form):
     checkin = forms.DateField(widget=forms.TextInput(attrs={'class':'vDateField'}),required=False, label=_('Check-in'))
@@ -79,7 +77,7 @@ def showPlace(request, id):
 #        properties.append((_(u'Cleaning Fee'),place.cleaning_fee))
     context = {'place':place, 'bform':BookingForm(place.capacity),
                'properties':properties , 'owner':owner,
-               'profile':profile, 'service_fee':dbsettings.ghs.guest_fee,
+               'profile':profile, 'service_fee':configuration('guest_fee'),
                'amens':place.getTags(request.LANGUAGE_CODE),
                'translations':place.get_translation_list(),
                'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id),
@@ -122,7 +120,7 @@ def anasayfa(request):
     lang = request.LANGUAGE_CODE
     searchForm = SearchForm()
     slides = [Vitrin.get_slides(), Vitrin.get_slides(type=1), Vitrin.get_slides(type=2)]
-    context = {'slides': slides, 'srForm':searchForm, 'nasil_slide_zaman': dbsettings.ghs.nasil_slide_zaman or '0',               }
+    context = {'slides': slides, 'srForm':searchForm, 'nasil_slide_zaman': configuration('nasil_slide_zaman') or '0',               }
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 def slides(request, id):
@@ -226,9 +224,9 @@ def addPlace(request, ajax=False, id=None):
         form = addPlaceForm(instance=old_place)
         register_form = RegisterForm()
         login_form = LoginForm()
-    str_fee =  _('%s Service Fee '% dbsettings.ghs.host_fee)
+    str_fee =  _('%s Service Fee '% configuration('host_fee'))
     context = {'form':form, 'rform':register_form,'lform':login_form,'place':old_place,
-               'host_fee':dbsettings.ghs.host_fee, 'str_fee':str_fee, 'photos':photos,
+               'host_fee':configuration('host_fee'), 'str_fee':str_fee, 'photos':photos,
                'tags':TagTranslation.objects.filter(lang=request.LANGUAGE_CODE),
                'existing_tags':[],
 

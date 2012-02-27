@@ -612,7 +612,7 @@ gh = {
     checkReservationDates:function(dates){
         if(dates[0])$.cookie('selected_dates', $.toJSON(dates))
         $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
-        if(dates[0]==dates[1]){
+        if(dates[0] && dates[0]==dates[1]){
             dates[1].setTime(dates[0].valueOf() +  86400000)
         }
 
@@ -636,6 +636,7 @@ gh = {
                     price += this.dPrice(loopDate)
                 }
                 loopDate.setTime(loopDate.valueOf() + 86400000);
+
             }
         }catch(er){
             if(er=='unv_dates'){

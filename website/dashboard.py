@@ -520,9 +520,9 @@ def edit_payment(request):
     else:
         bform = PaymentSelectionBankForm(instance=ps)
         pform = PaymentSelectionPaypalForm(instance=ps)
-    import dbsettings
+
     context = {'bform':bform,'pform':pform, 'ps':ps,
-               'iban_countries':json.dumps(dbsettings.ghs.iban_countries.upper().split(','), ensure_ascii=False)
+               'iban_countries':json.dumps(configuration('iban_countries').upper().split(','), ensure_ascii=False)
     }
     return render_to_response('dashboard/edit_payment.html', context, context_instance=RequestContext(request))
 
@@ -553,7 +553,6 @@ def edit_prices(request, id):
     lang = request.LANGUAGE_CODE
     user = request.user
     place = Place.objects.get(pk=id, owner=user)
-    import dbsettings
     if request.method == 'POST':
         form = PlacePriceForm(request.POST,instance=place)
         spset = SPFormSet(request.POST, queryset=SessionalPrice.objects.filter(place=place))
@@ -570,7 +569,7 @@ def edit_prices(request, id):
 
     form = PlacePriceForm(instance=place)
     spset = SPFormSet(queryset=SessionalPrice.objects.filter(place=place))
-    context = {'bform':form,'sform':spset,'place':place, 'host_fee':dbsettings.ghs.host_fee, }
+    context = {'bform':form,'sform':spset,'place':place, 'host_fee':configuration('host_fee'), }
     return render_to_response('dashboard/edit_prices.html', context, context_instance=RequestContext(request))
 
 
@@ -642,10 +641,9 @@ def invite_friend(request):
 
 @login_required
 def edit_description(request,pid):
-    import dbsettings
     place = Place.objects.get(pk=pid, owner=request.user)
     default_lang = place.lang or request.LANGUAGE_CODE
-    tlangs = dbsettings.ghs.trans_langs.replace(' ','').split(',')
+    tlangs = configuration('trans_langs').replace(' ','').split(',')
     if request.method == 'POST':
         p = request.POST.copy()
         for lang in tlangs:

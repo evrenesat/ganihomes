@@ -25,7 +25,7 @@ from utils.htmlmail import send_html_mail
 from datetime import datetime
 from utils.thumbnailer import customThumbnailer
 import logging
-
+from configuration.models import configuration
 
 
 log = logging.getLogger('genel')
@@ -533,7 +533,6 @@ class Place(models.Model):
         return True
 
     def calculatePrice(self, start, end ):
-        import dbsettings
         pd = self.getSessionalPriceDict()
         price = Decimal('0.0')
         nights = (end + datetime.timedelta(days=1) - start).days
@@ -546,23 +545,22 @@ class Place(models.Model):
             day = start + datetime.timedelta(days=d)
             price+=pd.get(int(day.strftime('%y%m%d'))) or (self.weekend_price if (day.weekday() in [6,7] and self.weekend_price) else self.price)
             log.info(day.strftime('%y-%m-%d'))
-        log.info('after days %s ' % (price))
+#        log.info('after days %s ' % (price))
         if self.monthly_discount and nights>=30:
             mdiscount = price * self.monthly_discount / Decimal('100')
             price = price - mdiscount
-        log.info('after mont %s ' % (price))
+#        log.info('after mont %s ' % (price))
         if self.weekly_discount and nights>=7:
             wdiscount = price * self.weekly_discount / Decimal('100')
             price = price - wdiscount
-        log.info('after week %s ' % (price))
-        if dbsettings.ghs.guest_fee:
-            guest_fee = price * dbsettings.ghs.guest_fee/Decimal('100')
+#        log.info('after week %s ' % (price))
+        guest_fee = configuration('guest_fee') or 0
+        if guest_fee:
+            guest_fee = price * guest_fee/Decimal('100')
             price = price + guest_fee
-        log.info('after gfee %s ' % (price))
-#        log.info('gfee %s ' % (dbsettings.ghs.guest_fee))
         if self.cleaning_fee:
             price+=self.cleaning_fee
-        log.info('after clean %s ' % (price))
+#        log.info('after clean %s ' % (price))
         return price, guest_fee, wdiscount, mdiscount
 
 
@@ -581,10 +579,10 @@ class Place(models.Model):
         factor = self.currency.get_factor(currency_id)
         r = (end + datetime.timedelta(days=1) - start).days
         total, guest_fee, wdiscount, mdiscount = [p * factor for p in  self.calculatePrice(start, end)]
-        log.info('total %s ' % (total))
+#        log.info('total %s ' % (total))
         if(self.extra_price and self.extra_limit < guests):
             total = total + (self.extra_price * Decimal(str(guests - self.extra_limit) ) * factor )
-        log.info('after extra %s ' % (total))
+#        log.info('after extra %s ' % (total))
         return {'total': total,'guest_fee':guest_fee,
                 'wdiscount':wdiscount, 'mdiscount':mdiscount,
                 'cleaning_fee':self.cleaning_fee,
@@ -888,8 +886,7 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.host_earning:
-            import dbsettings
-            self.host_earning =  self.place.price * ((100-dbsettings.ghs.host_fee)/100)
+            self.host_earning =  self.place.price * ((100-configuration('host_fee'))/100)
         super(Booking, self).save(*args, **kwargs)
 
 

@@ -70,7 +70,7 @@
                                 {% if booking.status == 8 %}
                                 <input type="submit" onclick="$('#confirmation').val('banktransfer')"
                                        class="yemyesildugme kck" value="{% trans "Notify bank transfer" %}"><br>
-                            {% endif %}
+                                 {% endif %}
                                 {% if booking.status == 20 %}
                                 <input type="submit" onclick="$('#confirmation').val('confirmpayment')"
                                        class="yemyesildugme kck" value="{% trans "Confirm accommodation" %}">
@@ -82,6 +82,7 @@
                                    value="{% trans "Send a message to host" %}">
 
 
+                            {% endif %}
                         {% endif %}
 
                 </span>

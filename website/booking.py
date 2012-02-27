@@ -17,8 +17,7 @@ from website.models.dil import Ceviriler
 log = logging.getLogger('genel')
 from datetime import datetime
 from paypal.pro.views import PayPalPro
-from appsettings import app
-ghs = app.settings.gh
+
 
 
 def get_booking(rq):

@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-#    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+    url(r'^admin/filebrowser/', include('filebrowser.urls')),
 #    (r'^tinymce/', include('tinymce.urls')),
 )
 
@@ -69,7 +69,6 @@ urlpatterns += patterns('website.views',
     (r'^tips$', direct_to_template, {'template': 'tips.html'},'tips'),
     (r'^facebook/', include('django_facebook.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^appsettings/', include('appsettings.urls')),
     url(r'^dashboard/', include('dashboard_urls')),
     (r'^upload_photo/(?P<place_id>\d+)$', 'multiuploader', {}, 'upload_photo_toplace'),
     (r'^slides/(?P<id>\d+)/$', 'slides', {}, 'slides'),

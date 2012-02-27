@@ -17,14 +17,14 @@ from places.models import Place, Description
 import logging
 log = logging.getLogger('genel')
 
-import dbsettings
+from configuration.models import configuration
 
 class TranslationMachine:
     """
     google translation machine
     """
     def __init__(self):
-        self.auto_langs = dbsettings.ghs.auto_trans_langs.split(',')
+        self.auto_langs = configuration('auto_trans_langs').split(',')
         self.service = build('translate', 'v2', developerKey='AIzaSyAd8evO6SwmuE3RoBdaROzLoNGesc386Vg')
         self.run()
 
