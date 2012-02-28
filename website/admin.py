@@ -177,7 +177,7 @@ class VitrinAdmin(admin.ModelAdmin):
     search_fields = ['baslik', 'icerik']
     list_filter = ['dil_kodu', 'active', 'type']
     list_editable = ['active', 'sira','tops']
-    raw_id_fields = ['place_photo']
+    raw_id_fields = ['place_photo','place']
     save_on_top = True
     save_as = True
 

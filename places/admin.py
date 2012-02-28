@@ -14,7 +14,7 @@ class PromotionCodeAdmin(admin.ModelAdmin):
     save_on_top = True
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'place', 'type')
+    list_display = ('id','admin_image', 'name', 'place', 'type')
     search_fields = ['name', ]
     list_filter = ['type', ]
     raw_id_fields = ['place']
@@ -123,7 +123,7 @@ class BookingInline(admin.TabularInline):
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'city', 'price', 'active', 'size', 'timestamp','last_modified')
+    list_display = ('title', 'admin_image', 'city', 'price', 'active', 'size', 'timestamp','last_modified')
     search_fields = ['title', ]
     list_filter = ['type', 'space', 'bedroom', ]
     save_on_top = True

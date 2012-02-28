@@ -432,6 +432,10 @@ class Place(models.Model):
               'type':'typ', 'space':'spc','price':'prc'
     }
 
+    def admin_image(self):
+        return '<a href="%s"><img src="%s/place_photos/%s_plkks.jpg"/></a>'%(self.get_absolute_url(), settings.MEDIA_URL, self.id)
+    admin_image.allow_tags = True
+
     def get_absolute_url(self):
         return '/%s%s' % (self.lang[:2] or 'en', reverse('show_place', args=(self.id, )) )
 
@@ -781,6 +785,11 @@ class Photo(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.name,)
+
+
+    def admin_image(self):
+        return '<a href="%s"><img src="%s/place_photos/%s_xs.jpg"/></a>'%(self.image.url, settings.MEDIA_URL, self.id)
+    admin_image.allow_tags = True
 
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)

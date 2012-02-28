@@ -12,6 +12,9 @@ class ConfigAdmin(admin.ModelAdmin):
         return False if Config.objects.count() \
                     else super(ConfigAdmin, self).has_add_permission(request)
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 
 admin.site.register(Config, ConfigAdmin)
