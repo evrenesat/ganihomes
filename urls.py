@@ -46,6 +46,7 @@ urlpatterns = patterns('',
 #try:
 #
 #   urlpatterns += patterns('',
+
 #       url(r'^admin/filebrowser/', include('filebrowser.urls')),
 #       )
 #except:
