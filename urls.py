@@ -44,6 +44,7 @@ urlpatterns = patterns('',
 )
 
 #try:
+#    import filebrowser.views
 #    import filebrowser.urls
 #    urlpatterns += patterns('',
 #       url(r'^admin/filebrowser/', include(filebrowser.urls)),
