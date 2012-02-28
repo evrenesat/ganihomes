@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-#    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+    url(r'^admin/filebrowser/', include('filebrowser.urls')),
 #    (r'^tinymce/', include('tinymce.urls')),
 )
 

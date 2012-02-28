@@ -268,8 +268,9 @@ def _check_file(request):
 filebrowser_pre_upload = Signal(providing_args=["path", "file"])
 filebrowser_post_upload = Signal(providing_args=["path", "file"])
 
+
+#@flash_login_required
 @csrf_exempt
-@flash_login_required
 def _upload_file(request):
     """
     Upload file to the server.
@@ -298,7 +299,7 @@ def _upload_file(request):
             # POST UPLOAD SIGNAL
             filebrowser_post_upload.send(sender=request, path=request.POST.get('folder'), file=FileObject(smart_str(os.path.join(DIRECTORY, folder, filedata.name))))
     return HttpResponse('True')
-#_upload_file = flash_login_required(_upload_file)
+_upload_file = flash_login_required(_upload_file)
 
 
 # delete signals
