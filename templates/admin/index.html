@@ -18,7 +18,7 @@
         {% if app.name not in 'sites configuration' %}
         <div class="module">
         <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
-        <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
+        <caption><a href="{{ app.app_url }}" class="section">{% trans app.name|capfirst %}</a></caption>
         {% for model in app.models %}
             <tr>
             {% if model.perms.change %}
