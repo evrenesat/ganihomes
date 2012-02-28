@@ -15,7 +15,7 @@
 {% if app_list %}
 {#    {% include 'filebrowser/append.html' %}#}
     {% for app in app_list %}
-        {% if app.name not in 'sites configuration' %}
+        {% if app.name not in 'Sites Configuration Ipn Pro Django_Facebook Registration' %}
         <div class="module">
         <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
         <caption><a href="{{ app.app_url }}" class="section">{% trans app.name|capfirst %}</a></caption>
