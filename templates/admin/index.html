@@ -13,7 +13,7 @@
 <div id="content-main">
 
 {% if app_list %}
-    {% include 'filebrowser/append.html' %}
+{#    {% include 'filebrowser/append.html' %}#}
     {% for app in app_list %}
         {% if app.name not in 'Sites Appsettings Configuration' %}
         <div class="module">
@@ -52,8 +52,9 @@
 
 {% block sidebar %}
 <div id="content-related">
-    <h2><a href="/admin/configuration/config/1/">{% trans 'Site Ayarları' %}</a></h2>
-    <h2><a href="/rosetta/pick/">{% trans 'Sabit Çeviriler' %}</a></h2>
+    <h2><a href="/admin/configuration/config/1/">{% trans 'Settings' %}</a></h2>
+    <h2><a href="/rosetta/pick/">{% trans 'Constant Translations' %}</a></h2>
+    <h2><a href="/admin/filebrowser/browse/">{% trans 'File Manager' %}</a></h2>
     <div class="module" id="recent-actions-module">
 
         <h2>{% trans 'Recent Actions' %}</h2>
