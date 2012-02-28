@@ -11,7 +11,8 @@ admin.autodiscover()
 from django.conf.urls.defaults import *
 handler500 = 'website.views.server_error'
 from django.views.generic.simple import direct_to_template
-
+import logging
+log = logging.getLogger('genel')
 class PlaceSitemap(Sitemap):
     changefreq = "never"
     priority = 0.5
@@ -43,7 +44,7 @@ urlpatterns = patterns('',
 )
 
 try:
-   urlpatterns = patterns('',
+   urlpatterns += patterns('',
        url(r'^admin/filebrowser/', include('filebrowser.urls')),
        )
 except:
