@@ -43,12 +43,13 @@ urlpatterns = patterns('',
 #    (r'^tinymce/', include('tinymce.urls')),
 )
 
-try:
-   urlpatterns += patterns('',
-       url(r'^admin/filebrowser/', include('filebrowser.urls')),
-       )
-except:
-    log.exception('urlconf hata')
+#try:
+#
+#   urlpatterns += patterns('',
+#       url(r'^admin/filebrowser/', include('filebrowser.urls')),
+#       )
+#except:
+#    log.exception('urlconf hata')
 
 urlpatterns += patterns('website.views',
     (r'^dilsec/(?P<kod>[-\w]+)?/$', 'dilsec', {}, 'dilsec'),
