@@ -13,8 +13,9 @@ class ConfigBase(models.Model):
         verbose_name_plural = _('Configuration Options')
 
     def save(self, *args, **kwargs):
-        for field in self._meta.fields:
-            cache.set(CACHE_PREFIX + field.name, getattr(self,field.name))
+        for key,val in self.__dict__.items():
+            if not key == '_state':
+                cache.set(CACHE_PREFIX + key, val)
         super(ConfigBase, self).save(*args, **kwargs)
 
     @classmethod

@@ -255,8 +255,8 @@ class PayPalWPP(object):
         response_params = self._parse_response(response)
 
 
-        log.info( 'PayPal Request:%s\nPayPal Response:%s'%
-            (pprint.pformat(defaults),pprint.pformat(response_params)))
+#        log.info( 'PayPal Request:%s\nPayPal Response:%s'%
+#            (pprint.pformat(defaults),pprint.pformat(response_params)))
 
         # Gather all NVP parameters to pass to a new instance.
         nvp_params = {}
@@ -278,7 +278,7 @@ class PayPalWPP(object):
 
     def _request(self, data):
         """Moved out to make testing easier."""
-        log.info('endpoint: %s\n\ndata: %s'% (self.endpoint, data))
+#        log.info('endpoint: %s\n\ndata: %s'% (self.endpoint, data))
         return urllib2.urlopen(self.endpoint, data).read()
 
     def _check_and_update_params(self, required, params):

@@ -183,12 +183,12 @@ def addPlace(request, ajax=False, id=None):
             new_place.lat = str(new_place.lat)
             new_place.lon = str(new_place.lon)
             new_place.lang = request.LANGUAGE_CODE
-            log.info('%s %s '% (new_place.lang, request.LANGUAGE_CODE))
+#            log.info('%s %s '% (new_place.lang, request.LANGUAGE_CODE))
             new_place.save()
             form.save_m2m()
             for tag in form.cleaned_data['tags']:
                 new_place.tags.add(tag)
-            log.info(form.cleaned_data['tags'])
+#            log.info(form.cleaned_data['tags'])
             new_place.save()
             d, new = Description.objects.get_or_create(place=new_place, lang=new_place.lang)
             d.text = new_place.description
@@ -334,15 +334,15 @@ def multiuploader_delete(request, pk):
     https://github.com/blueimp/jQuery-File-Upload
     """
     if request.method == 'POST':
-        log.info('Called delete image. Photo id='+str(pk))
+#        log.info('Called delete image. Photo id='+str(pk))
         image = get_object_or_404(Photo, pk=pk)
         if image.place and image.place.owner != request.user:
             return HttpResponseForbidden()
         image.delete()
-        log.info('DONE. Deleted photo id='+str(pk))
+#        log.info('DONE. Deleted photo id='+str(pk))
         return HttpResponse(str(pk))
     else:
-        log.info('Recieved not POST request todelete image view')
+#        log.info('Recieved not POST request todelete image view')
         return HttpResponseBadRequest('Only POST accepted')
 
 
@@ -354,7 +354,7 @@ def square_thumbnail(source, size=(50, 50)):
 def multiuploader(request, place_id=None):
     #FIXME : file type checking
     if request.method == 'POST':
-        log.info('received POST to main multiuploader view')
+#        log.info('received POST to main multiuploader view')
         if request.FILES == None:
             return HttpResponseBadRequest('Must have files attached!')
 
@@ -363,7 +363,7 @@ def multiuploader(request, place_id=None):
         wrapped_file = UploadedFile(file)
         filename = wrapped_file.name
         file_size = wrapped_file.file.size
-        log.info (u'Got file: %s'%filename)
+#        log.info (u'Got file: %s'%filename)
         #writing file manually into model
         #because we don't need form of any type.
 
@@ -641,7 +641,7 @@ def search_autocomplete(request):
         for p in place:
             if not p: p = u''
             nplace.append(p)
-            log.info('type of %s : %s' % (p, type(p)))
+#            log.info('type of %s : %s' % (p, type(p)))
         nplaces.append(nplace)
 #    places = [filter(None,p) for p in places]
     return HttpResponse(json.dumps(nplaces,  ensure_ascii=False), mimetype='application/json')

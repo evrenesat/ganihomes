@@ -473,7 +473,7 @@ def edit_profile(request):
 def pfoto(request):
     profile = request.user.get_profile()
     if request.method == 'POST':
-        log.info('received POST to main multiuploader view')
+#        log.info('received POST to main multiuploader view')
         if request.FILES == None:
             return HttpResponseBadRequest('Must have files attached!')
 
@@ -482,7 +482,7 @@ def pfoto(request):
         wrapped_file = UploadedFile(file)
         filename = wrapped_file.name
 #        file_size = wrapped_file.file.size
-        log.info (u'Got file: %s'%filename)
+#        log.info (u'Got file: %s'%filename)
 
         profile.photo=file
         profile.save()

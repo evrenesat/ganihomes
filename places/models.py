@@ -23,6 +23,7 @@ from easy_thumbnails.files import get_thumbnailer
 import codecs
 from utils.htmlmail import send_html_mail
 from datetime import datetime
+
 from utils.thumbnailer import customThumbnailer
 import logging
 from configuration.models import configuration
@@ -32,7 +33,7 @@ log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
 import options
-
+from utils.mail2perm import mail2perm
 #LANG_DROPDOWN = []
 
 def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, typ=10):
@@ -50,6 +51,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
         if not sender:
             sender = rq.user
     msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
+    mail2perm(msg, url=reverse('admin:places_message_change', args=(msg.id, )))
     return msg
 
 
@@ -81,11 +83,11 @@ def create_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 
 #from paypal.standard.ipn.signals import payment_was_successful
-from paypal.pro.signals import payment_was_successful
-
-def show_me_the_money(sender, **kwargs):
-    log.info('para aktarimi %s'%sender)
-payment_was_successful.connect(show_me_the_money)
+#from paypal.pro.signals import payment_was_successful
+#
+#def show_me_the_money(sender, **kwargs):
+#    log.info('para aktarimi %s'%sender)
+#payment_was_successful.connect(show_me_the_money)
 
 ugettext('Support')
 ugettext('Website')
@@ -540,15 +542,15 @@ class Place(models.Model):
         pd = self.getSessionalPriceDict()
         price = Decimal('0.0')
         nights = (end + datetime.timedelta(days=1) - start).days
-        log.info('pd %s ' % (pd))
-        log.info('nights %s ' % (nights))
+#        log.info('pd %s ' % (pd))
+#        log.info('nights %s ' % (nights))
         mdiscount=0
         wdiscount=0
         guest_fee=0
         for d in range(nights):
             day = start + datetime.timedelta(days=d)
             price+=pd.get(int(day.strftime('%y%m%d'))) or (self.weekend_price if (day.weekday() in [6,7] and self.weekend_price) else self.price)
-            log.info(day.strftime('%y-%m-%d'))
+#            log.info(day.strftime('%y-%m-%d'))
 #        log.info('after days %s ' % (price))
         if self.monthly_discount and nights>=30:
             mdiscount = price * self.monthly_discount / Decimal('100')
@@ -1010,7 +1012,7 @@ class Message(models.Model):
     def message_count(cls, user, reset=False):
         if user.is_authenticated():
             k = kes('mcount',user.id)
-            return k.g() or k.s(cls.objects.filter(read=False, receiver=user).count())
+            return k.g() or k.s(cls.objects.filter(read=False, receiver=user,status__gte=20).count())
 
     def get_sender_name(self):
         return self.sender.get_profile().private_name

@@ -178,7 +178,7 @@ class Answer(models.Model):
         verbose_name_plural = _('FAQ Answers')
 
     def __unicode__(self):
-        return '%s' % (self.text,)
+        return '%s' % (self.text[:30],)
 
     def save(self, *args, **kwargs):
         self.question._updateCache()

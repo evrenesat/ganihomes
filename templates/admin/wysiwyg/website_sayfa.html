@@ -1,6 +1,6 @@
 {% extends "admin/change_form.html" %}
 
-{% load wysiwyg %}
+{% load wysiwyg i18n%}
 
 {% block extrahead %}
     {{ block.super }}
@@ -11,6 +11,15 @@
 {#{% endblock %}#}
 {% block content %}
     {{ block.super }}
+    {% block object-tools-items %}{{ block.super }}<li>
+        {% if not request.GET.nohtml %}
+            <a href="./?nohtml=1" class="historylink">{% trans "Turn Off Html Editor" %}</a>
+        {% else %}
+            <a href="./" class="historylink">{% trans "Turn On Html Editor" %}</a>
+        {% endif %}
+        </li>
+    {% endblock %}
+        {% if not request.GET.nohtml %}
     {% wysiwyg_editor "id_icerik_set-0-metin" %}
     {% wysiwyg_editor "id_icerik_set-1-metin" %}
     {% wysiwyg_editor "id_icerik_set-2-metin" %}
@@ -27,5 +36,10 @@
     {% wysiwyg_editor "id_icerik_set-13-metin" %}
     {% wysiwyg_editor "id_icerik_set-14-metin" %}
     {% wysiwyg_editor "id_icerik_set-15-metin" %}
-
+    {% wysiwyg_editor "id_icerik_set-16-metin" %}
+    {% wysiwyg_editor "id_icerik_set-17-metin" %}
+    {% wysiwyg_editor "id_icerik_set-18-metin" %}
+    {% wysiwyg_editor "id_icerik_set-19-metin" %}
+    {% wysiwyg_editor "id_icerik_set-20-metin" %}
+    {% endif %}
 {% endblock %}

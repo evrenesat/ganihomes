@@ -1,0 +1,43 @@
+{% extends "admin/change_form.html" %}
+
+{% load wysiwyg i18n%}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% wysiwyg_setup %}
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+{% block object-tools-items %}{{ block.super }}<li>
+    {% if not request.GET.nohtml %}
+        <a href="./?nohtml=1" class="historylink">{% trans "Turn Off Html Editor" %}</a>
+    {% else %}
+        <a href="./" class="historylink">{% trans "Turn On Html Editor" %}</a>
+    {% endif %}
+    </li>
+{% endblock %}
+    {% if not request.GET.nohtml %}
+    {% wysiwyg_editor "id_answer_set-0-text" %}
+    {% wysiwyg_editor "id_answer_set-1-text" %}
+    {% wysiwyg_editor "id_answer_set-2-text" %}
+    {% wysiwyg_editor "id_answer_set-3-text" %}
+    {% wysiwyg_editor "id_answer_set-4-text" %}
+    {% wysiwyg_editor "id_answer_set-5-text" %}
+    {% wysiwyg_editor "id_answer_set-6-text" %}
+    {% wysiwyg_editor "id_answer_set-7-text" %}
+    {% wysiwyg_editor "id_answer_set-8-text" %}
+    {% wysiwyg_editor "id_answer_set-9-text" %}
+    {% wysiwyg_editor "id_answer_set-10-text" %}
+    {% wysiwyg_editor "id_answer_set-11-text" %}
+    {% wysiwyg_editor "id_answer_set-12-text" %}
+    {% wysiwyg_editor "id_answer_set-13-text" %}
+    {% wysiwyg_editor "id_answer_set-14-text" %}
+    {% wysiwyg_editor "id_answer_set-15-text" %}
+    {% wysiwyg_editor "id_answer_set-16-text" %}
+    {% wysiwyg_editor "id_answer_set-17-text" %}
+    {% wysiwyg_editor "id_answer_set-18-text" %}
+    {% wysiwyg_editor "id_answer_set-19-text" %}
+    {% wysiwyg_editor "id_answer_set-20-text" %}
+    {% endif %}
+{% endblock %}

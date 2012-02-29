@@ -179,7 +179,7 @@ class PayPalPro(object):
                              RETURNURL=self.item['returnurl'],
                              CANCELURL=self.item['cancelurl'])
             pp_url = self.get_endpoint() % urlencode(pp_params)
-            log.info('redirect data: %s'% pp_url)
+#            log.info('redirect data: %s'% pp_url)
             return HttpResponseRedirect(pp_url)
 
     def render_confirm_form(self):

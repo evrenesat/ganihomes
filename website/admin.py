@@ -72,6 +72,7 @@ class AnswerInline(admin.StackedInline):
     extra = 3
 
 class QuestionAdmin(admin.ModelAdmin):
+    change_form_template = 'admin/wysiwyg/website_question.html'
     formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
     list_display = ('text','category','active','order')
     search_fields = ['text', ]

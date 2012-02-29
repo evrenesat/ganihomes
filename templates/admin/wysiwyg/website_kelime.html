@@ -1,6 +1,6 @@
 {% extends "admin/change_form.html" %}
 
-{% load wysiwyg %}
+{% load wysiwyg i18n%}
 
 {% block extrahead %}
     {{ block.super }}
@@ -9,6 +9,15 @@
 
 {% block content %}
     {{ block.super }}
+{% block object-tools-items %}{{ block.super }}<li>
+    {% if not request.GET.nohtml %}
+        <a href="./?nohtml=1" class="historylink">{% trans "Turn Off Html Editor" %}</a>
+    {% else %}
+        <a href="./" class="historylink">{% trans "Turn On Html Editor" %}</a>
+    {% endif %}
+    </li>
+{% endblock %}
+    {% if not request.GET.nohtml %}
     {% wysiwyg_editor "id_ceviriler_set-0-ceviri" %}
     {% wysiwyg_editor "id_ceviriler_set-1-ceviri" %}
     {% wysiwyg_editor "id_ceviriler_set-2-ceviri" %}
@@ -25,5 +34,10 @@
     {% wysiwyg_editor "id_ceviriler_set-13-ceviri" %}
     {% wysiwyg_editor "id_ceviriler_set-14-ceviri" %}
     {% wysiwyg_editor "id_ceviriler_set-15-ceviri" %}
-
+    {% wysiwyg_editor "id_ceviriler_set-16-ceviri" %}
+    {% wysiwyg_editor "id_ceviriler_set-17-ceviri" %}
+    {% wysiwyg_editor "id_ceviriler_set-18-ceviri" %}
+    {% wysiwyg_editor "id_ceviriler_set-19-ceviri" %}
+    {% wysiwyg_editor "id_ceviriler_set-20-ceviri" %}
+    {% endif %}
 {% endblock %}

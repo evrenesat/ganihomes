@@ -78,11 +78,12 @@
                                         <input type="button" onclick="gh.reviewPlace({{ booking.place_id }})"
                                                class="yemyesildugme kck" value="{% trans "Write a review for this place" %}"> <br>
                                 {% endif %}
+                            {% endif %}
                             <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme"
                                    value="{% trans "Send a message to host" %}">
 
 
-                            {% endif %}
+
                         {% endif %}
 
                 </span>

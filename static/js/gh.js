@@ -119,7 +119,7 @@ gh = {
         this.fillCurrencies()
         this.initPagesAndSetLang()
 
-        $("#sosicon li").hover(function() {
+        $("#sosicon li").mouseover(function() {
         var e = this;
         $(e).find("a").stop().animate({ top: "-10px" }, 200, function(){
         $(e).find("a").animate({ top: "5px" }, 500, function(){
@@ -127,6 +127,7 @@ gh = {
         });
         });
         });
+        $.datepicker.setDefaults($.datepicker.regional[self.LANGUAGE_CODE=='en'?'en-GB':self.LANGUAGE_CODE]);
 
 
     },
@@ -799,7 +800,6 @@ gh = {
                     $('#pcalendar').datepick('setDate',new Date(dates[0]),new Date(dates[1]))
                 }
             })
-            $.datepicker.setDefaults($.datepicker.regional[self.LANGUAGE_CODE=='en'?'en-GB':self.LANGUAGE_CODE]);
             $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true ,
                 beforeShowDay: function(date) { return self.isUnAvailable(date) ? [false,'datepick-reserved','']:[true,'',''] },
                 onSelect: function(dateText, inst) {
