@@ -491,7 +491,7 @@ gh = {
     },
     searchMap:function(){
         var self=this;
-        this.gZoom = 11;
+//        this.gZoom = 11;
         this.gcinit(true)
         for(i=0 ;i<this.search_results.length;i++){
             var d = this.search_results[i]
@@ -538,7 +538,7 @@ gh = {
     gcinit:function(nomarker){
         this.geocoder = new google.maps.Geocoder();
         this.glatlng = new google.maps.LatLng(this.lat,this.lon);
-//        console.log(this.glatlng,this.lat,this.lon)
+        console.log(this.glatlng,this.lat,this.lon)
         var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP, mapTypeControl:false, streetViewControl:false }
         this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
@@ -1217,10 +1217,17 @@ gh = {
         return gh_crc[this.selected_currency]
     },
     setSearchPrices:function(data){
-        var lats=0.0, lons=0.0, say=0
+        var lats=0.0, lons=0.0, minlat=9999.0, maxlat=0.0, minlng=9999.0, maxlng=0.0, say=0, ctrlat=0.0, ctrlng=0.0;
         for(i in data){
             if(data[i].lt){
-                lats=lats + parseFloat(data[i].lt)
+                lt = parseFloat(data[i].lt);
+                ln = parseFloat(data[i].ln);
+                lats=lats + lt
+                console.log(lt,ln)
+                if (lt > maxlat)maxlat=lt;
+                if (lt < minlat)minlat=lt;
+                if (ln > maxlng)maxlng=ln;
+                if (ln < minlng)minlng=ln;
                 lons=lons + parseFloat(data[i].ln)
                 say = say+1
                 data[i].index = say;
@@ -1233,11 +1240,47 @@ gh = {
             prc = "<span class='gprc'>"+prc+"</span>"
             data[i].price = cc[3]==1 ? currency + prc : prc + currency
         }
-        if(!isNaN(lats))$('#id_lat').val(   lats/say)
-        if(!isNaN(lons))$('#id_lon').val(lons/say)
+        if (say<=1){
+            ctrlat = maxlat;
+            ctrlng = maxlng;
+        }
+        else    {
+            ctrlat=minlat+((maxlat - minlat)/2);
+            ctrlng=minlng+((maxlng - minlng)/2);
+        }
+        console.log('maxlat',maxlat,'minlat',minlat,'maxlng',maxlng,'minlng',minlng,'say',say)
+        this.setMapZoom(minlat,maxlat,minlng,maxlng,ctrlat,ctrlng)
+        if(!isNaN(lats))$('#id_lat').val(   ctrlat)
+        if(!isNaN(lons))$('#id_lon').val(ctrlng)
         this.search_results = data
         return data
     },
+    setMapZoom:function(minlat,maxlat,minlng,maxlng,ctrlat,ctrlng){
+    var mapdisplay = 210;
+    var interval = 0;
+
+    if ((maxlat - minlat) > (maxlng - minlng)) {
+     interval = (maxlat - minlat) / 2;
+     minlng = ctrlng - interval;
+     maxlng = ctrlng + interval;
+    } else {
+     interval = (maxlng - minlng) / 2;
+     minlat = ctrlat - interval;
+     maxlat = ctrlat + interval;
+    }
+
+    var dist = (6371 * Math.acos(Math.sin(minlat / 57.2958) * Math.sin(maxlat / 57.2958) + (Math.cos(minlat / 57.2958) * Math.cos(maxlat / 57.2958) * Math.cos((maxlng / 57.2958) - (minlng / 57.2958)))));
+
+    var zoom = Math.floor(8 - Math.log(1.6446 * dist *2  / Math.sqrt(2 * (mapdisplay * mapdisplay))) / Math.log (2));
+
+//    var map = new GMap2(document.getElementById("map"));
+//    this.map.setCenter(new GLatLng(ctrlat, ctrlng), zoom);
+//    this.glatlng = new google.maps.LatLng(ctrlat,ctrlng);
+    this.lat = ctrlat;
+    this.lon = ctrlng;
+    this.gZoom = zoom==Infinity?11:zoom;
+    console.log(ctrlat, ctrlng, zoom)
+},
     searchPage:1,
     jsearch:function(page){
         if(typeof(page)=='undefined') page = this.searchPage
@@ -1254,7 +1297,8 @@ gh = {
             results =self.setSearchPrices(data.results)
             $("#resul").html($("#wideResultsTpl").jqote(results));
             $("#pagination").html($("#paginationTpl").jqote(data));
-            self.gmapsLoad('gh.searchMap')
+            if(!self.map)self.gmapsLoad('gh.searchMap')
+            else self.searchMap()
             //FIXME: haritayi tekrar tekrar yukluyor
         });
 
