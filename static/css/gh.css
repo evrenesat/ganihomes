@@ -4530,3 +4530,42 @@ list-style:none;
 .altiOkutu .kutuici {
     padding: 30px;
 }
+#araicon.hover input{
+    display:inline;
+}
+#araicon.hover{
+    width: 240px;
+    border: 1px solid #ccc;
+}
+#araicon.hover button{
+    background-position:100% -31px;
+}
+#araicon button{
+    background:url(/static/images/icon/magnifier.png) no-repeat 100% 0;
+    cursor:pointer;
+    display: inline;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    float: right;
+}
+#araicon{
+    display:none;
+    float: right;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fafafa;
+    border-radius: 4px;
+    margin-top: 20px;
+    clear:right;
+    overflow: hidden;
+}
+#araicon input{
+    border:0px;
+    display:none;
+    background: transparent;
+    font-size:13px;
+    color:#ccc;
+    height:30px;
+    width:190px;
+}

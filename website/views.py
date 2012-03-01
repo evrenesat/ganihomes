@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -361,7 +361,7 @@ def multiuploader(request, place_id=None):
         #getting file data for farther manipulations
         file = request.FILES[u'files[]']
         wrapped_file = UploadedFile(file)
-        filename = wrapped_file.name
+        filename = wrapped_file.name[:59]
         file_size = wrapped_file.file.size
 #        log.info (u'Got file: %s'%filename)
         #writing file manually into model
@@ -608,7 +608,12 @@ def search_ajax(request, current_page=1):
         pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
                           ~Q(reserveddates__start__gte=cout, reserveddates__end__lte=cout))
     paginator = Paginator(pls, 15)
-    page = paginator.page(current_page)
+    try:
+        page = paginator.page(current_page)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
 
     resdict = json.dumps({
         'total':paginator.count,
@@ -656,7 +661,7 @@ def server_error(request, template_name='500.html'):
     """
     return render_to_response(template_name,
         context_instance = RequestContext(request)
-    )
+    ) if not request.is_ajax() else HttpResponse('[]', mimetype='application/json')
 
 
 def show_faqs(request):

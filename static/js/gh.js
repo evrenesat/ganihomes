@@ -70,6 +70,7 @@ gh = {
     bas:function (m) {
         $('#arabg').prepend(m + '<br>')
     },
+    initialized_page:'',
     initPagesAndSetLang:function(){
         parts = document.location.pathname.split('/')
         for (p in parts){
@@ -78,10 +79,12 @@ gh = {
             if(p.length==2)this.LANGUAGE_CODE = p
             else if(fname in this){
                 this[fname]()
+                this.initialized_page = p
                 return
             }
 
         }
+        return ''
     },
     STATIC_URL : '',
     LANGUAGE_CODE : 'en',
@@ -99,6 +102,48 @@ gh = {
         popap.prepend("<div class='closex'>x</div>").find('.closex').click(function(){popap.fadeOut();})
         $(trigger).click(function(){  popap.slideDown() })
     },
+    show_araicon:function(){
+        console.log(this.initialized_page)
+        if( ["index","search"].indexOf(this.initialized_page)!=-1 || typeof(mainpage)!='undefined')return
+        var self = this, ai = $('#araicon'), visible = 0, focused = 0, ainput = ai.find('input');
+        self.default_araicon_val = $('#ainputval').val()
+
+        ainput.val(self.default_araicon_val);
+        var showai = function () {
+            if (!visible) {
+                ai.addClass('hover', 400);
+                visible = 1;
+                ainput.show();
+            }
+        }
+        var hideai = function () {
+            if (visible && !focused) {
+                ainput.hide();
+                ai.removeClass('hover', 400);
+                visible = 0
+            }
+        }
+        var aisearch=function(){
+            var v = ainput.val()
+            document.location='/'+self.LANGUAGE_CODE+'/search/?query=' + (v != self.default_araicon_val ? v : '')
+        }
+        ai.find('button').click(function(){aisearch()})
+        ai.mouseenter(showai).mouseleave(hideai)
+        ainput.focus(
+            function () {
+                ainput.select()
+                focused = 1
+            }).blur(function () {
+            focused = 0;
+            hideai()
+        }).autocomplete({minLength: 1,
+                    source:function(request, response){
+                        self.otokompliti(request, response)
+                    }
+                }).keydown(function(event){if(event.keyCode == '13')aisearch()}).mouseup(function(){return false;})
+        ai.show('slow')
+//        setTimeout(hideai,1000)
+    },
     init:function () {
         var self = this;
         this.popap('.smdil', '#langcurr', -40, 20)
@@ -106,18 +151,13 @@ gh = {
         var usableHeight = $(window).height(), hdr_h = 0, logo_pad = 0, sc_pad = 0;
         if (usableHeight > 800)hdr_h = 110, logo_pad = -6, sc_pad = 20;
         else if (usableHeight > 610)  hdr_h = 90, logo_pad = -6;
-//        if (hdr_h)$('#hdr').css({height:hdr_h + 'px'})
-//        if (logo_pad)$('.logo div').css({marginTop:logo_pad + 'px'})
-//        if (sc_pad)$('.showcase').css({paddingTop:sc_pad + 'px'})
-//        $('#smekle').click(function(){document.location='/add_place/'})
-//        $('#smkayit').click(function(){document.location='/register/'})
-//        $('#smgir').click(function(){document.location='/login/'})
-
 
         if(!this.selected_currency){
             this.selected_currency = $.cookie('gh_curr') || 0}
         this.fillCurrencies()
         this.initPagesAndSetLang()
+
+        this.show_araicon()
 
         $("#sosicon li").mouseover(function() {
         var e = this;
@@ -265,6 +305,7 @@ gh = {
     },
     init_index:function () {
         var self = this;
+        this.initialized_page = 'index'
         this.akGorunur = 0
 //        this.sks = {}
         $('#arabg').fadeTo('fast', .5)
@@ -1104,6 +1145,7 @@ gh = {
 //        this.editAvailability(2)
     },
     hashCall:function(){
+        //dashboard function caller via # and ,  or ? and =
         var hs = []
         if(document.location.hash){
             var hs = document.location.hash.replace('#','').split(',')

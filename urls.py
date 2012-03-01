@@ -27,7 +27,7 @@ sitemaps = {
     'places': PlaceSitemap(),
 }
 
-
+handler500 = 'website.views.server_error'
 
 urlpatterns = patterns('',
     # Examples:

@@ -5,8 +5,9 @@
 {% block metakeywords%}{% cevir "anasayfa meta etiketler" %}{% endblock %}
 {% block extrajs %}
 {#    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.smoothDivScroll-1.1.js"></script>#}
-    <script type="text/javascript">$(window).ready(function () {gh.init_index()})
-    slide_timings=[{{ nasil_slide_zaman }}]
+
+    <script type="text/javascript">
+        mainpage=1;$(window).ready(function () {gh.init_index()}); slide_timings=[{{ nasil_slide_zaman }}]
     </script>
 {% endblock %}
 {% block hdrclass %}krm hdrbgindex{% endblock %}
