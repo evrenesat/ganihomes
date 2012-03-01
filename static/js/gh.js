@@ -1223,7 +1223,7 @@ gh = {
                 lt = parseFloat(data[i].lt);
                 ln = parseFloat(data[i].ln);
                 lats=lats + lt
-                console.log(lt,ln)
+//                console.log(lt,ln)
                 if (lt > maxlat)maxlat=lt;
                 if (lt < minlat)minlat=lt;
                 if (ln > maxlng)maxlng=ln;
@@ -1248,7 +1248,7 @@ gh = {
             ctrlat=minlat+((maxlat - minlat)/2);
             ctrlng=minlng+((maxlng - minlng)/2);
         }
-        console.log('maxlat',maxlat,'minlat',minlat,'maxlng',maxlng,'minlng',minlng,'say',say)
+//        console.log('maxlat',maxlat,'minlat',minlat,'maxlng',maxlng,'minlng',minlng,'say',say)
         this.setMapZoom(minlat,maxlat,minlng,maxlng,ctrlat,ctrlng)
         if(!isNaN(lats))$('#id_lat').val(   ctrlat)
         if(!isNaN(lons))$('#id_lon').val(ctrlng)
@@ -1279,7 +1279,7 @@ gh = {
     this.lat = ctrlat;
     this.lon = ctrlng;
     this.gZoom = zoom==Infinity?11:zoom;
-    console.log(ctrlat, ctrlng, zoom)
+//    console.log(ctrlat, ctrlng, zoom)
 },
     searchPage:1,
     jsearch:function(page){
