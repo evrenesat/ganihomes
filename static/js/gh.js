@@ -103,7 +103,7 @@ gh = {
         $(trigger).click(function(){  popap.slideDown() })
     },
     show_araicon:function(){
-        if( ["index","search"].indexOf(this.initialized_page)!=-1 || typeof(mainpage)!='undefined')return
+        if( $.inArray(this.initialized_page, ["index","search"])!=-1 || typeof(mainpage)!='undefined')return false
         var self = this, ai = $('#araicon'), visible = 0, focused = 0, ainput = ai.find('input');
         self.default_araicon_val = $('#ainputval').val()
 
