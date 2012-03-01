@@ -2835,6 +2835,8 @@ ul.messages li{
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
     cursor: pointer;
+    background-color:#fff;
+    behavior: url(/static/js/PIE.htc);
 }
 
 .sresults ul {
@@ -2885,6 +2887,7 @@ ul.messages li{
     box-shadow: 1px 1px 4px 1px #cccccc;
     background-color: #fffcdd;
     font-size:20px;
+
 }
 
 .sresults .ratingdiv{
@@ -2898,6 +2901,8 @@ ul.messages li{
     box-shadow: 1px 1px 4px 1px #cccccc;
     background-color: #fff;
     font-size:20px;
+
+
 }
 
 

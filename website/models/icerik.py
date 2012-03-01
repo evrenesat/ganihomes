@@ -345,7 +345,7 @@ class Vitrin(models.Model):
         #order_with_respect_to = ''
         #unique_together = (("", ""),)
         #permissions = (("can_do_something", "Can do something"),)
-#
+
     def save(self, *args, **kwargs):
         if not self.place and self.place_photo:
             self.place = self.place_photo.place
@@ -354,3 +354,45 @@ class Vitrin(models.Model):
         super(Vitrin, self).save(*args, **kwargs)
 
 
+
+
+class MiniVitrin(models.Model):
+    """
+    belgelendirme eksik !!!!!!!!
+    """
+    sira = models.SmallIntegerField(u"Sıralama", choices=ORDER, db_index=True)
+    gorsel = models.ImageField(u"Vitrin Görseli", upload_to='minivitrin')
+    active = models.BooleanField(u"Yayında", default=True)
+    url = models.CharField(u"URL", max_length=100, help_text=u"İsteğe Bağlı. Tıklanınca gidilecek url. ",null=True,blank=True)
+    dil_kodu = models.CharField(max_length=5,  db_index=True, null=True, blank=True, choices=settings.LANGUAGES)
+    pul = models.DateTimeField(u"Kayıt Zamanı", auto_now_add=True)
+
+
+
+    def __unicode__(self):
+        return  '%s %s (%s)' % (self.id, self.sira, self.gorsel.name)
+
+    @classmethod
+    def get_slides(cls, lang=None):
+        ogeler = cls.objects.filter(active=True).select_related()
+        if lang:
+            ogeler = ogeler.filter(Q(dil_kodu=lang)|Q(dil_kodu__isnull=True))
+        return ogeler
+
+    class Meta:
+        verbose_name = u"Mini Vitrin Ögesi"
+        verbose_name_plural = u"Mini Vitrin Ögeleri"
+        ordering = ['sira', ]
+        app_label = 'website'
+        #get_latest_by=''
+        #order_with_respect_to = ''
+        #unique_together = (("", ""),)
+        #permissions = (("can_do_something", "Can do something"),)
+#
+#    def save(self, *args, **kwargs):
+#        if not self.place and self.place_photo:
+#            self.place = self.place_photo.place
+#            self.type = self.place_photo.type
+#            #FIXME: self.url = self.place.get_absolute_url()
+#        super(Vitrin, self).save(*args, **kwargs)
+#

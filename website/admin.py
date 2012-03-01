@@ -182,6 +182,13 @@ class VitrinAdmin(admin.ModelAdmin):
     save_on_top = True
     save_as = True
 
+class MiniVitrinAdmin(admin.ModelAdmin):
+    list_display = ( 'pul', 'gorsel', 'dil_kodu', 'active', 'sira')
+    list_filter = ['dil_kodu', 'active']
+    list_editable = ['active', 'sira']
+    save_on_top = True
+    save_as = True
+
 
 #admin.site.register(Sayfa, mpttadmin)
 admin_register(admin, namespace=globals())
