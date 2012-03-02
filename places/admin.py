@@ -64,7 +64,7 @@ class MessageAdmin(admin.ModelAdmin):
     search_fields = ['text', ]
     list_filter = ['status', ]
     date_hierarchy = 'timestamp'
-    raw_id_fields = ['sender','receiver']
+    raw_id_fields = ['sender','receiver','replyto','place']
     save_on_top = True
 
 class UserReviewAdmin(admin.ModelAdmin):
