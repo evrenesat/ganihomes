@@ -10,6 +10,7 @@ SSL_URLS = (
  r'/../login_or_register/',
  r'/../register/',
  r'/../secure_booking/',
+ r'/../contact_us/',
  r'/../paypal_\w*?/',
  r'/facebook/connect/',
 )
