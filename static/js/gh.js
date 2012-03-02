@@ -545,7 +545,7 @@ gh = {
         this.infoWindow = new google.maps.InfoWindow()
     },
     popup_html:'<a id="adresikullan" href="javascript:void(0)" onclick="gh.gcAdresTamam()">'+trns('user_this_address')+'</a>',
-    geocodeAddress: function () {
+    geocodeAddress: function (){
         var self = this;
         this.geocoder.geocode( { 'address': $('#id_address').val()}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
@@ -1346,7 +1346,7 @@ gh = {
             $("#fileupload").css({position:'absolute',top:'-1000px'});
          }
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-        $('#id_address').keydown(function(event){if(event.keyCode == '13')self.geocodeAddress()});
+        $('#id_address').keyup(function(event){if(event.keyCode == '13')self.geocodeAddress();event.preventDefault();return false});
         $('#addrFindBut').click(function(){self.geocodeAddress()});
         $('#gotodetails').click(function(){
             if(self.checkReqFields('#form2')){
