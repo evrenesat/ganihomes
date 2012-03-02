@@ -71,14 +71,16 @@ activate(settings.LANGUAGES[0][0])
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        currency = Currency.objects.filter(main=True)
-        if currency:
-            currency = currency[0]
-        else:
-            currency = Currency.objects.create(main=True, code='TL', name='TL', factor=1)
-        po = Profile.objects.create(user=instance, currency=currency)
-        po.photo = po.photo.field.attr_class(po, po.photo.field, 'user_photos/user-256.jpg')
-        po.save()
+        po, new = Profile.objects.get_or_create(user=instance)
+        if new:
+            currency = Currency.objects.filter(main=True)
+            if currency:
+                currency = currency[0]
+            else:
+                currency = Currency.objects.create(main=True, code='EUR', name='EUR', factor=1)
+            po.currency=currency
+            po.photo = po.photo.field.attr_class(po, po.photo.field, 'user_photos/user-256.jpg')
+            po.save()
 
 post_save.connect(create_user_profile, sender=User)
 
@@ -649,7 +651,7 @@ class Profile(FacebookProfileModel):
     photo = models.ImageField(_('Photo'), upload_to='user_photos', null=True, blank=True)
     favorites = models.ManyToManyField(Place, verbose_name=_('Favorite places'), null=True, blank=True)
     friends = models.ManyToManyField('self', through='Friendship', symmetrical=False)
-    currency = models.ForeignKey(Currency, verbose_name=_('Currency'))
+    currency = models.ForeignKey(Currency, verbose_name=_('Currency'), null=True, blank=True)
     city = models.CharField(_('City'), max_length=30, null=True, blank=True)
     phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     cell = models.CharField(_('Cellular Phone'), max_length=20, null=True, blank=True)
