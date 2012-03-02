@@ -26,7 +26,7 @@ from datetime import datetime
 
 from utils.thumbnailer import customThumbnailer
 import logging
-from configuration.models import configuration
+from configuration import configuration
 
 
 log = logging.getLogger('genel')

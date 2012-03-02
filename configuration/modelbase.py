@@ -13,7 +13,7 @@ class ConfigBase(models.Model):
         verbose_name_plural = _('Configuration Options')
 
     def save(self, *args, **kwargs):
-        for key,val in self.__dict__.items():
+        for key, val in self.__dict__.items():
             if not key == '_state':
                 cache.set(CACHE_PREFIX + key, val)
         super(ConfigBase, self).save(*args, **kwargs)
@@ -24,8 +24,8 @@ class ConfigBase(models.Model):
             val = cls.objects.values_list(name, flat=True)[0]
         except IndexError:
             val = cls._meta.get_field_by_name(name)[0].default
-#            if isinstance(default_val, models.NOT_PROVIDED):
-#               return val
+        #            if isinstance(default_val, models.NOT_PROVIDED):
+        #               return val
         cache.set(CACHE_PREFIX + name, val)
         return val
 

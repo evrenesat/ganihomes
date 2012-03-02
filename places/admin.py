@@ -45,6 +45,8 @@ class TagTranslationInline(admin.TabularInline):
 class PhotoInline(admin.TabularInline):
     model = Photo
 
+
+
 class DescriptionInline(admin.TabularInline):
     model = Description
 
@@ -168,6 +170,11 @@ class TagCategoryAdmin(admin.ModelAdmin):
     list_filter = ['active', ]
     inlines = [TagInline,]
 
+class PaymentSelectionInline(admin.StackedInline):
+    model = PaymentSelection
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
 
 class ProfileAdmin(admin.ModelAdmin):
     raw_id_fields=('user', )
@@ -175,7 +182,18 @@ class ProfileAdmin(admin.ModelAdmin):
 #    search_fields = ['', ]
 #    list_filter = ['', ]
 
+
     save_on_top = True
+
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('email', 'first_name', 'last_name')
+    list_filter = ('is_staff', 'is_superuser')
+    inlines = [PaymentSelectionInline,ProfileInline]
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 

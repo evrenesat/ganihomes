@@ -14,14 +14,14 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
-from configuration.models import configuration
+from configuration import configuration
 from places.countries import  COUNTRIES_DICT
 #from places.models import *
 from django.db import DatabaseError
 from places.models import Place, Profile, Currency, Tag, Description, Photo, TagTranslation, send_message
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
-from website.models import Sayfa, Haber, Vitrin, Question
+from website.models import Sayfa, Haber, Vitrin, Question, MiniVitrin
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.utils.translation import ugettext_lazy as _
 from  django.core.urlresolvers import reverse
@@ -120,7 +120,11 @@ def anasayfa(request):
     lang = request.LANGUAGE_CODE
     searchForm = SearchForm()
     slides = [Vitrin.get_slides(), Vitrin.get_slides(type=1), Vitrin.get_slides(type=2)]
-    context = {'slides': slides, 'srForm':searchForm, 'nasil_slide_zaman': configuration('nasil_slide_zaman') or '0',               }
+    context = {'slides': slides,
+               'srForm':searchForm,
+               'nasil_slide_zaman': configuration('nasil_slide_zaman') or '0',
+
+               }
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 def slides(request, id):
@@ -496,6 +500,9 @@ def _do_post_login_jobs(request):
         messages.success(request, _('Your message successfully sent.'))
         del request.session['message_to_host']
 
+class UserAlreadyRegisteredError(Exception):
+    pass
+
 def register(request,template='register.html'):
     sayfa = Sayfa.al_anasayfa()
     lang = request.LANGUAGE_CODE
@@ -507,8 +514,7 @@ def register(request,template='register.html'):
             try:
                 if form.cleaned_data['pass1']==form.cleaned_data['pass2']:
                     if User.objects.filter(username = form.cleaned_data['email']):
-                        raise DatabaseError
-#                        raise DatabaseError
+                        raise UserAlreadyRegisteredError
                     user = form.save(commit=False)
                     user.username = user.email
                     user.set_password(form.cleaned_data['pass1'])
@@ -530,7 +536,7 @@ def register(request,template='register.html'):
                     return HttpResponseRedirect(reverse('dashboard'))
                 else:
                     messages.error(request, _('The passwords you entered do not match.'))
-            except DatabaseError:
+            except UserAlreadyRegisteredError:
                 messages.error(request, _('This email is already registered, please choose another one.'))
     else:
         form = RegisterForm()

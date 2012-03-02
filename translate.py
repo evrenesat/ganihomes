@@ -17,7 +17,7 @@ from places.models import Place, Description
 import logging
 log = logging.getLogger('genel')
 
-from configuration.models import configuration
+from configuration import configuration
 
 class TranslationMachine:
     """

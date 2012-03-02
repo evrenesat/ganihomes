@@ -7,6 +7,37 @@
 {% url 'admin:jsi18n' as jsi18nurl %}
 <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
 {{ media }}
+    <script>
+        django.jQuery(window).ready(function () {
+            django.jQuery('.vForeignKeyRawIdAdminField').each(function(){
+                var fkf =django.jQuery(this)
+                if(fkf.val()){
+                    var editlink = fkf.next()
+                    var name = editlink.next()
+                    var hrf = editlink.attr('href').split('?')[0] + fkf.val()
+                    name.after("&nbsp;<a class='changelink' href='"+hrf+"'></a>");
+                }
+            })
+            django.jQuery("select+a.add-another").each(function(){
+                django.jQuery(this).after("&nbsp;<a class='changelink' href='#'></a>");
+                django.jQuery(this).next().click(function(){
+
+                    var linkvalue = django.jQuery(this).prev().prev().attr('value');
+                    if (linkvalue) {
+                        var linkname = (django.jQuery(this).prev().attr('href')+'../'+linkvalue);
+                        var link = linkname + '?_popup=1';
+                    }  else  {
+                        var linkname = (django.jQuery(this).prev().attr('href').replace("add/", ""));
+                        var link = linkname + "?t=id&pop=1";
+                    }
+
+                    var win = window.open(linkname, link, 'height=600,width=1000,resizable=yes,scrollbars=yes');
+                    win.focus();
+                    return false;
+
+                });
+            });})
+    </script>
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
