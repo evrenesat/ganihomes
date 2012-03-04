@@ -121,6 +121,7 @@ def anasayfa(request):
     searchForm = SearchForm()
     slides = [Vitrin.get_slides(), Vitrin.get_slides(type=1), Vitrin.get_slides(type=2)]
     context = {'slides': slides,
+               'minislides':MiniVitrin.get_slides(request.LANGUAGE_CODE),
                'srForm':searchForm,
                'nasil_slide_zaman': configuration('nasil_slide_zaman') or '0',
 

@@ -82,16 +82,18 @@
                 <span><a href="{% url howitworks %}">{% trans "Learn how it works"%} &raquo;</a></span>
             </div>
         </div>
-        <div class="span-9 shadoblok">
-            <img id="howmonitorimg" src="{{ STATIC_URL }}images/mobile-apps.jpg">
+        <div id="minislidercontainer">
+        <div id="minislider">
 
-
-            <div style="width:178px; float:right;font-size:18px;color:#6a6a6a;">
-                           <h3 class="oh3">{% trans "Accesible from anywhere"%}</h3>
-                           {% trans "You can use our site from any mobile device which have a web browser."%}
-
-                       </div>
+        <ul>
+        {% for slide in minislides %}
+                <li {% if slide.url %}onclick="document.location='{{ slide.url }}'" style="cursor:pointer"{% endif %}>
+                    <img src="{{ slide.gorsel.url }}">
+                </li>
+        {% endfor %}
+        </ul>
         </div>
+    </div>
     </div>
 
     <div id="arabg_cont">

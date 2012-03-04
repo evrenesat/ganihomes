@@ -361,6 +361,12 @@ gh = {
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
 
         this.makeScroller(0);
+        $("#minislider").easySlider({
+        		auto: true,
+        		continuous: true,
+            speed:1200,
+            pause:6000
+        	});
 //        this.makeScroller('GVS2', 0);
 //        this.makeScroller('GVS3',0);
     },

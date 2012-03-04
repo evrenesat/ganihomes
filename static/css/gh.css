@@ -4574,3 +4574,69 @@ list-style:none;
     height:30px;
     width:190px;
 }
+#minislidercontainer{
+    width: 400px;
+    height: 224px;
+    float:right;
+    position:relative;
+    overflow:hidden;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 10px 1px #cccccc;
+    box-shadow: 1px 1px 10px 1px #cccccc;
+}
+#minislider li a{
+    display:block;
+}
+#minislider ul, #minislider li{
+    padding:0;
+    margin:0;
+}
+
+#minislider li{
+    overflow: hidden;
+    width: 400px;
+    height: 224px;
+}
+#prevBtn, #nextBtn  {
+    margin:0;
+    padding:0;
+    display:block;
+    overflow:hidden;
+    text-indent:-8000px;
+
+    left: -30px;
+    position: absolute;
+    top: 71px;
+    height: 25px;
+    width: 20px;
+    z-index: 1000;
+}
+#nextBtn a, #prevBtn a{
+    height: 25px;
+    width: 20px;
+    display:block;
+}
+#nextBtn a:hover{
+    background-position:-25px 0px;
+}
+#nextBtn{
+    left: 376px;
+    top:199px;
+}
+#nextBtn a{
+    background:url(/static/images/icon/prvnxt.png) no-repeat -25px -25px;
+}
+
+#prevBtn a:hover{
+    background-position:0px 0px;
+}
+#prevBtn{
+    left: 6px;
+    top:199px;
+}
+#prevBtn a{
+    background:url(/static/images/icon/prvnxt.png) no-repeat 0px -25px;
+}
