@@ -27,6 +27,7 @@ from datetime import datetime
 import logging
 log = logging.getLogger('genel')
 
+#yapildi: anasayfa slider (garanti gibi)
 
 #yap: google translate
 #FIXED: mail2perm bozuk
@@ -38,7 +39,7 @@ log = logging.getLogger('genel')
 #yap: IE kontrolu
 #yap: arkadasliktan cikar
 #yap: para birimi ratio/nonautomatic
-#yap: anasayfa slider (garanti gibi)
+
 #yap: filebrowser
 #yap: yorum placeholder
 #yap: yorumlu mekan aramada oncelikli
