@@ -480,9 +480,10 @@ class Place(models.Model):
             tags.append(t)
         return tags
 
-    def get_translation_list(self):
+    def get_translation_list(self, reset=None):
         k=kes('ptranslist',self.id)
-        return k.g() or k.s(self.descriptions.values_list('lang', flat=True))
+        sonuc = k.g() if reset is None else False
+        return sonuc or k.s(self.descriptions.filter(text__isnull=False).values_list('lang', flat=True))
 
     @classmethod
     def c_get_translation(cls,place_id, lang):

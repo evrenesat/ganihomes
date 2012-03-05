@@ -49,8 +49,8 @@ log = logging.getLogger('genel')
 #yapildi: faq html editoru.
 #yap: fiyatlandırma kaydedildiği sekmede açılmalı
 #yapildi: haftalık ve aylık indirimi günlükten önizle
-#yap: indirimi tersten hespalamaca
-#yapmayacam: koyu resim sorunu.(sapanca)
+#yapmayacamm: indirimi tersten hespalamaca
+#yapmayacamm: koyu resim sorunu.(sapanca)
 #yap: ajax history api
 #yap: istatisikler
 #yap: destek yanit views
