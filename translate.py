@@ -28,7 +28,7 @@ class HttpPostRequest(HttpRequest):
         kwargs['method']='POST'
         kwargs['headers']={
             'X-HTTP-Method-Override':'GET',
-            'Content-Length':'81',
+#            'Content-Length':'81',
                            }
         HttpRequest.__init__(self, *args, **kwargs)
 
@@ -48,7 +48,7 @@ class TranslationMachine:
             if source:
                 tr = self.service.translations().list(source=source, target=target, q=input).execute()
             else:
-                tr = self.service.translations().list(target=target, q=input).execute()
+                tr = self.pservice.translations().list(target=target, q=input).execute()
             return   tr['translations']
         except:
 #            log.exception('unexpected error')
@@ -58,9 +58,13 @@ class TranslationMachine:
 #        print self.auto_langs
 
         for p in Place.objects.filter(translation_status__lt=30):
+            if len(p.description)<8:
+                log.info('%s aciklamasi fazla kisa, pass' % p)
+                continue
             already_translated_langs = p.get_translation_list(reset=True)
             for l in self.auto_langs:
                 if l not in already_translated_langs:
+
                     translation = self.translate([p.title,p.description],l)
                     print 'TRANSLATION RESULT FOR %s %s' % (p.id, p.title), translation
                     if translation:
@@ -74,7 +78,7 @@ class TranslationMachine:
             translated_langs = p.get_translation_list(reset=True)
             if translated_langs:
                 p.translation_status = 20
-                if all([ l for l in self.auto_langs if l in translated_langs] ):
+                if all([ l in translated_langs for l in self.auto_langs ] ):
                     p.translation_status = 30
                 p.save()
 
@@ -91,23 +95,82 @@ class TranslationMachine:
 
 
 
+#
+#
+#if __name__ == '__main__':
+#    o = None
+#    inst = None
+#    try:
+#        inst = ApplicationInstance( '/tmp/gtranslate.pid' )
+#
+#        o = TranslationMachine()
+#        if inst:
+#            inst.exitApplication()
+#    except SystemExit:
+#        if inst:
+#            inst.exitApplication()
+#        pass
+#    except:
+#        if inst:
+#            inst.exitApplication()
+#        log.exception('beklenmeyen hata')
+#
+text='''
+YES, This is a real and direct view right from the apartment windows!
+
+Prices are good through 2011.
+
+- Furnished and beautiful one bedroom Apartment
+- On the Seine river (on the Quai)
+- Direct, unobstructed view of the Eiffel Tower and the Seine
+- Best view ever
+- Bright & Sunny
+- Very romantic location
+- At the bottom of the Trocadero
+- Walking distance to many Museums - Palais de Tokyo - The Paris Modern Art Museum - Marmottan & Claude Monet Museum - Quai Branly Museum - Galleria (list is too long)
+- Walking distance to many restaurants (Including Philip Starck's Le Bon etc.)
+- Great location close to the Champs Elysees, Concorde
+- Bathroom with tub
+- Free Internet / Wifi
+- harman kardon speakers to be connected directly to your IPOD or computer for background music.
+
+Kitchen:
+- Fully equipped with all your needs.
+
+Location:
+- Accessible to all kinds of transportation: Bus, Metro, Velib
+- Plenty of street parking for your rental.
+- Post office at the bottom of the building
+- All your needs and convenience stores and shopping on rue de passy
+
+Accessibility:
+Metro Passy - Line 6 or Metro Trocadero - Line 6 or 9
+RER C - Champs de Mars-Tour Eiffel
+
+Station Passy (196m/214 yards) - Métro ligne 6
+1 Rue de Passy, 75016, Paris
+Station Trocadéro (462m/505 yards) - Métro lignes 6, 9
+Musée national de la Marine, 17 place du Trocadéro, 75116, Paris
+Station Bir Hakeim-Champ de Mars-Tour Eiffel (500m/550 yards) - Métro ligne 6
+105 Quai Branly, 75015, Paris
+Station Iéna (637m/700 yards) - Métro ligne 9
+1 Avenue d'Iéna, 75116, Paris
+Station Bir Hakeim-Champ de Mars-Tour Eiffel (500m/ 550 yards) - RER ligne C
+105 Quai Branly, 75015, Paris'''
 
 
-if __name__ == '__main__':
-    o = None
-    inst = None
-    try:
-        inst = ApplicationInstance( '/tmp/gtranslate.pid' )
 
-        o = TranslationMachine()
-        if inst:
-            inst.exitApplication()
-    except SystemExit:
-        if inst:
-            inst.exitApplication()
-        pass
-    except:
-        if inst:
-            inst.exitApplication()
-        log.exception('beklenmeyen hata')
+import urllib
+import urllib2
 
+url = 'https://www.googleapis.com/language/translate/v2'
+
+values = {'key' : DEVELOPER_KEY,
+          'target' : 'tr',
+          'q' : text }
+headers={'X-HTTP-Method-Override':'GET',}
+data = urllib.urlencode(values)
+req = urllib2.Request(url, data, headers)
+response = urllib2.urlopen(req)
+the_page = response.read()
+print the_page
