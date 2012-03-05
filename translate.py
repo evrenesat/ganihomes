@@ -56,6 +56,7 @@ class TranslationMachine:
 
     def run(self):
 #        print self.auto_langs
+
         for p in Place.objects.filter(translation_status__lt=30):
             already_translated_langs = p.get_translation_list(reset=True)
             for l in self.auto_langs:
