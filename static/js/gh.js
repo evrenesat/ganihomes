@@ -544,7 +544,7 @@ gh = {
     gcinit:function(nomarker){
         this.geocoder = new google.maps.Geocoder();
         this.glatlng = new google.maps.LatLng(this.lat,this.lon);
-        console.log(this.glatlng,this.lat,this.lon)
+//        console.log(this.glatlng,this.lat,this.lon)
         var myOptions = { zoom: this.gZoom, center: this.glatlng, mapTypeId: google.maps.MapTypeId.ROADMAP, mapTypeControl:false, streetViewControl:false }
         this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         if(typeof(nomarker)=='undefined')this.marker = new google.maps.Marker({ map: this.map, position: this.glatlng, draggable: true });
@@ -554,6 +554,7 @@ gh = {
     geocodeAddress: function (){
         var self = this;
         this.geocoder.geocode( { 'address': $('#id_address').val()}, function(results, status) {
+            console.log(results)
           if (status == google.maps.GeocoderStatus.OK) {
 //              a=results[0].geometry.location
             self.map.setCenter(results[0].geometry.location);
@@ -1352,7 +1353,13 @@ gh = {
             $("#fileupload").css({position:'absolute',top:'-1000px'});
          }
         $( "#paccordion").accordion({ autoHeight: false, collapsible: true });
-        $('#id_address').keyup(function(event){if(event.keyCode == '13')self.geocodeAddress();event.preventDefault();return false});
+        $('#id_address').keydown(function(event){
+            if(event.keyCode == '13'){
+                self.geocodeAddress();
+                event.preventDefault();
+                return false;
+            }
+        });
         $('#addrFindBut').click(function(){self.geocodeAddress()});
         $('#gotodetails').click(function(){
             if(self.checkReqFields('#form2')){
