@@ -1594,7 +1594,7 @@ li.g-plus-one {
 }
 
 .wfParts input, .wfParts select {
-    font-size: 16px;
+    font-size: 18px;
     border: solid 1px #bfbfbf;
     padding: 3px;
     color: #5d6b71;
@@ -1703,12 +1703,19 @@ li.g-plus-one {
 .wfParts #addrFindBut {
     height: 32px !important;
     width: 71px !important;
-    background-color: #fff !important;
 }
-
-.wfParts #address, .wfParts #addrFindBut {
+.wfParts #id_address{
+    font-weight:bold;
+    color:#006600;
+    font-size:18px;
+    width: 472px;
+}
+.wfParts #id_address, .wfParts #addrFindBut {
     font-size: 16px;
     height: 30px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .wfParts #address {
