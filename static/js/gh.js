@@ -127,14 +127,14 @@ gh = {
             document.location='/'+self.LANGUAGE_CODE+'/search/?query=' + (v != self.default_araicon_val ? v : '')
         }
         ai.find('button').click(function(){aisearch()})
-        ai.mouseenter(showai).mouseleave(hideai)
+        ai.mouseenter(showai).mouseleave(function(){setTimeout(hideai,2000)})
         ainput.focus(
             function () {
                 ainput.select()
                 focused = 1
             }).blur(function () {
             focused = 0;
-            hideai()
+            setTimeout(hideai,2000)
         }).autocomplete({minLength: 1,
                     source:function(request, response){
                         self.otokompliti(request, response)

@@ -36,21 +36,21 @@ log = logging.getLogger('genel')
 #FIXME: yorum yaz, duzenle
 #FIXME: yorum goster!!!!!!!!!
 #FIXME: onaylanmamis mesajlar gonderene gosterilmeli!!
-#yap: IE kontrolu
-#yap: arkadasliktan cikar
-#yap: para birimi ratio/nonautomatic
 
-#yap: filebrowser
+#yap: arkadasliktan cikar
+
+
+#yapaaaaaamadik: filebrowser
 #yap: yorum placeholder
 #yap: yorumlu mekan aramada oncelikli
-#yap: mail adminden degil ganihomes'tan gitmeli
+#yapildi: mailadminden degil ganihomes'tan gitmeli
 #yap: admin arama (içerik blokları...)
 #yap: ganishow alt sekmeleri koyulastir
-#yap: faq html editoru.
+#yapildi: faq html editoru.
 #yap: fiyatlandırma kaydedildiği sekmede açılmalı
-#yap: haftalık ve aylık indirimi günlükten önizle
+#yapildi: haftalık ve aylık indirimi günlükten önizle
 #yap: indirimi tersten hespalamaca
-#yap: koyu resim sorunu.(sapanca)
+#yapmayacam: koyu resim sorunu.(sapanca)
 #yap: ajax history api
 #yap: istatisikler
 #yap: destek yanit views
