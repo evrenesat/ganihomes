@@ -44,42 +44,33 @@ class TranslationMachine:
         self.run()
 
     def translate(self, query, target, source=None):
-        values = {'key' : DEVELOPER_KEY,
-                  'target' : target,
-                   'q':query}
-        if source:
-            values['source']=source
-        headers={'X-HTTP-Method-Override':'GET',}
-        data = urllib.urlencode(values)
-        req = urllib2.Request(GOOGLE_TRANSLATE_URL, data, headers)
-        response = urllib2.urlopen(req)
-        print response.read()
-        return
-        return response.read()
-
-    def translate(self, input, target, source=None):
         try:
-#            print target,input
+            values = {'key' : DEVELOPER_KEY,
+                      'target' : target,
+                       'q':query}
             if source:
-                tr = self.service.translations().list(source=source, target=target, q=input).execute()
-            else:
-                tr = self.pservice.translations().list(target=target, q=input).execute()
-            return   tr['translations']
+                values['source']=source
+            headers={'X-HTTP-Method-Override':'GET',}
+            data = urllib.urlencode(values)
+            req = urllib2.Request(GOOGLE_TRANSLATE_URL, data, headers)
+            response = urllib2.urlopen(req)
+            print response.read()
+            return
+            return response.read()
         except:
-#            log.exception('unexpected error')
-            pass
+            log.exception('unexpected error')
+
 
     def run(self):
-#        print self.auto_langs
-
+#        print Place.objects.filter(translation_status__lt=30)
         for p in Place.objects.filter(translation_status__lt=30):
+
             if len(p.description)<8:
                 log.info('%s aciklamasi fazla kisa, pass' % p)
                 continue
             already_translated_langs = p.get_translation_list(reset=True)
             for l in self.auto_langs:
                 if l not in already_translated_langs:
-
                     translation = self.translate([p.title,p.description],l)
                     print 'TRANSLATION RESULT FOR %s %s' % (p.id, p.title), translation
                     if translation:
