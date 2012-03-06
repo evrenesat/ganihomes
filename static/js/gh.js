@@ -253,8 +253,8 @@ gh = {
         var sbox = $('#searchbox')
 
         $(window).scroll(function(){
-//            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
-            if($(document).scrollTop()>170 && !sbar.hasClass('fixmenu')){sbar.addClass('fixmenu');sbardis.height(sbox.height())}
+            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
+            if($(document).scrollTop()>170 && !sbar.hasClass('fixmenu')){sbar.addClass('fixmenu');sbardis.height(sbox.height()+200)}
             else if($(document).scrollTop()<170 && sbar.hasClass('fixmenu')){sbar.removeClass('fixmenu')}
         })
         $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
