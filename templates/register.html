@@ -7,7 +7,7 @@
 
             <h3>{% cevir "kayit form baslik" %}</h3>
 
-            {% cevir "kayit form ustyazi" %}Facebook hesabınızla  ya da eposta adresinizi girerek bir kaç dakikada GaniHomes'a üye olabilirsiniz.
+            {% cevir "kayit form ustyazi" %}
 
 
 
@@ -58,7 +58,7 @@
                             </form>
 
                 <div class="orline" ></div>
-                <div class="or">ya da</div>
+                <div class="or">{% trans "or" %}</div>
                 <div class="orline" ></div>
 
                  <div style="width:100%;text-align:center;">
@@ -85,7 +85,7 @@
                     <form action="{% url login %}" method="post">
                                 <input type="hidden" name="next" value="{{ next }}">
                                 {% csrf_token %}
-                    <p style="margin:-10px 10px 10px 10px;">Aşağıdaki formu doldurarak ya da mevcut Facebook hesabınızı kullanarak GaniHomes'a birkaç dakika içerisinde üye olabilirsiniz.
+                    <p style="margin:-10px 10px 10px 10px;">{% cevir "kayit sag sutun login ustyazi " %}
                     </p>
 
                 <div class="sideform2 separate" style="width:98%;">
@@ -104,7 +104,7 @@
 
         </form>
                 <div class="orline" ></div>
-                <div class="or">yada</div>
+                <div class="or">{% trans "or" %}</div>
                 <div class="orline" ></div>
 
                 <div class="yuzz float-left" style="text-align:center;">
