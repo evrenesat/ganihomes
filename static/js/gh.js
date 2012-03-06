@@ -261,7 +261,7 @@ gh = {
                     }else{
                         mc.addClass('minimap','fast')
                     }
-                    self.setMapZoom()
+                    self.searchMap()
                 })
         $(window).scroll(function () {
 //            console.log($(document).scrollTop(), $(document).height() , $(window).height(), $(document).height() - $(window).height())
@@ -270,13 +270,13 @@ gh = {
                 sbar.addClass('fixmenu');
                 self.mapMini = true;
                 mc.addClass('minimap')
-                self.setMapZoom()
+                self.searchMap()
                 sbardis.height(sbox.height())
             }
             else if ($(document).scrollTop() < 170 && sbar.hasClass('fixmenu')) {
                 sbar.removeClass('fixmenu')
                 self.mapMini = false;
-                self.setMapZoom()
+                self.searchMap()
                 mc.removeClass('minimap')
             }
             if($(window).scrollTop()+200 >= $(document).height() - $(window).height())sbar.css({top:'-75px'})
@@ -533,6 +533,7 @@ gh = {
     searchMap:function(){
         var self=this;
 //        this.gZoom = 11;
+        this.setMapZoom()
         this.gcinit(true)
         for(i=0 ;i<this.search_results.length;i++){
             var d = this.search_results[i]
@@ -1292,7 +1293,7 @@ gh = {
         }
 //        console.log('maxlat',maxlat,'minlat',minlat,'maxlng',maxlng,'minlng',minlng,'say',say)
         this.zoomParams = [minlat,maxlat,minlng,maxlng,ctrlat,ctrlng]
-        this.setMapZoom()
+//        this.setMapZoom()
         if(!isNaN(lats))$('#id_lat').val(   ctrlat)
         if(!isNaN(lons))$('#id_lon').val(ctrlng)
         this.search_results = data
@@ -1325,11 +1326,11 @@ gh = {
     this.lat = ctrlat;
     this.lon = ctrlng;
     this.gZoom = zoom==Infinity?11:zoom;
-    if(this.map){
-        this.glatlng = new google.maps.LatLng(ctrlat,ctrlng);
-        this.map.setZoom(this.gZoom)
-        this.map.setCenter(this.glatlng)
-    }
+//    if(this.map){
+//        this.glatlng = new google.maps.LatLng(ctrlat,ctrlng);
+//        this.map.setZoom(this.gZoom)
+//        this.map.setCenter(this.glatlng)
+//    }
 //    console.log(ctrlat, ctrlng, zoom)
 },
     searchPage:1,
@@ -1350,7 +1351,6 @@ gh = {
             $("#pagination").html($("#paginationTpl").jqote(data));
             if(!self.map)self.gmapsLoad('gh.searchMap')
             else self.searchMap()
-            //FIXME: haritayi tekrar tekrar yukluyor
         });
 
     },
