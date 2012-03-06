@@ -256,12 +256,13 @@ gh = {
         mc.on('mouseenter mouseleave', function(event){
                     if(!self.mapMini || !self.map)return false;
                     var mc = $('#map_canvas')
-                    if(event.type=='mouseenter'){
-                        mc.removeClass('minimap','fast')
-                    }else{
-                        mc.addClass('minimap','fast')
+                    var mini = mc.hasClass('minimap')
+                    if(mini && event.type=='mouseenter'){
+                        mc.removeClass('minimap')
+                    }else if(event.type=='mouseleave'){
+                        mc.addClass('minimap')
                     }
-                    self.searchMap()
+                    if(mini != mc.hasClass('minimap'))self.searchMap()
                 })
         $(window).scroll(function () {
 //            console.log($(document).scrollTop(), $(document).height() , $(window).height(), $(document).height() - $(window).height())
