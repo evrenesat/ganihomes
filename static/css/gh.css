@@ -2416,6 +2416,10 @@ li.g-plus-one {
     float: left;
     height: 400px;
 }
+
+.minimap{
+    height:75px !important;
+}
 #menuccordion.fixmenu{
     position:fixed;
 }

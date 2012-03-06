@@ -246,23 +246,40 @@ gh = {
         });
 
     },
+    mapMini:false,
     init_search:function () {
         var self = this
         var sbar = $('#sidesearch')
         var sbardis = $('#searchbar')
         var sbox = $('#searchbox')
-
+        var mc = $('#map_canvas')
+        mc.on('mouseenter mouseleave', function(event){
+                    if(!self.mapMini || !self.map)return false;
+                    var mc = $('#map_canvas')
+                    if(event.type=='mouseenter'){
+                        mc.removeClass('minimap','fast')
+                    }else{
+                        mc.addClass('minimap','fast')
+                    }
+                    self.setMapZoom()
+                })
         $(window).scroll(function () {
 //            console.log($(document).scrollTop(), $(document).height() , $(window).height(), $(document).height() - $(window).height())
                 //($(window).scrollTop() == $(document).height() - $(window).height())
             if ($(document).scrollTop() > 170 && !sbar.hasClass('fixmenu')) {
                 sbar.addClass('fixmenu');
+                self.mapMini = true;
+                mc.addClass('minimap')
+                self.setMapZoom()
                 sbardis.height(sbox.height())
             }
             else if ($(document).scrollTop() < 170 && sbar.hasClass('fixmenu')) {
                 sbar.removeClass('fixmenu')
+                self.mapMini = false;
+                self.setMapZoom()
+                mc.removeClass('minimap')
             }
-            if($(window).scrollTop()+200 >= $(document).height() - $(window).height())sbar.css({top:'-220px'})
+            if($(window).scrollTop()+200 >= $(document).height() - $(window).height())sbar.css({top:'-75px'})
             else sbar.css({top:'0'})
         })
         $("#pricediv").slider({ range:true, max:500, min:20, animate:true, step:10, values:[1, 500],
@@ -1274,14 +1291,18 @@ gh = {
             ctrlng=minlng+((maxlng - minlng)/2);
         }
 //        console.log('maxlat',maxlat,'minlat',minlat,'maxlng',maxlng,'minlng',minlng,'say',say)
-        this.setMapZoom(minlat,maxlat,minlng,maxlng,ctrlat,ctrlng)
+        this.zoomParams = [minlat,maxlat,minlng,maxlng,ctrlat,ctrlng]
+        this.setMapZoom()
         if(!isNaN(lats))$('#id_lat').val(   ctrlat)
         if(!isNaN(lons))$('#id_lon').val(ctrlng)
         this.search_results = data
         return data
     },
-    setMapZoom:function(minlat,maxlat,minlng,maxlng,ctrlat,ctrlng){
-    var mapdisplay = 210;
+    zoomParams:[],
+    setMapZoom:function(){
+    if (!this.zoomParams)return
+    var minlat = this.zoomParams[0], maxlat = this.zoomParams[1],minlng = this.zoomParams[2],maxlng = this.zoomParams[3],ctrlat = this.zoomParams[4],ctrlng = this.zoomParams[5]
+    var mapdisplay = $('#map_canvas').height();
     var interval = 0;
 
     if ((maxlat - minlat) > (maxlng - minlng)) {
@@ -1304,6 +1325,11 @@ gh = {
     this.lat = ctrlat;
     this.lon = ctrlng;
     this.gZoom = zoom==Infinity?11:zoom;
+    if(this.map){
+        this.glatlng = new google.maps.LatLng(ctrlat,ctrlng);
+        this.map.setZoom(this.gZoom)
+        this.map.setCenter(this.glatlng)
+    }
 //    console.log(ctrlat, ctrlng, zoom)
 },
     searchPage:1,
