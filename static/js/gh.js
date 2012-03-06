@@ -252,33 +252,51 @@ gh = {
         var sbardis = $('#searchbar')
         var sbox = $('#searchbox')
 
-        $(window).scroll(function(){
-            console.log($(document).scrollTop(), sbar.hasClass('fixmenu'))
-            if($(document).scrollTop()>170 && !sbar.hasClass('fixmenu')){sbar.addClass('fixmenu');sbardis.height(sbox.height()+500)}
-            else if($(document).scrollTop()<170 && sbar.hasClass('fixmenu')){sbar.removeClass('fixmenu')}
+        $(window).scroll(function () {
+//            console.log($(document).scrollTop(), $(document).height() , $(window).height(), $(document).height() - $(window).height())
+                //($(window).scrollTop() == $(document).height() - $(window).height())
+            if ($(document).scrollTop() > 170 && !sbar.hasClass('fixmenu')) {
+                sbar.addClass('fixmenu');
+                sbardis.height(sbox.height())
+            }
+            else if ($(document).scrollTop() < 170 && sbar.hasClass('fixmenu')) {
+                sbar.removeClass('fixmenu')
+            }
+            if($(window).scrollTop()+200 >= $(document).height() - $(window).height())sbar.css({top:'-220px'})
+            else sbar.css({top:'0'})
         })
-        $( "#pricediv" ).slider({ range: true,  max: 500, min:20, animate: true,step: 10, values: [1,500],
-            change: function(event, ui) {
-                var values = $( this ).slider( "option", "values" );
+        $("#pricediv").slider({ range:true, max:500, min:20, animate:true, step:10, values:[1, 500],
+            change:function (event, ui) {
+                var values = $(this).slider("option", "values");
                 $('#pmin').val(values[0]);
                 $('#pmax').val(values[1]);
                 self.jsearch()
             }
         });
-        if(window.PIE){
-            $('#searchbar .ackapa').mouseenter(function(){PIE.attach(this);})//$(this).css('padding-bottom','50px')}).mouseleave(function(){$(this).removeClass('acik')})
+        if (window.PIE) {
+            $('#searchbar .ackapa').mouseenter(function () {
+                PIE.attach(this);
+            })//$(this).css('padding-bottom','50px')}).mouseleave(function(){$(this).removeClass('acik')})
         }
 //        $('#searchbar').mouseleave(function(){$('#searchbar .acik').removeClass('acik')})
-        $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
-        $("#id_query").autocomplete({minLength: 1,
-            source:function(request, response){
+        $('.vDateField').datepicker({dateFormat:'yy-mm-dd', minDate:'0', changeMonth:true  });
+        $("#id_query").autocomplete({minLength:1,
+            source:function (request, response) {
                 self.otokompliti(request, response)
             }
         })
-        $('#id_query').keydown(function(event){if(event.keyCode == '13')self.jsearch()})
-        $('#submit').click(function(){self.jsearch()})
+        $('#id_query').keydown(function (event) {
+            if (event.keyCode == '13')self.jsearch()
+        })
+        $('#submit').click(function () {
+            self.jsearch()
+        })
         this.jsearch()
-        $('#searchbar li').click(function(){$(this).toggleClass('hit');self.jsearch()}).disableSelection()
+        $('#searchbar li').click(
+            function () {
+                $(this).toggleClass('hit');
+                self.jsearch()
+            }).disableSelection()
     },
     stimers : [],
     playTimedSlides:true,
