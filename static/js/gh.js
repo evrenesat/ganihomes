@@ -277,8 +277,9 @@ gh = {
             else if ($(document).scrollTop() < 170 && sbar.hasClass('fixmenu')) {
                 sbar.removeClass('fixmenu')
                 self.mapMini = false;
-                self.searchMap()
                 mc.removeClass('minimap')
+                self.searchMap()
+
             }
             if($(window).scrollTop()+200 >= $(document).height() - $(window).height())sbar.css({top:'-75px'})
             else sbar.css({top:'0'})
