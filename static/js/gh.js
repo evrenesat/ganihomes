@@ -697,10 +697,11 @@ gh = {
     },
     checkReservationDates:function(dates){
         if(dates[0])$.cookie('selected_dates', $.toJSON(dates))
+        console.log(dates)
         $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
-        if(dates[0] && dates[0]==dates[1]){
-            dates[1].setTime(dates[0].valueOf() +  86400000)
-        }
+            if(dates[0] && dates[0].valueOf()==dates[1].valueOf()){
+                dates[1].setTime(dates[0].valueOf() +  86400000)
+            }
 
         $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
         this.total = {ndays:0, price:0.0}
@@ -751,7 +752,6 @@ gh = {
                     {selectable:false, dateClass:'datepick-reserved'} : { content:
                 date.getDate() + '<br><sub>' + self.dayPrice(date) + '</sub>'}
             }
-
         });
 
     },
