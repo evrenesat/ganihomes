@@ -696,20 +696,24 @@ gh = {
         $('#currencyid').val(this.selected_currency)
     },
     checkReservationDates:function(dates){
-        if(dates[0])$.cookie('selected_dates', $.toJSON(dates))
-        console.log(dates)
-        $('#id_checkin').val($.datepick.formatDate('yyyy-mm-dd', dates[0]))
-            if(dates[0] && dates[0].valueOf()==dates[1].valueOf()){
-                dates[1].setTime(dates[0].valueOf() +  86400000)
-            }
+        var cid = dates[0]
+        var cod = dates[1]
+        var cif = $('#id_checkin')
+        var cof = $('#id_checkout')
 
-        $('#id_checkout').val($.datepick.formatDate('yyyy-mm-dd', dates[1]))
+        if($.datepick.formatDate('yyyy-mm-dd', cid) != cif.val() )cif.val($.datepick.formatDate('yyyy-mm-dd', cid))
+            if(cid && cid.valueOf()==cod.valueOf() && cif.val()==cof.val()){
+                cod.setTime(cid.valueOf() +  86400000)
+            }
+        if(cid && cod)$.cookie('selected_dates', $.toJSON([cid,cod]))
+        if($.datepick.formatDate('yyyy-mm-dd', cod) != cof.val() )cof.val($.datepick.formatDate('yyyy-mm-dd', cod))
         this.total = {ndays:0, price:0.0}
         try{
             var loopDate = new Date();
-            loopDate.setTime(dates[0]);
+            loopDate.setTime(cid);
             var days=0 ,price=0.0;
-            while (loopDate.valueOf() < dates[1].valueOf()) {
+            console.log(cid,cod)
+            while (loopDate.valueOf() < cod.valueOf()) {
 //                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
                 if (this.isUnAvailable(loopDate)){
@@ -729,6 +733,8 @@ gh = {
             if(er=='unv_dates'){
                 alert(trns('dates_not_available') );
                 $.cookie('selected_dates','')
+            }else{
+                alert(er)
             }
         }
         this.total.ndays = days
