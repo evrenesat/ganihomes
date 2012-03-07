@@ -167,7 +167,7 @@ def trips(request):
     g = user.guestings.filter(status__gt=5)
     context = {
                 'current':g.filter(start__lte=datetime.today(), end__gte=datetime.today()),
-                'upcoming':g.filter(status__in=[10,20]),
+                'upcoming':g.filter(status__in=[8,9,10,20]),
                 'previous':g.filter(end__lte=datetime.today()),
                'bookmarks':profile.favorites.all()
     }
@@ -257,7 +257,7 @@ def dashboard(request):
     profile = user.get_profile()
     bookings = []
     bookings.extend(Booking.objects.filter(status__in=[10,20,30], valid=True, host=user)[:2])
-    bookings.extend(Booking.objects.filter(status__in=[10,20,30], valid=True, guest=user)[:2])
+    bookings.extend(Booking.objects.filter(status__in=[8,9,10,20,30], valid=True, guest=user)[:2])
     context = {'places':user.place_set.all(),
                'form' : addPlaceForm(),
                'msgs':list_messages(request, 4),

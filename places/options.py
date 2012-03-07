@@ -137,6 +137,8 @@ BOOKING_STATUS = (
 
 
 BOOKING_STATUS_FOR_HOST = {
+    8: _('Waiting for payment'),
+    9: _('Waiting for confirmation of payment by GaniHomes Staff'),
     10: _('Your action required'),
     20: _('Confirmed by you'),
     30: _('Accommodation confirmed by the guest'),
