@@ -901,7 +901,9 @@ ul.messages {
     background: url("/static/images/icon/ghome.png") no-repeat scroll 8px 50% transparent;
     height: 43px;
 }
-
+#menuccordion.fixmenu{
+    top:10px;
+}
 #menuccordion div.focused {
     background: -moz-linear-gradient(top, #C47D04 0%, #EEB24B 100%);
      background: -webkit-gradient(linear, #C47D04 0%, #EEB24B 100%);

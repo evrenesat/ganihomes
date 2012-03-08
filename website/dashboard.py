@@ -280,7 +280,7 @@ def show_booking(request, id):
         admin_warn='Tanimsiz rezervasyon islemi'
         job = request.POST.get('confirmation')
         if booking.guest == user:
-            if job == 'cancel' and booking.status==10:
+            if job == 'cancel' and booking.status<=10:
                 booking.status = 50
                 booking.rejection_date = datetime.now()
                 booking.voidPayment(request)
@@ -297,7 +297,7 @@ def show_booking(request, id):
                 booking.guest_ok_date = datetime.now()
                 messages.success(request, _('Booking request confirmed.'))
                 admin_warn='Konaklama misafir tarfindan onaylandi. Ucret aktarimi gerekli!!!'
-        elif booking.host == user and booking.status==10:
+        elif booking.host == user and booking.status<=10:
             if job =='confirm':
                 booking.status = 20
                 booking.confirmation_date = datetime.now()
