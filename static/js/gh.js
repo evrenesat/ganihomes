@@ -695,25 +695,20 @@ gh = {
         }
         $('#currencyid').val(this.selected_currency)
     },
+    fdate : function(date){
+        return $.datepick.formatDate('yyyy-mm-dd',date)
+    },
     checkReservationDates:function(dates){
-        var cid = dates[0]
-        var cod = dates[1]
-        var cif = $('#id_checkin')
-        var cof = $('#id_checkout')
 
-        if($.datepick.formatDate('yyyy-mm-dd', cid) != cif.val() )cif.val($.datepick.formatDate('yyyy-mm-dd', cid))
-            if(cid && cid.valueOf()==cod.valueOf() && cif.val()==cof.val()){
-                cod.setTime(cid.valueOf() +  86400000)
-            }
-        if(cid && cod)$.cookie('selected_dates', $.toJSON([cid,cod]))
-        if($.datepick.formatDate('yyyy-mm-dd', cod) != cof.val() )cof.val($.datepick.formatDate('yyyy-mm-dd', cod))
+        $.cookie('selected_dates', $.toJSON([dates[0],dates[1]]))
+
         this.total = {ndays:0, price:0.0}
         try{
             var loopDate = new Date();
-            loopDate.setTime(cid);
+            loopDate.setTime(dates[0]);
             var days=0 ,price=0.0;
-            console.log(cid,cod)
-            while (loopDate.valueOf() < cod.valueOf()) {
+//            console.log(cid,cod,cif.val(),cof.val())
+            while (loopDate.valueOf() < dates[1].valueOf()) {
 //                console.log(loopDate.getDay())
     //            sdate = $.datepick.formatDate('yymmdd', loopDate)
                 if (this.isUnAvailable(loopDate)){
@@ -896,8 +891,16 @@ gh = {
                 onSelect: function(dateText, inst) {
                     self.selected_dates[$(this).attr('id')] = $(this).datepicker("getDate")
                     if(self.selected_dates.id_checkin || self.selected_dates.id_checkout){
-//                        if(self.selected_dates.id_checkin && !self.selected_dates.id_checkout)self.selected_dates.id_checkout=self.selected_dates.id_checkin
-//                        else if(self.selected_dates.id_checkout && !self.selected_dates.id_checkin)self.selected_dates.id_checkin=self.selected_dates.id_checkout
+
+                        if(self.selected_dates.id_checkin && !self.selected_dates.id_checkout){
+                            self.selected_dates.id_checkout = new Date()
+                            self.selected_dates.id_checkout.setTime(self.selected_dates.id_checkin.valueOf() +  86400000)
+                            $('#id_checkout').val(self.fdate(self.selected_dates.id_checkout))
+                        }else if(self.selected_dates.id_checkout && !self.selected_dates.id_checkin){
+                            self.selected_dates.id_checkin = new Date()
+                            self.selected_dates.id_checkin.setTime(self.selected_dates.id_checkout.valueOf() -  86400000)
+                            $('#id_checkin').val(self.fdate(self.selected_dates.id_checkin))
+                        }
                         $('#pcalendar').datepick('setDate',self.selected_dates.id_checkin,self.selected_dates.id_checkout)
                     }
                 }
