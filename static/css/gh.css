@@ -3577,9 +3577,15 @@ ul.messages li{
 }
 
 #howmonitordiv {
-    margin-left: 15px;
-}
 
+    padding:2px;
+    height: 221px;
+    overflow:hidden;
+
+}
+#learnmore{
+    margin: 15px;
+}
 #howmonitorimg {
     float: left;
 }

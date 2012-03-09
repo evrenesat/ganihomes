@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from configuration.modelbase import ConfigBase, models
-
+from django.conf import settings
 
 class Config(ConfigBase):
     email_activation = models.BooleanField(u'Eposta Onayı', help_text=u"Üyelik için eposta onayı gereksin mi?",
@@ -22,10 +22,8 @@ class Config(ConfigBase):
     ''')
     iban_countries = models.TextField(u'IBAN\'ın yeterli olduğu ülkeler.', help_text="Orn: TR,DE,UK", null=True,
         blank=True, default='TR')
-    #    enabled_langs = models.CharField(label=u'Etkin Diller',
-    #        ,widget=models.Textarea()
-    #        ,help_text=u'Sitede kullanılacak dil kodlarını 2 harfli ISO kodları ve dilin adını virgülle ayırıp, her satıra bir dil gelecek şekilde giriniz. <br>örn:<br>tr,Türkçe<br>en,English<br>es,Español'
-    #    )
+    listed_langs = models.TextField(u'Listelen Diller', default='en,English\ntr,Türkçe\nes,Español\nde,Deutsch\nit,Italiano',
+        help_text=u'Sitede kullanılacak dil kodlarını 2 harfli ISO kodları ve dilin adını virgülle ayırıp, her satıra bir dil gelecek şekilde giriniz. <br>örn:<br>tr,Türkçe<br>en,English<br>es,Español.<br>')
     trans_langs = models.CharField(u'Çevirisi yapılabilecek diller', max_length=200, default='tr,en,es,fr,de',
         help_text=u'Dil kodlarını 2 harfli ISO standardına göre virgüle ayırarak giriniz. Örn: tr,en,es,fr,de .',
         null=True, blank=True)

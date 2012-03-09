@@ -69,7 +69,11 @@
     </div>
     </div>
     </div>
-        <div class="span-12 shadoblok" id="howmonitordiv">
+        <div class="span-13 shadoblok" id="howmonitordiv">
+            {% if LANGUAGE_CODE == 'tr' %}
+            <img src="/static/images/fotokamp.jpg" style="border:10px solid #fff;">
+            {% else %}
+                <div id="learnmore">
             <img id="howmonitorimg" src="{{ STATIC_URL }}images/howmonitor.png">
             <div id="howmonitortext">
                 <h3 class="oh3">{% trans "Best place rental experience for both hosts and guests!"%}</h3>
@@ -81,6 +85,8 @@
                 </ul>
                 <span><a href="{% url howitworks %}">{% trans "Learn how it works"%} &raquo;</a></span>
             </div>
+                </div>
+        {% endif %}
         </div>
         <div id="minislidercontainer">
         <div id="minislider">

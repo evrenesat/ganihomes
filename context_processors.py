@@ -20,13 +20,13 @@ __author__ = 'Evren Esat Ozkan'
 
 
 from django.conf import settings
-
+from configuration import configuration
 
 
 def GH(r):
 
     return {
-        'LISTED_LOCALES': settings.LISTED_LOCALES,
+        'LISTED_LOCALES': [l.split(',') for l in configuration('listed_langs').split('\n')],
         'unread_count': Message.message_count(r.user),
        }
 

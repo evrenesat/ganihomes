@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # -*-  coding: utf-8 -*-
+from json import loads
 import sys
 import os
-from apiclient.http import HttpRequest
 
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
@@ -13,13 +13,13 @@ from applicationinstance import ApplicationInstance
 
 from places.models import Place, Description
 #from utils.cache import kes
-
+#from utils.xml2dict import fromstring
 DEVELOPER_KEY = 'AIzaSyAd8evO6SwmuE3RoBdaROzLoNGesc386Vg'
 GOOGLE_TRANSLATE_URL = 'https://www.googleapis.com/language/translate/v2'
 import logging
 log = logging.getLogger('genel')
-#import httplib2
-#httplib2.debuglevel = 4
+import httplib2
+httplib2.debuglevel = 4
 
 from configuration import configuration
 
@@ -45,47 +45,58 @@ class TranslationMachine:
 
     def translate(self, query, target, source=None):
         try:
-            values = {'key' : DEVELOPER_KEY,
-                      'target' : target,
-                       'q':query}
+            values = [('key' , DEVELOPER_KEY),
+                    ('target' , target),
+                    ('q',query[0]),
+                    ('q',query[1]),
+            ]
             if source:
-                values['source']=source
+                values.append(('source',source))
             headers={'X-HTTP-Method-Override':'GET',}
             data = urllib.urlencode(values)
+            print data
             req = urllib2.Request(GOOGLE_TRANSLATE_URL, data, headers)
             response = urllib2.urlopen(req)
-            print response.read()
-            return
-            return response.read()
+            sonuc =  loads(response.read())['data']['translations']
+#            print 'sonuc',sonuc
+            return sonuc
         except:
             log.exception('unexpected error')
 
 
     def run(self):
-#        print Place.objects.filter(translation_status__lt=30)
         for p in Place.objects.filter(translation_status__lt=30):
 
             if len(p.description)<8:
                 log.info('%s aciklamasi fazla kisa, pass' % p)
                 continue
-            already_translated_langs = p.get_translation_list(reset=True)
-            for l in self.auto_langs:
-                if l not in already_translated_langs:
-                    translation = self.translate([p.title,p.description],l)
-                    print 'TRANSLATION RESULT FOR %s %s' % (p.id, p.title), translation
-                    if translation:
-#                        print 'laaaaaaaaaaaaaaan',p.title,l
-#                        print translation[0]
-                        d, new = Description.objects.get_or_create(place=p, lang=l)
-                        d.text = translation[1]['translatedText']
-                        d.title = translation[0]['translatedText']
-                        d.auto = True
-                        d.save()
-            translated_langs = p.get_translation_list(reset=True)
-            if translated_langs:
-                p.translation_status = 20
-                if all([ l in translated_langs for l in self.auto_langs ] ):
-                    p.translation_status = 30
+            self.translate_place(p)
+            self.update_place_status(p)
+
+    def translate_place(self,p):
+        already_translated_langs = [l for l in p.get_translation_list(reset=True) if l not in already_translated_langs]
+        for l in self.auto_langs:
+            if l not in already_translated_langs:
+                translation = self.translate([p.title,p.description],l)
+                if translation:
+                    d, new = Description.objects.get_or_create(place=p, lang=l)
+                    #TODO: bu kontrol db seviyesinde yapilsa daha iyi olur
+                    if not (new or d.auto):
+                        continue
+                    d.text = translation[1]['translatedText']
+                    d.title = translation[0]['translatedText']
+                    d.auto = True
+                    d.save()
+
+
+    def update_place_status(self, p):
+        translated_langs = p.get_translation_list(reset=True)
+        if translated_langs: #TODO: en az bir dil oldugu icin bu herzaman True oluyor.
+            status = p.translation_status
+            p.translation_status = 20
+            if all([ l in translated_langs for l in self.auto_langs ] ):
+                p.translation_status = 30
+            if status != p.translation_status :
                 p.save()
 
 
