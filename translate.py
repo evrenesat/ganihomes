@@ -43,7 +43,7 @@ class TranslationMachine:
 
         self.run()
 
-    def translate(self, query, target, source=None):
+    def translator(self, query, target, source=None):
         try:
             values = [('key' , DEVELOPER_KEY),
                     ('target' , target),
@@ -54,7 +54,7 @@ class TranslationMachine:
                 values.append(('source',source))
             headers={'X-HTTP-Method-Override':'GET',}
             data = urllib.urlencode(values)
-            print data
+#            print data
             req = urllib2.Request(GOOGLE_TRANSLATE_URL, data, headers)
             response = urllib2.urlopen(req)
             sonuc =  loads(response.read())['data']['translations']
@@ -66,7 +66,7 @@ class TranslationMachine:
 
     def run(self):
         for p in Place.objects.filter(translation_status__lt=30):
-
+            log.info('mekan: %s' % p)
             if len(p.description)<8:
                 log.info('%s aciklamasi fazla kisa, pass' % p)
                 continue
@@ -74,10 +74,11 @@ class TranslationMachine:
             self.update_place_status(p)
 
     def translate_place(self,p):
+        log.info('CEVRiLECEK: %s ' % p)
         already_translated_langs = [l for l in p.get_translation_list(reset=True) if l not in already_translated_langs]
         for l in self.auto_langs:
             if l not in already_translated_langs:
-                translation = self.translate([p.title,p.description],l)
+                translation = self.translator([p.title,p.description],l)
                 if translation:
                     d, new = Description.objects.get_or_create(place=p, lang=l)
                     #TODO: bu kontrol db seviyesinde yapilsa daha iyi olur
