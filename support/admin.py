@@ -4,8 +4,16 @@ from support.models import *
 from utils.admin import *
 from django.utils.translation import ugettext_lazy as _
 
+class SubjectCategoryTranslationInline(admin.StackedInline):
+#    formfield_overrides = { models.CharField: {'widget': Textarea(attrs={'rows':'2','cols':'70'})},}
+    model = SubjectCategoryTranslation
+
+    save_on_top = True
+    save_as = True
+    extra = 3
+
 class SubjectCategoryAdmin(admin.ModelAdmin):
-        pass
+        inlines = [SubjectCategoryTranslationInline,]
 
 class TicketAdmin(admin.ModelAdmin):
         #prepopulated_fields = {"slug": ("title",)}

@@ -11,8 +11,8 @@ from hashlib import sha1
 
 class Banka(GenelBanka): #
     def __init__(self, *args, **kwargs):
-        self.adi='Halk Bank'
-        self.id='Halk Bank POS'
+        self.adi='DenizBank'
+        self.id='DenizBank POS'
         GenelBanka.__init__(self, *args, **kwargs)
         self.odemeNormal=False
         self.odeme3d=True

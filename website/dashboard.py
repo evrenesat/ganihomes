@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
-from support.models import SubjectCategory, Ticket
+from support.models import SubjectCategory, Ticket, SubjectCategoryTranslation
 from utils.htmlmail import send_html_mail
 from utils.mail2perm import mail2perm
 from website.models.faq import Question
@@ -579,7 +579,14 @@ class TicketForm(forms.ModelForm):
     body = forms.CharField(widget=forms.Textarea(attrs={'cols': '30', 'rows': '4'}), label=_(u'Your message'))
     subject = forms.CharField(widget=forms.TextInput(attrs={'size': '30'}), label=_(u'Subject'))
     #    tip = forms.ChoiceField(label='Değerlendirme',  choices=Mesaj.TIP)
-    category = forms.ModelChoiceField(queryset=SubjectCategory.objects.exclude(hidden=True), label=_(u'Category'))
+#    category = forms.ModelChoiceField(queryset=SubjectCategory.objects.exclude(hidden=True), label=_(u'Category'))
+
+    def __init__(self, *args, **kwargs):
+        lang = kwargs.pop('lang')
+        super(TicketForm, self).__init__(*args, **kwargs)
+#        self.fields['tags'].widget = forms.CheckboxSelectMultiple()
+        self.fields["category"].choices = [(c.category_id, c.text) for c in SubjectCategoryTranslation.objects.filter(lang=lang)]
+#        self.fields['currency'].queryset = Currency.objects.filter(active=True)
 
     class Meta:
         model = Ticket
@@ -599,7 +606,7 @@ def support_create(request):
             messages.success(request, _('Your message successfully saved.'))
 #            return HttpResponseRedirect(reverse('support_thanks'))
     else:
-        form = TicketForm()
+        form = TicketForm(lang=request.LANGUAGE_CODE)
         form.fields['subject'].initial = request.GET.get('subject', '')
         form.fields['category'].initial = int(request.GET.get('category', 0))
     return render_to_response('dashboard/support_create.html', {'form': form, },

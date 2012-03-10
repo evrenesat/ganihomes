@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -25,6 +26,25 @@ class SubjectCategory(models.Model):
       verbose_name = _(u'Subject Category')
       verbose_name_plural = _(u'Subject Categories')
       ordering=['name']
+
+class SubjectCategoryTranslation(models.Model):
+    """Place description"""
+
+    category = models.ForeignKey('SubjectCategory')
+    lang = models.CharField(max_length=2, db_index=True, choices=settings.LANGUAGES)
+    text = models.CharField(_('Translation'), max_length=100)
+    active = models.BooleanField(_('Active'), default=True)
+    timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']
+        get_latest_by = "timestamp"
+        verbose_name = _('Support Category Translation')
+        verbose_name_plural = _('Support Category Translations')
+
+    def __unicode__(self):
+        return 'Support Cat #%s Lang:%s' % (self.category_id, self.lang)
+
 
 STATUS=((10,_(u'Waiting Reply')),(20,_(u'Replied')),(30,_(u'On going request')),(40,_(u'Closed')))
 class Ticket(models.Model):

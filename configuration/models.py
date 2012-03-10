@@ -23,7 +23,9 @@ class Config(ConfigBase):
     iban_countries = models.TextField(u'IBAN\'ın yeterli olduğu ülkeler.', help_text="Orn: TR,DE,UK", null=True,
         blank=True, default='TR')
     listed_langs = models.TextField(u'Listelen Diller', default='en,English\ntr,Türkçe\nes,Español\nde,Deutsch\nit,Italiano',
-        help_text=u'Sitede kullanılacak dil kodlarını 2 harfli ISO kodları ve dilin adını virgülle ayırıp, her satıra bir dil gelecek şekilde giriniz. <br>örn:<br>tr,Türkçe<br>en,English<br>es,Español.<br>')
+        help_text=u'Sitede listelenecek dillerin 2 harfli ISO kodlarını ve dilin adını virgülle ayırıp, boşluk kullanmadan her satıra bir dil gelecek şekilde giriniz. <br>örn:<br>tr,Türkçe<br>en,English<br>es,Español.<br><b>NOT: Sadece şu diller içinden seçebilirsiniz: %s</b>' %
+                  ', '.join([l[0] for l in settings.LANGUAGES])
+    )
     trans_langs = models.CharField(u'Çevirisi yapılabilecek diller', max_length=200, default='tr,en,es,fr,de',
         help_text=u'Dil kodlarını 2 harfli ISO standardına göre virgüle ayırarak giriniz. Örn: tr,en,es,fr,de .',
         null=True, blank=True)
