@@ -112,6 +112,8 @@ urlpatterns += patterns('website.booking',
     (r'^secure_booking/$', 'secure_booking', {}, 'secure_booking'),
     (r'^paypal_checkout/$', 'paypal_checkout', {}, 'paypal_checkout'),
     (r'^paypal_return/$', 'paypal_complete', {}, 'paypal_complete'),
+    (r'^cc_success/$', 'cc_success', {}, 'cc_success'),
+    (r'^cc_fail/$', 'cc_success', {}, 'cc_fail'),
     (r'^bank_transfer_complete/$', 'bank_transfer_complete', {}, 'bank_transfer_complete'),
     (r'^paypal_cancel/$', 'paypal_cancel', {}, 'paypal_cancel'),
 

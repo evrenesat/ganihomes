@@ -911,7 +911,7 @@ class Booking(models.Model):
         verbose_name_plural = _('Bookings')
 
     def __unicode__(self):
-        return '%s' % (self.summary,)
+        return '%s %s' % (self.summary,self.id)
 
 
 class SessionalPrice(models.Model):

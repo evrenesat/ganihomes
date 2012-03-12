@@ -32,7 +32,9 @@ class Config(ConfigBase):
     auto_trans_langs = models.CharField(u'Otomatik çevirisi yapılacak diller', max_length=200, default='tr,en,es,fr,de',
         help_text=u'Dil kodlarını 2 harfli ISO standardına göre virgüle ayırarak giriniz. Örn: tr,en,es,fr,de',
         null=True, blank=True)
-
+#    pos_deniz_bank = models.CharField(u'Otomatik çevirisi yapılacak diller', max_length=200, default='tr,en,es,fr,de',
+#        help_text=u'Dil kodlarını 2 harfli ISO standardına göre virgüle ayırarak giriniz. Örn: tr,en,es,fr,de',
+#        null=True, blank=True)
 
 
 

@@ -5,9 +5,10 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
+from odeme.pos_deniz import Banka
 from paypal.pro.models import PayPalNVP
 from places.models import Place, Currency, Booking
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from  django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 import logging
@@ -27,7 +28,6 @@ def set_booking(rq, bk):
     rq.session['booking_id'] = bk.id
 
 goto_booking = lambda b: HttpResponseRedirect('%s?showBookingRequest=%s'% (reverse('dashboard'), b.id))
-
 
 
 
@@ -57,6 +57,24 @@ def paypal_complete(request):
 
 def paypal_cancel(request):
     return render_to_response('paypal-cancel.html',{}, context_instance=RequestContext(request))
+
+@csrf_exempt
+def cc_success(request):
+    context= request.session.get('booking_context',{})
+    booking = get_booking(request)
+    dt = request.POST
+    status = int(dt.get('mdStatus'))
+    if status < 5:
+        bank_pos = get_3d_bank(request)
+        bilgiler = {'xid':dt['xid'] ,'eci':dt['eci'], 'cavv':dt['cavv'],
+                    'cvc':'','cardno':dt['md'], 'tutar':'',
+                    'oid':booking.id, 'ip':request.META['REMOTE_ADDR']}
+        sonuc = bank_pos.cc(bilgiler)
+        context['sonuc'] = sonuc
+    else:
+        messages.error(request, _('Card can not charged.'))
+
+    return render_to_response('credit_card_payment.html',context, context_instance=RequestContext(request))
 
 @csrf_exempt
 def book_place(request):
@@ -103,12 +121,45 @@ def book_place(request):
     context['place']=place
     return HttpResponseRedirect(reverse('secure_booking'))
 
+def get_3d_bank(r):
+    return Banka(bank_data=settings.POS_DENIZBANK,
+                domain=settings.DOMAIN,
+                ok_url = '/%s/cc_success/' % r.LANGUAGE_CODE,
+                fail_url='/%s/cc_fail/' % r.LANGUAGE_CODE)
+
+def process_credit_card(request):
+    pos_denizbank = get_3d_bank(request)
+    booking = get_booking(request)
+    data = request.POST
+    try:
+        exp = data['ccexp'].split('/')
+        ccdata={
+            'pan' : data['ccno'].replace('-',''),
+            'exp_m' : exp[0],
+            'exp_y' : exp[1],
+            'cv2' : data['ccv'],
+            'oid' : booking.id,
+            #FIXME: FIXME :FIXME : para birimi cevrimi!!!!!!!!!!!!!!!!!!!
+            'amount' : booking.guest_payment,  #FIXME:!!!!!!!!!!!!!!!!!!!
+        }
+        odeme_sonucu = pos_denizbank.secure3d(ccdata)
+        log.info('odeme sonucu : %s' % odeme_sonucu)
+#        context['odeme_sonucu'] = odeme_sonucu
+    except:
+        log.exception('kredi kartiyla odemede hata')
+        messages.error(request, _('Error occured.'))
+        raise
+    return HttpResponse(odeme_sonucu, mimetype='text/html')
+
+
+
 def secure_booking(request):
     if request.POST.get('paypal'):
         return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
     if request.POST.get('banktransfer'):
         return HttpResponseRedirect(reverse('bank_transfer_complete'))
-
+    if request.POST.get('cc'):
+        return process_credit_card(request)
     context= request.session.get('booking_context',{})
     booking = get_booking(request)
     context.update({'booking':booking, 'place':booking.place})

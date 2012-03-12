@@ -1,0 +1,20 @@
+{% extends "content.html" %}
+{% load i18n cevir currency%}
+{% block extrajs %}
+{#<script>$(document).ready(function(){gh.login_init()})</script>#}
+{% endblock %}
+{% block content %}
+
+
+<pre>
+    {{ sonuc }}
+
+
+
+{{ request.REQUEST }}
+{{ POST }}
+{{ GET }}
+
+
+</pre>
+{% endblock %}
