@@ -17,6 +17,10 @@ from hashlib import sha1
 import urllib, urllib2
 from random import random
 
+POS_URLS = {'DENIZBANK': ['https://sanalpos.denizbank.com.tr/servlet/cc5ApiServer',
+                            'https://sanalpos.denizbank.com.tr/servlet/est3Dgate']
+}
+
 class ESTBank:
     def __init__(self, *args, **kwargs):
         self.store_key, self.kull, self.parola, self.posid  = kwargs.get('bank_data',['123456','','',''])
@@ -29,8 +33,11 @@ class ESTBank:
         self.islem_tipi = kwargs.get('islem_tipi','PreAuth')
 
         self.SSL=kwargs.get('ssl')
-        self.url=kwargs.get('url','https://testsanalpos.est.com.tr/servlet/cc5ApiServer')
-        self.secure3d_url=kwargs.get('secure3d_url','https://testsanalpos.est.com.tr/servlet/est3Dgate')
+        self.bank_name = kwargs.get('name')
+
+        test_urls = ['https://testsanalpos.est.com.tr/servlet/cc5ApiServer',
+                     'https://testsanalpos.est.com.tr/servlet/est3Dgate']
+        self.url, self.secure3d_url= POS_URLS.get(self.bank_name, test_urls)
         self.domain=kwargs.get('domain','')
         self.taksit_sayisi=kwargs.get('taksit_sayisi','')
 

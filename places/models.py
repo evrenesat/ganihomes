@@ -234,7 +234,8 @@ class Transaction(models.Model):
 
     @classmethod
     def get_bank(cls, r):
-        return ESTBank(bank_data=settings.POS_DENIZBANK,
+        return ESTBank(name=settings.POS_NAME,
+                    bank_data=settings.POS_DENIZBANK,
                     domain=settings.SITE_NAME,
                     ok_url = '/%s/cc_success/' % r.LANGUAGE_CODE,
                     fail_url='/%s/cc_fail/' % r.LANGUAGE_CODE)
