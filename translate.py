@@ -75,7 +75,7 @@ class TranslationMachine:
 
     def translate_place(self,p):
         log.info('CEVRiLECEK: %s ' % p)
-        already_translated_langs = [l for l in p.get_translation_list(reset=True) if l not in already_translated_langs]
+        already_translated_langs = [l for l in p.get_translation_list(reset=True)]
         for l in self.auto_langs:
             if l not in already_translated_langs:
                 translation = self.translator([p.title,p.description],l)
