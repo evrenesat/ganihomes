@@ -198,9 +198,9 @@ admin.site.register(User, UserAdmin)
 
 
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ('amount', 'type','reciver_type','sender_type' ,'active', 'timestamp')
+    list_display = ('amount', 'type','receiver_type','sender_type' ,'active', 'timestamp')
 #    search_fields = ['', ]
-    list_filter = ['reciver_type','sender_type','active' ]
+    list_filter = ['receiver_type','sender_type','active' ]
     date_hierarchy = 'timestamp'
     save_on_top = True
 

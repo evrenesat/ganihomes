@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
-from odeme.pos_deniz import Banka
+from odeme.estbank import ESTBank
 from paypal.pro.models import PayPalNVP
 from places.models import Place, Currency, Booking, Transaction
 from django.http import HttpResponseRedirect, HttpResponse
@@ -28,7 +28,7 @@ def get_booking(rq):
 def set_booking(rq, bk):
     rq.session['booking_id'] = bk.id
 
-goto_booking = lambda b: HttpResponseRedirect('%s?showBookingRequest=%s'% (reverse('dashboard'), b.id))
+
 
 def get_tl_currency_code():
     tkod = kes('tl_para_kod')
@@ -36,27 +36,29 @@ def get_tl_currency_code():
 
 
 
+def complete_reservation(request, booking, user_message=_('Your booking request has been successfully sent to the host.')):
+    booking.set_reservation()
+    booking.save()
+    mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )))
+    booking.send_booking_request(request)
+    messages.success(request, user_message)
+    return HttpResponseRedirect('%s?showBookingRequest=%s'% (reverse('dashboard'), booking.id))
+
 def bank_transfer_complete(request):
     booking = get_booking(request)
     booking.payment_type = 3
     booking.status = 8
-    booking.set_reservation() #TODO: should we set dates for unpaid booking request???
-    booking.save()
-    mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )), pre="[BANK TRANSFER]")
-    messages.success(request, Ceviriler.cevir( 'rezervasyon kaydedildi.evsahibi odemeden sonra haberdar edilecek', request.LANGUAGE_CODE) )
-    return goto_booking(booking)
+    user_message = Ceviriler.cevir( 'rezervasyon kaydedildi.evsahibi odemeden sonra haberdar edilecek', request.LANGUAGE_CODE)
+    return complete_reservation(request, booking, user_message)
+
 
 def paypal_complete(request):
     booking = get_booking(request)
     paypal_transaction = PayPalNVP.objects.get(method="DoExpressCheckoutPayment",ack='Success',custom=str(booking.id))
     booking.payment_type = 2
     booking.status = 10
-    booking.set_reservation()
-    booking.save()
-    mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )))
-    booking.send_booking_request(request)
-    messages.success(request, _('Your booking request has been successfully sent to the host.'))
-    return goto_booking(booking)
+    return complete_reservation(request, booking)
+
 
 def paypal_cancel(request):
     return render_to_response('paypal-cancel.html',{}, context_instance=RequestContext(request))
@@ -68,18 +70,24 @@ def cc_success(request):
     dt = request.POST
     status = int(dt.get('mdStatus'))
     if status < 5:
-        bank_pos = get_3d_bank(request)
+        bank_pos = Transaction.get_bank(request)
+        tl_ucret = booking.currency.convert_to(booking.guest_payment, get_tl_currency_code())
         bilgiler = {'xid':dt['xid'] ,'eci':dt['eci'], 'cavv':dt['cavv'],
                     'cvc':'','cardno':dt['md'], 'tutar':'',
                     'oid':booking.id, 'ip':request.META['REMOTE_ADDR'],
                     'type':'PreAuth'}
-        basarilimi, sonuc = bank_pos.cc(bilgiler)
-        trns = Transaction(content_object=booking, details = sonuc)
-        context['sonuc'] = sonuc
+        basarilimi, sonuc, xml_sonuc = bank_pos.request(bilgiler)
+        if basarilimi:
+            trns = Transaction.objects.create(content_object=booking, type=2,
+                status=10, receiver_type=40, sender_type=20,
+                amount=tl_ucret, user=request.user, details=xml_sonuc)
+            booking.payment_type = 1
+            booking.status = 10
+            return complete_reservation(request, booking)
     else:
         messages.error(request, _('Card can not charged.'))
 
-    return render_to_response('credit_card_payment.html',context, context_instance=RequestContext(request))
+    return HttpResponseRedirect(reverse('secure_booking'))
 
 @csrf_exempt
 def book_place(request):
@@ -126,14 +134,8 @@ def book_place(request):
     context['place']=place
     return HttpResponseRedirect(reverse('secure_booking'))
 
-def get_3d_bank(r):
-    return Banka(bank_data=settings.POS_DENIZBANK,
-                domain=settings.DOMAIN,
-                ok_url = '/%s/cc_success/' % r.LANGUAGE_CODE,
-                fail_url='/%s/cc_fail/' % r.LANGUAGE_CODE)
-
 def process_credit_card(request):
-    pos_denizbank = get_3d_bank(request)
+    pos_denizbank = Transaction.get_bank(request)
     booking = get_booking(request)
     data = request.POST
     try:
@@ -147,7 +149,7 @@ def process_credit_card(request):
             'oid' : booking.id,
             'amount' : tl_ucret,
         }
-        odeme_sonucu = pos_denizbank.secure3d(ccdata)
+        odeme_sonucu = pos_denizbank.secure3d_request(ccdata)
         log.info('odeme sonucu : %s' % odeme_sonucu)
 #        context['odeme_sonucu'] = odeme_sonucu
     except:

@@ -9,6 +9,7 @@ from django.db import models
 from django.db.models.query_utils import Q
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
+from odeme.estbank import ESTBank
 from options import *
 from countries import *
 from django.contrib.contenttypes.models import ContentType
@@ -213,7 +214,7 @@ class Transaction(models.Model):
     amount = models.DecimalField(_('Amount'), decimal_places=2, max_digits=8)
     type = models.SmallIntegerField(_('Type'), choices=TRANSACTION_TYPES)
     status = models.SmallIntegerField(_('Transaction status'), choices=TRANSACTION_STATUS)
-    reciver_type = models.SmallIntegerField(_('Receiver type'), choices=MONEY_NODES)
+    receiver_type = models.SmallIntegerField(_('Receiver type'), choices=MONEY_NODES)
     sender_type = models.SmallIntegerField(_('Sender type'), choices=MONEY_NODES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     content_type = models.ForeignKey(ContentType)
@@ -230,6 +231,13 @@ class Transaction(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.amount,)
+
+    @classmethod
+    def get_bank(cls, r):
+        return ESTBank(bank_data=settings.POS_DENIZBANK,
+                    domain=settings.DOMAIN,
+                    ok_url = '/%s/cc_success/' % r.LANGUAGE_CODE,
+                    fail_url='/%s/cc_fail/' % r.LANGUAGE_CODE)
 
 
 class Tag(models.Model):
@@ -870,6 +878,10 @@ class Booking(models.Model):
                 'AMT':auth_transaction.amt,
             })
             return auth_transaction.transactionid == capture_transaction.transactionid
+        elif self.payment_type == 1:#cc
+            bnk = Transaction.get_bank(request)
+            basarilimi, sonuc, xml_sonuc = bnk.request({'type':'PostAuth', 'oid':self.id})
+            return basarilimi
 
     def send_booking_request(self, rq):
         msg = _("""%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .
@@ -890,6 +902,10 @@ class Booking(models.Model):
             auth_transaction = self.getPaypalAuthTransaction()
             void_transaction = wpp.doVoid({'AUTHORIZATIONID':auth_transaction.transactionid,})
             return auth_transaction.transactionid == void_transaction.transactionid
+        elif self.payment_type == 1:#cc
+            bnk = Transaction.get_bank(request)
+            basarilimi, sonuc, xml_sonuc = bnk.request({'type':'Void', 'oid':self.id})
+            return basarilimi
 
     def refundPayment(self):
         #TODO: implement paypal refund

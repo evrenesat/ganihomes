@@ -11,11 +11,11 @@ class Banka(GenelBanka): #
     def __init__(self, *args, **kwargs):
         self.adi='DenizBank'
         self.id='DenizBank POS'
-        self.store_type='3d'
         GenelBanka.__init__(self, *args, **kwargs)
+        self.store_type='3d'
 
 
-        self.store_key='123456'
+
 
 
 
