@@ -87,7 +87,14 @@ TRANSACTION_TYPES = (
     (40, _('System > Credit Card')),
     (50, _('System > Bank Account')),
 )
+TRANSACTION_STATUS = (
+    (1, _('-')),
+    (10, _('PreAuth')),
+    (20, _('Auth')),
+    (30, _('Void')),
 
+
+)
 MONEY_NODES = (
     (1, _('PayPal')),
     (2, _('Credit Card')),

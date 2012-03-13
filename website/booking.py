@@ -7,11 +7,12 @@ from django.utils.encoding import force_unicode
 from django.views.decorators.csrf import csrf_exempt
 from odeme.pos_deniz import Banka
 from paypal.pro.models import PayPalNVP
-from places.models import Place, Currency, Booking
+from places.models import Place, Currency, Booking, Transaction
 from django.http import HttpResponseRedirect, HttpResponse
 from  django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 import logging
+from utils.cache import kes
 from utils.mail2perm import mail2perm
 from website.views import send_message
 from website.models.dil import Ceviriler
@@ -29,7 +30,9 @@ def set_booking(rq, bk):
 
 goto_booking = lambda b: HttpResponseRedirect('%s?showBookingRequest=%s'% (reverse('dashboard'), b.id))
 
-
+def get_tl_currency_code():
+    tkod = kes('tl_para_kod')
+    return tkod.g() or tkod.s(Currency.objects.filter(name='TRY', active=True).values_list('id',flat=True)[0])
 
 
 
@@ -68,8 +71,10 @@ def cc_success(request):
         bank_pos = get_3d_bank(request)
         bilgiler = {'xid':dt['xid'] ,'eci':dt['eci'], 'cavv':dt['cavv'],
                     'cvc':'','cardno':dt['md'], 'tutar':'',
-                    'oid':booking.id, 'ip':request.META['REMOTE_ADDR']}
-        sonuc = bank_pos.cc(bilgiler)
+                    'oid':booking.id, 'ip':request.META['REMOTE_ADDR'],
+                    'type':'PreAuth'}
+        basarilimi, sonuc = bank_pos.cc(bilgiler)
+        trns = Transaction(content_object=booking, details = sonuc)
         context['sonuc'] = sonuc
     else:
         messages.error(request, _('Card can not charged.'))
@@ -133,14 +138,14 @@ def process_credit_card(request):
     data = request.POST
     try:
         exp = data['ccexp'].split('/')
+        tl_ucret = booking.currency.convert_to(booking.guest_payment, get_tl_currency_code())
         ccdata={
             'pan' : data['ccno'].replace('-',''),
             'exp_m' : exp[0],
             'exp_y' : exp[1],
             'cv2' : data['ccv'],
             'oid' : booking.id,
-            #FIXME: FIXME :FIXME : para birimi cevrimi!!!!!!!!!!!!!!!!!!!
-            'amount' : booking.guest_payment,  #FIXME:!!!!!!!!!!!!!!!!!!!
+            'amount' : tl_ucret,
         }
         odeme_sonucu = pos_denizbank.secure3d(ccdata)
         log.info('odeme sonucu : %s' % odeme_sonucu)

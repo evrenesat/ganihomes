@@ -140,6 +140,9 @@ class Currency(models.Model):
         c =  Currency.objects.filter(pk=target_currency_id) if target_currency_id else Currency.objects.filter(main=True)
         return c.values_list('factor')[0][0] / self.factor
 
+    def convert_to(self, amount, target):
+        return amount * self.get_factor(target)
+
     class Meta:
         ordering = ['timestamp']
         get_latest_by = "timestamp"
@@ -209,6 +212,7 @@ class Transaction(models.Model):
     user = models.ForeignKey(User, verbose_name=_('Sender'))
     amount = models.DecimalField(_('Amount'), decimal_places=2, max_digits=8)
     type = models.SmallIntegerField(_('Type'), choices=TRANSACTION_TYPES)
+    status = models.SmallIntegerField(_('Transaction status'), choices=TRANSACTION_STATUS)
     reciver_type = models.SmallIntegerField(_('Receiver type'), choices=MONEY_NODES)
     sender_type = models.SmallIntegerField(_('Sender type'), choices=MONEY_NODES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
@@ -216,7 +220,7 @@ class Transaction(models.Model):
     object_id = models.PositiveIntegerField()
     active = models.BooleanField(_('Active'), default=True)
     content_object = generic.GenericForeignKey('content_type', 'object_id')
-    details = models.TextField(_('Transection details (json serialized dict)'), null=True, blank=True)#readonly
+    details = models.TextField(_('Transection details'), null=True, blank=True)#readonly
 
     class Meta:
         ordering = ['timestamp']
@@ -544,9 +548,9 @@ class Place(models.Model):
     def calculatePrice(self, start, end ):
         pd = self.getSessionalPriceDict()
         price = Decimal('0.0')
-        nights = (end + datetime.timedelta(days=1) - start).days
+        nights = (end - start).days
 #        log.info('pd %s ' % (pd))
-#        log.info('nights %s ' % (nights))
+        log.info('nights %s ' % (nights))
         mdiscount=0
         wdiscount=0
         guest_fee=0

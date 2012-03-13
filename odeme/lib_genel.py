@@ -11,7 +11,11 @@ try:
 except:
     CHECKOUT_SSL = False
 from utils.xml2dict import fromstring
+import base64
+from hashlib import sha1
 
+import urllib, urllib2
+from random import random
 
 class GenelBanka:
     def __init__(self, *args, **kwargs):
@@ -21,9 +25,11 @@ class GenelBanka:
         self.posid = kwargs.get('posid',self.posid)
         self.taksitleri_alabilir=False
         self.altbanka_varmi=False
+        self.store_type=''
         self.SSL=CHECKOUT_SSL
-        self.odeme3d=False
-        self.odemeNormal=True
+        self.islem_tipi = 'PreAuth'
+        self.url='https://testsanalpos.est.com.tr/servlet/cc5ApiServer'
+        self.secure3d_url='https://testsanalpos.est.com.tr/servlet/est3Dgate'
         #self.url='https://cc5test.est.com.tr/servlet/cc5ApiServer'
         self.url='https://testvpos.est.com.tr/servlet/cc5ApiServer'
         self.uyelik_bilgileri=(
@@ -31,95 +37,88 @@ class GenelBanka:
             'API Şifresi',
             'Firma SanalPOS IDsi',
             )
-        #self.aciklama='Bu modül %s adlı bankaya ait kredi kartları için  taksitli satış imkanı sağlamaktadır.' % self.adi
-        self.aciklama=''
-
+        self.domain=kwargs.get('domain','')
+        ssl='s' if self.SSL else ''
+        self.okUrl = 'http%s://%s%s' % (ssl, self.domain, kwargs.get('ok_url',''))
+        self.failUrl = 'http%s://%s%s' % (ssl, self.domain, kwargs.get('fail_url',''))
+        self.rnd=repr(random()).split('.')[1]
+        self.taksitSayisi = ''
         #self.banka_bilgileri=(u'kull',u'parola',u'posid')
-
-        self.sablon='''DATA=<?xml version=\"1.0\" encoding=\"ISO-8859-9\"?>
+        self.sablon = {'start':'''DATA=<?xml version=\"1.0\" encoding=\"ISO-8859-9\"?>
         <CC5Request>
         <Name>$kull</Name>
         <Password>$parola</Password>
         <ClientId>$posid</ClientId>
         <IPAddress>$ip</IPAddress>
-        <Email></Email>
-        <Mode>P</Mode>
-        <OrderId>$oid</OrderId>
-        <GroupId></GroupId>
-        <TransId></TransId>
-        <UserId></UserId>
-        <Type>Auth</Type>
+        <Type>$type</Type>
+        <OrderId>$oid</OrderId>''',
+
+        'payment' : '''
         <Number>$cardno</Number>
         <Expires>$skt</Expires>
         <Cvv2Val>$cvc</Cvv2Val>
         <Total>$tutar</Total>
         <Currency>949</Currency>
         <Taksit>$taksit</Taksit>
-        <BillTo>
-        <Name></Name>
-        <Street1></Street1>
-        <Street2></Street2>
-        <Street3></Street3>
-        <City></City>
-        <StateProv></StateProv>
-        <PostalCode></PostalCode>
-        <Country></Country>
-        <Company></Company>
-        <TelVoice></TelVoice>
-        </BillTo>
-        <ShipTo>
-        <Name></Name>
-        <Street1></Street1>
-        <Street2></Street2>
-        <Street3></Street3>
-        <City></City>
-        <StateProv></StateProv>s
-        <PostalCode></PostalCode>
-        <Country></Country>
-        </ShipTo>
-        <Extra></Extra>%s
-        </CC5Request>
-        '''  % '''
-            <PayerTxnId>$xid</PayerTxnId>
-            	    <PayerSecurityLevel>$eci</PayerSecurityLevel>
-            	    <PayerAuthenticationCode>$cavv</PayerAuthenticationCode>
-            	    <CardholderPresentCode>13</CardholderPresentCode>
-            	    '''\
-        if self.storetype =='3d' else ''
+        ''',
 
+
+        'secure_3d_payment': '''
+            <PayerTxnId>$xid</PayerTxnId>
+            <PayerSecurityLevel>$eci</PayerSecurityLevel>
+            <PayerAuthenticationCode>$cavv</PayerAuthenticationCode>
+            <CardholderPresentCode>13</CardholderPresentCode>''',
+
+        'end':'</CC5Request>',}
+
+    def secure3d(self, ccdata_dict):
+        pan=ccdata_dict['pan']
+        cv2=ccdata_dict['cv2']
+        Ecom_Payment_Card_ExpDate_Year=ccdata_dict['exp_y'][:2]
+        Ecom_Payment_Card_ExpDate_Month=ccdata_dict['exp_m']
+        cardType='1' if self.cc_type(ccdata_dict['pan']) == 'Visa' else '2'
+        oid=str(ccdata_dict['oid'])
+        amount=str(ccdata_dict['amount'])
+
+
+
+        log.info('OFFF : %s  %s  %s  %s  %s  %s  %s  %s  %s ' % (self.posid, oid, amount, self.okUrl, self.failUrl, self.islemTipi, self.taksitSayisi, self.rnd, self.storekey))
+        hashable_data=self.posid+oid+amount+self.okUrl+self.failUrl+self.islemTipi+self.taksitSayisi+self.rnd+self.storekey
+        hashed_data=base64.b64encode(sha1(hashable_data).digest())
+
+        data={'storetype':self.store_type, 'storekey':self.store_key,'rnd':self.rnd,'okUrl':self.okUrl,
+              'failUrl':self.failUrl,'pan':pan,'cv2':cv2,
+              'Ecom_Payment_Card_ExpDate_Year':Ecom_Payment_Card_ExpDate_Year,
+              'Ecom_Payment_Card_ExpDate_Month':Ecom_Payment_Card_ExpDate_Month,
+              'cardType':cardType,'clientid':self.posid,'oid':oid,'amount':amount,'hash':hashed_data,
+              'islemtipi':self.islem_tipi, 'taksit':self.taksitSayisi
+        }
+
+
+        enc_data=urllib.urlencode(data)
+        req=urllib2.Request(self.secure3d_url, enc_data)
+        resp=urllib2.urlopen(req)
+        sonuc=resp.read()
+
+        return sonuc
+
+
+    def sablon(self, bilgiler):
+        sablon = self.sablon['start']
+        type = bilgiler['type']
+        if type in ['Auth','PreAuth']:
+            sablon += self.sablon['payment']
+#        elif type == 'PostAuth':
+#            pass
+        if '3d' in self.store_type and type in ['Auth','PreAuth']:
+            sablon += self.sablon['secure_3d_payment']
+
+        sablon += self.sablon['end']
+        veri=Template(sablon).substitute(bilgiler)
 
     def cc_type(self, cc_number):
         """
         Function determines type of CC by the given number.
-
-        WARNING:
-        Creditcard numbers used in tests are NOT valid credit card numbers.
-        You can't buy anything with these. They are random numbers that happen to
-        conform to the MOD 10 algorithm!
-
-        >>> # Unable to determine CC type
-        >>> print cc_type(1234567812345670)
-        None
-
-        >>> # Test 16-Digit Visa
-        >>> print cc_type(4716182333661786), cc_type(4916979026116921), cc_type(4532673384076298)
-        Visa Visa Visa
-
-        >>> # Test 13-Digit Visa
-        >>> print cc_type(4024007141696), cc_type(4539490414748), cc_type(4024007163179)
-        Visa Visa Visa
-
-        >>> # Test Mastercard
-        >>> print cc_type(5570735810881011), cc_type(5354591576660665), cc_type(5263178835431086)
-        Mastercard Mastercard Mastercard
-
-        >>> # Test American Express
-        >>> print cc_type(371576372960229), cc_type(344986134771067), cc_type(379061348437448)
-        American Express American Express American Express
-
-        >>> # Test Discover
-        >>> print cc_type(6011350169121566), cc_type(6011006449605014), cc_type(6011388903339458)
-        Discover Discover Discover
         """
         AMEX_CC_RE = re.compile(r"^3[47][0-9]{13}$")
         VISA_CC_RE = re.compile(r"^4[0-9]{12}(?:[0-9]{3})?$")
@@ -142,8 +141,9 @@ class GenelBanka:
         bilgiler['skt']="%02d/%s" % (int(bilgiler['sktay']), bilgiler['sktyil'][2:]) if bilgiler.get('sktay') else bilgiler.get('skt','')
         if bilgiler.get('taksit',1) in [0, '0', 1, '1']: bilgiler['taksit']=''
         bilgiler.update({'kull':self.kull, 'parola':self.parola, 'posid':self.posid, })
-        veri=Template(self.sablon).substitute(bilgiler)
-        if settings.DEBUG: log.info(veri)
+        veri = self.sablon(bilgiler)
+        if settings.DEBUG:
+            log.info(veri)
         req = urllib2.Request(self.url, veri)
         response = urllib2.urlopen(req)
         sonuc = response.read()
@@ -151,24 +151,9 @@ class GenelBanka:
         if sonuc:
             sd=fromstring(sonuc)['CC5Response']
             sonuc={
-            'authorizationcode':sd['AuthCode']and unicode(sd['AuthCode']['value']),
-            'referencecode':sd['HostRefNum'] and unicode(sd['HostRefNum']['value']),
-            'xactID':sd['TransId'] and unicode(sd['TransId']['value']),
+            'authorization_code':sd['AuthCode']and unicode(sd['AuthCode']['value']),
+            'reference_code':sd['HostRefNum'] and unicode(sd['HostRefNum']['value']),
+            'transaction_id':sd['TransId'] and unicode(sd['TransId']['value']),
             'error_text':sd['ErrMsg'] and unicode(sd['ErrMsg']['value'])
             }
             return sd['Response']['value']=='Approved', sonuc
-'''
-{'AuthCode': {'value': '123456'},
-                 'ErrMsg': {},
-                 'Extra': {'NUMCODE': {'value': '00000099999999'},
-                           'SETTLEID': {'value': '224'},
-                           'TRXDATE': {'value': '20081118 00:06:05'},
-                           'value': '\n    '},
-                 'GroupId': {'value': '42'},
-                 'HostRefNum': {'value': '123456789012'},
-                 'OrderId': {'value': '42'},
-                 'ProcReturnCode': {'value': '00'},
-                 'Response': {'value': 'Approved'},
-                 'TransId': {'value': '48b292ba-c3ac-3000-002d-0003ba16ddc0'},
-                 'value': '\n  '}}
-'''
