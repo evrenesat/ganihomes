@@ -38,7 +38,7 @@ class ESTBank:
         test_urls = ['https://testsanalpos.est.com.tr/servlet/cc5ApiServer',
                      'https://testsanalpos.est.com.tr/servlet/est3Dgate']
         self.url, self.secure3d_url= POS_URLS.get(self.bank_name, test_urls)
-        self.domain=kwargs.get('domain','')
+        self.domain=kwargs.get('domain','').replace('http://','').replace('https://','')
         self.taksit_sayisi=kwargs.get('taksit_sayisi','')
 
         ssl='s' if self.SSL else ''
