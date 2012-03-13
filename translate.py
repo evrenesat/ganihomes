@@ -3,6 +3,7 @@
 from json import loads
 import sys
 import os
+from time import sleep
 
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
@@ -73,6 +74,7 @@ class TranslationMachine:
             self.translate_place(p)
             self.update_place_status(p)
 
+
     def translate_place(self,p):
         log.info('CEVRiLECEK: %s ' % p)
         already_translated_langs = [l for l in p.get_translation_list(reset=True)]
@@ -88,6 +90,7 @@ class TranslationMachine:
                     d.title = translation[0]['translatedText']
                     d.auto = True
                     d.save()
+                    sleep(10)
 
 
     def update_place_status(self, p):
