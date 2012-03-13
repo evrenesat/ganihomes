@@ -27,7 +27,7 @@ class SSLRedirect:
             return self._redirect(request, secure)
 
     def _is_secure(self, request):
-	log.info('issecure :%s middle url :%s' % (request.is_secure(), request.build_absolute_uri()))
+#	log.info('issecure :%s middle url :%s' % (request.is_secure(), request.build_absolute_uri()))
         if request.is_secure():
             return True
 
