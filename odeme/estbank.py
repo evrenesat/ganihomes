@@ -19,12 +19,13 @@ from random import random
 
 class ESTBank:
     def __init__(self, *args, **kwargs):
-        self.kull, self.parola, self.posid  = kwargs.get('bank_data',['','',''])
+        self.store_key, self.kull, self.parola, self.posid  = kwargs.get('bank_data',['123456','','',''])
         self.kull = kwargs.get('kull',self.kull)
         self.parola = kwargs.get('parola',self.parola)
         self.posid = kwargs.get('posid',self.posid)
+        self.store_key = kwargs.get('store_key',self.store_key)
+
         self.store_type= kwargs.get('store_type','3d')
-        self.store_key = kwargs.get('store_key','123456')
         self.islem_tipi = kwargs.get('islem_tipi','PreAuth')
 
         self.SSL=kwargs.get('ssl')
