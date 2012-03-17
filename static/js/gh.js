@@ -592,7 +592,7 @@ gh = {
     geocodeAddress: function (){
         var self = this;
         this.geocoder.geocode( { 'address': $('#id_address').val()}, function(results, status) {
-            console.log(results)
+//            console.log(results)
           if (status == google.maps.GeocoderStatus.OK) {
 //              a=results[0].geometry.location
             self.map.setCenter(results[0].geometry.location);
