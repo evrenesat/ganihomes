@@ -964,7 +964,7 @@ gh = {
                dataType: 'json',
                url: '/upload_photo/'+place_id,
                 progress: function (e, data) {
-                  console.log(data, e)
+//                  console.log(data, e)
                 },
                done: function (e, data) {
 //                   console.log(data)
