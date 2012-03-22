@@ -20,7 +20,7 @@ from paypal.pro.helpers import PayPalWPP
 from utils.cache import kes
 from random import randint
 from utils.htmlmail import send_html_mail
-
+from django.utils.translation import ugettext_lazy as _
 from utils.thumbnailer import customThumbnailer
 import logging
 from configuration import configuration
