@@ -17,7 +17,6 @@ from django.views.decorators.csrf import csrf_exempt
 from configuration import configuration
 from places.countries import  COUNTRIES_DICT
 #from places.models import *
-from django.db import DatabaseError
 from places.models import Place, Profile, Currency, Tag, Description, Photo, TagTranslation, send_message
 from places.options import n_tuple, PLACE_TYPES, SPACE_TYPES, DJSTRANS
 from utils.htmlmail import send_html_mail
@@ -572,10 +571,10 @@ def parseJSData(request, key):
 def search_ajax(request, current_page=1):
     form = SearchForm(request.REQUEST)
     pls = Place.objects.filter(published=True).distinct()
-    log.debug('search view')
+#    log.debug('search view')
 #    pls = Place.objects.filter(q).values_list('neighborhood','district','city','state','country')
     if form.is_valid():
-        log.debug('search valid')
+#        log.debug('search valid')
         query = form.cleaned_data['query']
         cin = form.cleaned_data['checkin']
         cout = form.cleaned_data['checkout']
@@ -606,7 +605,7 @@ def search_ajax(request, current_page=1):
         pls = pls.filter(type__in=ptypes)
     if query:
         query = [q.strip() for q in query.split(',')[:2]]
-        log.debug('query: %s'%query)
+#        log.debug('query: %s'%query)
         q = Q()
         for qp in query:
             q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)

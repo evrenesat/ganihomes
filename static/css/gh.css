@@ -1672,20 +1672,24 @@ li.g-plus-one {
 .arasayi{
     font-weight:bold;
     background:#fff;
-    borer:2px solid #ccc;
-    width: 21px;
+    border-style:solid;
+    border-width:0 0 2px 2px;
+    border-color:#e6fad9;
+    width: 20px;
     height:18px;
     display:inline-block;
-    float:left;
-    position: absolute;
-    bottom: 7px;
+    float: right;
     text-align: center;
-    -webkit-border-top-right-radius: 3px;
-    -moz-border-radius-topright: 3px;
-    border-top-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
     color: green;
     text-shadow: 0px 0px 4px #36FB34;
+    margin-right: -2px;
+    border-bottom-left-radius: 3px;
 
+}
+.nohomeimage{
+    background: url("/static/images/icon/home.png") no-repeat 11px !important;
 }
 #adresikullan {
     font-size: 14px;

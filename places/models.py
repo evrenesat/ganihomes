@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.query_utils import Q
-from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
 from odeme.estbank import ESTBank
 from options import *
@@ -20,10 +19,7 @@ from paypal.pro.models import PayPalNVP
 from paypal.pro.helpers import PayPalWPP
 from utils.cache import kes
 from random import randint
-from easy_thumbnails.files import get_thumbnailer
-import codecs
 from utils.htmlmail import send_html_mail
-from datetime import datetime
 
 from utils.thumbnailer import customThumbnailer
 import logging
@@ -447,8 +443,11 @@ class Place(models.Model):
               'country': 'co', 'postcode': 'pc','currency_id': 'cid',
               'owner_id': 'oid', 'lat': 'lt', 'lon': 'ln', 'state': 'st',
               'favorite_counter': 'fc', 'overall_rating': 'or',
-              'type':'typ', 'space':'spc','price':'prc'
+              'type':'typ', 'space':'spc','price':'prc','has_photo':'pht'
     }
+
+    def has_photo(self):
+        return 1 if self.primary_photo else 0
 
     def admin_image(self):
         return '<a href="%s"><img src="%s/place_photos/%s_plkks.jpg"/></a>'%(self.get_absolute_url(), settings.MEDIA_URL, self.id)
@@ -461,6 +460,8 @@ class Place(models.Model):
         di = {}
         for k, v in self.SHORTS.items():
             val = getattr(self, k)
+            if k in ['has_photo',]:
+                val = val()
             if isinstance(val, Decimal): val = float(val)
             di[v] = val
         self.summary = json.dumps(di, ensure_ascii=False)
