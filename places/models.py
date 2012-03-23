@@ -648,7 +648,7 @@ class Place(models.Model):
         self.gprice = self.price * factor
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['-has_photo','-overall_rating','timestamp']
         get_latest_by = "timestamp"
         verbose_name = _(u'Place')
         verbose_name_plural = _(u'Places')
