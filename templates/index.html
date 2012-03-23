@@ -90,7 +90,7 @@
         </div>
         <div id="minislidercontainer">
         <div id="minislider">
-            {% cache 9999 mslides %}
+            {% cache 9999 mslides  LANGUAGE_CODE%}
         <ul>
         {% for slide in minislides %}
                 <li {% if slide.url %}onclick="document.location='{{ slide.url }}'" style="cursor:pointer"{% endif %}>
