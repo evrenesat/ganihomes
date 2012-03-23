@@ -11,9 +11,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 #from dil import Dil
 from medya import Medya
 #from tinymce import models as tinymce_models
-from south.modelsinspector import add_introspection_rules
 from places.models import Photo, Place
-from places.options import LOCALES, ORDER, PHOTO_TYPES
+from places.options import  ORDER, PHOTO_TYPES
 from utils.cache import kes
 from website.models.dil import Ceviriler
 from django.conf import settings
@@ -316,7 +315,7 @@ class Vitrin(models.Model):
         if type is None:
             ogeler = ogeler.filter(tops=True)
         elif type in dPHOTO_TYPES:
-            log.error('testt')
+#            log.error('testt')
             ogeler = ogeler.filter(type=type)
 #        log.info('testt', type)
         return ogeler
