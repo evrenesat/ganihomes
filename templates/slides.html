@@ -1,4 +1,5 @@
-{% load cevir i18n%}
+{% load cevir i18n cache%}
+{% cache 99999 slides cachekey%}
 <div class="tabborder" id="GVS">
     <div class="scrollingHotSpotLeft"></div>
 <div class="scrollingHotSpotRight"></div>
@@ -42,3 +43,4 @@
     </div>
 </div>
 </div>
+{% endcache %}

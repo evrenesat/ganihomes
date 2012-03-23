@@ -343,6 +343,7 @@ gh = {
     },
     init_index:function () {
         var self = this;
+        this.makeScroller(0);
         this.initialized_page = 'index'
         this.akGorunur = 0
 //        this.sks = {}
@@ -398,8 +399,6 @@ gh = {
             }
         });
         $('.vDateField').datepicker({dateFormat: 'yy-mm-dd', minDate: '0', changeMonth: true  });
-
-        this.makeScroller(0);
         $("#minislider").easySlider({
         		auto: true,
         		continuous: true,
@@ -1831,7 +1830,7 @@ function trns (msg){
 
 
 
-$(window).ready(function () {
+$(document).ready(function () {
     gh.init()
     $('#tabs').tabs();
     if (window.PIE) {

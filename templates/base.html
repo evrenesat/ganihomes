@@ -1,141 +1,149 @@
 {% load localeurl_tags %}
 {% load i18n %}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><head>
-<script>AUTH='{% if user.is_authenticated %}1{% endif %}'</script>
-<title>{% block title %}GaniHomes {{ page_title }}{% endblock %}</title>
-<link rel="icon" type="image/png" href="{{ STATIC_URL }}images/favicon.png">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
-<link type="text/css" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-<link href='https://fonts.googleapis.com/css?family=Cardo|Montez' rel='stylesheet' type='text/css'>
-<!--[if lt IE 10]>
+    <script>AUTH = '{% if user.is_authenticated %}1{% endif %}'</script>
+    <title>{% block title %}GaniHomes {{ page_title }}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}images/favicon.png">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
+    <link type="text/css" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Cardo|Montez' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 10]>
 <script type="text/javascript" src="{{ STATIC_URL }}js/PIE.js"></script>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/ghie.css" type="text/css" media="screen, projection">
 <![endif]-->
-<!--[if lt IE 8]>
+    <!--[if lt IE 8]>
   <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection">
 <![endif]-->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<script type="text/javascript"  src="https://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js"></script>
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js"></script>
-{#<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jqote2.min.js"></script>#}
-{#<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo-min.js"></script>#}
-<script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={{ curr_version }}"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={{ curr_version }}"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
-<script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js?v=3"></script>
-<META NAME="keywords" CONTENT="{% block metakeywords %}{{ meta_keywords }}{% endblock %}">
-<META NAME="description" CONTENT="{% block metadesc %}{{ meta_desc }}{% endblock %}">
-<META HTTP-EQUIV="Copyright" CONTENT="GaniHomes Ltd.">
-<META NAME="RATING" CONTENT="General">
-<META NAME="ROBOTS" CONTENT="index,follow">
-<META NAME="ROBOTS" CONTENT="ALL">
-<meta NAME="Author" CONTENT="ELiPSiS.COM.TR">
-{% block extrahead %} {% endblock %}
-{% block extracss %} {% endblock %}
-{% block extrajs %} {% endblock %}
-{#<script type="text/javascript">$(document).ready(function(){ $(document).pngFix(); });</script>#}
+    <script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js?v=3"></script>
+    <META NAME="keywords" CONTENT="{% block metakeywords %}{{ meta_keywords }}{% endblock %}">
+    <META NAME="description" CONTENT="{% block metadesc %}{{ meta_desc }}{% endblock %}">
+    <META HTTP-EQUIV="Copyright" CONTENT="GaniHomes Ltd.">
+    <META NAME="RATING" CONTENT="General">
+    <META NAME="ROBOTS" CONTENT="index,follow">
+    <META NAME="ROBOTS" CONTENT="ALL">
+    <meta NAME="Author" CONTENT="ELiPSiS.COM.TR">{% block extrahead %} {% endblock %}{% block extracss %} {% endblock %}{% block extrajs %} {% endblock %}
     <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-28718714-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28718714-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
     </script>
-</head><body>
+</head>
+<body>
 <div id="hdr" class="{% block hdrclass%}{% endblock %}">
     <div id="hdrContainer">
-              <div class="logo">
-                  <a href="/{{ LANGUAGE_CODE }}/"><img src="{{ STATIC_URL }}images/logob.png"></a>
-                  <div>{% trans "World is yours..." %}</div>
-              </div>
-              <div id="supermenu">
-                  {% if user.is_authenticated %}
-{#                      FIXME: get username frm cookie #}
-                      <div class="firstitem"><span id="wellcome"><a href="{%  url dashboard %}">{% blocktrans with user.get_full_name as name %}Welcome {{ name }}{% endblocktrans %}</a></span> <a href="{%  url dashboard %}" class="mypage" >{% trans "My Account" %}</a>
-                      {% if unread_count %}<a title="{% blocktrans %}You have {{ unread_count }} unread message(s).{% endblocktrans %}" href="{%  url dashboard %}#do_showMessages">({{ unread_count }})</a>{% endif %}
-                      </div>
-                      <div><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
-                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
-
-                  {% else %}
-                  <div class="firstitem"><a href="{%  url register %}" class="smkayit">{% trans "Sign Up" %}</a></div>
-                  <div><a href="{%  url login %}" class="smgir">{% trans "Log in" %}</a></div>
-                      <div><a href="#" class=smdil style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
-                  {% endif %}
-
-                  <div><a href="{%  url add_place %}" class=smekle>{% trans "Add your place" %}</a></div>
-              </div>
-    <input type=hidden value="{% trans 'Quick Search' %}" id="ainputval">
-    <div id="araicon"><input id="barsearch"><button title="{% trans "Search" %}"></button></div>
+        <div class="logo">
+            <a href="/{{ LANGUAGE_CODE }}/"><img src="{{ STATIC_URL }}images/logob.png"></a>
+            <div>{% trans "World is yours..." %}</div>
         </div>
+        <div id="supermenu">
+            {% if user.is_authenticated %}
+                <div class="firstitem"><span id="wellcome"><a href="{%  url dashboard %}">
+                    {% blocktrans with user.get_full_name as name %}Welcome {{ name }}{% endblocktrans %}</a></span> <a
+                        href="{%  url dashboard %}" class="mypage">{% trans "My Account" %}</a>
+                    {% if unread_count %}<a
+                            title="{% blocktrans %}You have {{ unread_count }} unread message(s).{% endblocktrans %}"
+                            href="{%  url dashboard %}#do_showMessages">({{ unread_count }})</a>{% endif %}
+                </div>
+                <div><a href="{%  url logout %}" class="logout">{% trans "Log out" %}</a></div>
+                <div><a href="#" class=smdil
+                        style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
+
+            {% else %}
+                <div class="firstitem"><a href="{%  url register %}" class="smkayit">{% trans "Sign Up" %}</a></div>
+                <div><a href="{%  url login %}" class="smgir">{% trans "Log in" %}</a></div>
+                <div><a href="#" class=smdil
+                        style="background-image: url({{ STATIC_URL }}images/flags/{{ LANGUAGE_CODE }}.png);"></a></div>
+            {% endif %}
+
+            <div><a href="{%  url add_place %}" class=smekle>{% trans "Add your place" %}</a></div>
+        </div>
+        <input type=hidden value="{% trans 'Quick Search' %}" id="ainputval">
+
+        <div id="araicon"><input id="barsearch">
+            <button title="{% trans "Search" %}"></button>
+        </div>
+    </div>
 </div>
 <div id="langcurr">
-<div id="langs">
-    {% for lang in LISTED_LOCALES %}
-        {% ifnotequal lang.0 LANGUAGE_CODE %}
-            <span><a style="background-image: url({{ STATIC_URL }}images/flags/{{ lang.0 }}.png);" href="{{ request.path|chlocale:lang.0 }}"> {{ lang.1 }}</a></span>
-        {% endifnotequal %}
-    {% endfor %}
+    <div id="langs">
+        {% for lang in LISTED_LOCALES %}
+            {% ifnotequal lang.0 LANGUAGE_CODE %}<span><a style="background-image: url({{ STATIC_URL }}images/flags/{{ lang.0 }}.png);" href="{{ request.path|chlocale:lang.0 }}"> {{ lang.1 }}</a></span>{% endifnotequal %}
+        {% endfor %}
+    </div>
+    <div id="currs"></div>
 </div>
-<div id="currs"></div>
-</div>
-{% block header%}
+{% block header %}
 {% endblock %}
 
-  <div class="container">
+<div class="container">
 
     {% block outercontent %}
-    {% block content %}
+        {% block content %}
 
-    {% endblock  %}
-    {% endblock  %}
-  </div>
+        {% endblock %}
+    {% endblock %}
+</div>
 <div id="footercont">
-<div id="footer">
-<div id="f1">
-    <div class="footdiv">
-    <h4>{% trans "Help & Support" %}</h4>
-        <a href="{% url faq %}">{% trans "FAQ" %}</a><br>
-        <a href="{%  url dashboard %}#do_supportCreate">{% trans "Help Desk" %}</a><br>
-        <a href="{%  url tips %}">{% trans "Tips for Hosts" %}</a>
-    </div>
-    <div class="footdiv">
-        <h4>{% trans "Corporate" %}</h4>
-            <a href="/{{ LANGUAGE_CODE }}/9/imprint">{% trans "Imprint" %}</a><br>
-            <a href="/{{ LANGUAGE_CODE }}/13/tos">{% trans "Terms and Conditions" %}</a><br>
-            <a href="/{{ LANGUAGE_CODE }}/11/pricacy">{% trans "Privacy policy" %}</a>
+    <div id="footer">
+        <div id="f1">
+            <div class="footdiv">
+                <h4>{% trans "Help & Support" %}</h4>
+                <a href="{% url faq %}">{% trans "FAQ" %}</a><br>
+                <a href="{%  url dashboard %}#do_supportCreate">{% trans "Help Desk" %}</a><br>
+                <a href="{%  url tips %}">{% trans "Tips for Hosts" %}</a>
+            </div>
+            <div class="footdiv">
+                <h4>{% trans "Corporate" %}</h4>
+                <a href="/{{ LANGUAGE_CODE }}/9/imprint">{% trans "Imprint" %}</a><br>
+                <a href="/{{ LANGUAGE_CODE }}/13/tos">{% trans "Terms and Conditions" %}</a><br>
+                <a href="/{{ LANGUAGE_CODE }}/11/pricacy">{% trans "Privacy policy" %}</a>
+            </div>
         </div>
-</div>
-<div id="f2">
-    <img src="{{ STATIC_URL }}/images/grighome.png"><br>
-    &copy; 2011  GaniHomes.com - {% trans "All rights reserved" %}
-</div>
-<div id="f3">
-    <div class="footdiv">
-        <h4>{% trans "About Us" %}</h4>
-            <a href="{% url howitworks %}">{% trans "How it works" %}</a><br>
-        <a href="{% url contact_us %}">{% trans "Send us an email" %}</a><br>
-{#        <a href="/{{ LANGUAGE_CODE }}/11/">{% trans "Press" %}</a><br>#}
-{#            <a href="#">{% trans "Press" %}</a><br>#}
-        </div><div class="fr" id="sosicon">
-   <ul><li> <a target="_blank"  href="http://facebook.com/ganihomes{% if LANGUAGE_CODE == 'tr' %}gkd{% else %}europe{% endif %}"><img src="{{ STATIC_URL }}/images/icon/facebook.png"></a></li>
-    <li><a target="_blank" href="http://twitter.com/GaniHomes"><img src="{{ STATIC_URL }}/images/icon/twitter.png"></a></li>
-</div>
-</div>
-<div id="footmessage">{% block footmessage %}{% endblock %}</div>
-</div>
+        <div id="f2">
+            <img src="{{ STATIC_URL }}/images/grighome.png"><br>
+            &copy; 2011 GaniHomes.com - {% trans "All rights reserved" %}
+        </div>
+        <div id="f3">
+            <div class="footdiv">
+                <h4>{% trans "About Us" %}</h4>
+                <a href="{% url howitworks %}">{% trans "How it works" %}</a><br>
+                <a href="{% url contact_us %}">{% trans "Send us an email" %}</a><br>
+                {#        <a href="/{{ LANGUAGE_CODE }}/11/">{% trans "Press" %}</a><br>#}
+                {#            <a href="#">{% trans "Press" %}</a><br>#}
+            </div>
+            <div class="fr" id="sosicon">
+                <ul>
+                    <li><a target="_blank" href="http://facebook.com/ganihomes
+                            {% if LANGUAGE_CODE == 'tr' %}gkd{% else %}europe{% endif %}"><img
+                            src="{{ STATIC_URL }}/images/icon/facebook.png"></a></li>
+                    <li><a target="_blank" href="http://twitter.com/GaniHomes"><img
+                            src="{{ STATIC_URL }}/images/icon/twitter.png"></a></li>
+            </div>
+        </div>
+        <div id="footmessage">{% block footmessage %}{% endblock %}</div>
+    </div>
 </div>
 {% block closebody %}
 {% endblock %}
-</body></html>
+</body>
+</html>

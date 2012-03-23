@@ -145,3 +145,15 @@ if 'rosetta' in settings.INSTALLED_APPS:
         url(r'^rosetta/', include('rosetta.urls')),
     )
 
+
+
+
+
+
+
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^profiling/$', 'website.views.profiling'),
+    )
+

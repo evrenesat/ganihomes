@@ -129,7 +129,7 @@ def anasayfa(request):
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 def slides(request, id):
-    context = {'slides': Vitrin.get_slides(lang=request.LANGUAGE_CODE, type=int(id) or None) }
+    context = {'slides': Vitrin.get_slides(lang=request.LANGUAGE_CODE, type=int(id) or None), 'cachekey':'%s%s' %(request.LANGUAGE_CODE, id) }
     return render_to_response('slides.html', context, context_instance=RequestContext(request))
 
 class addPlaceForm(ModelForm):
@@ -675,3 +675,8 @@ def show_faqs(request):
     return render_to_response('faq.html',
             {'faq':Question.getFaqs(request.LANGUAGE_CODE)},
         context_instance=RequestContext(request))
+
+from sqlprofiling import SqlProfilingMiddleware
+
+def profiling(request):
+    return render_to_response("profiling.html", {"queries": SqlProfilingMiddleware.Queries})

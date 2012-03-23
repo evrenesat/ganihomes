@@ -1,0 +1,26 @@
+<div id="profiling">
+            <h2>SQL queries</h2>
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                       <th>Time</th>
+                       <th>SQL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for q in queries %}
+                    {% if q.path %}
+                    <tr class="path">
+                        <td >{{ q.time }}</td>
+                        <td>{{ q.path }}</td>
+                    </tr>
+                    {% else %}
+                    <tr class="sql">
+                        <td >{{ q.time }}</td>
+                        <td>{{ q.sql }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
