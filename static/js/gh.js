@@ -253,8 +253,11 @@ gh = {
         var sbardis = $('#searchbar')
         var sbox = $('#searchbox')
         var mc = $('#map_canvas')
-        cookie_search_page = $.cookie('srcpage')
-        if(cookie_search_page)this.searchPage = cookie_search_page
+//        cookie_search_page = $.cookie('srcpage')
+//        if(cookie_search_page)this.searchPage = cookie_search_page
+        if(document.location.hash && document.location.hash.indexOf("spage_")>-1){
+            this.searchPage = document.location.hash.split('spage_')[1]
+        }
         mc.on('mouseenter mouseleave', function(event){
                     if(!self.mapMini || !self.map)return false;
                     var mc = $('#map_canvas')
@@ -1368,7 +1371,8 @@ gh = {
         if(typeof(page)=='undefined') page = this.searchPage
         else{
             this.searchPage = page
-            $.cookie('srcpage', page, { expires: 2, path: '/' });
+//            $.cookie('srcpage', page, { expires: 2, path: '/' });
+            document.location.hash='spage_' + page
         }
         var self=this
         $('#searchbar .kapsar').each(function(){

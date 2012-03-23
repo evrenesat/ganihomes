@@ -24,9 +24,9 @@
             src="https://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js"></script>
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={{ curr_version }}"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={% now "ymd" %}"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
-    <script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js?v=3"></script>
+    <script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js"></script>
     <META NAME="keywords" CONTENT="{% block metakeywords %}{{ meta_keywords }}{% endblock %}">
     <META NAME="description" CONTENT="{% block metadesc %}{{ meta_desc }}{% endblock %}">
     <META HTTP-EQUIV="Copyright" CONTENT="GaniHomes Ltd.">
