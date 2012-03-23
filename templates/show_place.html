@@ -1,5 +1,5 @@
 {% extends "content.html" %}
-{% load cevir i18n%}
+{% load cevir i18n cache%}
 1{% block extracss %}<style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>{% endblock %}
 {% block extrajs %}
 <meta property="fb:app_id" content="118771108245844" />
@@ -42,12 +42,13 @@
 
                 <div id="photoslider-left" class="nextpre">&laquo;</div>
                 <div id="photoslider_container">
-
+                    {% cache 99999 placephotos %}
                     <div id="photoslider">
                         {% for p in place.photo_set.all %}
                             <li  class="pthumb"><a href="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xl.jpg"><img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xs.jpg"></a></li>
                         {% endfor %}
                     </div>
+                {% endcache %}
 
                 </div>
                 <div id="photoslider-right" class="nextpre">&raquo;</div>
@@ -238,7 +239,8 @@
 
 
         </div>
-
+    {% cache 99999 hostboxx %}
+        {% with place.owner.get_profile as profile %}
     <div class="ikikutu">
 
     <h3>{% trans "Host" %}</h3>
@@ -254,6 +256,7 @@
         </div>
     </div>
 
+        {% with place.siblings as other_places %}
         {% if other_places%}<br><br>
         <h3>{% blocktrans with profile.private_name as profile_name %}{{ profile_name }}'s other places;{% endblocktrans %}</h3>
     <hr><ul id="other_places">
@@ -267,11 +270,14 @@
         {% endfor %}
     </ul>
     {% endif %}
+    {% endwith %}
 
 
 
 
     </div>
+        {% endwith %}
+        {% endcache %}
 <script>$('#subtabs').tabs();</script>
 
 

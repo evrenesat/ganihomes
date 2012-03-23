@@ -116,6 +116,7 @@ class TagCategory(models.Model):
 CURR_CACHE = kes('crv')
 CURR_CACHE.s(randint(10, 100000), 999999)
 
+MAINCURRID = kes('maincurrid')
 
 class Currency(models.Model):
     """Currencies """
@@ -127,8 +128,8 @@ class Currency(models.Model):
     factor = models.DecimalField(_('Conversation factor'), decimal_places=4, max_digits=12, default='0')
     modify_factor = models.DecimalField(_('Modify updated factor'), decimal_places=4, max_digits=12, default='0',
     help_text=_('Enter a positive or negative decimal value to modify auto-updated conversation ratio.'))
-    main = models.BooleanField(_('Main site currency?'), default=False, help_text=_('Main currency is the \
-    conversation bridge between other currencies.'))
+    main = models.BooleanField(_('Main site currency?'), default=False,
+        help_text=_('Main currency is the conversation bridge between other currencies.'))
     auto_update = models.BooleanField(_('Auto update'), default=True)
     active = models.BooleanField(_('Active'), default=False)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
@@ -139,6 +140,10 @@ class Currency(models.Model):
 
     def convert_to(self, amount, target):
         return amount * self.get_factor(target)
+
+    @classmethod
+    def get_main_id(cls, get_obj=False):
+        return MAINCURRID.g() or MAINCURRID.s(cls.objects.filter(main=True).values_list('id', flat=True)[0])
 
     class Meta:
         ordering = ['timestamp']
@@ -261,7 +266,7 @@ class Tag(models.Model):
 
     @classmethod
     def getTags(cls, lang=None):
-        return kes(lang,'tags').g(cls._updateCache(lang))
+        return kes(lang,'tags').g() or cls._updateCache(lang)
 
 
     @classmethod
@@ -429,6 +434,7 @@ class Place(models.Model):
     street_view = models.BooleanField(_('Street view'), default=False)
 
     active = models.BooleanField(_('Etkin'), default=True, help_text=u'Etkin olmayan mekanlar kendi sahibine bile gösterilmez. Ev sahibi için "silinmiş" gibi görünür. ')
+    has_photo = models.BooleanField(_('Place has a photo'), default=False, editable=False)
     published = models.BooleanField(_('Place is published'), default=False)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
@@ -446,9 +452,6 @@ class Place(models.Model):
               'type':'typ', 'space':'spc','price':'prc','has_photo':'pht'
     }
 
-    def has_photo(self):
-        return 1 if self.primary_photo else 0
-
     def admin_image(self):
         return '<a href="%s"><img src="%s/place_photos/%s_plkks.jpg"/></a>'%(self.get_absolute_url(), settings.MEDIA_URL, self.id)
     admin_image.allow_tags = True
@@ -460,13 +463,14 @@ class Place(models.Model):
         di = {}
         for k, v in self.SHORTS.items():
             val = getattr(self, k)
-            if k in ['has_photo',]:
-                val = val()
+#            if k in ['has_photo',]:
+#                val = val()
             if isinstance(val, Decimal): val = float(val)
             di[v] = val
         self.summary = json.dumps(di, ensure_ascii=False)
 
-
+    def siblings(self):
+        return Place.objects.filter(active=True, published=True, owner=self.owner).exclude(pk=self.id)
 
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (
@@ -487,18 +491,21 @@ class Place(models.Model):
         self.prices = json.dumps(di)
 
     def getTags(self, lang):
-        tag_ids = self.tags.values_list('id',flat=True)
-        tags = []
-        for t in Tag.getTags(lang):
-            if t['id'] in tag_ids:
-                t['class']='hit'
-            tags.append(t)
+        k=kes('tgs',self.id,lang)
+        tags = k.g([])
+        if not tags:
+            tag_ids = self.tags.values_list('id',flat=True)
+            for t in Tag.getTags(lang):
+                if t['id'] in tag_ids:
+                    t['class']='hit'
+                tags.append(t)
+            k.s(tags)
         return tags
 
     def get_translation_list(self, reset=None):
         k=kes('ptranslist',self.id)
         sonuc = k.g() if reset is None else False
-        return sonuc or k.s(self.descriptions.filter(text__isnull=False).values_list('lang', flat=True))
+        return sonuc or k.s(self.descriptions.filter(text__isnull=False).values_list('lang', flat=True) or [''],500)
 
     @classmethod
     def c_get_translation(cls,place_id, lang):
@@ -613,7 +620,9 @@ class Place(models.Model):
         }
 
     def createThumbnails(self):
-        customThumbnailer(self.primary_photo, self.id, PLACE_THUMB_SIZES)
+        if self.primary_photo:
+            customThumbnailer(self.primary_photo, self.id, PLACE_THUMB_SIZES)
+            self.has_photo = bool(self.primary_photo)
 
     def pick_primary_photo(self):
         self.primary_photo = self.photo_set.all()[0].image
@@ -1035,10 +1044,14 @@ class Message(models.Model):
 
 
     @classmethod
-    def message_count(cls, user, reset=False):
-        if user.is_authenticated():
-            k = kes('mcount',user.id)
-            return k.g() or k.s(cls.objects.filter(read=False, receiver=user,status__gte=20).count())
+    def message_count(cls, request, reset=False):
+        try:
+            mcount = kes('UMC',request.session.session_key)
+#            log.info('%s %s'% ('USRMSGCOUNT',request.session.session_key))
+            cnt = mcount.g()
+            return cnt if isinstance(cnt,int) else mcount.s(cls.objects.filter(read=False, receiver=request.user, status__gte=20).count(),600)
+        except:
+            return 0
 
     def get_sender_name(self):
         return self.sender.get_profile().private_name

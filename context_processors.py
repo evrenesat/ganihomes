@@ -27,6 +27,6 @@ def GH(r):
 
     return {
         'LISTED_LOCALES': [l.split(',') for l in configuration('listed_langs').split('\n')],
-        'unread_count': Message.message_count(r.user),
+        'unread_count': Message.message_count(r),
        }
 

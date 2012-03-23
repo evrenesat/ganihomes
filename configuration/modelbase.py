@@ -26,7 +26,7 @@ class ConfigBase(models.Model):
             val = cls._meta.get_field_by_name(name)[0].default
         #            if isinstance(default_val, models.NOT_PROVIDED):
         #               return val
-        cache.set(CACHE_PREFIX + name, val)
+        cache.set(CACHE_PREFIX + name, val,99999)
         return val
 
     @classmethod
@@ -34,7 +34,7 @@ class ConfigBase(models.Model):
         obj = cls.objects.all()[0]
         setattr(obj, name, val)
         obj.save()
-        cache.get(CACHE_PREFIX + name, val)
+        cache.get(CACHE_PREFIX + name, val,99999)
         return val
 
     @classmethod

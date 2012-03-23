@@ -10,7 +10,7 @@ from django.utils.encoding import smart_unicode, smart_str
 
 sitekey = settings.CACHE_MIDDLEWARE_KEY_PREFIX
 #sure = settings.CACHE_MIDDLEWARE_SECONDS
-sure = 30
+sure = 99999
 
 class kes:
     def __init__(self, *args):

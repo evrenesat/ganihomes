@@ -57,11 +57,11 @@ def place_translation(request, id, lang):
 
 def showPlace(request, id):
     try:
-        place = Place.objects.select_related().get(pk=id,active=True)
+        place = Place.objects.get(pk=id,active=True)
     except Place.DoesNotExist:
         raise Http404
-    owner = place.owner
-    profile = owner.profile
+#    owner = place.owner
+#    profile = owner.profile
     properties=[
         (_(u'Place type'),place.get_type_display()),
         (_(u'Space offered'),place.get_space_display()),
@@ -75,11 +75,12 @@ def showPlace(request, id):
 #    if place.cleaning_fee:
 #        properties.append((_(u'Cleaning Fee'),place.cleaning_fee))
     context = {'place':place, 'bform':BookingForm(place.capacity),
-               'properties':properties , 'owner':owner,
-               'profile':profile, 'service_fee':configuration('guest_fee'),
+               'properties':properties ,
+#               'profile':profile,
+               'service_fee':configuration('guest_fee'),
                'amens':place.getTags(request.LANGUAGE_CODE),
                'translations':place.get_translation_list(),
-               'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id),
+#               'other_places':Place.objects.filter(active=True, published=True, owner=profile.user).exclude(pk=place.id),
                'meta_keywords':place.title,
                'meta_desc':place.description,
                'page_title':place.title,
@@ -115,8 +116,8 @@ class RegisterForm(ModelForm):
         fields = ('email','first_name','last_name',)
 
 def anasayfa(request):
-    sayfa = Sayfa.al_anasayfa()
-    lang = request.LANGUAGE_CODE
+#    sayfa = Sayfa.al_anasayfa()
+#    lang = request.LANGUAGE_CODE
     searchForm = SearchForm()
     slides = [Vitrin.get_slides(), Vitrin.get_slides(type=1), Vitrin.get_slides(type=2)]
     context = {'slides': slides,
@@ -583,7 +584,7 @@ def search_ajax(request, current_page=1):
     else:
         return HttpResponse(u'[]', mimetype='application/json')
 
-    selected_currency = int(request.POST.get('scurrency'))
+    selected_currency = int(request.POST.get('scurrency', Currency.get_main_id()))
     min = int(request.REQUEST.get('pmin',0))
     max = int(request.REQUEST.get('pmax',1000))
     convert_factor = Currency.objects.get(pk=selected_currency).get_factor()

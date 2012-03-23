@@ -253,6 +253,8 @@ gh = {
         var sbardis = $('#searchbar')
         var sbox = $('#searchbox')
         var mc = $('#map_canvas')
+        cookie_search_page = $.cookie('srcpage')
+        if(cookie_search_page)this.searchPage = cookie_search_page
         mc.on('mouseenter mouseleave', function(event){
                     if(!self.mapMini || !self.map)return false;
                     var mc = $('#map_canvas')
@@ -1345,9 +1347,30 @@ gh = {
 //    console.log(ctrlat, ctrlng, zoom)
 },
     searchPage:1,
+    reSearch:function(){
+        //dashboard function caller via # and ,  or ? and =
+        var hs = []
+        if(document.location.hash){
+            var hs = document.location.hash.replace('#','').split(',')
+        }
+        else if(document.location.search){
+//            console.log(document.location.search)
+            var hs = document.location.search.replace('?','').split('=')
+        }
+        if(typeof(hs[0])!='undefined'){
+            if (typeof(hs[1])!='undefined'){
+                if(hs[1]=='this')hs[1] = this
+                this[hs[0]](hs[1])
+            }
+            else this[hs[0]]()
+        }
+    },
     jsearch:function(page){
         if(typeof(page)=='undefined') page = this.searchPage
-        else this.searchPage = page
+        else{
+            this.searchPage = page
+            $.cookie('srcpage', page, { expires: 2, path: '/' });
+        }
         var self=this
         $('#searchbar .kapsar').each(function(){
                 var keys = []
@@ -1359,6 +1382,7 @@ gh = {
         $.post('/jsearch/'+page, $("#search_form").serialize(), function(data){
             results =self.setSearchPrices(data.results)
             $("#resul").html($("#wideResultsTpl").jqote(results));
+            $(window).scrollTo('#resul li',500)
             $("#pagination").html($("#paginationTpl").jqote(data));
             if(!self.map)self.gmapsLoad('gh.searchMap')
             else self.searchMap()
