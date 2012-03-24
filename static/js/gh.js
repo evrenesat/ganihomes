@@ -1391,7 +1391,7 @@ gh = {
         $.post('/jsearch/'+page, $("#search_form").serialize(), function(data){
             results =self.setSearchPrices(data.results)
             $("#resul").html($("#wideResultsTpl").jqote(results));
-            $(window).scrollTo('#resul li',500)
+            $(window).scrollTo('#araust input',500)
             $("#pagination").html($("#paginationTpl").jqote(data));
             if(!self.map)self.gmapsLoad('gh.searchMap')
             else self.searchMap()
