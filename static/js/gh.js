@@ -76,7 +76,10 @@ gh = {
         for (p in parts){
             p = parts[p]
             var fname = 'init_' + p
-            if(p.length==2)this.LANGUAGE_CODE = p
+            if(p.length==2){
+                this.LANGUAGE_CODE = p
+                this.LOCALE = this.LANGUAGE_CODE =='en' ? 'en-GB': this.LANGUAGE_CODE
+            }
             else if(fname in this){
                 this[fname]()
                 this.initialized_page = p
@@ -88,6 +91,7 @@ gh = {
     },
     STATIC_URL : '',
     LANGUAGE_CODE : 'en',
+    iLOCALE : 'en-GB',
     popap:function(trigger, popap_id, offset_x, offset_y){
         var self = this, ptimer = 0, popap = $(popap_id);
         this.rePlace(trigger, popap_id, offset_x, offset_y);
@@ -651,7 +655,7 @@ gh = {
                 while (loopDate.valueOf() < endDate.valueOf() + 86400000) {
 //                    sessional_prices[p[0].toString().substring(2) + p[1].toString() + p[2].toString()] = ''
                     this.sessional_prices[$.datepick.formatDate('yymmdd', loopDate)] =
-                        (loopDate.getDay() in [0,6] && p[3]) ? p[3] : p[2]
+                        ($.inArray(loopDate.getDay(),    this.hafta_sonu)>-1 && p[3]) ? p[3] : p[2]
                     loopDate.setTime(loopDate.valueOf() + 86400000);
                 }
             }
@@ -741,8 +745,9 @@ gh = {
         this.calculateTotalPrice()
     },
     dPrice:function(d){
+        console.log($.datepick.formatDate('yymmdd', d), d.getDay(), this.hafta_sonu, $.inArray(d.getDay() ,this.hafta_sonu))
         return this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
-            ((d.getDay() in [0,6] && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1])
+            (($.inArray(d.getDay(), this.hafta_sonu) >-1 && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1])
     },
     dayPrice:function(d){
         return this.convertPrice(this.dPrice(d))
@@ -882,6 +887,7 @@ gh = {
         $(window).resize(function(){self.replace_pricetag()}).trigger('resize')
         $.getScript(this.STATIC_URL + 'datepick/jquery.datepick.js',function(){
             $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-'+self.LANGUAGE_CODE+'.js',function(){
+                self.hafta_sonu = $.datepick.regional[self.LOCALE].firstDay==0 ? [0,6]: [0,6]
                 self.makeAvailabilityTab()
                 self.prepareSessionalPrices()
                 var dates = $.cookie('selected_dates')
