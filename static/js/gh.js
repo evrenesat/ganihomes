@@ -745,7 +745,6 @@ gh = {
         this.calculateTotalPrice()
     },
     dPrice:function(d){
-        console.log($.datepick.formatDate('yymmdd', d), d.getDay(), this.hafta_sonu, $.inArray(d.getDay() ,this.hafta_sonu))
         return this.sessional_prices[$.datepick.formatDate('yymmdd', d)] ||
             (($.inArray(d.getDay(), this.hafta_sonu) >-1 && gh_prcs[2]) ? gh_prcs[2] : gh_prcs[1])
     },
