@@ -706,8 +706,14 @@ gh = {
     fdate : function(date){
         return $.datepick.formatDate('yyyy-mm-dd',date)
     },
+    updateDateBoxes:function(dates){
+        var cif = $('#id_checkin'), cof = $('#id_checkout')
+        var cin = this.fdate(dates[0]), cout = this.fdate(dates[1])
+        if(!cif.val() || cin!=cif.val())cif.val(cin)
+        if(!cof.val() || cout!=cof.val())cof.val(cout)
+    },
     checkReservationDates:function(dates){
-
+        this.updateDateBoxes(dates)
         $.cookie('selected_dates', $.toJSON([dates[0],dates[1]]))
 
         this.total = {ndays:0, price:0.0}
@@ -736,9 +742,10 @@ gh = {
             if(er=='unv_dates'){
                 alert(trns('dates_not_available') );
                 $.cookie('selected_dates','')
-            }else{
-                alert(er)
             }
+//            else{
+//                alert(er)
+//            }
         }
         this.total.ndays = days
         this.total.price = price
