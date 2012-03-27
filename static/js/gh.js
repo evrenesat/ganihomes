@@ -955,7 +955,7 @@ gh = {
 //        controlbar: "none",
         file: this.STATIC_URL +"flv/"+video,
         flashplayer: this.STATIC_URL + "js/player.swf",
-        volume: 0,
+        volume: 50,
         width: 600,
         height:494
         });
