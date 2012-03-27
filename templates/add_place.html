@@ -10,7 +10,7 @@
 <h3>{% cevir "mes Sağ Blok Başlık" %}</h3>
     <hr>
 
-    <div id="addplacevidbutton" onmousedown="$('#addplacevid').dialog({modal:true, minWidth: 620, minHeight: 500, position:'center'})">
+    <div id="addplacevidbutton" onmousedown="gh.playPopupVideo('addplacevid','addplace-{% if LANGUAGE_CODE == 'tr' %}tr{% else %}en{% endif %}.flv')">
         <div>{% cevir "mes video" %}</div>
     </div>
 
@@ -20,11 +20,6 @@
     </div>
 
     <div id="addplacevid" style="display:none;">
-        <object width='600' height='494' id='flvPlayer'>
-     <param name='allowFullScreen' value='true'>
-      <param name="allowScriptAccess" value="always">
-     <param name='movie' value='/static/js/player.swf?movie=/static/flv/addplace-{% if LANGUAGE_CODE == 'tr' %}tr{% else %}en{% endif %}.flv&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&autoload=off&autoplay=off&vTitle={% cevir "mes video title" %}&showTitle=yes'>
-     <embed src='/static/js/player.swf?movie=/static/flv/addplace-{% if LANGUAGE_CODE == 'tr' %}tr{% else %}en{% endif %}.flv&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&autoload=off&autoplay=off&vTitle={% cevir "mes video title" %}&showTitle=yes' width='600' height='494' allowFullScreen='true' type='application/x-shockwave-flash' allowScriptAccess='always'>
-    </object>
+
     </div>
 {% endblock %}

@@ -937,6 +937,31 @@ gh = {
         $.getScript("https://apis.google.com/js/plusone.js")
 
     },
+    playPopupVideo:function(container,video){
+        var self=this;
+
+        if(typeof(jwplay)=='undefined')$.getScript(self.STATIC_URL + 'js/jwplayer.js',function(){self.jwplay(container,video)})
+        else self.jwplay(container,video)
+    },
+    jwplay:function(container,video){
+        $('#'+container).dialog({modal:true,
+            minWidth: 620,
+            minHeight: 500,
+            position:'center',
+            beforeClose: function(){jwplayer(container).remove()}
+        })
+        jwplayer(container).setup({
+        autostart: true,
+//        controlbar: "none",
+        file: this.STATIC_URL +"flv/"+video,
+        flashplayer: this.STATIC_URL + "js/player.swf",
+        volume: 0,
+        width: 600,
+        height:494
+        });
+
+
+    },
     selected_dates:{},
     replace_pricetag : function(){this.rePlace('#titlediv', '.fetiket', 615, -3);},
 

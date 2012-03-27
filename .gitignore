@@ -9,6 +9,7 @@ log/access_log
 yuklemeler
 /settings.py
 static/admin
+static/flv
 static/js/curr.js
 static/js/gh_*.js
 static/js/gh_*.js~
