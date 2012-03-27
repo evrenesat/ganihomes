@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.core.urlresolvers import reverse
 from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
-from support.models import SubjectCategory, Ticket, SubjectCategoryTranslation
-from utils.htmlmail import send_html_mail
-from utils.mail2perm import mail2perm
+from support.models import  Ticket, SubjectCategoryTranslation
 from website.models.faq import Question
 from website.views import addPlaceForm
 
@@ -13,7 +10,6 @@ __author__ = 'Evren Esat Ozkan'
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.core.files.uploadedfile import UploadedFile
-from django.db.models.query_utils import Q
 from django.forms.models import ModelForm, ModelChoiceField
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
@@ -596,7 +592,7 @@ class TicketForm(forms.ModelForm):
 @login_required
 def support_create(request):
     if request.POST:
-        form = TicketForm(request.POST)
+        form = TicketForm(request.POST, lang=request.LANGUAGE_CODE)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.status = 10

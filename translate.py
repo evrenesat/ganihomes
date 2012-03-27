@@ -80,13 +80,13 @@ class TranslationMachine:
         already_translated_langs = [l for l in p.get_translation_list(reset=True)]
         for l in self.auto_langs:
             if l not in already_translated_langs:
-                translation = self.translator([p.title,p.description],l)
+                translation = self.translator([p.title,p.description.replace('\n','<br>')],l)
                 if translation:
                     d, new = Description.objects.get_or_create(place=p, lang=l)
                     #TODO: bu kontrol db seviyesinde yapilsa daha iyi olur
                     if not (new or d.auto):
                         continue
-                    d.text = translation[1]['translatedText']
+                    d.text = translation[1]['translatedText'].replace('<br>','\n')
                     d.title = translation[0]['translatedText']
                     d.auto = True
                     d.save()
