@@ -195,7 +195,7 @@
             singleFileUploads: true,
             // Set the following option to true to issue all file upload requests
             // in a sequential order:
-            sequentialUploads: false,
+            sequentialUploads: true,
             // Set the following option to true to force iframe transport uploads:
             forceIframeTransport: false,
             // By default, XHR file uploads are sent as multipart/form-data.
