@@ -75,7 +75,7 @@ def cc_success(request):
         bilgiler = {'xid':dt['xid'] ,'eci':dt['eci'], 'cavv':dt['cavv'],
                     'cvc':'','cardno':dt['md'], 'tutar':'',
                     'oid':booking.id, 'ip':request.META['REMOTE_ADDR'],
-                    'type':'PreAuth'}
+                    'type':'Auth'}
         basarilimi, sonuc, xml_sonuc = bank_pos.request(bilgiler)
         if basarilimi:
             trns = Transaction.objects.create(content_object=booking, type=2,
