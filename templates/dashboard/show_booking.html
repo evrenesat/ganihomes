@@ -14,6 +14,13 @@
                 <br>
                 {{ place.get_type_display }} / {{ place.get_space_display }}
                 <br>
+                {% if booking.status >= 20 %}
+                    {{ place.address }}<br>
+                    {{ place.neighborhood }} / {{ place.street }} / {{ place.district }}<br>
+                    {{ place.city }} / {{ place.state }} / {{ place.country }}
+
+
+                {% endif %}
 
 
             </div>
@@ -37,8 +44,27 @@
                      {% else %}{{ total_price|currency }} {{ booking.currency.name }}
                  {% endif %}
              </span>
+
+            {% if booking.status >= 20 %}
+                {% if user_is_host %}
+                    <span class="ozz_label">{% trans "Contact informarion of your guest" %}</span> <span id=bookcontinfo class="ozz_value">
+                    {{ booking.guest.get_full_name }}<br>
+                    {{ booking.guest.phone }}<br>
+                    {{ booking.guest.email }}<br>
+                </span>
+                {% else %}
+                    <span class="ozz_label">{% trans "Contact informarion of your host" %}</span> <span class="ozz_value">
+                    {{ booking.host.get_full_name }}<br>
+                    {{ booking.guest.phone }}<br>
+                    {{ booking.host.email }}<br>
+                </span>
+                {% endif %}
+            {% endif %}
             </div>
         </div>
+
+
+
         {% csrf_token %}
 
 
