@@ -49,14 +49,14 @@
                 {% if user_is_host %}
                     <span class="ozz_label">{% trans "Contact informarion of your guest" %}</span> <span id=bookcontinfo class="ozz_value">
                     {{ booking.guest.get_full_name }}<br>
-                    {{ booking.guest.phone }}<br>
                     {{ booking.guest.email }}<br>
+                    {{ booking.guest.phone }}<br>
                 </span>
                 {% else %}
                     <span class="ozz_label">{% trans "Contact informarion of your host" %}</span> <span class="ozz_value">
                     {{ booking.host.get_full_name }}<br>
-                    {{ booking.guest.phone }}<br>
                     {{ booking.host.email }}<br>
+                    {{ booking.guest.phone }}<br>
                 </span>
                 {% endif %}
             {% endif %}
