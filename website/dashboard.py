@@ -34,7 +34,10 @@ log = logging.getLogger('genel')
 #FIXME: onaylanmamis mesajlar gonderene gosterilmeli!!
 
 #yap: arkadasliktan cikar
-
+#FIXME: aramada yeni sekmede ac
+#FIXME: Ülke adıyla arama, İ ile arama
+#FIXME: resimleri kırpma
+#FIXME:
 
 #yapaaaaaamadik: filebrowser
 #yap: yorum placeholder
