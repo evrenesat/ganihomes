@@ -399,26 +399,6 @@ def change_password(request):
     context = {'form':form,}
     return render_to_response('dashboard/change_password.html', context, context_instance=RequestContext(request))
 
-
-@login_required
-def edit_profile(request):
-    lang = request.LANGUAGE_CODE
-    user = request.user
-    profile = user.get_profile()
-    if request.method == 'POST':
-        form = ProfileForm(request.POST,instance=profile)
-        uform = UserForm(request.POST,instance=user)
-        if form.is_valid() and uform.is_valid():
-            profile = form.save()
-            user = uform.save()
-            messages.success(request, _('Your profile successfully updated.'))
-    else:
-        form = ProfileForm(instance=profile)
-        uform = UserForm(instance=user)
-    context = {'form':form,'profile':profile,'user':user,'uform':uform}
-    return render_to_response('dashboard/edit_profile.html', context, context_instance=RequestContext(request))
-
-
 class ProfileForm(ModelForm):
 #    lat= forms.FloatField(widget=forms.HiddenInput())
 #    lon= forms.FloatField(widget=forms.HiddenInput())
@@ -483,7 +463,7 @@ def pfoto(request):
 
         profile.photo=file
         profile.save()
-        return HttpResponse('[1]', mimetype='application/json')
+        return HttpResponse('[1]', mimetype='text/html')
 
 
 
