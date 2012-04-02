@@ -609,7 +609,7 @@ def search_ajax(request, current_page=1):
 #        log.debug('query: %s'%query)
         q = Q()
         for qp in query:
-            q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
+            q = q & Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp) | Q(address__istartswith=qp)
         pls = pls.filter(q)
     if cin and cout:
         pls  = pls.filter(~Q(reserveddates__start__lte=cin, reserveddates__end__gte=cin) &
@@ -643,7 +643,7 @@ def search_autocomplete(request):
     query = request.GET.get('q').split(' ')[:3]
     q = Q()
     for qp in query:
-        q = q | Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp)
+        q = q | Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp) | Q(address__istartswith=qp)
     places = set(list(Place.objects.filter(q).values_list('district','city','state','country').distinct()[:8]))
     nplaces = []
     for place in places:

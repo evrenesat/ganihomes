@@ -42,7 +42,7 @@
 
                 <div id="photoslider-left" class="nextpre">&laquo;</div>
                 <div id="photoslider_container">
-                    {% cache 300 placephotosss place.id  LANGUAGE_CODE%}
+                    {% cache 300 placephotos place.id%}
                     <div id="photoslider">
                         {% for p in place.photo_set.all %}
                             <li  class="pthumb"><a href="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xl.jpg"><img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xs.jpg"></a></li>
@@ -239,7 +239,7 @@
 
 
         </div>
-    {% cache 99999 hostboxx place.id LANGUAGE_CODE %}
+    {% cache 999 hostbox place.id LANGUAGE_CODE %}
         {% with place.owner.get_profile as profile %}
     <div class="ikikutu">
 

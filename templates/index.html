@@ -70,9 +70,9 @@
     </div>
     </div>
         <div class="span-13 shadoblok" id="howmonitordiv">
-            {% if LANGUAGE_CODE == 'tr' %}
-            <img src="/static/images/fotokamp.jpg" style="border:10px solid #fff;">
-            {% else %}
+{#            {% if LANGUAGE_CODE == 'tr' %}#}
+{#            <img src="/static/images/fotokamp.jpg" style="border:10px solid #fff;">#}
+{#            {% else %}#}
                 <div id="learnmore">
             <img id="howmonitorimg" src="{{ STATIC_URL }}images/howmonitor.png">
             <div id="howmonitortext">
@@ -86,11 +86,11 @@
                 <span><a href="{% url howitworks %}">{% trans "Learn how it works"%} &raquo;</a></span>
             </div>
                 </div>
-        {% endif %}
+{#        {% endif %}#}
         </div>
         <div id="minislidercontainer">
         <div id="minislider">
-            {% cache 9999 mslides  LANGUAGE_CODE%}
+            {% cache 999 mslides  LANGUAGE_CODE%}
         <ul>
         {% for slide in minislides %}
                 <li {% if slide.url %}onclick="document.location='{{ slide.url }}'" style="cursor:pointer"{% endif %}>

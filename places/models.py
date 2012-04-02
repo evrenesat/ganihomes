@@ -17,7 +17,7 @@ from django.utils import simplejson as json
 from django.db.models.signals import post_save
 from paypal.pro.models import PayPalNVP
 from paypal.pro.helpers import PayPalWPP
-from utils.cache import kes
+from utils.cache import kes, del_temp_cache, del_temp_cache_for_all
 from random import randint
 from utils.htmlmail import send_html_mail
 from django.utils.translation import ugettext_lazy as _
@@ -65,6 +65,9 @@ for code,name in settings.LANGUAGES:
     fp.close()
 
 activate(settings.LANGUAGES[0][0])
+
+def clear_place_cache(sender, instance, created, **kwargs):
+    pass
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

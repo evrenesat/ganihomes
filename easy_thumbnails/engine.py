@@ -9,6 +9,9 @@ try:
 except ImportError:
     from StringIO import StringIO
 
+import ImageFile
+
+ImageFile.MAXBLOCK = 1024*1024
 
 DEFAULT_PROCESSORS = [utils.dynamic_import(p)
                       for p in utils.get_setting('PROCESSORS')]

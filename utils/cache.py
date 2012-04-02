@@ -1,4 +1,7 @@
 # -*-  coding: utf-8 -*-
+from hashlib import md5
+from django.utils.http import urlquote
+
 __author__ = 'Evren Esat Ozkan'
 
 #import memcache
@@ -53,3 +56,12 @@ class kes:
         degeri delta kadar azaltir
         '''
         return cache.decr(self.key, delta=delta)
+
+def del_temp_cache(name, *variables):
+    cache_key = 'template.cache.%s.%s' % (name, md5(u':'.join([urlquote(var) for var in variables])).hexdigest())
+    cache.delete(cache_key)
+
+def del_temp_cache_for_all(name, vars, all):
+    for a in all:
+        v = vars + [a]
+        del_temp_cache(name, *v)

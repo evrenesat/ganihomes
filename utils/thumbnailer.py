@@ -19,7 +19,7 @@ def customThumbnailer(img, id, opts, mark=True, crop='smart'):
             return
         for opt in opts:
             size, name = opt[:2], '%s_%s' % (id, opt[2])
-            thumbnail_options = dict(size=size, upscale=True, crop=crop, custom_name=name)
+            thumbnail_options = dict(size=size, upscale=True, custom_name=name) #crop=crop, 
             file = get_thumbnailer(img).get_thumbnail(thumbnail_options)
             results.append(file)
             if mark:
