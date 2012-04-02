@@ -202,7 +202,9 @@ def addPlace(request, ajax=False, id=None):
             tmp_photos = request.session.get('tmp_photos')
             if tmp_photos:
                 Photo.objects.filter(id__in=tmp_photos).update(place=new_place)
-                Photo.objects.get(pk=tmp_photos[-1]).save()
+                if tmp_photos[0]:
+                    p=Photo.objects.filter(pk=tmp_photos[0])
+                    if p: p[0].save()
                 request.session['tmp_photos']=[]
             if not ajax:
                 if not new_place.published:

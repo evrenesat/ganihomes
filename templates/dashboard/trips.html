@@ -94,7 +94,7 @@
                     <ul class="dugmul">
                         {% for p in bookmarks %}
                             <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
-                                <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ r.place.id }}_plks.jpg">
+                                <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                                 <h6>{{ p.title|slice:":40" }}</h6>
                             </li>
                         {% endfor %}

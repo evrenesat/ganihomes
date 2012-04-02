@@ -2338,13 +2338,40 @@ li.g-plus-one {
     display: inline-block;
     float: left;
 }
+.dugmul .buttons button:hover {
+    -webkit-box-shadow: 0 0 5px 1px #c7d66d ;
+    -moz-box-shadow: 0 0 5px 1px #c7d66d;
+    box-shadow: 0 0 5px 1px #c7d66d;
+}
+.dugmul .buttons button{
+    font-weight: bold;
+    margin-top:2px;
+    border: 1px solid #D3BE95;
+    background-color: #fff !important;
+    cursor: pointer;
+    padding: 1px !important;
+    font-size: 9px;
+    text-align: center;
+    width: 100px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 1px 1px #ffe7b8;
+    -moz-box-shadow: 0 0 1px 1px #ffe7b8;
+    box-shadow: 0 0 1px 1px #ffe7b8;
+    color: #54373f !important;
+    background: url(/static/images/grd-krm-22px.png);
 
+    text-shadow: 1px 1px 0.4px #fff;
+
+}
 .dugmul li {
     list-style: none outside none;
     float: left;
     width: 130px;
     margin: 9px;
-    height: 123px;
+    height: 155px;
+    overflow:hidden;
     padding: 5px 5px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -2353,7 +2380,16 @@ li.g-plus-one {
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
 }
+.dugmul .preview{
+    height:160px;
+}
+.nop .preview{
+    height:40px;
 
+}
+.nop .preview img{
+        display:none
+}
 /*#menuccordion .ui-accordion-header a {*/
     /*padding-top: 3px;*/
     /*padding-bottom: 3px;*/

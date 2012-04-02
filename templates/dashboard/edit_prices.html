@@ -69,7 +69,7 @@
                 </p>
 
 </div><br><br>
-            <p><input type="submit" class="yesildugme fr" value="{% trans "Save Pricing" %}"></p>
+            <p><input type="submit" name="save_pricing" class="yesildugme fr" value="{% trans "Save Pricing" %}"></p>
             </form>
             </div>
             <div id="sessional">
@@ -97,7 +97,8 @@
                        <hr>
                    {% endfor %}
             </div>
-            <p><input type="submit" class="yesildugme fr" value="{% trans "Save Seasonal Pricing" %}"></p>
+            <p style="float:left"><input type="submit" name="save_sessional" class="yesildugme fr" value="{% trans "Add another" %}"></p>
+            <p><input type="submit" name="save_sessional" class="yesildugme fr" value="{% trans "Save Seasonal Pricing" %}"></p>
             </form>
             </div>
          </div>

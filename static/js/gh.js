@@ -1211,6 +1211,7 @@ gh = {
             else if($(document).scrollTop()<170 && meco.hasClass('fixmenu')){meco.removeClass('fixmenu')}
         })
 //        this.box = $('#dlg').dialog({ position: 'center', autoOpen:false, modal: true  })
+        $('.dugmul li').mouseenter(function(){$(this).addClass('nop')}).mouseleave(function(){$(this).removeClass('nop')})
         $('.btn').click(function(data){
             var target_div=''
             $(data.target).parents('.btn').andSelf().each(function(){
@@ -1543,6 +1544,18 @@ gh = {
 
 
             self.setLatLon()
+        })
+    },
+    editPhotos:function(id){
+        var self = this
+        this.showFrame('loading')
+        $.get(this.add_place_url(id)    ,function(data){
+            self.showFrame('addplace_wizard',data)
+            self.gcGosterGizle()
+            self.init_placeWizzard(id)
+            self.setLatLon()
+            self.changeForm(3);
+           $( "#paccordion").accordion( "activate" , 4)
         })
     },
     translateStrings:function(container){

@@ -628,11 +628,13 @@ class Place(models.Model):
             self.has_photo = bool(self.primary_photo)
 
     def pick_primary_photo(self):
-        self.primary_photo = self.photo_set.all()[0].image
-        self.cleanup_photos()
-        self.save()
+        photos = self.photo_set.all()
+        if photos:
+            self.primary_photo = photos[0].image
+            self.cleanup_place_thumbs()
+            self.save()
 
-    def cleanup_photos(self):
+    def cleanup_place_thumbs(self):
         for s in PLACE_THUMB_SIZES:
             try:
                 unlink('%s/place_photos/%s_%s.jpg' % (settings.MEDIA_ROOT,self.id, s[2] ) )

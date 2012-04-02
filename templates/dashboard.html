@@ -121,9 +121,21 @@
                             <li class="btn do_dbAddPlaceWizzard"><img src="{{ STATIC_URL }}/images/home-68.png">
                                 <h6>{% trans "Add New Place" %} </h6></li>
                             {% for p in places %}
-                                <li style="cursor:pointer" onclick="gh.editPlaceWizzard({{ p.id }})">
+                                <li style="cursor:pointer">
+                                    <div class="preview">
                                     <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
-                                    <h6>{{ p.title|slice:":40" }}</h6>
+                                    <h6>{{ p.title|truncatechars:35 }}</h6>
+                                        </div>
+                                    <div class="buttons">
+                                        <button onclick="gh.editPrices({{ p.id }})">{% trans "Prices" %}</button><br>
+                                        <button onclick="gh.editPlaceWizzard({{ p.id }})">{% trans "Details" %}</button><br>
+                                        <button onclick="gh.editAvailability({{ p.id }})" >{% trans "Availability" %}</button>
+                                        <button onclick="gh.editDescription({{ p.id }})" >{% trans "Translate" %}</button>
+                                        <button onclick="gh.editPhotos({{ p.id }})" >{% trans "Photos" %}</button>
+                                        <!--br><button class="photos"><%=JSTRANS.manage_photos%></button-->
+                                        <!--a href="/<%= gh.LANGUAGE_CODE %>/places/<%= this.id %>"></a-->
+                                    </div>
+
                                 </li>
                             {% endfor %}
                         </ul>
