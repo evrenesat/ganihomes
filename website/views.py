@@ -166,7 +166,7 @@ def addPlace(request, ajax=False, id=None):
     photos = []
     if id:
         old_place = get_object_or_404(Place, pk=id)
-        photos = old_place.photo_set.values_list('id',flat=True)
+        photos = list(old_place.photo_set.values_list('id',flat=True))
         if old_place.owner != request.user:
             return HttpResponseForbidden()
     else:
