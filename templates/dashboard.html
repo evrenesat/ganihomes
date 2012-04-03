@@ -124,7 +124,7 @@
                                 <li style="cursor:pointer">
                                     <div class="preview">
                                     <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
-                                    <h6>{{ p.title|truncatechars:35 }}</h6>
+                                    <h6><a href="/{{ LANGUAGE_CODE }}/places/{{ p.id }}">{{ p.title|truncatechars:35 }}</a></h6>
                                         </div>
                                     <div class="buttons">
                                         <button onclick="gh.editPrices({{ p.id }})">{% trans "Prices" %}</button><br>
