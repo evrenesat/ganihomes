@@ -6,7 +6,7 @@
     <title>{% block title %}GaniHomes {{ page_title }}{% endblock %}</title>
     <link rel="icon" type="image/png" href="{{ STATIC_URL }}images/favicon.png">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/gh.css?v=1" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" type="text/css" media="print">
     <link type="text/css" href="{{ STATIC_URL }}css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Cardo|Montez' rel='stylesheet' type='text/css'>
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.plugins.js?v=5"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/curr.js?cv={% now "ymd" %}"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/gh_{{ LANGUAGE_CODE }}.js"></script>
-    <script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js?v=5"></script>
+    <script type="text/javascript" id="script0" src="{{ STATIC_URL }}js/gh.js?v=7"></script>
     <META NAME="keywords" CONTENT="{% block metakeywords %}{{ meta_keywords }}{% endblock %}">
     <META NAME="description" CONTENT="{% block metadesc %}{{ meta_desc }}{% endblock %}">
     <META HTTP-EQUIV="Copyright" CONTENT="GaniHomes Ltd.">
