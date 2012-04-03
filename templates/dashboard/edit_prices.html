@@ -97,11 +97,15 @@
                        <hr>
                    {% endfor %}
             </div>
-            <p style="float:left"><input type="submit" name="save_sessional" class="yesildugme fr" value="{% trans "Add another" %}"></p>
-            <p><input type="submit" name="save_sessional" class="yesildugme fr" value="{% trans "Save Seasonal Pricing" %}"></p>
+
+            <p>
+                <input style="float:left" type="submit" name="save_sessional" class="yesildugme fr" value="{% trans "Add another" %}">
+                <input type="submit" name="save_sessional" class="yesildugme fr" value="{% trans "Save Seasonal Pricing" %}"></p>
+            <input type="hidden" id="selecedtabindex" name="selecedtabindex" value={{ request.POST.selecedtabindex|default:0 }}>
             </form>
             </div>
          </div>
 
         </div>
+
 

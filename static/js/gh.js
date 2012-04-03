@@ -1795,7 +1795,10 @@ gh = {
         this.genericEdit('/dashboard/edit_prices/'+id,function(){
             $('.datef input').datepicker({dateFormat: 'yy-mm-dd', minDate: '0',
                             changeMonth: true  ,changeYear: true  });
-            $('#litetabs').tabs()
+            $('#litetabs').tabs({
+                show: function(event, ui) { $('#selecedtabindex').val(ui.index) },
+                selected : $('#selecedtabindex').val()
+            })
             $('.helptext:empty').remove()
             $('#id_currency').change(function(){
                 cr = gh_crc[$(this).val()]

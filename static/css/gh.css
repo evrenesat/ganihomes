@@ -2865,7 +2865,7 @@ ul.messages li{
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
-    height: 144px;
+    height: 160px;
     background-color:#fff;
     behavior: url(/static/js/PIE.htc);
 }
