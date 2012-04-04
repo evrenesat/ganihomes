@@ -10,17 +10,15 @@ from django.db.models.query_utils import Q
 from django.utils.translation import ugettext
 from odeme.estbank import ESTBank
 from options import *
-from countries import *
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.utils import simplejson as json
 from django.db.models.signals import post_save
 from paypal.pro.models import PayPalNVP
 from paypal.pro.helpers import PayPalWPP
-from utils.cache import kes, del_temp_cache, del_temp_cache_for_all
+from utils.cache import kes
 from random import randint
 from utils.htmlmail import send_html_mail
-from django.utils.translation import ugettext_lazy as _
 from utils.thumbnailer import customThumbnailer
 import logging
 from configuration import configuration
@@ -646,6 +644,7 @@ class Place(models.Model):
         self._updateSummary()
         self.createThumbnails()
         self.calculateGPrice()
+        self.pick_primary_photo()
         super(Place, self).save(*args, **kwargs)
 
     def calculateGPrice(self):
