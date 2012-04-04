@@ -376,7 +376,7 @@ from decimal import Decimal
 class Place(models.Model):
     """Places"""
 
-    owner = models.ForeignKey(User, verbose_name=_('Host'))
+    owner = models.ForeignKey(User, verbose_name=_('Host'), related_name='ownershome')
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), null=True, blank=True)
     title = models.CharField(_('Place title'), max_length=100)
     slug = models.SlugField(_('URL Name'), null=True, blank=True)
