@@ -23,7 +23,6 @@ from utils.thumbnailer import customThumbnailer
 import logging
 from configuration import configuration
 
-
 log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
 import codecs
