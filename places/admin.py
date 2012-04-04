@@ -183,6 +183,7 @@ class PlaceInline(admin.TabularInline):
     model = Place
     fields = ['title']
     readonly_fields = ['title']
+
     extra = 0
 
 
@@ -200,6 +201,7 @@ class ProfileAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'last_name')
     list_filter = ('is_staff', 'is_superuser')
+    filter_horizontal = ['user_permissions','groups']
     search_fields = ['first_name','last_name', 'email']
     inlines = [PaymentSelectionInline, ProfileInline, PlaceInline]
 
