@@ -22,6 +22,7 @@ from utils.htmlmail import send_html_mail
 from utils.thumbnailer import customThumbnailer
 import logging
 from configuration import configuration
+from django.utils.translation import ugettext_lazy as _
 
 log = logging.getLogger('genel')
 from django.utils.translation import activate, force_unicode
