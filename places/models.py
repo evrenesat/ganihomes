@@ -644,7 +644,6 @@ class Place(models.Model):
         self._updateSummary()
         self.createThumbnails()
         self.calculateGPrice()
-        self.pick_primary_photo()
         super(Place, self).save(*args, **kwargs)
 
     def calculateGPrice(self):

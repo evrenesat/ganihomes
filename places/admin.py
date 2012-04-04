@@ -144,8 +144,9 @@ class PlaceAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
 
 
-    #def save_model(self, request, obj, form, change):
-    #    obj.save()
+    def save_model(self, request, obj, form, change):
+        obj.pick_primary_photo()
+        obj.save()
 
 
 class TagInline(admin.TabularInline):
