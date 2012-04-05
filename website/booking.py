@@ -68,7 +68,7 @@ def cc_success(request):
     context= request.session.get('booking_context',{})
     booking = get_booking(request)
     dt = request.POST
-    status = int(dt.get('mdStatus'))
+    status = int(dt.get('mdStatus',0))
     if status < 5:
         bank_pos = Transaction.get_bank(request)
         tl_ucret = booking.currency.convert_to(booking.guest_payment, get_tl_currency_code())
