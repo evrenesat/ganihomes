@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Evren Esat Ozkan'
 
+
+from django.contrib.auth.models import User
 from django.contrib import admin
 from utils.admin import admin_register
 from models import *
@@ -177,20 +179,32 @@ class PaymentSelectionInline(admin.StackedInline):
 class ProfileInline(admin.StackedInline):
     model = Profile
 
+class PlaceInline(admin.TabularInline):
+    model = Place
+    fields = ['title']
+    readonly_fields = ['title']
+
+    extra = 0
+
+
 class ProfileAdmin(admin.ModelAdmin):
     raw_id_fields=('user', )
     list_display = ('full_name', )
-#    search_fields = ['', ]
+    search_fields = ['full_name', 'email']
 #    list_filter = ['', ]
 
 
     save_on_top = True
 
 
+
 class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'last_name')
     list_filter = ('is_staff', 'is_superuser')
-    inlines = [PaymentSelectionInline,ProfileInline]
+    filter_horizontal = ['user_permissions','groups']
+    search_fields = ['first_name','last_name', 'email']
+    inlines = [PaymentSelectionInline, ProfileInline, PlaceInline]
+
 
 
 admin.site.unregister(User)
