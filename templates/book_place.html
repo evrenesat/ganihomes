@@ -4,7 +4,7 @@
 {#<script>$(document).ready(function(){gh.login_init()})</script>#}
 {% endblock %}
 {% block content %}
-    <form action="." method="post">
+    <form action="." method="post" id="paymentform">
     <div class="altiOkutu">
         <div class="kutuici">
 
@@ -90,6 +90,7 @@
                     {% cevir "rezervasyon odeme nasil yardim" %}
 
                 <div id="paymentoptions">
+                <img src="/static/images/128ssl.jpg" style="float:right;margin-top:-65px">
                     <ul id="liteturunc">
                                         <li class="ptab"><a href="#odepaypal">{% trans "PayPal" %}</a></li>
                                         <li class="ptab"><a href="#odecc">{% trans "Credit Card" %}</a></li>
@@ -116,7 +117,7 @@
                         </tr>
                     </table>
                     <div style="width:100%;text-align:center;margin-top:20px;">
-                        <input  name="cc" type="submit" class="yemyesildugme fo16" value="{% trans "Book It via Credit Card" %}">
+                        <input  name="cc" id="ccpay" type="button" class="yemyesildugme fo16" value="{% trans "Book It via Credit Card" %}">
                         </div>
                 </div>
                 <div id="odehavale">

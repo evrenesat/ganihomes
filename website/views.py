@@ -136,14 +136,18 @@ class addPlaceForm(ModelForm):
     lat= forms.FloatField(widget=forms.HiddenInput())
     lon= forms.FloatField(widget=forms.HiddenInput())
     currency = ModelChoiceField(Currency.objects.filter(active=True), empty_label=None)
+    phone = forms.CharField(label=_('Your phone'))
 
 #    neighborhood= forms.FloatField(widget=forms.HiddenInput())
 
-#    postcode= forms.CharField(widget=forms.HiddenInput())
+
     def __init__(self, *args, **kwargs):
+        req_phone = kwargs.pop('req_phone',False)
         super(addPlaceForm, self).__init__(*args, **kwargs)
         self.fields['tags'].widget = forms.CheckboxSelectMultiple()
         self.fields["tags"].queryset = Tag.objects.all()
+        if not req_phone:
+            del self.fields['phone']
 #        self.fields['currency'].queryset = Currency.objects.filter(active=True)
 
     class Meta:
@@ -164,6 +168,8 @@ def addPlace(request, ajax=False, id=None):
     new_place = None
     loged_in = user.is_authenticated()
     photos = []
+    profile = user.get_profile()
+    ask_phone = not bool(profile.phone.strip())
     if id:
         old_place = get_object_or_404(Place, pk=id)
         photos = list(old_place.photo_set.values_list('id',flat=True))
@@ -175,7 +181,7 @@ def addPlace(request, ajax=False, id=None):
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
         login_form = LoginForm(request.POST)
-        form = addPlaceForm(request.POST, instance=old_place)
+        form = addPlaceForm(request.POST, instance=old_place, req_phone=ask_phone)
         if form.is_valid():
             new_place=form.save(commit=False)
 #            if register_form.is_valid() or loged_in:
@@ -184,6 +190,10 @@ def addPlace(request, ajax=False, id=None):
 #                    user.username = user.email
 #                    user.set_password(register_form.cleaned_data['pass1'])
 #                    user.save()
+            phone = form.cleaned_data.get('phone')
+            if phone:
+                profile.phone = phone
+                profile.save()
             new_place.owner = user
             new_place.lat = str(new_place.lat)
             new_place.lon = str(new_place.lon)
@@ -228,7 +238,7 @@ def addPlace(request, ajax=False, id=None):
 
 
     else:
-        form = addPlaceForm(instance=old_place)
+        form = addPlaceForm(instance=old_place, req_phone=ask_phone)
         register_form = RegisterForm()
         login_form = LoginForm()
     str_fee =  _('%s Service Fee '% configuration('host_fee'))

@@ -851,6 +851,14 @@ gh = {
         $('#ccno').mask("9999-9999-9999-9999");
         $('#ccv').mask("999");
         $('#ccexp').mask("99/99");
+        $('#ccpay').click(function(){
+            if($('#ccno').val() && $('#ccv').val()  && $('#ccexp').val() && $('#ccpay').val()){$('#paymentform').submit()}
+            else {
+                alert(trns('place_fill_all_req_fields'))
+                return false;
+            }
+        })
+
     },
     init_places:function(){
         var self = this;

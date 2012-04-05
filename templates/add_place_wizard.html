@@ -22,8 +22,12 @@
                 {% if form.errors %}
                     {% for er in form.errors %} {{ err }}{% endfor %}
                 {% endif %}
+            {% if form.phone %}
+                <p>{{ form.phone.label_tag }} {{ form.phone }}
+                    <span class="helptext">{% trans "Your phone number will not be published and will be used to contact you by GaniHomes staff." %}</span>
+                </p>
+            {% endif %}
                 <p>{{ form.title.label_tag }} {{ form.title }}</p>
-
                 <p>{{ form.type.label_tag }} {{ form.type }}</p>
 
                 <p>{{ form.space.label_tag }} {{ form.space }}</p>

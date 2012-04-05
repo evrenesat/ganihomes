@@ -1393,7 +1393,7 @@ li.g-plus-one {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    height: 580px;
+    height: 625px;
     /*margin-left: 20px;*/
     overflow: hidden;
     position: relative;
@@ -1403,7 +1403,7 @@ li.g-plus-one {
 }
 
 #wf {
-    height: 580px;
+    height: 625px;
     width: 3000px;
     position: absolute;
     overflow: auto;
