@@ -169,7 +169,7 @@ def addPlace(request, ajax=False, id=None):
     loged_in = user.is_authenticated()
     photos = []
     profile = user.get_profile()
-    ask_phone = not bool(profile.phone.strip())
+    ask_phone = not bool(profile.phone.strip()) if profile.phone else True
     if id:
         old_place = get_object_or_404(Place, pk=id)
         photos = list(old_place.photo_set.values_list('id',flat=True))
