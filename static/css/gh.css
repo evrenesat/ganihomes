@@ -3362,6 +3362,7 @@ ul.messages li{
 }
 #hostbox.write #hostmsg{
     display:block;
+    padding: 10px;
 }
 #hostbox.write #sendhostmessage{
     display:block;

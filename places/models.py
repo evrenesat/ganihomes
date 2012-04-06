@@ -35,6 +35,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     """
     at least receiver or place should be given
     """
+    status = 10
     if place and not hasattr(place, 'id'):
         place = Place.objects.get(pk=place)
     else:
@@ -43,9 +44,12 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
     if sender is None:
         if typ==40:
             sender = User.objects.filter(is_staff=True, username='GaniHomes')[0]
-        if not sender:
+        else:
             sender = rq.user
-    msg = sender.sent_messages.create(receiver=receiver, text=msg, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
+            if sender.is_staff == True:
+                typ=40
+                status = 20
+    msg = sender.sent_messages.create(receiver=receiver, text=msg, status=status, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
     mail2perm(msg, url=reverse('admin:places_message_change', args=(msg.id, )))
     return msg
 
@@ -1009,21 +1013,24 @@ class Message(models.Model):
     place = models.ForeignKey(Place, verbose_name=_('Place'),  null=True, blank=True)
     text = models.TextField(_('Message'))
     read = models.BooleanField(_('Was read'), default=False)
+    sent = models.BooleanField(_('Sent'), default=False, help_text=u"Alıcıya uyarı epostası gönderilmiş mi?")
     replied = models.BooleanField(_('Replied'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=MESSAGE_STATUS, default=10)
     type = models.SmallIntegerField(_('Type'), choices=MESSAGE_TYPES, default=0)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
     last_message_time = models.DateTimeField(_('Last message time'), default=datetime.datetime.now())
     lang = models.CharField(_('Language'), max_length=2, choices=LANGUAGES)
-
-    def __init__(self, *args, **kwargs):
-       super(Message, self).__init__(*args, **kwargs)
-       self.old_status = self.status
+#
+#    def __init__(self, *args, **kwargs):
+#       super(Message, self).__init__(*args, **kwargs)
+#       self.old_status = self.status
 
     def save(self, *args, **kwargs):
-        if self.status == 20 and self.old_status == 10:
-            self.send_message()
         super(Message, self).save(*args, **kwargs)
+        if not self.sent and self.status == 20:
+            if self.send_message():
+                self.sent = True
+
         kes('mcount',self.receiver_id).d()
 
     def send_message(self):
@@ -1043,7 +1050,7 @@ class Message(models.Model):
 
         if obj:
             subject = subject % obj
-        send_html_mail(subject, self.receiver.email, mail_context, template='mail/new_message.html', recipient_name=self.receiver.get_full_name())
+        return send_html_mail(subject, self.receiver.email, mail_context, template='mail/new_message.html', recipient_name=self.receiver.get_full_name())
 
 
     @classmethod

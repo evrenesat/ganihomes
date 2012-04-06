@@ -68,6 +68,9 @@ class MessageAdmin(admin.ModelAdmin):
     date_hierarchy = 'timestamp'
     raw_id_fields = ['sender','receiver','replyto','place']
     save_on_top = True
+#
+#    def save_model(self, request, obj, form, change):
+#        obj.save()
 
 class UserReviewAdmin(admin.ModelAdmin):
     list_display = ('writer', 'person', 'active','timestamp','status')
