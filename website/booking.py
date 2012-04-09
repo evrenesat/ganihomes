@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
@@ -35,7 +36,7 @@ def get_tl_currency_code():
     return tkod.g() or tkod.s(Currency.objects.filter(name='TRY', active=True).values_list('id',flat=True)[0])
 
 
-
+@login_required
 def complete_reservation(request, booking, user_message=_('Your booking request has been successfully sent to the host.')):
     booking.set_reservation()
     booking.save()
@@ -44,6 +45,7 @@ def complete_reservation(request, booking, user_message=_('Your booking request 
     messages.success(request, user_message)
     return HttpResponseRedirect('%s?showBookingRequest=%s'% (reverse('dashboard'), booking.id))
 
+@login_required
 def bank_transfer_complete(request):
     booking = get_booking(request)
     booking.payment_type = 3
@@ -51,7 +53,7 @@ def bank_transfer_complete(request):
     user_message = Ceviriler.cevir( 'rezervasyon kaydedildi.evsahibi odemeden sonra haberdar edilecek', request.LANGUAGE_CODE)
     return complete_reservation(request, booking, user_message)
 
-
+@login_required
 def paypal_complete(request):
     booking = get_booking(request)
     paypal_transaction = PayPalNVP.objects.get(method="DoExpressCheckoutPayment",ack='Success',custom=str(booking.id))
@@ -63,6 +65,8 @@ def paypal_complete(request):
 def paypal_cancel(request):
     return render_to_response('paypal-cancel.html',{}, context_instance=RequestContext(request))
 
+
+@login_required
 @csrf_exempt
 def cc_success(request):
     context= request.session.get('booking_context',{})
@@ -90,6 +94,8 @@ def cc_success(request):
         messages.error(request, _('Card can not charged.'))
 
     return HttpResponseRedirect(reverse('secure_booking'))
+
+
 
 @csrf_exempt
 def book_place(request):
@@ -136,6 +142,8 @@ def book_place(request):
     context['place']=place
     return HttpResponseRedirect(reverse('secure_booking'))
 
+
+@login_required
 def process_credit_card(request):
     pos_denizbank = Transaction.get_bank(request)
     booking = get_booking(request)
@@ -161,7 +169,7 @@ def process_credit_card(request):
     return HttpResponse(odeme_sonucu, mimetype='text/html')
 
 
-
+@login_required
 def secure_booking(request):
     if request.POST.get('paypal'):
         return HttpResponseRedirect('%s?express=1'%reverse('paypal_checkout'))
@@ -174,6 +182,8 @@ def secure_booking(request):
     context.update({'booking':booking, 'place':booking.place})
     return render_to_response('book_place.html',context, context_instance=RequestContext(request))
 
+
+@login_required
 def paypal_checkout(request):
 #    if request.method == 'POST':
     booking = get_booking(request)

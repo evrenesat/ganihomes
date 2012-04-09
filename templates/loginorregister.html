@@ -78,17 +78,34 @@
 <div class="iblock" style="width:100%;margin-top:45px;">
             <div class="fbdv">
                 <div class="orline" ></div><div class="or">{% trans "or" %}</div><div class="orline" ></div>
-                <input class="fbbutton" type="button" value="{% trans "Login with Facebook" %}">
+                <input class="fbbutton" onclick="F.connect(this.parentNode); return false;"  type="button" value="{% trans "Login with Facebook" %}">
             </div>
             <div class="fbdv">
                 <div class="orline" ></div><div class="or">{% trans "or" %}</div><div class="orline" ></div>
-                <input class="fbbutton" type="button" value="{% trans "Connect with Facebook" %}">
+                <input class="fbbutton" type="button" onclick="F.connect(this.parentNode); return false;"  value="{% trans "Connect with Facebook" %}">
             </div>
 </div>
             </div>
         </div>
     </div>
 
+
+
+{% endblock %}
+{% block closebody %}
+    <div id="fb-root"></div>
+    <script src="{{ STATIC_URL }}js/facebook.js" type="text/javascript"></script>
+    <script>
+        facebookAppId = '{{ FACEBOOK_APP_ID }}';
+        facebookDefaultScope = {{ FACEBOOK_DEFAULT_SCOPE_JS }};
+        staticUrl = '{{ STATIC_URL }}';
+        function facebookJSLoaded(){
+            FB.init({appId: facebookAppId, status: false, cookie: true, xfbml: true, oauth: true});
+        }
+        window.fbAsyncInit = facebookJSLoaded;
+        F = new facebookClass(facebookAppId);
+        F.load();
+    </script>
 
 
 {% endblock %}
