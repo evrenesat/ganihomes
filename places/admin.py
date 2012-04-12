@@ -193,7 +193,7 @@ class PlaceInline(admin.TabularInline):
 class ProfileAdmin(admin.ModelAdmin):
     raw_id_fields=('user', )
     list_display = ('full_name', )
-    search_fields = ['full_name', 'email']
+    search_fields = ['full_name', 'user__email']
 #    list_filter = ['', ]
 
 
