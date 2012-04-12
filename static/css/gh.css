@@ -4724,3 +4724,28 @@ list-style:none;
 #addplacevid{
     padding:20px;
 }
+#ccvloctor span{
+    margin: -5px 0 5px 30px ;
+    display:block;
+}
+#ccvloctor img{
+    margin: -10px 8px 0 10px;
+}
+#ccvloctor{
+    display:none;
+    width:280px;
+    position:absolute;
+    background-color:#fff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 10px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 10px 1px #cccccc;
+    box-shadow: 1px 1px 10px 1px #cccccc;
+}
+#whatisccv{
+    font-size:16px;
+    font-weight:bold;
+    color:green;
+    cursor:pointer;
+}

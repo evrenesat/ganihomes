@@ -92,13 +92,24 @@ gh = {
     STATIC_URL : '',
     LANGUAGE_CODE : 'en',
     iLOCALE : 'en-GB',
-    popap:function(trigger, popap_id, offset_x, offset_y){
+    popap:function (trigger, popap_id, offset_x, offset_y) {
         var self = this, ptimer = 0, popap = $(popap_id);
         this.rePlace(trigger, popap_id, offset_x, offset_y);
-        setTimer= function(){if(!ptimer)ptimer = setTimeout(function(){popap.fadeOut();ptimer=0;},1500);}
-        clearTimer= function(){clearTimeout(ptimer);ptimer=0;}
+        setTimer = function () {
+            if (!ptimer)ptimer = setTimeout(function () {
+                popap.fadeOut();
+                ptimer = 0;
+            }, 1500);
+        }
+        clearTimer = function () {
+            clearTimeout(ptimer);
+            ptimer = 0;
+        }
         popap.mouseleave(setTimer).mouseenter(clearTimer)
-        $(trigger).mouseover(function(){ setTimer(); popap.slideDown() })
+        $(trigger).mouseover(function () {
+            setTimer();
+            popap.slideDown()
+        })
     },
     popmodal:function(trigger, popap_id, offset_x, offset_y){
         var self = this, popap = $(popap_id);
@@ -711,6 +722,7 @@ gh = {
         var cin = this.fdate(dates[0]), cout = this.fdate(dates[1])
         if(!cif.val() || cin!=cif.val())cif.val(cin)
         if(!cof.val() || cout!=cof.val())cof.val(cout)
+        $('#info-select-dates').addClass('gizli')
     },
     checkReservationDates:function(dates){
         this.updateDateBoxes(dates)
@@ -776,13 +788,14 @@ gh = {
         cout = $('#id_checkout').val()
         if(!cin || !cout){
             $('#info-select-dates').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
+            setTimeout("$('#id_checkin').focus()",2000)
             return false
         }
-        if(this.total['ndays']<min_stay-1){
+        if(this.total['ndays']<min_stay){
             $('#info-stay-more').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
             return false
         }
-        if(max_stay>0 && this.total['ndays']>max_stay-1){
+        if(max_stay>0 && this.total['ndays']>max_stay){
             $('#info-stay-less').removeClass('gizli').fadeTo(300,0.3).fadeTo(800,1)
             return false
         }
@@ -851,6 +864,9 @@ gh = {
         $('#ccno').mask("9999-9999-9999-9999");
         $('#ccv').mask("999");
         $('#ccexp').mask("99/99");
+//        this.rePlace('whatisccv','ccvloctor',20)
+//        this.rePlace('whatisccv','ccvloctor',20)
+        this.popmodal('#whatisccv','#ccvloctor', 20, -200)
         $('#ccpay').click(function(){
             if($('#ccno').val() && $('#ccv').val()  && $('#ccexp').val() && $('#ccpay').val()){$('#paymentform').submit()}
             else {

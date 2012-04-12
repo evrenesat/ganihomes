@@ -97,7 +97,7 @@
                                         <li class="ptab"><a href="#odehavale">{% trans "Bank Transfer" %}</a></li>
                                     </ul>
                 <div id="odecc">
-                    {% cevir "rezervasyon odeme cc yardim" %}
+                    <img src="/static/images/visa_master.gif" align=right>{% cevir "rezervasyon odeme cc yardim" %}
                     <br><br>
 
                     <table>
@@ -113,7 +113,7 @@
                             <td>{% trans "Expire date" %}</td><td>: <input name="ccexp" id="ccexp" type="text" size="6"></td>
                         </tr>
                         <tr>
-                            <td>{% trans "Security code (CCV)" %}</td><td >: <input name="ccv" id="ccv" type="text" size="3"></td>
+                            <td>{% trans "Security code (CCV)" %}</td><td >: <input name="ccv" id="ccv" type="text" size="3"> <span id="whatisccv">(?)</span></td>
                         </tr>
                     </table>
                     <div style="width:100%;text-align:center;margin-top:20px;">
@@ -130,7 +130,11 @@
 
                 </div>
                 <div id="odepaypal">
-                    {% cevir "rezervasyon odeme paypal yardim" %}
+                    <table><tr><td>
+                        <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="#" onclick="javascript:window.open('https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=350');"><img  src="https://www.paypal.com/en_US/i/bnr/vertical_solution_PPeCheck.gif" border="0" alt="Solution Graphics"></a></td></tr></table><!-- PayPal Logo -->
+                    </td><td>
+                        {% cevir "rezervasyon odeme paypal yardim" %}
+                    </td></tr></table>
                     <div style="width:100%;text-align:center;margin-top:20px;">
                         {% csrf_token %}
                     <input name="paypal" type="submit" class="yemyesildugme fo16" value="{% trans "Book It using PayPal" %}">
@@ -162,4 +166,9 @@
 
 
 </form>
+    <div id="ccvloctor">
+    <img src="/static/images/ccv-locator.png">
+
+<span>    {% cevir "ccv nedir" %} </span>
+    </div>
 {% endblock %}
