@@ -283,6 +283,7 @@ def show_booking(request, id):
                 booking.status = 50
                 booking.rejection_date = datetime.now()
                 booking.voidPayment(request)
+                booking.del_reservation()
                 messages.info(request, _('Booking request canceled.'))
                 admin_warn='Rezervasyon istegi misafir tarafindan iptal edildi.'
             if job == 'banktransfer' and booking.status==8:

@@ -934,6 +934,13 @@ class Booking(models.Model):
         #TODO: implement payout host
         pass
 
+    def del_reservation(self):
+        r = self.reservation
+        if r:
+            self.reservation = None
+            self.save()
+            r.delete()
+
     def set_reservation(self):
         self.reservation = ReservedDates.objects.create(place = self.place, start= self.start, end=self.end, type=2)
 
