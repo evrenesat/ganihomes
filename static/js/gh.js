@@ -113,9 +113,14 @@ gh = {
     },
     popmodal:function(trigger, popap_id, offset_x, offset_y){
         var self = this, popap = $(popap_id);
-        this.rePlace(trigger, popap_id, offset_x, offset_y);
-        popap.prepend("<div class='closex'>x</div>").find('.closex').click(function(){popap.fadeOut();})
-        $(trigger).click(function(){  popap.slideDown() })
+
+        popap.prepend("<div class='closex'>x</div>").find('.closex').click(function () {
+            popap.fadeOut();
+        })
+        $(trigger).click(function () {
+            self.rePlace(trigger, popap_id, offset_x, offset_y);
+            popap.slideDown()
+        })
     },
     show_araicon:function(){
         if( $.inArray(this.initialized_page, ["index","search"])!=-1 || typeof(mainpage)!='undefined')return false
