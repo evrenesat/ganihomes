@@ -4749,3 +4749,12 @@ list-style:none;
     color:green;
     cursor:pointer;
 }
+#ccicon{
+    float:right;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+}
