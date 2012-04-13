@@ -255,8 +255,8 @@ def dashboard(request):
     user = request.user
     profile = user.get_profile()
     bookings = []
-    bookings.extend(Booking.objects.filter(status__in=[10,20,30], valid=True, host=user)[:2])
-    bookings.extend(Booking.objects.filter(status__in=[8,9,10,20,30], valid=True, guest=user)[:2])
+    bookings.extend(Booking.objects.filter(status__in=[10,20,30], valid=True, host=user)[:4])
+    bookings.extend(Booking.objects.filter(status__in=[8,9,10,20,30], valid=True, guest=user)[:4])
     context = {'places':user.place_set.all(),
                'form' : addPlaceForm(),
                'msgs':list_messages(request, 4),
