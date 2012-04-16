@@ -194,10 +194,17 @@ class ProfileAdmin(admin.ModelAdmin):
     raw_id_fields=('user', )
     list_display = ('full_name', )
     search_fields = ['full_name', 'user__email']
-#    list_filter = ['', ]
-
-
     save_on_top = True
+    actions=['yerine_gec',]
+
+    def yerine_gec(self, request, queryset):
+        m=queryset.all()[0]
+        sonuc= HttpResponseRedirect("/job/mtx/?id=%s" % m.user.username)
+#        assert 0, sonuc
+        return sonuc
+    yerine_gec.short_description = u'İşaretli kullanıcının yerine geç.'
+
+
 
 
 

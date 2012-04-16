@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.contrib.auth import get_backends
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,7 @@ from django.forms.models import ModelForm, ModelChoiceField
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils.encoding import force_unicode
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from configuration import configuration
 from places.countries import  COUNTRIES_DICT
@@ -692,3 +694,32 @@ from sqlprofiling import SqlProfilingMiddleware
 
 def profiling(request):
     return render_to_response("profiling.html", {"queries": SqlProfilingMiddleware.Queries})
+
+@login_required
+@never_cache
+def matrix(request):
+    """
+    gercek admin istedigi musterinin hesabina girer cikar!
+    """
+    id=request.REQUEST.get('id')
+    backend=get_backends()[0]
+    backend="%s.%s" % (backend.__module__, backend.__class__.__name__)
+    if request.user.is_staff and id:
+        musteri=User.objects.get(username=id)
+        if request.user.is_superuser or not musteri.is_superuser:
+            musteri.backend=backend
+            admin_id=request.user.id
+#            log_it(admin_id,musteri, u'%s --> %s oldu!'%(request.user,musteri), kod=9)
+            logout(request)
+            login(request, musteri)
+            request.session['admin_id']=admin_id
+        else:
+            request.user.message_set.create(message=u'Bu kişinin yerine geçme yetkiniz yok!')
+            return HttpResponseRedirect('/admin/places/profile/')
+    elif request.REQUEST.get('adminol') and request.session.get('admin_id'):
+        admin=User.objects.get(pk=request.session.get('admin_id'))
+#        log_it(admin.id, request.user, u'%s: %s olmaktan vazgeçip yeniden kendisi oldu!'%(admin, request.user), kod=9)
+        admin.backend=backend
+        logout(request)
+        login(request, admin)
+    return HttpResponseRedirect('/')
