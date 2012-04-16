@@ -951,7 +951,7 @@ class Booking(models.Model):
 
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ['-timestamp']
         get_latest_by = "timestamp"
         verbose_name = _('Booking')
         verbose_name_plural = _('Bookings')
