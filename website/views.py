@@ -678,10 +678,21 @@ def profiling(request):
 @never_cache
 def user_from_session(request):
     session_key = request.GET.get('key')
-    session = Session.objects.get(session_key=session_key)
-    uid = session.get_decoded().get('_auth_user_id')
-    username = User.objects.filter(id=uid).values_list('username',flat=True)[0]
-    return HttpResponseRedirect('/admin/places/profile/?q=%s'%username)
+    hata = ''
+    try:
+        session = Session.objects.get(session_key=session_key)
+        uid = session.get_decoded().get('_auth_user_id')
+        try:
+            username = User.objects.filter(id=uid).values_list('username',flat=True)[0]
+        except User.DoesNotExist:
+            hata = 'kullanici bulunamadi'
+    except Session.DoesNotExist:
+        hata ='oturum bulunamadi'
+    if not hata:
+        return HttpResponseRedirect('/admin/places/profile/?q=%s'%username)
+    else:
+        return HttpResponse(hata, 'text/plain')
+
 
 
 @staff_member_required
