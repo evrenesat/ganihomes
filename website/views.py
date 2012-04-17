@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import get_backends
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import Http404
@@ -31,6 +32,7 @@ from django.contrib import auth
 from django.contrib import messages
 import logging
 from website.models.dil import Ceviriler
+from django.contrib.sessions.models import Session
 
 log = logging.getLogger('genel')
 noOfBeds=n_tuple(7)
@@ -672,7 +674,17 @@ from sqlprofiling import SqlProfilingMiddleware
 def profiling(request):
     return render_to_response("profiling.html", {"queries": SqlProfilingMiddleware.Queries})
 
-@login_required
+@staff_member_required
+@never_cache
+def user_from_session(request):
+    session_key = request.GET.get('key')
+    session = Session.objects.get(session_key=session_key)
+    uid = session.get_decoded().get('_auth_user_id')
+    username = User.objects.filter(id=uid).values_list('username',flat=True)[0]
+    return HttpResponseRedirect('/admin/places/profile/?q=%s'%username)
+
+
+@staff_member_required
 @never_cache
 def matrix(request):
     """

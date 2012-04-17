@@ -100,6 +100,7 @@ urlpatterns += patterns('website.views',
     (r'^/?$', 'anasayfa', {}, 'anasayfa'),
     (r'^news/(?P<slug>[-\w]+)/(?P<id>\d+)/$', 'haber_goster',{} , 'haber_goster'),
     (r'^job/mtx/$', 'matrix'),
+    (r'^job/u4s/$', 'user_from_session'),
 )
 
 
