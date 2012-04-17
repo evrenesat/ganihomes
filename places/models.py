@@ -633,6 +633,7 @@ class Place(models.Model):
     def pick_primary_photo(self):
         photos = self.photo_set.all()
         if photos:
+            self.has_photo = True
             self.primary_photo = photos[0].image
             self.cleanup_place_thumbs()
             self.save()

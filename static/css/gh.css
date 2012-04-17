@@ -2895,6 +2895,9 @@ ul.messages li{
     margin: 0;
     padding: 0;
 }
+.sresults div.img{
+    background-size:120px 100px;
+}
 .sresults .pimg .img, .sresults .ownimg{
     border: 2px solid #fff;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
