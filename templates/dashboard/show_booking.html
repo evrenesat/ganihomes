@@ -15,10 +15,11 @@
                 {{ place.get_type_display }} / {{ place.get_space_display }}
                 <br>
                 {% if booking.status >= 20 %}
+                    <div style="display:table">
                     {{ place.address }}<br>
                     {{ place.neighborhood }} / {{ place.street }} / {{ place.district }}<br>
                     {{ place.city }} / {{ place.state }} / {{ place.country }}
-
+                    </div>
 
                 {% endif %}
 
@@ -50,13 +51,13 @@
                     <span class="ozz_label">{% trans "Contact informarion of your guest" %}</span> <span id=bookcontinfo class="ozz_value">
                     {{ booking.guest.get_full_name }}<br>
                     {{ booking.guest.email }}<br>
-                    {{ booking.guest.phone }}<br>
+                    {{ booking.guest.get_profile.phone }}<br>
                 </span>
                 {% else %}
                     <span class="ozz_label">{% trans "Contact informarion of your host" %}</span> <span class="ozz_value">
                     {{ booking.host.get_full_name }}<br>
                     {{ booking.host.email }}<br>
-                    {{ booking.guest.phone }}<br>
+                    {{ booking.guest.get_profile.phone }}<br>
                 </span>
                 {% endif %}
             {% endif %}
