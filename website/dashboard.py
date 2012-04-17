@@ -61,7 +61,7 @@ def list_places(request):
     pls = request.user.place_set.filter(active=True).order_by('-id')
     return render_to_response('dashboard/place_list.html', {"places":pls}, context_instance=RequestContext(request))
 
-
+@login_required
 @csrf_exempt
 def save_photo_order(request, id):
     place = get_object_or_404(Place, owner=request.user, pk=id)
@@ -70,6 +70,7 @@ def save_photo_order(request, id):
         place.reorderPhotos(iids)
         return HttpResponse([1], mimetype='application/json')
 
+@login_required
 @csrf_exempt
 def add_friend(request, id):
     user = request.user
@@ -87,6 +88,7 @@ def add_friend(request, id):
         result = {'message':force_unicode(_('Request already exists.'))}
     return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
+@login_required
 @csrf_exempt
 def publish_place(request):
     user = request.user
@@ -101,6 +103,7 @@ def publish_place(request):
             messages.success(request, _('This place is now published!'))
     return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
+@login_required
 @csrf_exempt
 def delete_place(request):
     user = request.user
@@ -110,6 +113,7 @@ def delete_place(request):
         result = {'message':force_unicode(_('Place is deleted.'))}
     return HttpResponse(json.dumps(result, ensure_ascii=False), mimetype='application/json')
 
+@login_required
 @csrf_exempt
 def confirm_friendship(request):
     user = request.user
@@ -145,6 +149,7 @@ def save_calendar(request, id):
         place.setUnavailDates(unavails)
         return HttpResponse([1], mimetype='application/json')
 
+@login_required
 def calendar(request, id):
     place = get_object_or_404(Place, owner=request.user, pk=id)
     return render_to_response('dashboard/calendar.html',
@@ -266,11 +271,12 @@ def dashboard(request):
     }
     return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
 
+@login_required
 def show_messages(request):
     context = {'msgs':list_messages(request),}
     return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
 
-
+@login_required
 def show_booking(request, id):
     user = request.user
     booking = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
@@ -326,7 +332,7 @@ def show_booking(request, id):
     return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
 
 
-
+@login_required
 def show_message(request, id):
     user = request.user
     profile = user.get_profile()
@@ -364,6 +370,7 @@ def show_message(request, id):
     return render_to_response('dashboard/show_message.html', context, context_instance=RequestContext(request))
 
 #@csrf_exempt
+@login_required
 def new_message(request, id):
     user = request.user
     receiver = User.objects.get(pk=id)
@@ -383,6 +390,7 @@ class PasswordForm(forms.Form):
     old = forms.CharField(widget=forms.PasswordInput(),label=_('Old password'))
     new1 = forms.CharField(widget=forms.PasswordInput(),label=_('New password'))
     new2 = forms.CharField(widget=forms.PasswordInput(),label=_('New password (again)'))
+
 
 @login_required
 def change_password(request):
@@ -449,7 +457,7 @@ def edit_profile(request):
 
 
 
-
+@login_required
 @csrf_exempt
 def pfoto(request):
     profile = request.user.get_profile()

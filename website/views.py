@@ -372,20 +372,14 @@ def square_thumbnail(source, size=(50, 50)):
 @csrf_exempt
 def multiuploader(request, place_id=None):
     #FIXME : file type checking
+    result = []
     if request.method == 'POST':
-#        log.info('received POST to main multiuploader view')
-        if request.FILES == None:
+        if not request.FILES:
             return HttpResponseBadRequest('Must have files attached!')
-
-        #getting file data for farther manipulations
         file = request.FILES[u'files[]']
         wrapped_file = UploadedFile(file)
         filename = wrapped_file.name[:59]
         file_size = wrapped_file.file.size
-#        log.info (u'Got file: %s'%filename)
-        #writing file manually into model
-        #because we don't need form of any type.
-
         image = Photo()
         image.name=filename
         image.image=file
@@ -396,32 +390,13 @@ def multiuploader(request, place_id=None):
                 return HttpResponseForbidden()
             image.place = place
         image.save()
-#        im = Image.open(image.image)
-##        im.thumbnail((500, 500), Image.ANTIALIAS)
-#        mark = Image.open('%s/images/klise.png'% settings.STATIC_ROOT)
-#        #    watermark(im, mark, 'tile', 0.5)
-#        #    watermark(im, mark, 'scale', 1.0)
-#        watermark(im, mark, (0, 0), 0.5).save(image.image.path, "JPEG", quality=95)
 
         if not place_id:
             tmp_photos = request.session.get('tmp_photos',[])
             tmp_photos.append(image.id)
             request.session['tmp_photos'] = tmp_photos
-#        log.info('File saving done')
-
-        #getting url for photo deletion
         file_delete_url = '/delete_photo/'
-
-        #getting file url here
         file_url = image.image.url
-
-        #getting thumbnail url using sorl-thumbnail
-#        im = square_thumbnail(image.image)
-#        thumb_url = im.url
-#        thumb_tag = im.tag()
-
-        #generating json response array
-        result = []
         result.append({"name":filename,
                        "size":file_size,
                        "url":file_url,
@@ -430,8 +405,10 @@ def multiuploader(request, place_id=None):
                        "id":str(image.pk),
                        "delete_url":file_delete_url+str(image.pk),
                        "delete_type":"POST"})
-        response_data = json.dumps(result)
-        return HttpResponse(response_data, mimetype='text/html')
+    else:
+        log.info('no POST request')
+    response_data = json.dumps(result)
+    return HttpResponse(response_data, mimetype='text/html')
 
 @csrf_exempt
 def bookmark(request):
@@ -702,24 +679,22 @@ def matrix(request):
     gercek admin istedigi musterinin hesabina girer cikar!
     """
     id=request.REQUEST.get('id')
+    suser=request.user
     backend=get_backends()[0]
     backend="%s.%s" % (backend.__module__, backend.__class__.__name__)
-    if request.user.is_staff and id:
-        musteri=User.objects.get(username=id)
-        if request.user.is_superuser or not musteri.is_superuser:
+    if request.user.is_superuser and id:
+        musteri=User.objects.get(pk=id)
+        if not musteri.is_superuser:
             musteri.backend=backend
             admin_id=request.user.id
 #            log_it(admin_id,musteri, u'%s --> %s oldu!'%(request.user,musteri), kod=9)
-            logout(request)
-            login(request, musteri)
+            log.info('#%s %s kullanicisi #%s %s in yerine gecti.' % (suser.id, suser.username, id, musteri.username))
+            auth.logout(request)
+            auth.login(request, musteri)
             request.session['admin_id']=admin_id
         else:
-            request.user.message_set.create(message=u'Bu kişinin yerine geçme yetkiniz yok!')
-            return HttpResponseRedirect('/admin/places/profile/')
-    elif request.REQUEST.get('adminol') and request.session.get('admin_id'):
-        admin=User.objects.get(pk=request.session.get('admin_id'))
-#        log_it(admin.id, request.user, u'%s: %s olmaktan vazgeçip yeniden kendisi oldu!'%(admin, request.user), kod=9)
-        admin.backend=backend
-        logout(request)
-        login(request, admin)
+            request.user.message_set.create(message=u'Super kullanici yerine geçmezsiniz!!!')
+    else:
+        request.user.message_set.create(message=u'Kimsenin yerine geçme yetkiniz yok!')
+        return HttpResponseRedirect('/admin/places/profile/')
     return HttpResponseRedirect('/')

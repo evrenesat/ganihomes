@@ -99,7 +99,7 @@ urlpatterns += patterns('website.views',
     (r'^find_place/$', 'searchPlace', {}, 'search_place'),
     (r'^/?$', 'anasayfa', {}, 'anasayfa'),
     (r'^news/(?P<slug>[-\w]+)/(?P<id>\d+)/$', 'haber_goster',{} , 'haber_goster'),
-    (r'^matrix/$', 'matrix', 'matrix'),
+    (r'^job/mtx/$', 'matrix'),
 )
 
 

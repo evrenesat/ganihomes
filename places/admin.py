@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.http import HttpResponseRedirect
+
 __author__ = 'Evren Esat Ozkan'
 
 
@@ -199,7 +201,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
     def yerine_gec(self, request, queryset):
         m=queryset.all()[0]
-        sonuc= HttpResponseRedirect("/job/mtx/?id=%s" % m.user.username)
+        sonuc= HttpResponseRedirect("/job/mtx/?id=%s" % m.user.id)
 #        assert 0, sonuc
         return sonuc
     yerine_gec.short_description = u'İşaretli kullanıcının yerine geç.'

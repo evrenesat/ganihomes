@@ -563,6 +563,7 @@ class Place(models.Model):
 #        self.primary_photo = self.photo_set.get(pk=ids[0]).image
 #        self.save()
         for id in ids:
+            if not id: continue
             order +=1
             self.photo_set.filter(pk=id).update(order=order)
         self.pick_primary_photo()
