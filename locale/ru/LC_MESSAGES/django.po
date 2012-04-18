@@ -8,123 +8,123 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 16:55+0200\n"
-"PO-Revision-Date: 2012-03-06 11:09\n"
+"POT-Creation-Date: 2012-03-01 16:56+0200\n"
+"PO-Revision-Date: 2012-03-20 12:41\n"
 "Last-Translator: seren can <seren.can@ganihomes.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 "X-Translated-Using: django-rosetta 0.6.4\n"
 
 #: settings.local.py:44 settings.py:65 places/countries.py:809
 #: places/options.py:207
 msgid "English"
-msgstr "English"
+msgstr "Aнглийский"
 
 #: settings.local.py:45 settings.py:66 places/countries.py:937
 #: places/options.py:227
 msgid "Turkish"
-msgstr "Türkçe"
+msgstr "турецкий"
 
 #: settings.py:68 places/countries.py:811
 msgid "Spanish"
-msgstr "Español"
+msgstr "испанский"
 
 #: settings.py:69 places/countries.py:804
 msgid "German"
-msgstr "Alemania"
+msgstr "немецкий"
 
 #: settings.py:70 places/countries.py:844
 msgid "Italian"
-msgstr "Italia"
+msgstr "итальянский"
 
 #: settings.py:71 places/countries.py:819
 msgid "French"
-msgstr "French"
+msgstr "французский"
 
 #: settings.py:72 places/countries.py:908
 msgid "Russian"
-msgstr "Ruso"
+msgstr "русский"
 
 #: settings.py:73 places/countries.py:901
 msgid "Polish"
-msgstr "publicar"
+msgstr "польский"
 
 #: settings.py:74 places/countries.py:888
 msgid "Dutch"
-msgstr "Alemán"
+msgstr "голландский"
 
 #: settings.py:75 places/countries.py:903
 msgid "Portuguese"
-msgstr "Portugal"
+msgstr "португальский"
 
 #: configuration/modelbase.py:12 configuration/modelbase.py:13
 #: configuration/modelbase.py:45
+#, fuzzy
 msgid "Configuration Options"
-msgstr "Opciones de configuración"
+msgstr "подтверждение"
 
 #: django_facebook/views.py:109
 #, python-format
 msgid "You have connected your account to %s's facebook profile"
-msgstr "Está conectado a la cuenta con el perfil Facebook de %s"
+msgstr "Вы подключились к своему счету через %s's   Facebook профиль"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:56
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:20
 msgid "Font Name and Size"
-msgstr "Nombre y tamaño de la fuente"
+msgstr "Имя и размер шрифта"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:81
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:45
 msgid "Font Style"
-msgstr "Estilo de la Fuente"
+msgstr "Стиль шрифта"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:83
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:47
 msgid "Bold CTRL + SHIFT + B"
-msgstr "Negrita CTRL + SHIFT + B"
+msgstr "смелый CTRL + SHIFT + B"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:84
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:48
 msgid "Italic CTRL + SHIFT + I"
-msgstr "Cursiva CTRL + SHIFT + I"
+msgstr "курсив CTRL + SHIFT + I"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:85
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:49
 msgid "Underline CTRL + SHIFT + U"
-msgstr "Subrayó CTRL + SHIFT + U"
+msgstr "подчеркивание CTRL + SHIFT + U"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:87
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:54
 msgid "Font Color"
-msgstr "Color de la Fuente"
+msgstr "Цвет шрифта"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:88
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:55
 msgid "Background Color"
-msgstr "Color de Fondo"
+msgstr "Цвет фона"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:96
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:91
 msgid "Lists"
-msgstr "Listas"
+msgstr "Списки"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:98
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:95
 msgid "Create an Unordered List"
-msgstr "Crear una lista desordenada."
+msgstr "Создания маркированного списка"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:99
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:96
 msgid "Create an Ordered List"
-msgstr "Crear una lista ordenada"
+msgstr "Создание нумерованного списка"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:107
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:104
 msgid "Insert Item"
-msgstr "Insertar Elemento"
+msgstr "Вставить пункт"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:109
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:106
@@ -134,104 +134,109 @@ msgstr "HTML Link CTRL + SHIFT + L"
 #: django_wysiwyg/templates/django_wysiwyg/yui/includes.html:110
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:107
 msgid "Insert Image"
-msgstr "Insertar Imagen"
+msgstr "Вставить изображение"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:51
 msgid "Subscript"
-msgstr "Subíndice"
+msgstr "индекс"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:52
 msgid "Superscript"
-msgstr "Sobrescrito"
+msgstr "верхний индекс"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:57
 msgid "Remove Formatting"
-msgstr "quitar el formato de"
+msgstr "Удалить форматирование"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:58
 msgid "Show/Hide Hidden Elements"
-msgstr "Mostrar / Ocultar elementos ocultos"
+msgstr "Показать / скрыть скрытые элементы"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:64
 msgid "Align Left CTRL + SHIFT + ["
-msgstr "Alinear a la Izquierda CTRL + SHIFT + ["
+msgstr "Выровнять по левому краю CTRL + SHIFT + ["
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:65
 msgid "Align Center CTRL + SHIFT + |"
-msgstr "Alinear al centro CTRL + SHIFT + |"
+msgstr "Выровнять по центру CTRL + SHIFT + |"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:66
 msgid "Align Right CTRL + SHIFT + ]"
-msgstr "Alinear a la derecha CTRL + SHIFT + ]"
+msgstr "По правому краю CTRL + SHIFT + ]"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:67
 msgid "Justify"
-msgstr "Justify"
+msgstr "оправдывать"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:71
 msgid "Paragraph Style"
-msgstr "Estilo de Párrafo"
+msgstr "Стиль абзаца"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:73
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:75
 msgid "Normal"
-msgstr "Normal"
+msgstr "нормальный"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:76
 msgid "Header 1"
-msgstr "Encabezamiento 1"
+msgstr "заголовок 1"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:77
 msgid "Header 2"
-msgstr "Encabezamiento 2"
+msgstr "заголовок 2"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:78
 msgid "Header 3"
-msgstr "Encabezamiento 3"
+msgstr "заголовок 3"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:79
 msgid "Header 4"
-msgstr "Encabezamiento 4"
+msgstr "заголовок 4"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:80
 msgid "Header 5"
-msgstr "Encabezamiento 5"
+msgstr "заголовок 5"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:81
 msgid "Header 6"
-msgstr "Encabezamiento 6"
+msgstr "заголовок 6"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:93
 msgid "Indent"
-msgstr "Guión"
+msgstr "отступ"
 
 #: django_wysiwyg/templates/django_wysiwyg/yui_advanced/includes.html:94
 msgid "Outdent"
-msgstr "Anular sangría"
+msgstr "Выступ"
 
 #: filebrowser/conf.py:119
+#, fuzzy
 msgid "Folder"
-msgstr "Carpeta"
+msgstr "Фильтр"
 
 #: filebrowser/conf.py:120
+#, fuzzy
 msgid "Image"
-msgstr "Imagen"
+msgstr "название изображения"
 
 #: filebrowser/conf.py:121
+#, fuzzy
 msgid "Video"
-msgstr "Video"
+msgstr "действительный"
 
 #: filebrowser/conf.py:122
+#, fuzzy
 msgid "Document"
-msgstr "Documento"
+msgstr "документация"
 
 #: filebrowser/conf.py:123
 msgid "Audio"
-msgstr "Audio"
+msgstr "аудио"
 
 #: filebrowser/conf.py:124
+#, fuzzy
 msgid "Code"
-msgstr "Código"
+msgstr "закрыто"
 
 #: filebrowser/fields.py:58
 #, python-format
@@ -245,7 +250,7 @@ msgstr "Extension %(ext)s is not allowed. Only %(allowed)s is allowed."
 #: templates/contactus/form.html:17 website/models/faq.py:14
 #: website/models/faq.py:50
 msgid "Name"
-msgstr "Nombre"
+msgstr "имя"
 
 #: filebrowser/forms.py:26 filebrowser/forms.py:32 filebrowser/forms.py:49
 #: filebrowser/forms.py:55
@@ -254,49 +259,52 @@ msgstr "Only letters, numbers, underscores, spaces and hyphens are allowed."
 
 #: filebrowser/forms.py:35 filebrowser/forms.py:58
 msgid "The Folder already exists."
-msgstr "The Folder already exists."
+msgstr ""
 
 #: filebrowser/forms.py:49
+#, fuzzy
 msgid "New Name"
-msgstr "Nuevo Nombre"
+msgstr "имя"
 
 #: filebrowser/forms.py:60
+#, fuzzy
 msgid "The File already exists."
-msgstr "The File already exists."
+msgstr "Имеется такой существующий потребитель."
 
 #: filebrowser/views.py:58 filebrowser/views.py:168 filebrowser/views.py:223
 #: filebrowser/views.py:322 filebrowser/views.py:404 filebrowser/views.py:465
 msgid "The requested Folder does not exist."
-msgstr "The requested Folder does not exist."
+msgstr ""
 
 #: filebrowser/views.py:62
 msgid "Error finding Upload-Folder. Maybe it does not exist?"
-msgstr "Error finding Upload-Folder. Maybe it does not exist?"
+msgstr ""
 
 #: filebrowser/views.py:145 filebrowser/templates/filebrowser/append.html:5
 #: filebrowser/templates/filebrowser/append.html:7
 #: filebrowser/templates/filebrowser/include/breadcrumbs.html:8
 #: filebrowser/templates/filebrowser/include/breadcrumbs.html:10
 msgid "FileBrowser"
-msgstr "Explorador de archivos"
+msgstr "File Browser"
 
 #: filebrowser/views.py:186
-#, python-format
+#, fuzzy, python-format
 msgid "The Folder %s was successfully created."
-msgstr "Su contraseña ha sido cambiado con éxito."
+msgstr "Ваш пароль успешно заменен."
 
 #: filebrowser/views.py:195
+#, fuzzy
 msgid "Permission denied."
-msgstr "Permission denied."
+msgstr "сессия конца"
 
 #: filebrowser/views.py:197
 msgid "Error creating folder."
-msgstr "Error creating folder."
+msgstr ""
 
 #: filebrowser/views.py:204 filebrowser/views.py:207
 #: filebrowser/templates/filebrowser/index.html:48
 msgid "New Folder"
-msgstr "Nueva Carpeta"
+msgstr ""
 
 #: filebrowser/views.py:235
 msgid "Select files to upload"
@@ -305,49 +313,51 @@ msgstr ""
 #: filebrowser/views.py:239 filebrowser/templates/filebrowser/index.html:49
 #: filebrowser/templates/filebrowser/upload.html:111
 msgid "Upload"
-msgstr "Subir"
+msgstr "загружать"
 
 #: filebrowser/views.py:324 filebrowser/views.py:406 filebrowser/views.py:467
 msgid "The requested File does not exist."
-msgstr "The requested File does not exist."
+msgstr ""
 
 #: filebrowser/views.py:347
-#, python-format
+#, fuzzy, python-format
 msgid "The file %s was successfully deleted."
-msgstr "The file %s was successfully deleted."
+msgstr "Успешное обновление своего профиля."
 
 #: filebrowser/views.py:363
-#, python-format
+#, fuzzy, python-format
 msgid "The folder %s was successfully deleted."
-msgstr "The folder %s was successfully deleted."
+msgstr "Успешное обновление своего профиля."
 
 #: filebrowser/views.py:433
 msgid "Renaming was successful."
-msgstr "El cambio de nombre fue un éxito."
+msgstr ""
 
 #: filebrowser/views.py:438
 msgid "Error."
-msgstr "Error"
+msgstr "Ошибка"
 
 #: filebrowser/views.py:446
 #, python-format
 msgid "Rename \"%s\""
-msgstr "Rename \"%s\""
+msgstr ""
 
 #: filebrowser/views.py:449
 #: filebrowser/templates/filebrowser/include/filelisting.html:86
+#, fuzzy
 msgid "Rename"
-msgstr "Cambiar nombre"
+msgstr "Имя пользователя"
 
 #: filebrowser/views.py:475 filebrowser/views.py:478
 #, python-format
 msgid "Versions for \"%s\""
-msgstr "Versions for \"%s\""
+msgstr ""
 
 #: filebrowser/templates/filebrowser/makedir.html:24
 #: filebrowser/templates/filebrowser/rename.html:25
+#, fuzzy
 msgid "Please correct the following errors."
-msgstr "Por favor corregir los siguientes errores."
+msgstr "Пожалуйста, исправить следующие ошибки"
 
 #: filebrowser/templates/filebrowser/makedir.html:33
 #: filebrowser/templates/filebrowser/upload.html:101
@@ -355,29 +365,29 @@ msgid ""
 "The Name will be converted to lowercase. Spaces will be replaced with "
 "underscores."
 msgstr ""
-"The Name will be converted to lowercase. Spaces will be replaced with "
-"underscores."
 
 #: filebrowser/templates/filebrowser/makedir.html:39
 #: filebrowser/templates/filebrowser/rename.html:36
+#, fuzzy
 msgid "Submit"
-msgstr "Presentar"
+msgstr "индекс"
 
 #: filebrowser/templates/filebrowser/upload.html:47
 msgid "BROWSE"
-msgstr "BUSCA"
+msgstr "ПОИСК"
 
 #: filebrowser/templates/filebrowser/upload.html:48
 msgid "An Error occured"
-msgstr "Se produjo un error"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/upload.html:49
+#, fuzzy
 msgid "Completed"
-msgstr "Terminado"
+msgstr "удаленный"
 
 #: filebrowser/templates/filebrowser/upload.html:50
 msgid "Do you want to replace the file"
-msgstr "Do you want to replace the file"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/upload.html:51
 msgid "KB"
@@ -389,27 +399,31 @@ msgstr "MB"
 
 #: filebrowser/templates/filebrowser/upload.html:85
 msgid "Help"
-msgstr "Ayuda"
+msgstr "Помощь"
 
 #: filebrowser/templates/filebrowser/upload.html:89
+#, fuzzy
 msgid "Allowed"
-msgstr "Permitido"
+msgstr "закрыто"
 
 #: filebrowser/templates/filebrowser/upload.html:95
+#, fuzzy
 msgid "Max. Filesize"
-msgstr "Tamaño máximo del archivo"
+msgstr "мальтийский"
 
 #: filebrowser/templates/filebrowser/upload.html:109
+#, fuzzy
 msgid "Clear Queue"
-msgstr "Clear Queue"
+msgstr "Уборка"
 
 #: filebrowser/templates/filebrowser/versions.html:66
+#, fuzzy
 msgid "Image Version"
-msgstr "Image Version"
+msgstr "название изображения"
 
 #: filebrowser/templates/filebrowser/versions.html:69
 msgid "Debug"
-msgstr "depurar"
+msgstr "отлаживать"
 
 #: filebrowser/templates/filebrowser/versions.html:83
 #: filebrowser/templates/filebrowser/versions.html:95
@@ -417,1637 +431,1656 @@ msgstr "depurar"
 #: filebrowser/templates/filebrowser/include/filelisting.html:11
 #: filebrowser/templates/filebrowser/include/filelisting.html:23
 #: filebrowser/templates/filebrowser/include/filelisting.html:35
+#, fuzzy
 msgid "Select"
-msgstr "Seleccionar"
+msgstr "улица"
 
 #: filebrowser/templates/filebrowser/versions.html:118
 msgid "Width"
-msgstr "ancho"
+msgstr "ширина"
 
 #: filebrowser/templates/filebrowser/versions.html:119
+#, fuzzy
 msgid "Height"
-msgstr "Altura"
+msgstr "ночь"
 
 #: filebrowser/templates/filebrowser/include/breadcrumbs.html:5
 #: rosetta/templates/rosetta/languages.html:6
 #: rosetta/templates/rosetta/pofile.html:21 templates/admin/base.html:49
 #: templates/admin/change_form.html:21 templates/admin/change_list.html:43
 msgid "Home"
-msgstr "Tu Página de Inicio"
+msgstr "домой"
 
 #: filebrowser/templates/filebrowser/include/filelisting.html:50
+#, fuzzy
 msgid "View Image"
-msgstr "Ver Imagen"
+msgstr "Вставить изображение"
 
 #: filebrowser/templates/filebrowser/include/filelisting.html:73
+#, fuzzy
 msgid "Versions"
-msgstr "Versiones"
+msgstr "человек"
 
 #: filebrowser/templates/filebrowser/include/filelisting.html:92
 msgid "Are you sure you want to delete this file?"
-msgstr "Are you sure you want to delete this file?"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/include/filelisting.html:92
+#, fuzzy
 msgid "Delete File"
-msgstr "Eliminar archivo"
+msgstr "Удаление билетов"
 
 #: filebrowser/templates/filebrowser/include/filelisting.html:95
 msgid "Are you sure you want to delete this Folder?"
-msgstr "Are you sure you want to delete this Folder?"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/include/filelisting.html:95
+#, fuzzy
 msgid "Delete Folder"
-msgstr "Eliminar carpeta"
+msgstr "удаленный"
 
 #: filebrowser/templates/filebrowser/include/filter.html:3
 #: rosetta/templates/rosetta/languages.html:11
 #: templates/admin/change_list.html:80
 msgid "Filter"
-msgstr "Filtro"
+msgstr "Фильтр"
 
 #: filebrowser/templates/filebrowser/include/filter.html:9
+#, fuzzy
 msgid "By Date"
-msgstr "Por Fecha"
+msgstr "Даты"
 
 #: filebrowser/templates/filebrowser/include/filter.html:11
+#, fuzzy
 msgid "Any Date"
-msgstr "Cualquier fecha"
+msgstr "Даты"
 
 #: filebrowser/templates/filebrowser/include/filter.html:13
+#, fuzzy
 msgid "Today"
-msgstr "Hoy"
+msgstr "тело"
 
 #: filebrowser/templates/filebrowser/include/filter.html:15
 msgid "Past 7 days"
-msgstr "Los últimos 7 días"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/include/filter.html:17
 msgid "Past 30 days"
-msgstr "Los últimos 30 días"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/include/filter.html:19
+#, fuzzy
 msgid "This year"
-msgstr "Este año"
+msgstr "третье лицо"
 
 #: filebrowser/templates/filebrowser/include/filter.html:27
+#, fuzzy
 msgid "By Type"
-msgstr "Por tipo"
+msgstr "тип"
 
 #: filebrowser/templates/filebrowser/include/filter.html:29
 #: rosetta/templates/rosetta/languages.html:15
 #: rosetta/templates/rosetta/pofile.html:39 website/views.py:36
 msgid "All"
-msgstr "Todos"
+msgstr "все"
 
 #: filebrowser/templates/filebrowser/include/paginator.html:5
 msgid "No Items Found"
-msgstr "No se han encontrado"
+msgstr ""
 
 #: filebrowser/templates/filebrowser/include/paginator.html:11
-#, python-format
+#, fuzzy, python-format
 msgid "%(counter)s Item"
 msgid_plural "%(counter)s Items"
-msgstr[0] "%(counter)s Items"
-msgstr[1] "%(counter)s Item"
+msgstr[0] "%(more_count)sбольше"
+msgstr[1] "%(more_count)s больше"
 
 #: filebrowser/templates/filebrowser/include/paginator.html:26
+#, fuzzy
 msgid "No Items"
-msgstr "No hay artículos"
+msgstr "Примечания"
 
 #: filebrowser/templates/filebrowser/include/search.html:3
 #, python-format
 msgid "1 result"
 msgid_plural "%(counter)s results"
-msgstr[0] "%(counter)s results"
-msgstr[1] "1 result"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: filebrowser/templates/filebrowser/include/search.html:4
 #: filebrowser/templates/filebrowser/include/toolbar.html:19
-#, python-format
+#, fuzzy, python-format
 msgid "%(full_result_count)s total"
-msgstr "%(full_result_count)s total"
+msgstr "%(more_count)sбольше"
 
 #: filebrowser/templates/filebrowser/include/search.html:5
+#, fuzzy
 msgid "Clear Restrictions"
-msgstr "Clear Restrictions"
+msgstr "Место описание"
 
 #: filebrowser/templates/filebrowser/include/search.html:7
 #: filebrowser/templates/filebrowser/include/toolbar.html:16
 #: rosetta/templates/rosetta/pofile.html:46 templates/base.html:79
 #: templates/index.html:22 templates/search.html:21
 msgid "Search"
-msgstr "Búsqueda"
+msgstr "Поиск"
 
 #: filebrowser/templates/filebrowser/include/search.html:19
 #: rosetta/templates/rosetta/pofile.html:48
 msgid "Go"
-msgstr "Ir"
+msgstr "идти"
 
 #: filebrowser/templates/filebrowser/include/search.html:24
 #, python-format
 msgid "%(counter)s Item found"
 msgid_plural "%(counter)s Items found"
-msgstr[0] "%(counter)s Items found"
-msgstr[1] "%(counter)s Item found"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: filebrowser/templates/filebrowser/include/search.html:25
 #, python-format
 msgid "%(counter)s Item total"
 msgid_plural "%(counter)s Items total"
-msgstr[0] "%(counter)s Items total"
-msgstr[1] "%(counter)s Item total"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: filebrowser/templates/filebrowser/include/tableheader.html:9
 #: filebrowser/templates/filebrowser/include/tableheader.html:10
 #: places/models.py:183 places/models.py:209 places/models.py:305
 #: places/models.py:976 support/models.py:87
 msgid "Type"
-msgstr "Tipo"
+msgstr "тип"
 
 #: filebrowser/templates/filebrowser/include/tableheader.html:12
+#, fuzzy
 msgid "Thumbnail"
-msgstr "Thumbnail"
+msgstr "тайский"
 
 #: filebrowser/templates/filebrowser/include/tableheader.html:14
 #: filebrowser/templates/filebrowser/include/tableheader.html:15
+#, fuzzy
 msgid "Filename"
-msgstr "Filename"
+msgstr "вьетнамский"
 
 #: filebrowser/templates/filebrowser/include/tableheader.html:17
 #: filebrowser/templates/filebrowser/include/tableheader.html:18
 #: places/models.py:387 website/views.py:70
 msgid "Size"
-msgstr "Tamaño"
+msgstr "размер"
 
 #: filebrowser/templates/filebrowser/include/tableheader.html:20
 #: filebrowser/templates/filebrowser/include/tableheader.html:21
+#, fuzzy
 msgid "Date"
-msgstr "Date"
+msgstr "Даты"
 
 #: filebrowser/templates/filebrowser/include/toolbar.html:19
-#, python-format
+#, fuzzy, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
-msgstr[0] "%(counter)s results"
-msgstr[1] "%(counter)s result"
+msgstr[0] "%(more_count)sбольше"
+msgstr[1] "%(more_count)s больше"
 
 #: paypal/pro/fields.py:99
 msgid "United States of America"
-msgstr "Estados Unidos de América"
+msgstr "Соединенные Штаты Америки"
 
 #: paypal/pro/fields.py:100 places/countries.py:44 places/countries.py:297
 msgid "Canada"
-msgstr "Canadá"
+msgstr "Канада"
 
 #: paypal/pro/fields.py:101 places/countries.py:6 places/countries.py:257
 msgid "Afghanistan"
-msgstr "Afganistán"
+msgstr "Афганистан"
 
 #: paypal/pro/fields.py:102 places/countries.py:8 places/countries.py:259
 msgid "Albania"
-msgstr "Albania"
+msgstr "Албания"
 
 #: paypal/pro/fields.py:103 places/countries.py:9 places/countries.py:260
 msgid "Algeria"
-msgstr "Argelia"
+msgstr "Алжир"
 
 #: paypal/pro/fields.py:104 places/countries.py:10 places/countries.py:261
 msgid "American Samoa"
-msgstr "Samoa Americana"
+msgstr "Американское Самоа"
 
 #: paypal/pro/fields.py:105 places/countries.py:11 places/countries.py:262
 msgid "Andorra"
-msgstr "Andorra"
+msgstr "андорра"
 
 #: paypal/pro/fields.py:106 places/countries.py:12 places/countries.py:263
 msgid "Angola"
-msgstr "Angola"
+msgstr "Ангола"
 
 #: paypal/pro/fields.py:107 places/countries.py:13 places/countries.py:264
 msgid "Anguilla"
-msgstr "Anguila"
+msgstr "Ангилья"
 
 #: paypal/pro/fields.py:108 places/countries.py:14 places/countries.py:265
 msgid "Antarctica"
-msgstr "Antártico"
+msgstr "Антарктида"
 
 #: paypal/pro/fields.py:109
 msgid "Antigua & Barbuda"
-msgstr "Antigua y Barbuda"
+msgstr "Антигуа и Барбуда"
 
 #: paypal/pro/fields.py:110 places/countries.py:16 places/countries.py:267
 msgid "Argentina"
-msgstr "Argentina"
+msgstr "Аргентина"
 
 #: paypal/pro/fields.py:111 places/countries.py:17 places/countries.py:268
 msgid "Armenia"
-msgstr "Armenia"
+msgstr "Армения"
 
 #: paypal/pro/fields.py:112 places/countries.py:18 places/countries.py:269
 msgid "Aruba"
-msgstr "Aruba"
+msgstr "Аруба"
 
 #: paypal/pro/fields.py:113 places/countries.py:19 places/countries.py:270
 msgid "Australia"
-msgstr "Australia"
+msgstr "Австралия"
 
 #: paypal/pro/fields.py:114 places/countries.py:20 places/countries.py:271
 msgid "Austria"
-msgstr "Austria"
+msgstr "Австрия"
 
 #: paypal/pro/fields.py:115 places/countries.py:21 places/countries.py:272
 msgid "Azerbaijan"
-msgstr "Azerbaiyán"
+msgstr "Азербайджан"
 
 #: paypal/pro/fields.py:116
 msgid "Bahama"
-msgstr "Bahama"
+msgstr "Багама"
 
 #: paypal/pro/fields.py:117 places/countries.py:23 places/countries.py:274
 msgid "Bahrain"
-msgstr "Bahrein"
+msgstr "Бахрейн"
 
 #: paypal/pro/fields.py:118 places/countries.py:24 places/countries.py:275
 msgid "Bangladesh"
-msgstr "Bangladesh"
+msgstr "Бангладеш"
 
 #: paypal/pro/fields.py:119 places/countries.py:25 places/countries.py:276
 msgid "Barbados"
-msgstr "Barbados"
+msgstr "Барбадос"
 
 #: paypal/pro/fields.py:120 places/countries.py:26 places/countries.py:277
 msgid "Belarus"
-msgstr "Bielorrusia"
+msgstr "Беларусь"
 
 #: paypal/pro/fields.py:121 places/countries.py:27 places/countries.py:278
 msgid "Belgium"
-msgstr "Bélgica"
+msgstr "Бельгия"
 
 #: paypal/pro/fields.py:122 places/countries.py:28 places/countries.py:279
 msgid "Belize"
-msgstr "Belice"
+msgstr "Белиз"
 
 #: paypal/pro/fields.py:123 places/countries.py:29 places/countries.py:280
 msgid "Benin"
-msgstr "Benin"
+msgstr "Бенин"
 
 #: paypal/pro/fields.py:124 places/countries.py:30 places/countries.py:281
 msgid "Bermuda"
-msgstr "Bermudas"
+msgstr "Бермудские острова"
 
 #: paypal/pro/fields.py:125 places/countries.py:31 places/countries.py:282
 msgid "Bhutan"
-msgstr "Bután"
+msgstr "Бутан"
 
 #: paypal/pro/fields.py:126
 msgid "Bolivia"
-msgstr "Bolivia"
+msgstr "Боливия"
 
 #: paypal/pro/fields.py:127 places/countries.py:33 places/countries.py:285
 msgid "Bosnia and Herzegovina"
-msgstr "Bosnia y Herzegovina"
+msgstr "Босния и Герцеговина"
 
 #: paypal/pro/fields.py:128 places/countries.py:34 places/countries.py:286
 msgid "Botswana"
-msgstr "Botswana"
+msgstr "Ботсвана"
 
 #: paypal/pro/fields.py:129 places/countries.py:35 places/countries.py:287
 msgid "Bouvet Island"
-msgstr "Isla Bouvet"
+msgstr "Буве"
 
 #: paypal/pro/fields.py:130 places/countries.py:36 places/countries.py:288
 msgid "Brazil"
-msgstr "Brasil"
+msgstr "Бразилия"
 
 #: paypal/pro/fields.py:131 places/countries.py:37 places/countries.py:289
 msgid "British Indian Ocean Territory"
-msgstr "Territorio Británico del Océano"
+msgstr "Британская территория Индийского океана"
 
 #: paypal/pro/fields.py:132 places/countries.py:290
 msgid "British Virgin Islands"
-msgstr "Islas Vírgenes Británicas"
+msgstr "Британские Виргинские острова"
 
 #: paypal/pro/fields.py:133 places/countries.py:38 places/countries.py:291
 msgid "Brunei Darussalam"
-msgstr "Brunei Darussalam"
+msgstr "Бруней-Даруссалам"
 
 #: paypal/pro/fields.py:134 places/countries.py:39 places/countries.py:292
 msgid "Bulgaria"
-msgstr "Bulgaria"
+msgstr "Болгария"
 
 #: paypal/pro/fields.py:135 places/countries.py:40 places/countries.py:293
 msgid "Burkina Faso"
-msgstr "Burkina Faso"
+msgstr "Буркина-Фасо"
 
 #: paypal/pro/fields.py:136 places/countries.py:41 places/countries.py:294
 msgid "Burundi"
-msgstr "Burundi"
+msgstr "Бурунди"
 
 #: paypal/pro/fields.py:137 places/countries.py:42 places/countries.py:295
 msgid "Cambodia"
-msgstr "Camboya"
+msgstr "Камбоджа"
 
 #: paypal/pro/fields.py:138 places/countries.py:43 places/countries.py:296
 msgid "Cameroon"
-msgstr "Camerún"
+msgstr "Камерун"
 
 #: paypal/pro/fields.py:139 places/countries.py:45 places/countries.py:298
 msgid "Cape Verde"
-msgstr "Cabo Verde"
+msgstr "Кабо-Верде"
 
 #: paypal/pro/fields.py:140 places/countries.py:46 places/countries.py:299
 msgid "Cayman Islands"
-msgstr "Las Islas Caimán"
+msgstr "Каймановы острова"
 
 #: paypal/pro/fields.py:141 places/countries.py:47 places/countries.py:300
 msgid "Central African Republic"
-msgstr "República Centroafricana"
+msgstr "Центрально-Африканская Республика"
 
 #: paypal/pro/fields.py:142 places/countries.py:48 places/countries.py:301
 msgid "Chad"
-msgstr "Chad"
+msgstr "Чад"
 
 #: paypal/pro/fields.py:143 places/countries.py:49 places/countries.py:302
 msgid "Chile"
-msgstr "Chile"
+msgstr "Чили"
 
 #: paypal/pro/fields.py:144 places/countries.py:50 places/countries.py:303
 msgid "China"
-msgstr "China"
+msgstr "Китай"
 
 #: paypal/pro/fields.py:145 places/countries.py:51 places/countries.py:304
 msgid "Christmas Island"
-msgstr "Isla de Navidad"
+msgstr "Остров Рождества"
 
 #: paypal/pro/fields.py:146 places/countries.py:52 places/countries.py:305
 msgid "Cocos (Keeling) Islands"
-msgstr "Cocos (Keeling)"
+msgstr "Кокосовые (Килинг) острова"
 
 #: paypal/pro/fields.py:147 places/countries.py:53 places/countries.py:306
 msgid "Colombia"
-msgstr "Colombia"
+msgstr "Колумбия"
 
 #: paypal/pro/fields.py:148 places/countries.py:54 places/countries.py:307
 msgid "Comoros"
-msgstr "Comoras"
+msgstr "Коморские острова"
 
 #: paypal/pro/fields.py:149 places/countries.py:55 places/countries.py:308
 msgid "Congo"
-msgstr "Congo"
+msgstr "Конго"
 
 #: paypal/pro/fields.py:150
 msgid "Cook Iislands"
-msgstr "Islas Cook"
+msgstr "Варить Iislands"
 
 #: paypal/pro/fields.py:151 places/countries.py:58 places/countries.py:311
 msgid "Costa Rica"
-msgstr "Costa Rica"
+msgstr "Коста-Рика"
 
 #: paypal/pro/fields.py:152 places/countries.py:60 places/countries.py:313
 msgid "Croatia"
-msgstr "Croacia"
+msgstr "Хорватия"
 
 #: paypal/pro/fields.py:153 places/countries.py:61 places/countries.py:314
 msgid "Cuba"
-msgstr "Cuba"
+msgstr "Куба"
 
 #: paypal/pro/fields.py:154 places/countries.py:62 places/countries.py:315
 msgid "Cyprus"
-msgstr "Chipre"
+msgstr "Кипр"
 
 #: paypal/pro/fields.py:155 places/countries.py:63 places/countries.py:316
 msgid "Czech Republic"
-msgstr "República Checa"
+msgstr "Чешская республика"
 
 #: paypal/pro/fields.py:156 places/countries.py:64 places/countries.py:318
 msgid "Denmark"
-msgstr "Dinamarca"
+msgstr "Дания"
 
 #: paypal/pro/fields.py:157 places/countries.py:65 places/countries.py:319
 msgid "Djibouti"
-msgstr "Yibuti"
+msgstr "Джибути"
 
 #: paypal/pro/fields.py:158 places/countries.py:66 places/countries.py:320
 msgid "Dominica"
-msgstr "Dominica"
+msgstr "Доминика"
 
 #: paypal/pro/fields.py:159 places/countries.py:67 places/countries.py:321
 msgid "Dominican Republic"
-msgstr "República Dominicana"
+msgstr "Доминиканская Республика"
 
 #: paypal/pro/fields.py:160
 msgid "East Timor"
-msgstr "Timor Oriental"
+msgstr "Восточный Тимор"
 
 #: paypal/pro/fields.py:161 places/countries.py:68 places/countries.py:322
 msgid "Ecuador"
-msgstr "Ecuador"
+msgstr "Эквадор"
 
 #: paypal/pro/fields.py:162 places/countries.py:69 places/countries.py:323
 msgid "Egypt"
-msgstr "Egipto"
+msgstr "Египет"
 
 #: paypal/pro/fields.py:163 places/countries.py:70 places/countries.py:324
 msgid "El Salvador"
-msgstr "El Salvador"
+msgstr "Сальвадор"
 
 #: paypal/pro/fields.py:164 places/countries.py:71 places/countries.py:325
 msgid "Equatorial Guinea"
-msgstr "Guinea Ecuatorial"
+msgstr "Экваториальная Гвинея"
 
 #: paypal/pro/fields.py:165 places/countries.py:72 places/countries.py:326
 msgid "Eritrea"
-msgstr "Eritrea"
+msgstr "Эритрея"
 
 #: paypal/pro/fields.py:166 places/countries.py:73 places/countries.py:327
 msgid "Estonia"
-msgstr "Estonia"
+msgstr "Эстония"
 
 #: paypal/pro/fields.py:167 places/countries.py:74 places/countries.py:328
 msgid "Ethiopia"
-msgstr "Etiopía"
+msgstr "Эфиопия"
 
 #: paypal/pro/fields.py:168 places/countries.py:75 places/countries.py:329
 msgid "Falkland Islands (Malvinas)"
-msgstr "Islas Malvinas"
+msgstr "Фолклендские (Мальвинские) острова"
 
 #: paypal/pro/fields.py:169 places/countries.py:76 places/countries.py:330
 msgid "Faroe Islands"
-msgstr "Islas Feroe"
+msgstr "Фарерские острова"
 
 #: paypal/pro/fields.py:170 places/countries.py:77 places/countries.py:332
 msgid "Fiji"
-msgstr "Fiyi"
+msgstr "Фиджи"
 
 #: paypal/pro/fields.py:171 places/countries.py:78 places/countries.py:333
 msgid "Finland"
-msgstr "Finlandia"
+msgstr "Финляндия"
 
 #: paypal/pro/fields.py:172 places/countries.py:79 places/countries.py:334
 msgid "France"
-msgstr "Francia"
+msgstr "Франция"
 
 #: paypal/pro/fields.py:173
 msgid "France, Metropolitan"
-msgstr "Francia, metropolitano"
+msgstr "Франция, митрополит"
 
 #: paypal/pro/fields.py:174 places/countries.py:80 places/countries.py:335
 msgid "French Guiana"
-msgstr "Francés Guayana"
+msgstr "Французская Гвиана"
 
 #: paypal/pro/fields.py:175 places/countries.py:81 places/countries.py:336
 msgid "French Polynesia"
-msgstr "Polinesia Francés"
+msgstr "Французская Полинезия"
 
 #: paypal/pro/fields.py:176 places/countries.py:82 places/countries.py:337
 msgid "French Southern Territories"
-msgstr "Territorios del sur Francés"
+msgstr "Французские южные территории"
 
 #: paypal/pro/fields.py:177 places/countries.py:83 places/countries.py:338
 msgid "Gabon"
-msgstr "Gabón"
+msgstr "Габон"
 
 #: paypal/pro/fields.py:178 places/countries.py:84 places/countries.py:339
 msgid "Gambia"
-msgstr "Gambia"
+msgstr "Гамбия"
 
 #: paypal/pro/fields.py:179 places/countries.py:85 places/countries.py:340
 msgid "Georgia"
-msgstr "Georgia"
+msgstr "Грузия"
 
 #: paypal/pro/fields.py:180 places/countries.py:86 places/countries.py:341
 msgid "Germany"
-msgstr "Alemania"
+msgstr "Германия"
 
 #: paypal/pro/fields.py:181 places/countries.py:87 places/countries.py:342
 msgid "Ghana"
-msgstr "Ghana"
+msgstr "Гана"
 
 #: paypal/pro/fields.py:182 places/countries.py:88 places/countries.py:343
 msgid "Gibraltar"
-msgstr "Gibraltar"
+msgstr "Гибралтар"
 
 #: paypal/pro/fields.py:183 places/countries.py:89 places/countries.py:344
 msgid "Greece"
-msgstr "Grecia"
+msgstr "Греция"
 
 #: paypal/pro/fields.py:184 places/countries.py:90 places/countries.py:345
 msgid "Greenland"
-msgstr "Groenlandia"
+msgstr "Гренландия"
 
 #: paypal/pro/fields.py:185 places/countries.py:91 places/countries.py:346
 msgid "Grenada"
-msgstr "Granada"
+msgstr "Гренада "
 
 #: paypal/pro/fields.py:186 places/countries.py:92 places/countries.py:347
 msgid "Guadeloupe"
-msgstr "Guadalupe"
+msgstr "Гваделупа"
 
 #: paypal/pro/fields.py:187 places/countries.py:93 places/countries.py:348
 msgid "Guam"
-msgstr "Guam"
+msgstr "Гуам"
 
 #: paypal/pro/fields.py:188 places/countries.py:94 places/countries.py:349
 msgid "Guatemala"
-msgstr "Guatemala"
+msgstr "Гватемала"
 
 #: paypal/pro/fields.py:189 places/countries.py:96 places/countries.py:351
 msgid "Guinea"
-msgstr "Guinea"
+msgstr "Гвинея"
 
 #: paypal/pro/fields.py:190
 msgid "Guinea-Bissau"
-msgstr "Guinea-Bissau"
+msgstr "Гвинея-Бисау"
 
 #: paypal/pro/fields.py:191 places/countries.py:98 places/countries.py:353
 msgid "Guyana"
-msgstr "Guayana"
+msgstr "Гайана"
 
 #: paypal/pro/fields.py:192 places/countries.py:99 places/countries.py:354
 msgid "Haiti"
-msgstr "Haiti"
+msgstr "Гаити"
 
 #: paypal/pro/fields.py:193
 msgid "Heard & McDonald Islands"
-msgstr "Oído & McDonald Islas"
+msgstr "Херд и Макдональд"
 
 #: paypal/pro/fields.py:194 places/countries.py:102 places/countries.py:357
 msgid "Honduras"
-msgstr "Honduras"
+msgstr "Гондурас"
 
 #: paypal/pro/fields.py:195 places/countries.py:103 places/countries.py:358
 msgid "Hong Kong"
-msgstr "Hong Kong"
+msgstr "Гонконг"
 
 #: paypal/pro/fields.py:196 places/countries.py:104 places/countries.py:359
 msgid "Hungary"
-msgstr "Hungría"
+msgstr "Венгрия"
 
 #: paypal/pro/fields.py:197 places/countries.py:105 places/countries.py:360
 msgid "Iceland"
-msgstr "Islandia"
+msgstr "Исландия"
 
 #: paypal/pro/fields.py:198 places/countries.py:106 places/countries.py:361
 msgid "India"
-msgstr "India"
+msgstr "Индия"
 
 #: paypal/pro/fields.py:199 places/countries.py:107 places/countries.py:362
 msgid "Indonesia"
-msgstr "Indonesia"
+msgstr "Индонезия"
 
 #: paypal/pro/fields.py:200 places/countries.py:109 places/countries.py:364
 msgid "Iraq"
-msgstr "Irak"
+msgstr "Ирак"
 
 #: paypal/pro/fields.py:201 places/countries.py:110 places/countries.py:365
 msgid "Ireland"
-msgstr "Irlanda"
+msgstr "Ирландия"
 
 #: paypal/pro/fields.py:202 places/countries.py:366
 msgid "Islamic Republic of Iran"
-msgstr "República Islámica del Irán"
+msgstr "Исламская Республика Иран"
 
 #: paypal/pro/fields.py:203 places/countries.py:112 places/countries.py:368
 msgid "Israel"
-msgstr "Israel"
+msgstr "Израиль"
 
 #: paypal/pro/fields.py:204 places/countries.py:113 places/countries.py:369
 msgid "Italy"
-msgstr "Italia"
+msgstr "Италия"
 
 #: paypal/pro/fields.py:205
 msgid "Ivory Coast"
-msgstr "Costa de Marfil"
+msgstr "Берег Слоновой Кости"
 
 #: paypal/pro/fields.py:206 places/countries.py:114 places/countries.py:370
 msgid "Jamaica"
-msgstr "Jamaica"
+msgstr "Ямайка"
 
 #: paypal/pro/fields.py:207 places/countries.py:115 places/countries.py:371
 msgid "Japan"
-msgstr "Japón"
+msgstr "Япония"
 
 #: paypal/pro/fields.py:208 places/countries.py:117 places/countries.py:373
 msgid "Jordan"
-msgstr "Jordania"
+msgstr "Иордания"
 
 #: paypal/pro/fields.py:209 places/countries.py:118 places/countries.py:374
 msgid "Kazakhstan"
-msgstr "Kazajstán"
+msgstr "Казахстан"
 
 #: paypal/pro/fields.py:210 places/countries.py:119 places/countries.py:375
 msgid "Kenya"
-msgstr "Kenia"
+msgstr "Кения"
 
 #: paypal/pro/fields.py:211 places/countries.py:120 places/countries.py:376
 msgid "Kiribati"
-msgstr "Kiribati"
+msgstr "Кирибати"
 
 #: paypal/pro/fields.py:212 places/countries.py:121 places/countries.py:377
 msgid "Korea, Democratic People's Republic of"
-msgstr "Corea, República Popular Democrática de"
+msgstr "Корея, Корейской Народно-Демократической Республики"
 
 #: paypal/pro/fields.py:213 places/countries.py:122 places/countries.py:378
 msgid "Korea, Republic of"
-msgstr "Corea del Sur"
+msgstr "Корея, Республика"
 
 #: paypal/pro/fields.py:214 places/countries.py:123 places/countries.py:379
 msgid "Kuwait"
-msgstr "Kuwait"
+msgstr "Кувейт"
 
 #: paypal/pro/fields.py:215 places/countries.py:124 places/countries.py:380
 msgid "Kyrgyzstan"
-msgstr "Kirguistán"
+msgstr "Киргизия"
 
 #: paypal/pro/fields.py:216 places/countries.py:125 places/countries.py:381
 msgid "Lao People's Democratic Republic"
-msgstr "Democrática Popular Lao, República"
+msgstr "Лаосская Народно-Демократическая Республика"
 
 #: paypal/pro/fields.py:217 places/countries.py:126 places/countries.py:382
 msgid "Latvia"
-msgstr "Letonia"
+msgstr "Латвия"
 
 #: paypal/pro/fields.py:218 places/countries.py:127 places/countries.py:383
 msgid "Lebanon"
-msgstr "Líbano"
+msgstr "Ливан"
 
 #: paypal/pro/fields.py:219 places/countries.py:128 places/countries.py:384
 msgid "Lesotho"
-msgstr "Lesoto"
+msgstr "Лесото"
 
 #: paypal/pro/fields.py:220 places/countries.py:129 places/countries.py:385
 msgid "Liberia"
-msgstr "Liberia"
+msgstr "Либерия"
 
 #: paypal/pro/fields.py:221 places/countries.py:130 places/countries.py:386
 msgid "Libyan Arab Jamahiriya"
-msgstr "Jamahiriya Árabe Libia"
+msgstr "Ливийской Арабской Джамахирии"
 
 #: paypal/pro/fields.py:222 places/countries.py:131 places/countries.py:387
 msgid "Liechtenstein"
-msgstr "Liechtenstein"
+msgstr "Лихтенштейн"
 
 #: paypal/pro/fields.py:223 places/countries.py:132 places/countries.py:388
 msgid "Lithuania"
-msgstr "Lituania"
+msgstr "Литва"
 
 #: paypal/pro/fields.py:224 places/countries.py:133 places/countries.py:389
 msgid "Luxembourg"
-msgstr "Luxemburgo"
+msgstr "Люксембург"
 
 #: paypal/pro/fields.py:225
 msgid "Macau"
-msgstr "Macao"
+msgstr "Макао"
 
 #: paypal/pro/fields.py:226 places/countries.py:136 places/countries.py:392
 msgid "Madagascar"
-msgstr "Madagascar"
+msgstr "Мадагаскар"
 
 #: paypal/pro/fields.py:227 places/countries.py:137 places/countries.py:393
 msgid "Malawi"
-msgstr "Malawi"
+msgstr "Малави"
 
 #: paypal/pro/fields.py:228 places/countries.py:138 places/countries.py:394
 msgid "Malaysia"
-msgstr "Malasia"
+msgstr "Малайзия"
 
 #: paypal/pro/fields.py:229 places/countries.py:139 places/countries.py:395
 msgid "Maldives"
-msgstr "Maldivas"
+msgstr "Мальдивы"
 
 #: paypal/pro/fields.py:230 places/countries.py:140 places/countries.py:396
 msgid "Mali"
-msgstr "Malí"
+msgstr "Мали"
 
 #: paypal/pro/fields.py:231 places/countries.py:141 places/countries.py:397
 msgid "Malta"
-msgstr "Malta"
+msgstr "Мальта"
 
 #: paypal/pro/fields.py:232 places/countries.py:142 places/countries.py:398
 msgid "Marshall Islands"
-msgstr "Islas Marshall"
+msgstr "Маршалловы острова"
 
 #: paypal/pro/fields.py:233 places/countries.py:143 places/countries.py:399
 msgid "Martinique"
-msgstr "Martinica"
+msgstr "Мартиника"
 
 #: paypal/pro/fields.py:234 places/countries.py:144 places/countries.py:400
 msgid "Mauritania"
-msgstr "Mauritania"
+msgstr "Мавритания"
 
 #: paypal/pro/fields.py:235 places/countries.py:145 places/countries.py:401
 msgid "Mauritius"
-msgstr "Mauricio"
+msgstr "Маврикий"
 
 #: paypal/pro/fields.py:236 places/countries.py:146 places/countries.py:402
 msgid "Mayotte"
-msgstr "Mayotte"
+msgstr "Майотта"
 
 #: paypal/pro/fields.py:237 places/countries.py:147 places/countries.py:403
 msgid "Mexico"
-msgstr "México"
+msgstr "Мексика"
 
 #: paypal/pro/fields.py:238
 msgid "Micronesia"
-msgstr "Micronesia"
+msgstr "Микронезия"
 
 #: paypal/pro/fields.py:239 places/countries.py:149 places/countries.py:405
 msgid "Moldova, Republic of"
-msgstr "Moldova, República de"
+msgstr "Молдова"
 
 #: paypal/pro/fields.py:240 places/countries.py:150 places/countries.py:406
 msgid "Monaco"
-msgstr "Mónaco"
+msgstr "Монако"
 
 #: paypal/pro/fields.py:241 places/countries.py:151 places/countries.py:407
 msgid "Mongolia"
-msgstr "Mongolia"
+msgstr "Монголия"
 
 #: paypal/pro/fields.py:242
 msgid "Monserrat"
-msgstr "Monserrat"
+msgstr "Монсеррат"
 
 #: paypal/pro/fields.py:243 places/countries.py:154 places/countries.py:410
 msgid "Morocco"
-msgstr "Marruecos"
+msgstr "Марокко"
 
 #: paypal/pro/fields.py:244 places/countries.py:155 places/countries.py:411
 msgid "Mozambique"
-msgstr "Mozambique"
+msgstr "Мозамбик"
 
 #: paypal/pro/fields.py:245 places/countries.py:156 places/countries.py:412
 msgid "Myanmar"
-msgstr "Myanmar"
+msgstr "Мьянма"
 
 #: paypal/pro/fields.py:246 places/countries.py:157 places/countries.py:413
 msgid "Namibia"
-msgstr "Namibia"
+msgstr "Намибия"
 
 #: paypal/pro/fields.py:247 places/countries.py:158 places/countries.py:414
 #: places/countries.py:883
 msgid "Nauru"
-msgstr "Nauru"
+msgstr "Науру"
 
 #: paypal/pro/fields.py:248 places/countries.py:159 places/countries.py:415
 msgid "Nepal"
-msgstr "Nepal"
+msgstr "Непал"
 
 #: paypal/pro/fields.py:249 places/countries.py:160 places/countries.py:416
 msgid "Netherlands"
-msgstr "Países Bajos"
+msgstr "Нидерланды"
 
 #: paypal/pro/fields.py:250 places/countries.py:161 places/countries.py:417
 msgid "Netherlands Antilles"
-msgstr "Antillas Holandesas"
+msgstr "Нидерландские Антильские острова"
 
 #: paypal/pro/fields.py:251 places/countries.py:162 places/countries.py:418
 msgid "New Caledonia"
-msgstr "Nueva Caledonia"
+msgstr "Новая Каледония"
 
 #: paypal/pro/fields.py:252 places/countries.py:163 places/countries.py:419
 msgid "New Zealand"
-msgstr "Nueva Zelandia"
+msgstr "Новая Зеландия"
 
 #: paypal/pro/fields.py:253 places/countries.py:164 places/countries.py:420
 msgid "Nicaragua"
-msgstr "Nicaragua"
+msgstr "Никарагуа"
 
 #: paypal/pro/fields.py:254 places/countries.py:165 places/countries.py:421
 msgid "Niger"
-msgstr "Niger"
+msgstr "Нигер"
 
 #: paypal/pro/fields.py:255 places/countries.py:166 places/countries.py:422
 msgid "Nigeria"
-msgstr "Nigeria"
+msgstr "Нигерия"
 
 #: paypal/pro/fields.py:256 places/countries.py:167 places/countries.py:423
 msgid "Niue"
-msgstr "Niue"
+msgstr "Ниуэ"
 
 #: paypal/pro/fields.py:257 places/countries.py:168 places/countries.py:424
 msgid "Norfolk Island"
-msgstr "Norfolk Island"
+msgstr "Остров Норфолк"
 
 #: paypal/pro/fields.py:258 places/countries.py:169 places/countries.py:425
 msgid "Northern Mariana Islands"
-msgstr "Islas Marianas del Norte"
+msgstr "Северные Марианские острова"
 
 #: paypal/pro/fields.py:259 places/countries.py:170 places/countries.py:426
 msgid "Norway"
-msgstr "Noruega"
+msgstr "Норвегия"
 
 #: paypal/pro/fields.py:260 places/countries.py:171 places/countries.py:428
 msgid "Oman"
-msgstr "Omán"
+msgstr "Оман"
 
 #: paypal/pro/fields.py:261 places/countries.py:172 places/countries.py:429
 msgid "Pakistan"
-msgstr "Pakistán"
+msgstr "Пакистан"
 
 #: paypal/pro/fields.py:262 places/countries.py:173 places/countries.py:430
 msgid "Palau"
-msgstr "Palau"
+msgstr "Палау"
 
 #: paypal/pro/fields.py:263 places/countries.py:175 places/countries.py:432
 msgid "Panama"
-msgstr "Panamá"
+msgstr "Панама"
 
 #: paypal/pro/fields.py:264 places/countries.py:176 places/countries.py:433
 msgid "Papua New Guinea"
-msgstr "Papua Nueva Guinea"
+msgstr "Папуа-Новая Гвинея"
 
 #: paypal/pro/fields.py:265 places/countries.py:177 places/countries.py:434
 msgid "Paraguay"
-msgstr "Paraguay"
+msgstr "Парагвай"
 
 #: paypal/pro/fields.py:266 places/countries.py:178 places/countries.py:435
 msgid "Peru"
-msgstr "Perú"
+msgstr "Перу"
 
 #: paypal/pro/fields.py:267 places/countries.py:179 places/countries.py:436
 msgid "Philippines"
-msgstr "Filipinas"
+msgstr "Филиппины"
 
 #: paypal/pro/fields.py:268 places/countries.py:180 places/countries.py:437
 msgid "Pitcairn"
-msgstr "Pitcairn"
+msgstr "Питкэрн"
 
 #: paypal/pro/fields.py:269 places/countries.py:181 places/countries.py:439
 msgid "Poland"
-msgstr "Polonia"
+msgstr "Польша"
 
 #: paypal/pro/fields.py:270 places/countries.py:182 places/countries.py:440
 msgid "Portugal"
-msgstr "Portugal"
+msgstr "Португалия"
 
 #: paypal/pro/fields.py:271 places/countries.py:183 places/countries.py:442
 msgid "Puerto Rico"
-msgstr "Puerto Rico"
+msgstr "Пуэрто-Рико"
 
 #: paypal/pro/fields.py:272 places/countries.py:184 places/countries.py:443
 msgid "Qatar"
-msgstr "Qatar"
+msgstr "Катар"
 
 #: paypal/pro/fields.py:273
 msgid "Reunion"
-msgstr "Reunión"
+msgstr "воссоединение"
 
 #: paypal/pro/fields.py:274 places/countries.py:186 places/countries.py:447
 msgid "Romania"
-msgstr "Rumania"
+msgstr "Румыния"
 
 #: paypal/pro/fields.py:275 places/countries.py:187 places/countries.py:448
 msgid "Russian Federation"
-msgstr "La Federación de Rusia"
+msgstr "русская Федерация"
 
 #: paypal/pro/fields.py:276 places/countries.py:188 places/countries.py:449
 msgid "Rwanda"
-msgstr "Ruanda"
+msgstr "Руанда"
 
 #: paypal/pro/fields.py:277 places/countries.py:192 places/countries.py:453
 msgid "Saint Lucia"
-msgstr "Santa Lucía"
+msgstr "Сент-Люсия"
 
 #: paypal/pro/fields.py:278 places/countries.py:196 places/countries.py:457
 msgid "Samoa"
-msgstr "Samoa"
+msgstr "Самоа"
 
 #: paypal/pro/fields.py:279 places/countries.py:197 places/countries.py:458
 msgid "San Marino"
-msgstr "San Marino"
+msgstr "Сан - Марино"
 
 #: paypal/pro/fields.py:280
 msgid "Sao Tome & Principe"
-msgstr "Santo Tomé & Príncipe"
+msgstr "Сан-Томе и Принсипи"
 
 #: paypal/pro/fields.py:281 places/countries.py:199 places/countries.py:460
 msgid "Saudi Arabia"
-msgstr "Arabia Saudita"
+msgstr "Саудовская Аравия"
 
 #: paypal/pro/fields.py:282 places/countries.py:200 places/countries.py:461
 msgid "Senegal"
-msgstr "Senegal"
+msgstr "Сенегал"
 
 #: paypal/pro/fields.py:283 places/countries.py:202 places/countries.py:463
 msgid "Seychelles"
-msgstr "Seychelles"
+msgstr "Сейшельские острова"
 
 #: paypal/pro/fields.py:284 places/countries.py:203 places/countries.py:464
 msgid "Sierra Leone"
-msgstr "Sierra Leone"
+msgstr "Сьерра-Леоне"
 
 #: paypal/pro/fields.py:285 places/countries.py:204 places/countries.py:465
 msgid "Singapore"
-msgstr "Singapur"
+msgstr "Сингапур"
 
 #: paypal/pro/fields.py:286 places/countries.py:205 places/countries.py:466
 msgid "Slovakia"
-msgstr "Eslovaquia"
+msgstr "Словакия"
 
 #: paypal/pro/fields.py:287 places/countries.py:206 places/countries.py:467
 msgid "Slovenia"
-msgstr "Eslovenia"
+msgstr "Словения"
 
 #: paypal/pro/fields.py:288 places/countries.py:207 places/countries.py:468
 msgid "Solomon Islands"
-msgstr "Las Islas Salomón"
+msgstr "Соломоновы Острова"
 
 #: paypal/pro/fields.py:289 places/countries.py:208 places/countries.py:469
 msgid "Somalia"
-msgstr "Somalia"
+msgstr "Сомали"
 
 #: paypal/pro/fields.py:290 places/countries.py:209 places/countries.py:470
 msgid "South Africa"
-msgstr "Sudáfrica"
+msgstr "ЮАР"
 
 #: paypal/pro/fields.py:291 places/countries.py:210 places/countries.py:471
 msgid "South Georgia and the South Sandwich Islands"
-msgstr "Georgia del Sur e Islas Sandwich del Sur"
+msgstr "Южная Джорджия и Южные Сандвичевы острова"
 
 #: paypal/pro/fields.py:292 places/countries.py:211 places/countries.py:472
 msgid "Spain"
-msgstr "España"
+msgstr "Испания"
 
 #: paypal/pro/fields.py:293 places/countries.py:212 places/countries.py:473
 msgid "Sri Lanka"
-msgstr "Sri Lanka"
+msgstr "Шри Ланка"
 
 #: paypal/pro/fields.py:294
 msgid "St. Helena"
-msgstr "Santa Elena"
+msgstr "Остров Святой Елены"
 
 #: paypal/pro/fields.py:295
 msgid "St. Kitts and Nevis"
-msgstr "St. Kitts & Nevis"
+msgstr "Сент-Китс и Невис"
 
 #: paypal/pro/fields.py:296
 msgid "St. Pierre & Miquelon"
-msgstr "San Pedro & Miquelón"
+msgstr "Сен-Пьер и Микелон"
 
 #: paypal/pro/fields.py:297
 msgid "St. Vincent & the Grenadines"
-msgstr "San Vicente & las Granadinas"
+msgstr "Сент-Винсент и Гренадины"
 
 #: paypal/pro/fields.py:298 places/countries.py:213 places/countries.py:474
 msgid "Sudan"
-msgstr "Sudán"
+msgstr "Судан"
 
 #: paypal/pro/fields.py:299 places/countries.py:214 places/countries.py:475
 msgid "Suriname"
-msgstr "Suriname"
+msgstr "Суринам"
 
 #: paypal/pro/fields.py:300
 msgid "Svalbard & Jan Mayen Islands"
-msgstr "Islas Svalbard & Jan Mayen"
+msgstr "Шпицберген и Ян-Майен"
 
 #: paypal/pro/fields.py:301 places/countries.py:216 places/countries.py:477
 msgid "Swaziland"
-msgstr "Suazilandia"
+msgstr "Свазиленд"
 
 #: paypal/pro/fields.py:302 places/countries.py:217 places/countries.py:478
 msgid "Sweden"
-msgstr "Suecia"
+msgstr "Швеция"
 
 #: paypal/pro/fields.py:303 places/countries.py:218 places/countries.py:479
 msgid "Switzerland"
-msgstr "Suiza"
+msgstr "Швейцария"
 
 #: paypal/pro/fields.py:304 places/countries.py:219 places/countries.py:480
 msgid "Syrian Arab Republic"
-msgstr "República Árabe Siria"
+msgstr "Сирийской Арабской Республики"
 
 #: paypal/pro/fields.py:305 places/countries.py:220 places/countries.py:481
 msgid "Taiwan, Province of China"
-msgstr "Taiwan, Provincia de China"
+msgstr "Тайвань, провинция Китая"
 
 #: paypal/pro/fields.py:306 places/countries.py:221 places/countries.py:482
 msgid "Tajikistan"
-msgstr "Tayikistán"
+msgstr "Таджикистан"
 
 #: paypal/pro/fields.py:307 places/countries.py:222 places/countries.py:483
 msgid "Tanzania, United Republic of"
-msgstr "Tanzania, República Unida de"
+msgstr "Танзания, Объединенная Республика"
 
 #: paypal/pro/fields.py:308 places/countries.py:223 places/countries.py:484
 msgid "Thailand"
-msgstr "Tailandia"
+msgstr "Таиланд"
 
 #: paypal/pro/fields.py:309 places/countries.py:225 places/countries.py:488
 msgid "Togo"
-msgstr "Togo"
+msgstr "Того"
 
 #: paypal/pro/fields.py:310 places/countries.py:226 places/countries.py:489
 msgid "Tokelau"
-msgstr "Tokelau"
+msgstr "Токелау"
 
 #: paypal/pro/fields.py:311 places/countries.py:227 places/countries.py:490
 #: places/countries.py:936
 msgid "Tonga"
-msgstr "Tonga"
+msgstr "Тонга"
 
 #: paypal/pro/fields.py:312
 msgid "Trinidad & Tobago"
-msgstr "Trinidad & Tobago"
+msgstr "Тринидад и Тобаго"
 
 #: paypal/pro/fields.py:313 places/countries.py:229 places/countries.py:492
 msgid "Tunisia"
-msgstr "Túnez"
+msgstr "Тунис"
 
 #: paypal/pro/fields.py:314 places/countries.py:230 places/countries.py:493
 msgid "Turkey"
-msgstr "Turquía"
+msgstr "Турция"
 
 #: paypal/pro/fields.py:315 places/countries.py:231 places/countries.py:494
 msgid "Turkmenistan"
-msgstr "Turkmenistán"
+msgstr "Туркменистан"
 
 #: paypal/pro/fields.py:316
 msgid "Turks & Caicos Islands"
-msgstr "Islas Turcas & Caicos"
+msgstr "Турки и Кайкос"
 
 #: paypal/pro/fields.py:317 places/countries.py:233 places/countries.py:496
 msgid "Tuvalu"
-msgstr "Tuvalu"
+msgstr "Тувалу"
 
 #: paypal/pro/fields.py:318 places/countries.py:234 places/countries.py:498
 msgid "Uganda"
-msgstr "Uganda"
+msgstr "Уганда"
 
 #: paypal/pro/fields.py:319 places/countries.py:235 places/countries.py:499
 msgid "Ukraine"
-msgstr "Ucrania"
+msgstr "Украина"
 
 #: paypal/pro/fields.py:320 places/countries.py:236 places/countries.py:500
 msgid "United Arab Emirates"
-msgstr "Emiratos Árabes Unidos"
+msgstr "Объединенные Арабские Эмираты"
 
 #: paypal/pro/fields.py:321
 msgid "United Kingdom (Great Britain)"
-msgstr "Reino Unido ( Gran Bretaña)"
+msgstr "Соединенное Королевство (Великобритания)"
 
 #: paypal/pro/fields.py:322 places/countries.py:239 places/countries.py:504
 msgid "United States Minor Outlying Islands"
-msgstr "Estados Unidos Islas menores alejadas de"
+msgstr "США Внешние малые острова"
 
 #: paypal/pro/fields.py:323
 msgid "United States Virgin Islands"
-msgstr "Islas Vírgenes Americanas"
+msgstr "Американские Виргинские острова"
 
 #: paypal/pro/fields.py:324
 msgid "Unknown or unspecified country"
-msgstr "Desconocido o país no especificado"
+msgstr "Неизвестный или неопределенный страны"
 
 #: paypal/pro/fields.py:325 places/countries.py:240 places/countries.py:505
 msgid "Uruguay"
-msgstr "Uruguay"
+msgstr "Уругвай"
 
 #: paypal/pro/fields.py:326 places/countries.py:241 places/countries.py:506
 msgid "Uzbekistan"
-msgstr "Uzbekistán"
+msgstr "Узбекистан"
 
 #: paypal/pro/fields.py:327 places/countries.py:242 places/countries.py:507
 msgid "Vanuatu"
-msgstr "Vanuatu"
+msgstr "Вануату"
 
 #: paypal/pro/fields.py:328
 msgid "Vatican City State (Holy See)"
-msgstr "Ciudad del Vaticano ( Santa Sede)"
+msgstr "Государство-город Ватикан (Святой Престол)"
 
 #: paypal/pro/fields.py:329
 msgid "Venezuela"
-msgstr "Venezuela"
+msgstr "Венесуэла"
 
 #: paypal/pro/fields.py:330 places/countries.py:244 places/countries.py:509
 msgid "Viet Nam"
-msgstr "Viet Nam"
+msgstr "Вьетнам"
 
 #: paypal/pro/fields.py:331
 msgid "Wallis & Futuna Islands"
-msgstr "Wallis & Futuna"
+msgstr "Уоллис и Футуна"
 
 #: paypal/pro/fields.py:332 places/countries.py:248 places/countries.py:513
 msgid "Western Sahara"
-msgstr "Sáhara Occidental"
+msgstr "Западная Сахара"
 
 #: paypal/pro/fields.py:333 places/countries.py:249 places/countries.py:514
 msgid "Yemen"
-msgstr "Yemen"
+msgstr "Йемен"
 
 #: paypal/pro/fields.py:334
 msgid "Yugoslavia"
-msgstr "Yugoslavia"
+msgstr "Югославия"
 
 #: paypal/pro/fields.py:335
 msgid "Zaire"
-msgstr "Zaire"
+msgstr "Заир"
 
 #: paypal/pro/fields.py:336 places/countries.py:250 places/countries.py:515
 msgid "Zambia"
-msgstr "Zambia"
+msgstr "Замбия"
 
 #: paypal/pro/fields.py:337 places/countries.py:251 places/countries.py:516
 msgid "Zimbabwe"
-msgstr "Zimbabue"
+msgstr "Зимбабве"
 
 #: places/countries.py:7 places/countries.py:258
 msgid "Åland Islands"
-msgstr "Las Islas Åland"
+msgstr "Аландские острова"
 
 #: places/countries.py:15 places/countries.py:266
 msgid "Antigua and Barbuda"
-msgstr "Antigua & Barbuda"
+msgstr "Антигуа и Барбуда"
 
 #: places/countries.py:22 places/countries.py:273
 msgid "Bahamas"
-msgstr "Bahamas"
+msgstr "Багамские острова"
 
 #: places/countries.py:32 places/countries.py:284
 msgid "Bolivia, Plurinational State of"
-msgstr "Bolivia, Estado Plurinacional de"
+msgstr "Боливия, Многонациональное государство"
 
 #: places/countries.py:56 places/countries.py:309
 msgid "Congo, The Democratic Republic of the"
-msgstr "Congo, República Democrática del"
+msgstr "Конго, Демократическая Республика"
 
 #: places/countries.py:57 places/countries.py:310
 msgid "Cook Islands"
-msgstr "Islas Cook"
+msgstr "острова Кука"
 
 #: places/countries.py:59 places/countries.py:312
 msgid "Côte D'ivoire"
-msgstr "Costa de Marfil"
+msgstr "Кот-д'Ивуар"
 
 #: places/countries.py:95 places/countries.py:350
 msgid "Guernsey"
-msgstr "Guernsey"
+msgstr "шерстяная фуфайка"
 
 #: places/countries.py:97 places/countries.py:352
 msgid "Guinea-bissau"
-msgstr "Guinea-Bissau"
+msgstr "Гвинея-Бисау"
 
 #: places/countries.py:100 places/countries.py:355
 msgid "Heard Island and McDonald Islands"
-msgstr "Islas Heard y McDonald"
+msgstr "Остров Херд и острова Макдональд"
 
 #: places/countries.py:101 places/countries.py:356
 msgid "Holy See (Vatican City State)"
-msgstr "Santa Sede (Ciudad del Vaticano)"
+msgstr "Святой Престол (Ватикан)"
 
 #: places/countries.py:108 places/countries.py:363
 msgid "Iran, Islamic Republic of"
-msgstr "Irán, República Islámica del"
+msgstr "Иран, Исламская Республика"
 
 #: places/countries.py:111 places/countries.py:367
 msgid "Isle of Man"
-msgstr "Isla de Man"
+msgstr "Остров Мэн"
 
 #: places/countries.py:116 places/countries.py:372
 msgid "Jersey"
-msgstr "Jersey"
+msgstr "Джерси"
 
 #: places/countries.py:134 places/countries.py:390
 msgid "Macao"
-msgstr "Macao"
+msgstr "Макао"
 
 #: places/countries.py:135 places/countries.py:391
 msgid "Macedonia, The Former Yugoslav Republic of"
-msgstr "Macedonia, Antigua República Yugoslava de"
+msgstr "Македония, Бывшая Югославская Республика"
 
 #: places/countries.py:148 places/countries.py:404
 msgid "Micronesia, Federated States of"
-msgstr "Micronesia, Estados Federados de"
+msgstr "Микронезия, Федеративные Штаты"
 
 #: places/countries.py:152 places/countries.py:408
 msgid "Montenegro"
-msgstr "Montenegro"
+msgstr "Черногория"
 
 #: places/countries.py:153 places/countries.py:409
 msgid "Montserrat"
-msgstr "Montserrat"
+msgstr "Монтсеррат"
 
 #: places/countries.py:174 places/countries.py:431
 msgid "Palestinian Territory, Occupied"
-msgstr "Territorio Palestino Ocupado"
+msgstr "Палестинских территориях, занимаемых"
 
 #: places/countries.py:185 places/countries.py:446
 msgid "Réunion"
-msgstr "Réunion"
+msgstr "Реюньон"
 
 #: places/countries.py:189 places/countries.py:450
 msgid "Saint Barthélemy"
-msgstr "Saint Barthélemy"
+msgstr "Сен-Бартельми"
 
 #: places/countries.py:190 places/countries.py:451
 msgid "Saint Helena"
-msgstr "Santa Elena"
+msgstr "Остров Святой Елены"
 
 #: places/countries.py:191 places/countries.py:452
 msgid "Saint Kitts and Nevis"
-msgstr "Saint Kitts y Nevis"
+msgstr "Сент-Китс и Невис"
 
 #: places/countries.py:193 places/countries.py:454
 msgid "Saint Martin"
-msgstr "Saint Martin"
+msgstr "Сен-Мартен"
 
 #: places/countries.py:194 places/countries.py:455
 msgid "Saint Pierre and Miquelon"
-msgstr "San Pedro y Miquelón"
+msgstr "Сен-Пьер и Микелон"
 
 #: places/countries.py:195 places/countries.py:456
 msgid "Saint Vincent and the Grenadines"
-msgstr "San Vicente y las Granadinas"
+msgstr "Сент-Винсент и Гренадины"
 
 #: places/countries.py:198 places/countries.py:459
 msgid "Sao Tome and Principe"
-msgstr "Santo Tomé y Príncipe"
+msgstr "Сан-Томе и Принсипи"
 
 #: places/countries.py:201 places/countries.py:462
 msgid "Serbia"
-msgstr "Serbia"
+msgstr "Сербии"
 
 #: places/countries.py:215 places/countries.py:476
 msgid "Svalbard and Jan Mayen"
-msgstr "Svalbard y Jan Mayen"
+msgstr "Шпицберген и Ян-Майен"
 
 #: places/countries.py:224 places/countries.py:487
 msgid "Timor-leste"
-msgstr "Timor-Leste"
+msgstr "Тимор-Лешти"
 
 #: places/countries.py:228 places/countries.py:491
 msgid "Trinidad and Tobago"
-msgstr "Trinidad y Tobago"
+msgstr "Тринидад и Тобаго"
 
 #: places/countries.py:232 places/countries.py:495
 msgid "Turks and Caicos Islands"
-msgstr "Islas Turcas y Caicos"
+msgstr "Острова Теркс и Кайкос"
 
 #: places/countries.py:237 places/countries.py:501
 msgid "United Kingdom"
-msgstr "Reino Unido"
+msgstr "Великобритания"
 
 #: places/countries.py:238 places/countries.py:503
 msgid "United States"
-msgstr "Estados Unidos"
+msgstr "Соединенные Штаты"
 
 #: places/countries.py:243 places/countries.py:508
 msgid "Venezuela, Bolivarian Republic of"
-msgstr "Venezuela, República Bolivariana de"
+msgstr "Венесуэла, Боливарианская Республика"
 
 #: places/countries.py:245 places/countries.py:510
 msgid "Virgin Islands, British"
-msgstr "Islas Vírgenes Británicas"
+msgstr "Виргинские острова, Британские"
 
 #: places/countries.py:246 places/countries.py:511
 msgid "Virgin Islands, U.s."
-msgstr "Islas Vírgenes, EE.UU."
+msgstr "Виргинские острова, США"
 
 #: places/countries.py:247 places/countries.py:512
 msgid "Wallis and Futuna"
-msgstr "Wallis y Futuna"
+msgstr "Уоллис и Футуна"
 
 #: places/countries.py:283
 msgid "Bolivarian Republic of Venezuela"
-msgstr "República Bolivariana de Venezuela"
+msgstr "Боливарианская Республика Венесуэла"
 
 #: places/countries.py:317
 msgid "Democratic People's Republic of Korea"
-msgstr "República Popular Democrática de Corea"
+msgstr "Корейская Народно-Демократическая Республика Корея"
 
 #: places/countries.py:331
 msgid "Federated States of Micronesia"
-msgstr "Estados Federados de Micronesia"
+msgstr "Федеративные Штаты Микронезии"
 
 #: places/countries.py:427
 msgid "Occupied Palestinian Territory"
-msgstr "Territorio Palestino Ocupado"
+msgstr "Оккупированной палестинской территории"
 
 #: places/countries.py:438
 msgid "Plurinational State of Bolivia"
-msgstr "Estado Plurinacional de Bolivia"
+msgstr "Многонациональное Государство Боливия"
 
 #: places/countries.py:441
 msgid "Province of China Taiwan"
-msgstr "La provincia china de Taiwan"
+msgstr "Китайская провинция Тайвань"
 
 #: places/countries.py:444
 msgid "Republic of Korea"
-msgstr "República de Corea"
+msgstr "Республика Корея"
 
 #: places/countries.py:445
 msgid "Republic of Moldova"
-msgstr "República de Moldova"
+msgstr "Молдова"
 
 #: places/countries.py:485
 msgid "The Democratic Republic of the Congo"
-msgstr "La República Democrática del Congo"
+msgstr "В Демократической Республике Конго"
 
 #: places/countries.py:486
 msgid "The Former Yugoslav Republic of Macedonia"
-msgstr "La ex República Yugoslava de Macedonia"
+msgstr "Бывшая югославская Республика Македония"
 
 #: places/countries.py:497
 msgid "U.s. Virgin Islands"
-msgstr "EE.UU. Islas Vírgenes"
+msgstr "США Виргинские о-ва"
 
 #: places/countries.py:502
 msgid "United Republic of Tanzania"
-msgstr "República Unida de Tanzania"
+msgstr "Объединенная Республика Танзания"
 
 #: places/countries.py:772
 msgid "Afar"
-msgstr "Lejos"
+msgstr "издалека"
 
 #: places/countries.py:773
 msgid "Abkhazian"
-msgstr "Azerbaiyán"
+msgstr "абхазский"
 
 #: places/countries.py:774
 msgid "Avestan"
-msgstr "Avestan"
+msgstr "Авестийская"
 
 #: places/countries.py:775
 msgid "Afrikaans"
-msgstr "Africaans"
+msgstr "африкаанс"
 
 #: places/countries.py:776
 msgid "Akan"
-msgstr "Akan"
+msgstr "Акан"
 
 #: places/countries.py:777
 msgid "Amharic"
-msgstr "Amárico"
+msgstr "амхарский"
 
 #: places/countries.py:778
 msgid "Aragonese"
-msgstr "Aragonés"
+msgstr "арагонский"
 
 #: places/countries.py:779
 msgid "Arabic"
-msgstr "Árabe"
+msgstr "арабский"
 
 #: places/countries.py:780
 msgid "Assamese"
-msgstr "Mensajes"
+msgstr "ассамский"
 
 #: places/countries.py:781
 msgid "Avaric"
-msgstr "Antártico"
+msgstr "Avaric"
 
 #: places/countries.py:782
 msgid "Aymara"
-msgstr "Myanmar"
+msgstr "аймара"
 
 #: places/countries.py:783
 msgid "Azerbaijani"
-msgstr "Azerbaiyán"
+msgstr "азербайджанский"
 
 #: places/countries.py:784
 msgid "Bashkir"
-msgstr "Bashkir"
+msgstr "башкирский"
 
 #: places/countries.py:785
 msgid "Belarusian"
-msgstr "Bielorrusia"
+msgstr "белорусской"
 
 #: places/countries.py:786
 msgid "Bulgarian"
-msgstr "Bulgaria"
+msgstr "болгарский"
 
 #: places/countries.py:787
 msgid "Bihari"
-msgstr "Bahrein"
+msgstr "Бихари"
 
 #: places/countries.py:788
 msgid "Bislama"
-msgstr "Bahama"
+msgstr "бислама"
 
 #: places/countries.py:789
 msgid "Bambara"
-msgstr "Bahama"
+msgstr "бамбара"
 
 #: places/countries.py:790
 msgid "Bengali; Bangla"
-msgstr "Bengalí, Bangla"
+msgstr "Бенгальский, Bangla"
 
 #: places/countries.py:791
 msgid "Tibetan"
-msgstr "Tibetana"
+msgstr "тибетский"
 
 #: places/countries.py:792
 msgid "Breton"
-msgstr "Creación"
+msgstr "бретонец"
 
 #: places/countries.py:793
 msgid "Bosnian"
-msgstr "Benin"
+msgstr "боснийский"
 
 #: places/countries.py:794
 msgid "Catalan"
-msgstr "Caravana"
+msgstr "каталонский"
 
 #: places/countries.py:795
 msgid "Chechen"
-msgstr "Facturación"
+msgstr "чеченский"
 
 #: places/countries.py:796
 msgid "Chamorro"
-msgstr "Comoras"
+msgstr "чаморро"
 
 #: places/countries.py:797
 msgid "Corsican"
-msgstr "Costa Rica"
+msgstr "корсиканский"
 
 #: places/countries.py:798
 msgid "Cree"
-msgstr "Grecia"
+msgstr "Cree"
 
 #: places/countries.py:799
 msgid "Czech"
-msgstr "Sofá"
+msgstr "чешский"
 
 #: places/countries.py:800
 msgid "Church Slavic"
-msgstr "Iglesia eslava"
+msgstr "церковнославянский"
 
 #: places/countries.py:801
 msgid "Chuvash"
-msgstr "Chuvashia"
+msgstr "чувашский"
 
 #: places/countries.py:802
 msgid "Welsh"
-msgstr "Galés"
+msgstr "валлийский"
 
 #: places/countries.py:803
 msgid "Danish"
-msgstr "Español"
+msgstr "датский"
 
 #: places/countries.py:805
 msgid "Divehi; Maldivian"
-msgstr "Divehi; Maldivas"
+msgstr "Divehi; мальдивских"
 
 #: places/countries.py:806
 msgid "Dzongkha; Bhutani"
-msgstr "Dzongkha; Butanés"
+msgstr "Dzongkha; Bhutani"
 
 #: places/countries.py:807
 msgid "Éwé"
-msgstr "Ewé"
+msgstr "эве"
 
 #: places/countries.py:808
 msgid "Greek"
-msgstr "Grecia"
+msgstr "греческий"
 
 #: places/countries.py:810
 msgid "Esperanto"
-msgstr "Espaniol"
+msgstr "эсперанто"
 
 #: places/countries.py:812
 msgid "Estonian"
-msgstr "Estonia"
+msgstr "эстонский"
 
 #: places/countries.py:813
 msgid "Basque"
-msgstr "Vasco"
+msgstr "баскский"
 
 #: places/countries.py:814
 msgid "Persian"
-msgstr "Persona"
+msgstr "персидский"
 
 #: places/countries.py:815
 msgid "Fulah"
-msgstr "Fulah"
+msgstr "фулах"
 
 #: places/countries.py:816
 msgid "Finnish"
-msgstr "Finlandés"
+msgstr "финский"
 
 #: places/countries.py:817
 msgid "Fijian; Fiji"
-msgstr "Fiyi, Fiyi"
+msgstr "Фиджийских, Фиджи"
 
 #: places/countries.py:818
 msgid "Faroese"
-msgstr "Islas Feroe"
+msgstr "фарерский"
 
 #: places/countries.py:820
 msgid "Western Frisian"
-msgstr "Sáhara Occidental"
+msgstr "западные Фризские"
 
 #: places/countries.py:821
 msgid "Irish"
-msgstr "Türkçe"
+msgstr "ирландский"
 
 #: places/countries.py:822
 msgid "Scottish Gaelic"
-msgstr "El gaélico escocés"
+msgstr "шотландский гэльский"
 
 #: places/countries.py:823
 msgid "Galician"
-msgstr "Gallego"
+msgstr "Галицко"
 
 #: places/countries.py:824
 msgid "Guarani"
-msgstr "Guayana"
+msgstr "гуарани"
 
 #: places/countries.py:825
 msgid "Gujarati"
-msgstr "Gujarati"
+msgstr "гуджарати"
 
 #: places/countries.py:826
 msgid "Manx"
-msgstr "Isla de Man"
+msgstr "Manx"
 
 #: places/countries.py:827
 msgid "Hausa"
-msgstr "Casa"
+msgstr "хауса"
 
 #: places/countries.py:828
 msgid "Hebrew (formerly iw)"
-msgstr "Hebreo (antes iw)"
+msgstr "Иврите (ранее IW)"
 
 #: places/countries.py:829
 msgid "Hindi"
-msgstr "Haiti"
+msgstr "хинди"
 
 #: places/countries.py:830
 msgid "Hiri Motu"
-msgstr "Hiri Motu"
+msgstr "хири Моту"
 
 #: places/countries.py:831
 msgid "Croatian"
-msgstr "Croacia"
+msgstr "хорватский"
 
 #: places/countries.py:832
 msgid "Haitian; Haitian Creole"
-msgstr "Haití, el criollo haitiano"
+msgstr "Гаитянский, гаитянский креольский"
 
 #: places/countries.py:833
 msgid "Hungarian"
-msgstr "Hungría"
+msgstr "венгерский"
 
 #: places/countries.py:834
 msgid "Armenian"
-msgstr "Armenia"
+msgstr "армянский"
 
 #: places/countries.py:835
 msgid "Herero"
-msgstr "Herero"
+msgstr "гереро"
 
 #: places/countries.py:836
 msgid "Interlingua"
-msgstr "Interlingua"
+msgstr "Интерлингва"
 
 #: places/countries.py:837
 msgid "Indonesian (formerly in)"
-msgstr "Indonesia (antes de)"
+msgstr "Индонезийский (ранее в)"
 
 #: places/countries.py:838
 msgid "Interlingue; Occidental"
-msgstr "Interlingue; Occidental"
+msgstr "Интерлингве, Occidental"
 
 #: places/countries.py:839
 msgid "Igbo"
-msgstr "Bandeja de entrada"
+msgstr "игбо"
 
 #: places/countries.py:840
 msgid "Sichuan Yi; Nuosu"
-msgstr "Sichuan Yi; Nuosu"
+msgstr "Сычуань Yi; Nuosu"
 
 #: places/countries.py:841
 msgid "Inupiak; Inupiaq"
-msgstr "Inupiak; Inupiaq"
+msgstr "Инупиак; инупиак"
 
 #: places/countries.py:842
 msgid "Ido"
-msgstr "Ido"
+msgstr "Идо"
 
 #: places/countries.py:843
 msgid "Icelandic"
-msgstr "Islandia"
+msgstr "исландский"
 
 #: places/countries.py:845
 msgid "Inuktitut"
-msgstr "Inuktitut"
+msgstr "инуктитут"
 
 #: places/countries.py:846
 msgid "Japanese"
-msgstr "Japón"
+msgstr "японский"
 
 #: places/countries.py:847
 msgid "Javanese"
-msgstr "Japón"
+msgstr "яванский"
 
 #: places/countries.py:848
 msgid "Georgian"
-msgstr "Georgia"
+msgstr "грузинский"
 
 #: places/countries.py:849
 msgid "Kongo"
-msgstr "Congo"
+msgstr "Конго"
 
 #: places/countries.py:850
 msgid "Kikuyu; Gikuyu"
-msgstr "Kikuyu, gikuyu"
+msgstr "Кикуйю, Gikuyu"
 
 #: places/countries.py:851
 msgid "Kuanyama; Kwanyama"
@@ -2055,407 +2088,407 @@ msgstr "Kuanyama; Kwanyama"
 
 #: places/countries.py:852
 msgid "Kazakh"
-msgstr "Kazajstán"
+msgstr "казахский"
 
 #: places/countries.py:853
 msgid "Kalaallisut; Greenlandic"
-msgstr "Kalaallisut, Groenlandia"
+msgstr "Гренландский, гренландский"
 
 #: places/countries.py:854
 msgid "Central Khmer; Cambodian"
-msgstr "Central de Khmer, Camboya"
+msgstr "Центральный красных, камбоджийский"
 
 #: places/countries.py:855
 msgid "Kannada"
-msgstr "Canadá"
+msgstr "каннада"
 
 #: places/countries.py:856
 msgid "Korean"
-msgstr "Jordania"
+msgstr "корейский"
 
 #: places/countries.py:857
 msgid "Kanuri"
-msgstr "Tema"
+msgstr "канури"
 
 #: places/countries.py:858
 msgid "Kashmiri"
-msgstr "Cachemira"
+msgstr "Кашмири"
 
 #: places/countries.py:859
 msgid "Kurdish"
-msgstr "Türkçe"
+msgstr "курдский"
 
 #: places/countries.py:860
 msgid "Komi"
-msgstr "Komi"
+msgstr "Коми"
 
 #: places/countries.py:861
 msgid "Cornish"
-msgstr "de Cornualles"
+msgstr "Корниш"
 
 #: places/countries.py:862
 msgid "Kirghiz"
-msgstr "Kirguises"
+msgstr "Киргизская"
 
 #: places/countries.py:863
 msgid "Latin"
-msgstr "Ubicación"
+msgstr "латинский"
 
 #: places/countries.py:864
 msgid "Letzeburgesch; Luxembourgish"
-msgstr "El luxemburgués, el luxemburgués"
+msgstr "Люксембургский, люксембургский"
 
 #: places/countries.py:865
 msgid "Ganda"
-msgstr "Ghana"
+msgstr "ганда"
 
 #: places/countries.py:866
 msgid "Limburgish; Limburger; Limburgan"
-msgstr "Limburgués; Limburger; Limburgan"
+msgstr "Лимбургский; Limburger; Limburgan"
 
 #: places/countries.py:867
 msgid "Lingala"
-msgstr "Angola"
+msgstr "лингала"
 
 #: places/countries.py:868
 msgid "Lao; Laotian"
-msgstr "Ubicación"
+msgstr "Лао, лаосский"
 
 #: places/countries.py:869
 msgid "Lithuanian"
-msgstr "Lituania"
+msgstr "литовский"
 
 #: places/countries.py:870
 msgid "Luba-Katanga"
-msgstr "Luba-Katanga"
+msgstr "Люба-Катанга"
 
 #: places/countries.py:871
 msgid "Latvian; Lettish"
-msgstr "Letonia; letona"
+msgstr "Латвийская, латышский"
 
 #: places/countries.py:872
 msgid "Malagasy"
-msgstr "Madagascar"
+msgstr "малагасийский"
 
 #: places/countries.py:873
 msgid "Marshallese"
-msgstr "Islas Marshall"
+msgstr "Маршалловых Островов"
 
 #: places/countries.py:874
 msgid "Maori"
-msgstr "Malí"
+msgstr "маори"
 
 #: places/countries.py:875
 msgid "Macedonian"
-msgstr "Nueva Caledonia"
+msgstr "македонский"
 
 #: places/countries.py:876
 msgid "Malayalam"
-msgstr "Malasia"
+msgstr "малаялам"
 
 #: places/countries.py:877
 msgid "Mongolian"
-msgstr "Mongolia"
+msgstr "монгольский"
 
 #: places/countries.py:878
 msgid "Moldavian"
-msgstr "Yugoslavia"
+msgstr "молдавский"
 
 #: places/countries.py:879
 msgid "Marathi"
-msgstr "Mauricio"
+msgstr "маратхи"
 
 #: places/countries.py:880
 msgid "Malay"
-msgstr "Malta"
+msgstr "малайский"
 
 #: places/countries.py:881
 msgid "Maltese"
-msgstr "Maldivas"
+msgstr "мальтийский"
 
 #: places/countries.py:882
 msgid "Burmese"
-msgstr "Su mensaje"
+msgstr "бирманский"
 
 #: places/countries.py:884
 msgid "Norwegian Bokmål"
-msgstr "Noruego Bokmål"
+msgstr "Норвежский букмол"
 
 #: places/countries.py:885
 msgid "Ndebele, North"
-msgstr "Ndebele, Norte"
+msgstr "Ндебеле, Северной"
 
 #: places/countries.py:886
 msgid "Nepali"
-msgstr "Nepal"
+msgstr "непальский"
 
 #: places/countries.py:887
 msgid "Ndonga"
-msgstr "Tonga"
+msgstr "Ndonga"
 
 #: places/countries.py:889
 msgid "Norwegian Nynorsk"
-msgstr "Nynorsk"
+msgstr "норвежский нюнорск"
 
 #: places/countries.py:890
 msgid "Norwegian"
-msgstr "Noruega"
+msgstr "норвежский"
 
 #: places/countries.py:891
 msgid "Ndebele, South"
-msgstr "Ndebele del Sur"
+msgstr "Ндебеле, Южная"
 
 #: places/countries.py:892
 msgid "Navajo; Navaho"
-msgstr "Navajo; Navajo"
+msgstr "Навахо, навахо"
 
 #: places/countries.py:893
 msgid "Chichewa; Nyanja"
-msgstr "Chichewa; nyanja"
+msgstr "Чичева; ньянджа"
 
 #: places/countries.py:894
 msgid "Occitan; Provençal"
-msgstr "Occitano, Provenzal"
+msgstr "Окситанский, провансальском"
 
 #: places/countries.py:895
 msgid "Ojibwa"
-msgstr "Ojibwa"
+msgstr "оджибва"
 
 #: places/countries.py:896
 msgid "(Afan) Oromo"
-msgstr "(Afan) Oromo"
+msgstr "(Afan) оромо"
 
 #: places/countries.py:897
 msgid "Oriya"
-msgstr "Original"
+msgstr "ория"
 
 #: places/countries.py:898
 msgid "Ossetian; Ossetic"
-msgstr "Ossetian; Ossetic"
+msgstr "Осетинский, осетинский"
 
 #: places/countries.py:899
 msgid "Panjabi; Punjabi"
-msgstr "Panjabi; Punjabi"
+msgstr "Panjabi; панджаби"
 
 #: places/countries.py:900
 msgid "Pali"
-msgstr "Malí"
+msgstr "пали"
 
 #: places/countries.py:902
 msgid "Pashto; Pushto"
-msgstr "Pashto; Pushto"
+msgstr "Пушту, пушту"
 
 #: places/countries.py:904
 msgid "Quechua"
-msgstr "Quechua"
+msgstr "кечуа"
 
 #: places/countries.py:905
 msgid "Romansh"
-msgstr "Rumania"
+msgstr "ретороманский"
 
 #: places/countries.py:906
 msgid "Rundi; Kirundi"
-msgstr "Rundi; Kirundi"
+msgstr "Рунди; кирунди"
 
 #: places/countries.py:907
 msgid "Romanian"
-msgstr "Rumania"
+msgstr "румынский"
 
 #: places/countries.py:909
 msgid "Kinyarwanda"
-msgstr "Kinyarwanda"
+msgstr "киньяруанда"
 
 #: places/countries.py:910
 msgid "Sanskrit"
-msgstr "Sanskrit"
+msgstr "санскрит"
 
 #: places/countries.py:911
 msgid "Sardinian"
-msgstr "Mauritania"
+msgstr "сардинский"
 
 #: places/countries.py:912
 msgid "Sindhi"
-msgstr "Enviar"
+msgstr "синдхи"
 
 #: places/countries.py:913
 msgid "Northern Sami"
-msgstr "Northern Sami"
+msgstr "Северный саамский"
 
 #: places/countries.py:914
 msgid "Sango; Sangro"
-msgstr "San Marino"
+msgstr "Санго; Сангро"
 
 #: places/countries.py:915
 msgid "Sinhala; Sinhalese"
-msgstr "Sinhala; Sinhalese"
+msgstr "Сингальского; сингальского"
 
 #: places/countries.py:916
 msgid "Slovak"
-msgstr "Eslovaquia"
+msgstr "словацкий"
 
 #: places/countries.py:917
 msgid "Slovenian"
-msgstr "Eslovenia"
+msgstr "словенский"
 
 #: places/countries.py:918
 msgid "Samoan"
-msgstr "Samoa"
+msgstr "Самоа"
 
 #: places/countries.py:919
 msgid "Shona"
-msgstr "Eslovenia"
+msgstr "Шона"
 
 #: places/countries.py:920
 msgid "Somali"
-msgstr "Somalia"
+msgstr "сомалийский"
 
 #: places/countries.py:921
 msgid "Albanian"
-msgstr "Albania"
+msgstr "албанский"
 
 #: places/countries.py:922
 msgid "Serbian"
-msgstr "Serbia"
+msgstr "сербский"
 
 #: places/countries.py:923
 msgid "Swati; Siswati"
-msgstr "Swati; Siswati"
+msgstr "Свати, Сисвати"
 
 #: places/countries.py:924
 msgid "Sesotho; Sotho, Southern"
-msgstr "Sesotho; Sotho, Southern"
+msgstr "Сесото, сото, Южный"
 
 #: places/countries.py:925
 msgid "Sundanese"
-msgstr "Sudán"
+msgstr "Суданский"
 
 #: places/countries.py:926
 msgid "Swedish"
-msgstr "Suecia"
+msgstr "шведский"
 
 #: places/countries.py:927
 msgid "Swahili"
-msgstr "Suazilandia"
+msgstr "суахили"
 
 #: places/countries.py:928
 msgid "Tamil"
-msgstr "Tailandia"
+msgstr "тамильский"
 
 #: places/countries.py:929
 msgid "Telugu"
-msgstr "Bélgica"
+msgstr "телугу"
 
 #: places/countries.py:930
 msgid "Tajik"
-msgstr "Tayikistán"
+msgstr "таджикский"
 
 #: places/countries.py:931
 msgid "Thai"
-msgstr "Tailandia"
+msgstr "тайский"
 
 #: places/countries.py:932
 msgid "Tigrinya"
-msgstr "Nigeria"
+msgstr "тигринья"
 
 #: places/countries.py:933
 msgid "Turkmen"
-msgstr "Turquía"
+msgstr "туркменский"
 
 #: places/countries.py:934
 msgid "Tagalog"
-msgstr "Etiqueta"
+msgstr "тагальский"
 
 #: places/countries.py:935
 msgid "Tswana; Setswana"
-msgstr "Tswana; Setswana"
+msgstr "Тсвана, сетсвана"
 
 #: places/countries.py:938
 msgid "Tsonga"
-msgstr "Tonga"
+msgstr "Тсонга"
 
 #: places/countries.py:939
 msgid "Tatar"
-msgstr "Qatar"
+msgstr "татарский"
 
 #: places/countries.py:940
 msgid "Twi"
-msgstr "Twitter"
+msgstr "тви"
 
 #: places/countries.py:941
 msgid "Tahitian"
-msgstr "Tayikistán"
+msgstr "Tahitian"
 
 #: places/countries.py:942
 msgid "Uighur"
-msgstr "Uighur"
+msgstr "уйгурские"
 
 #: places/countries.py:943
 msgid "Ukrainian"
-msgstr "Ucrania"
+msgstr "украинский"
 
 #: places/countries.py:944
 msgid "Urdu"
-msgstr "Urdu"
+msgstr "язык урду"
 
 #: places/countries.py:945
 msgid "Uzbek"
-msgstr "Uzbekistán"
+msgstr "узбекский"
 
 #: places/countries.py:946
 msgid "Venda"
-msgstr "Granada"
+msgstr "Венда"
 
 #: places/countries.py:947
 msgid "Vietnamese"
-msgstr "Viet Nam"
+msgstr "вьетнамский"
 
 #: places/countries.py:948
 msgid "Volapük; Volapuk"
-msgstr "Volapük; Volapuk"
+msgstr "Волапюк, волапюк"
 
 #: places/countries.py:949
 msgid "Walloon"
-msgstr "Valonia"
+msgstr "валлонский"
 
 #: places/countries.py:950
 msgid "Wolof"
-msgstr "wolof"
+msgstr "волоф"
 
 #: places/countries.py:951
 msgid "Xhosa"
-msgstr "expediente"
+msgstr "коса"
 
 #: places/countries.py:952
 msgid "Yiddish (formerly ji)"
-msgstr "Yiddish (antes ji)"
+msgstr "Идиш (ранее СО)"
 
 #: places/countries.py:953
 msgid "Yoruba"
-msgstr "Aruba"
+msgstr "йоруба"
 
 #: places/countries.py:954
 msgid "Zhuang"
-msgstr "Bután"
+msgstr "Чжуан"
 
 #: places/countries.py:955
 msgid "Chinese"
-msgstr "Chile"
+msgstr "китайский"
 
 #: places/countries.py:956
 msgid "Zulu"
-msgstr "Tuvalu"
+msgstr "зулусский"
 
 #: places/models.py:92
 msgid "Support"
-msgstr "Soporte"
+msgstr "поддержка"
 
 #: places/models.py:93
 msgid "Website"
-msgstr "Sitio Web"
+msgstr "веб-сайт"
 
 #: places/models.py:94
 msgid "Auth"
-msgstr "Autoridades"
+msgstr "Auth"
 
 #: places/models.py:105 places/models.py:134 places/models.py:215
 #: places/models.py:236 places/models.py:713 places/models.py:920
@@ -2463,7 +2496,7 @@ msgstr "Autoridades"
 #: website/models/faq.py:72 website/models/faq.py:93 website/models/faq.py:151
 #: website/models/faq.py:170
 msgid "Active"
-msgstr "Activo"
+msgstr "активный"
 
 #: places/models.py:106 places/models.py:135 places/models.py:191
 #: places/models.py:212 places/models.py:238 places/models.py:281
@@ -2475,407 +2508,407 @@ msgstr "Activo"
 #: website/models/faq.py:53 website/models/faq.py:73 website/models/faq.py:94
 #: website/models/faq.py:152 website/models/faq.py:171
 msgid "timestamp"
-msgstr "Fecha y Hora"
+msgstr "метки"
 
 #: places/models.py:111
 msgid "Tag Category"
-msgstr "Etiqueta Categoría"
+msgstr "Тег категории"
 
 #: places/models.py:112
 msgid "Tag Categories"
-msgstr "Categorías Etiqueta"
+msgstr "Тег категории"
 
 #: places/models.py:124
 msgid "Currency name"
-msgstr "Moneda Nombre"
+msgstr "название валюты"
 
 #: places/models.py:125
 msgid "Currency code"
-msgstr "Código de Moneda"
+msgstr "код валюты"
 
 #: places/models.py:126
 msgid "Currency placement"
-msgstr "La Colocación de Divisas"
+msgstr "Валюта размещения"
 
 #: places/models.py:127
 msgid "Prefix"
-msgstr "Prefijo"
+msgstr "префикс"
 
 #: places/models.py:127
 msgid "Suffix"
-msgstr "Sufijo"
+msgstr "суффикс"
 
 #: places/models.py:128
 msgid "Conversation factor"
-msgstr "Factor de Conversación"
+msgstr ""
 
 #: places/models.py:129
 msgid "Modify updated factor"
-msgstr "Modify updated factor"
+msgstr ""
 
 #: places/models.py:130
 msgid ""
 "Enter a positive or negative decimal value to modify auto-updated "
 "conversation ratio."
 msgstr ""
-"Enter a positive or negative decimal value to modify auto-updated "
-"conversation ratio."
 
 #: places/models.py:131
 msgid "Main site currency?"
-msgstr "Moneda sitio principal?"
+msgstr ""
 
 #: places/models.py:131
 msgid "Main currency is the     conversation bridge between other currencies."
-msgstr "La base monetaria se usa en el intercambio de divisas."
+msgstr ""
+"Можно применять и для обмена основного денежного средства в других "
+"валютных денежных единиц."
 
 #: places/models.py:133
 msgid "Auto update"
-msgstr "Auto update"
+msgstr "Автоматическое обновление"
 
 #: places/models.py:144 places/models.py:377 places/models.py:652
 #: places/models.py:834 website/dashboard.py:542
 msgid "Currency"
-msgstr "Moneda"
+msgstr "валюта"
 
 #: places/models.py:145
 msgid "Currencies"
-msgstr "Monedas"
+msgstr "Валюты"
 
 #: places/models.py:182
 msgid "Promotion code"
-msgstr "El Código de Promoción"
+msgstr "Поощрение код"
 
 #: places/models.py:184
 msgid "Who used this code"
-msgstr "¿Quién ha utilizado este código?"
+msgstr "Кто использовал этот код?"
 
 #: places/models.py:185
 msgid "Sender/Inviter"
-msgstr "Emisor / Invitar"
+msgstr "Отправитель / приглашающей"
 
 #: places/models.py:186
 msgid "Percentage"
-msgstr "Porcentaje"
+msgstr "процент"
 
 #: places/models.py:187
 msgid "Promotion Amount"
-msgstr "Cantidad de promoción"
+msgstr "Сумма поощрения"
 
 #: places/models.py:187
 msgid "Discount amount"
-msgstr "Importe de Descuento"
+msgstr "Размер скидки"
 
 #: places/models.py:188
 msgid "Used"
-msgstr "Utilizado"
+msgstr "использованный"
 
 #: places/models.py:189
 msgid "Active/Valid"
-msgstr "Activo / Válido"
+msgstr "Active / Действующие"
 
 #: places/models.py:190
 msgid "Expiry date"
-msgstr "Fecha de Caducidad"
+msgstr "Срок годности"
 
 #: places/models.py:196
 msgid "Promotion Code"
-msgstr "Código de Promoción"
+msgstr "промо-код"
 
 #: places/models.py:197
 msgid "Promotion Codes"
-msgstr "Los Códigos de Promoción"
+msgstr "промо-кода"
 
 #: places/models.py:207 places/models.py:969 support/models.py:86
 msgid "Sender"
-msgstr "Remitente"
+msgstr "отправитель"
 
 #: places/models.py:208
 msgid "Amount"
-msgstr "Cantidad"
+msgstr "количество"
 
 #: places/models.py:210
 msgid "Receiver type"
-msgstr "Receptor de Tipo"
+msgstr "тип приемника"
 
 #: places/models.py:211
 msgid "Sender type"
-msgstr "Remitente Tipo"
+msgstr "Отправитель типа"
 
 #: places/models.py:217
 msgid "Transection details (json serialized dict)"
-msgstr "Detalles de la Transacción"
+msgstr "Перерезка детали (сериализации JSON Dict)"
 
 #: places/models.py:222
 msgid "Transaction"
-msgstr "Transacción"
+msgstr "сделка"
 
 #: places/models.py:223
 msgid "Transactions"
-msgstr "Las Transacciones"
+msgstr "Сделки"
 
 #: places/models.py:235 places/models.py:280
 msgid "Help Text"
-msgstr "Texto de ayuda"
+msgstr "подсказка"
 
 #: places/models.py:237 website/models/faq.py:54 website/models/faq.py:91
 #: website/models/icerik.py:47
 msgid "Order"
-msgstr "Orden"
+msgstr "порядок"
 
 #: places/models.py:243 places/models.py:277
 msgid "Tag"
-msgstr "Etiqueta"
+msgstr "тег"
 
 #: places/models.py:244 places/models.py:362
 msgid "Tags"
-msgstr "Etiquetas"
+msgstr "Метки"
 
 #: places/models.py:278 places/models.py:402 places/models.py:944
 #: places/models.py:979 places/models.py:1044 places/models.py:1071
 msgid "Language"
-msgstr "Lengua"
+msgstr "язык"
 
 #: places/models.py:279 website/models/faq.py:33 website/models/faq.py:71
 msgid "Translation"
-msgstr "Traducción"
+msgstr "перевод"
 
 #: places/models.py:286
 msgid "Tag Translation"
-msgstr "Etiqueta de Traducción"
+msgstr "Тег перевода"
 
 #: places/models.py:287
 msgid "Tag Translations"
-msgstr "Traducciones de etiquetas"
+msgstr "Тег Переводы"
 
 #: places/models.py:303 places/models.py:366 places/models.py:708
 msgid "Country"
-msgstr "País"
+msgstr "страна"
 
 #: places/models.py:338
 msgid "GeoLocation Data"
-msgstr "Los Datos de Geolocalización"
+msgstr "геолокации"
 
 #: places/models.py:339
 msgid "GeoLocation Datas"
-msgstr "Datas de GeoLocation"
+msgstr "геолокации Datas"
 
 #: places/models.py:361 places/models.py:828 places/options.py:96
 #: templates/show_place.html:244 templates/dashboard/requests.html:20
 #: templates/dashboard/trips.html:27 templates/dashboard/trips.html.py:50
 #: templates/dashboard/trips.html:73
 msgid "Host"
-msgstr "Anfitrión"
+msgstr "хозяин"
 
 #: places/models.py:363 places/models.py:946
 msgid "Place title"
-msgstr "Coloque el Título"
+msgstr "Место название"
 
 #: places/models.py:364
 msgid "URL Name"
-msgstr "Nombre URL"
+msgstr "Имя URL"
 
 #: places/models.py:365
 msgid "Address Line"
-msgstr "Dirección Línea"
+msgstr "адресная линия"
 
 #: places/models.py:367 places/models.py:717
 msgid "Street"
-msgstr "Calle"
+msgstr "улица"
 
 #: places/models.py:368 places/models.py:718
 msgid "Postcode"
-msgstr "Código Postal"
+msgstr "почтовый индекс"
 
 #: places/models.py:369 places/models.py:653 places/models.py:719
 msgid "City"
-msgstr "Ciudad"
+msgstr "Сити"
 
 #: places/models.py:370
 msgid "District"
-msgstr "Distrito"
+msgstr "район"
 
 #: places/models.py:372
 msgid "Geographic Location"
-msgstr "Localización Geográfica"
+msgstr "Географическое положение"
 
 #: places/models.py:373
 msgid "Neighborhood"
-msgstr "Localización Geográfica"
+msgstr "окрестности"
 
 #: places/models.py:374
 msgid "State/Region"
-msgstr "Estado / Región"
+msgstr "Область / регион"
 
 #: places/models.py:375
 msgid "Emergency phone"
-msgstr "De Teléfono de Emergencia"
+msgstr "Экстренные телефоны"
 
 #: places/models.py:378
 msgid "Primary photo"
-msgstr "Foto Primaria"
+msgstr "Первичная фото"
 
 #: places/models.py:379
 msgid "Price per night"
-msgstr "Precio Por Noche"
+msgstr ""
 
 #: places/models.py:379
 msgid "Price for guest"
-msgstr "Precio Para Los Huéspedes"
+msgstr ""
 
 #: places/models.py:380
 msgid "Converted Price"
-msgstr "Precio Construcción"
+msgstr ""
 
 #: places/models.py:380
 msgid "Price in main site currency (eg:euro)"
-msgstr "Precio en Moneda Sitio Principal"
+msgstr "Цены в основной валюте сайта (например, евро)"
 
 #: places/models.py:381 website/views.py:69
 msgid "Accommodates"
-msgstr "Número de personas"
+msgstr "Вмещает"
 
 #: places/models.py:382 website/views.py:67
 msgid "Place type"
-msgstr "Lugar de Tipo"
+msgstr "Место типа"
 
 #: places/models.py:383 website/views.py:68
 msgid "Space offered"
-msgstr "Espacio Que Ofrece"
+msgstr "Космические предлагают"
 
 #: places/models.py:384
 msgid "Number of bedrooms"
-msgstr "Número de Habitaciones"
+msgstr "Количество спален"
 
 #: places/models.py:385 website/views.py:72
 msgid "Bed type"
-msgstr "Tipo de Dama"
+msgstr "Кровать типа"
 
 #: places/models.py:386
 msgid "Number of bathrooms"
-msgstr "Número de Cuartos de Baño"
+msgstr "Количество ванных комнат"
 
 #: places/models.py:388
 msgid "Measurement type"
-msgstr "Tipo de Medición"
+msgstr ""
 
 #: places/models.py:389
 msgid "Cancellation policy"
-msgstr "La política de Cancelación"
+msgstr ""
 
 #: places/models.py:390
 msgid "Minimum number of nights"
-msgstr "Número Mínimo de Noches"
+msgstr "Минимальное количество ночевок "
 
 #: places/models.py:391
 msgid "Maximum number of nights"
-msgstr "El Número Máximo de Noches"
+msgstr "Максимальное количество ночевок "
 
 #: places/models.py:392
 msgid "House manual"
-msgstr "Casa Manual de"
+msgstr "дома ручной"
 
 #: places/models.py:393
 msgid "House rules"
-msgstr "Reglas de la Casa"
+msgstr "регламент палаты представителей"
 
 #: places/models.py:395
 msgid "Favorite counter"
-msgstr "Contra el Favorito"
+msgstr "Любимые счетчик"
 
 #: places/models.py:396
 msgid "Overall rating"
-msgstr "Valoración General"
+msgstr "Общий рейтинг"
 
 #: places/models.py:397
 msgid "Cleaness"
-msgstr "Limpieza"
+msgstr "ЧИСТОТА"
 
 #: places/models.py:398
 msgid "Comfort"
-msgstr "Confort"
+msgstr "комфорт"
 
 #: places/models.py:399
 msgid "Location"
-msgstr "Ubicación"
+msgstr "расположение"
 
 #: places/models.py:400
 msgid "Value/Money Rating"
-msgstr "Valor / dinero Rating"
+msgstr "Значение / Деньги Рейтинг"
 
 #: places/models.py:401 places/models.py:945 places/models.py:953
 #: templates/show_place.html:84
 msgid "Description"
-msgstr "Descripción"
+msgstr "описание"
 
 #: places/models.py:404
 msgid "Latitude"
-msgstr "Latitud"
+msgstr "широта"
 
 #: places/models.py:405
 msgid "Longitude"
-msgstr "Longitud"
+msgstr "долгота"
 
 #: places/models.py:407
 msgid "Weekly discount (%)"
-msgstr "Descuento semanal (%)"
+msgstr "Еженедельная скидка (%)"
 
 #: places/models.py:408
 msgid "Monthly discount (%)"
-msgstr "El descuento mensual (%)"
+msgstr "Ежемесячные скидки (%)"
 
 #: places/models.py:409 places/models.py:919
 msgid "Weekend price"
-msgstr "Fin de semana precio"
+msgstr "выходные цены"
 
 #: places/models.py:409 places/models.py:412
 msgid "Weekend price for guest"
-msgstr "Precio Para Los Huéspedes"
+msgstr ""
 
 #: places/models.py:411 website/dashboard.py:543
 msgid "Extra charge for more guests than"
-msgstr "Limite de huéspedes para pedir pago adicional "
+msgstr "Ограничение количества гостей, подлежащие дополнительной оплатe "
 
 #: places/models.py:413
 msgid "Extra charge per person"
-msgstr "Pago adicional por persona "
+msgstr "Сумма дополнительной оплаты на человек"
 
 #: places/models.py:415
 msgid ""
 "Each extra person exceeding the number you specified, must pay this "
 "extra charge."
 msgstr ""
-"Cada persona que excede el limite determinada, debe pagar este "
-"adición."
+"Каждый человек из-вне состава ограниченного количества гостей "
+"подлежить дополнительной оплате "
 
 #: places/models.py:416 templates/book_place.html:69
 #: templates/show_place.html:110
 msgid "Cleaning fee"
-msgstr "Tarifa de Limpieza"
+msgstr "Уборка"
 
 #: places/models.py:417
 msgid "Street view"
-msgstr "Vista de la Calle"
+msgstr "Вид на улицу"
 
 #: places/models.py:419
 msgid "Etkin"
-msgstr "Estonia"
+msgstr ""
 
 #: places/models.py:420
 msgid "Place is published"
-msgstr "Lugar se Publica"
+msgstr "Место публикуется"
 
 #: places/models.py:421 support/models.py:37 support/models.py:70
 msgid "Creatation"
-msgstr "Creación"
+msgstr "Creatation"
 
 #: places/models.py:422
 msgid "Last modified"
-msgstr "Modificada por última Vez"
+msgstr "Последние изменения"
 
 #: places/models.py:423
 msgid "Translation status"
-msgstr "Traducción"
+msgstr "Перевод статус"
 
 #: places/models.py:626 places/models.py:741 places/models.py:775
 #: places/models.py:830 places/models.py:916 places/models.py:943
@@ -2883,39 +2916,39 @@ msgstr "Traducción"
 #: templates/dashboard/requests.html:21 templates/dashboard/trips.html:28
 #: templates/dashboard/trips.html.py:51 templates/dashboard/trips.html:74
 msgid "Place"
-msgstr "Lugar"
+msgstr "место"
 
 #: places/models.py:627
 msgid "Places"
-msgstr "Lugares"
+msgstr "Места"
 
 #: places/models.py:639
 msgid "Confirmed"
-msgstr "Confirmado"
+msgstr "подтвержденный"
 
 #: places/models.py:648 places/models.py:709
 msgid "User"
-msgstr "Usuario"
+msgstr "пользователь"
 
 #: places/models.py:649 places/models.py:785
 msgid "Photo"
-msgstr "Foto"
+msgstr "фото"
 
 #: places/models.py:650
 msgid "Favorite places"
-msgstr "Los Lugares Favoritos de"
+msgstr "Любимые места"
 
 #: places/models.py:654 support/models.py:108 templates/contactus/form.html:24
 msgid "Phone"
-msgstr "Teléfono"
+msgstr "телефон"
 
 #: places/models.py:655
 msgid "Cellular Phone"
-msgstr "Teléfono Celular"
+msgstr "сотовый телефон"
 
 #: places/models.py:656
 msgid "Occupation"
-msgstr "Ocupación"
+msgstr "оккупация"
 
 #: places/models.py:657
 msgid "Twitter"
@@ -2927,152 +2960,152 @@ msgstr "Facebook"
 
 #: places/models.py:659
 msgid "Brithdate"
-msgstr "Fecha de Nacimiento"
+msgstr "Brithdate"
 
 #: places/models.py:660
 msgid "Last login time"
-msgstr "Hora del último Acceso"
+msgstr "В последнее время входа"
 
 #: places/models.py:661
 msgid "Default Language"
-msgstr "Lenguaje por Defecto"
+msgstr "Язык по умолчанию"
 
 #: places/models.py:663
 msgid "Private Name"
-msgstr "Nombre Privado"
+msgstr "Частное Имя"
 
 #: places/models.py:664
 msgid "Full Name"
-msgstr "Nombre Completo"
+msgstr "Полное имя"
 
 #: places/models.py:665
 msgid "About you"
-msgstr "Acerca de ti"
+msgstr "О тебе"
 
 #: places/models.py:699
 msgid "Profile"
-msgstr "Perfil"
+msgstr "профиль"
 
 #: places/models.py:700
 msgid "Profiles"
-msgstr "Perfiles"
+msgstr "Профили"
 
 #: places/models.py:710 places/models.py:840
 msgid "Payment type"
-msgstr "Tipo de Pago"
+msgstr "вид оплаты"
 
 #: places/models.py:711
 msgid "PayPal email"
-msgstr "PayPal email"
+msgstr "PayPal электронной почте"
 
 #: places/models.py:714
 msgid "Account Owner"
-msgstr "Titular de la Cuenta"
+msgstr "владельца счета"
 
 #: places/models.py:715
 msgid "IBAN/Account No"
-msgstr "IBAN / N º de Cuenta"
+msgstr "IBAN / счет №"
 
 #: places/models.py:716
 msgid "SWIFT/BIC Code"
-msgstr "SWIFT / BIC Código"
+msgstr "SWIFT / BIC код"
 
 #: places/models.py:720
 msgid "Bank name"
-msgstr "Nombre del Banco"
+msgstr "название банка"
 
 #: places/models.py:721
 msgid "Bank street"
-msgstr "Banco de la Calle"
+msgstr "Банк улицы"
 
 #: places/models.py:722
 msgid "Bank postcode"
-msgstr "Banco Código Postal"
+msgstr "Банк индекс"
 
 #: places/models.py:723
 msgid "Bank city"
-msgstr "Banco de la Ciudad"
+msgstr "Банк город"
 
 #: places/models.py:728
 msgid "Payment Selection"
-msgstr "Selección de Pago"
+msgstr "Оплата выбор"
 
 #: places/models.py:729
 msgid "Payment Selections"
-msgstr "Selecciones de pago"
+msgstr "Оплата выбранных"
 
 #: places/models.py:739
 msgid "Reservation Start"
-msgstr "Reserva Inicio"
+msgstr "Бронирование начала"
 
 #: places/models.py:740
 msgid "Reservation End"
-msgstr "Reserva Final"
+msgstr "Бронирование End"
 
 #: places/models.py:742
 msgid "Reason"
-msgstr "Razón"
+msgstr "причина"
 
 #: places/models.py:751
 msgid "Reserved Date"
-msgstr "Fecha Reservados"
+msgstr "Зарезервировано дате"
 
 #: places/models.py:752
 msgid "Reserved Dates"
-msgstr "Fechas Reservados"
+msgstr "зарезервировано даты"
 
 #: places/models.py:776
 msgid "Image name"
-msgstr "Nombre de la Imagen"
+msgstr "название изображения"
 
 #: places/models.py:777
 msgid "Image File"
-msgstr "Imagen de Archivo"
+msgstr "файл изображения"
 
 #: places/models.py:778 website/models/icerik.py:279
 msgid "Photo type"
-msgstr "Foto Tipo"
+msgstr "Фотография типа"
 
 #: places/models.py:779
 msgid "Display order"
-msgstr "Orden de Visualización"
+msgstr "Показать заказ"
 
 #: places/models.py:786 templates/show_place.html:30
 msgid "Photos"
-msgstr "Fotos"
+msgstr "Фото"
 
 #: places/models.py:829 places/options.py:95
 msgid "Guest"
-msgstr "Invitado"
+msgstr "гость"
 
 #: places/models.py:831
 msgid "Reservation Dates"
-msgstr "Fechas de Reserva"
+msgstr "Даты бронирования"
 
 #: places/models.py:832
 msgid "Number of guests"
-msgstr "Número de personas"
+msgstr "Количество гостей"
 
 #: places/models.py:833 templates/book_place.html:43
 #: templates/paypal-confirm.html:17 templates/dashboard/show_booking.html:33
 msgid "Nights"
-msgstr "Noches"
+msgstr "ночью"
 
 #: places/models.py:835
 msgid "Booking start"
-msgstr "Reservas Inicio"
+msgstr "бронирование начала"
 
 #: places/models.py:836
 msgid "Booking end"
-msgstr "Reserva Final"
+msgstr "бронирование конца"
 
 #: places/models.py:837
 msgid "Summary"
-msgstr "Resumen"
+msgstr "резюме"
 
 #: places/models.py:838
 msgid "Valid"
-msgstr "Válido"
+msgstr "действительный"
 
 #: places/models.py:839 places/models.py:975 places/models.py:1043
 #: places/models.py:1070 support/models.py:34
@@ -3080,202 +3113,201 @@ msgstr "Válido"
 #: templates/dashboard/show_booking.html:49 templates/dashboard/trips.html:25
 #: templates/dashboard/trips.html.py:48 templates/dashboard/trips.html:71
 msgid "Status"
-msgstr "Estado"
+msgstr "статус"
 
 #: places/models.py:841
 msgid "Total payment for guest"
-msgstr "El pago total para los huéspedes"
+msgstr "Общая сумма платежей для гостей"
 
 #: places/models.py:842
 msgid "Host's earning"
-msgstr "Anfitrión ganando"
+msgstr "Хозяина заработка"
 
 #: places/models.py:868
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "%(guest)s would like to stay at your place %(title)s on %(start)s through %(end)s. Please <a href='?showBookingRequest=%(bid)s'>accept or decline</a> this  reservation in 24 hours .\n"
 "        Phone, email, and address information will be exchanged between guest/host after you accept the guest.\n"
 "        "
 msgstr ""
-"%(guest)s, desea alojarse en su hogar, %(title)s entre las fechas "
-"%(start)s - %(end)s. Por favor <a "
-"href='?showBookingRequest=%(bid)s'>accept or decline</a> la solicitud "
-"dentro de 24 horas. Una vez aceptado la solicitud del cliente, sus "
-"datos de teléfono, correo electrónico y dirección serán compartidos "
-"entre el cliente y el propietario. "
+"%(guest)sЛицо  %(title)s сделал запрос на проживание в Вашей жилище с "
+"%(start)s по  %(end)sгода.%(bid)s' Пожалуйста, подтвердите/отвергните "
+"данный запрос в течение 24 часа. После Вашего подтверждения Ваши "
+"телефонные номера, э-почтовый адрес и адресная информация будет "
+"предоставлена гостей и собственнику жилища. "
 
 #: places/models.py:907
 msgid "Booking"
-msgstr "Reserva"
+msgstr "бронирование"
 
 #: places/models.py:908
 msgid "Bookings"
-msgstr "Reservas"
+msgstr "бронирование"
 
 #: places/models.py:918 templates/index.html:126
 msgid "Price"
-msgstr "Precio"
+msgstr "цена"
 
 #: places/models.py:921
 msgid "Session start"
-msgstr "Comienzo de Temporada"
+msgstr "сессия начала"
 
 #: places/models.py:922
 msgid "Session end"
-msgstr "Fin de Temporada"
+msgstr "сессия конца"
 
 #: places/models.py:928
 msgid "Sessional Price"
-msgstr "Estacionales de Los Precios"
+msgstr "Сессионный Цена"
 
 #: places/models.py:929
 msgid "Sessional Prices"
-msgstr "Los Precios de Temporada"
+msgstr "Сессионный цены"
 
 #: places/models.py:947
 msgid "Auto translation"
-msgstr "Auto de Traducción"
+msgstr "Автоматический перевод"
 
 #: places/models.py:954
 msgid "Descriptions"
-msgstr "Descripciones"
+msgstr "Описание"
 
 #: places/models.py:968
 msgid "First message"
-msgstr "Primer Mensaje"
+msgstr "Первое сообщение"
 
 #: places/models.py:970
 msgid "Receiver"
-msgstr "Receptor"
+msgstr "приемник"
 
 #: places/models.py:972 places/models.py:1029 support/models.py:110
 msgid "Message"
-msgstr "Mensaje"
+msgstr "сообщение"
 
 #: places/models.py:973
 msgid "Was read"
-msgstr "Fue Leído"
+msgstr "Был читать"
 
 #: places/models.py:974 support/models.py:29 support/models.py:112
 #: templates/dashboard.html:86 templates/dashboard/user_messages.html:10
 msgid "Replied"
-msgstr "Respondió"
+msgstr "Ответил"
 
 #: places/models.py:978
 msgid "Last message time"
-msgstr "El Tiempo del último Mensaje"
+msgstr "Последний раз сообщение"
 
 #: places/models.py:1030 rosetta/templates/rosetta/languages.html:30
 #: templates/dashboard.html:38
 msgid "Messages"
-msgstr "Mensajes"
+msgstr "сообщения"
 
 #: places/models.py:1039 places/models.py:1060
 msgid "Reviewer"
-msgstr "Crítico"
+msgstr "рецензент"
 
 #: places/models.py:1040 places/models.py:1061
 msgid "Person"
-msgstr "Persona"
+msgstr "человек"
 
 #: places/models.py:1041 places/models.py:1063
 msgid "Review"
-msgstr "Crítica"
+msgstr "Обзор"
 
 #: places/models.py:1042 places/models.py:1069
 msgid "Review visible on the site"
-msgstr "El comentario disponible en la página "
+msgstr "Комментарий транслируется на сайте."
 
 #: places/models.py:1050
 msgid "User Review"
-msgstr "Opiniones de Usuarios"
+msgstr "Отзывы пользователей"
 
 #: places/models.py:1051
 msgid "User Reviews"
-msgstr "Opiniones de los Usuarios"
+msgstr "Обзоры пользователей"
 
 #: places/models.py:1064 places/models.py:1065 places/models.py:1066
 #: places/models.py:1067 places/models.py:1068
 msgid "Rating"
-msgstr "Clasificación"
+msgstr "рейтинг"
 
 #: places/models.py:1077
 msgid "Place Review"
-msgstr "Lugar revisión"
+msgstr "Поместите обзор"
 
 #: places/models.py:1078
 msgid "Place Reviews"
-msgstr "lugar revisión"
+msgstr "Место Отзывы"
 
 #: places/options.py:10
 msgid "Apartment"
-msgstr "Apartamento"
+msgstr "квартира"
 
 #: places/options.py:11
 msgid "House"
-msgstr "Casa"
+msgstr "дом"
 
 #: places/options.py:12
 msgid "Garden House"
-msgstr "Jardín de la Casa"
+msgstr "беседка"
 
 #: places/options.py:13
 msgid "Bed and Breakfast"
-msgstr "Casa Rural por habitaciones"
+msgstr "Кровать и завтрак"
 
 #: places/options.py:14
 msgid "Villa"
-msgstr "Villa"
+msgstr "вилла"
 
 #: places/options.py:15
 msgid "Caravan"
-msgstr "Caravana"
+msgstr "караван"
 
 #: places/options.py:16
 msgid "Office"
-msgstr "Oficina"
+msgstr "офис"
 
 #: places/options.py:47
 msgid "Amount (positive balance)"
-msgstr "Cantidad (saldo positivo)"
+msgstr "Сумма (положительное сальдо)"
 
 #: places/options.py:48
 msgid "Percentage of bookings which cheaper then ...."
 msgstr ""
-"Descuento hasta un cierto porcentaje en las reservaciones hasta el "
-"precio determinado.."
+"Бронирования до определенной ценовой границе имеют определeнныe скидки"
+" в ......"
 
 #: places/options.py:53
 msgid "Inside of the place"
-msgstr "En el interior del lugar"
+msgstr "Внутри места"
 
 #: places/options.py:54
 msgid "View of the place"
-msgstr "Vista del lugar"
+msgstr "Вид на место"
 
 #: places/options.py:55
 msgid "External appearance of the place"
-msgstr "Aspecto externo del lugar"
+msgstr ""
 
 #: places/options.py:56
 msgid "Around the place"
-msgstr "Alrededor del lugar"
+msgstr "Вокруг места"
 
 #: places/options.py:57
 msgid "Other"
-msgstr "Otro"
+msgstr "другой"
 
 #: places/options.py:61
 msgid "Entire Place"
-msgstr "Coloque todo"
+msgstr "Целые место"
 
 #: places/options.py:62
 msgid "Private Room"
-msgstr "Reservado"
+msgstr "Личный кабинет"
 
 #: places/options.py:63
 msgid "Shared Room"
-msgstr "Habitación compartida"
+msgstr "Общие номера"
 
 #: places/options.py:66
 msgid "ft"
@@ -3287,39 +3319,39 @@ msgstr "mt"
 
 #: places/options.py:74
 msgid "Unlimited"
-msgstr "ilimitado"
+msgstr "неограниченный"
 
 #: places/options.py:76
 msgid "Not rated"
-msgstr "sin clasificar"
+msgstr "Нет оценки"
 
 #: places/options.py:82
 msgid "PayPal > System"
-msgstr "PayPal > Sistema"
+msgstr "PayPal> Система"
 
 #: places/options.py:83
 msgid "Credit Card > System"
-msgstr "Tarjeta de crédito> Sistema"
+msgstr "Кредитные карты> Система"
 
 #: places/options.py:84
 msgid "Bank Transfer > System"
-msgstr "Transferencia bancaria> Sistema"
+msgstr "Банковский перевод> Система"
 
 #: places/options.py:85
 msgid "Guest Account > Host Account"
-msgstr "Cuenta de invitado> Host cuenta"
+msgstr "Гость счет> хост счета"
 
 #: places/options.py:86
 msgid "System > PayPal"
-msgstr "System > PayPal"
+msgstr "Система> PayPal"
 
 #: places/options.py:87
 msgid "System > Credit Card"
-msgstr "> Sistema de Tarjetas de Crédito"
+msgstr "Система> Кредитные карты"
 
 #: places/options.py:88
 msgid "System > Bank Account"
-msgstr "> Sistema de Cuenta Bancaria"
+msgstr "Система> Счет в банке"
 
 #: places/options.py:92 places/options.py:120 templates/book_place.html:94
 #: templates/dashboard/edit_payment.html:27
@@ -3328,408 +3360,420 @@ msgstr "PayPal"
 
 #: places/options.py:93 places/options.py:119 templates/book_place.html:95
 msgid "Credit Card"
-msgstr "Tarjeta de Crédito"
+msgstr "кредитная карточка"
 
 #: places/options.py:94
 msgid "Bank"
-msgstr "Banco"
+msgstr "Банк"
 
 #: places/options.py:97
 msgid "System Account"
-msgstr "Cuenta del sistema"
+msgstr "Системная учетная запись"
 
 #: places/options.py:101
 msgid "Real bed"
-msgstr "Cama de verdad"
+msgstr "Реальная кровать"
 
 #: places/options.py:102
 msgid "Bunk beds"
-msgstr "Literas"
+msgstr "Двухъярусные кровати"
 
 #: places/options.py:103
 msgid "Waterbed"
-msgstr "Cama de agua"
+msgstr "водяной"
 
 #: places/options.py:104
 msgid "Hammock"
-msgstr "Hamaca"
+msgstr "гамак"
 
 #: places/options.py:105
 msgid "Couch"
-msgstr "Sofá"
+msgstr "диван"
 
 #: places/options.py:109
 msgid "Private"
-msgstr "Privado"
+msgstr "частный"
 
 #: places/options.py:110
 msgid "Shared"
-msgstr "Compartido"
+msgstr "Общие"
 
 #: places/options.py:114
 msgid "Flexible"
-msgstr "Flexible"
+msgstr "гибкий"
 
 #: places/options.py:115
 msgid "Semi-flexible"
-msgstr "Semi-flexible"
+msgstr "Полу-гибкие"
 
 #: places/options.py:116
 msgid "Strict"
-msgstr "Estricto"
+msgstr "строгий"
 
 #: places/options.py:121
 msgid "Bank Transfer (IBAN)"
-msgstr "Transferencia bancaria (IBAN)"
+msgstr "Банковский перевод (IBAN)"
 
 #: places/options.py:126
 msgid "Prepared"
-msgstr "Preparado"
+msgstr "подготовленный"
 
 #: places/options.py:127
 msgid "Pre Requested - Waiting for payment"
 msgstr ""
 
 #: places/options.py:128
+#, fuzzy
 msgid "Pre Requested - Waiting for confirmation of payment"
-msgstr ""
+msgstr "Ожидание подтверждения"
 
 #: places/options.py:129 places/options.py:174
 #: templates/dashboard/calendar.html:20
 msgid "Requested"
-msgstr "Requerido"
+msgstr "запрашиваемая"
 
 #: places/options.py:130 places/options.py:151
 msgid "Confirmed by host"
-msgstr "Confirmado"
+msgstr ""
 
 #: places/options.py:131
 msgid "Confirmed by guest"
-msgstr "Cancelado por invitado"
+msgstr ""
 
 #: places/options.py:133 places/options.py:153
 msgid "Rejected by host"
-msgstr "Rechazado por el anfitrión"
+msgstr ""
 
 #: places/options.py:134 places/options.py:144
 msgid "Canceled by guest"
-msgstr "Cancelado por invitado"
+msgstr ""
 
 #: places/options.py:135 places/options.py:145 places/options.py:155
 msgid "Canceled by staff"
-msgstr "Cancelado por el personal"
+msgstr ""
 
 #: places/options.py:140
 msgid "Your action required"
-msgstr "Acciones necesarias"
+msgstr ""
 
 #: places/options.py:141
 msgid "Confirmed by you"
-msgstr "Confirmado"
+msgstr ""
 
 #: places/options.py:142
 msgid "Accommodation confirmed by the guest"
-msgstr "Alojamiento aprobado por el huésped."
+msgstr ""
 
 #: places/options.py:143
 msgid "Rejected by you"
-msgstr "Rechazado por el anfitrión"
+msgstr ""
 
 #: places/options.py:148
+#, fuzzy
 msgid "Waiting for payment"
-msgstr ""
+msgstr "Ожидание подтверждения"
 
 #: places/options.py:149
+#, fuzzy
 msgid "Waiting for confirmation of payment by GaniHomes Staff"
-msgstr ""
+msgstr "Ожидание подтверждения"
 
 #: places/options.py:150
 msgid "Waiting for the confirmation from the host"
-msgstr "Esperando acepción"
+msgstr ""
 
 #: places/options.py:152
 msgid "Accommodation confirmed by you"
-msgstr "Alojamiento Apropado por usted"
+msgstr ""
 
 #: places/options.py:154
 msgid "Canceled by you"
-msgstr "Cancelado por invitado"
+msgstr ""
 
 #: places/options.py:160 places/options.py:179
 msgid "Waiting for confirmation"
-msgstr "Espera de la confirmación"
+msgstr "Ожидание подтверждения"
 
 #: places/options.py:161
 msgid "Confirmed, active"
-msgstr "Confirmado, activa"
+msgstr "Подтверждено, активный"
 
 #: places/options.py:162 places/options.py:182
 msgid "Deactived by staff"
-msgstr "Desactivado por el personal"
+msgstr "deactived сотрудников"
 
 #: places/options.py:163
 msgid "Deleted by reviewer"
-msgstr "Eliminado por revisor"
+msgstr "Удаленные от Обозреватель"
 
 #: places/options.py:164 places/options.py:184 support/models.py:113
 msgid "Archived"
-msgstr "Archivado"
+msgstr "Архив"
 
 #: places/options.py:168
 msgid "Wrong house details"
-msgstr "Detalles equivocado casa"
+msgstr "Неправильные детали дома"
 
 #: places/options.py:169
 msgid "Wrong price"
-msgstr "Precio incorrecto"
+msgstr "Неправильная цена"
 
 #: places/options.py:170
 msgid "Malicous activity"
-msgstr "Actividad maliciosa"
+msgstr "Malicous деятельности"
 
 #: places/options.py:173 templates/dashboard/calendar.html:17
 msgid "Unavailable"
-msgstr "No disponible"
+msgstr "Отсутствует"
 
 #: places/options.py:175 templates/dashboard/calendar.html:19
 msgid "Booked"
-msgstr "Reservado"
+msgstr "заказанный"
 
 #: places/options.py:180
 msgid "Confirmed, visible"
-msgstr "Confirmado, activa"
+msgstr "Подтверждено, видимых"
 
 #: places/options.py:181
 msgid "Directly send"
-msgstr "enviar directamente"
+msgstr "Непосредственно отправить"
 
 #: places/options.py:183
 msgid "Deleted"
-msgstr "Eliminado"
+msgstr "удаленный"
 
 #: places/options.py:187
 msgid "Untranslated"
-msgstr "Sin traducir sólo"
+msgstr "Непереведенных"
 
 #: places/options.py:188
 msgid "Partly translated"
-msgstr "Traducido"
+msgstr "Небольшой перевод"
 
 #: places/options.py:189
 msgid "Fully translated"
-msgstr "Traducido"
+msgstr "Полностью переведена"
 
 #: places/options.py:192
 #, python-format
 msgid "Conversation with %s"
-msgstr "Conversación con %s"
+msgstr "Беседа с %s"
 
 #: places/options.py:193
 #, python-format
 msgid "Friend request from %s"
-msgstr "Solicitud de amistad de %s"
+msgstr "г запрос %s"
 
 #: places/options.py:194
 #, python-format
 msgid "Booking request for %s"
-msgstr "Solicitud de reserva para %s"
+msgstr "Бронирование запрос %s"
 
 #: places/options.py:195
 msgid "Message from GaniHomes"
-msgstr "Mensaje del GaniHomes"
+msgstr "Сообщение от GaniHomes"
 
 #: places/options.py:196
 #, python-format
 msgid "%s invites you to GaniHomes"
-msgstr "%s le invita a GaniHomes"
+msgstr " %sПриглашает Вас в ”GaniHomes”"
 
 #: places/options.py:233
 msgid "Edit Prices"
-msgstr "Editar Precios"
+msgstr "Изменить цены"
 
 #: places/options.py:234
 msgid "Edit Place Details"
-msgstr "Editar detalles de lugar"
+msgstr "Изменить место Подробнее"
 
 #: places/options.py:235
 msgid "Set Availability"
-msgstr "Configurar la disponibilidad"
+msgstr "Установить наличие"
 
 #: places/options.py:236
 msgid "Manage Photos"
-msgstr "Gestión de fotos"
+msgstr "Управление фотографиями"
 
 #: places/options.py:237
 msgid "Operation succesfully completed."
-msgstr "Operación con éxito."
+msgstr "Операция успешно завершена."
 
 #: places/options.py:238 website/dashboard.py:417 website/dashboard.py:459
 msgid "Your profile successfully updated."
-msgstr "Su perfil actualizado correctamente"
+msgstr "Успешное обновление своего профиля."
 
 #: places/options.py:239
 msgid "Please login or register to bookmark this place."
-msgstr "Ingresar o registrarse para agregar este hogar a sus favoritos."
+msgstr ""
+"Для добавленния данного жилья в пункте \"фавориты\" необходима "
+"регистрация и вход на сайт."
 
 #: places/options.py:240
 msgid ""
 "Your message has been temporarily saved. Please login or register to "
 "send your message."
 msgstr ""
-"El mensaje ha sido guardado temporal. Por favor ingresar o registrarse"
-" para completar el envío."
+"Ваше сообщение временно зарегистрировано. Для завершения процесса "
+"отправки, пожалуйста выполните регистрация и вход на сайт."
 
 #: places/options.py:241
 msgid "Please confirm your friendship request for the person listed below."
 msgstr ""
-"Por favor aprobar el pedido de amistad de las personas listadas en el "
-"siguiente."
+"Пожалуйста, подтвердите желание в добавления в списке друзей следующих"
+" лиц : "
 
 #: places/options.py:242
 msgid "Please read and accept the Terms of service agreement."
-msgstr "Por favor lee y aprueba el Acuerdo de Usuario. "
+msgstr ""
+"Пожалуйста, прочитайте Договор Потребителя и подтвердите, что "
+"принимаете его условия."
 
 #: places/options.py:243
 msgid "This dates are not available."
-msgstr "Por favor lee y aprueba el Acuerdo de Usuario. "
+msgstr "Это даты не доступны."
 
 #: places/options.py:244
 msgid "Please fill all required fields."
-msgstr "Por favor rellene los campos obligatorios"
+msgstr "Пожалуйста, заполните все обязательные поля "
 
 #: places/options.py:245
 msgid "Use this address."
-msgstr "Dirección de Email"
+msgstr "Используйте этот адрес."
 
 #: registration/admin.py:23
 msgid "Activate users"
-msgstr "Activar los usuarios"
+msgstr "Активация пользователей"
 
 #: registration/admin.py:43
 msgid "Re-send activation emails"
-msgstr "Reenviar mensajes de correo electrónico de activación"
+msgstr "Повторно отправить электронную почту активации"
 
 #: registration/forms.py:35
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "Имя пользователя"
 
 #: registration/forms.py:36
 msgid "This value must contain only letters, numbers and underscores."
-msgstr "Este espacio solamente puede contener letras, figuras o subrayas."
+msgstr "В данное поле можно ввести только букв, цифр или нижное тире."
 
 #: registration/forms.py:39 templates/faq.html:17 templates/index.html:145
 #: templates/contactus/form.html:21
 msgid "E-mail"
-msgstr "Correo Electrónico"
+msgstr "Электронная почта"
 
 #: registration/forms.py:41 templates/registration/login.html:38
 #: website/views.py:108 website/views.py:111
 msgid "Password"
-msgstr "Contraseña"
+msgstr "пароль"
 
 #: registration/forms.py:43
 #: templates/registration/password_change_form.html:33
 msgid "Password (again)"
-msgstr "Contraseña (otra vez)"
+msgstr "Пароль (еще раз)"
 
 #: registration/forms.py:55
 msgid "A user with that username already exists."
-msgstr "Ya existe este usuario."
+msgstr "Имеется такой существующий потребитель."
 
 #: registration/forms.py:67 website/dashboard.py:397
 msgid "The two password fields didn't match."
-msgstr "Las contraseñas no coinciden"
+msgstr "Введен неправильный пароль."
 
 #: registration/forms.py:78
 msgid "I have read and agree to the Terms of Service"
-msgstr "He leído y estoy de acuerdo con el Acuerdo de Usuario. "
+msgstr ""
+"Я прочитал Договор Потребителя и принимаю и соглашаюсь с условиями "
+"Договора "
 
 #: registration/forms.py:79
 msgid "You must agree to the terms to register"
-msgstr "Debe aceptar el Acuerdo de Usuario para registrarse. "
+msgstr ""
+"Для регистрации необходимо подтвердить, что принимаете условия "
+"Договора Потребителя. "
 
 #: registration/forms.py:95
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
 msgstr ""
-"Este correo electrónico es actualmente en uso. Por favor ingresa un "
-"otro correo electrónico."
+"Данный э-почтовый адрес не используется. Пожалуйста, введите другой "
+"действительный э-почтовой адрес."
 
 #: registration/forms.py:122
 msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
-"No puede registrarse con direcciones de correo electrónico no válidos."
-" Por favor entrar una otra dirección de correo electrónico."
+"Используя недействительный э-почтовой адрес не можете выполнить "
+"регистрация на сайт. Пожалуйста, введите другой действительный "
+"э-почтовой адрес."
 
 #: registration/models.py:184
 msgid "user"
-msgstr "Usuario"
+msgstr "пользователь"
 
 #: registration/models.py:185
 msgid "activation key"
-msgstr "La clave de activación"
+msgstr "ключ активации"
 
 #: registration/models.py:190
 msgid "registration profile"
-msgstr "Registro de perfil"
+msgstr "регистрация профиля"
 
 #: registration/models.py:191
 msgid "registration profiles"
-msgstr "Perfiles de registro"
+msgstr "регистрация профилей"
 
 #: rosetta/templates/rosetta/languages.html:4
 #: rosetta/templates/rosetta/languages.html:6
 #: rosetta/templates/rosetta/pofile.html:22
 msgid "Language selection"
-msgstr "Selección de idioma"
+msgstr "выбор языка"
 
 #: rosetta/templates/rosetta/languages.html:12
 msgid "Project"
-msgstr "Proyecto"
+msgstr "проект"
 
 #: rosetta/templates/rosetta/languages.html:13
 msgid "Third party"
-msgstr "Tercero"
+msgstr "третье лицо"
 
 #: rosetta/templates/rosetta/languages.html:28
 msgid "Application"
-msgstr "Aplicación"
+msgstr "применение"
 
 #: rosetta/templates/rosetta/languages.html:29
 msgid "Progress"
-msgstr "Progreso"
+msgstr "прогресс"
 
 #: rosetta/templates/rosetta/languages.html:31
 msgid "Translated"
-msgstr "Traducido"
+msgstr "переведенный"
 
 #: rosetta/templates/rosetta/languages.html:32
 #: rosetta/templates/rosetta/pofile.html:71
 msgid "Fuzzy"
-msgstr "Borroso"
+msgstr ""
 
 #: rosetta/templates/rosetta/languages.html:33
 msgid "Obsolete"
-msgstr "Obsoleto"
+msgstr "устаревший"
 
 #: rosetta/templates/rosetta/languages.html:34
 msgid "File"
-msgstr "Expediente"
+msgstr "файл"
 
 #: rosetta/templates/rosetta/languages.html:57
 msgid "Nothing to translate!"
-msgstr "No hay nada que traducir!"
+msgstr "Ничего не переводить!"
 
 #: rosetta/templates/rosetta/languages.html:58
 msgid ""
 "You haven't specified any languages in your settings file, or haven't "
 "yet generated a batch of translation catalogs."
 msgstr ""
-"No ha proporcionado ningún idioma en el archivo de ajustes o todavía "
-"no ha elaborado un equipo de catálogos de traducción."
+"В пункте настройки не ввели избранный язык или все еще не создали свой"
+" комплект переводческого каталога. "
 
 #: rosetta/templates/rosetta/languages.html:59
 #, python-format
@@ -3738,28 +3782,23 @@ msgid ""
 "documentation</a> for a guide on how to set up internationalization for"
 " your project."
 msgstr ""
-"Please refer to <a href=\"%(i18n_doc_link)s\">Django's I18N "
-"documentation</a> for a guide on how to set up internationalization "
-"for your project."
 
 #: rosetta/templates/rosetta/pofile.html:8
 msgid "Pick another file"
-msgstr "Elige otro archivo"
+msgstr "Выбрать другой файл"
 
 #: rosetta/templates/rosetta/pofile.html:9
 msgid "Download this catalog"
-msgstr "Descargar este catálogo"
+msgstr "Скачать каталог"
 
 #: rosetta/templates/rosetta/pofile.html:25
 #, python-format
 msgid "Progress: %(percent_translated)s%%"
-msgstr "Progreso: %(percent_translated)s%%"
+msgstr "прогресс %(percent_translated)s%%"
 
 #: rosetta/templates/rosetta/pofile.html:27
 msgid "File is read-only: download the file when done editing!"
 msgstr ""
-"Archivo es de sólo lectura: descargar el archivo cuando haya terminado"
-" de editar!"
 
 #: rosetta/templates/rosetta/pofile.html:28
 msgid ""
@@ -3767,323 +3806,325 @@ msgid ""
 "usually happens when the catalog file changes on disk after you last "
 "loaded it."
 msgstr ""
-"No se han guardado algunos elementos de su blog de traducción: Puede "
-"haber ocurrido al cambiar el archivo de catálogo guardado."
+"Некоторые элементы из Вашего переводческого блога не были сохранены : "
+"Папка каталога может быть изменена после последних Ваших загрузок. "
 
 #: rosetta/templates/rosetta/pofile.html:32
 #, python-format
 msgid "Translate into %(rosetta_i18n_lang_name)s"
-msgstr "Traducir al %(rosetta_i18n_lang_name)s"
+msgstr "Перевести в %(rosetta_i18n_lang_name)s"
 
 #: rosetta/templates/rosetta/pofile.html:35
 msgid "Display:"
-msgstr "Pantalla:"
+msgstr "Дисплей:"
 
 #: rosetta/templates/rosetta/pofile.html:36
 msgid "Untranslated only"
-msgstr "Sin traducir sólo"
+msgstr "Непереведенных только"
 
 #: rosetta/templates/rosetta/pofile.html:37
 msgid "Translated only"
-msgstr "Traducir solo"
+msgstr "Перевод только"
 
 #: rosetta/templates/rosetta/pofile.html:38
 msgid "Fuzzy only"
-msgstr "Fuzzy sólo"
+msgstr ""
 
 #: rosetta/templates/rosetta/pofile.html:68
 msgid "Original"
-msgstr "Original"
+msgstr "оригинал"
 
 #: rosetta/templates/rosetta/pofile.html:72
 msgid "Occurrences(s)"
-msgstr "Ocurrencias"
+msgstr "Вхождения (ы)"
 
 #: rosetta/templates/rosetta/pofile.html:86
 #: rosetta/templates/rosetta/pofile.html:89
 #: rosetta/templates/rosetta/pofile.html:104
 #: rosetta/templates/rosetta/pofile.html:107
 msgid "Context hint"
-msgstr "Contexto pista"
+msgstr "Контекстная подсказка"
 
 #: rosetta/templates/rosetta/pofile.html:114
 msgid "suggest"
-msgstr "Sugerir"
+msgstr "предлагать"
 
 #: rosetta/templates/rosetta/pofile.html:125
 #, python-format
 msgid "%(more_count)s more"
 msgid_plural "%(more_count)s more"
-msgstr[0] "%(more_count)s más"
-msgstr[1] "%(more_count)s más"
+msgstr[0] "%(more_count)sбольше"
+msgstr[1] "%(more_count)s больше"
 
 #: rosetta/templates/rosetta/pofile.html:137
 msgid "Save and translate next block"
-msgstr "Guardar y traducir la próxima parte "
+msgstr "Сохранить и перевести других частей. "
 
 #: rosetta/templates/rosetta/pofile.html:141
 msgid "Skip to page:"
-msgstr "Ir a la página:"
+msgstr "Перейти на страницу"
 
 #: rosetta/templates/rosetta/pofile.html:154
 msgid "Displaying:"
-msgstr "Mostrando:"
+msgstr "Показано:"
 
 #: rosetta/templates/rosetta/pofile.html:158
 #, python-format
 msgid "%(hits)s/%(message_number)s message"
 msgid_plural "%(hits)s/%(message_number)s messages"
-msgstr[0] "%(hits)s/%(message_number)s mensajes"
-msgstr[1] "%(hits)s/%(message_number)s mensaje"
+msgstr[0] "%(hits)s/%(message_number)s сообщения"
+msgstr[1] "%(hits)s/%(message_number)sсообщение"
 
 #: support/admin.py:40
+#, fuzzy
 msgid "Content safety"
-msgstr "Content safety"
+msgstr "Контекстная подсказка"
 
 #: support/models.py:19
 msgid "Hidden"
-msgstr "Oculto"
+msgstr "скрытый"
 
 #: support/models.py:19
 msgid "Do not show this category."
-msgstr "No volver a mostrar esta categoría."
+msgstr "Не показывайте эту категорию."
 
 #: support/models.py:25 support/models.py:33
 msgid "Subject Category"
-msgstr "Categoría Tema"
+msgstr "Тема категории"
 
 #: support/models.py:26
 msgid "Subject Categories"
-msgstr "Categorías Tema"
+msgstr "Тема категории"
 
 #: support/models.py:29
 msgid "Waiting Reply"
-msgstr "En espera de una respuesta"
+msgstr "Ожидание Ответить"
 
 #: support/models.py:29
 msgid "On going request"
-msgstr "La solicitud va "
+msgstr "При переходе запрос"
 
 #: support/models.py:29
 msgid "Closed"
-msgstr "Cerrado"
+msgstr "закрыто"
 
 #: support/models.py:35 support/models.py:109
 #: support/templates/support/list.html:11 templates/contactus/form.html:29
 #: website/dashboard.py:579
 msgid "Subject"
-msgstr "Tema"
+msgstr "тема"
 
 #: support/models.py:36 support/models.py:69
 msgid "Body"
-msgstr "Cuerpo"
+msgstr "тело"
 
 #: support/models.py:55
 msgid "Show Ticket"
-msgstr "Mostrar entradas"
+msgstr "Показать билетов"
 
 #: support/models.py:59
 msgid "Support Ticket"
-msgstr "Boleto de soporte"
+msgstr "Поддержка билетов"
 
 #: support/models.py:60
 msgid "Support Tickets"
-msgstr "Tickets de Soporte"
+msgstr "Поддержка билеты"
 
 #: support/models.py:77
 msgid "Ticket Reply"
-msgstr "Venta de entradas Responder"
+msgstr "билет Ответить"
 
 #: support/models.py:78
 msgid "Ticket Replies"
-msgstr "respuestas de entradas"
+msgstr "билет Ответов"
 
 #: support/models.py:85
 msgid "Title"
-msgstr "Título"
+msgstr "название"
 
 #: support/models.py:92
 msgid "Details"
-msgstr "Detalles"
+msgstr "детали"
 
 #: support/models.py:105
+#, fuzzy
 msgid "Safe"
-msgstr "Seguro"
+msgstr "Безопасный"
 
 #: support/models.py:107
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 #: support/models.py:111
 msgid "Form Submit Time"
-msgstr "Tiempo de envío de formulario"
+msgstr "Время отправки формы"
 
 #: support/models.py:115
 msgid "Notes"
-msgstr "Notas"
+msgstr "Примечания"
 
 #: support/models.py:137
 msgid "Contact Us Record"
-msgstr "Contacto Registro"
+msgstr "Контакты Запись"
 
 #: support/models.py:138
 msgid "Contact Us Records"
-msgstr "Contactos Registros "
+msgstr "Контакты Отчеты"
 
 #: support/views.py:40 support/views.py:98
 msgid "Destek Mesajı"
-msgstr "Apoyo a la"
+msgstr "Поддержка"
 
 #: support/views.py:41
 msgid "Konu"
-msgstr "Tema"
+msgstr "тема"
 
 #: support/views.py:43
 msgid "Kategori"
-msgstr "Categoría"
+msgstr "категория"
 
 #: support/views.py:65 support/views.py:78 support/views.py:135
 msgid "Müşteri Destek Sistemi"
-msgstr "Sistema de Soporte al Cliente"
+msgstr "Система поддержки пользователей"
 
 #: support/views.py:88
 msgid "Ticket closed."
-msgstr "Venta de entradas cerradas."
+msgstr "Билет закрыты"
 
 #: support/views.py:119 website/dashboard.py:598
 msgid "Your message successfully saved."
-msgstr "Su mensaje guardado con éxito."
+msgstr "Ваше сообщение успешно сохранены"
 
 #: support/views.py:125
 msgid "Support ticket has been replied"
-msgstr "Su requerimiento de soporte ha sido respondido "
+msgstr ""
 
 #: support/views.py:182
 msgid "Thank you. Your message has been successfully sent."
-msgstr "Gracias. Su mensaje ha sido enviado con éxito."
+msgstr "Благодарим Вас. Ваше сообщение успешно отправлено."
 
 #: support/templates/support/list.html:5
 msgid "Daha önce açmış olduğunuz destek istekleriniz aşağıda listelenmektedir"
 msgstr ""
-"Los requerimientos de soporte realizados anteriormente se listan a "
-"continuación "
 
 #: support/templates/support/list.html:7
 #: support/templates/support/list.html:20
 msgid "Yeni Destek İsteği"
-msgstr "Nueva solicitud de soporte"
+msgstr "Новый запрос на поддержку"
 
 #: support/templates/support/list.html:11 website/models/dil.py:60
 msgid "Durum"
-msgstr "Estado"
+msgstr "ситуация"
 
 #: support/templates/support/list.html:11
 msgid "Son Cevap"
-msgstr "Última respuesta"
+msgstr "последний ответ"
 
 #: support/templates/support/list.html:17
 msgid "Henüz bir destek isteğiniz bulunmamaktadır."
-msgstr "Actualmente no hay requerimientos de soporte."
+msgstr "Все еще не имеются требования о поддержки."
 
 #: support/templates/support/show.html:22
 #: support/templates/support/show.html:48
 #: support/templates/support/admin/show.html:29
 msgid "Cevapla"
-msgstr "Respuesta"
+msgstr "ответ"
 
 #: support/templates/support/ticket_replied_body.html:2
 msgid ""
 "Destek sorunuza cevap verildi. Cevabı görmek için lütfen aşağıdaki "
 "linke tıklayın."
 msgstr ""
-"Su pregunta de soporte ha sido respondido. Por favor haz clic al "
-"enlace para ver la respuesta."
+"Ниже перечислены отправленные Вами раньше необходимые требования о "
+"поддержки "
 
 #: support/templates/support/ticket_replied_subject.txt:1
 msgid "Your support ticket has been replied"
-msgstr "Su requerimiento de soporte ha sido respondido "
+msgstr ""
 
 #: support/templates/support/admin/show.html:32
 msgid "Konuyu Kapat"
-msgstr "Cerrar este tema"
+msgstr "не по теме"
 
 #: support/templates/support/admin/show.html:32
 msgid "Konuyu kapatmak istediğinizden emin misiniz?"
-msgstr "¿Está seguro que desea cerrar el tema?"
+msgstr "Вы уверены, что хотите закрыть тему?"
 
 #: support/templates/support/admin/show.html:33
 msgid "Delete Ticket"
-msgstr "eliminar entradas"
+msgstr "Удаление билетов"
 
 #: templates/404.html:16
 msgid "Page not found!"
-msgstr "Página no encontrada!"
+msgstr "Страница не найдена!"
 
 #: templates/404.html:18
 msgid ""
 "Sorry, but we can't find the page you are looking for. Our team is "
 "informed about the broken link. "
 msgstr ""
-"Lo sentimos, pero no podimos encontrar la página que está buscando. "
-"Los desarrolladores fueron informados sobre el enlace roto. "
+"К сожалению затребованный Вами сайт не найден. Отправлена "
+"соответственная информация о невозможности выполнения Вашего запроса. "
 
 #: templates/404.html:20
 msgid "Go to back"
-msgstr "Ir hacia atrás"
+msgstr "К резервное"
 
 #: templates/500.html:15
 msgid "Oops! That should not happen"
-msgstr "Oops! Eso no debería ocurrir"
+msgstr ""
 
 #: templates/500.html:17
 msgid ""
 "An unexpected error occured. Our team is informed and problem should be"
 " fixed soon."
 msgstr ""
-"Un error inesperado se ha producido. El equipo está informado y el "
-"problema será resuelto lo antes posible."
+"Появилась неожиданная ошибка. Отправлена соответствующая информация "
+"нашим сотрудникам и ошибка будет устранена в кратчайшее время..."
 
 #: templates/500.html:19
 msgid "Sorry for the inconvenience."
-msgstr "Disculpa las molestias."
+msgstr "Извините за причиненные неудобства."
 
 #: templates/add_place_wizard.html:36
 msgid "Your Total Payout"
-msgstr "Su ganancia total"
+msgstr "Общая сумма выплат"
 
 #: templates/add_place_wizard.html:48
 msgid "Continue"
-msgstr "Continuar"
+msgstr "продолжать"
 
 #: templates/add_place_wizard.html:55
 msgid " :: Show Map :: "
-msgstr "Ver mapa"
+msgstr "Показать карту"
 
 #: templates/add_place_wizard.html:72
 msgid "2/3 Continue"
-msgstr "2/3 Continuar"
+msgstr "2/3 Продолжить"
 
 #: templates/add_place_wizard.html:80
 msgid "Find"
-msgstr "Finlandia"
+msgstr "находить"
 
 #: templates/add_place_wizard.html:84 templates/add_place_wizard.html:143
 msgid "Go Back"
-msgstr "Volver"
+msgstr "возвращаться"
 
 #: templates/add_place_wizard.html:124
 msgid "Upload a new photo"
-msgstr "Subir una foto nueva"
+msgstr "Добавить новое фото"
 
 #: templates/add_place_wizard.html:138
 msgid "You can reorder your photos via dragging with mouse."
-msgstr "Puede cambiar el orden de sus fotos con “Arrastre y suelte."
+msgstr ""
+"Порядковые места Ваших фотографий можно поменять при помощи \"Нажми & "
+"Притащи\"."
 
 #: templates/add_place_wizard.html:139
 msgid "Located in the first place photo will be used as the primary photo."
 msgstr ""
-"La foto que aparece por primera vez se usa con prioridad en el "
-"listado."
+"•       Первая по очереди Ваша фотография будет преимущественно "
+"использоваться для трансляции. "
 
 #: templates/add_place_wizard.html:145
 #: templates/dashboard/change_password.html:15
@@ -4091,1152 +4132,1162 @@ msgstr ""
 #: templates/dashboard/edit_payment.html:65
 #: templates/dashboard/edit_profile.html:21
 msgid "Save"
-msgstr "Ahorrar"
+msgstr "экономить"
 
 #: templates/base.html:59
 msgid "World is yours..."
-msgstr "Mundo es tuyo ..."
+msgstr "Мир твой ..."
 
 #: templates/base.html:64
 #, python-format
 msgid "Welcome %(name)s"
-msgstr "Bienvenido %(name)s "
+msgstr "добро пожаловать %(name)s"
 
 #: templates/base.html:64 templates/dashboard.html:8
 msgid "My Account"
-msgstr "Mi Cuenta"
+msgstr "Моя учетная запись"
 
 #: templates/base.html:65
 #, python-format
 msgid "You have %(unread_count)s unread message(s)."
-msgstr "%(unread_count)s mensajes no leídos"
+msgstr ""
+"У вас есть%(unread_count)s  с непрочитанных сообщений (ы).\n"
+" "
 
 #: templates/base.html:67 templates/admin/base.html:40
 msgid "Log out"
-msgstr "Salir"
+msgstr "Выход"
 
 #: templates/base.html:71
 msgid "Sign Up"
-msgstr "Regístrate"
+msgstr "Зарегистрироваться"
 
 #: templates/base.html:72
 #: templates/registration/password_reset_complete.html:11
 msgid "Log in"
-msgstr "Acceder"
+msgstr "войти"
 
 #: templates/base.html:76 templates/howitworks.html:461
 msgid "Add your place"
-msgstr "Añade tu lugar"
+msgstr "Добавить место"
 
 #: templates/base.html:78
+#, fuzzy
 msgid "Quick Search"
-msgstr "Búsqueda rápida"
+msgstr "Поиск"
 
 #: templates/base.html:107 templates/dashboard.html:66
 msgid "Help & Support"
-msgstr "Ayuda & Soporte"
+msgstr "Помощь"
 
 #: templates/base.html:108 templates/dashboard.html:68
 msgid "FAQ"
-msgstr "FAQ"
+msgstr ""
 
 #: templates/base.html:109 templates/index.html:26
 msgid "Help Desk"
-msgstr "Mesa de Ayuda"
+msgstr "Помогите"
 
 #: templates/base.html:110
 msgid "Tips for Hosts"
-msgstr "Consejos para los Ejércitos"
+msgstr "Советы для хостов"
 
 #: templates/base.html:113
 msgid "Corporate"
-msgstr "Corporativo"
+msgstr "корпоративный"
 
 #: templates/base.html:114
 msgid "Imprint"
-msgstr "Impresión"
+msgstr "отпечаток"
 
 #: templates/base.html:115
 msgid "Terms and Conditions"
-msgstr "Términos & Condiciones"
+msgstr "Условия"
 
 #: templates/base.html:116
 msgid "Privacy policy"
-msgstr "Política de privacidad"
+msgstr "Политика конфиденциальности"
 
 #: templates/base.html:121 templates/mail/mail_base.html:47
 msgid "All rights reserved"
-msgstr "Reservados todos los derechos"
+msgstr "Все права защищены"
 
 #: templates/base.html:125
 msgid "About Us"
-msgstr "Acerca de Nosotros"
+msgstr "О компанииО компании"
 
 #: templates/base.html:126 templates/book_place.html:14
 msgid "How it works"
-msgstr "Cómo funciona"
+msgstr "Как это работает"
 
 #: templates/base.html:127
 msgid "Send us an email"
-msgstr "Envíenos un e-mail"
+msgstr "Отправить нам письмо"
 
 #: templates/book_place.html:21 templates/dashboard/show_booking.html:8
 msgid "Property details"
-msgstr "Detalles del Inmueble"
+msgstr "сведения об объекте"
 
 #: templates/book_place.html:37 templates/paypal-confirm.html:11
 #: templates/dashboard/show_booking.html:25
 msgid "Travel Details & Pricing"
-msgstr "Detalles del viaje y precios"
+msgstr "Путешествие Информация и цены"
 
 #: templates/book_place.html:41 templates/paypal-confirm.html:15
 #: templates/show_place.html:164 templates/dashboard/show_booking.html:29
 #: website/views.py:39
 msgid "Check-in"
-msgstr "Facturación"
+msgstr "Заезд"
 
 #: templates/book_place.html:42 templates/paypal-confirm.html:16
 #: templates/show_place.html:168 templates/dashboard/show_booking.html:31
 #: website/views.py:40
 msgid "Check-out"
-msgstr "Salida"
+msgstr "Отъезд"
 
 #: templates/book_place.html:44 templates/paypal-confirm.html:18
 #: templates/show_place.html:172 templates/dashboard/show_booking.html:34
 #: website/views.py:42
 msgid "Guests"
-msgstr "Invitados"
+msgstr "гостей"
 
 #: templates/book_place.html:47 templates/show_place.html:195
 msgid "Monthly discount"
-msgstr "El descuento mensual (%)"
+msgstr "Ежемесячные скидки"
 
 #: templates/book_place.html:54 templates/show_place.html:190
 msgid "Weekly discount"
-msgstr "Descuento semanal (%)"
+msgstr "Еженедельная скидка"
 
 #: templates/book_place.html:62
 msgid "Service fee"
-msgstr "Comisión de Servicio"
+msgstr "плата за услуги"
 
 #: templates/book_place.html:78 templates/paypal-confirm.html:19
 #: templates/dashboard/show_booking.html:35
 msgid "Total price"
-msgstr "El precio total"
+msgstr "общая цена"
 
 #: templates/book_place.html:89
 msgid "Payment"
-msgstr "Pago"
+msgstr "оплата"
 
 #: templates/book_place.html:96 templates/dashboard/edit_payment.html:28
 msgid "Bank Transfer"
-msgstr "Transferencia bancaria"
+msgstr "банковский перевод"
 
 #: templates/book_place.html:104
 msgid "Name on card"
-msgstr "Nombre en la tarjeta"
+msgstr ""
 
 #: templates/book_place.html:108
 msgid "Card number"
-msgstr "número de tarjeta"
+msgstr ""
 
 #: templates/book_place.html:112
+#, fuzzy
 msgid "Expire date"
-msgstr "Fecha de Caducidad"
+msgstr "Срок годности"
 
 #: templates/book_place.html:115
 msgid "Security code (CCV)"
-msgstr "Código de seguridad"
+msgstr ""
 
 #: templates/book_place.html:119
+#, fuzzy
 msgid "Book It"
-msgstr "Reservación"
+msgstr "Бронировать"
 
 #: templates/book_place.html:126
 msgid "Your booking ID"
-msgstr "Confirmar la Reserva"
+msgstr ""
 
 #: templates/book_place.html:128
+#, fuzzy
 msgid "Book It via Bank Transfer"
-msgstr "Se reserva por transferencia bancaria"
+msgstr "банковский перевод"
 
 #: templates/book_place.html:135
 msgid "Book It using PayPal"
-msgstr "Reservar a través de PayPal"
+msgstr "Забронируйте с помощью PayPal"
 
 #: templates/dashboard.html:17
 msgid "My Wall"
-msgstr "Mi Pared"
+msgstr "Моя стена"
 
 #: templates/dashboard.html:21
 msgid "Account Settings"
-msgstr "Mi Cuenta"
+msgstr "Настройки"
 
 #: templates/dashboard.html:23
 msgid "Edit Profile"
-msgstr "Editar perfil"
+msgstr "Изменить профиль"
 
 #: templates/dashboard.html:24
 msgid "Payout Options"
-msgstr "Opciones de pago"
+msgstr "выплата параметры"
 
 #: templates/dashboard.html:25
 msgid "Change Password"
-msgstr "Cambio de contraseña"
+msgstr "Сменить пароль"
 
 #: templates/dashboard.html:30
 msgid "Reviews"
-msgstr "Comentarios"
+msgstr "Отзывы"
 
 #: templates/dashboard.html:32
 msgid "Reviews By You"
-msgstr "Reviews By You"
+msgstr ""
 
 #: templates/dashboard.html:33
 msgid "Reviews About You"
-msgstr "Opiniones de Por Ti"
+msgstr ""
 
 #: templates/dashboard.html:41 templates/dashboard.html.py:118
 msgid "My Places"
-msgstr "Mis Sitios"
+msgstr "Мои места"
 
 #: templates/dashboard.html:43 templates/dashboard.html.py:122
 msgid "Add New Place"
-msgstr "Añadir nuevo lugar"
+msgstr "Добавить место"
 
 #: templates/dashboard.html:44
 msgid "Listings"
-msgstr "Listados"
+msgstr "листингах"
 
 #: templates/dashboard.html:45
 msgid "Requests"
-msgstr "Solicitudes"
+msgstr "Запросы"
 
 #: templates/dashboard.html:50
 msgid "My Trips"
-msgstr "Mis Viajes"
+msgstr "Мои поездки"
 
 #: templates/dashboard.html:52 templates/dashboard/trips.html:15
 msgid "Current"
-msgstr "Corriente"
+msgstr "текущий"
 
 #: templates/dashboard.html:53 templates/dashboard/trips.html:16
 msgid "Upcoming"
-msgstr "Próximos"
+msgstr "Предстоящие"
 
 #: templates/dashboard.html:54
 msgid "Past"
-msgstr "Pasado"
+msgstr "прошлое"
 
 #: templates/dashboard.html:55 templates/dashboard.html.py:135
 #: templates/dashboard/trips.html:18
 msgid "Bookmarked Places"
-msgstr "Lugares favoritos"
+msgstr "Bookmarked места"
 
 #: templates/dashboard.html:59
 msgid "Friends"
-msgstr "Amigos"
+msgstr "Друзья"
 
 #: templates/dashboard.html:61
 msgid "My Friends"
-msgstr "Mis amigos"
+msgstr "Мои друзья"
 
 #: templates/dashboard.html:62
 msgid "Invite a Friend"
-msgstr "Invitar a un Amigo"
+msgstr "Пригласить друга"
 
 #: templates/dashboard.html:69
 msgid "I have a question!"
-msgstr "Tengo una pregunta!"
+msgstr "У меня есть вопрос!"
 
 #: templates/dashboard.html:82
 msgid "Inbox"
-msgstr "Bandeja de entrada"
+msgstr "входящие"
 
 #: templates/dashboard.html:84 templates/dashboard/user_messages.html:8
 msgid "New"
-msgstr "Nuevo"
+msgstr "новый"
 
 #: templates/dashboard.html:85 templates/dashboard/user_messages.html:9
 msgid "Read"
-msgstr "Leer"
+msgstr "читать"
 
 #: templates/dashboard.html:96
 msgid "No new messages"
-msgstr "No hay nuevos mensajes"
+msgstr "Нет новых сообщений"
 
 #: templates/dashboard.html:102
 msgid "Booking Requests"
-msgstr "Las Solicitudes de Reserva"
+msgstr "бронирование просит"
 
 #: templates/dashboard.html:111
 msgid "You dont have any booking requests."
-msgstr "No hay solicitudes de reserva."
+msgstr "Не имеется запрос о бронирования."
 
 #: templates/dashboard.html:147 templates/dashboard/trips.html:102
 msgid "You haven't bookmarked any place yet."
-msgstr "No tiene favorito de cualquier hogar."
+msgstr "В пункте \"фавориты\" все еще Вы не добавляли никакое жилище"
 
 #: templates/faq.html:18 templates/index.html:146
 msgid "Enter your message"
-msgstr "Escriba su mensaje"
+msgstr "Введите текст вашего сообщения"
 
 #: templates/faq.html:19 templates/index.html:147
 #: templates/show_place.html:253 templates/contactus/form.html:36
 #: templates/dashboard/support_create.html:16
 msgid "Send"
-msgstr "Enviar"
+msgstr "отправлять"
 
 #: templates/faq_ic.html:13
 msgid "Expand All"
-msgstr "Desplegar todo"
+msgstr "Развернуть все"
 
 #: templates/faq_ic.html:13
 msgid "Collapse All"
-msgstr "Contraer Todos"
+msgstr "Свернуть все"
 
 #: templates/howitworks.html:456
 msgid "Find your place"
-msgstr "Añade tu lugar"
+msgstr "Найти свое место"
 
 #: templates/index.html:19
 msgid "City or Country..."
-msgstr "Ciudad o País"
+msgstr "Город или страна ..."
 
 #: templates/index.html:27
 msgid "Mon - Sat"
-msgstr "Lun - Sáb"
+msgstr "Пн - Сб"
 
 #: templates/index.html:29
 msgid "I have a question?"
-msgstr "Tengo una pregunta!"
+msgstr "У меня есть вопрос?"
 
 #: templates/index.html:46
 #, python-format
 msgid "How %(ganilogo)s works?"
-msgstr "Cómo funciona %(ganilogo)s"
+msgstr "Как%(ganilogo)s работы?"
 
 #: templates/index.html:75
 msgid "Best place rental experience for both hosts and guests!"
 msgstr ""
-"La más grande experiencia de alquiler diario para los propietarios y "
-"los huéspedes"
+"Самый надёжный способ посуточного арендования, как для обственников "
+"жилищ, так и для нанимателей."
 
 #: templates/index.html:77
 msgid "Easier"
-msgstr "Fácil"
+msgstr "легче"
 
 #: templates/index.html:78
 msgid "Safer"
-msgstr "Seguro"
+msgstr "Безопасный"
 
 #: templates/index.html:79
 msgid "Faster"
-msgstr "Rápido"
+msgstr "быстрее"
 
 #: templates/index.html:82
 msgid "Learn how it works"
-msgstr "Cómo funciona"
+msgstr "Узнайте, как это работает"
 
 #: templates/index.html:90
 msgid "Accesible from anywhere"
-msgstr "Accesible desde cualquier lugar"
+msgstr "Доступ к информации возможен из любой точки, подключëнной к интернету"
 
 #: templates/index.html:91
 msgid "You can use our site from any mobile device which have a web browser."
 msgstr ""
-"Puede conectarse a nuestro sitio web desde cualquier dispositivo "
-"móvil."
+"Вы можете подключиться к нашей системе с Ваших мобильных устройств в "
+"любой точке покрытия сети"
 
 #: templates/index.html:102
 msgid "Suggestions"
-msgstr "Sugerencias"
+msgstr "Предложения"
 
 #: templates/index.html:108
 msgid "Detailed Search"
-msgstr "Búsqueda Detallada"
+msgstr "Расширенный поиск"
 
 #: templates/index.html:122 templates/search.html:94
 msgid "Place Type"
-msgstr "Tipo de lugar"
+msgstr "Место типа"
 
 #: templates/index.html:142
 msgid "Feel free to ask any question you have"
-msgstr "No dude en hacer preguntas"
+msgstr "Не стесняйтесь задавать вопросы"
 
 #: templates/login.html:20 templates/loginorregister.html:20
 #: templates/register.html:101 templates/registration/login.html:41
 msgid "Login"
-msgstr "Iniciar Sesión"
+msgstr "Войти"
 
 #: templates/login.html:21 templates/loginorregister.html:21
 msgid "Remember  Me"
-msgstr "Remember Me"
+msgstr "Запомнить меня"
 
 #: templates/login.html:24 templates/register.html:101
 msgid "Forgot password?"
-msgstr "¿Olvidó su contraseña?"
+msgstr "Забыли пароль?"
 
 #: templates/login.html:30 templates/login.html.py:92
 #: templates/loginorregister.html:80 templates/loginorregister.html.py:84
 msgid "or"
-msgstr "o"
+msgstr "или"
 
 #: templates/login.html:37 templates/loginorregister.html:81
 #: templates/register.html:112
 msgid "Login with Facebook"
-msgstr "Ingresar con Facebook"
+msgstr "Войти с Facebook"
 
 #: templates/login.html:82 templates/loginorregister.html:67
 #: templates/register.html:44
 msgid "Register"
-msgstr "Registro"
+msgstr "регистрировать"
 
 #: templates/login.html:84 templates/register.html:46
 #, python-format
 msgid " I accept the %(linkstart)sTerms of service%(linkend)s "
-msgstr "Acepto las %(linkstart)s condiciones de servicio %(linkend)s"
+msgstr "Я принимаю условия %(linkstart)sДоговора Потребителя. %(linkend)s "
 
 #: templates/login.html:97 templates/loginorregister.html:85
 #: templates/register.html:66
 msgid "Connect with Facebook"
-msgstr "Conéctate con Facebook"
+msgstr "Связь с Facebook"
 
 #: templates/loginorregister.html:6
 msgid "Please login or register to complete your booking request."
 msgstr ""
-"Por favor ingresar o registrarse para que la solicitud de reserva sea "
-"completado."
+"Для завершения Ваше требование о бронирования, пожалуйста выполните "
+"вход или регистрация на сайт."
 
 #: templates/loginorregister.html:17
 msgid "Login to your account"
-msgstr "Accede a tu cuenta"
+msgstr "Войти в свою учетную запись"
 
 #: templates/loginorregister.html:35
 msgid "Join Us"
-msgstr "Únete a nosotros"
+msgstr "Присоединяйтесь к нам"
 
 #: templates/loginorregister.html:68
 msgid "I accept the Terms of service"
-msgstr "Acepto las condiciones de servicio"
+msgstr "Я принимаю условия Договора Потребителя. "
 
 #: templates/paypal-cancel.html:10
 msgid "Payment process canceled"
-msgstr "Proceso cancelado"
+msgstr "Процесс оплаты отменен"
 
 #: templates/paypal-confirm.html:30
 msgid "Confirmation"
-msgstr "Confirmación"
+msgstr "подтверждение"
 
 #: templates/paypal-confirm.html:36
 msgid "Confirm My Reservation"
-msgstr "Confirmar la reserva"
+msgstr ""
 
 #: templates/paypal-payment.html:13
 msgid "Confirm your order"
-msgstr "Confirme su pedido"
+msgstr ""
 
 #: templates/profile_page.html:6
 #, python-format
 msgid "About %(profile_name)s"
-msgstr "acerca de %(profile_name)s "
+msgstr "о %(profile_name)s"
 
 #: templates/profile_page.html:12 templates/show_place.html:246
 msgid "To :"
-msgstr "Destino:"
+msgstr "To:"
 
 #: templates/profile_page.html:19 templates/dashboard/friends.html:13
 #: templates/dashboard/show_message.html:22
 msgid "Send message"
-msgstr "Enviar mensaje"
+msgstr "Отправить сообщение"
 
 #: templates/profile_page.html:20
 msgid "Add as friend"
-msgstr "Añadir como amigo"
+msgstr "Добавить в друзья"
 
 #: templates/profile_page.html:26
 msgid "The user hasn't added a profile description yet."
-msgstr "El usuario no ha añadido ninguna explicación"
+msgstr ""
 
 #: templates/profile_page.html:29
 #, python-format
 msgid "%(profile_name)s's places:"
-msgstr "El hogar de %(profile_name)s"
+msgstr "%(profile_name)s места"
 
 #: templates/profile_page.html:40
 msgid "The user hasn't listed any place yet."
-msgstr "El usuario no ha añadido ningún hogar "
+msgstr ""
 
 #: templates/profile_page.html:50 templates/dashboard/show_message.html:50
 msgid "Please confirm your friendship request."
-msgstr "Por favor, confirma tu solicitud de amistad."
+msgstr ""
 
 #: templates/profile_page.html:51 templates/dashboard/place_list.html:37
 #: templates/dashboard/show_message.html:51
 #, python-format
 msgid "Add %(toname)s to my friends."
-msgstr "Agredar %(toname)s  a mis amigos."
+msgstr "добавить %(toname)s  с моим друзьям."
 
 #: templates/register.html:81
 msgid "Already registered?"
-msgstr "Ya se ha registrado?"
+msgstr "Уже зарегистрированы?"
 
 #: templates/search.html:59
 msgid "Next"
-msgstr "próximo"
+msgstr "следующий"
 
 #: templates/search.html:106
 msgid "Nightly Price"
-msgstr "Precio por noche"
+msgstr "Ночные цены"
 
 #: templates/search.html:118 templates/show_place.html:85
 msgid "Amenities"
-msgstr "Comodidades"
+msgstr "Удобства"
 
 #: templates/search.html:131
 msgid "Space Offered"
-msgstr "Se ofrece el espacio"
+msgstr "Космические Предлагаемые"
 
 #: templates/show_place.html:31
 msgid "Availablity"
-msgstr "Disponibilidad"
+msgstr "в наличии"
 
 #: templates/show_place.html:32
 msgid "Map"
-msgstr "Mapa"
+msgstr "карта"
 
 #: templates/show_place.html:86
 msgid "Manual & Rules"
-msgstr "Manual & Reglas"
+msgstr "Руководство и правила"
 
 #: templates/show_place.html:97
 msgid "Available tranlations"
-msgstr "Traducciones disponibles"
+msgstr "Доступные Справочники"
 
 #: templates/show_place.html:157
 msgid "night"
-msgstr "Noche"
+msgstr "ночь"
 
 #: templates/show_place.html:180
 msgid "Total"
-msgstr "Total"
+msgstr "общий"
 
 #: templates/show_place.html:200
 msgid "Includes cleaning fee"
-msgstr "Incluye servicio de limpieza"
+msgstr "Включает Уборка"
 
 #: templates/show_place.html:205
 msgid "Includes GaniHomes service fee"
-msgstr "Incluye cuota de servicio GaniHomes"
+msgstr "Включает GaniHomes услугу"
 
 #: templates/show_place.html:209
 msgid "Book it"
-msgstr "Reservación"
+msgstr "Бронировать"
 
 #: templates/show_place.html:210
 msgid "Please select the check in and check out dates first."
-msgstr "Por favor indicar las fechas de entrada y salida en primer lugar."
+msgstr "Пожалуйста, в первой очереди введите дата въезда и выезда."
 
 #: templates/show_place.html:211
 #, python-format
 msgid "Duration of minimum accommodation for this place is %(minstay)s nights."
-msgstr "Longitud mínima de estancia %(minstay)s noches"
+msgstr "Срок минимального проживания для этого места  %(minstay)s с ночи."
 
 #: templates/show_place.html:212
 #, python-format
 msgid "Duration of maximum accommodation for this place is %(maxstay)s nights."
-msgstr "Longitud máxima de estancia %(maxstay)s noches."
+msgstr ""
+"Продолжительность максимальное размещение для этого места  %(maxstay)s"
+" с ночи."
 
 #: templates/show_place.html:213
 msgid ""
 "Those dates are unavailable. Select differend dates or <a "
 "href='#looknearby'>look for nearby places</a>."
 msgstr ""
-"Estas fechas no están disponibles. Elegir otras fechas o buscar otros "
-"lugares cercanos."
+"Введенная дата не подходить. Введите другая дата или сделайте запрос "
+"на ближайшие жилища."
 
 #: templates/show_place.html:220
 msgid "Add or delete this place from your bookmarks"
-msgstr "Agregar este hogar a sus favoritos o eliminar de la lista. "
+msgstr "Добавить или вытащить данное жилище от пункта \"фавориты\"."
 
 #: templates/show_place.html:221
 msgid "Bookmark Place"
-msgstr "Favoritos Lugar"
+msgstr "Место закладки"
 
 #: templates/show_place.html:221
 msgid "Bookmarked"
-msgstr "Marcado"
+msgstr "Bookmarked"
 
 #: templates/show_place.html:252
 msgid "Contact with Host"
-msgstr "Conectar con el propietario "
+msgstr "Сделать контакт с собственником жилища"
 
 #: templates/show_place.html:258
 #, python-format
 msgid "%(profile_name)s's other places;"
-msgstr "Otros hogares de %(profile_name)s"
+msgstr "%(profile_name)s автора в других местах;"
 
 #: templates/admin/base.html:32
 msgid "Welcome,"
-msgstr "Bienvenido,"
+msgstr "Добро пожаловать,"
 
 #: templates/admin/base.html:37
 msgid "Documentation"
-msgstr "Documentación"
+msgstr "документация"
 
 #: templates/admin/base.html:39
 msgid "Change password"
-msgstr "Cambiar la contraseña"
+msgstr "Изменить пароль"
 
 #: templates/admin/base_site.html:5
 msgid "GaniHome Yönetimi Bölümü"
-msgstr "GaniHomes la División de Gestión"
+msgstr "GaniHome Отдел управления"
 
 #: templates/admin/change_form.html:24 templates/admin/index.html:31
 msgid "Add"
-msgstr "Añadir"
+msgstr "добавлять"
 
 #: templates/admin/change_form.html:34
 msgid "History"
-msgstr "Historia"
+msgstr "история"
 
 #: templates/admin/change_form.html:35
 msgid "View on site"
-msgstr "Ver en el sitio"
+msgstr "Посмотреть на сайте"
 
 #: templates/admin/change_form.html:46 templates/admin/change_list.html:69
 #: templates/registration/password_change_form.html:11
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Por favor corregir los siguientes errores."
-msgstr[1] "Por favor corregir el siguiente error."
+msgstr[0] "Пожалуйста, исправить следующие ошибки"
+msgstr[1] "Пожалуйста, исправить следующую ошибку"
 
 #: templates/admin/change_list.html:60
 #, python-format
 msgid "Add %(name)s"
-msgstr "Agregar el %(name)s de"
+msgstr "добавлять %(name)s"
 
 #: templates/admin/index.html:20
 #, python-format
 msgid "Models available in the %(name)s application."
-msgstr "Modelos disponibles en la aplicación de %(name)s"
+msgstr "Models available in the someone’s %(name)s application."
 
 #: templates/admin/index.html:37
 msgid "Change"
-msgstr "Cambio"
+msgstr "менять"
 
 #: templates/admin/index.html:48
 msgid "You don't have permission to edit anything."
-msgstr "No está autorizado a modificar una cosa."
+msgstr "У Вас нет полномочия на выполнения изменений."
 
 #: templates/admin/index.html:55
 msgid "Settings"
-msgstr "Configuración"
+msgstr "настройки"
 
 #: templates/admin/index.html:56
+#, fuzzy
 msgid "Constant Translations"
-msgstr "Constant Translations"
+msgstr "Тег Переводы"
 
 #: templates/admin/index.html:60
 msgid "Recent Actions"
-msgstr "Acciones recientes"
+msgstr "Последние действия"
 
 #: templates/admin/index.html:61
 msgid "My Actions"
-msgstr "Mis acciones"
+msgstr "Мои действия"
 
 #: templates/admin/index.html:65
 msgid "None available"
-msgstr "No disponible"
+msgstr "Ни один доступный"
 
 #: templates/admin/index.html:79
 msgid "Unknown content"
-msgstr "Contenido desconocido"
+msgstr "Неизвестный содержание"
 
 #: templates/admin/wysiwyg/website_kelime.html:14
 #: templates/admin/wysiwyg/website_question.html:14
 #: templates/admin/wysiwyg/website_sayfa.html:16
 msgid "Turn Off Html Editor"
-msgstr "Turn Off Html Editor"
+msgstr ""
 
 #: templates/admin/wysiwyg/website_kelime.html:16
 #: templates/admin/wysiwyg/website_question.html:16
 #: templates/admin/wysiwyg/website_sayfa.html:18
 msgid "Turn On Html Editor"
-msgstr "Turn On Html Editor"
+msgstr ""
 
 #: templates/contactus/form.html:5
 msgid "Contact Us"
-msgstr "Contacte con Nosotros"
+msgstr "Связаться с Нами"
 
 #: templates/contactus/form.html:33 website/dashboard.py:578
 msgid "Your message"
-msgstr "Su mensaje"
+msgstr "Ваше сообщение"
 
 #: templates/contactus/thanks.html:6
 msgid "Thank you"
-msgstr "Gracias"
+msgstr "спасибо"
 
 #: templates/contactus/thanks.html:7
 msgid "Your message has been successfully sent."
-msgstr "Gracias. Su mensaje ha sido enviado con éxito."
+msgstr "Ваше сообщение успешно отправлено."
 
 #: templates/dashboard/calendar.html:5 templates/dashboard/edit_prices.html:14
 #, python-format
 msgid "You are editing \"%(place_name)s\""
-msgstr "En la actualidad está modificando \"%(place_name)s\""
+msgstr "Вы редактируете %(place_name)s"
 
 #: templates/dashboard/calendar.html:18
 msgid "Available"
-msgstr "Disponible"
+msgstr "доступный"
 
 #: templates/dashboard/calendar.html:31
 msgid "What do these dates?"
-msgstr "¿Qué significan estas fechas?"
+msgstr "Какие эти даты?"
 
 #: templates/dashboard/calendar.html:32
 msgid "Make Available"
-msgstr "Poner a disposición"
+msgstr "предоставлять"
 
 #: templates/dashboard/calendar.html:34
 msgid "Make Unavailable"
-msgstr "Hacer disponible"
+msgstr "Сделать Отсутствует"
 
 #: templates/dashboard/edit_description.html:11
 msgid "Automatic translation"
-msgstr "Auto de Traducción"
+msgstr "автоматический перевод"
 
 #: templates/dashboard/edit_description.html:14
 msgid "Place name"
-msgstr "Topónimo"
+msgstr "Место имя"
 
 #: templates/dashboard/edit_description.html:15
 msgid "Place description"
-msgstr "Coloque la descripción"
+msgstr "Место описание"
 
 #: templates/dashboard/edit_payment.html:44
 msgid "Account owner details"
-msgstr "Los detalles de la cuenta"
+msgstr "Подробнее Владелец счета"
 
 #: templates/dashboard/edit_payment.html:55
 msgid "Bank details"
-msgstr "Los datos bancarios"
+msgstr "Банковские реквизиты"
 
 #: templates/dashboard/edit_prices.html:8
 msgid "Your payout"
-msgstr "El importe que recibe"
+msgstr "Ваши выплаты"
 
 #: templates/dashboard/edit_prices.html:22
 msgid "Basic Pricing"
-msgstr "Precio básico"
+msgstr "Основные цены"
 
 #: templates/dashboard/edit_prices.html:23
 msgid "Seasonal Pricing"
-msgstr "Precios de temporada"
+msgstr "Сезонные цены"
 
 #: templates/dashboard/edit_prices.html:72
 msgid "Save Pricing"
-msgstr "Guardar precios"
+msgstr "Сохранить цены"
 
 #: templates/dashboard/edit_prices.html:85
 msgid "Add a sessional price"
-msgstr "Añadir un precio de temporada"
+msgstr "Добавить сессионный цене"
 
 #: templates/dashboard/edit_prices.html:96
 msgid "Delete Seasonal"
-msgstr "Eliminar la temporada"
+msgstr "Удаление Сезонные"
 
 #: templates/dashboard/edit_prices.html:100
 msgid "Save Seasonal Pricing"
-msgstr "Guardar el precio de la temporada"
+msgstr "Зарегистрировать сезонную цену"
 
 #: templates/dashboard/edit_profile.html:14
 msgid "Change Photo"
-msgstr "Cambio de la fotografía"
+msgstr "Изменение фотографии"
 
 #: templates/dashboard/friends.html:18
 msgid "You don't have any friends yet."
-msgstr "Usted no tiene ningún amigo."
+msgstr ""
 
 #: templates/dashboard/invite_friend.html:15
 msgid "Sent Invite"
-msgstr "Enviar invitación"
+msgstr "отправлено Приглашение"
 
 #: templates/dashboard/place_list.html:10
 msgid "Preview place"
-msgstr "Vista previa de lugar"
+msgstr "Предварительный просмотр место"
 
 #: templates/dashboard/place_list.html:17
 msgid "Unpublish"
-msgstr "No Publicar"
+msgstr "Отменить публикацию"
 
 #: templates/dashboard/place_list.html:19
 msgid "Publish"
-msgstr "publicar"
+msgstr "публиковать"
 
 #: templates/dashboard/place_list.html:21
 msgid "Delete"
-msgstr "Borrar"
+msgstr "удалять"
 
 #: templates/dashboard/place_list.html:24
 msgid "Edit prices"
-msgstr "Editar los precios"
+msgstr "Изменить цены"
 
 #: templates/dashboard/place_list.html:25
 msgid "Edit details"
-msgstr "Edit details"
+msgstr "Изменить детали"
 
 #: templates/dashboard/place_list.html:26
 msgid "Set availability"
-msgstr "Establecer la disponibilidad"
+msgstr "Установить наличие"
 
 #: templates/dashboard/place_list.html:27
 msgid "Translate details"
-msgstr "Traducir los detalles"
+msgstr "Перевести детали"
 
 #: templates/dashboard/place_list.html:35
 msgid "Please confirm delete operation."
-msgstr "Por favor confirmar la eliminación."
+msgstr "Пожалуйста, подтвердите операцию аннулирования."
 
 #: templates/dashboard/requests.html:19 templates/dashboard/trips.html:26
 #: templates/dashboard/trips.html.py:49 templates/dashboard/trips.html:72
 msgid "Dates"
-msgstr "Fechas"
+msgstr "Даты"
 
 #: templates/dashboard/requests.html:32 templates/dashboard/trips.html:39
 #: templates/dashboard/trips.html.py:62 templates/dashboard/trips.html:85
 msgid "Show Details"
-msgstr "Mostrar detalles"
+msgstr "Показать детали"
 
 #: templates/dashboard/reviews.html:12
 msgid "Reviews by you"
-msgstr "Comentarios por usted"
+msgstr ""
 
 #: templates/dashboard/reviews.html:13
 msgid "Reviews about you"
-msgstr "Comentarios acerca de usted"
+msgstr ""
 
 #: templates/dashboard/reviews.html:27
 msgid "You don't write any reviews yet"
-msgstr "Aún no ha escrito su comentario."
+msgstr "Вы все еще не добавили комментарий."
 
 #: templates/dashboard/reviews.html:42
 msgid "You don't get any reviews yet"
-msgstr "Aún  no ha recibido ningún comentario. "
+msgstr "Вы все еще не получили комментарий."
 
 #: templates/dashboard/show_booking.html:45
 msgid "Booking Status"
-msgstr "Reservas Inicio"
+msgstr "статус брони"
 
 #: templates/dashboard/show_booking.html:51
 msgid "Actions"
-msgstr "Mis acciones"
+msgstr "Действия"
 
 #: templates/dashboard/show_booking.html:58
 msgid "Confirm booking"
-msgstr "Confirmar la Reserva"
+msgstr ""
 
 #: templates/dashboard/show_booking.html:60
 msgid "Reject booking"
-msgstr "Rechazar Reserva"
+msgstr ""
 
 #: templates/dashboard/show_booking.html:64
 msgid "Send a message to guest"
-msgstr "Enviar un mensaje al host"
+msgstr ""
 
 #: templates/dashboard/show_booking.html:69
 msgid "Cancel booking request"
-msgstr "La solicitud va "
+msgstr ""
 
 #: templates/dashboard/show_booking.html:72
+#, fuzzy
 msgid "Notify bank transfer"
-msgstr ""
+msgstr "банковский перевод"
 
 #: templates/dashboard/show_booking.html:76
 msgid "Confirm accommodation"
-msgstr "Confirmación"
+msgstr ""
 
 #: templates/dashboard/show_booking.html:79
+#, fuzzy
 msgid "Write a review for this place"
-msgstr ""
+msgstr "Вид на место"
 
 #: templates/dashboard/show_booking.html:83
 msgid "Send a message to host"
-msgstr "Enviar un mensaje al host"
+msgstr ""
 
 #: templates/dashboard/show_message.html:11
 #, python-format
 msgid "Write a reply to %(toname)s"
-msgstr "Escribir una respuesta a %(toname)s"
+msgstr "Написать ответ %(toname)s"
 
 #: templates/dashboard/show_message.html:13
 #, python-format
 msgid "Write a message to %(toname)s"
-msgstr "Escribir un mensaje a %(toname)s"
+msgstr "Написать письмо %(toname)s"
 
 #: templates/dashboard/show_message.html:15
 #, python-format
 msgid "Send a friendship request to %(toname)s"
-msgstr "Enviar una solicitud de amistad %(toname)s"
+msgstr "Отправить запрос на дружбу с %(toname)s"
 
 #: templates/dashboard/show_message.html:40
 msgid "Accept"
-msgstr "Aceptar"
+msgstr "принимать"
 
 #: templates/dashboard/show_message.html:41
 msgid "Decline"
-msgstr "Descenso"
+msgstr "Отклонить"
 
 #: templates/dashboard/trips.html:17
 msgid "Previous"
-msgstr "Anterior"
+msgstr "предыдущий"
 
 #: templates/dashboard/user_messages.html:20
 msgid "No messages"
-msgstr "No hay mensajes"
+msgstr "Нет сообщений"
 
 #: templates/mail/invite_message.html:6
 msgid "I've been using GaniHomes and thought you might like to try it out."
-msgstr "Me hice un miembre de GaniHomes y te recomiendo unirse."
+msgstr "Я стал членом \"GaniHomes\", рекомендую и тебе присоединиться к нам. "
 
 #: templates/mail/invite_message.html:9
 msgid "You're Invited to GaniHomes!"
-msgstr "Está intivado a GaniHomes."
+msgstr "Вы приглашены в ”GaniHomes”."
 
 #: templates/mail/invite_message.html:10
 #, python-format
 msgid " %(sender)s has invited you to GaniHomes,"
-msgstr "%(sender)s le invite a GaniHomes."
+msgstr "%(sender)s приглашает вас GaniHomes,"
 
 #: templates/mail/new_message.html:6
 #, python-format
 msgid " Dear %(surname)s,"
-msgstr "Querido %(surname)s,"
+msgstr "дорогой  %(surname)s,"
 
 #: templates/mail/new_message.html:9
 msgid ""
 "A GaniHomes user sent you a message. Please click the link below to see"
 " it;"
 msgstr ""
-"Un usuario de GaniHomes le envió un mensaje. Haga clic al siguiente "
-"enlace para ver el mensaje;"
+"Один потребитель \"GaniHomes\" отправил Вам сообщение. Чтобы увидеть "
+"сообщение нажмите на следующий линк : "
 
 #: templates/mail/new_message.html:13 templates/mail/ticket_replied.html:13
 #: templates/registration/password_reset_email.html:11
 msgid "Thanks for using GaniHomes!"
-msgstr "Gracias por usar GaniHomes!"
+msgstr "Спасибо за использование GaniHomes"
 
 #: templates/mail/ticket_replied.html:6
 #, python-format
 msgid " Dear %(name)s,"
-msgstr "Querido %(surname)s,"
+msgstr "дорогой %(name)s,"
 
 #: templates/mail/ticket_replied.html:9
 msgid ""
 "Your support ticket has been replied. Please click the link below to "
 "see it;"
 msgstr ""
-"Un usuario de GaniHomes le envió un mensaje. Haga clic al siguiente "
-"enlace para ver el mensaje;"
+"Получен ответ на Ваше требование о поддержки. Что бы увидеть ответ "
+"нажмите на следующий линк :"
 
 #: templates/mail/welcome_message.html:43
 #, python-format
 msgid "Dear %(fullname)s;"
-msgstr "Querido %(fullname)s,"
+msgstr "дорогой %(fullname)s;"
 
 #: templates/registration/login.html:37
 msgid "Email address"
-msgstr "Dirección de Email"
+msgstr "адрес электронной почты"
 
 #: templates/registration/password_change_done.html:3
 #: templates/registration/password_change_done.html:7
 msgid "Password change successful"
-msgstr "La contraseña se cambió con éxito "
+msgstr "Замена пароль успешно выполнена "
 
 #: templates/registration/password_change_done.html:9
 msgid "Your password was changed."
-msgstr "Your password was changed."
+msgstr "Ваш пароль был изменен."
 
 #: templates/registration/password_change_form.html:3
 #: templates/registration/password_change_form.html:15
 msgid "Password change"
-msgstr "Cambio de contraseña"
+msgstr "изменение пароля"
 
 #: templates/registration/password_change_form.html:17
 msgid ""
 "Please enter your old password, for security's sake, and then enter "
 "your new password twice so we can verify you typed it in correctly."
 msgstr ""
-"Por favor ingresar su contraseña antigua, y luego ingresar la nueva "
-"contraseña por dos veces para su seguridad, así podemos validar que "
-"usted ha entrado su contraseña correctemante. "
+"Пожалуйста введите старый пароль, для Вашей безопасности, попозже "
+"введите свой новый пароль 2 раза, таким образом подтверждается то, что"
+" Вы правильно ввели новый пароль."
 
 #: templates/registration/password_change_form.html:23
 #: website/dashboard.py:382
 msgid "Old password"
-msgstr "Contraseña antigua"
+msgstr "Старый пароль"
 
 #: templates/registration/password_change_form.html:28
 #: website/dashboard.py:383
 msgid "New password"
-msgstr "Una nueva contraseña"
+msgstr "Новый пароль"
 
 #: templates/registration/password_change_form.html:39
 #: templates/registration/password_reset_confirm.html:18
 msgid "Change my password"
-msgstr "Cambiar mi contraseña"
+msgstr "Изменение пароля"
 
 #: templates/registration/password_reset_complete.html:3
 #: templates/registration/password_reset_complete.html:7
 msgid "Password reset complete"
-msgstr "El restablecimiento de la contraseña se ha completado"
+msgstr "Аннулирование пароль завершено."
 
 #: templates/registration/password_reset_complete.html:9
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "La contraseña se ha cambiado. Ya puede seguir y acceder. "
+msgstr "Ваш пароль заменен. Сейчас можете продолжить и выполнить вход на сайт."
 
 #: templates/registration/password_reset_confirm.html:3
 #: templates/registration/password_reset_form.html:4
 #: templates/registration/password_reset_form.html:8
 msgid "Password reset"
-msgstr "De restablecimiento de contraseñas"
+msgstr "сброс пароля"
 
 #: templates/registration/password_reset_confirm.html:9
 msgid "Enter new password"
-msgstr "Escriba la nueva contraseña"
+msgstr "Введите новый пароль"
 
 #: templates/registration/password_reset_confirm.html:11
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
-"Por favor entrar la contraseña dos veces, así podemos validar que "
-"usted ha entrado correctemante."
+"Пожалуйста введите свой новый пароль два раза, таким образом "
+"подтверждаем, что Вы правильно выполнили вход на сайт."
 
 #: templates/registration/password_reset_confirm.html:15
 msgid "New password:"
-msgstr "Nueva contraseña:"
+msgstr "Новый пароль:"
 
 #: templates/registration/password_reset_confirm.html:17
 msgid "Confirm password:"
-msgstr "Confirme su contraseña:"
+msgstr "Подтвердите пароль:"
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "Password reset unsuccessful"
-msgstr "El restablecimiento de la contraseña no se ha completado.  "
+msgstr "Аннулирование пароль безуспешно"
 
 #: templates/registration/password_reset_confirm.html:25
 msgid ""
 "The password reset link was invalid, possibly because it has already "
 "been used.  Please request a new password reset."
 msgstr ""
-"El enlace de restablecimiento de contraseña está inválida "
-"probablemente porque fue utilizado anteriormente. Por favor solicita "
-"un nuevo enlace de restablecimiento."
+"Линк аннулирование пароль недействительный, вероятно из-за его "
+"предыдущего использования. Пожалуйста, затребуйте предоставления "
+"нового линка для аннулирования пароль."
 
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
 msgid "Password reset successful"
-msgstr "El restablecimiento de la contraseña se ha completado "
+msgstr "Аннулирование пароль успешно выполнено"
 
 #: templates/registration/password_reset_done.html:10
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail"
 " address you submitted. You should be receiving it shortly."
 msgstr ""
-"Se ha enviado las instrucciones de ajuste de contraseña a la dirección"
-" de correo electrónico identificado en nuestro sistema. Debe obtener "
-"fácilmente. "
+"Инструкции по применению и настройке Вашего пароля отправлены по "
+"э-почте на Ваш э-почтовый адрес, который указан на нашей сайте. Вы уже"
+" наверно их получили безпроблемно. "
 
 #: templates/registration/password_reset_email.html:2
 msgid "You're receiving this e-mail because you requested a password reset"
 msgstr ""
-"Ha recibido este mensaje porque ha pretendido restablecer su "
-"contraseña."
+"Вы получили данную э-почту, потому что попробовали аннулировать Ваш "
+"пароль."
 
 #: templates/registration/password_reset_email.html:3
 #, python-format
 msgid "for your user account at %(site_name)s"
-msgstr "Para su cuenta de usuario en %(site_name)s"
+msgstr "Для Вашего потребительского счета на %(site_name)s"
 
 #: templates/registration/password_reset_email.html:5
 msgid "Please go to the following page and choose a new password:"
-msgstr "Por favor ir a la página siguiente y crear una nueva contraseña:"
+msgstr "Пожалуйста идите на следующую страницу и введите новый пароль"
 
 #: templates/registration/password_reset_email.html:9
 msgid "Your username, in case you've forgotten:"
-msgstr "En caso de olvidar el nombre de usuario:"
+msgstr "В случае, если Вы забыли свое потребительское имя :"
 
 #: templates/registration/password_reset_email.html:13
 msgid "The GaniHomes team"
-msgstr "El GaniHomes equipo."
+msgstr "Команда GaniHomes"
 
 #: templates/registration/password_reset_form.html:10
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll "
 "e-mail instructions for setting a new one."
 msgstr ""
-"¿Ha olvidado tu contraseña? Entrar su correo electrónico al siguiente "
-"espacio y le enviamos un mensaje para que usted crea una nueva "
-"contraseña."
+"Вы забыли свой пароль? В данное поле введите свой э-почтовый адрес и "
+"мы отправим Вам э-почта с инструкциями по созданию нового пароля. "
 
 #: templates/registration/password_reset_form.html:14
 msgid "E-mail address:"
-msgstr "Dirección de E-mail"
+msgstr "Адрес электронной почты"
 
 #: templates/registration/password_reset_form.html:14
 msgid "Reset my password"
-msgstr "Reajustar la contraseña"
+msgstr "Аннулировать мой пароль"
 
 #: website/booking.py:55
 msgid "Your booking request has been successfully sent to the host."
-msgstr "La solicitud de reserva se ha enviado al propietario con éxito. "
+msgstr "Ваш запрос о бронирование успешно отправлен собственнику жилища."
 
 #: website/dashboard.py:81
 msgid "Friendship request successfully sent."
-msgstr "La solicitud de amistad se ha enviado con éxito. "
+msgstr "Ваш запрос о добавление в списке друзей успешно отправлен."
 
 #: website/dashboard.py:82
 #, python-format
 msgid "%s wants to be friends with you."
-msgstr "%s quiere ser amigo consigo."
+msgstr " %s хочет быть добавлен в список Ваших друзей."
 
 #: website/dashboard.py:87
 msgid "Request already exists."
-msgstr "Solicitud de reserva ya existe"
+msgstr ""
 
 #: website/dashboard.py:98
 msgid "Place successfully unlisted from site."
-msgstr "El hogar se ha eliminado con éxito "
+msgstr "Данное жилище успешно удалено с сайта."
 
 #: website/dashboard.py:101
 msgid "This place is now published!"
-msgstr "El hogar está en línea "
+msgstr "Ваше жилище в данный момент публикуется."
 
 #: website/dashboard.py:110
 msgid "Place is deleted."
-msgstr "Lugar se elimina."
+msgstr "Место будет удален."
 
 #: website/dashboard.py:129
 msgid "Friendship request accepted."
-msgstr "Solicitud de amistad aceptada."
+msgstr ""
 
 #: website/dashboard.py:132
 msgid "Friendship request declined."
-msgstr "Solicitud de amistad se negó."
+msgstr ""
 
 #: website/dashboard.py:135
 msgid "Can't find the request. Could be canceled by the other side."
-msgstr "No puedo encontrar la solicitud. Puede haber sido cancelado."
+msgstr "Не могу найти Ваш запрос. Может быть удалено."
 
 #: website/dashboard.py:233
 #, python-format
 msgid "Friend request to %s"
-msgstr "Solicitud de amistad de %s"
+msgstr "Друг запрос %s"
 
 #: website/dashboard.py:286
 msgid "Booking request canceled."
-msgstr "La solicitud de reserva aceptada por el propietario."
+msgstr "Ваш запрос на бронирование отвергнут."
 
 #: website/dashboard.py:292
 msgid ""
@@ -5246,270 +5297,276 @@ msgstr ""
 
 #: website/dashboard.py:297 website/dashboard.py:304
 msgid "Booking request confirmed."
-msgstr "La solicitud de reserva aceptada por el propietario."
+msgstr "Ваш запрос на бронирование утвержден."
 
 #: website/dashboard.py:310
 msgid "Booking request rejected."
-msgstr "Su solicitud de reserva ha rechazado."
+msgstr "Ваш запрос на бронирование отвергнут."
 
 #: website/dashboard.py:349 website/dashboard.py:373 website/views.py:442
 #: website/views.py:496
 msgid "Your message successfully sent."
-msgstr "Su mensaje ha sido enviado con éxito. "
+msgstr "Ваше сообщение успешно отправлено."
 
 #: website/dashboard.py:384
 msgid "New password (again)"
-msgstr "Nueva contraseña (otra vez)"
+msgstr "Новый пароль (еще раз)"
 
 #: website/dashboard.py:395
 msgid "Your password successfully changed."
-msgstr "Su contraseña ha sido cambiado con éxito."
+msgstr "Ваш пароль успешно заменен."
 
 #: website/dashboard.py:399
 msgid "Your old password was entered incorrectly. Please enter it again."
-msgstr "La contraseña anterior es incorrecta. Por favor intenta de nuevo. "
+msgstr ""
+"Вы неправильно ввели Ваш старый пароль. Пожалуйста заново введите "
+"пароль."
 
 #: website/dashboard.py:519
 msgid "Your payment selection successfully updated."
-msgstr "La opción de pago ha sido actualizado con éxito. "
+msgstr "Ваш выбор форма оплаты успешно обновлен."
 
 #: website/dashboard.py:568
 msgid "Your pricing successfully updated."
-msgstr "La fijación de precios ha sido actualizado con éxito."
+msgstr "Ваши цены успешно обновлены."
 
 #: website/dashboard.py:581
 msgid "Category"
-msgstr "Categoría"
+msgstr "категория"
 
 #: website/dashboard.py:610
 msgid "Name of your friend"
-msgstr "Nombre de tu amigo"
+msgstr "Имя Вашего друга"
 
 #: website/dashboard.py:611
 msgid "Email of your friend"
-msgstr "Email de su amigo"
+msgstr "E-mail Вашего друга"
 
 #: website/dashboard.py:612
 msgid "Optional note to your friend"
-msgstr "Escriba un nota a un amigo:"
+msgstr "Отправьте сообщение своему другу :"
 
 #: website/dashboard.py:621
 msgid "Invite message successfully sent."
-msgstr "Su mensaje de invitación ha sido enviado con éxito."
+msgstr "Пригласить сообщение успешно отправлено"
 
 #: website/dashboard.py:623
 #, python-format
 msgid "%s has invited you to GaniHomes"
-msgstr "%s le invite a GaniHomes."
+msgstr "%s  приглашает вас GaniHomes"
 
 #: website/dashboard.py:635
 msgid "Form has errors, please check your input."
-msgstr "Forma incorrecta, por favor comprueba las entradas"
+msgstr "Форма ошибочная, пожалуйста, проверьте введенных данных."
 
 #: website/dashboard.py:661
 msgid "Your translations successfully saved."
-msgstr "Las traducciones están actualizados correctamente."
+msgstr "Ваши переводы успешно обновлены."
 
 #: website/views.py:41
 msgid "City or address"
-msgstr "Ciudad o dirección"
+msgstr "Город или адрес"
 
 #: website/views.py:71
 msgid "Bedrooms"
-msgstr "Dormitorios"
+msgstr "Спальни"
 
 #: website/views.py:73
 msgid "Bathrooms"
-msgstr "Baños"
+msgstr "Ванные комнаты"
 
 #: website/views.py:74
 msgid "Cancellation"
-msgstr "La política de Cancelación"
+msgstr "аннулирование"
 
 #: website/views.py:107 website/views.py:113
 msgid "E-mail address"
-msgstr "Dirección de E-mail"
+msgstr "Адрес электронной почты"
 
 #: website/views.py:112
 msgid "Password (Again)"
-msgstr "Contraseña (otra vez)"
+msgstr "Пароль (Еще раз)"
 
 #: website/views.py:204
 msgid "Your place succesfully saved but not published yet."
-msgstr "Su mensaje guardado con éxito."
+msgstr "Ваше жилище зарегистрировано, но еще не опубликовано"
 
 #: website/views.py:205
 msgid "You can publish this place by pressing the \"Publish\" button below."
-msgstr "Puede hacer el hogar disponible al pulsar el botón “Publicar”."
+msgstr ""
+"Нажимая на кнопку ”Транслировать” можете публично транслировать "
+"фотографию Вашего жилища."
 
 #: website/views.py:207
 msgid "Your changes succesfully saved."
-msgstr "Su mensaje guardado con éxito."
+msgstr "Изменения успешно сохранены."
 
 #: website/views.py:227
 #, python-format
 msgid "%s Service Fee "
-msgstr "%s%% Cargo por servicio"
+msgstr "%s плата за услуги"
 
 #: website/views.py:439
 msgid "Your message has saved."
-msgstr "Su mensaje ha salvado."
+msgstr "Ваше сообщение сохранено."
 
 #: website/views.py:486
 msgid "Wrong email or password."
-msgstr "email o contraseña incorrecta."
+msgstr "Неправильный адрес или пароль."
 
 #: website/views.py:519
 msgid "Welcome to GaniHomes."
-msgstr "Bienvenido a GaniHomes."
+msgstr "Добро пожаловать в GaniHomes."
 
 #: website/views.py:532
 msgid "The passwords you entered do not match."
-msgstr "Este correo electrónico ya está registrado, elija uno diferente."
+msgstr "Введенные вами пароли не совпадают."
 
 #: website/views.py:534
 msgid "This email is already registered, please choose another one."
-msgstr "Este correo electrónico ya está registrado, elija uno diferente."
+msgstr "Данный э-почтовый адрес уже зарегистрирован, выберите другой."
 
 #: website/models/dil.py:59
 msgid "Anahtar Kelime"
-msgstr "palabra clave"
+msgstr "ключевое слово"
 
 #: website/models/dil.py:90
 msgid "Türkçesi"
-msgstr "Turco"
+msgstr "турецкий"
 
 #: website/models/dil.py:92
 msgid "Dil"
-msgstr "lengua"
+msgstr "язык"
 
 #: website/models/dil.py:94
 msgid "Çevirisi"
-msgstr "traducción"
+msgstr "перевод"
 
 #: website/models/faq.py:22
 msgid "FAQ Main Category"
-msgstr "FAQ Categoría principal"
+msgstr ""
 
 #: website/models/faq.py:23
 msgid "FAQ Main Categories"
-msgstr "FAQ Categorías principales"
+msgstr ""
 
 #: website/models/faq.py:41
 msgid "FAQ Main Category Name Translation"
-msgstr "FAQ Categoría principal de traducción de nombres"
+msgstr ""
 
 #: website/models/faq.py:42
 msgid "FAQ Main Category Name Translations"
-msgstr "FAQ Principales Traducciones Categoría Nombre"
+msgstr ""
 
 #: website/models/faq.py:60
 msgid "FAQ Category"
-msgstr "FAQ Categoría"
+msgstr ""
 
 #: website/models/faq.py:61
 msgid "FAQ Categories"
-msgstr "FAQ Categorías"
+msgstr ""
 
 #: website/models/faq.py:79
 msgid "FAQ Category Name Translation"
-msgstr "FAQ Categoría de traducción de nombres"
+msgstr ""
 
 #: website/models/faq.py:80
 msgid "FAQ Category Name Translations"
-msgstr "FAQ Traducciones Categoría Nombre"
+msgstr ""
 
 #: website/models/faq.py:92 website/models/faq.py:150
 msgid "Question"
-msgstr "Pregunta"
+msgstr "вопрос"
 
 #: website/models/faq.py:138
 msgid "FAQ Question"
-msgstr "FAQ Pregunta"
+msgstr ""
 
 #: website/models/faq.py:139
 msgid "FAQ Questions"
-msgstr "FAQ Preguntas"
+msgstr ""
 
 #: website/models/faq.py:158
 msgid "FAQ Question Translation"
-msgstr "FAQ Pregunta traducción"
+msgstr ""
 
 #: website/models/faq.py:159
 msgid "FAQ Question Translations"
-msgstr "FAQ Traducciones pregunta"
+msgstr ""
 
 #: website/models/faq.py:169
 msgid "Answer"
-msgstr "respuesta"
+msgstr "ответ"
 
 #: website/models/faq.py:177
 msgid "FAQ Answer"
-msgstr "FAQ respuesta"
+msgstr ""
 
 #: website/models/faq.py:178
 msgid "FAQ Answers"
-msgstr "FAQ respuestas"
+msgstr ""
 
 #: website/models/icerik.py:143
 msgid "İçerik Gövdesi"
-msgstr "Contenido del cuerpo"
+msgstr "Содержимое тела"
 
 #: website/models/icerik.py:144
 msgid "başlık"
-msgstr "título"
+msgstr "название"
 
 #: website/models/icerik.py:145
 msgid "menü başlık"
-msgstr "menú de títulos"
+msgstr "заголовок меню"
 
 #: website/models/icerik.py:146
 msgid "Menüde başlığın üzerine yazmak için"
-msgstr "Para escribir sobre el título en el menú "
+msgstr "Для записи на заголовок в меню."
 
 #: website/models/icerik.py:147
 msgid "slug"
-msgstr "babosa"
+msgstr "слизняк"
 
 #: website/models/icerik.py:148
 msgid "URL'ye Yönlen"
-msgstr "Dirigir a URL "
+msgstr "Перенаправится на URL."
 
 #: website/models/icerik.py:150
 msgid "meta tanım"
-msgstr "Definición meta "
+msgstr "мета\" ознакомление"
 
 #: website/models/icerik.py:151
 msgid "meta anahtar kelimeler"
-msgstr "Palabras claves meta "
+msgstr "\"мета\" ключевые слова"
 
 #: website/models/icerik.py:152
 msgid "html başlığı"
-msgstr "Título "
+msgstr "html заголовок"
 
 #: website/models/icerik.py:153
 msgid "tarayıcı  başlığının üzerine yaz"
-msgstr "Escribir sobre el título de navegador "
+msgstr "выполнить запись на заголовок сети"
 
 #: website/models/icerik.py:154
 msgid "Sayfa"
-msgstr "página"
+msgstr "страница"
 
 #: website/models/icerik.py:155
 msgid "oluşturulma zamanı"
-msgstr "el tiempo de render"
+msgstr "время загрузки"
 
 #: website/models/icerik.py:274
 msgid "Place photo"
-msgstr "colocar la foto"
+msgstr "Место фото"
 
 #: website/models/icerik.py:275
 msgid "Instead of uploading an image, you can select a place photo"
-msgstr "Puede elegir una foto del hogar existente en lugar de cargar foto "
+msgstr ""
+"Вместо загрузки фотографий, можете выбрать существующая фотография "
+"жилища"
 
 #: website/models/icerik.py:276
 msgid "Place of the photo"
-msgstr "Lugar de la foto"
+msgstr "Место проведения фото"
 
 #: website/models/icerik.py:277
 msgid ""
@@ -5517,87 +5574,34 @@ msgid ""
 "photo) you should manualy select a place for linking. Can be left blank"
 " if you choose a place photo."
 msgstr ""
-"Si está cargando una foto (en lugar de una foto del hogar existente) "
-"debe optar un hogar manualmente para la conexión.  Si ha elegido una "
-"foto de hogar, puede dejarse en blanco."
+"Если Вы загружаете новая фотография (вместо существующей фотографий "
+"жилища), то для подключения Вам надо вручную выбрать конкретное "
+"жилище. Если выберёте фотография жилища, то возможно неполное "
+"заполнение страницы. "
 
 #: website/models/icerik.py:283
 msgid "Sadece favori olarak seçilen ögeler ana vitrinde gösterilir."
 msgstr ""
-"Solamente los elementos favoritos se muestran en la pantalla "
-"principal."
+"На главном витрине публикуются только элементы из состава выбранных в "
+"\"фавориты\"."
 
 #: website/models/medya.py:31
 msgid "Dosya Tipi"
-msgstr "Tipo de Archivo"
+msgstr "Тип файла"
 
 #: website/models/medya.py:32
 msgid "Dosya Adı"
-msgstr "Nombre de archivo"
+msgstr "Имя файла"
 
 #: website/models/medya.py:37
 msgid "Dosya"
-msgstr "expediente"
+msgstr "файл"
 
 #~ msgid "Called Back?"
-#~ msgstr "Volver a llamar"
+#~ msgstr "Была обратная связь?"
 
 #~ msgid "Site Ayarları"
-#~ msgstr "Configuración del sitio"
+#~ msgstr "Параметры сайта"
 
 #~ msgid "Sabit Çeviriler"
-#~ msgstr "Traducciones Duro"
-
-#~ msgid "Place is visible"
-#~ msgstr "Lugar Visible"
-
-#~ msgid "Payed"
-#~ msgstr "Pagado"
-
-#~ msgid "Sent"
-#~ msgstr "Enviado"
-
-#~ msgid "First Name"
-#~ msgstr "Nombre"
-
-#~ msgid "Last Name"
-#~ msgstr "Apellido"
-
-#~ msgid "Mesajınız başarılı bir şekilde alındı."
-#~ msgstr "Su mensaje ha sido exitosa."
-
-#~ msgid "Press"
-#~ msgstr "Presione"
-
-#~ msgid "Booking request canceled by the host."
-#~ msgstr "La solicitud de reserva rechazada por el propietario."
-
-#~ msgid "World is yours"
-#~ msgstr "Mundo es tuyo"
-
-#~ msgid "Tell us about yourself"
-#~ msgstr "Comentarios acerca de usted"
-
-#~ msgid "Address"
-#~ msgstr "Dirección"
-
-#~ msgid "PHONE"
-#~ msgstr "TELÉFONO"
-
-#~ msgid "E-MAIL"
-#~ msgstr "E-MAIL"
-
-#~ msgid "Surname"
-#~ msgstr "Apellido"
-
-#~ msgid "GaniHomes Team"
-#~ msgstr "El GaniHomes equipo."
-
-#~ msgid "My Page"
-#~ msgstr "Mi página"
-
-#~ msgid "Phone Support"
-#~ msgstr "Teléfono de apoyo"
-
-#~ msgid "The GaniHomes team."
-#~ msgstr "El GaniHomes equipo."
+#~ msgstr "Жесткий Переводы"

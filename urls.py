@@ -36,6 +36,7 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
 #    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'', direct_to_template, {'template': 'moving.html'}),
     (r'^crossdomain.xml$', direct_to_template, {'template': 'crossdomain.xml'}),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Uncomment the next line to enable the admin:
