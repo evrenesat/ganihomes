@@ -41,10 +41,11 @@ class SSLRedirect:
 
     def _redirect(self, request, secure):
         protocol = secure and "https" or "http"
-        if secure:
-            host = getattr(settings, 'SSL_HOST', get_host(request))
-        else:
-            host = getattr(settings, 'HTTP_HOST', get_host(request))
+        host = get_host(request)
+#        if secure:
+#            host = getattr(settings, 'SSL_HOST', get_host(request))
+#        else:
+#            host = getattr(settings, 'HTTP_HOST', get_host(request))
         newurl = "%s://%s%s" % (protocol,host,request.get_full_path())
         if settings.DEBUG and request.method == 'POST':
             raise RuntimeError, \
