@@ -142,7 +142,7 @@ class PlaceAdmin(admin.ModelAdmin):
     #save_as=True
     #ordering = ['',]
     #description=''
-    #list_per_page=20
+    list_per_page=25
     prepopulated_fields = {"slug": ("title",)}
     inlines = [PhotoInline,BookingInline, DescriptionInline]
     #list_display_links = ('','')
