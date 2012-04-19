@@ -440,7 +440,7 @@ class Place(models.Model):
 
     active = models.BooleanField(_('Etkin'), default=True, help_text=u'Etkin olmayan mekanlar kendi sahibine bile gösterilmez. Ev sahibi için "silinmiş" gibi görünür. ')
     has_photo = models.BooleanField(_('Place has a photo'), default=False, editable=False)
-    published = models.BooleanField(_('Place is published'), default=False)
+    published = models.BooleanField(_('Published'), default=False)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
     translation_status = models.SmallIntegerField(_('Translation status'), choices=TRANSLATION_STATUS, default=10)
