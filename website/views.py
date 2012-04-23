@@ -52,7 +52,8 @@ class BookingForm(forms.Form):
 
     def __init__(self, capacity, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
-        self.fields['no_of_guests']= forms.ChoiceField(choices=n_tuple(capacity), initial=1)
+#        log.info('cpapa %s'%n_tuple(capacity))
+        self.fields['no_of_guests']= forms.ChoiceField(choices=n_tuple(capacity or 30), initial=1)
 
 
 def place_translation(request, id, lang):
@@ -78,7 +79,7 @@ def showPlace(request, id):
     ]
 #    if place.cleaning_fee:
 #        properties.append((_(u'Cleaning Fee'),place.cleaning_fee))
-    context = {'place':place, 'bform':BookingForm(place.capacity),
+    context = {'place':place, 'bform':BookingForm(place.max_stay),
                'properties':properties ,
 #               'profile':profile,
                'service_fee':configuration('guest_fee'),
