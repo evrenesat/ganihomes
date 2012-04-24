@@ -1133,20 +1133,16 @@ gh = {
     },
     profile_upload_init:function(){
         var self = this;
-
-//        $.getScript(this.STATIC_URL+'js/jquery.fileupload.js', function(){
-
+        var  reload_photo = function () {
+           src = $('#pfotoimg').attr('src').split('?')[0]
+           $('#pfotoimg').attr('src',src + '?rnd='+Math.random())
+            }
         $('#pfoto').fileupload({
                dataType: 'json',
                url: '/dashboard/pfoto/',
-               done: function (e, data) {
-                   src = $('#pfotoimg').attr('src').split('?')[0]
-                   $('#pfotoimg').attr('src',src + '?rnd='+Math.random())
-
-
-               }
+               done: function (e, data) {reload_photo()}
            });
-//        })
+        reload_photo()
     },
     renderUpPlacePhotos:function(){
         var self = this

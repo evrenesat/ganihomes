@@ -90,7 +90,7 @@ class TranslationMachine:
                     d.title = translation[0]['translatedText']
                     d.auto = True
                     d.save()
-                    sleep(10)
+                    sleep(5)
 
 
     def update_place_status(self, p):
