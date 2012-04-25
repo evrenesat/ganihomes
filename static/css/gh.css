@@ -1088,17 +1088,17 @@ ul.like-buttons li {
     margin-top: 4px;
 }
 
-li.twitter-like {
-    position: relative;
-    left: 146px;
-    top: -25px;
-}
+/*li.twitter-like {*/
+    /*position: relative;*/
+    /*left: 146px;*/
+    /*top: -25px;*/
+/*}*/
 
-li.g-plus-one {
-    position: relative;
-    left: 149px;
-    top: -25px;
-}
+/*li.g-plus-one {*/
+    /*position: relative;*/
+    /*left: 149px;*/
+    /*top: -25px;*/
+/*}*/
 
 .sepline {
     margin-top: 4px;
@@ -2035,7 +2035,7 @@ li.g-plus-one {
 }
 
 #photoslider {
-    width: 2000px;
+    width: 4000px;
 }
 
 #pphoto {
