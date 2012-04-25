@@ -700,7 +700,7 @@ gh = {
             }
             var tprice = tprice + cleaning_fee + (tprice*service_fee/100)
             var nog = parseInt($('#id_no_of_guests').val())
-            if(exlimit < nog) tprice = tprice + (exprice * (nog-exlimit))
+            if(exlimit < nog) tprice = tprice + ((exprice * (nog-exlimit)) * this.total.ndays)
             if (cleaning_fee){
                 $('#cleaningfee').show('normal').find('span').html(this.getCurrPrice(this.convertPrice(cleaning_fee)))
             }
@@ -1634,6 +1634,7 @@ gh = {
 //    },
     do_editProfile:function(self){
         this.genericEdit('/dashboard/edit_profile/',function(){
+            self.profile_upload_init()
             $('#id_brithdate').datepicker({dateFormat: 'yy-mm-dd', maxDate: '0',
                             changeMonth: true  ,changeYear: true , yearRange: '1910:2012' });
         })
@@ -1872,7 +1873,6 @@ gh = {
         $.get(url, function(data){
             frame = self.showFrame('generic',data)
             self.form_submit_handler(frame,url,function(){
-                self.profile_upload_init()
                 if(typeof(fn)!='undefined')fn()
                 $('#litetabs').tabs()
 

@@ -66,11 +66,11 @@ class TranslationMachine:
 
 
     def run(self):
-        for p in Place.objects.filter(translation_status__lt=30):
+        for p in Place.objects.filter(translation_status__lt=30, published=True, active=True):
             log.info('mekan: %s' % p)
-            if len(p.description)<8:
-                log.info('%s aciklamasi fazla kisa, pass' % p)
-                continue
+#            if len(p.description)<8:
+#                log.info('%s aciklamasi fazla kisa, pass' % p)
+#                continue
             self.translate_place(p)
             self.update_place_status(p)
 
