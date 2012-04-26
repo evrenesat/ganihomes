@@ -4,6 +4,7 @@ from json import loads
 import sys
 import os
 from time import sleep
+from hashlib import md5
 
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
@@ -42,7 +43,7 @@ class TranslationMachine:
         self.auto_langs = configuration('auto_trans_langs').split(',')
 
 
-        self.run()
+#        self.run()
 
     def translator(self, query, target, source=None):
         try:
@@ -68,12 +69,18 @@ class TranslationMachine:
     def run(self):
         for p in Place.objects.filter(translation_status__lt=30, published=True, active=True):
             log.info('mekan: %s' % p)
-#            if len(p.description)<8:
-#                log.info('%s aciklamasi fazla kisa, pass' % p)
-#                continue
             self.translate_place(p)
             self.update_place_status(p)
 
+    def reTranslate(self):
+        '''yayindaki evlerin auto cevirilerini yeniden yapar.'''
+        for p in Place.objects.filter(translation_status__lt=30, published=True, active=True):
+            place_hash = md5(p.title + p.description).hexdigest()
+            for d in p.descriptions.filter(auto=True):
+                translation = self.translator([p.title,p.description.replace('\n','<br>')],d.lang)
+                d.text = translation[1]['translatedText'].replace('<br>','\n')
+                d.title = translation[0]['translatedText']
+                d.save()
 
     def translate_place(self,p):
         log.info('CEVRiLECEK: %s ' % p)
@@ -84,7 +91,7 @@ class TranslationMachine:
                 if translation:
                     d, new = Description.objects.get_or_create(place=p, lang=l)
                     #TODO: bu kontrol db seviyesinde yapilsa daha iyi olur
-                    if not (new or d.auto):
+                    if not (new and not d.auto):
                         continue
                     d.text = translation[1]['translatedText'].replace('<br>','\n')
                     d.title = translation[0]['translatedText']
@@ -125,6 +132,7 @@ if __name__ == '__main__':
         inst = ApplicationInstance( '/tmp/gtranslate.pid' )
 
         o = TranslationMachine()
+        o.run()
         if inst:
             inst.exitApplication()
     except SystemExit:

@@ -377,6 +377,7 @@ class GeoLocation(models.Model):
 #    def __unicode__(self):
 #        return '%s %s' % (self.alias, self.gl_id)
 from decimal import Decimal
+from hashlib import md5
 class Place(models.Model):
     """Places"""
 
@@ -421,6 +422,7 @@ class Place(models.Model):
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
+    hash = models.CharField(_('Hash'), max_length=32, editable=False,  null=True, blank=True)
     lang = models.CharField(_('Language'), max_length=5, choices=LANGUAGES)
     #    geocode = models.CharField(_('Geographical Location'), max_length=40, null=True, blank=True)
     lat = models.FloatField(_('Latitude'), default=0.0)
@@ -995,6 +997,7 @@ class Description(models.Model):
     lang = models.CharField(_('Language'), max_length=2)
     text = models.TextField(_('Description'))
     title = models.CharField(_('Place title'), max_length=100)
+    hash = models.CharField(_('Hash'), max_length=32, editable=False,  null=True, blank=True)
     auto = models.BooleanField(_('Auto translation'),default=False)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
@@ -1006,6 +1009,8 @@ class Description(models.Model):
 
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.place_id, self.lang)
+
+
 
     def save(self, *args, **kwargs):
         super(Description, self).save(*args, **kwargs)
