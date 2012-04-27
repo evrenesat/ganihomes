@@ -153,6 +153,7 @@ class PlaceAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         obj.pick_primary_photo()
+        obj.translation_check()
         obj.save()
 
 

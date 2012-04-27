@@ -4,8 +4,6 @@ from json import loads
 import sys
 import os
 from time import sleep
-from hashlib import md5
-
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
 sys.path.append(os.path.normpath(os.path.join(os.path.abspath(pathname), '../')))
@@ -67,48 +65,51 @@ class TranslationMachine:
 
 
     def run(self):
-        for p in Place.objects.filter(translation_status__lt=30, published=True, active=True):
+        for p in Place.objects.filter(translated=False, published=True, active=True):
             log.info('mekan: %s' % p)
             self.translate_place(p)
-            self.update_place_status(p)
+#            self.update_place_status(p)
+            p.get_translation_list(reset=True)
+            p.translated = True
+            p.save()
+            sleep(5)
 
-    def reTranslate(self):
-        '''yayindaki evlerin auto cevirilerini yeniden yapar.'''
-        for p in Place.objects.filter(translation_status__lt=30, published=True, active=True):
-            place_hash = md5(p.title + p.description).hexdigest()
-            for d in p.descriptions.filter(auto=True):
-                translation = self.translator([p.title,p.description.replace('\n','<br>')],d.lang)
-                d.text = translation[1]['translatedText'].replace('<br>','\n')
-                d.title = translation[0]['translatedText']
-                d.save()
+#    def reTranslate(self):
+#        '''yayindaki evlerin auto cevirilerini yeniden yapar.'''
+#        for p in Place.objects.filter(translated=False, published=True, active=True):
+#            for d in p.descriptions.filter(auto=True):
+#                translation = self.translator([p.title,p.description.replace('\n','<br>')],d.lang)
+#                d.text = translation[1]['translatedText'].replace('<br>','\n')
+#                d.title = translation[0]['translatedText']
+#                d.save()
 
     def translate_place(self,p):
         log.info('CEVRiLECEK: %s ' % p)
-        already_translated_langs = [l for l in p.get_translation_list(reset=True)]
+#        already_translated_langs = [l for l in p.get_translation_list(reset=True)]
         for l in self.auto_langs:
-            if l not in already_translated_langs:
-                translation = self.translator([p.title,p.description.replace('\n','<br>')],l)
-                if translation:
-                    d, new = Description.objects.get_or_create(place=p, lang=l)
-                    #TODO: bu kontrol db seviyesinde yapilsa daha iyi olur
-                    if not (new and not d.auto):
-                        continue
-                    d.text = translation[1]['translatedText'].replace('<br>','\n')
-                    d.title = translation[0]['translatedText']
-                    d.auto = True
-                    d.save()
-                    sleep(5)
+#            if l not in already_translated_langs:
+            d, new = Description.objects.get_or_create(place=p, lang=l)
+            if not(new or d.auto):
+                continue
+            translation = self.translator([p.title,p.description.replace('\n','<br>')],l)
+            if translation:
+                d.text = translation[1]['translatedText'].replace('<br>','\n')
+                d.title = translation[0]['translatedText']
+                d.auto = True
+                d.save()
+            elif new:
+                d.delete()
 
 
-    def update_place_status(self, p):
-        translated_langs = p.get_translation_list(reset=True)
-        if translated_langs: #TODO: en az bir dil oldugu icin bu herzaman True oluyor.
-            status = p.translation_status
-            p.translation_status = 20
-            if all([ l in translated_langs for l in self.auto_langs ] ):
-                p.translation_status = 30
-            if status != p.translation_status :
-                p.save()
+#    def update_place_status(self, p):
+#        translated_langs = p.get_translation_list(reset=True)
+#        if translated_langs: #TODO: en az bir dil oldugu icin bu herzaman True oluyor.
+#            status = p.translation_status
+#            p.translation_status = 20
+#            if all([ l in translated_langs for l in self.auto_langs ] ):
+#                p.translation_status = 30
+#            if status != p.translation_status :
+#                p.save()
 
 
 
