@@ -87,7 +87,7 @@ class TranslationMachine:
                     if not (new or d.auto):
                         continue
                     d.text = translation[1]['translatedText'].replace('<br>','\n')
-                    d.title = translation[0]['translatedText']
+                    d.title = translation[0]['translatedText'][:100]
                     d.auto = True
                     d.save()
                     sleep(5)
