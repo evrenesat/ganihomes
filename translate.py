@@ -61,7 +61,7 @@ class TranslationMachine:
 #            print 'sonuc',sonuc
             return sonuc
         except:
-            log.exception('unexpected error')
+            log.exception('%s karakterlik ceviri sirasinda hata: %s %s' % (len(query[0]) + len(query[1]), query[0], query[1] ) )
 
 
     def run(self):
