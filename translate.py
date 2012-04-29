@@ -39,6 +39,7 @@ class TranslationMachine:
     """
     def __init__(self):
         self.auto_langs = configuration('auto_trans_langs').split(',')
+        self.auto_lang_count = len(self.auto_langs) - 1
 
 
 #        self.run()
@@ -67,12 +68,15 @@ class TranslationMachine:
     def run(self):
         for p in Place.objects.filter(translated=False, published=True, active=True):
             log.info('mekan: %s' % p)
-            self.translate_place(p)
-#            self.update_place_status(p)
+            if self.translate_place(p):
+                p.translated = True
+                p.save()
+                log.info('mekan cevrildi: %s ' % p)
+            else:
+                log.info('ceviri basarisiz: %s ' % p)
             p.get_translation_list(reset=True)
-            p.translated = True
-            p.save()
-            sleep(10)
+            sleep(15)
+
 
 #    def reTranslate(self):
 #        '''yayindaki evlerin auto cevirilerini yeniden yapar.'''
@@ -85,9 +89,8 @@ class TranslationMachine:
 
     def translate_place(self,p):
         log.info('CEVRiLECEK: %s ' % p)
-#        already_translated_langs = [l for l in p.get_translation_list(reset=True)]
+        success = 0
         for l in self.auto_langs:
-#            if l not in already_translated_langs:
             d, new = Description.objects.get_or_create(place=p, lang=l)
             if not(new or d.auto):
                 continue
@@ -97,8 +100,10 @@ class TranslationMachine:
                 d.title = translation[0]['translatedText'][:99]
                 d.auto = True
                 d.save()
+                success += 1
             elif new:
                 d.delete()
+        return success >= self.auto_lang_count
 
 
 #    def update_place_status(self, p):
