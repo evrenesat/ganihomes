@@ -94,7 +94,7 @@ class TranslationMachine:
             translation = self.translator([p.title,p.description.replace('\n','<br>')],l)
             if translation:
                 d.text = translation[1]['translatedText'].replace('<br>','\n')
-                d.title = translation[0]['translatedText']
+                d.title = translation[0]['translatedText'][:99]
                 d.auto = True
                 d.save()
             elif new:
