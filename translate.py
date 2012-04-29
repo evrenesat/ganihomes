@@ -72,7 +72,7 @@ class TranslationMachine:
             p.get_translation_list(reset=True)
             p.translated = True
             p.save()
-            sleep(5)
+            sleep(10)
 
 #    def reTranslate(self):
 #        '''yayindaki evlerin auto cevirilerini yeniden yapar.'''
