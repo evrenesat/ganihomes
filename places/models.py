@@ -421,6 +421,7 @@ class Place(models.Model):
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
+#    version = models.IntegerField(_('Version'), default=1)
     lang = models.CharField(_('Language'), max_length=5, choices=LANGUAGES)
     #    geocode = models.CharField(_('Geographical Location'), max_length=40, null=True, blank=True)
     lat = models.FloatField(_('Latitude'), default=0.0)
@@ -437,13 +438,14 @@ class Place(models.Model):
         help_text=_('Each extra person exceeding the number you specified, must pay this extra charge.'))
     cleaning_fee = models.DecimalField(_('Cleaning fee'), decimal_places=2, max_digits=8, null=True, blank=True)
     street_view = models.BooleanField(_('Street view'), default=False)
+    translated = models.BooleanField(_('Translated'), default=False)
 
     active = models.BooleanField(_('Etkin'), default=True, help_text=u'Etkin olmayan mekanlar kendi sahibine bile gösterilmez. Ev sahibi için "silinmiş" gibi görünür. ')
     has_photo = models.BooleanField(_('Place has a photo'), default=False, editable=False)
     published = models.BooleanField(_('Published'), default=False)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
-    translation_status = models.SmallIntegerField(_('Translation status'), choices=TRANSLATION_STATUS, default=10)
+#    translation_status = models.SmallIntegerField(_('Translation status'), choices=TRANSLATION_STATUS, default=10)
 
     #####JSON CACHES######
     reserved_dates = models.TextField(editable=False, default='')
@@ -476,6 +478,14 @@ class Place(models.Model):
 
     def siblings(self):
         return Place.objects.filter(active=True, published=True, owner=self.owner).exclude(pk=self.id)
+
+    def translation_check(self):
+        """marks  if place title or description has updated"""
+        if self.id:
+            title,desc = Place.objects.filter(pk=self.id).values_list('title','description')[0]
+            if title != self.title or desc != self.description:
+                self.translated = False
+
 
     def get_size(self):
         return mark_safe('%s  %s<sup style="line-height:0;">2</sup>' % (
@@ -614,11 +624,11 @@ class Place(models.Model):
 
     def calculateTotalPrice(self, currency_id, start, end, guests):
         factor = self.currency.get_factor(currency_id)
-        r = (end + datetime.timedelta(days=1) - start).days
+        nights = (end + datetime.timedelta(days=1) - start).days
         total, guest_fee, wdiscount, mdiscount = [p * factor for p in  self.calculatePrice(start, end)]
 #        log.info('total %s ' % (total))
-        if(self.extra_price and self.extra_limit < guests):
-            total = total + (self.extra_price * Decimal(str(guests - self.extra_limit) ) * factor )
+        if self.extra_price and self.extra_limit < guests:
+            total = total + ((self.extra_price * Decimal(str(guests - self.extra_limit) ) * factor ) * nights)
 #        log.info('after extra %s ' % (total))
         return {'total': total,'guest_fee':guest_fee,
                 'wdiscount':wdiscount, 'mdiscount':mdiscount,
@@ -995,6 +1005,7 @@ class Description(models.Model):
     lang = models.CharField(_('Language'), max_length=2)
     text = models.TextField(_('Description'))
     title = models.CharField(_('Place title'), max_length=100)
+#    version = models.IntegerField(_('Version'), default=1)
     auto = models.BooleanField(_('Auto translation'),default=False)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
 
@@ -1006,6 +1017,8 @@ class Description(models.Model):
 
     def __unicode__(self):
         return 'Place #%s Lang:%s' % (self.place_id, self.lang)
+
+
 
     def save(self, *args, **kwargs):
         super(Description, self).save(*args, **kwargs)

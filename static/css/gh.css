@@ -1393,7 +1393,7 @@ ul.like-buttons li {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    height: 625px;
+    height: 650px;
     /*margin-left: 20px;*/
     overflow: hidden;
     position: relative;
@@ -1561,7 +1561,7 @@ ul.like-buttons li {
     width: 204px;
     height: 73px;
     position: absolute;
-    top: 245px;
+    top: 330px;
     background-color:#fdf5ce;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;

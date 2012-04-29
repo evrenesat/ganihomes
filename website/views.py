@@ -159,7 +159,8 @@ class addPlaceForm(ModelForm):
         model=Place
         fields = ('title','type','capacity','space','description','price','currency',
             'city','country','district','street','address','lat','lon','neighborhood','state',
-            'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type'
+            'postcode','tags', 'min_stay', 'max_stay', 'cancellation','manual','rules','size','size', 'size_type',
+                  'bedroom'
             )
 
 
@@ -189,6 +190,7 @@ def addPlace(request, ajax=False, id=None):
         form = addPlaceForm(request.POST, instance=old_place, req_phone=ask_phone)
         if form.is_valid():
             new_place=form.save(commit=False)
+            new_place.translation_check()
 #            if register_form.is_valid() or loged_in:
 #                if not loged_in:
 #                    user = register_form.save(commit=False)
@@ -209,6 +211,7 @@ def addPlace(request, ajax=False, id=None):
             for tag in form.cleaned_data['tags']:
                 new_place.tags.add(tag)
 #            log.info(form.cleaned_data['tags'])
+
             new_place.save()
             d, new = Description.objects.get_or_create(place=new_place, lang=new_place.lang)
             d.text = new_place.description
