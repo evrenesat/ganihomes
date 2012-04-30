@@ -91,7 +91,7 @@ class TranslationMachine:
 
 
     def run(self):
-
+        self.untranslocateds()
         self.untranslateds()
         self.semitranslateds()
 
