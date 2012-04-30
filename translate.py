@@ -99,7 +99,7 @@ class TranslationMachine:
         self.translate(Place.objects.filter(i18_tags__isnull=True, published=True, active=True))
 
     def untranslateds(self):
-        self.translate(Place.objects.filter(translated=False, published=True, active=True))
+        self.translate_location(Place.objects.filter(translated=False, published=True, active=True))
 
     def semitranslateds(self):
         pids = Place.objects.filter(active=True, published=True).annotate(Count('descriptions')).values_list('id','descriptions__count')
