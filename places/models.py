@@ -728,7 +728,7 @@ class Profile(FacebookProfileModel):
 
     def update_names(self):
         if self.user.last_name:
-            self.private_name = u"%s %s." % (self.user.first_name, self.user.last_name[0])
+            self.private_name = (u"%s %s." % (self.user.first_name, self.user.last_name[0])).title()
         self.full_name = self.user.get_full_name()
 
     def createThumbnails(self):

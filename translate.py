@@ -4,6 +4,8 @@ from json import loads
 import sys
 import os
 from time import sleep
+from django.db.models import Count
+
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
 sys.path.append(os.path.normpath(os.path.join(os.path.abspath(pathname), '../')))
@@ -39,7 +41,7 @@ class TranslationMachine:
     """
     def __init__(self):
         self.auto_langs = configuration('auto_trans_langs').split(',')
-        self.auto_lang_count = len(self.auto_langs) - 1
+        self.auto_lang_count = len(self.auto_langs)
 
 
 #        self.run()
@@ -66,7 +68,19 @@ class TranslationMachine:
 
 
     def run(self):
-        for p in Place.objects.filter(translated=False, published=True, active=True):
+        self.untranslateds()
+        self.semitranslateds()
+
+    def untranslateds(self):
+        self.translate(Place.objects.filter(translated=False, published=True, active=True))
+
+    def semitranslateds(self):
+        pids = Place.objects.filter(active=True, published=True).annotate(Count('descriptions')).values_list('id','descriptions__count')
+        ids = map(lambda x:x[0], filter(lambda p:p[1] < self.auto_lang_count ,pids))
+        self.translate(Place.objects.filter(id__in=ids, published=True, active=True))
+
+    def translate(self, places):
+        for p in places:
             log.info('mekan: %s' % p)
             if self.translate_place(p):
                 p.translated = True
@@ -94,16 +108,16 @@ class TranslationMachine:
             d, new = Description.objects.get_or_create(place=p, lang=l)
             if not(new or d.auto):
                   continue
-            translation = self.translator([p.title,p.description.replace('\n','<br>')],l)
+            translation = self.translator([p.title,p.description.replace('\n','|o|')],l)
             if translation:
-                d.text = translation[1]['translatedText'].replace('<br>','\n')
+                d.text = translation[1]['translatedText'].replace('|o|','\n')
                 d.title = translation[0]['translatedText'][:99]
                 d.auto = True
                 d.save()
                 success += 1
             elif new:
                 d.delete()
-        return success >= self.auto_lang_count
+        return success >= self.auto_lang_count / 2
 
 
 #    def update_place_status(self, p):
