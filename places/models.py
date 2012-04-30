@@ -46,7 +46,7 @@ def send_message(rq, msg, receiver=None, place=None, sender=None, replyto=None, 
             sender = User.objects.filter(is_staff=True, username='GaniHomes')[0]
         else:
             sender = rq.user
-            if sender.is_staff == True:
+            if sender.is_staff:
                 typ=40
                 status = 20
     msg = sender.sent_messages.create(receiver=receiver, text=msg, status=status, place=place, replyto=replyto, type=typ, lang=rq.LANGUAGE_CODE)
@@ -387,6 +387,7 @@ class Place(models.Model):
     address = models.CharField(_('Address Line'), max_length=100, null=True, blank=True)
     country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
     street = models.CharField(_('Street'), max_length=60)
+    i18_tags = models.CharField(_('Multi-ling location info'), max_length=255,  null=True, blank=True)
     postcode = models.CharField(_('Postcode'), max_length=15, null=True, blank=True)
     city = models.CharField(_('City'), max_length=40)
     district = models.CharField(_('District'), max_length=40, null=True, blank=True)

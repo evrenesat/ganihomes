@@ -6,13 +6,14 @@ import os
 from time import sleep
 from django.db.models import Count
 import argparse
+from django.conf import settings
 
 pathname = os.path.dirname(sys.argv[0])
 sys.path.append(os.path.abspath(pathname))
 sys.path.append(os.path.normpath(os.path.join(os.path.abspath(pathname), '../')))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from applicationinstance import ApplicationInstance
-
+from django.utils.translation import activate, force_unicode
 
 from places.models import Place, Description
 #from utils.cache import kes
@@ -67,11 +68,35 @@ class TranslationMachine:
         except:
             log.exception('%s karakterlik ceviri sirasinda hata: %s %s' % (len(query[0]) + len(query[1]), query[0], query[1] ) )
 
+    def trnsltr(self, query, target, source=None):
+        try:
+            values = [('key' , DEVELOPER_KEY),
+                    ('target' , target),
+                    ('q',query),
+
+            ]
+            if source:
+                values.append(('source',source))
+            headers={'X-HTTP-Method-Override':'GET',}
+            data = urllib.urlencode(values)
+#            print data
+            req = urllib2.Request(GOOGLE_TRANSLATE_URL, data, headers)
+            response = urllib2.urlopen(req)
+            sonuc =  loads(response.read())['data']['translations']
+#            print 'sonuc',sonuc
+            return sonuc
+            sleep(1)
+        except:
+            log.exception('%s karakterlik ceviri sirasinda hata: %s ' % (len(query), query ) )
+
 
     def run(self):
 
         self.untranslateds()
         self.semitranslateds()
+
+    def untranslocateds(self):
+        self.translate(Place.objects.filter(i18_tags__isnull=True, published=True, active=True))
 
     def untranslateds(self):
         self.translate(Place.objects.filter(translated=False, published=True, active=True))
@@ -91,9 +116,24 @@ class TranslationMachine:
             else:
                 log.info('ceviri basarisiz: %s ' % p)
             p.get_translation_list(reset=True)
-            sleep(15)
+            sleep(1)
 
-
+    def translate_location(self, places):
+        for p in places:
+            tags = set()
+            for code,name in settings.LANGUAGES:
+                activate(code)
+                tags.add(p.get_country_display())
+                tags.add(p.city)
+#                print tags, p.city
+                if code != p.lang:
+                    tags.add(self.trnsltr(p.city, code, p.lang)[0]['translatedText'])
+            t  = ' '.join(tags)
+            if len(t)>255:
+                log.info('COK UZUN: %s'% t)
+                t = t[:255]
+            p.i18_tags = t
+            p.save()
 #    def reTranslate(self):
 #        '''yayindaki evlerin auto cevirilerini yeniden yapar.'''
 #        for p in Place.objects.filter(translated=False, published=True, active=True):

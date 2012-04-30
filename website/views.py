@@ -640,7 +640,7 @@ def search_autocomplete(request):
     query = request.GET.get('q').split(' ')[:3]
     q = Q()
     for qp in query:
-        q = q | Q(state__istartswith=qp) | Q(city__istartswith=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp) | Q(address__istartswith=qp)
+        q = q | Q(state__istartswith=qp) | Q(i18_tags__icontains=qp) | Q(district__istartswith=qp) | Q(neighborhood__istartswith=qp) | Q(address__istartswith=qp)
     places = set(list(Place.objects.filter(q).values_list('district','city','state','country').distinct()[:8]))
     nplaces = []
     for place in places:
