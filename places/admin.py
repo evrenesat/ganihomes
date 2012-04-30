@@ -133,8 +133,8 @@ class BookingInline(admin.TabularInline):
 
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ('title', 'admin_image','lang', 'city', 'price','currency','published', 'active', 'size', 'timestamp','last_modified')
-    search_fields = ['title', ]
-    list_filter = ['type', 'space', 'bedroom', ]
+    search_fields = ['title','i18_tags' ]
+    list_filter = ['type', 'space', 'bedroom', 'translated','active','published']
     save_on_top = True
 
     raw_id_fields=('owner', 'placement')

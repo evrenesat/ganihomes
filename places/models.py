@@ -387,7 +387,7 @@ class Place(models.Model):
     address = models.CharField(_('Address Line'), max_length=100, null=True, blank=True)
     country = models.CharField(_('Country'), max_length=2, choices=COUNTRIES)
     street = models.CharField(_('Street'), max_length=60)
-    i18_tags = models.CharField(_('Multi-ling location info'), max_length=255,  null=True, blank=True)
+    i18_tags = models.CharField(_('Multi-ling location info'), max_length=255,  null=True, blank=True, editable=False)
     postcode = models.CharField(_('Postcode'), max_length=15, null=True, blank=True)
     city = models.CharField(_('City'), max_length=40)
     district = models.CharField(_('District'), max_length=40, null=True, blank=True)
