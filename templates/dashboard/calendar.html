@@ -3,6 +3,8 @@
 <div id="genhdr">
     <h3>{% cevir "takvim baslik" %}</h3>
     <h5>{% blocktrans with place.title as place_name %}You are editing "{{ place_name }}"{% endblocktrans %}</h5>
+
+    <div  class="yesildugme fr" style="margin-bottom:10px" id="editpricevid" onmousedown="gh.playPopupVideo('vidtut','calendar-{% if LANGUAGE_CODE == 'tr' %}tr{% else %}en{% endif %}.f4v')">{% cevir "Video Tutorial: Availability Calendar" %}</div>
 </div>
 
 
@@ -37,3 +39,4 @@
     gh.cal.reserved_dates = {{ reserved_dates }};
     gh.cal.place_id = {{ place.id }};
 </script>
+<div id="vidtut" style="display:none;">

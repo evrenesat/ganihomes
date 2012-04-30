@@ -93,7 +93,7 @@ class TranslationMachine:
         for l in self.auto_langs:
             d, new = Description.objects.get_or_create(place=p, lang=l)
             if not(new or d.auto):
-                continue
+                  continue
             translation = self.translator([p.title,p.description.replace('\n','<br>')],l)
             if translation:
                 d.text = translation[1]['translatedText'].replace('<br>','\n')

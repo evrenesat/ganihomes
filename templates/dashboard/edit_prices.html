@@ -12,6 +12,7 @@
 
     <h3>{% cevir "fiyat duzenle baslik" %}</h3>
     <h5>{% blocktrans with place.title as place_name %}You are editing "{{ place_name }}"{% endblocktrans %}</h5>
+    <div  class="yesildugme fr" id="editpricevid" onmousedown="gh.playPopupVideo('pricingvid','price-{% if LANGUAGE_CODE == 'tr' %}tr{% else %}en{% endif %}.f4v')">{% cevir "Video Tutorial: Pricing" %}</div>
 </div>
 
 
@@ -109,3 +110,6 @@
         </div>
 
 
+<div id="pricingvid" style="display:none;">
+
+</div>
