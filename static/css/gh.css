@@ -433,6 +433,11 @@ div.scrollableArea {
     background-image: url(/static/images/grd-trunc-ysl-byz.png);
 }
 
+#fblike{
+    width:120px;
+    overflow:hidden;
+}
+
 #likethat {
     width: 100%;
     height: 375px;
