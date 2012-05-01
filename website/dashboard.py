@@ -23,36 +23,28 @@ from datetime import datetime
 import logging
 log = logging.getLogger('genel')
 
-#yapildi: anasayfa slider (garanti gibi)
 
-#yap: google translate
-#FIXED: mail2perm bozuk
-#FIXED: upload donergeci
+#TODO: upload donergeci sadece ilk foto icin donuyor
 #FIXME: gecici kaydedilen mesajı login sonrası göndermiyor
 #FIXME: yorum yaz, duzenle
 #FIXME: yorum goster!!!!!!!!!
 #FIXME: onaylanmamis mesajlar gonderene gosterilmeli!!
 
-#yap: arkadasliktan cikar
-#FIXME: aramada yeni sekmede ac
-#FIXME: Ülke adıyla arama, İ ile arama
-#FIXME: resimleri kırpma
-#FIXME:
+#todo: arkadasliktan cikar
 
-#yapaaaaaamadik: filebrowser
-#yap: yorum placeholder
-#yap: yorumlu mekan aramada oncelikli
-#yapildi: mailadminden degil ganihomes'tan gitmeli
-#yap: admin arama (içerik blokları...)
-#yap: ganishow alt sekmeleri koyulastir
-#yapildi: faq html editoru.
-#yap: fiyatlandırma kaydedildiği sekmede açılmalı
-#yapildi: haftalık ve aylık indirimi günlükten önizle
-#yapmayacamm: indirimi tersten hespalamaca
-#yapmayacamm: koyu resim sorunu.(sapanca)
-#yap: ajax history api
-#yap: istatisikler
-#yap: destek yanit views
+
+
+
+#todo: filebrowser yada ftp
+#todo: yorum placeholder
+#todo: yorumlu mekan aramada oncelikli
+
+
+#todo: ganishow alt sekmeleri koyulastir
+
+#todo: ajax history api
+#todo: istatisikler
+#todo: destek yanit views
 
 
 
@@ -328,7 +320,7 @@ def show_booking(request, id):
         'status' : BOOKING_STATUS_FOR_GUEST[booking.status] if booking.guest == user
               else BOOKING_STATUS_FOR_HOST[booking.status]
     }
-        #yap: send_message to guest
+        #todo: send_message to guest
     return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
 
 

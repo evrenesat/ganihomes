@@ -531,6 +531,7 @@ def register(request,template='register.html'):
                                     msg_context,
                                     template='mail/welcome_message.html',
                                     recipient_name=user.get_full_name())
+                    _do_post_login_jobs(request)
                     return HttpResponseRedirect(request.POST.get('next') or reverse('dashboard') )
                 else:
                     messages.error(request, _('The passwords you entered do not match.'))
