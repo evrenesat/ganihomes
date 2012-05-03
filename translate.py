@@ -91,14 +91,14 @@ class TranslationMachine:
 
 
     def run(self):
-        self.untranslocateds()
-        self.untranslateds()
+        self.generate_multiling_location_tags()
+        self.translate_untranslateds()
         self.semitranslateds()
 
-    def untranslocateds(self):
+    def generate_multiling_location_tags(self):
         self.translate_location(Place.objects.filter(i18_tags__isnull=True, published=True, active=True))
 
-    def untranslateds(self):
+    def translate_untranslateds(self):
         self.translate(Place.objects.filter(translated=False, published=True, active=True))
 
     def semitranslateds(self):

@@ -518,6 +518,12 @@ class Place(models.Model):
             k.s(tags)
         return tags
 
+    def invalide_caches(self):
+        desc_trans_list = kes('ptranslist',self.id)
+        for l in desc_trans_list:
+            kes('ptrans',self.id,l).d()
+        desc_trans_list.d()
+
     def get_translation_list(self, reset=None):
         k=kes('ptranslist',self.id)
         sonuc = k.g() if reset is None else False

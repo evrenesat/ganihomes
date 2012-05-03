@@ -152,6 +152,11 @@ class PlaceAdmin(admin.ModelAdmin):
 
 
     def save_model(self, request, obj, form, change):
+        desc = obj.descriptions.filter(lang=obj.lang)
+        if desc:
+            desc[0].title = obj.title
+            desc[0].text = obj.description
+            desc[0].save()
         obj.pick_primary_photo()
         obj.translation_check()
         obj.save()
