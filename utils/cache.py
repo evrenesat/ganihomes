@@ -61,7 +61,7 @@ def del_temp_cache(name, *variables):
     cache_key = 'template.cache.%s.%s' % (name, md5(u':'.join([urlquote(var) for var in variables])).hexdigest())
     cache.delete(cache_key)
 
-def del_temp_cache_for_all(name, vars, all):
-    for a in all:
-        v = vars + [a]
-        del_temp_cache(name, *v)
+def del_temp_cache_for_langs(name, *args):
+    for l,v in settings.LANGUAGES:
+        args.append(l)
+        del_temp_cache(name, args)

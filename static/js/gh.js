@@ -1386,6 +1386,7 @@ gh = {
         if (typeof(target) == 'string') target = $('#' + target)
         if (typeof(data) != 'undefined' && data != '')target.html(data)
         target.show('normal')
+        $(document).scrollTo(115,1000)
 
         if (window.PIE) {
             $('.piee').each(function () {
@@ -2008,6 +2009,7 @@ gh = {
         form.submit(function () {
             $.post(url, form.serialize(), function (data) {
                 frame.html(data)
+                $(document).scrollTo(115,1000)
                 self.form_submit_handler(frame, url, fn)
             });
             return false;

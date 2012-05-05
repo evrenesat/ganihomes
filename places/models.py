@@ -16,7 +16,7 @@ from django.utils import simplejson as json
 from django.db.models.signals import post_save
 from paypal.pro.models import PayPalNVP
 from paypal.pro.helpers import PayPalWPP
-from utils.cache import kes
+from utils.cache import kes, del_temp_cache_for_langs
 from random import randint
 from utils.htmlmail import send_html_mail
 from utils.thumbnailer import customThumbnailer
@@ -522,6 +522,8 @@ class Place(models.Model):
         desc_trans_list = kes('ptranslist',self.id)
         for l in desc_trans_list:
             kes('ptrans',self.id,l).d()
+
+        del_temp_cache_for_langs('hostbox',self.id, )
         desc_trans_list.d()
 
     def get_translation_list(self, reset=None):

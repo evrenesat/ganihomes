@@ -435,9 +435,14 @@ def edit_profile(request):
         form = ProfileForm(request.POST,instance=profile)
         uform = UserForm(request.POST,instance=user)
         if form.is_valid() and uform.is_valid():
-            profile = form.save()
-            user = uform.save()
-            messages.success(request, _('Your profile successfully updated.'))
+            if User.objects.filter(username=uform.cleaned_data['email']).exclude(id=user.id):
+                messages.error(request, _('This email address is already in use.'))
+            else:
+                profile = form.save()
+                user = uform.save(commit=False)
+                user.username = user.email
+                user.save()
+                messages.success(request, _('Your profile successfully updated.'))
     else:
         form = ProfileForm(instance=profile)
         uform = UserForm(instance=user)
