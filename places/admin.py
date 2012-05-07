@@ -95,7 +95,7 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('id', 'host', 'guest', 'place', 'valid', 'status')
     search_fields = ['summary', ]
     list_filter = ['status','valid', ]
-    raw_id_fields = ['host','guest','reservation']
+    raw_id_fields = ['host','guest','reservation','place']
     actions = ['odeme_onayla',]
     save_on_top = True
     readonly_fields=['timestamp','confirmation_date','rejection_date','guest_ok_date','payment_notification_date','payment_notification_date','payment_confirmation_date','payment_transfer_date']

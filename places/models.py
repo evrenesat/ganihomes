@@ -1146,7 +1146,7 @@ class PlaceReview(models.Model):
 
     writer = models.ForeignKey(User, verbose_name=_('Reviewer'), related_name='place_reviews_by_you')
     person = models.ForeignKey(User, verbose_name=_('Person'), related_name='place_reviews_about_you')
-    place = models.ForeignKey(Place, verbose_name=_('Place'))
+    place = models.ForeignKey(Place, verbose_name=_('Place'),  null=True, blank=True)
     booking = models.ForeignKey(Booking, verbose_name=_('Booking'))
     text = models.TextField(_('Review'))
     overall_rating = models.SmallIntegerField(_('Rating'), choices=PLACE_RATING, default=0)

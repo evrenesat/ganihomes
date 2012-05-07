@@ -272,7 +272,7 @@ def show_messages(request):
 class PlaceReviewForm(ModelForm):
     class Meta:
         model = PlaceReview
-        fields = ('',)
+        fields = ('text','location_rating','comfort_rating','clean_rating','value_money_rating','overall_rating')
         #exclude = ('',)
 
 
@@ -280,6 +280,14 @@ class PlaceReviewForm(ModelForm):
 def review_place(request, id):
     user = request.user
     b = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
+    if request.method == 'POST':
+        form = PlaceReviewForm(request.POST)
+        r=form.save(commit=False)
+        r.writer = user
+        r.booking = b
+        r.person = b.owner
+    else:
+        form = PlaceReviewForm()
     context={
         'user_is_guest':b.guest == user,
         'user_is_host':b.host == user,
@@ -288,7 +296,7 @@ def review_place(request, id):
         'place':b.place,
     }
 
-    return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
+    return render_to_response('dashboard/review_place.html', context, context_instance=RequestContext(request))
 
 @login_required
 def show_booking(request, id):
@@ -298,7 +306,9 @@ def show_booking(request, id):
         #FIXME: durum degisikliginden misafiri/ev sahibini haberdar etmek gerek
         admin_warn='Tanimsiz rezervasyon islemi'
         job = request.POST.get('confirmation')
-        if user is b.guest:
+#        assert 0, user.id
+        if user == b.guest:
+
             if job == 'cancel' and b.status<=10:
                 b.status = 50
                 b.rejection_date = datetime.now()
@@ -317,7 +327,7 @@ def show_booking(request, id):
                 b.guest_ok_date = datetime.now()
                 messages.success(request, _('Accommodation confirmed.'))
                 admin_warn='Konaklama misafir tarfindan onaylandi. Ucret aktarimi gerekli!!!'
-        elif user is b.host and b.status<=10:
+        elif user == b.host and b.status<=10:
             if job =='confirm':
                 b.status = 20
                 b.confirmation_date = datetime.now()
