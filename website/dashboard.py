@@ -268,6 +268,14 @@ def show_messages(request):
     context = {'msgs':list_messages(request),}
     return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
 
+
+class PlaceReviewForm(ModelForm):
+    class Meta:
+        model = PlaceReview
+        fields = ('',)
+        #exclude = ('',)
+
+
 @login_required
 def review_place(request, id):
     user = request.user
