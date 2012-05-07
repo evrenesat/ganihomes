@@ -1746,7 +1746,12 @@ gh = {
         })
     },
     do_showReviews:function (self, tab_id) {
-        this.genericEdit('/dashboard/show_reviews/')
+        this.genericEdit('/dashboard/show_reviews/', function () {
+                    $('#litetabs').tabs({ selected:tab_id })
+                })
+    },
+    reviewPlace:function (id) {
+        this.genericEdit('/dashboard/review_place/' + id)
     },
     showMessage:function (id) {
         this.genericEdit('/dashboard/show_message/' + id)

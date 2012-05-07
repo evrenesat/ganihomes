@@ -16,9 +16,9 @@
                 <br>
                 {% if booking.status >= 20 %}
                     <div style="display:table">
-                    {{ place.address }}<br>
-                    {{ place.neighborhood }} / {{ place.street }} / {{ place.district }}<br>
-                    {{ place.city }} / {{ place.state }} / {{ place.country }}
+                        {{ place.address }}<br>
+                        {{ place.neighborhood }} / {{ place.street }} / {{ place.district }}<br>
+                        {{ place.city }} / {{ place.state }} / {{ place.country }}
                     </div>
 
                 {% endif %}
@@ -46,24 +46,25 @@
                  {% endif %}
              </span>
 
-            {% if booking.status >= 20 %}
-                {% if user_is_host %}
-                    <span class="ozz_label">{% trans "Contact informarion of your guest" %}</span> <span id=bookcontinfo class="ozz_value">
+                {% if booking.status >= 20 %}
+                    {% if user_is_host %}
+                        <span class="ozz_label">{% trans "Contact informarion of your guest" %}</span> <span
+                            id=bookcontinfo class="ozz_value">
                     {{ booking.guest.get_full_name }}<br>
                     {{ booking.guest.email }}<br>
                     {{ booking.guest.get_profile.phone }}<br>
                 </span>
-                {% else %}
-                    <span class="ozz_label">{% trans "Contact informarion of your host" %}</span> <span class="ozz_value">
+                    {% else %}
+                        <span class="ozz_label">{% trans "Contact informarion of your host" %}</span> <span
+                            class="ozz_value">
                     {{ booking.host.get_full_name }}<br>
                     {{ booking.host.email }}<br>
                     {{ booking.guest.get_profile.phone }}<br>
                 </span>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
             </div>
         </div>
-
 
 
         {% csrf_token %}
@@ -91,21 +92,23 @@
                                    value="{% trans "Send a message to guest" %}">
                         {% else %}
 
-                            {% if booking.status in active_reservation_status_codes %}
+                            {% if booking.status in voidable_status_codes %}
                                 <input type="submit" onclick="$('#confirmation').val('cancel')"
                                        class="kizildugme kck" value="{% trans "Cancel booking request" %}"><br>
-                                {% if booking.status == 8 %}
+                            {% endif %}
+                            {% if booking.status == 8 %}
                                 <input type="submit" onclick="$('#confirmation').val('banktransfer')"
                                        class="yemyesildugme kck" value="{% trans "Notify bank transfer" %}"><br>
-                                 {% endif %}
-                                {% if booking.status == 20 %}
+                            {% endif %}
+                            {% if booking.status == 20 %}
                                 <input type="submit" onclick="$('#confirmation').val('confirmpayment')"
                                        class="yemyesildugme kck" value="{% trans "Confirm accommodation" %}">
-                                {% elif booking.status > 20 %}
-                                        <input type="button" onclick="gh.reviewPlace({{ booking.place_id }})"
-                                               class="yemyesildugme kck" value="{% trans "Write a review for this place" %}"> <br>
-                                {% endif %}
+                            {% elif booking.status > 20 %}
+                                <input type="button" onclick="gh.reviewPlace({{ booking.place_id }})"
+                                       class="yemyesildugme kck" value="{% trans "Write a review for this place" %}">
+                                <br>
                             {% endif %}
+
                             <input onclick="gh.sendMessage({{ booking.host_id }})" class="yemyesildugme"
                                    value="{% trans "Send a message to host" %}">
 

@@ -269,56 +269,70 @@ def show_messages(request):
     return render_to_response('dashboard/user_messages.html', context, context_instance=RequestContext(request))
 
 @login_required
+def review_place(request, id):
+    user = request.user
+    b = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
+    context={
+        'user_is_guest':b.guest == user,
+        'user_is_host':b.host == user,
+        'total_price': b.guest_payment,
+        'booking':b,
+        'place':b.place,
+    }
+
+    return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
+
+@login_required
 def show_booking(request, id):
     user = request.user
-    booking = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
+    b = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
     if request.method =='POST':
         #FIXME: durum degisikliginden misafiri/ev sahibini haberdar etmek gerek
         admin_warn='Tanimsiz rezervasyon islemi'
         job = request.POST.get('confirmation')
-        if booking.guest == user:
-            if job == 'cancel' and booking.status<=10:
-                booking.status = 50
-                booking.rejection_date = datetime.now()
-                booking.voidPayment(request)
-                booking.del_reservation()
+        if user is b.guest:
+            if job == 'cancel' and b.status<=10:
+                b.status = 50
+                b.rejection_date = datetime.now()
+                b.voidPayment(request)
+                b.del_reservation()
                 messages.info(request, _('Booking request canceled.'))
                 admin_warn='Rezervasyon istegi misafir tarafindan iptal edildi.'
-            if job == 'banktransfer' and booking.status==8:
-                booking.status = 9
-                booking.payment_notification_date = datetime.now()
-                booking.rejection_date = datetime.now()
+            if job == 'banktransfer' and b.status==8:
+                b.status = 9
+                b.payment_notification_date = datetime.now()
+                b.rejection_date = datetime.now()
                 messages.info(request, _('Thank you. Your booking request will be processed after your payment reviewed by our staff.'))
                 admin_warn='Rezervasyon odemesi yapıldı!!!'
-            elif job =='confirmpayment'  and booking.status==20:
-                booking.status = 30
-                booking.guest_ok_date = datetime.now()
-                messages.success(request, _('Booking request confirmed.'))
+            elif job =='confirmpayment'  and b.status==20:
+                b.status = 30
+                b.guest_ok_date = datetime.now()
+                messages.success(request, _('Accommodation confirmed.'))
                 admin_warn='Konaklama misafir tarfindan onaylandi. Ucret aktarimi gerekli!!!'
-        elif booking.host == user and booking.status<=10:
+        elif user is b.host and b.status<=10:
             if job =='confirm':
-                booking.status = 20
-                booking.confirmation_date = datetime.now()
-                booking.capturePayment(request)
+                b.status = 20
+                b.confirmation_date = datetime.now()
+                b.capturePayment(request)
                 messages.success(request, _('Booking request confirmed.'))
                 admin_warn='Rezervasyon istegi ev sahibi tarafindan onaylandi.'
             elif job =='reject':
-                booking.status = 40
-                booking.rejection_date = datetime.now()
-                booking.voidPayment(request)
+                b.status = 40
+                b.rejection_date = datetime.now()
+                b.voidPayment(request)
                 messages.info(request, _('Booking request rejected.'))
                 admin_warn='Rezervasyon istegi ev sahibi tarafindan reddedildi.'
-        booking.save()
-        mail2perm(booking, url=reverse('admin:places_booking_change', args=(booking.id, )), pre=admin_warn)
+        b.save()
+        mail2perm(b, url=reverse('admin:places_booking_change', args=(b.id, )), pre=admin_warn, sbj=u'Rezervasyon güncellemesi')
     context={
-        'user_is_guest':booking.guest == user,
-        'user_is_host':booking.host == user,
-        'total_price': booking.guest_payment,
-        'booking':booking,
-        'place':booking.place,
-        'active_reservation_status_codes': (8, 9, 10),
-        'status' : BOOKING_STATUS_FOR_GUEST[booking.status] if booking.guest == user
-              else BOOKING_STATUS_FOR_HOST[booking.status]
+        'user_is_guest':b.guest == user,
+        'user_is_host':b.host == user,
+        'total_price': b.guest_payment,
+        'booking':b,
+        'place':b.place,
+        'voidable_status_codes': (8, 9, 10),
+        'status' : BOOKING_STATUS_FOR_GUEST[b.status] if b.guest == user
+              else BOOKING_STATUS_FOR_HOST[b.status]
     }
         #todo: send_message to guest
     return render_to_response('dashboard/show_booking.html', context, context_instance=RequestContext(request))
