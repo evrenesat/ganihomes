@@ -160,6 +160,7 @@ class PlaceAdmin(admin.ModelAdmin):
         obj.pick_primary_photo()
         obj.translation_check()
         obj.save()
+        obj.invalidate_caches()
 
 
 class TagInline(admin.TabularInline):

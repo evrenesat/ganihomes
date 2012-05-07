@@ -63,5 +63,23 @@ def del_temp_cache(name, *variables):
 
 def del_temp_cache_for_langs(name, *args):
     for l,v in settings.LANGUAGES:
-        args.append(l)
-        del_temp_cache(name, args)
+        vars = list(args)
+        vars.append(l)
+        del_temp_cache(name, *vars)
+
+def del_kes_for_langs(*args):
+    for l,v in settings.LANGUAGES:
+        vars = list(args)
+        vars.append(l)
+        kes(*vars).d()
+
+
+from django.http import HttpRequest
+from django.utils.cache import get_cache_key
+
+def expire_page(path):
+    request = HttpRequest()
+    for l,v in settings.LANGUAGES:
+        request.path = '/%s%s' % (l, path)
+        key = get_cache_key(request)
+        cache.delete(key)

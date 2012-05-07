@@ -181,6 +181,7 @@ def addPlace(request, ajax=False, id=None):
         photos = list(old_place.photo_set.values_list('id',flat=True))
         if old_place.owner != request.user:
             return HttpResponseForbidden()
+        old_place.invalidate_caches()
     else:
         old_place = Place()
 

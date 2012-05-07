@@ -8,7 +8,7 @@ from website.models.dil import Dil
 import re
 import urllib
 
-
+from configuration import configuration
 
 HAS_LANG_PREFIX_RE = re.compile(r"^/(%s)/.*" % "|".join(map(lambda l: re.escape(l[0]), settings.LANGUAGES)))
 
@@ -20,7 +20,7 @@ def has_lang_prefix(path):
         return False
 
 class MultilingualURLMiddleware:
-    SUPPORTED = dict(Dil.etkin_diller())
+    SUPPORTED = configuration('listed_langs').split('\n')
     def get_language_from_request (self,request):
         changed = False
         prefix = has_lang_prefix(request.path_info)
