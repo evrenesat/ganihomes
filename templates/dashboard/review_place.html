@@ -1,11 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% load  currency cevir i18n %}
-{% block title %} {% cevir "rezervasyon detaylari baslik" %} {% endblock %}
+{% block title %} {% cevir "mekan yorumla baslik" %} {% endblock %}
 {% block content %}
 
     <form action="." method="post">
         <div class="bookpart">
-            <h3>{% trans "Property details" %}</h3>
+            <h3>{% trans "Travel details" %}</h3>
 
             <div id="bookinplace">
                 <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_pls.jpg">

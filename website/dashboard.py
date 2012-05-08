@@ -294,6 +294,7 @@ def review_place(request, id):
         'total_price': b.guest_payment,
         'booking':b,
         'place':b.place,
+        'form':form,
     }
 
     return render_to_response('dashboard/review_place.html', context, context_instance=RequestContext(request))
