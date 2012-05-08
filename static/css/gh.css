@@ -7,7 +7,16 @@
 - arama cubugu dokulu arkaplan
 
 */
+@font-face {
+    font-family: 'AbakuTLSymSansRegular';
+    src: url('/static/css/abakutlsymsans-regular-webfont.eot');
+    src: url('/static/css/abakutlsymsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/css/abakutlsymsans-regular-webfont.woff') format('woff'),
+         url('/static/css/abakutlsymsans-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 
+}
 
 #supermenu {
     float: right;
@@ -464,8 +473,6 @@ div.scrollableArea {
     font-size: 16px;
     text-shadow: 1px 1px 0.5px white;
 }
-
-
 
 #arabar {
 
@@ -3120,6 +3127,7 @@ ul.messages li{
     cursor: pointer;
     margin: 0 0 2px 10px;
     padding: 1px 0 1px 11px;
+    font-family: AbakuTLSymSansRegular, Sans;
 }
 #langs span {
     padding:2px 4px;
@@ -3130,6 +3138,7 @@ ul.messages li{
 
 .smdil sub {
     margin-right: -4px;
+    font-family: AbakuTLSymSansRegular, Sans;
 }
 
 .iblock {
@@ -3440,7 +3449,9 @@ ul.messages li{
     /*background: url(/css/smoothness/static/images/ui-bg_highlight-soft_75_cccccc_1x100.png);*/
     text-shadow: 1px 1px 1.4px #9369A4;
 }
-
+.gcrc{
+    font-family: AbakuTLSymSansRegular, Sans;
+}
 .minidugme:hover {
     -webkit-box-shadow: 0 0 5px 1px #fac9a9;
     -moz-box-shadow: 0 0 5px 1px #fac9a9;

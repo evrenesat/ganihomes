@@ -207,7 +207,7 @@ gh = {
         for (c in gh_crc) {
             var cc = gh_crc[c]
             if (!this.selected_currency && cc[0] == '1.0')this.selected_currency = c
-            $('<span />').attr('data-crr', c).click(
+            $('<span style="curr" />').attr('data-crr', c).click(
                 function (e) {
                     self.setCurrency(e.target)
                 }).html('<sub>' + cc[2] + '</sub> ' + cc[1]).appendTo(dv);
