@@ -1754,17 +1754,20 @@ gh = {
         var self = this;
         $.getScript(self.STATIC_URL + 'js/jquery.raty.min.js', function () {
             self.genericEdit('/dashboard/review_place/' + id, function(){
+                $.fn.raty.defaults.hints = $('#rating_hints').html().split(',')
                 $('#reviewform input').each(function(){
                     var field = $(this), fieldid = field.attr('id');
-                    field.css('display','none').after('<div id="s_'+fieldid+'"></div>')
-                    do{
-                        $('s_'+fieldid).raty({
-                            target     : '#'+fieldid,
-                             targetKeep : true,
-                             targetType : 'number'
+                    field.queue("namedQueue", function() {
+                        field.css('display','none').after('<div id="s_'+fieldid+'"></div>');
 
-                        });}while(!$('s_'+fieldid).length)
+                        field.dequeue("namedQueue");
+                    });
+                    field.queue("namedQueue", function() {
+                        $('#s_'+fieldid).raty({click: function(score, evt) { field.val(score) ; }})
+                    });
+                    field.dequeue("namedQueue");
                 })
+                $('textarea').parent().css('float','none');
             } )
         });
     },

@@ -275,6 +275,12 @@ class PlaceReviewForm(ModelForm):
         fields = ('comfort_rating','clean_rating','value_money_rating','overall_rating','location_rating','text')
         #exclude = ('',)
 
+class UserReviewForm(ModelForm):
+    class Meta:
+        model = UserReview
+        fields = ('rating','text')
+        #exclude = ('',)
+
 
 @login_required
 def review_place(request, id):
@@ -282,12 +288,23 @@ def review_place(request, id):
     b = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
     if request.method == 'POST':
         form = PlaceReviewForm(request.POST)
-        r=form.save(commit=False)
-        r.writer = user
-        r.booking = b
-        r.person = b.owner
+        uform = UserReviewForm(request.POST)
+        if form.is_valid():
+            r=form.save(commit=False)
+            r.writer = user
+            r.lang = request.LANGUAGE_CODE
+            r.booking = b
+            r.person = b.host
+            r.save()
+        if uform.is_valid():
+            ur=uform.save(commit=False)
+            ur.lang = request.LANGUAGE_CODE
+            ur.writer = user
+            ur.save()
+            ur.person = b.host
     else:
         form = PlaceReviewForm()
+        uform = UserReviewForm()
     context={
         'user_is_guest':b.guest == user,
         'user_is_host':b.host == user,
@@ -295,6 +312,7 @@ def review_place(request, id):
         'booking':b,
         'place':b.place,
         'form':form,
+        'uform':uform,
     }
 
     return render_to_response('dashboard/review_place.html', context, context_instance=RequestContext(request))
