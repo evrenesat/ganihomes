@@ -104,7 +104,7 @@
                                 <input type="submit" onclick="$('#confirmation').val('confirmpayment')"
                                        class="yemyesildugme kck" value="{% trans "Confirm accommodation" %}">
                             {% elif booking.status > 20 %}
-                                <input type="button" onclick="gh.reviewPlace({{ booking.place_id }})"
+                                <input type="button" onclick="gh.reviewPlace({{ booking.id }})"
                                        class="yemyesildugme kck" value="{% trans "Write a review for this place" %}">
                                 <br>
                             {% endif %}

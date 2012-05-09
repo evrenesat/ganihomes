@@ -272,7 +272,7 @@ def show_messages(request):
 class PlaceReviewForm(ModelForm):
     class Meta:
         model = PlaceReview
-        fields = ('text','location_rating','comfort_rating','clean_rating','value_money_rating','overall_rating')
+        fields = ('comfort_rating','clean_rating','value_money_rating','overall_rating','location_rating','text')
         #exclude = ('',)
 
 

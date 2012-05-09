@@ -1751,7 +1751,22 @@ gh = {
                 })
     },
     reviewPlace:function (id) {
-        this.genericEdit('/dashboard/review_place/' + id)
+        var self = this;
+        $.getScript(self.STATIC_URL + 'js/jquery.raty.min.js', function () {
+            self.genericEdit('/dashboard/review_place/' + id, function(){
+                $('#reviewform input').each(function(){
+                    var field = $(this), fieldid = field.attr('id');
+                    field.css('display','none').after('<div id="s_'+fieldid+'"></div>')
+                    do{
+                        $('s_'+fieldid).raty({
+                            target     : '#'+fieldid,
+                             targetKeep : true,
+                             targetType : 'number'
+
+                        });}while(!$('s_'+fieldid).length)
+                })
+            } )
+        });
     },
     showMessage:function (id) {
         this.genericEdit('/dashboard/show_message/' + id)
