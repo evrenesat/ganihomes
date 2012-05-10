@@ -16,7 +16,7 @@ import logging
 from utils.cache import kes
 from utils.mail2perm import mail2perm
 from website.views import send_message
-from website.models.dil import Ceviriler
+from website.models.dil import __
 log = logging.getLogger('genel')
 from datetime import datetime
 from paypal.pro.views import PayPalPro
@@ -50,7 +50,7 @@ def bank_transfer_complete(request):
     booking = get_booking(request)
     booking.payment_type = 3
     booking.status = 8
-    user_message = Ceviriler.cevir( 'rezervasyon kaydedildi.evsahibi odemeden sonra haberdar edilecek', request.LANGUAGE_CODE)
+    user_message = __( 'rezervasyon kaydedildi.evsahibi odemeden sonra haberdar edilecek')
     return complete_reservation(request, booking, user_message)
 
 @login_required

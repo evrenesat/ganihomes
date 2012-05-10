@@ -2,6 +2,7 @@
 from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
 from support.models import  Ticket, SubjectCategoryTranslation
+from website.models.dil import __
 from website.models.faq import Question
 from website.views import addPlaceForm
 
@@ -272,7 +273,7 @@ def show_messages(request):
 class PlaceReviewForm(ModelForm):
     class Meta:
         model = PlaceReview
-        fields = ('comfort_rating','clean_rating','value_money_rating','overall_rating','location_rating','text')
+        fields = ('comfort_rating','clean_rating','value_money_rating','location_rating','text')
         #exclude = ('',)
 
 class UserReviewForm(ModelForm):
@@ -285,36 +286,45 @@ class UserReviewForm(ModelForm):
 @login_required
 def review_place(request, id):
     user = request.user
+    context = {}
+    r = PlaceReview.objects.filter(writer=user, booking=id)
+    if r: r = r[0]
+    ur = UserReview.objects.filter(writer=user, booking=id)
+    if ur: ur = ur[0]
+
     b = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
     if request.method == 'POST':
         form = PlaceReviewForm(request.POST)
         uform = UserReviewForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and uform.is_valid():
             r=form.save(commit=False)
             r.writer = user
             r.lang = request.LANGUAGE_CODE
             r.booking = b
+            r.place = b.place
             r.person = b.host
             r.save()
-        if uform.is_valid():
+            #host review
             ur=uform.save(commit=False)
+            ur.booking = b
+            ur.place = b.place
             ur.lang = request.LANGUAGE_CODE
             ur.writer = user
-            ur.save()
             ur.person = b.host
-    else:
-        form = PlaceReviewForm()
-        uform = UserReviewForm()
-    context={
-        'user_is_guest':b.guest == user,
-        'user_is_host':b.host == user,
-        'total_price': b.guest_payment,
-        'booking':b,
-        'place':b.place,
-        'form':form,
-        'uform':uform,
-    }
+            ur.save()
 
+            messages.info(request, __('mekan yorum tesekkur'))
+    else:
+        if r:
+            form = PlaceReviewForm(instance=r)
+        else:
+            form = PlaceReviewForm()
+        if ur:
+            uform = UserReviewForm(instance=ur)
+        else:
+            uform = UserReviewForm()
+    context.update({'booking':b, 'place':b.place, 'form':form, 'uform':uform,
+    'review':r, 'user_review':ur})
     return render_to_response('dashboard/review_place.html', context, context_instance=RequestContext(request))
 
 @login_required

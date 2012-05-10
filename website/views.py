@@ -31,7 +31,7 @@ from easy_thumbnails.files import get_thumbnailer
 from django.contrib import auth
 from django.contrib import messages
 import logging
-from website.models.dil import Ceviriler
+from website.models.dil import __
 from django.contrib.sessions.models import Session
 
 log = logging.getLogger('genel')
@@ -523,11 +523,11 @@ def register(request,template='register.html'):
                     request.user = user
                     messages.success(request, _('Welcome to GaniHomes.'))
 
-#                    send_message(request, Ceviriler.cevir('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
+#                    send_message(request, __('hosgeldin mesaji',request.LANGUAGE_CODE), receiver=request.user, typ=40)
                     msg_context = {'user':user,
                                    'fullname':user.get_full_name(),
                                    'LANGUAGE_CODE':request.LANGUAGE_CODE}
-                    send_html_mail(Ceviriler.cevir('hosgeldin epostasi konu',request.LANGUAGE_CODE),
+                    send_html_mail(__('hosgeldin epostasi konu'),
                                     user.email,
                                     msg_context,
                                     template='mail/welcome_message.html',

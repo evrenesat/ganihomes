@@ -1,42 +1,48 @@
 {% extends "dashboard/base.html" %}
 {% load  currency cevir i18n %}
-{% block title %} {% cevir "mekan yorumla baslik" %} {% endblock %}
+{% block title %} {% cevir "mekan yorumla anabaslik" %} {% endblock %}
 {% block content %}
 
     <form action="." method="post">
         <div class="bookpart">
-            <h3>{% trans "Please rate and review the place" %}</h3>
 
+            {% if review %}
+                <input type="hidden" id='readonly'>
+                <h3>{% cevir "mekan yorumlanmis baslik" %}</h3>
+                <div>{% cevir "mekan yorumlanmis altmetin" %}</div>
+            {% else %}
+                <h3>{% cevir "lutfen mekan yorumlayin baslik" %}</h3>
+            {% endif %}
             <div id="bookinplace">
                 <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_pls.jpg">
                 <span class="booksubtitle">{{ place.title }}</span><br>
                 {{ place.city }} - {{ place.district }} {{ place.get_country_display }}
                 <br>
                 {{ place.get_type_display }} / {{ place.get_space_display }}
-                            </div>
-
+            </div>
 
 
             <div style="display:none;" id="rating_hints">{% cevir "puanlama tanimlari" %}</div>
             <div id="reviewform" class="iblock">
-                {{ form.errors }}
+
                 <ul>
-                {{ form.as_ul }}
+                    {{ form.as_ul }}
                 </ul>
-                <h3>{% trans "Please rate and review the host" %}</h3>
+                {% if review %}
+                    <h3>{% cevir "evsahibi yorumlanmis baslik" %}</h3>
+                {% else %}
+                    <h3>{% cevir "lutfen evsahibini yorumlayin baslik" %}</h3>
+                {% endif %}
                 <img id="reviewhostimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ user.id }}_m.jpg">
-                                <span  class="booksubtitle">{{ booking.host.get_profile.full_name }}</span><br>
+                <span class="booksubtitle">{{ booking.host.get_profile.full_name }}</span><br>
                 <ul style="clear:both;">{{ uform.as_ul }}</ul>
 
             </div>
-            <p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>
+            {% if not review %}<p><input type="submit" class="yesildugme fr" value="{% trans "Save" %}"></p>{% endif %}
         </div>
 
 
         {% csrf_token %}
-
-
-
 
 
     </form>

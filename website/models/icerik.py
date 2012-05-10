@@ -14,7 +14,7 @@ from medya import Medya
 from places.models import Photo, Place
 from places.options import  ORDER, PHOTO_TYPES
 from utils.cache import kes
-from website.models.dil import Ceviriler
+from website.models.dil import __
 from django.conf import settings
 import logging
 log = logging.getLogger('genel')
@@ -236,7 +236,7 @@ class Haber(models.Model):
             for s in Haber.objects.filter(etkin=True, dil_kodu=dilkodu)[:10]:
                 haberler.append({'baslik': s.baslik, 'url': s.get_absolute_url(dilkodu), 'etkin': s.id == self.id})
             ks.s(haberler)
-        return [{'ogeler': haberler, 'baslik': Ceviriler.cevir('News', dilkodu), 'url': '#'}]
+        return [{'ogeler': haberler, 'baslik': __('News'), 'url': '#'}]
 
     def __unicode__(self):
         return  '%s' % (self.baslik,)

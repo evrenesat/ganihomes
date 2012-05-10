@@ -1754,7 +1754,9 @@ gh = {
         var self = this;
         $.getScript(self.STATIC_URL + 'js/jquery.raty.min.js', function () {
             self.genericEdit('/dashboard/review_place/' + id, function(){
-                $.fn.raty.defaults.hints = $('#rating_hints').html().split(',')
+                $.fn.raty.defaults.hints = $('#rating_hints').html().split(',');
+                var readonly = Boolean($('#readonly').length);
+                $.fn.raty.defaults.readOnly = readonly;
                 $('#reviewform input').each(function(){
                     var field = $(this), fieldid = field.attr('id');
                     field.queue("namedQueue", function() {
@@ -1763,11 +1765,19 @@ gh = {
                         field.dequeue("namedQueue");
                     });
                     field.queue("namedQueue", function() {
-                        $('#s_'+fieldid).raty({click: function(score, evt) { field.val(score) ; }})
+                        $('#s_'+fieldid).raty({
+                            click: function(score, evt) { field.val(score) ; },
+                            score:field.val()})
+
                     });
                     field.dequeue("namedQueue");
                 })
                 $('textarea').parent().css('float','none');
+                if(readonly)$('textarea').each(function(){
+                    t = $(this)
+                    t.after('<div>'+ t.val()+'</div>')
+                    t.remove()
+                })
             } )
         });
     },

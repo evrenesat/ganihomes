@@ -379,7 +379,7 @@ class GeoLocation(models.Model):
 #    def __unicode__(self):
 #        return '%s %s' % (self.alias, self.gl_id)
 from decimal import Decimal
-
+from django.db.models import Avg
 class Place(models.Model):
     """Places"""
 
@@ -422,7 +422,7 @@ class Place(models.Model):
     favorite_counter = models.IntegerField(_('Favorite counter'), default=0)
     overall_rating = models.SmallIntegerField(_('Overall rating'), choices=PLACE_RATING, default=0)
     clean_rating = models.SmallIntegerField(_('Cleaness'), choices=PLACE_RATING, default=0)
-    comfort_rating = models.SmallIntegerField(_('Comfort'), choices=PLACE_RATING, default=0)
+    comfort_rating = models.SmallIntegerField(_('Accuracy'), choices=PLACE_RATING, default=0)
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
     value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
@@ -470,6 +470,12 @@ class Place(models.Model):
         self.get_absolute_url(), settings.MEDIA_URL, self.id)
 
     admin_image.allow_tags = True
+
+    def calculate_ratings(self):
+        for r in ['clean_rating','comfort_rating','location_rating','value_money_rating']:
+            setattr(self,r, self.placereview_set.aggregate(Avg(r))[r+'__avg'])
+        self.overall_rating = int(round(float(self.clean_rating + self.comfort_rating + self.location_rating + self.value_money_rating ) / 4))
+        self.save()
 
     def get_absolute_url(self):
         return '/%s%s' % (self.lang[:2] or 'en', reverse('show_place', args=(self.id, )) )
@@ -1125,9 +1131,10 @@ class UserReview(models.Model):
 
     writer = models.ForeignKey(User, verbose_name=_('Reviewer'), related_name='personal_reviews_by_you')
     person = models.ForeignKey(User, verbose_name=_('Person'), related_name='personal_reviews_about_you')
-    text = models.TextField(_('Review'))
-    rating = models.SmallIntegerField(_('Rating'), default=0)
+    text = models.TextField(_('Your review'))
+    rating = models.SmallIntegerField(_('Your rating'))
     active = models.BooleanField(_('Review visible on the site'), default=False)
+    booking = models.ForeignKey(Booking, verbose_name=_('Booking'))
     status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
     lang = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
@@ -1150,15 +1157,22 @@ class PlaceReview(models.Model):
     place = models.ForeignKey(Place, verbose_name=_('Place'),  null=True, blank=True)
     booking = models.ForeignKey(Booking, verbose_name=_('Booking'))
     text = models.TextField(_('Your review'))
-    overall_rating = models.SmallIntegerField(_('Overall'), default=0)
-    clean_rating = models.SmallIntegerField(_('Cleanness'), default=0)
-    comfort_rating = models.SmallIntegerField(_('Comfort'), default=0)
-    location_rating = models.SmallIntegerField(_('Location'), default=0)
-    value_money_rating = models.SmallIntegerField(_('Value/Money'), default=0)
+    overall_rating = models.SmallIntegerField(_('Overall'))
+    clean_rating = models.SmallIntegerField(_('Cleanness'))
+    comfort_rating = models.SmallIntegerField(_('Accuracy'))
+    location_rating = models.SmallIntegerField(_('Location'))
+    value_money_rating = models.SmallIntegerField(_('Value/Money'))
     active = models.BooleanField(_('Review visible on the site'), default=False)
     status = models.SmallIntegerField(_('Status'), choices=REVIEW_STATUS, default=1)
     lang = models.CharField(_('Language'), max_length=2, choices=settings.LANGUAGES)
     timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.overall_rating = int(round(float(self.clean_rating + self.comfort_rating + self.location_rating + self.value_money_rating ) / 4))
+        super(PlaceReview, self).save(*args, **kwargs)
+
+
+
 
     class Meta:
         ordering = ['timestamp']

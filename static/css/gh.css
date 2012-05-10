@@ -4803,3 +4803,8 @@ list-style:none;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
 }
+.readonlyreview{
+    width:100%;
+    border:0;
+    color:black !important;
+}

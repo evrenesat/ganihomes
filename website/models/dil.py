@@ -9,7 +9,7 @@ from utils.cache import kes
 from django.template.defaultfilters import slugify
 import logging
 log = logging.getLogger('genel')
-
+from django.utils import translation
 
 #class Dil(models.Model):
 #    """
@@ -110,7 +110,8 @@ class Ceviriler(models.Model):
     #    def _tum_ceviriler(cls,dil_kodu):
 
     @classmethod
-    def cevir(cls, kelime, dil_kodu):
+    def cevir(cls, kelime):
+        dil_kodu = translation.get_language()
         try:
             skelime = slugify(kelime)
             k = kes(cls.KES_PREFIX, skelime[:40], dil_kodu)
@@ -139,3 +140,4 @@ class Ceviriler(models.Model):
             self.kelime.save()
         kes(self.KES_PREFIX, self.asil, self.kod).s(self.ceviri)
 
+__ = Ceviriler.cevir
