@@ -3446,6 +3446,32 @@ ul.messages li{
     -webkit-border-radius: 4px;
     border-radius: 4px;
 }
+.reviewsimagebox{
+    float: left;
+    border: 2px solid #fff;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    padding:10px;
+    margin-right:20px;
+    width:130px;
+    text-align:center;
+}
+.rstars div{
+    float:left;
+    margin-top:10px;
+
+}
+.rstars label{
+    margin:3px 10px 3px 10px;
+    float:left;
+    display:inline-block;
+    width:140px;
+}
+.rstars{
+    float:left;
+    width:280px;
+}
 #reviewform li div{
     display:inline-block;
     margin-top:7px;
@@ -4468,7 +4494,7 @@ border-collapse:collapse;
     -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
     -moz-box-shadow: 1px 1px 4px 1px #cccccc;
     box-shadow: 1px 1px 4px 1px #cccccc;
-    height: 144px;
+    min-height: 144px;
     background-color:#fff;
     behavior: url(/static/js/PIE.htc);
 

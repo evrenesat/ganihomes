@@ -473,7 +473,7 @@ class Place(models.Model):
 
     def calculate_ratings(self):
         for r in ['clean_rating','comfort_rating','location_rating','value_money_rating']:
-            setattr(self,r, self.placereview_set.aggregate(Avg(r))[r+'__avg'])
+            setattr(self,r, int(round(self.placereview_set.aggregate(Avg(r))[r+'__avg'])))
         self.overall_rating = int(round(float(self.clean_rating + self.comfort_rating + self.location_rating + self.value_money_rating ) / 4))
         self.save()
 
@@ -1172,7 +1172,9 @@ class PlaceReview(models.Model):
         super(PlaceReview, self).save(*args, **kwargs)
 
 
-
+    def get_ratings(self):
+        return [(self._meta.get_field(k).verbose_name, getattr(self,k) ) for k in
+        ['clean_rating','comfort_rating','location_rating','value_money_rating'] ]
 
     class Meta:
         ordering = ['timestamp']
