@@ -327,6 +327,36 @@ def review_place(request, id):
     'review':r, 'user_review':ur})
     return render_to_response('dashboard/review_place.html', context, context_instance=RequestContext(request))
 
+
+@login_required
+def review_guest(request, id):
+    user = request.user
+    context = {}
+
+    ur = UserReview.objects.filter(writer=user, booking=id)
+    if ur: ur = ur[0]
+
+    b = Booking.objects.get(Q(guest=user)|Q(host=user), pk=id)
+    if request.method == 'POST':
+
+        uform = UserReviewForm(request.POST)
+        if uform.is_valid():
+            ur=uform.save(commit=False)
+            ur.booking = b
+            ur.place = b.place
+            ur.lang = request.LANGUAGE_CODE
+            ur.writer = user
+            ur.person = b.guest
+            ur.save()
+            messages.info(request, __('misafir yorum tesekkur'))
+    else:
+        if ur:
+            uform = UserReviewForm(instance=ur)
+        else:
+            uform = UserReviewForm()
+    context.update({'booking':b, 'place':b.place, 'uform':uform, 'user_review':ur})
+    return render_to_response('dashboard/review_guest.html', context, context_instance=RequestContext(request))
+
 @login_required
 def show_booking(request, id):
     user = request.user

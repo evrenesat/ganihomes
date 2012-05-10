@@ -87,7 +87,12 @@
                                 <input type="submit" onclick="$('#confirmation').val('reject')"
                                        class="kizildugme kck" value="{% trans "Reject booking" %}"><br>
 
-                            {% endif %}
+
+                        {% elif booking.status > 20 %}
+                                                        <input type="button" onclick="gh.reviewGuest({{ booking.id }})"
+                                                               class="yemyesildugme kck" value="{% trans "Write a review for your guest" %}">
+                                                        <br>
+                                                    {% endif %}
                             <input type=button onclick="gh.sendMessage({{ booking.guest_id }})" class="yemyesildugme"
                                    value="{% trans "Send a message to guest" %}">
                         {% else %}
