@@ -1,192 +1,255 @@
 {% extends "content.html" %}
-{% load cevir i18n cache%}
-1{% block extracss %}<style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>{% endblock %}
+{% load cevir i18n cache %}
+1{% block extracss %}
+    <style type="text/css"> @import "{{ STATIC_URL }}datepick/humanity.datepick.css"; </style>{% endblock %}
 {% block extrajs %}
-<meta property="fb:app_id" content="118771108245844" />
-<meta property="og:site_name" content="GaniHomes" />
-<meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ place.title }}{% endif %}" />
-<meta property="og:image" content="http://www.ganihomes.com/static/yuklemeler/place_photos/{{ place.id }}_plkks.jpg" />
-<meta property="og:country-name" content="{{ place.get_country_display }}" />
-<meta property="og:description" content="{% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}" />
-<meta property="og:locality" content="{{ place.city}}" />
-<script>gh_rdts={{ place.reserved_dates|default:"[]" }};gh_prcs={{ place.prices|default:"{}" }};service_fee={{ service_fee|default:0 }};cleaning_fee={{ place.cleaning_fee|default:0 }};exlimit={{ place.extra_limit|default:0 }};exprice={{ place.extra_price|default:0 }};min_stay={{ place.min_stay }};max_stay={{ place.max_stay }};wdiscount={{ place.weekly_discount|default:0 }};mdiscount={{ place.monthly_discount|default:0 }};</script>
+    <meta property="fb:app_id" content="118771108245844"/>
+    <meta property="og:site_name" content="GaniHomes"/>
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ place.title }}{% endif %}"/>
+    <meta property="og:image"
+          content="http://www.ganihomes.com/static/yuklemeler/place_photos/{{ place.id }}_plkks.jpg"/>
+    <meta property="og:country-name" content="{{ place.get_country_display }}"/>
+    <meta property="og:description"
+          content="{% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}"/>
+    <meta property="og:locality" content="{{ place.city}}"/>
+    <script>gh_rdts ={{ place.reserved_dates|default:"[]" }};
+    gh_prcs ={{ place.prices|default:"{}" }};
+    service_fee ={{ service_fee|default:0 }};
+    cleaning_fee ={{ place.cleaning_fee|default:0 }};
+    exlimit ={{ place.extra_limit|default:0 }};
+    exprice ={{ place.extra_price|default:0 }};
+    min_stay ={{ place.min_stay }};
+    max_stay ={{ place.max_stay }};
+    wdiscount ={{ place.weekly_discount|default:0 }};
+    mdiscount ={{ place.monthly_discount|default:0 }};</script>
 {% endblock %}
 {% block content %}
     <div class="altikutu">
 
-    <div id="place-conatiner">
-        <div id="place-title">
-            <div id="titlediv">{% if title %}{{ title }}{% else %}{{ place.title }}{% endif %}</div>
-            <div id="subtitlediv">{{ place.city}} - {{ place.district }}, {{ place.get_country_display }}</div>
+        <div id="place-conatiner">
+            <div id="place-title">
+                <div id="titlediv">{% if title %}{{ title }}{% else %}{{ place.title }}{% endif %}</div>
+                <div id="subtitlediv">{{ place.city }} - {{ place.district }}, {{ place.get_country_display }}</div>
 
-        </div>
+            </div>
 
-        <div id="placediv">
+            <div id="placediv">
+
+                <div>
+
+                    <div class="tabbed" id="toptabs">
+                        <ul id="ttabul">
+                            <li class="ptab"><a href="#pphoto">{% trans "Photos" %}</a></li>
+                            <li class="ptab"><a id="uygtab" href="#pcalendar">{% trans "Availablity" %}</a></li>
+                            <li class="ptab"><a id="openmap" href="#pmaps">{% trans "Map" %}</a></li>
+                            {#                    {% if place.overall_rating %}#}
+                            {#                    <div class="stardiv rating star{{ place.overall_rating}}" ></div>#}
+                            {#                    {% endif %}#}
+                        </ul>
+                        <div id="pphoto">
+                            <div id="photoframe">
+                                <div id="phimg"
+                                     style="background:url({{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_plxl.jpg) no-repeat center center;"></div>
+                            </div>
+
+
+                            <div id="photoslider-left" class="nextpre">&laquo;</div>
+                            <div id="photoslider_container">
+                                {% cache 300 placephotos place.id %}
+                                    <div id="photoslider">
+                                        {% for p in place.photo_set.all %}
+                                            <li class="pthumb"><a
+                                                    href="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xl.jpg"><img
+                                                    src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xs.jpg"></a>
+                                            </li>
+                                        {% endfor %}
+                                    </div>
+                                {% endcache %}
+
+                            </div>
+                            <div id="photoslider-right" class="nextpre">&raquo;</div>
+
+                        </div>
+                        <div id="pcalendar">
+                            <input type="hidden" name="calendar" id="calendarinput">
+
+                            <div id="minDate"></div>
+                            <div id="calendar" style="height:550px;width:100%"></div>
+                        </div>
+                        <div id="pmaps">
+                            <div id="map_canvas"></div>
+                            <input type="hidden" value="{{ place.lat }}" id="id_lat">
+                            <input type="hidden" value="{{ place.lon }}" id="id_lon">
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
 
             <div>
 
-            <div id="toptabs">
-                <ul id="ttabul">
-                    <li class="ptab"><a href="#pphoto">{% trans "Photos" %}</a></li>
-                    <li class="ptab"><a id="uygtab" href="#pcalendar">{% trans "Availablity" %}</a></li>
-                    <li class="ptab"><a id="openmap" href="#pmaps">{% trans "Map" %}</a></li>
-{#                    {% if place.overall_rating %}#}
-{#                    <div class="stardiv rating star{{ place.overall_rating}}" ></div>#}
-{#                    {% endif %}#}
-                </ul>
-                <div id="pphoto">
-                    <div id="photoframe">
-                        <div id="phimg" style="background:url({{ STATIC_URL }}/yuklemeler/place_photos/{{ place.id }}_plxl.jpg) no-repeat center center;"></div>
+                <div class="tabbed" id="subtabs">
+                    <ul id="stabul">
+                        <li class="ptab"><a href="#ack">{% trans "Description" %}</a></li>
+                        <li class="ptab"><a href="#amens">{% trans "Amenities" %}</a></li>
+                        {% if place.manual or place.rules %}
+                            <li class="ptab"><a href="#klv">{% trans "Manual & Rules" %}</a></li>{% endif %}
+                    </ul>
+
+                    <div id="ack">
+                        <div id="aciklama">
+                            <div id="descdiv">
+                                {% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}
+                            </div>
+
+                            {% if translations %}
+                                <br><br>
+                                <hr>
+                                {% trans "Available translations" %}<br>
+                                <div id="availtrans">
+                                    {% for l in translations %}
+                                        <img data-lang="{{ l }}" src="/static/images/flags/{{ l }}.png">
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div id="ozellikler">
+                            {% for label, value in properties %}
+                                <span class="ozz_label">{{ label }}</span>
+                                <span class="ozz_value">{{ value|default:'-' }}</span>
+                            {% endfor %}
+                            {% if place.cleaning_fee %}<span class="ozz_label">{% trans "Cleaning fee" %}</span>
+                                <span data-prc="{{ place.cleaning_fee }}" data-crc="{{ place.currency_id }}"
+                                      class="gh-prc crc ozz_value">{{ place.cleaning_fee }}</span>{% endif %}
+                        </div>
                     </div>
+                    <div id="amens">
+                        <ul id="amenul">
+                            {% for l in amens %}
+                                <li class="{{ l.class }}">{{ l.name }}{% if l.help %}<span class="mhelp"
+                                                                                           title="{{ l.help }}"></span>{% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
 
 
-                <div id="photoslider-left" class="nextpre">&laquo;</div>
-                <div id="photoslider_container">
-                    {% cache 300 placephotos place.id%}
-                    <div id="photoslider">
-                        {% for p in place.photo_set.all %}
-                            <li  class="pthumb"><a href="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xl.jpg"><img  src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_xs.jpg"></a></li>
+                    </div>
+                    {% if place.manual or place.rules %}
+                        <div id="klv">
+                            <p>{{ place.rules|linebreaksbr }}</p>
+
+                            <p>{{ place.manual|linebreaksbr }}</p>
+
+
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% cache 99999 reviewbox place.id %}
+            <div id="reviewcontainer">
+
+                <div class="tabbed" id="reviewtabs">
+                    <ul id="stabul">
+                        <li class="ptab"><a href="#review">{% trans "Reviews" %}</a></li>
+                        <li class="ptab"><a href="#hreview">{% trans "Host Reviews" %}</a></li>
+
+                    </ul>
+                    <div id="review">
+                        {% with place.get_reviews as reviews %}
+                            {% if reviews %}
+                        {% for r in reviews %}
+                            <div class="spreviewbox">
+                                    <div class="guestimage"><img
+                                            src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ r.writer.id}}_m.jpg">
+                                        <br>{{ r.writer.first_name }}
+                                    </div>
+                                    <div class="sp_review_box">
+                                    {{ r.text }}
+                                    </div>
+                            </div>
                         {% endfor %}
+                            {% else %}
+                                {% cevir "Bu mekan icin henüz yorum yapılmamış." %}
+                            {% endif %}
+                    {% endwith %}
                     </div>
-                {% endcache %}
+                    <div id="hreview">
+                        {% with place.get_host_reviews as reviews %}
+                            {% if reviews %}
+                        {% for r in reviews %}
+                            <div class="spreviewbox">
+                                    <div class="guestimage"><img
+                                            src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ r.writer.id}}_m.jpg">
+                                        <br>{{ r.writer.first_name }}
+                                    </div>
+                                    <div class="sp_review_box">
+                                    {{ r.text }}
+                                    </div>
+                            </div>
+                        {% endfor %}
+                        {% else %}
+                            {% cevir "Bu kişi icin henüz yorum yapılmamış." %}
+                        {% endif %}
+                {% endwith %}
+                    </div>
+                </div>
+            </div>
+            {% endcache %}
 
-                </div>
-                <div id="photoslider-right" class="nextpre">&raquo;</div>
-
-                </div>
-                <div id="pcalendar">
-                <input type="hidden" name="calendar" id="calendarinput">
-                    <div id="minDate"></div>
-                    <div id="calendar" style="height:550px;width:100%"></div>
-                </div>
-                <div id="pmaps">
-                    <div id="map_canvas"></div>
-                    <input type="hidden" value="{{ place.lat }}" id="id_lat">
-                    <input type="hidden" value="{{ place.lon }}" id="id_lon">
-                </div>
         </div>
-
-    </div>
-
-
-        </div>
-
-
-
-
-
-
-
-
-        <div>
-
-               <div id="subtabs">
-                   <ul id="stabul">
-                       <li class="ptab"><a href="#ack">{% trans "Description" %}</a></li>
-                       <li class="ptab"><a href="#amens">{% trans "Amenities" %}</a></li>
-                       {% if place.manual or place.rules %}<li class="ptab"><a href="#klv">{% trans "Manual & Rules" %}</a></li>{% endif %}
-                   </ul>
-
-                   <div id="ack">
-                       <div id="aciklama">
-                       <div id="descdiv">
-                           {% if description %}{{ description|linebreaksbr }}{% else %}{{ place.description|linebreaksbr }}{% endif %}
-                       </div>
-
-                       {% if translations %}
-                           <br><br><hr>
-                           {% trans "Available translations" %}<br>
-                           <div id="availtrans">
-                           {% for l in translations %}
-                               <img data-lang="{{ l }}" src="/static/images/flags/{{ l }}.png">
-                           {% endfor %}
-                           </div>
-                       {% endif %}
-                       </div>
-                       <div id="ozellikler">
-                           {% for label, value in properties %}
-                               <span class="ozz_label">{{ label }}</span>
-                               <span class="ozz_value">{{ value|default:'-' }}</span>
-                           {% endfor %}
-                           {% if place.cleaning_fee %}<span class="ozz_label">{% trans "Cleaning fee" %}</span>
-                           <span data-prc="{{ place.cleaning_fee }}" data-crc="{{ place.currency_id }}" class="gh-prc crc ozz_value">{{ place.cleaning_fee }}</span>{% endif %}
-                       </div>
-                   </div>
-                   <div id="amens">
-                      <ul id="amenul">
-                          {% for l in amens %}
-                          <li class="{{ l.class }}" >{{ l.name }}{% if l.help %}<span class="mhelp" title="{{ l.help }}"></span>{% endif %}</li>
-                          {% endfor %}
-                      </ul>
-
-
-
-                   </div>
-                   {% if place.manual or place.rules %}
-                   <div id="klv">
-                       <p>{{ place.rules|linebreaksbr }}</p>
-                       <p>{{ place.manual|linebreaksbr }}</p>
-
-
-                   </div>
-                   {% endif %}
-
-           </div>
-
-       </div>
-
-
-
-
-
-
-
-
-</div>
-</div>
-
-
-
-
-<div class="ikikutu" id="pricebox">
-<form action="{% url book_place %}?express" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="currencyid" id="currencyid" value="">
-    <input type="hidden" name="placeid" id="placeid" value="{{ place.id }}">
-    <input type="hidden" name="displayed_price" id="displayed_price">
-    <input type="hidden" name="ndays" id="ndays">
-<div class="piee fetiket"><div id="placeprice"><span class="gh-prc pr" data-crc="{{ place.currency_id }}" data-prc="{{ place.price  }}" class="pr"></span></div><div  id="placecurrency"><span class="only-crc"></span> / {% trans "night" %}</div></div>
-<div id="pricebox-ic">
-<div class="pl10 pt10 tsdw2" style="color:#111111;">
-    <script>gh.replace_pricetag()</script>
-</div>
-
-    <div class="cinout separate">
-        <label for="checkin">{% trans "Check-in" %}</label><br>
-        {{ bform.checkin }}
-    </div>
-    <div class="cinout">
-        <label for="checkout">{% trans "Check-out" %}</label><br>
-        {{ bform.checkout }}
-    </div>
-    <div class="cinout">
-        <label for="no_of_guests">{% trans "Guests" %}</label><br>
-        {{ bform.no_of_guests }}
     </div>
 
 
 
 
-    <div id="totalPriceDiv">
-    <label class="fl" for="totalPrice">{% trans "Total" %}:</label>
+    <div class="ikikutu" id="pricebox">
+        <form action="{% url book_place %}?express" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="currencyid" id="currencyid" value="">
+            <input type="hidden" name="placeid" id="placeid" value="{{ place.id }}">
+            <input type="hidden" name="displayed_price" id="displayed_price">
+            <input type="hidden" name="ndays" id="ndays">
+
+            <div class="piee fetiket">
+                <div id="placeprice"><span class="gh-prc pr" data-crc="{{ place.currency_id }}"
+                                           data-prc="{{ place.price  }}" class="pr"></span></div>
+                <div id="placecurrency"><span class="only-crc"></span> / {% trans "night" %}</div>
+            </div>
+            <div id="pricebox-ic">
+                <div class="pl10 pt10 tsdw2" style="color:#111111;">
+                    <script>gh.replace_pricetag()</script>
+                </div>
+
+                <div class="cinout separate">
+                    <label for="checkin">{% trans "Check-in" %}</label><br>
+                    {{ bform.checkin }}
+                </div>
+                <div class="cinout">
+                    <label for="checkout">{% trans "Check-out" %}</label><br>
+                    {{ bform.checkout }}
+                </div>
+                <div class="cinout">
+                    <label for="no_of_guests">{% trans "Guests" %}</label><br>
+                    {{ bform.no_of_guests }}
+                </div>
+
+
+                <div id="totalPriceDiv">
+                    <label class="fl" for="totalPrice">{% trans "Total" %}:</label>
             <span id="totalPrice">
                 <span id="totalPriceValue" class="gh-prc crc"> 0</span>
             </span>
-    </div>
+                </div>
 
 
-    <hr>
-<div id="subpriceinfo" >
+                <hr>
+                <div id="subpriceinfo">
 
     <span class="discount gizli" id="wdiscount">{% trans "Weekly discount" %}
       <span class="gh-prc crc"> 0</span>
@@ -206,84 +269,98 @@
     <span class="gizli" id="servicefee">{% trans "Includes GaniHomes service fee" %}
      ( <span class="gh-prc crc"> 0</span> )
     </span>
-</div>
-    <div class="align-center"><input type="button" class="yemyesildugme fo20" id="bookitbutton" value="{% trans "Book it" %}"></div>
-    <div id="info-select-dates" class="warn gizli">{% trans "Please select the check in and check out dates first."%}</div>
-    <div id="info-stay-more" class="warn gizli">{% blocktrans with place.min_stay as minstay%}Duration of minimum accommodation for this place is {{ minstay }} nights.{% endblocktrans %}</div>
-    <div id="info-stay-less" class="warn gizli">{% blocktrans with place.max_stay as maxstay%}Duration of maximum accommodation for this place is {{ maxstay }} nights.{% endblocktrans %}</div>
-    <div id="info-select-valid-dates" class="warn  gizli">{% trans "Those dates are unavailable. Select differend dates or <a href='#looknearby'>look for nearby places</a>."%}</div>
-</div>
-</form>
-</div>
+                </div>
+                <div class="align-center"><input type="button" class="yemyesildugme fo20" id="bookitbutton"
+                                                 value="{% trans "Book it" %}"></div>
+                <div id="info-select-dates"
+                     class="warn gizli">{% trans "Please select the check in and check out dates first." %}</div>
+                <div id="info-stay-more" class="warn gizli">{% blocktrans with place.min_stay as minstay %}Duration of
+                    minimum accommodation for this place is {{ minstay }} nights.{% endblocktrans %}</div>
+                <div id="info-stay-less" class="warn gizli">{% blocktrans with place.max_stay as maxstay %}Duration of
+                    maximum accommodation for this place is {{ maxstay }} nights.{% endblocktrans %}</div>
+                <div id="info-select-valid-dates"
+                     class="warn  gizli">{% trans "Those dates are unavailable. Select differend dates or <a href='#looknearby'>look for nearby places</a>." %}</div>
+            </div>
+        </form>
+    </div>
 
 
     <div class="ikikutu">
-            <button title="{% trans "Add or delete this place from your bookmarks" %}" id="addbookmark" class="minidugme">
-                <span class="bm">{% trans "Bookmark Place" %}</span><span class="bmd">{% trans "Bookmarked" %}</span>
-                </button>
-            <div class="sepline"></div>
+        <button title="{% trans "Add or delete this place from your bookmarks" %}" id="addbookmark" class="minidugme">
+            <span class="bm">{% trans "Bookmark Place" %}</span><span class="bmd">{% trans "Bookmarked" %}</span>
+        </button>
+        <div class="sepline"></div>
 
-            <ul class="like-buttons">
+        <ul class="like-buttons">
 
             <li id="fblike">
-                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                <div class="fb-like" data-send="true" data-layout="button_count" data-width="450"
+                     data-show-faces="false"></div>
             </li>
-        <li class="g-plus-one">
-            <div class="g-plusone" data-size="medium" data-annotation="none"></div>
-        </li>
-        <li class="twitter-like">
-            <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Twt</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-        </li>
+            <li class="g-plus-one">
+                <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+            </li>
+            <li class="twitter-like">
+                <a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= url %>" data-count="none">Twt</a>
+                <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            </li>
 
-            </ul>
+        </ul>
 
 
-        </div>
+    </div>
     {% cache 99999 hostbox place.id LANGUAGE_CODE %}
         {% with place.owner.get_profile as profile %}
-    <div class="ikikutu">
+            <div class="ikikutu">
 
-    <h3>{% trans "Host" %}</h3>
-    <hr><div id="hostbox">
-        <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><a href="{% url show_profile profile.id  %}"><img id="hostimg" src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ profile.user_id }}_l.jpg"></a>
-        <div id="hostname">{{ profile.private_name }}</div></div>
-        <textarea id="hostmsg"></textarea>
+                <h3>{% trans "Host" %}</h3>
+                <hr>
+                <div id="hostbox">
+                    <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><a
+                            href="{% url show_profile profile.id  %}"><img id="hostimg"
+                                                                           src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ profile.user_id }}_l.jpg"></a>
 
-
-        <div class="align-center">
-            <input type="button" class="dugme2" id="contacthost" value="{% trans "Contact with Host" %}">
-            <input type="button" class="dugme2" id="sendhostmessage" value="{% trans "Send" %}">
-        </div>
-    </div>
-
-        {% with place.siblings as other_places %}
-        {% if other_places%}<br><br>
-        <h3>{% blocktrans with profile.private_name as profile_name %}{{ profile_name }}'s other places;{% endblocktrans %}</h3>
-    <hr><ul id="other_places">
-        {% for p in other_places%}
-            <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
-                <img class="pimg" src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
-                <span class=title>{{ p.title|slice:":40" }}</span><br>
-                <span class=detail>{{ place.city}} - {{ place.district }}</span><br>
-                <span data-prc="{{ p.price }}" data-crc="{{ p.currency_id }}" class="gh-prc crc price">{{ p.price }}</span>
-            </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
+                        <div id="hostname">{{ profile.private_name }}</div>
+                    </div>
+                    <textarea id="hostmsg"></textarea>
 
 
+                    <div class="align-center">
+                        <input type="button" class="dugme2" id="contacthost" value="{% trans "Contact with Host" %}">
+                        <input type="button" class="dugme2" id="sendhostmessage" value="{% trans "Send" %}">
+                    </div>
+                </div>
+
+                {% with place.siblings as other_places %}
+                    {% if other_places %}<br><br>
+                        <h3>{% blocktrans with profile.private_name as profile_name %}{{ profile_name }}'s other
+                            places;{% endblocktrans %}</h3>
+                        <hr>
+                        <ul id="other_places">
+                            {% for p in other_places %}
+                                <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                                    <img class="pimg"
+                                         src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
+                                    <span class=title>{{ p.title|slice:":40" }}</span><br>
+                                    <span class=detail>{{ place.city }} - {{ place.district }}</span><br>
+                                    <span data-prc="{{ p.price }}" data-crc="{{ p.currency_id }}"
+                                          class="gh-prc crc price">{{ p.price }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
 
 
-    </div>
+            </div>
         {% endwith %}
-        {% endcache %}
-<script>$('#subtabs').tabs();</script>
+    {% endcache %}
+    {#<script>$('#subtabs').tabs();</script>#}
 
 
 {% endblock %}
 {% block closebody %}
 
-<div id="fb-root"></div>
+    <div id="fb-root"></div>
 {% endblock %}
 {% block footmessage %}{% cevir "altmetin mekan" %}{% endblock %}

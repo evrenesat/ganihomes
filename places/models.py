@@ -471,6 +471,12 @@ class Place(models.Model):
 
     admin_image.allow_tags = True
 
+    def get_reviews(self):
+        return self.placereview_set.filter(active=True)
+
+    def get_host_reviews(self):
+        return self.owner.personal_reviews_about_you.filter(active=True)
+
     def calculate_ratings(self):
         for r in ['clean_rating','comfort_rating','location_rating','value_money_rating']:
             setattr(self,r, int(round(self.placereview_set.aggregate(Avg(r))[r+'__avg'])))
@@ -532,11 +538,12 @@ class Place(models.Model):
         return tags
 
     def invalidate_caches(self):
-    #        kes('ptranslist',self.id).d()
-    #        del_kes_for_langs('ptrans',self.id)
-    #        del_temp_cache_for_langs('hostbox',self.id )
-    #        del_temp_cache('placephotos',self.id, )
-    #        del_kes_for_langs('tgs',self.id)
+        kes('ptranslist',self.id).d()
+        del_kes_for_langs('ptrans',self.id)
+        del_temp_cache_for_langs('hostbox',self.id )
+        del_temp_cache('placephotos',self.id, )
+        del_temp_cache('reviewbox',self.id, )
+        del_kes_for_langs('tgs',self.id)
         expire_page(reverse('show_place', args=(self.id,)))
 
     def get_translation_list(self, reset=None):

@@ -935,7 +935,8 @@ gh = {
         $('#amenul .mhelp').easyTooltip()
 
 
-        $('#toptabs').tabs();
+        $('#place-conatiner .tabbed').tabs();
+
 
         $('#availtrans img').click(function () {
             var pid = $('#placeid').val()

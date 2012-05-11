@@ -4834,3 +4834,38 @@ list-style:none;
     border:0;
     color:black !important;
 }
+#reviewcontainer>div.ui-widget-content{
+    display:inline-block;
+    width:100%;
+}
+#reviewcontainer{
+    padding-top:20px;
+
+}
+
+.guestimage{
+    float:left;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 1px 1px 4px 1px #cccccc;
+    -moz-box-shadow: 1px 1px 4px 1px #cccccc;
+    box-shadow: 1px 1px 4px 1px #cccccc;
+    text-align:center;
+
+}
+.sp_review_box{
+    width:485px;
+    float:left;
+    margin-left:20px;
+    font-size:10px;
+    color:#363636;
+}
+
+.spreviewbox{
+    margin-bottom:20px;
+    display:inline-block;
+}
+#reviewtabs{
+    min-height:170px;
+}
