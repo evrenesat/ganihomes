@@ -424,7 +424,7 @@ class Place(models.Model):
     clean_rating = models.SmallIntegerField(_('Cleaness'), choices=PLACE_RATING, default=0)
     comfort_rating = models.SmallIntegerField(_('Accuracy'), choices=PLACE_RATING, default=0)
     location_rating = models.SmallIntegerField(_('Location'), choices=PLACE_RATING, default=0)
-    value_money_rating = models.SmallIntegerField(_('Value/Money Rating'), choices=PLACE_RATING, default=0)
+    value_money_rating = models.SmallIntegerField(_('Value/Money'), choices=PLACE_RATING, default=0)
     description = models.TextField(_('Description'), null=True, blank=True)
     #    version = models.IntegerField(_('Version'), default=1)
     lang = models.CharField(_('Language'), max_length=5, choices=LANGUAGES)
@@ -470,6 +470,10 @@ class Place(models.Model):
         self.get_absolute_url(), settings.MEDIA_URL, self.id)
 
     admin_image.allow_tags = True
+
+    def get_ratings(self):
+        return [(self._meta.get_field(k).verbose_name, getattr(self,k) ) for k in
+        ['clean_rating','comfort_rating','location_rating','value_money_rating'] ]
 
     def get_reviews(self):
         return self.placereview_set.filter(active=True)

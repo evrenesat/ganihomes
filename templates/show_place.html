@@ -152,54 +152,62 @@
             </div>
 
             {% cache 99999 reviewbox place.id %}
-            <div id="reviewcontainer">
+                <div id="reviewcontainer">
 
-                <div class="tabbed" id="reviewtabs">
-                    <ul id="stabul">
-                        <li class="ptab"><a href="#review">{% trans "Reviews" %}</a></li>
-                        <li class="ptab"><a href="#hreview">{% trans "Host Reviews" %}</a></li>
+                    <div class="tabbed" id="reviewtabs">
+                        <ul id="stabul">
+                            <li class="ptab"><a href="#review">{% trans "Reviews" %}</a></li>
+                            <li class="ptab"><a href="#hreview">{% trans "Host Reviews" %}</a></li>
 
-                    </ul>
-                    <div id="review">
-                        {% with place.get_reviews as reviews %}
-                            {% if reviews %}
-                        {% for r in reviews %}
-                            <div class="spreviewbox">
-                                    <div class="guestimage"><img
-                                            src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ r.writer.id}}_m.jpg">
-                                        <br>{{ r.writer.first_name }}
+                        </ul>
+                        <div id="review">
+                            {% with place.get_reviews as reviews %}
+                                {% if reviews %}
+                                    <div id="ratingstars">
+                                        {% for k,v in place.get_ratings %}
+                                            <div class="rstars"><label>{{ k }}</label>
+
+                                                <div class="rating star{{ v }}"></div>
+                                            </div>
+                                        {% endfor %}
                                     </div>
-                                    <div class="sp_review_box">
-                                    {{ r.text }}
-                                    </div>
-                            </div>
-                        {% endfor %}
-                            {% else %}
-                                {% cevir "Bu mekan icin henüz yorum yapılmamış." %}
-                            {% endif %}
-                    {% endwith %}
-                    </div>
-                    <div id="hreview">
-                        {% with place.get_host_reviews as reviews %}
-                            {% if reviews %}
-                        {% for r in reviews %}
-                            <div class="spreviewbox">
-                                    <div class="guestimage"><img
-                                            src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ r.writer.id}}_m.jpg">
-                                        <br>{{ r.writer.first_name }}
-                                    </div>
-                                    <div class="sp_review_box">
-                                    {{ r.text }}
-                                    </div>
-                            </div>
-                        {% endfor %}
-                        {% else %}
-                            {% cevir "Bu kişi icin henüz yorum yapılmamış." %}
-                        {% endif %}
-                {% endwith %}
+                                    {% for r in reviews %}
+                                        <div class="spreviewbox">
+                                            <div class="guestimage"><img
+                                                    src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ r.writer.id}}_m.jpg">
+                                                <br>{{ r.writer.first_name }}
+                                            </div>
+                                            <div class="sp_review_box">
+                                                {{ r.text }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% cevir "Bu mekan icin henüz yorum yapılmamış." %}
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                        <div id="hreview">
+                            {% with place.get_host_reviews as reviews %}
+                                {% if reviews %}
+                                    {% for r in reviews %}
+                                        <div class="spreviewbox">
+                                            <div class="guestimage"><img
+                                                    src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ r.writer.id}}_m.jpg">
+                                                <br>{{ r.writer.first_name }}
+                                            </div>
+                                            <div class="sp_review_box">
+                                                {{ r.text }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% cevir "Bu kişi icin henüz yorum yapılmamış." %}
+                                {% endif %}
+                            {% endwith %}
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endcache %}
 
         </div>

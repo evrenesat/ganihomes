@@ -172,7 +172,7 @@
 .slidiv {
     width: 568px;
     height: 360px;;
-    background: #4d4d4d no-repeat center;
+    background: #4d4d4d no-repeat top center;
     position: relative;
     display: block;
     float: left;
@@ -4868,4 +4868,8 @@ list-style:none;
 }
 #reviewtabs{
     min-height:170px;
+}
+#ratingstars{
+    color: gray;
+    height: 77px;
 }
