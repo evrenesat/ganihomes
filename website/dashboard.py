@@ -670,6 +670,27 @@ class TicketForm(forms.ModelForm):
 
 
 @login_required
+def support_show(request):
+    if request.POST:
+        form = TicketForm(request.POST, lang=request.LANGUAGE_CODE)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.status = 10
+            obj.user = request.user
+            obj.save()
+            mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
+            messages.success(request, _('Your message successfully saved.'))
+#            return HttpResponseRedirect(reverse('support_thanks'))
+    else:
+        form = TicketForm(lang=request.LANGUAGE_CODE)
+        form.fields['subject'].initial = request.GET.get('subject', '')
+        form.fields['category'].initial = int(request.GET.get('category', 0))
+    return render_to_response('dashboard/support_create.html', {'form': form, },
+                              context_instance=RequestContext(request, {}))
+
+
+
+@login_required
 def support_create(request):
     if request.POST:
         form = TicketForm(request.POST, lang=request.LANGUAGE_CODE)
@@ -686,6 +707,13 @@ def support_create(request):
         form.fields['subject'].initial = request.GET.get('subject', '')
         form.fields['category'].initial = int(request.GET.get('category', 0))
     return render_to_response('dashboard/support_create.html', {'form': form, },
+                              context_instance=RequestContext(request, {}))
+
+
+@login_required
+def support_list(request):
+    tickets = Ticket.objects.filter(status__lt=40, user=request.user)
+    return render_to_response('dashboard/support_create.html', {'tickets': tickets, },
                               context_instance=RequestContext(request, {}))
 
 

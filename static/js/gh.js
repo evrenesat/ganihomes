@@ -993,8 +993,9 @@ gh = {
         $.getScript(this.STATIC_URL + 'datepick/jquery.datepick.js', function () {
             $.getScript(self.STATIC_URL + 'datepick/jquery.datepick-' + self.LANGUAGE_CODE + '.js', function () {
                 self.hafta_sonu = $.datepick.regional[self.LOCALE].firstDay == 0 ? [5, 6] : [5, 6]
-                self.makeAvailabilityTab()
+
                 self.prepareSessionalPrices()
+                self.makeAvailabilityTab()
                 var dates = $.cookie('selected_dates')
                 if (dates) {
                     dates = $.evalJSON(dates)
