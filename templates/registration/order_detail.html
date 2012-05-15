@@ -19,7 +19,7 @@
 <table cellpadding="0" border="0" cellspacing="0"><tr><th>No</th><th>Ürün</th><th>Adet</th><th>Birim Fiyat</th><th>Toplam</th></tr>
 {%for o in order.orderitem_set.all %}
 
-<tr><td>{{forloop.counter}}</td><td><a title='Ürün detayını görmek için tıklayın.' href={% url kup_product o.product.id o.product.slug %}>{{o}}</a></td><td>{{o.quantity}}</td><td>{{o.unitPrice}}</td><td>{{o.lineItemPrice}}</td></tr>
+<tr><td>{{forloop.counter}}</td><td><a title='Ürün detayını görmek için tıklayın.' href={% url "kup_product" o.product.id o.product.slug %}>{{o}}</a></td><td>{{o.quantity}}</td><td>{{o.unitPrice}}</td><td>{{o.lineItemPrice}}</td></tr>
 </ul>
 {%endfor%}
 </table>

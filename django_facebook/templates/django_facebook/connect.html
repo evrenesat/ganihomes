@@ -85,7 +85,7 @@
         <div class="inner_content">
 
 			<!--form to call registration via facebook -->
-            <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+            <form action="{% url "facebook_connect" %}?facebook_login=1" method="post">
 	            <h2>Register, login or connect with facebook</h2>
 				<input type="hidden" value="{{ request.path }}" name="next" />
 
@@ -107,18 +107,18 @@
 	<div id="footer">
 		<div>
 		{% if request.user.is_authenticated %}
-			Hello {{ request.user }}, <a href="{% url logout %}?next={{ request.path|urlencode }}">logout</a>
+			Hello {{ request.user }}, <a href="{% url "logout" %}?next={{ request.path|urlencode }}">logout</a>
 		{% else %}
 			You are not logged in, Please login by clicking one of the buttons above
 		{% endif %}
 		</div>
         <div style="float: right;">
-	        <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+	        <form action="{% url "facebook_connect" %}?facebook_login=1" method="post">
 	            <a href="javascript:void(0);" onclick="F.connect(this.parentNode);">Test fresh registration</a>
 				<input type="hidden" value="{{ request.path }}" name="next" />
 				<input type="hidden" value="1" name="force_registration_hard" />
 	        </form>
-	        <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+	        <form action="{% url "facebook_connect" %}?facebook_login=1" method="post">
 	            <a href="javascript:void(0);" onclick="F.connect(this.parentNode);">Test registration</a>
 				<input type="hidden" value="{{ request.path }}" name="next" />
 				<input type="hidden" value="1" name="force_registration" />
@@ -129,7 +129,7 @@
     <div id="image_upload" style="margin: 60px 0px 20px 0px;">
         <h2>Album upload flow</h2>
         <div>
-            <form action="{% url facebook_image_upload %}" method="get">
+            <form action="{% url "facebook_image_upload" %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
 
@@ -148,7 +148,7 @@
     <div id="wall_post" style="margin: 60px 0px 20px 0px;">
         <h2>Post to My Wall</h2>
         <div>
-            <form action="{% url facebook_wall_post %}" method="get">
+            <form action="{% url "facebook_wall_post" %}" method="get">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
 
@@ -162,7 +162,7 @@
     <div id="wall_post" style="margin: 60px 0px 20px 0px;">
         <h2>Post to My Wall - Javascript Popup version</h2>
         <div>
-            <form action="{% url facebook_wall_post %}" method="post">
+            <form action="{% url "facebook_wall_post" %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" value="{{ request.path }}" name="next" />
 

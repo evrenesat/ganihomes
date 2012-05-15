@@ -217,7 +217,7 @@
 
 
     <div class="ikikutu" id="pricebox">
-        <form action="{% url book_place %}?express" method="post">
+        <form action="{% url "book_place" %}?express" method="post">
             {% csrf_token %}
             <input type="hidden" name="currencyid" id="currencyid" value="">
             <input type="hidden" name="placeid" id="placeid" value="{{ place.id }}">
@@ -325,7 +325,7 @@
                 <hr>
                 <div id="hostbox">
                     <div id="receiverdiv"><span id="tohost">{% trans "To :" %}</span><a
-                            href="{% url show_profile profile.id  %}"><img id="hostimg"
+                            href="{% url "show_profile" profile.id  %}"><img id="hostimg"
                                                                            src="{{ STATIC_URL }}/yuklemeler/user_photos/{{ profile.user_id }}_l.jpg"></a>
 
                         <div id="hostname">{{ profile.private_name }}</div>
@@ -346,7 +346,7 @@
                         <hr>
                         <ul id="other_places">
                             {% for p in other_places %}
-                                <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                                <li style="cursor:pointer" onclick="document.location='{% url "show_place" p.id%}'">
                                     <img class="pimg"
                                          src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                                     <span class=title>{{ p.title|slice:":40" }}</span><br>

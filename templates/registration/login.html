@@ -39,7 +39,7 @@
 </table>
 
 <input type="submit" value="{% trans 'Login' %}" />
-<input type="hidden" name="next" 
+<input type="hidden" name="next"
 {% if next %}
     value={{ next }} />
 {% else %}
@@ -54,7 +54,7 @@
 </table>
   <div align="center"><img src="/static/grafik/kes.gif" />
   </div><br />
-  <ul><li>Henüz üyemiz değilseniz  <a href="{% url registration_register %}">buraya </a>tıklayarak hemen üye olabilirsiniz.</li></ul>
-<ul><li>Parolanızı hatırlamıyorsanız, <a href="{% url auth_password_reset %}">buraya tıklayarak parolanızı yeniliyebilirsiniz</a>.</li></li>
+  <ul><li>Henüz üyemiz değilseniz  <a href="{% url "registration_register" %}">buraya </a>tıklayarak hemen üye olabilirsiniz.</li></ul>
+<ul><li>Parolanızı hatırlamıyorsanız, <a href="{% url "auth_password_reset" %}">buraya tıklayarak parolanızı yeniliyebilirsiniz</a>.</li></li>
 </div>
 {% endblock %}

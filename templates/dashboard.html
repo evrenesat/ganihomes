@@ -67,6 +67,7 @@
                     <ul>
                         <li class="btn do_showFaq">{% trans "FAQ" %}</li>
                         <li class="btn do_supportCreate">{% trans "I have a question!" %}</li>
+                        <li class="btn do_supportList">{% trans "Previous questions" %}</li>
                     </ul>
                 </li>
 
@@ -150,7 +151,7 @@
                             {% if bookmarks %}
                                 <ul class="dugmul">
                                     {% for p in bookmarks %}
-                                        <li style="cursor:pointer" onclick="document.location='{% url show_place  p.id%}'">
+                                        <li style="cursor:pointer" onclick="document.location='{% url "show_place" p.id%}'">
                                             <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                                             <h6>{{ p.title|slice:":40" }}</h6>
                                         </li>

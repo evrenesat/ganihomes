@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms.fields import ChoiceField
 from django.utils.html import strip_tags
-from support.models import  Ticket, SubjectCategoryTranslation
+from support.models import  Ticket, SubjectCategoryTranslation, Reply
 from website.models.dil import __
 from website.models.faq import Question
 from website.views import addPlaceForm
@@ -668,24 +668,31 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         exclude = ('user', 'status')
 
+class TicketReplyForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(attrs={'cols': '30', 'rows': '4'}), label=_(u'Your message'))
+
+
+    class Meta:
+        model = Reply
+        fields = ('body',)
+
 
 @login_required
-def support_show(request):
+def support_show(request, id):
+    ticket = Ticket.objects.get(pk=id)
     if request.POST:
-        form = TicketForm(request.POST, lang=request.LANGUAGE_CODE)
+        form = TicketReplyForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.status = 10
             obj.user = request.user
+            obj.ticket = ticket
             obj.save()
             mail2perm(obj, url=reverse('support_admin_show_ticket', args=(obj.id, )))
-            messages.success(request, _('Your message successfully saved.'))
-#            return HttpResponseRedirect(reverse('support_thanks'))
+            messages.success(request, _('Your reply successfully saved.'))
+            form = TicketReplyForm()
     else:
-        form = TicketForm(lang=request.LANGUAGE_CODE)
-        form.fields['subject'].initial = request.GET.get('subject', '')
-        form.fields['category'].initial = int(request.GET.get('category', 0))
-    return render_to_response('dashboard/support_create.html', {'form': form, },
+        form = TicketReplyForm()
+    return render_to_response('dashboard/support_show.html', {'form': form,'ticket':ticket },
                               context_instance=RequestContext(request, {}))
 
 
@@ -713,7 +720,7 @@ def support_create(request):
 @login_required
 def support_list(request):
     tickets = Ticket.objects.filter(status__lt=40, user=request.user)
-    return render_to_response('dashboard/support_create.html', {'tickets': tickets, },
+    return render_to_response('dashboard/support_list.html', {'tickets': tickets, },
                               context_instance=RequestContext(request, {}))
 
 

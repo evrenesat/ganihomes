@@ -31,7 +31,7 @@
         <ul class="dugmul">
             {% if places%}
                     {% for p in places %}
-                        <li style="cursor:pointer" onclick="document.location='{% url show_place   p.id%}'">
+                        <li style="cursor:pointer" onclick="document.location='{% url "show_place" p.id%}'">
                             <img src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plks.jpg">
                             <h6>{{ p.title|slice:":40" }}</h6>
                         </li>

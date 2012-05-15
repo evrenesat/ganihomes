@@ -62,7 +62,7 @@
                 <div class="orline" ></div>
 
                  <div style="width:100%;text-align:center;">
-                     <form action="{% url facebook_connect %}?facebook_login=1" class="registerform" method="post">
+                     <form action="{% url "facebook_connect" %}?facebook_login=1" class="registerform" method="post">
                                  <input type="submit" onclick="F.connect(this.parentNode); return false;" class="fbbutton" value="{% trans "Connect with Facebook" %}">
                      <input type="hidden"  name="next" value="{{ next }}">
                                  </form>
@@ -82,7 +82,7 @@
     <hr>
 
                 <div id="uyekapsar">
-                    <form action="{% url login %}" method="post">
+                    <form action="{% url "login" %}" method="post">
                                 <input type="hidden" name="next" value="{{ next }}">
                                 {% csrf_token %}
                     <p style="margin:-10px 10px 10px 10px;">{% cevir "kayit sag sutun login ustyazi " %}
@@ -98,7 +98,7 @@
                         {{ lform.login_pass }}
                     </div>
                 <div class="float-left yuzz txtcnt">
-                <button class="yesildugme fo11">{% trans "Login" %}</button> <a class="fr" href="{% url password_reset %}">{% trans "Forgot password?" %}</a>
+                <button class="yesildugme fo11">{% trans "Login" %}</button> <a class="fr" href="{% url "password_reset" %}">{% trans "Forgot password?" %}</a>
                     </div>
 
 
@@ -108,7 +108,7 @@
                 <div class="orline" ></div>
 
                 <div class="yuzz float-left" style="text-align:center;">
-                    <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+                    <form action="{% url "facebook_connect" %}?facebook_login=1" method="post">
                                                      <input type="submit" onclick="F.connect(this.parentNode); return false;" class="minifbbutton" value="{% trans "Login with Facebook" %}">
                                          <input type="hidden"  name="next" value="{{ next }}">
                                                      </form>

@@ -1,0 +1,32 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n%}
+{% block title %} {% cevir "destek mesaj listesi baslik" %} {% endblock %}
+{% block content %}
+
+
+
+        {% cevir "destek mesaj listesi" %}
+        <br><br>
+
+
+        <table style="width:660px" >
+                      <tr>
+                          <th style="width:400px">{% trans "Subject" %}</th>
+                          <th>{% trans "Status" %}</th>
+                          <th>{% trans "Date" %}</th>
+                          <th>&nbsp;</th>
+                      </tr>
+                      {% for t in tickets %}
+                          <tr>
+                          <td>{{ t.subject }}</td>
+                          <td>{{ t.get_status_display }} <br> {{ r.end }}</td>
+                          <td>{{ t.creatation }}</td>
+                          <td><button class="minidugme" onclick="gh.supportShow({{ t.id }})">{% trans "Show" %}</button></td>
+                          </tr>
+                      {% endfor %}
+                  </table>
+
+
+
+ {% endblock %}
+

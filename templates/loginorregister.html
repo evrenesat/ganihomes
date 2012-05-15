@@ -9,7 +9,7 @@
 
                 <div class="fl" style="width:380px">
 
-                     <form action="{% url login %}" method="post" id="addplaceform">
+                     <form action="{% url "login" %}" method="post" id="addplaceform">
 
                          <input type="hidden" name="next" value="{{ request.GET.next }}">
 
@@ -30,7 +30,7 @@
                  </div>
 
             <div class="form3 fl forms">
-                <form action="{% url register %}" method="post">
+                <form action="{% url "register" %}" method="post">
                 {% csrf_token %}
                         <h3 style="text-align:center;">{% trans "Join Us" %}</h3>
                     <div class="hlfrm">

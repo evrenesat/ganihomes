@@ -7,7 +7,7 @@
 
         <li class=plist>
                 <div class="detail" id="place_{{ p.id }}">
-                    <span class="title" id="place_title_{{ p.id }}" title="{% trans "Preview place" %}"><a href="{% url show_place p.id %}">{{ p.title|truncatechars:30 }}</a></span>
+                    <span class="title" id="place_title_{{ p.id }}" title="{% trans "Preview place" %}"><a href="{% url "show_place" p.id %}">{{ p.title|truncatechars:30 }}</a></span>
                     <img align=left class="pimg" src="{{ STATIC_URL }}/yuklemeler/place_photos/{{ p.id }}_plxs.jpg">
                     <br>{{ p.city }} - {{ p.district }}, {{ p.get_country_dislay }}<br>
                     {{ p.get_type_display }} / {{ p.get_space_display }}

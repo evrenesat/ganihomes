@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+    #! /usr/bin/env python
 # -*-  coding: utf-8 -*-
 from json import loads
 import sys
@@ -150,9 +150,9 @@ class TranslationMachine:
             d, new = Description.objects.get_or_create(place=p, lang=l)
             if not(new or d.auto):
                   continue
-            translation = self.translator([p.title,p.description.replace('\n','|o|')],l)
+            translation = self.translator([p.title,p.description.replace('\n','{0}')],l)
             if translation:
-                d.text = translation[1]['translatedText'].replace('|o|','\n')
+                d.text = translation[1]['translatedText'].format({})
                 d.title = translation[0]['translatedText'][:99]
                 d.auto = True
                 d.save()

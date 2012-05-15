@@ -11,7 +11,7 @@
     {% cevir "faq yancubuk altmetin" %}
 <p></p>
 <p></p>
-    <div id="questboxdiv"><form action="{% url contact_box %}" method="post">
+    <div id="questboxdiv"><form action="{% url "contact_box" %}" method="post">
         {% csrf_token %}
 <input class="innput" id="fullname" name="fullname" value="{% trans "Name" %}">
 <input class="innput" id="email" name="email" value="{% trans "E-mail" %}">

@@ -29,7 +29,7 @@
 <input type="submit" name="Submit" value=" : : {% trans "Cevapla" %} : : ">
 <p><br>
 <p>
-    <input style="float:right;" type=button value='{% trans "Konuyu Kapat" %}' onclick="if(confirm('{% trans "Konuyu kapatmak istediğinizden emin misiniz?" %}'))document.location='{% url support_admin_close m.id%}'">
+    <input style="float:right;" type=button value='{% trans "Konuyu Kapat" %}' onclick="if(confirm('{% trans "Konuyu kapatmak istediğinizden emin misiniz?" %}'))document.location='{% url "support_admin_close" m.id%}'">
     <a  style="float:left" href="delete/" class="deletelink">{% trans "Delete Ticket" %}</a></p>
 </form>
 </div>

@@ -121,7 +121,7 @@ def Show(request, id=None, is_admin=False):
             obj.ticket = ticket
             obj.save()
             msg_context = {'name':ticket.user.last_name,
-                           'link':"/?showSupportTicket=%s"% obj.id}
+                           'link':"dashboard?supportShow=%s"% ticket.id}
             send_html_mail(force_unicode(_('Support ticket has been replied')),
                 ticket.user.email,
                 msg_context,

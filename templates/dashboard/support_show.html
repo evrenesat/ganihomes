@@ -1,0 +1,27 @@
+{% extends "dashboard/base.html" %}
+{% load  cevir i18n %}
+{% block title %} {% cevir "destek mesaji yaz baslik" %} {% endblock %}
+{% block content %}
+
+
+    <form name="form1" method="post" action="">
+        {% cevir "destek mesaji altmetin" %}
+        <br><br>
+{% if ticket.status < 40 %}
+        {{ form.body }}
+        {% csrf_token %}
+        <br><input type="submit" class="gridugme" name="Submit" value="{% trans "Reply" %}">
+{% endif %}
+    </form>
+    <br><br>
+    <h4>{{ ticket.subject }}</h4>
+    {% for r in ticket.reply_set.all %}
+        <strong>{{ r.user.get_full_name }}</strong> / {{ r.creatation }}<br>
+        {{ r.body }}
+        <hr>
+    {% endfor %}
+    <br><br>
+    <strong>{{ ticket.user.get_full_name }}</strong> / {{ ticket.creatation }} <br>
+    {{ ticket.body }}
+{% endblock %}
+

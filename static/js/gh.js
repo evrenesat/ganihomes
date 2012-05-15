@@ -1840,6 +1840,12 @@ gh = {
     do_supportCreate:function (self) {
         this.genericEdit('/dashboard/support_create/')
     },
+    do_supportList:function (self) {
+        this.genericEdit('/dashboard/support_list/')
+    },
+    supportShow:function (id) {
+        this.genericEdit('/dashboard/support_show/'+id)
+    },
     do_changePassword:function (self) {
         this.genericEdit('/dashboard/change_password/')
     },
