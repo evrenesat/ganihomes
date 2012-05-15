@@ -99,7 +99,7 @@ class Reply(models.Model):
         verbose_name = _(u'Ticket Reply')
         verbose_name_plural = _(u'Ticket Replies')
         get_latest_by = 'creatation'
-        order =  ('id')
+#        ordering =  ('id')
 
 
 class Inform(models.Model):
