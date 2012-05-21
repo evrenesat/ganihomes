@@ -879,7 +879,7 @@ class Photo(models.Model):
         #        customThumbnailer(self.image, self.id, [(50, 50, 's')])
         customThumbnailer(self.image, self.id, PHOTO_THUMB_SIZES)
         #FIXME: order on save
-        if self.place and (self.order == 1 or not self.place.primary_photo):
+        if self.place:
             self.place.pick_primary_photo()
 
     def delete(self, *args, **kwargs):
