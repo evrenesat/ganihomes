@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'Evren Esat Ozkan'
 from django.utils.translation import ugettext_lazy as _
 
