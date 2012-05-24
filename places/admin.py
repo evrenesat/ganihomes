@@ -144,7 +144,7 @@ class PlaceAdmin(admin.ModelAdmin):
     #description=''
     list_per_page=25
     prepopulated_fields = {"slug": ("title",)}
-    inlines = [PhotoInline,BookingInline, DescriptionInline]
+    inlines = [PhotoInline, DescriptionInline]
     #list_display_links = ('','')
     date_hierarchy = 'timestamp'
     #list_select_related=False
