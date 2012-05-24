@@ -449,6 +449,7 @@ class Place(models.Model):
         help_text=u'Etkin olmayan mekanlar kendi sahibine bile gösterilmez. Ev sahibi için "silinmiş" gibi görünür. ')
     has_photo = models.BooleanField(_('Place has a photo'), default=False, editable=False)
     published = models.BooleanField(_('Published'), default=False)
+    order = models.SmallIntegerField(_('Order'), choices=ORDER, default=0)
     timestamp = models.DateTimeField(_('Creatation'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last modified'), auto_now=True)
     #    translation_status = models.SmallIntegerField(_('Translation status'), choices=TRANSLATION_STATUS, default=10)
@@ -700,7 +701,7 @@ class Place(models.Model):
         self.gprice = self.price * factor
 
     class Meta:
-        ordering = ['-has_photo', '-overall_rating', 'timestamp']
+        ordering = ['-has_photo', '-overall_rating', '-order']
         get_latest_by = "timestamp"
         verbose_name = _(u'Place')
         verbose_name_plural = _(u'Places')
