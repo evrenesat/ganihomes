@@ -74,7 +74,7 @@ MIN_STAY = n_tuple(90)
 MAX_STAY = n_tuple(60, first=[(0,_('Unlimited'))])
 NO_OF_BEDS = n_tuple(20, first=[(0,'-')])
 PLACE_RATING = n_tuple(6, first=[(0, _('Not rated'))])
-ORDER = n_tuple(20)
+ORDER = n_tuple(20, first=[(0, _('Sıralanmamış'))])
 
 
 
