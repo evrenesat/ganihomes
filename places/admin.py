@@ -242,7 +242,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('full_name', )
     search_fields = ['full_name', 'user__email']
     save_on_top = True
-    actions = ['yerine_gec',export_as_csv_action("Seçilen kayıtları CSV olarak kaydet", fields=['full_name','cell','phone','user'], header=False),]
+    actions = ['yerine_gec',export_as_csv_action("Seçilen kayıtları CSV olarak kaydet", fields=['full_name','city','cell','phone','user'], header=False),]
 
     def yerine_gec(self, request, queryset):
         m=queryset.all()[0]
